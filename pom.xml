@@ -23,11 +23,6 @@
             <id>kotlin-eap</id>
             <url>http://dl.bintray.com/kotlin/kotlin-eap</url>
         </repository>
-        <repository>
-            <id>spring-milestone</id>
-            <name>Spring Milestone Repository</name>
-            <url>https://repo.spring.io/milestone</url>
-        </repository>
     </repositories>
 
     <pluginRepositories>
@@ -36,18 +31,6 @@
             <url>http://dl.bintray.com/kotlin/kotlin-eap</url>
         </pluginRepository>
     </pluginRepositories>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${boot.dependencies.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -65,22 +48,6 @@
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-core</artifactId>
             <version>${kotlinx.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.ktor</groupId>
-            <artifactId>ktor-server-netty</artifactId>
-            <version>${ktor.io.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.ktor</groupId>
-            <artifactId>ktor-gson</artifactId>
-            <version>${ktor.io.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.module</groupId>
-            <artifactId>jackson-module-kotlin</artifactId>
         </dependency>
 
         <!-- logging -->
@@ -149,26 +116,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>net.bytebuddy</groupId>
-            <artifactId>byte-buddy</artifactId>
-            <version>${byte-buddy.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.apache.maven.surefire</groupId>
-            <artifactId>surefire-logger-api</artifactId>
-            <version>${maven-surefire-plugin.version}</version>
-            <!-- to get around bug https://github.com/junit-team/junit5/issues/801 -->
-            <scope>test</scope>
-            <optional>true</optional>
-        </dependency>
-
     </dependencies>
 
     <build>
@@ -389,34 +341,19 @@
 
     </profiles>
 
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jxr-plugin</artifactId>
-                <version>${maven-jxr-plugin.version}</version>
-            </plugin>
-        </plugins>
-    </reporting>
-
     <properties>
         <kotlin.version>1.3.30</kotlin.version>
         <kotlinx.version>1.0.0</kotlinx.version>
-        <ktor.io.version>0.9.5</ktor.io.version>
-
-        <boot.dependencies.version>2.2.0.M4</boot.dependencies.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <assertj.version>3.12.0</assertj.version>
         <junit-platform.version>1.3.2</junit-platform.version>
         <junit-version>4.12</junit-version>
         <junit-jupiter.version>5.2.0</junit-jupiter.version>
         <hamcrest.version>2.2</hamcrest.version>
         <hamcrest-all.version>1.3</hamcrest-all.version>
         <mockito.version>3.3.0</mockito.version>
-        <byte-buddy.version>1.10.5</byte-buddy.version>
 
         <!-- logging -->
         <org.slf4j.version>1.7.30</org.slf4j.version>
@@ -428,7 +365,6 @@
         <maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-failsafe-plugin.version>2.21.0</maven-failsafe-plugin.version>
-        <maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
         <maven-failsafe-plugin.version>2.21.0</maven-failsafe-plugin.version>
         <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
 
