@@ -258,7 +258,21 @@
                 </executions>
             </plugin>
 
-            <!--            Do we need to setup maven-surefire-plugin here ?-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*IntegrationTest</exclude>
+                        <exclude>**/*IntTest</exclude>
+                        <exclude>**/*LongRunningUnitTest</exclude>
+                        <exclude>**/*ManualTest</exclude>
+                        <exclude>**/*JdbcTest</exclude>
+                        <exclude>**/*LiveTest</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -302,9 +316,6 @@
 
         <profile>
             <id>default</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <build>
                 <plugins>
                     <plugin>
@@ -312,18 +323,17 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>${maven-surefire-plugin.version}</version>
                         <configuration>
-                            <!-- TODO - verify appropriate Kotlin configuration -->
                             <includes>
                                 <include>SpringContextTest</include>
                                 <include>**/*UnitTest</include>
                             </includes>
                             <excludes>
-                                <exclude>**/*IntegrationTest.java</exclude>
-                                <exclude>**/*IntTest.java</exclude>
-                                <exclude>**/*LongRunningUnitTest.java</exclude>
-                                <exclude>**/*ManualTest.java</exclude>
-                                <exclude>**/*JdbcTest.java</exclude>
-                                <exclude>**/*LiveTest.java</exclude>
+                                <exclude>**/*IntegrationTest</exclude>
+                                <exclude>**/*IntTest</exclude>
+                                <exclude>**/*LongRunningUnitTest</exclude>
+                                <exclude>**/*ManualTest</exclude>
+                                <exclude>**/*JdbcTest</exclude>
+                                <exclude>**/*LiveTest</exclude>
                             </excludes>
                         </configuration>
                     </plugin>
@@ -343,14 +353,13 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>${maven-surefire-plugin.version}</version>
                         <configuration>
-                            <!-- TODO - verify appropriate Kotlin configuration -->
                             <includes>
-                                <include>**/*IntegrationTest.java</include>
-                                <include>**/*IntTest.java</include>
+                                <include>**/*IntegrationTest</include>
+                                <include>**/*IntTest</include>
                             </includes>
                             <excludes>
-                                <exclude>**/*ManualTest.java</exclude>
-                                <exclude>**/*LiveTest.java</exclude>
+                                <exclude>**/*ManualTest</exclude>
+                                <exclude>**/*LiveTest</exclude>
                             </excludes>
                         </configuration>
                     </plugin>
