@@ -244,6 +244,14 @@
                 </configuration>
             </plugin>
         </plugins>
+
+        <extensions>
+            <extension>
+                <groupId>com.vackosar.gitflowincrementalbuilder</groupId>
+                <artifactId>gitflow-incremental-builder</artifactId>
+                <version>${gitflow-incremental-builder.version}</version>
+            </extension>
+        </extensions>
     </build>
 
     <profiles>
@@ -329,6 +337,14 @@
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
+
+        <gitflow-incremental-builder.version>3.10.1</gitflow-incremental-builder.version>
+        <gib.referenceBranch>refs/remotes/origin/master</gib.referenceBranch>
+        <gib.skipTestsForUpstreamModules>true</gib.skipTestsForUpstreamModules>
+        <gib.buildUpstream>false</gib.buildUpstream>
+        <gib.failOnMissingGitDir>false</gib.failOnMissingGitDir>
+        <gib.failOnError>false</gib.failOnError>
+        <gib.enabled>false</gib.enabled>
 
         <java.version>1.8</java.version>
     </properties>
