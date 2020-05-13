@@ -344,9 +344,9 @@
         <gib.buildUpstream>false</gib.buildUpstream>
         <gib.failOnMissingGitDir>false</gib.failOnMissingGitDir>
         <gib.failOnError>false</gib.failOnError>
-        <gib.enabled>false</gib.enabled> 
+        <gib.enabled>false</gib.enabled>  
 
-        <java.version>1.8</java.version>
+        <java.version>1.8</java.version> 
     </properties>
 
 </project>
