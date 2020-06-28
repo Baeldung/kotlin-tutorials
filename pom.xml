@@ -282,7 +282,9 @@
                 </plugins>
             </build>
 
-            <modules/>
+            <modules>
+                <module>kotlin-patterns</module>                  
+            </modules>
 
         </profile>
 
@@ -308,7 +310,9 @@
                 </plugins>
             </build>
 
-            <modules/>
+            <modules>
+                <module>kotlin-patterns</module>                  
+            </modules>
 
         </profile>
 
