@@ -311,7 +311,8 @@
             </build>
 
             <modules>
-                <module>kotlin-patterns</module>                  
+                <module>kotlin-patterns</module>
+                <module>kotlin-datastructures</module>                  
             </modules>
 
         </profile>
