@@ -6,7 +6,8 @@ import java.util.concurrent.Executors
 @Suppress("ObjectLiteralToLambda", "MoveLambdaOutsideParentheses")
 fun main() {
     val objectExpressionThread = Thread(object : Runnable {
-        override fun run() { // the logic
+        override fun run() {
+            // the logic
         }
     })
 
