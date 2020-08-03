@@ -21,7 +21,7 @@ data class Date(val millisSinceEpoch: Long) {
     companion object {
 
         @Deprecated("Use java.time instead",
-                replaceWith = ReplaceWith("LocalDateTime.now()", imports = ["java.time.LocalDateTime"]))
+          replaceWith = ReplaceWith("LocalDateTime.now()", imports = ["java.time.LocalDateTime"]))
         fun now(): Date = Date(0)
     }
 }
