@@ -286,6 +286,7 @@
                 <module>kotlin-patterns</module>
                 <module>kotlin-lambda</module>
                 <module>kotlin-concurrency</module>
+                <module>kotlin-core</module>
             </modules>
 
         </profile>
@@ -317,6 +318,7 @@
                 <module>kotlin-datastructures</module>
                 <module>kotlin-lambda</module>
                 <module>kotlin-concurrency</module>
+                <module>kotlin-core</module>
             </modules>
 
         </profile>
