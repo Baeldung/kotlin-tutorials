@@ -2,7 +2,9 @@ package com.baeldung.returnlabel
 
 fun <T> List<T>.findOne(x: T): Int {
     forEachIndexed { i, v ->
-        if (v == x) return i
+        if (v == x) {
+            return i
+        }
     }
 
     return -1;
