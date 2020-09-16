@@ -6,3 +6,4 @@
 - [Kotlin IllegalArgumentException: Parameter specified as non-null is null](https://www.baeldung.com/kotlin/illegalargumentexception-parameter-specified-as-non-null-is-null)
 - [Static Initialization Block in Kotlin](https://www.baeldung.com/kotlin/static-initialization-block)
 - [Initializing Empty Mutable Collections in Kotlin](https://www.baeldung.com/kotlin/initialize-empty-mutable-collections)
+- [Backing Fields in Kotlin](https://www.baeldung.com/kotlin/backing-fields)
