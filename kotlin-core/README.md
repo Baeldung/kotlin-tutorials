@@ -11,3 +11,4 @@
 - [Type Aliases in Kotlin](https://www.baeldung.com/kotlin/type-aliases)
 - [Varargs and Spread Operator in Kotlin](https://www.baeldung.com/kotlin/varargs-spread-operator)
 - [String to Long Conversions in Kotlin](https://www.baeldung.com/kotlin/string-to-long)
+- [Open Keyword in Kotlin](https://www.baeldung.com/kotlin/open-keyword)
