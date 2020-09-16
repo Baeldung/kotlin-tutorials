@@ -10,3 +10,4 @@
 - [Return at Label in Kotlin](https://www.baeldung.com/kotlin/return-at)
 - [Type Aliases in Kotlin](https://www.baeldung.com/kotlin/type-aliases)
 - [Varargs and Spread Operator in Kotlin](https://www.baeldung.com/kotlin/varargs-spread-operator)
+- [String to Long Conversions in Kotlin](https://www.baeldung.com/kotlin/string-to-long)
