@@ -14,7 +14,7 @@ class NonNullUnitTest {
         val createInstance = { constructor.newInstance(42L, null) }
 
         val exception = assertThrows<Exception> { createInstance() }
-        assertThat(exception.cause).isInstanceOf(IllegalArgumentException::class.java)
+        assertThat(exception.cause).isInstanceOf(NullPointerException::class.java)
         assertThat(exception.cause?.message).startsWith("Parameter specified as non-null is null")
     }
 }
