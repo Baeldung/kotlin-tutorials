@@ -258,6 +258,7 @@
                 <module>kotlin-lambda</module>
                 <module>kotlin-concurrency</module>
                 <module>kotlin-core</module>
+                <module>kotlin-core-2</module>
             </modules>
 
         </profile>
@@ -290,6 +291,7 @@
                 <module>kotlin-lambda</module>
                 <module>kotlin-concurrency</module>
                 <module>kotlin-core</module>
+                <module>kotlin-core-2</module>
             </modules>
 
         </profile>
