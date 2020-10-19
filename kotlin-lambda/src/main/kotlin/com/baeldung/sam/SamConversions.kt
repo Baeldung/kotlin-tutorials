@@ -24,8 +24,14 @@ fun main() {
 
     val executor = Executors.newFixedThreadPool(2)
     val submit = executor.submit(Callable { return@Callable 42 })
+
+    val isAnswer = Predicate<Int> { i -> i == 42 }
 }
 
 fun doSomething(): Runnable = Runnable {
     // doing something
+}
+
+fun interface Predicate<T> {
+    fun accept(element: T): Boolean
 }
