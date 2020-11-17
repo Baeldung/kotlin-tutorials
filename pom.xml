@@ -195,6 +195,10 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
+                    <includes>
+                        <include>SpringContextTest</include>
+                        <include>**/*UnitTest</include>
+                    </includes>
                     <excludes>
                         <exclude>**/*IntegrationTest</exclude>
                         <exclude>**/*IntTest</exclude>
@@ -215,7 +219,7 @@
                 </configuration>
             </plugin>
         </plugins>
-
+        
         <extensions>
             <extension>
                 <groupId>com.vackosar.gitflowincrementalbuilder</groupId>
@@ -224,45 +228,17 @@
             </extension>
         </extensions>
     </build>
+    
+    <modules>
+        <module>kotlin-concurrency</module>
+        <module>kotlin-core</module>
+        <module>kotlin-core-2</module>
+        <module>kotlin-datastructures</module>
+        <module>kotlin-lambda</module>
+        <module>kotlin-patterns</module>
+    </modules>
 
     <profiles>
-
-        <profile>
-            <id>default</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>${maven-surefire-plugin.version}</version>
-                        <configuration>
-                            <includes>
-                                <include>SpringContextTest</include>
-                                <include>**/*UnitTest</include>
-                            </includes>
-                            <excludes>
-                                <exclude>**/*IntegrationTest</exclude>
-                                <exclude>**/*IntTest</exclude>
-                                <exclude>**/*LongRunningUnitTest</exclude>
-                                <exclude>**/*ManualTest</exclude>
-                                <exclude>**/*JdbcTest</exclude>
-                                <exclude>**/*LiveTest</exclude>
-                            </excludes>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-
-            <modules>
-                <module>kotlin-patterns</module>
-                <module>kotlin-lambda</module>
-                <module>kotlin-concurrency</module>
-                <module>kotlin-core</module>
-                <module>kotlin-core-2</module>
-            </modules>
-
-        </profile>
-
         <profile>
             <id>integration</id>
             <build>
@@ -284,15 +260,6 @@
                     </plugin>
                 </plugins>
             </build>
-
-            <modules>
-                <module>kotlin-patterns</module>
-                <module>kotlin-datastructures</module>
-                <module>kotlin-lambda</module>
-                <module>kotlin-concurrency</module>
-                <module>kotlin-core</module>
-                <module>kotlin-core-2</module>
-            </modules>
 
         </profile>
 
@@ -327,7 +294,7 @@
         <gib.failOnMissingGitDir>false</gib.failOnMissingGitDir>
         <gib.failOnError>false</gib.failOnError>
         <gib.enabled>false</gib.enabled>
-
+        
         <java.version>1.8</java.version>
     </properties>
 
