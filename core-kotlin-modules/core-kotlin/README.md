@@ -13,3 +13,5 @@ This module contains articles about Kotlin core features.
 - [Converting Kotlin Data Class from JSON using GSON](https://www.baeldung.com/kotlin-json-convert-data-class)
 - [Exception Handling in Kotlin](https://www.baeldung.com/kotlin/exception-handling)
 - [Quick Guide to Kotlin Default and Named Arguments](https://www.baeldung.com/kotlin/default-named-arguments)
+- [Not-Null Assertion (!!) Operator in Kotlin](https://www.baeldung.com/kotlin/not-null-assertion)
+
