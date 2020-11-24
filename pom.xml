@@ -90,6 +90,12 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-runner</artifactId>
+            <version>${junit.platform.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>${assertj-core.version}</version>
@@ -101,6 +107,19 @@
             <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-test</artifactId>
+            <version>${kotlin.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${apache-commons.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -230,12 +249,20 @@
     </build>
     
     <modules>
-        <module>kotlin-concurrency</module>
-        <module>kotlin-core</module>
-        <module>kotlin-core-2</module>
+        <module>parent-boot-2</module>
+
+        <module>core-kotlin-modules</module>
+        <module>jee-kotlin</module>
         <module>kotlin-datastructures</module>
+        <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
         <module>kotlin-lambda</module>
+        <module>kotlin-libraries</module>
+        <module>kotlin-libraries-2</module>
         <module>kotlin-patterns</module>
+        <module>kotlin-quasar</module>
+        <module>spring-boot-kotlin</module>
+        <module>spring-mvc-kotlin</module>
+        <module>spring-reactive-kotlin</module>
     </modules>
 
     <profiles>
@@ -276,11 +303,15 @@
         <junit-jupiter.version>5.6.2</junit-jupiter.version>
         <mockito.version>3.3.3</mockito.version>
         <assertj-core.version>3.11.1</assertj-core.version>
+        <junit.platform.version>1.1.1</junit.platform.version>
 
         <!-- logging -->
         <org.slf4j.version>1.7.30</org.slf4j.version>
         <logback.version>1.2.3</logback.version>
         <log4j.version>1.2.17</log4j.version>
+
+        <!-- utilities -->
+        <apache-commons.version>3.11</apache-commons.version>
 
         <!-- plugins -->
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
