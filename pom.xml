@@ -253,16 +253,19 @@
 
         <module>core-kotlin-modules</module>
         <module>jee-kotlin</module>
-        <module>kotlin-datastructures</module>
         <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
         <module>kotlin-lambda</module>
         <module>kotlin-libraries</module>
         <module>kotlin-libraries-2</module>
+        <module>kotlin-libraries-http</module>
         <module>kotlin-patterns</module>
         <module>kotlin-quasar</module>
+        <module>kotlin-testing</module>
+        <module>machine-learning</module>
         <module>spring-boot-kotlin</module>
         <module>spring-mvc-kotlin</module>
         <module>spring-reactive-kotlin</module>
+        <module>spring-security-kotlin-dsl</module>
     </modules>
 
     <profiles>

@@ -30,39 +30,10 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.jetbrains.spek</groupId>
-            <artifactId>spek-api</artifactId>
-            <version>${spek.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.spek</groupId>
-            <artifactId>spek-subject-extension</artifactId>
-            <version>${spek.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.spek</groupId>
-            <artifactId>spek-junit-platform-engine</artifactId>
-            <version>${spek.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-math3</artifactId>
             <version>${commons-math3.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>khttp</groupId>
-            <artifactId>khttp</artifactId>
-            <version>${khttp.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.nhaarman</groupId>
-            <artifactId>mockito-kotlin</artifactId>
-            <version>${mockito-kotlin.version}</version>
-            <scope>test</scope>
-        </dependency>
+        </dependency>      
         <dependency>
             <groupId>com.github.salomonbrys.kodein</groupId>
             <artifactId>kodein</artifactId>
@@ -147,10 +118,9 @@
     </dependencies>
 
     <properties>
-        <mockito-kotlin.version>1.5.0</mockito-kotlin.version>
+      
         <kodein.version>4.1.0</kodein.version>
         <klaxon.version>3.0.4</klaxon.version>
-        <khttp.version>0.1.0</khttp.version>
         <commons-math3.version>3.6.1</commons-math3.version>
         <junit.vintage.version>5.2.0</junit.vintage.version>
         <assertj.version>3.10.0</assertj.version>
@@ -160,7 +130,7 @@
         <objenesis.version>2.6</objenesis.version>
         <rxkotlin.version>2.3.0</rxkotlin.version>
         <arrow-core.version>0.7.3</arrow-core.version>
-        <spek.version>1.1.5</spek.version>
+      
         <h2.version>1.4.200</h2.version>
         <ktor.io.version>1.4.2</ktor.io.version>
     </properties>
