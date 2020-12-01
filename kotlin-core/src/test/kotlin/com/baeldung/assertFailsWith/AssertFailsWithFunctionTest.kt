@@ -1,6 +1,9 @@
 package com.baeldung.assertFailsWith
 
+import org.hamcrest.CoreMatchers.equalTo
+import org.junit.Assert.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import kotlin.test.assertFailsWith
 
 class AssertFailsWithFunctionTest {
@@ -8,9 +11,16 @@ class AssertFailsWithFunctionTest {
     private val classUnderTest: AssertFailsWithFunction = AssertFailsWithFunction()
 
     @Test
-    fun givenIllegalArgument_thenThrowsException() {
+    fun whenInvalidArray_thenThrowsException() {
+        assertThrows<ArrayIndexOutOfBoundsException> {
+            classUnderTest.assertFailsWithMessage()
+        }
+    }
+
+    @Test
+    fun givenInvalidArray_thenThrowsException() {
         assertFailsWith<ArrayIndexOutOfBoundsException>(
-                message = "Array index is out of bound",
+                message = "No exception found",
                 block = { classUnderTest.assertFailsWithMessage() }
         )
     }
@@ -27,7 +37,16 @@ class AssertFailsWithFunctionTest {
     fun givenInvalidOperation_thenThrowsException() {
         assertFailsWith(
                 exceptionClass = ArithmeticException::class,
-                message = "Invalid arithmetic operation",
-                block = { classUnderTest.assertFailsWithMessageAndExceptionClass() })
+                message = "No exception found",
+                block = { classUnderTest.assertFailsWithMessageAndExceptionClass() }
+        )
+    }
+
+    @Test
+    fun givenInvalidNumericFormat_thenThrowsException() {
+        val exception = assertFailsWith<NumberFormatException>(
+                block = { Integer.parseInt("abcdefgh") }
+        )
+        assertThat(exception.message, equalTo("For input string: \"abcdefgh\""))
     }
 }
