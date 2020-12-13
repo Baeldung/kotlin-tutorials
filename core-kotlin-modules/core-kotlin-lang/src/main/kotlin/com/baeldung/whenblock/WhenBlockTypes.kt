@@ -26,3 +26,14 @@ sealed class UnixFile {
         }
     }
 }
+
+fun main() {
+    val colors = setOf("Red", "Green", "Blue")
+    for (color in colors) {
+        when (color) {
+            "Red" -> break
+            "Green" -> continue
+            "Blue" -> println("This is blue")
+        }
+    }
+}
