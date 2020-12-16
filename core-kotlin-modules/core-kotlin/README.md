@@ -13,4 +13,4 @@ This module contains articles about Kotlin core features.
 - [Exception Handling in Kotlin](https://www.baeldung.com/kotlin/exception-handling)
 - [Quick Guide to Kotlin Default and Named Arguments](https://www.baeldung.com/kotlin/default-named-arguments)
 - [Not-Null Assertion (!!) Operator in Kotlin](https://www.baeldung.com/kotlin/not-null-assertion)
-
+- [Testing Exceptions in Kotlin with assertFailsWith](https://www.baeldung.com/kotlin/assertfailswith)
