@@ -2,4 +2,3 @@
 
 - [Difference Between Classes and Singleton Objects in Kotlin](https://www.baeldung.com/kotlin/classes-vs-singleton-objects)
 - [Kotlin Loops](https://www.baeldung.com/kotlin/loops)
-- [Getters and Setters in Kotlin](https://baeldung.com/kotlin/getters-and-setters-in-kotlin)

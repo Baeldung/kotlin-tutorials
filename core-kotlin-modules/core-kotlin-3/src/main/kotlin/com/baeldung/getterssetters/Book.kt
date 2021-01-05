@@ -1,12 +1,13 @@
 package com.baeldung.getterssetters
 
-import java.util.logging.*
+const val DEFAULT_AUTHOR = "Frank Herbert"
+const val DEFAULT_TITLE = "Dune"
 
 class Book {
 
-    var author: String = "Frank Herbert"
+    var author: String = DEFAULT_AUTHOR
 
-    val title: String = "Dune"
+    val title: String = DEFAULT_TITLE
         get() {
             return field.toUpperCase()
         }
@@ -30,15 +31,4 @@ class Book {
 
     var inventory: Int = 0
         private set
-}
-
-fun main() {
-    val book = Book()
-    println(book.author) // prints "Frank Herbert"
-    book.author = "Kurt Vonnegut"
-    println(book.author) // prints "Kurt Vonnegut"
-
-    val logger = Logger.getGlobal()
-    logger.level = Level.SEVERE // equivalent to calling setLevel(Level.SEVERE)
-    println(logger.level) // prints "SEVERE"
 }
