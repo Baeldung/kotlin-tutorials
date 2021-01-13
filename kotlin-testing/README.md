@@ -6,4 +6,4 @@ This module contains articles about testing in Kotlin
 - [JUnit 5 for Kotlin Developers](https://www.baeldung.com/junit-5-kotlin)
 - [Kotlin with Mockito](https://www.baeldung.com/kotlin-mockito)
 - [Writing Specifications with Kotlin and Spek](https://www.baeldung.com/kotlin-spek)
-- [MockK: A Mocking Library for Kotlin](https://www.baeldung.com/kotlin-mockk)
+- [MockK: A Mocking Library for Kotlin](https://www.baeldung.com/kotlin/kotlin-mockk)
