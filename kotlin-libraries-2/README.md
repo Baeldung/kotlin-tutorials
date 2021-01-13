@@ -4,7 +4,7 @@ This module contains articles about Kotlin Libraries.
 
 ### Relevant articles:
 
-- [Jackson Support for Kotlin](https://www.baeldung.com/jackson-kotlin)
+- [Jackson Support for Kotlin](https://www.baeldung.com/kotlin/jackson-kotlin)
 - [Introduction to RxKotlin](https://www.baeldung.com/kotlin/rxkotlin)
 - [Kotlin Immutable Collections](https://www.baeldung.com/kotlin-immutable-collections)
 - [Dependency Injection for Kotlin with Injekt](https://www.baeldung.com/kotlin-dependency-injection-with-injekt)
