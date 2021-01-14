@@ -4,7 +4,7 @@ This module contains articles about Object-Oriented Programming in Kotlin
 
 ### Relevant articles:
 
-- [Data Classes in Kotlin](https://www.baeldung.com/kotlin-data-classes)
+- [Data Classes in Kotlin](https://www.baeldung.com/kotlin/kotlin-data-classes)
 - [Sealed Classes in Kotlin](https://www.baeldung.com/kotlin/kotlin-sealed-classes)
 - [Extension Methods in Kotlin](https://www.baeldung.com/kotlin/kotlin-extension-methods)
 - [Objects in Kotlin](https://www.baeldung.com/kotlin/kotlin-objects)
