@@ -3,7 +3,7 @@
 This module contains articles about advanced topics in Kotlin.
 
 ### Relevant articles:
-- [Building DSLs in Kotlin](https://www.baeldung.com/kotlin-dsl)
+- [Building DSLs in Kotlin](https://www.baeldung.com/kotlin/kotlin-dsl)
 - [Regular Expressions in Kotlin](https://www.baeldung.com/kotlin-regular-expressions)
 - [Idiomatic Logging in Kotlin](https://www.baeldung.com/kotlin-logging)
 - [Mapping of Data Objects in Kotlin](https://www.baeldung.com/kotlin-data-objects)
