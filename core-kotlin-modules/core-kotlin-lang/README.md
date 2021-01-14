@@ -5,7 +5,7 @@ This module contains articles about core features in the Kotlin language.
 ### Relevant articles:
 - [Guide to the “when{}” Block in Kotlin](https://www.baeldung.com/kotlin-when)
 - [Difference Between “==” and “===” Operators in Kotlin](https://www.baeldung.com/kotlin-equality-operators)
-- [Nested forEach in Kotlin](https://www.baeldung.com/kotlin-nested-foreach)
+- [Nested forEach in Kotlin](https://www.baeldung.com/kotlin/kotlin-nested-foreach)
 - [Destructuring Declarations in Kotlin](https://www.baeldung.com/kotlin-destructuring-declarations)
 - [Try-with-resources in Kotlin](https://www.baeldung.com/kotlin-try-with-resources)
 - [Operator Overloading in Kotlin](https://www.baeldung.com/kotlin-operator-overloading)
