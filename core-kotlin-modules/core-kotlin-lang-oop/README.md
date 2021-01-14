@@ -9,7 +9,7 @@ This module contains articles about Object-Oriented Programming in Kotlin
 - [Extension Methods in Kotlin](https://www.baeldung.com/kotlin-extension-methods)
 - [Objects in Kotlin](https://www.baeldung.com/kotlin-objects)
 - [Working with Enums in Kotlin](https://www.baeldung.com/kotlin-enum)
-- [Kotlin Constructors](https://www.baeldung.com/kotlin-constructors)
+- [Kotlin Constructors](https://www.baeldung.com/kotlin/kotlin-constructors)
 - [Kotlin Nested and Inner Classes](https://www.baeldung.com/kotlin/kotlin-inner-classes)
 - [Guide to Kotlin Interfaces](https://www.baeldung.com/kotlin/kotlin-interfaces)
 - [Inline Classes in Kotlin](https://www.baeldung.com/kotlin/kotlin-inline-classes)
