@@ -4,7 +4,7 @@ This module contains articles about Object-Oriented Programming in Kotlin
 
 ### Relevant articles:
 
-- [Generics in Kotlin](https://www.baeldung.com/kotlin-generics)
+- [Generics in Kotlin](https://www.baeldung.com/kotlin/kotlin-generics)
 - [Delegated Properties in Kotlin](https://www.baeldung.com/kotlin/kotlin-delegated-properties)
 - [Delegation Pattern in Kotlin](https://www.baeldung.com/kotlin-delegation-pattern)
 - [Anonymous Inner Classes in Kotlin](https://www.baeldung.com/kotlin/anonymous-inner-classes)
