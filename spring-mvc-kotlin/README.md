@@ -3,7 +3,7 @@
 This module contains articles about Spring MVC with Kotlin
 
 ### Relevant articles
-- [Spring MVC Setup with Kotlin](https://www.baeldung.com/spring-mvc-kotlin)
+- [Spring MVC Setup with Kotlin](https://www.baeldung.com/kotlin/spring-mvc-kotlin)
 - [Working with Kotlin and JPA](https://www.baeldung.com/kotlin/kotlin-jpa)
 - [Kotlin-allopen and Spring](https://www.baeldung.com/kotlin/kotlin-allopen-spring)
 - [MockMvc Kotlin DSL](https://www.baeldung.com/kotlin/mockmvc-kotlin-dsl)
