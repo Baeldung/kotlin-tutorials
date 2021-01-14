@@ -7,5 +7,5 @@ This module contains articles about advanced topics in Kotlin.
 - [Regular Expressions in Kotlin](https://www.baeldung.com/kotlin-regular-expressions)
 - [Idiomatic Logging in Kotlin](https://www.baeldung.com/kotlin/kotlin-logging)
 - [Mapping of Data Objects in Kotlin](https://www.baeldung.com/kotlin/kotlin-data-objects)
-- [Reflection with Kotlin](https://www.baeldung.com/kotlin-reflection)
+- [Reflection with Kotlin](https://www.baeldung.com/kotlin/kotlin-reflection)
 - [Kotlin Contracts](https://www.baeldung.com/kotlin/kotlin-contracts)
