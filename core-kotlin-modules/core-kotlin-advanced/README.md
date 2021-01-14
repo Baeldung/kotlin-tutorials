@@ -8,4 +8,4 @@ This module contains articles about advanced topics in Kotlin.
 - [Idiomatic Logging in Kotlin](https://www.baeldung.com/kotlin-logging)
 - [Mapping of Data Objects in Kotlin](https://www.baeldung.com/kotlin-data-objects)
 - [Reflection with Kotlin](https://www.baeldung.com/kotlin-reflection)
-- [Kotlin Contracts](https://www.baeldung.com/kotlin-contracts)
+- [Kotlin Contracts](https://www.baeldung.com/kotlin/kotlin-contracts)
