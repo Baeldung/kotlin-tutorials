@@ -4,7 +4,7 @@ This module contains articles about core features in the Kotlin language.
 
 ### Relevant articles:
 - [Kotlin return, break, continue Keywords](https://www.baeldung.com/kotlin/kotlin-return-break-continue)
-- [Infix Functions in Kotlin](https://www.baeldung.com/kotlin/kotlin-infix-functions)
+- [Infix Functions in Kotlin](https://www.baeldung.com/kotlin/infix-functions)
 - [Lambda Expressions in Kotlin](https://www.baeldung.com/kotlin/kotlin-lambda-expressions)
 - [Creating Java static final Equivalents in Kotlin](https://www.baeldung.com/kotlin/kotlin-java-static-final)
 - [Lazy Initialization in Kotlin](https://www.baeldung.com/kotlin/lazy-initialization)
