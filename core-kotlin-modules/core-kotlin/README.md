@@ -5,7 +5,7 @@ This module contains articles about Kotlin core features.
 ### Relevant articles:
 
 - [Introduction to the Kotlin Language](https://www.baeldung.com/kotlin/intro)
-- [Kotlin Java Interoperability](https://www.baeldung.com/kotlin/kotlin-java-interoperability)
+- [Kotlin Java Interoperability](https://www.baeldung.com/kotlin/java-interoperability)
 - [Get a Random Number in Kotlin](https://www.baeldung.com/kotlin/kotlin-random-number)
 - [Create a Java and Kotlin Project with Maven](https://www.baeldung.com/kotlin/kotlin-maven-java-project)
 - [Kotlin Ternary Conditional Operator](https://www.baeldung.com/kotlin/kotlin-ternary-operator)
