@@ -7,7 +7,7 @@ This module contains articles about Object-Oriented Programming in Kotlin
 - [Data Classes in Kotlin](https://www.baeldung.com/kotlin/data-classes)
 - [Sealed Classes in Kotlin](https://www.baeldung.com/kotlin/sealed-classes)
 - [Extension Methods in Kotlin](https://www.baeldung.com/kotlin/extension-methods)
-- [Objects in Kotlin](https://www.baeldung.com/kotlin/kotlin-objects)
+- [Objects in Kotlin](https://www.baeldung.com/kotlin/objects)
 - [Working with Enums in Kotlin](https://www.baeldung.com/kotlin/kotlin-enum)
 - [Kotlin Constructors](https://www.baeldung.com/kotlin/kotlin-constructors)
 - [Kotlin Nested and Inner Classes](https://www.baeldung.com/kotlin/kotlin-inner-classes)
