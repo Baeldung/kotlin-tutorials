@@ -3,7 +3,7 @@
 This module contains articles about core features in the Kotlin language.
 
 ### Relevant articles:
-- [Guide to the “when{}” Block in Kotlin](https://www.baeldung.com/kotlin/kotlin-when)
+- [Guide to the “when{}” Block in Kotlin](https://www.baeldung.com/kotlin/when)
 - [Difference Between “==” and “===” Operators in Kotlin](https://www.baeldung.com/kotlin/kotlin-equality-operators)
 - [Nested forEach in Kotlin](https://www.baeldung.com/kotlin/kotlin-nested-foreach)
 - [Destructuring Declarations in Kotlin](https://www.baeldung.com/kotlin/kotlin-destructuring-declarations)
