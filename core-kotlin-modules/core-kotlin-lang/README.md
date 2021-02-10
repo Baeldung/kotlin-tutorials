@@ -8,7 +8,7 @@ This module contains articles about core features in the Kotlin language.
 - [Nested forEach in Kotlin](https://www.baeldung.com/kotlin/kotlin-nested-foreach)
 - [Destructuring Declarations in Kotlin](https://www.baeldung.com/kotlin/destructuring-declarations)
 - [Try-with-resources in Kotlin](https://www.baeldung.com/kotlin/try-with-resources)
-- [Operator Overloading in Kotlin](https://www.baeldung.com/kotlin/kotlin-operator-overloading)
+- [Operator Overloading in Kotlin](https://www.baeldung.com/kotlin/operator-overloading)
 - [Inline Functions in Kotlin](https://www.baeldung.com/kotlin/kotlin-inline-functions)
 - [Void Type in Kotlin](https://www.baeldung.com/kotlin/kotlin-void-type)
 - [How to use Kotlin Range Expressions](https://www.baeldung.com/kotlin/kotlin-ranges)
