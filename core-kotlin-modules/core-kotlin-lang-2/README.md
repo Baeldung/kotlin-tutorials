@@ -9,7 +9,7 @@ This module contains articles about core features in the Kotlin language.
 - [Creating Java static final Equivalents in Kotlin](https://www.baeldung.com/kotlin/java-static-final)
 - [Lazy Initialization in Kotlin](https://www.baeldung.com/kotlin/lazy-initialization)
 - [Comprehensive Guide to Null Safety in Kotlin](https://www.baeldung.com/kotlin/null-safety)
-- [Kotlin Scope Functions](https://www.baeldung.com/kotlin/kotlin-scope-functions)
+- [Kotlin Scope Functions](https://www.baeldung.com/kotlin/scope-functions)
 - [If-Else Expression in Kotlin](https://www.baeldung.com/kotlin/if-else-expression)
 - [Checking Whether a lateinit var Is Initialized in Kotlin](https://www.baeldung.com/kotlin/checking-lateinit)
 - [[<-- Prev]](/core-kotlin-modules/core-kotlin-lang)
