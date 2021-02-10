@@ -9,5 +9,5 @@ This module contains articles about Kotlin Libraries.
 - [Kotlin Immutable Collections](https://www.baeldung.com/kotlin/kotlin-immutable-collections)
 - [Dependency Injection for Kotlin with Injekt](https://www.baeldung.com/kotlin/kotlin-dependency-injection-with-injekt)
 - [Introduction to Kovenant Library for Kotlin](https://www.baeldung.com/kotlin/kovenant)
-- [Converting Kotlin Data Class from JSON using GSON](https://www.baeldung.com/kotlin/kotlin-json-convert-data-class)
+- [Converting Kotlin Data Class from JSON using GSON](https://www.baeldung.com/kotlin/json-convert-data-class)
 - More articles: [[<-- prev]](/kotlin-libraries)
