@@ -12,5 +12,5 @@ This module contains articles about core features in the Kotlin language.
 - [Inline Functions in Kotlin](https://www.baeldung.com/kotlin/inline-functions)
 - [Void Type in Kotlin](https://www.baeldung.com/kotlin/kotlin-void-type)
 - [How to use Kotlin Range Expressions](https://www.baeldung.com/kotlin/ranges)
-- [Creating a Kotlin Range Iterator on a Custom Object](https://www.baeldung.com/kotlin/kotlin-custom-range-iterator)
+- [Creating a Kotlin Range Iterator on a Custom Object](https://www.baeldung.com/kotlin/custom-range-iterator)
 - [[More --> ]](/core-kotlin-modules/core-kotlin-lang-2)
