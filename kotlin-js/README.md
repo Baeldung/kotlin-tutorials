@@ -4,4 +4,4 @@ This module contains articles about JavaScript in Kotlin.
 
 ### Relevant Articles: 
 
-- [Kotlin and Javascript](https://www.baeldung.com/kotlin/kotlin-javascript)
+- [Kotlin and Javascript](https://www.baeldung.com/kotlin/javascript)
