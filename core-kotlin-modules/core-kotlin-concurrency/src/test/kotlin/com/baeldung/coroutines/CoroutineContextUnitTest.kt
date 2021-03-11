@@ -42,7 +42,11 @@ class CoroutineContextUnitTest {
     fun givenNoDispatcher_whenLaunch_thenDispatcherIsEventLoop() {
         runBlocking {
             launch {
-                Assertions.assertTrue(coroutineContext[ContinuationInterceptor]!!.javaClass.name.contains("EventLoop"))
+                Assertions.assertTrue(
+                  coroutineContext[ContinuationInterceptor]!!
+                    .javaClass
+                    .name.contains("EventLoop")
+                )
             }
         }
     }
@@ -52,9 +56,9 @@ class CoroutineContextUnitTest {
         runBlocking {
             launch(Dispatchers.Default) {
                 Assertions.assertTrue(
-                        coroutineContext[ContinuationInterceptor]!!
-                                .javaClass
-                                .name.contains("DefaultScheduler")
+                  coroutineContext[ContinuationInterceptor]!!
+                    .javaClass
+                    .name.contains("DefaultScheduler")
                 )
             }
         }
@@ -66,9 +70,9 @@ class CoroutineContextUnitTest {
         runBlocking {
             launch(Executors.newSingleThreadExecutor().asCoroutineDispatcher()) {
                 Assertions.assertTrue(
-                        coroutineContext[ContinuationInterceptor]!!
-                                .javaClass
-                                .name.contains("ExecutorCoroutineDispatcher")
+                  coroutineContext[ContinuationInterceptor]!!
+                    .javaClass
+                    .name.contains("ExecutorCoroutineDispatcher")
                 )
             }
         }
@@ -90,9 +94,9 @@ class CoroutineContextUnitTest {
         runBlocking(Executors.newSingleThreadExecutor().asCoroutineDispatcher()) {
             launch {
                 Assertions.assertTrue(
-                        coroutineContext[ContinuationInterceptor]!!
-                                .javaClass
-                                .name.contains("ExecutorCoroutineDispatcher")
+                  coroutineContext[ContinuationInterceptor]!!
+                    .javaClass
+                    .name.contains("ExecutorCoroutineDispatcher")
                 )
                 Assertions.assertTrue(Thread.currentThread().name.startsWith("pool"))
             }
