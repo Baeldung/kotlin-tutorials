@@ -7,3 +7,4 @@ This module contains articles about core Kotlin strings.
 - [String Comparison in Kotlin](https://www.baeldung.com/kotlin/string-comparison)
 - [Concatenate Strings in Kotlin](https://www.baeldung.com/kotlin/concatenate-strings)
 - [Kotlin String Templates](https://www.baeldung.com/kotlin/string-templates)
+- [How Does String Interpolation Work in Kotlin?](https://www.baeldung.com/kotlin/string-interpolation)
