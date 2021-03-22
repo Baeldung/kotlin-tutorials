@@ -1,14 +1,9 @@
 package com.baeldung.coroutines
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ObsoleteCoroutinesApi
-import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.newFixedThreadPoolContext
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import java.util.concurrent.Executors
 import kotlin.system.measureTimeMillis
 
 class WithContextVsAsyncWaitUnitTest {
@@ -32,11 +27,10 @@ class WithContextVsAsyncWaitUnitTest {
     }
 
 
-    @ObsoleteCoroutinesApi
     @Test
     fun givenTwoAsyncBlockWithThreadPool_whenRunningSequentially_expectTwiceDelay() {
         runBlocking {
-            val dispatcher = newFixedThreadPoolContext(2, "async")
+            val dispatcher = Executors.newFixedThreadPool(2).asCoroutineDispatcher()
             val time = measureTimeMillis {
                 val task1 = async(dispatcher) { doTheTask(DELAY) }
                 task1.await()
@@ -48,11 +42,10 @@ class WithContextVsAsyncWaitUnitTest {
     }
 
 
-    @ObsoleteCoroutinesApi
     @Test
     fun givenTwoAsyncBlockWithThreadPool_whenRunningParallel_expectTwoThreads() {
         runBlocking {
-            val dispatcher = newFixedThreadPoolContext(2, "async")
+            val dispatcher = Executors.newFixedThreadPool(2).asCoroutineDispatcher()
             val task1 = async(dispatcher) { doTheTask(DELAY) }
             val task2 = async(dispatcher) { doTheTask(DELAY) }
             val thread1 = task1.await()
@@ -62,12 +55,11 @@ class WithContextVsAsyncWaitUnitTest {
     }
 
 
-    @ObsoleteCoroutinesApi
     @Test
     fun givenTwoWithContextBlockWithThreadPool_whenRunning_expectTwiceDelay() {
         runBlocking {
             val time = measureTimeMillis {
-                val dispatcher = newFixedThreadPoolContext(2, "withc")
+                val dispatcher = Executors.newFixedThreadPool(2).asCoroutineDispatcher()
                 withContext(dispatcher) {
                     doTheTask(DELAY)
                 }
