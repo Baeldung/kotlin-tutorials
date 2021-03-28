@@ -7,7 +7,7 @@ import org.junit.jupiter.api.assertThrows
 class OrderServiceTest {
 
     private val orderRepository: OrderRepository = mock()
-    private val messageDispatcher: IMessageDispatcher = mock()
+    private val messageDispatcher: MessageDispatcher = mock()
 
     private val orderService = OrderService(orderRepository, messageDispatcher)
 

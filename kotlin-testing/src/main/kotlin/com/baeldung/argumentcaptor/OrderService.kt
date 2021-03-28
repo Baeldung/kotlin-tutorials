@@ -2,7 +2,7 @@ package com.baeldung.argumentcaptor
 
 class OrderService(
     private val orderRepository: OrderRepository,
-    private val messageDispatcher: IMessageDispatcher,
+    private val messageDispatcher: MessageDispatcher,
 ) {
 
     fun createOrder(order: Order, confirmRequired: Boolean) {
