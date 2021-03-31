@@ -12,13 +12,12 @@ class OrderService(
         if (confirmRequired) {
             messageDispatcher.sendMessage("Order Created") { success ->
                 if (success) {
-                    orderRepository.updateOrderConfirmation(orderId, true);
-                }
-                else {
+                    orderRepository.updateOrderConfirmation(orderId, true)
+                } else {
                     throw IllegalStateException("Failed to send confirmation message!")
-                }}
-        }
-        else {
+                }
+            }
+        } else {
             messageDispatcher.sendMessage("Order Created") {}
         }
     }
