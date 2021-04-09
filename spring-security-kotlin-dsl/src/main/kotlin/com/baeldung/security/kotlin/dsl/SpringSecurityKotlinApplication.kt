@@ -23,6 +23,7 @@ class SpringSecurityKotlinApplication
 class AdminSecurityConfiguration : WebSecurityConfigurerAdapter() {
     override fun configure(http: HttpSecurity?) {
         http {
+            securityMatcher("/greetings/**")
             authorizeRequests {
                 authorize("/greetings/**", hasAuthority("ROLE_ADMIN"))
             }
