@@ -1,18 +1,17 @@
 package com.baeldung.kotlin.jackson
 
-import org.junit.Test
-import kotlin.test.assertTrue
-import kotlin.test.assertFalse
-import kotlin.test.assertEquals
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
+import com.fasterxml.jackson.module.kotlin.MissingKotlinParameterException
+import com.fasterxml.jackson.module.kotlin.readValue
+import org.junit.Test
+import org.junit.jupiter.api.assertThrows
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class JacksonUnitTest {
-    //val mapper = jacksonObjectMapper()   
-    val mapper = ObjectMapper().registerModule(KotlinModule())
- 
+    // val mapper = jacksonObjectMapper()
+    private val mapper = ObjectMapper().registerModule(KotlinModule())
 
     @Test
     fun whenSerializeMovie_thenSuccess() {               
@@ -32,6 +31,14 @@ class JacksonUnitTest {
         assertEquals(movie.name, "Endgame")   
         assertEquals(movie.studio, "Marvel")   
         assertEquals(movie.rating, 9.2f)   
+    }
+
+    @Test
+    fun whenMissingRequiredParameterOnDeserialize_thenFails() {
+        val json = """{"studio":"Marvel","rating":9.2}"""
+        val exception = assertThrows<MissingKotlinParameterException> { mapper.readValue<Movie>(json) }
+        assertEquals("name", exception.parameter.name)
+        assertEquals(String::class, exception.parameter.type.classifier)
     }
     
     @Test
