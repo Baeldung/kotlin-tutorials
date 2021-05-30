@@ -20,7 +20,7 @@ class HexUnitTest {
     }
 }
 
-fun ByteArray.toHex(): String = joinToString(separator = "") { eachByte -> String.format("%02x", eachByte) }
+fun ByteArray.toHex(): String = joinToString(separator = "") { eachByte -> "%02x".format(eachByte) }
 
 @ExperimentalUnsignedTypes
 fun ByteArray.toHex2(): String = asUByteArray().joinToString("") { it.toString(radix = 16).padStart(2, '0') }
