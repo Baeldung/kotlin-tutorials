@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.security.MessageDigest
 
-class HexTest {
+class HexUnitTest {
 
     @Test
     @ExperimentalUnsignedTypes
