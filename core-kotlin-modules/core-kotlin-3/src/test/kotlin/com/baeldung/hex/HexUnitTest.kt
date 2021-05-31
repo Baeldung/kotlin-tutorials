@@ -17,6 +17,7 @@ class HexUnitTest {
         assertEquals("9d2ea3506b1121365e5eec24c92c528d", digest.toHex())
         assertEquals("9d2ea3506b1121365e5eec24c92c528d", digest.toHex2())
         assertEquals("9d2ea3506b1121365e5eec24c92c528d", digest.toHex3())
+        assertEquals("9d2ea3506b1121365e5eec24c92c528d", digest.toHex4())
     }
 }
 
@@ -25,9 +26,13 @@ fun ByteArray.toHex(): String = joinToString(separator = "") { eachByte -> "%02x
 @ExperimentalUnsignedTypes
 fun ByteArray.toHex2(): String = asUByteArray().joinToString("") { it.toString(radix = 16).padStart(2, '0') }
 
+fun ByteArray.toHex3(): String = joinToString("") {
+    java.lang.Byte.toUnsignedInt(it).toString(radix = 16).padStart(2, '0')
+}
+
 val hexChars = "0123456789abcdef".toCharArray()
 
-fun ByteArray.toHex3(): String {
+fun ByteArray.toHex4(): String {
     val hex = CharArray(2 * this.size)
     this.forEachIndexed { i, byte ->
         val unsigned = 0xff and byte.toInt()
