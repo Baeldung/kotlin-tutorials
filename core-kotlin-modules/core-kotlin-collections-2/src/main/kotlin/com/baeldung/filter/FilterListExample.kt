@@ -9,8 +9,11 @@ class FilterListExample {
     }
 
     fun filterToList(): List<String> {
-        var list = mutableListOf("United States", "Canada")
-        return countries.filterTo(list, { it.length > 5 })
+        val list = mutableListOf("United States", "Canada")
+        val filterList = countries.filterTo(list, { it.length > 5 })
+        println(filterList)
+        println(list)
+        return list
     }
 
     fun filterNotList(): List<String> {
@@ -18,7 +21,7 @@ class FilterListExample {
     }
 
     fun filterNotToList(): List<String> {
-        var list = mutableListOf("United States", "Canada")
+        val list = mutableListOf("United States", "Canada")
         return countries.filterNotTo(list, { it.length > 5 })
     }
 
@@ -27,7 +30,7 @@ class FilterListExample {
     }
 
     fun filterIndexedToList(): List<String> {
-        var list = mutableListOf("United States", "Canada")
+        val list = mutableListOf("United States", "Canada")
         return countries.filterIndexedTo(list, { index, it -> index != 3 && it.length > 5 })
     }
 
@@ -38,7 +41,7 @@ class FilterListExample {
 
     fun filterIsInstanceToList(): List<Int> {
         val countryCode = listOf("Germany", 49, null, "India", 91, "Japan", 81, "Brazil", null, "Australia", 61)
-        var list = mutableListOf(1, 24)
+        val list = mutableListOf(1, 24)
         return countryCode.filterIsInstanceTo(list)
     }
 
@@ -49,7 +52,33 @@ class FilterListExample {
 
     fun filterNotNullToList(): List<String> {
         val countries = listOf("Germany", "India", null, "Japan", "Brazil", null, "Australia")
-        var list = mutableListOf("United States", "Canada")
+        val list = mutableListOf("United States", "Canada")
         return countries.filterNotNullTo(list)
+    }
+
+    fun filterUsingIterator(): List<String> {
+        val countries = mutableListOf("Germany", "India", "Japan", "Brazil", "Australia")
+
+        val iterator = countries.iterator()
+        while (iterator.hasNext())
+        {
+            val current = iterator.next()
+            if (current.length > 5) {
+                iterator.remove()
+            }
+        }
+        return countries
+    }
+
+    fun filterUsingRemoveAll(): List<String>{
+        val countries = mutableListOf("Germany", "India", "Japan", "Brazil", "Australia")
+        countries.removeAll { it.length > 5 }
+        return countries
+    }
+
+    fun filterUsingRetainAll(): List<String> {
+        val countries = mutableListOf("Germany", "India", "Japan", "Brazil", "Australia")
+        countries.retainAll { it.length > 5 }
+        return countries
     }
 }

@@ -91,4 +91,28 @@ class FilterListExampleUnitTest {
         assertTrue(list.contains("Brazil"))
         assertTrue(list.contains("Canada"))
     }
+
+    @Test
+    fun whenFilterUsingIterator_thenContainsElements() {
+        val list = classUnderTest.filterUsingIterator()
+        assertEquals(2, list.size)
+        assertTrue(list.contains("India"))
+        assertTrue(list.contains("Japan"))
+    }
+
+    @Test
+    fun whenFilterUsingRemoveAll_thenContainsElements() {
+        val list = classUnderTest.filterUsingRemoveAll()
+        assertEquals(2, list.size)
+        assertTrue(list.contains("India"))
+        assertTrue(list.contains("Japan"))
+    }
+
+    @Test
+    fun whenFilterUsingRetainAll_thenContainsElements() {
+        val list = classUnderTest.filterUsingRetainAll()
+        assertEquals(3, list.size)
+        assertTrue(list.contains("Brazil"))
+        assertTrue(list.contains("Germany"))
+    }
 }
