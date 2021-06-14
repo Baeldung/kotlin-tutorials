@@ -19,7 +19,7 @@ class EmptyStringUnitTest {
     }
 
     @Test
-    fun `isNullOrEmpty returns true the string is either null or empty`() {
+    fun `isNullOrEmpty returns true if the string is either null or empty`() {
         val nullStr: String? = null
         val emptyNullable: String? = ""
 
@@ -46,7 +46,7 @@ class EmptyStringUnitTest {
     }
 
     @Test
-    fun `isNullOrBlank returns true the string is either null or blank`() {
+    fun `isNullOrBlank returns true if the string is either null or blank`() {
         val nullStr: String? = null
         val blankNullable: String? = "   "
 
