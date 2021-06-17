@@ -9,3 +9,4 @@ This module contains articles about advanced topics in Kotlin.
 - [Mapping of Data Objects in Kotlin](https://www.baeldung.com/kotlin/data-objects)
 - [Reflection with Kotlin](https://www.baeldung.com/kotlin/reflection)
 - [Kotlin Contracts](https://www.baeldung.com/kotlin/contracts)
+- [Get the Name of the Currently Executing Function in Kotlin](https://www.baeldung.com/kotlin/name-of-currently-executing-function)

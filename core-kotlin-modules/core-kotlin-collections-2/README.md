@@ -6,3 +6,4 @@ This module contains articles about core Kotlin collections.
 
 - [Aggregate Operations in Kotlin](https://www.baeldung.com/kotlin/aggregate-operations)
 - [Working With Maps in Kotlin](https://www.baeldung.com/kotlin/maps)
+- [Convert Array to List in Kotlin](https://www.baeldung.com/kotlin/array-to-list)
