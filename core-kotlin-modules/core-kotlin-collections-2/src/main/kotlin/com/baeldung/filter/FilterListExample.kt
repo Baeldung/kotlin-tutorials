@@ -10,10 +10,7 @@ class FilterListExample {
 
     fun filterToList(): List<String> {
         val list = mutableListOf("United States", "Canada")
-        val filterList = countries.filterTo(list, { it.length > 5 })
-        println(filterList)
-        println(list)
-        return list
+        return countries.filterTo(list, { it.length > 5 })
     }
 
     fun filterNotList(): List<String> {
