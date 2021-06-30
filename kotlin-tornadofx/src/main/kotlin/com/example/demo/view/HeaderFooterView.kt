@@ -1,3 +1,4 @@
+package com.example.demo.view
 import javafx.scene.Parent
 import tornadofx.*
 
