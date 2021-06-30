@@ -255,7 +255,7 @@
         <module>jee-kotlin</module>
         <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
         <module>kotlin-lambda</module>
-        <module>kotlin-tornadofx</module>
+        <!-- <module>kotlin-tornadofx</module>--> <!-- It's a Java 11 module -->
         <module>kotlin-libraries</module>
         <module>kotlin-libraries-2</module>
         <module>kotlin-libraries-http</module>
