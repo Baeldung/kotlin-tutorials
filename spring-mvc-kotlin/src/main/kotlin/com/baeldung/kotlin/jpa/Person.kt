@@ -9,7 +9,7 @@ import javax.persistence.Id
 import javax.persistence.OneToMany
 
 @Entity
-data class Person @JvmOverloads constructor(
+class Person @JvmOverloads constructor(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         val id: Int,

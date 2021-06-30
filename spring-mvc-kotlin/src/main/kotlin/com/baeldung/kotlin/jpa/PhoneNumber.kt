@@ -7,7 +7,7 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 
 @Entity
-data class PhoneNumber(
+class PhoneNumber(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         val id: Int,
