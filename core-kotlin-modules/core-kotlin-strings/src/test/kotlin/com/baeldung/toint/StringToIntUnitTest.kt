@@ -34,5 +34,15 @@ class StringToIntUnitTest {
     fun `orNull variant returns null for invalid data`() {
         assertNull("invalid".toIntOrNull())
         assertEquals(42, "42".toIntOrNull())
+        assertEquals(42, "2a".toIntOrNull(16))
+    }
+
+    @Test
+    @ExperimentalUnsignedTypes
+    fun `should convert strings to unsigned integers`() {
+        assertEquals(42u, "42".toUInt())
+        assertEquals(42u, "2a".toUInt(16))
+        assertNull("2a".toUIntOrNull())
+        assertEquals(42u, "2a".toUIntOrNull(16))
     }
 }
