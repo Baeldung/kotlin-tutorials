@@ -15,7 +15,7 @@ class EnvironmentVariableUnitTest {
     }
 
     @Test
-    fun `getenv without params will return `() {
+    fun `getenv without params will return`() {
         val allEnvs = System.getenv()
         allEnvs.forEach { (k, v) -> println("$k => $v") }
 
