@@ -24,6 +24,8 @@ class IntToHexUnitTest {
         val number = -100
         assertNotEquals(Integer.toHexString(number), number.toString(16))
         assertEquals(Integer.toHexString(number), number.toUInt().toString(16))
+        val unsignedLong = number.toLong() and 0xffffffffL
+        assertEquals(Integer.toHexString(number), unsignedLong.toString(16))
     }
 
     @Test
