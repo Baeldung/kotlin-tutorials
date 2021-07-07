@@ -8,3 +8,4 @@ This module contains articles about core Kotlin strings.
 - [Concatenate Strings in Kotlin](https://www.baeldung.com/kotlin/concatenate-strings)
 - [Kotlin String Templates](https://www.baeldung.com/kotlin/string-templates)
 - [How Does String Interpolation Work in Kotlin?](https://www.baeldung.com/kotlin/string-interpolation)
+- [Converting String to Int in Kotlin](https://www.baeldung.com/kotlin/string-to-int)
