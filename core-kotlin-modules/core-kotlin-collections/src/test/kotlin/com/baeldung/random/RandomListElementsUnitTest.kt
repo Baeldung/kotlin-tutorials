@@ -3,6 +3,7 @@ package com.baeldung.random
 import org.junit.jupiter.api.Test
 import java.util.concurrent.ThreadLocalRandom
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 
 class RandomListElementsUnitTest {
@@ -26,48 +27,30 @@ class RandomListElementsUnitTest {
     }
 
     @Test
-    fun randomElementFromGivenListWithRepetitions() {
+    fun randomElementsFromGivenList() {
 
         val list = listOf("one", "two", "three", "four", "five")
         val numberOfElements = 2
 
-        for (n in 1..numberOfElements) {
+        val randomElements = list.asSequence().shuffled().take(numberOfElements).toList()
 
-            val randomElement = list.asSequence().shuffled().find { true }
-
-            assertNotNull(randomElement)
-        }
-
+        assertNotNull(randomElements)
         assertEquals(list.size, 5)
     }
 
     @Test
-    fun randomElementFromGivenListWithoutRepetitions() {
+    fun randomElementsFromGivenMutableList() {
 
         val list = mutableListOf("one", "two", "three", "four", "five")
         val numberOfElements = 2
 
-        for (n in 1..numberOfElements) {
+        val randomElements = list.asSequence().shuffled().take(numberOfElements).toList()
+        list.removeIf { i-> randomElements.contains(i) }
 
-            val randomElement = list.asSequence().shuffled().find { true }
-            list.removeAt(list.indexOf(randomElement))
-
-            assertNotNull(randomElement)
-        }
-
+        assertFalse { randomElements.isNullOrEmpty() }
         assertEquals(list.size, 3)
     }
 
-    @Test
-    fun randomElementsSeries() {
-
-        val list = listOf("one", "two", "three", "four", "five")
-        val randomSeriesLength = 3
-        val randomElements = list.shuffled().subList(0, randomSeriesLength)
-
-        assertNotNull(randomElements)
-        assert(list.containsAll(randomElements) && randomElements.size == 3)
-    }
 
     @Test
     fun randomElementMultithreaded() {
