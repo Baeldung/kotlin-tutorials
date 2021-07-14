@@ -9,3 +9,4 @@ This module contains articles about core Kotlin strings.
 - [Kotlin String Templates](https://www.baeldung.com/kotlin/string-templates)
 - [How Does String Interpolation Work in Kotlin?](https://www.baeldung.com/kotlin/string-interpolation)
 - [Converting String to Int in Kotlin](https://www.baeldung.com/kotlin/string-to-int)
+- [Convert Int to Hex String in Kotlin](https://www.baeldung.com/kotlin/int-to-hex-string)
