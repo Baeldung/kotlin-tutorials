@@ -1,4 +1,4 @@
-package com.baeldung.inatantiation
+package com.baeldung.instantiation
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
