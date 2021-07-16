@@ -17,13 +17,15 @@ class RepeatingElementsUnitTest {
     @Test
     fun `should be able to create other collections off repeating elements`()  {
         val mutable = MutableList(3) { "Hello" }
-        val charArray = CharArray(3) { 'H' }
-        val array = Array(3) { "Hello" }
-        val intArray = IntArray(3) { 42 }
-
         assertThat(mutable.toSet()).containsExactly("Hello")
+
+        val charArray = CharArray(3) { 'H' }
         assertThat(charArray.toSet()).containsExactly('H')
+
+        val array = Array(3) { "Hello" }
         assertThat(array.toSet()).containsExactly("Hello")
+
+        val intArray = IntArray(3) { 42 }
         assertThat(intArray.toSet()).containsExactly(42)
     }
 
