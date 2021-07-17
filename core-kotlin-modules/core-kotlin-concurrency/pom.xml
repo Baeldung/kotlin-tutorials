@@ -14,7 +14,11 @@
     </parent>
 
     <dependencies>
-       
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-test</artifactId>
+            <version>${kotlinx.version}</version>
+        </dependency>
     </dependencies>
 
     <properties>
