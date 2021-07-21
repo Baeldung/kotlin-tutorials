@@ -8,3 +8,4 @@ This module contains articles about core Kotlin collections.
 - [Working With Maps in Kotlin](https://www.baeldung.com/kotlin/maps)
 - [Convert Array to List in Kotlin](https://www.baeldung.com/kotlin/array-to-list)
 - [Filtering a List in Kotlin](https://www.baeldung.com/kotlin/list-filtering)
+- [Get a Random Item From a List in Kotlin](https://www.baeldung.com/kotlin/list-get-random-item)
