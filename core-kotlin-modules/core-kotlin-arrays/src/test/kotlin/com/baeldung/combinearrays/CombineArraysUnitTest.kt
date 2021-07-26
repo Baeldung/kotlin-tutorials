@@ -1,41 +1,40 @@
-package com.baeldung.combine.arrays
+package com.baeldung.combinearrays
 
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class MergeArraysUnitTest {
+class CombineArraysUnitTest {
 
     val arr1 = arrayOf(3, 10, 2)
     val arr2 = arrayOf(6, 11, 89, 0)
 
     val expectedMergedArray = arrayOf(3, 10, 2, 6, 11, 89, 0)
 
-    lateinit var mergeArrays: MergeArrays
+    lateinit var mergeArrays: CombineArrays
 
     @BeforeEach
     fun setUp() {
-        mergeArrays = MergeArrays()
+        mergeArrays = CombineArrays()
     }
 
-
     @Test
-    fun givenTwoArrays_whenCombinePlusIsCalled_ArraysAreMerged() {
+    fun `Given two arrays, when combinePlus is called, then arrays are merged`() {
         assertEqualArrays(expectedMergedArray, mergeArrays.combinePlus(arr1, arr2))
     }
 
     @Test
-    fun givenTwoArrays_whenCombinePlusOperatorIsCalled_ArraysAreMerged() {
+    fun `Given two arrays, when combinePlusOperator is called, then arrays are merged`() {
         assertEqualArrays(expectedMergedArray, mergeArrays.combinePlusOperator(arr1, arr2))
     }
 
     @Test
-    fun givenTwoArrays_whenCombineSpreadIsCalled_ArraysAreMerged() {
+    fun `Given two arrays, when combineSpread is called, then arrays are merged`() {
         assertEqualArrays(expectedMergedArray, mergeArrays.combineSpread(arr1, arr2))
     }
 
     @Test
-    fun givenTwoArrays_whenCombineCustomIsCalled_ArraysAreMerged() {
+    fun `Given two arrays, when combineCustom is called, then arrays are merged`() {
         assertEqualArrays(expectedMergedArray, mergeArrays.combineCustom(arr1, arr2))
     }
 

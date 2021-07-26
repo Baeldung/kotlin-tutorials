@@ -1,6 +1,6 @@
-package com.baeldung.combine.arrays
+package com.baeldung.combinearrays
 
-class MergeArrays {
+class CombineArrays {
     fun <T> combinePlus(arr1: Array<T>, arr2: Array<T>): Array<T> {
         return arr1 + arr2
     }
