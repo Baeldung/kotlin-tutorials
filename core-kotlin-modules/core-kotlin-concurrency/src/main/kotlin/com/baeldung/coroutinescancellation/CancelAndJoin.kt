@@ -12,7 +12,7 @@ fun main() {
     }
 }
 
-suspend fun longRunningTask() = withContext(Dispatchers.Default) {
+private suspend fun longRunningTask() = withContext(Dispatchers.Default) {
     try {
         delay(500)
     } catch (e: CancellationException) {

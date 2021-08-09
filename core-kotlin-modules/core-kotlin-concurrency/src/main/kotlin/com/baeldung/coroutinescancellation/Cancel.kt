@@ -11,6 +11,6 @@ fun main() {
     println("This is printed immediately")
 }
 
-suspend fun longRunningTask() = withContext(Dispatchers.Default) {
+private suspend fun longRunningTask() = withContext(Dispatchers.Default) {
     delay(500L)
 }
