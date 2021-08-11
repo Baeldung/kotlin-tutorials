@@ -7,3 +7,4 @@ This module contains articles about core Kotlin I/O.
 - [Console I/O in Kotlin](https://www.baeldung.com/kotlin/console-io)
 - [Reading from a File in Kotlin](https://www.baeldung.com/kotlin/read-file)
 - [Writing to a File in Kotlin](https://www.baeldung.com/kotlin/write-file)
+- [Writing InputStream to File in Kotlin](https://www.baeldung.com/kotlin/inputstream-to-file)

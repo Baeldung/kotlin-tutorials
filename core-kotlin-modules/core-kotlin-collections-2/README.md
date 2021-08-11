@@ -12,3 +12,5 @@ This module contains articles about core Kotlin collections.
 - [Creating Collections with Repeating Elements in Kotlin](https://www.baeldung.com/kotlin/collections-with-repeating-elements)
 - [The Difference Between map() and flatMap() in Kotlin](https://www.baeldung.com/kotlin/map-vs-flatmap)
 - [Copy a Map in Kotlin](https://www.baeldung.com/kotlin/copy-map)
+- [Copying a List in Kotlin](https://www.baeldung.com/kotlin/copy-list)
+- [Removing Duplicate Elements From Collections in Kotlin](https://www.baeldung.com/kotlin/collections-remove-duplicates)
