@@ -16,8 +16,10 @@ sealed class OsSealed(val releaseYear: Int = 0, val company: String = "") {
     }
 
     object Mac : OsSealed(2001, "Apple") {
-        fun doSomething() {
-            println("Mac by $company - released at $releaseYear")
+        fun doSomething(): String {
+            val s = "Mac by $company - released at $releaseYear"
+            println(s)
+            return s
         }
     }
 

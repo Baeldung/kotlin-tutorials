@@ -1,6 +1,7 @@
 package com.baeldung.kotlin.enums.vs.sealed.classes
 
 import org.junit.jupiter.api.Test
+import kotlin.test.assertEquals
 
 class OsEnumUnitTest {
     @Test
@@ -12,12 +13,11 @@ class OsEnumUnitTest {
     }
 
     private fun detectOsByUsingWhen(osEnum: OsEnum) {
-        osEnum.printParent()
         when (osEnum) {
-            OsEnum.Linux -> println(osEnum.getText(1))
-            OsEnum.Windows -> println(osEnum.getText(2))
-            OsEnum.Mac -> println(osEnum.getText(3))
-            else -> println("Unknown osEnum: $osEnum ")
+            OsEnum.Linux -> assertEquals("Linux by Open-Source - value=1", osEnum.getText(1))
+            OsEnum.Windows -> assertEquals("Windows by Microsoft - value=2", osEnum.getText(2))
+            OsEnum.Mac -> assertEquals("Mac by Apple - released at 2001", osEnum.getText(3))
+            else -> assert(osEnum == OsEnum.Unknown)
         }
     }
 }
