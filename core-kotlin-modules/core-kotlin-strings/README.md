@@ -12,3 +12,4 @@ This module contains articles about core Kotlin strings.
 - [Convert Int to Hex String in Kotlin](https://www.baeldung.com/kotlin/int-to-hex-string)
 - [Splitting a String in Kotlin](https://www.baeldung.com/kotlin/split-string)
 - [Functions for Replacing Part of a String in Kotlin](https://www.baeldung.com/kotlin/string-replace-substring)
+- [Removing All Non-Alphanumeric Characters in Kotlin](https://www.baeldung.com/kotlin/remove-non-alphanumeric-characters)
