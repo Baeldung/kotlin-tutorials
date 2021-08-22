@@ -1,6 +1,6 @@
 package com.baeldung.thiskeyword
 
-class Foo {
+class Counter {
     var count = 0
 
     fun incrementCount() {
@@ -9,7 +9,7 @@ class Foo {
 }
 
 fun main() {
-    val foo = Foo()
-    foo.incrementCount()
-    println("Final count = ${foo.count}")
+    val counter = Counter()
+    counter.incrementCount()
+    println("Final count = ${counter.count}")
 }
