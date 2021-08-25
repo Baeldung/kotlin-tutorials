@@ -7,3 +7,4 @@
 - [Checking if a String is Empty in Kotlin](https://www.baeldung.com/kotlin/check-empty-string)
 - [Read Environment Variables in Kotlin](https://www.baeldung.com/kotlin/read-env-variables)
 - [The getClass() Equivalent in Kotlin](https://www.baeldung.com/kotlin/getclass-equivalent)
+- [The Difference Between init Block and Constructor in Kotlin](https://www.baeldung.com/kotlin/init-vs-constructor-block)
