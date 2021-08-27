@@ -1,4 +1,4 @@
-package com.baeldung.kotlin.enums.vs.sealed.classes
+package com.baeldung.sealedclasses.vs.enums
 
 sealed class OsSealed(val releaseYear: Int = 0, val company: String = "") {
     constructor(company: String) : this(0, company)
@@ -25,7 +25,7 @@ sealed class OsSealed(val releaseYear: Int = 0, val company: String = "") {
 
     object Unknown : OsSealed()
 
-    fun printParent() {
-        println("Called from parent sealed class")
+    fun getTextParent(): String {
+        return "Called from parent sealed class"
     }
 }

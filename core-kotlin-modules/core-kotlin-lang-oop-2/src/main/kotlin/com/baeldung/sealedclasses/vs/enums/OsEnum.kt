@@ -1,4 +1,4 @@
-package com.baeldung.kotlin.enums.vs.sealed.classes
+package com.baeldung.sealedclasses.vs.enums
 
 enum class OsEnum(val releaseYear: Int = 0, val company: String = "") {
     Linux(0, "Open-Source") {
@@ -24,7 +24,7 @@ enum class OsEnum(val releaseYear: Int = 0, val company: String = "") {
 
     abstract fun getText(value: Int): String
 
-    fun printParent() {
-        println("Called from parent enum class")
+    fun getTextParent(): String {
+        return "Called from parent enum class"
     }
 }
