@@ -243,7 +243,7 @@
                 </configuration>
             </plugin>
         </plugins>
-        
+
         <extensions>
             <extension>
                 <groupId>com.vackosar.gitflowincrementalbuilder</groupId>
@@ -252,7 +252,7 @@
             </extension>
         </extensions>
     </build>
-    
+
     <modules>
         <module>parent-boot-2</module>
 
@@ -272,6 +272,7 @@
         <module>spring-mvc-kotlin</module>
         <module>spring-reactive-kotlin</module>
         <module>spring-security-kotlin-dsl</module>
+        <module>kotlin-immutable-collections</module>
     </modules>
 
     <profiles>
@@ -334,7 +335,7 @@
         <gib.failOnMissingGitDir>false</gib.failOnMissingGitDir>
         <gib.failOnError>false</gib.failOnError>
         <gib.enabled>false</gib.enabled>
-        
+
         <java.version>1.8</java.version>
     </properties>
 
