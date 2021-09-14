@@ -41,6 +41,7 @@ class InputStreamToFileUnitTest {
 
     @Test
     fun `Files$copy should copy any source to output stream`() {
+        Files.deleteIfExists(Paths.get("./copied"))
         val inputStream = ByteArrayInputStream(content.toByteArray())
 
         inputStream.use { input ->
