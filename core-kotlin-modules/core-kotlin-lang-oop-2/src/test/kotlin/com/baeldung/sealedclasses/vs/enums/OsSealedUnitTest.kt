@@ -2,6 +2,7 @@ package com.baeldung.sealedclasses.vs.enums
 
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class OsSealedUnitTest {
     @Test
@@ -18,7 +19,7 @@ class OsSealedUnitTest {
             is OsSealed.Linux -> assertEquals("Linux by Open-Source - value=1", osSealed.getText(1))
             is OsSealed.Mac -> assertEquals("Mac by Apple - released at 2001", osSealed.doSomething())
             is OsSealed.Windows -> assertEquals(5, osSealed.getNumber("Text!"))
-            else -> assert(osSealed is OsSealed.Unknown)
+            else -> assertTrue(osSealed is OsSealed.Unknown)
         }
     }
 
