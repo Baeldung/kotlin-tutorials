@@ -12,6 +12,7 @@ class GsonUnitTest {
 
     @Test
     fun serializeObjectTest() {
+
         val author = Author("John", "Technical Author", listOf("Kotlin", "Java"))
         val serialized = Gson().toJson(author)
 
@@ -21,6 +22,7 @@ class GsonUnitTest {
 
     @Test
     fun deserializeObjectTest() {
+
         val json = """{"name":"John","type":"Technical Author","topics":["Kotlin","Java"]}"""
         val author = Gson().fromJson(json, Author::class.java)
 
@@ -30,6 +32,7 @@ class GsonUnitTest {
 
     @Test
     fun deserializeObjectWithMissingFieldsTest() {
+
         val json = """{"name":"John","topics":["Kotlin","Java"]}"""
         val author = Gson().fromJson(json, Author::class.java)
 
@@ -40,6 +43,7 @@ class GsonUnitTest {
 
     @Test
     fun serializeObjectWithNonMatchingKeysTest() {
+
         val article = Article("Streams in Kotlin", "Kotlin", 0)
         val serialized = Gson().toJson(article)
 
@@ -48,7 +52,7 @@ class GsonUnitTest {
     }
 
     @Test
-    fun deserializeArticleWithNotMatchingKeysTest() {
+    fun deserializeArticleWithNonMatchingKeysTest() {
 
         val json = """{"article_title":"Streams in Kotlin","article_category":"Kotlin","article_views":0}"""
         val article = Gson().fromJson(json, Article::class.java)
@@ -60,6 +64,7 @@ class GsonUnitTest {
 
     @Test
     fun serializeWithNestedObjectsTest() {
+
         val author =
             Author("John", "Technical Author", listOf("Kotlin", "Java"), Contact("john@example.com", "+1234567"))
         val serialized = Gson().toJson(author)
@@ -84,6 +89,7 @@ class GsonUnitTest {
 
     @Test
     fun serializeObjectListTest() {
+
         val authors = listOf(Author("John"), Author("Jane"), Author("William"))
         val serialized = Gson().toJson(authors)
 
@@ -93,11 +99,13 @@ class GsonUnitTest {
 
     @Test
     fun deserializeObjectListTest() {
+
         val json = """[{"name":"John"},{"name":"Jane"},{"name":"William"}]"""
         val typeToken = object : TypeToken<List<Author>>() {}.type
         val authors = Gson().fromJson<List<Author>>(json, typeToken)
 
         assertThat(authors).isNotEmpty
+        assertThat(authors).hasSize(3)
         assertThat(authors).anyMatch { a -> a.name == "John" }
     }
 }
