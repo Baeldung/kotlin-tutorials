@@ -47,7 +47,6 @@ private suspend fun CoroutineScope.printPagesEnsureActive(count: Int) {
     println("Print job cancelled")
 }
 
-
 private suspend fun CoroutineScope.printPagesIsActive(count: Int) {
     println("This function uses isActive field to check if Job is active.")
     val job = launch {
