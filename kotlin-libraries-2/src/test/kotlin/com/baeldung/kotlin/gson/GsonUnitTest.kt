@@ -11,101 +11,79 @@ import kotlin.test.assertEquals
 class GsonUnitTest {
 
     @Test
-    fun serializeObjectTest() {
-
-        val author = Author("John", "Technical Author", listOf("Kotlin", "Java"))
-        val serialized = Gson().toJson(author)
-
-        val json = """{"name":"John","type":"Technical Author","topics":["Kotlin","Java"]}"""
-        assertEquals(serialized, json)
-    }
-
-    @Test
-    fun deserializeObjectTest() {
-
-        val json = """{"name":"John","type":"Technical Author","topics":["Kotlin","Java"]}"""
-        val author = Gson().fromJson(json, Author::class.java)
-
-        assertEquals(author.name, "John")
-        assertThat(author.topics).isNotEmpty
-    }
-
-    @Test
-    fun deserializeObjectWithMissingFieldsTest() {
-
-        val json = """{"name":"John","topics":["Kotlin","Java"]}"""
-        val author = Gson().fromJson(json, Author::class.java)
-
-        assertEquals(author.name, "John")
-        assertThat(author.type).isNull()
-        assertThat(author.topics).isNotEmpty
-    }
-
-    @Test
-    fun serializeObjectWithNonMatchingKeysTest() {
-
-        val article = Article("Streams in Kotlin", "Kotlin", 0)
-        val serialized = Gson().toJson(article)
-
-        val json = """{"article_title":"Streams in Kotlin","article_category":"Kotlin","article_views":0}"""
-        assertEquals(serialized, json)
-    }
-
-    @Test
-    fun deserializeArticleWithNonMatchingKeysTest() {
-
-        val json = """{"article_title":"Streams in Kotlin","article_category":"Kotlin","article_views":0}"""
-        val article = Gson().fromJson(json, Article::class.java)
-
-        assertEquals(article.title, "Streams in Kotlin")
-        assertEquals(article.category, "Kotlin")
-        assertEquals(article.views, 0)
-    }
-
-    @Test
-    fun serializeWithNestedObjectsTest() {
-
-        val author =
-            Author("John", "Technical Author", listOf("Kotlin", "Java"), Contact("john@example.com", "+1234567"))
-        val serialized = Gson().toJson(author)
-
-        val json =
-            """{"name":"John","type":"Technical Author","topics":["Kotlin","Java"],"contact":{"email":"john@example.com","phone":"+1234567"}}"""
-        assertEquals(serialized, json)
-    }
-
-    @Test
-    fun deserializeWithNestedObjectsTest() {
-
-        val json =
-            """{"name":"John","type":"Technical Author","topics":["Kotlin","Java"],"contact":{"email":"john@example.com","phone":"+1234567"}}"""
-
-        val author = Gson().fromJson(json, Author::class.java)
-
-        assertEquals(author.name, "John")
-        assertEquals(author.type, "Technical Author")
-        assertThat(author.contact).isNotNull;
-    }
-
-    @Test
     fun serializeObjectListTest() {
 
-        val authors = listOf(Author("John"), Author("Jane"), Author("William"))
+        val authors = listOf(
+            Author("John", "Technical Author"),
+            Author("Jane", "Technical Author"),
+            Author("William", "Technical Editor")
+        )
         val serialized = Gson().toJson(authors)
 
-        val json = """[{"name":"John"},{"name":"Jane"},{"name":"William"}]"""
+        val json =
+            """[{"name":"John","type":"Technical Author"},{"name":"Jane","type":"Technical Author"},{"name":"William","type":"Technical Editor"}]"""
         assertEquals(serialized, json)
     }
 
     @Test
     fun deserializeObjectListTest() {
 
-        val json = """[{"name":"John"},{"name":"Jane"},{"name":"William"}]"""
+        val json =
+            """[{"name":"John","type":"Technical Author"},{"name":"Jane","type":"Technical Author"},{"name":"William","type":"Technical Editor"}]"""
         val typeToken = object : TypeToken<List<Author>>() {}.type
         val authors = Gson().fromJson<List<Author>>(json, typeToken)
 
         assertThat(authors).isNotEmpty
         assertThat(authors).hasSize(3)
         assertThat(authors).anyMatch { a -> a.name == "John" }
+        assertThat(authors).anyMatch { a -> a.type == "Technical Editor" }
+    }
+
+    @Test
+    fun deserializeObjectListWithMissingFieldsTest() {
+
+        val json =
+            """[{"name":"John"},{"name":"Jane"},{"name":"William"}]"""
+        val typeToken = object : TypeToken<List<Author>>() {}.type
+        val authors = Gson().fromJson<List<Author>>(json, typeToken)
+
+        assertThat(authors).isNotEmpty
+        assertThat(authors).hasSize(3)
+        assertThat(authors).anyMatch { a -> a.name == "John" }
+        assertThat(authors).allMatch { a -> a.type == null }
+    }
+
+    @Test
+    fun serializeObjectListWithNonMatchingKeysTest() {
+
+        val authors = listOf(
+            Author(
+                "John",
+                "Technical Author",
+                listOf(Article("Streams in Java", "Java", 3), Article("Lambda Expressions", "Java", 5))
+            ),
+            Author("Jane", "Technical Author", listOf(Article("Functional Interfaces", "Java", 2))),
+            Author("William", "Technical Editor")
+        )
+        val serialized = Gson().toJson(authors)
+
+        val json =
+            """[{"name":"John","type":"Technical Author","articles":[{"article_title":"Streams in Java","article_category":"Java","article_views":3},{"article_title":"Lambda Expressions","article_category":"Java","article_views":5}]},{"name":"Jane","type":"Technical Author","articles":[{"article_title":"Functional Interfaces","article_category":"Java","article_views":2}]},{"name":"William","type":"Technical Editor"}]"""
+        assertEquals(serialized, json)
+    }
+
+    @Test
+    fun deserializeObjectListWithNonMatchingKeysTest() {
+
+        val json =
+            """[{"name":"John","type":"Technical Author","articles":[{"article_title":"Streams in Java","article_category":"Java","article_views":3},{"article_title":"Lambda Expressions","article_category":"Java","article_views":5}]},{"name":"Jane","type":"Technical Author","articles":[{"article_title":"Functional Interfaces","article_category":"Java","article_views":2}]},{"name":"William","type":"Technical Editor"}]"""
+        val typeToken = object : TypeToken<List<Author>>() {}.type
+        val authors = Gson().fromJson<List<Author>>(json, typeToken)
+
+
+        assertThat(authors).isNotEmpty
+        assertThat(authors).hasSize(3)
+        assertThat(authors).anyMatch { a -> a.name == "John" }
+        assertThat(authors).anyMatch { a -> a.type == "Technical Editor" }
     }
 }
