@@ -15,14 +15,14 @@ private suspend fun CoroutineScope.printPagesPeriodicCheck(count: Int) {
             yield()
             try {
                 println("Printing page number $it")
-                delay(1000)
+                delay(1000L)
                 println("Page $it printed")
             } catch (e: CancellationException) {
                 println("Print job cancel triggered")
             }
         }
     }
-    delay(2000)
+    delay(2000L)
     job.cancelAndJoin()
     println("Print job cancelled")
 }
@@ -34,7 +34,7 @@ private suspend fun CoroutineScope.printPagesEnsureActive(count: Int) {
             ensureActive()
             try {
                 println("Printing page number $it")
-                delay(1000)
+                delay(1000L)
                 println("Page $it printed")
             } catch (e: CancellationException) {
                 println("Print job cancel triggered")
@@ -42,7 +42,7 @@ private suspend fun CoroutineScope.printPagesEnsureActive(count: Int) {
         }
     }
     job.start()
-    delay(2000)
+    delay(2000L)
     job.cancelAndJoin()
     println("Print job cancelled")
 }
@@ -54,7 +54,7 @@ private suspend fun CoroutineScope.printPagesIsActive(count: Int) {
             if (isActive) {
                 try {
                     println("Printing page number $it")
-                    delay(1000)
+                    delay(1000L)
                     println("Page $it printed")
                 } catch (e: CancellationException) {
                     println("Print job cancel triggered")
@@ -63,7 +63,7 @@ private suspend fun CoroutineScope.printPagesIsActive(count: Int) {
         }
     }
     job.start()
-    delay(2000)
+    delay(2000L)
     job.cancelAndJoin()
     println("Print job cancelled")
 }
