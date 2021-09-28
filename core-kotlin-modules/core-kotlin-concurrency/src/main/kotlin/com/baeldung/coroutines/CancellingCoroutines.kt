@@ -32,13 +32,9 @@ private suspend fun CoroutineScope.printPagesEnsureActive(count: Int) {
     val job = launch {
         repeat(count) {
             ensureActive()
-            try {
-                println("Printing page number $it")
-                delay(1000L)
-                println("Page $it printed")
-            } catch (e: CancellationException) {
-                println("Print job cancel triggered")
-            }
+            println("Printing page number $it")
+            delay(1000L)
+            println("Page $it printed")
         }
     }
     job.start()
@@ -52,13 +48,9 @@ private suspend fun CoroutineScope.printPagesIsActive(count: Int) {
     val job = launch {
         repeat(count) {
             if (isActive) {
-                try {
-                    println("Printing page number $it")
-                    delay(1000L)
-                    println("Page $it printed")
-                } catch (e: CancellationException) {
-                    println("Print job cancel triggered")
-                }
+                println("Printing page number $it")
+                delay(1000L)
+                println("Page $it printed")
             }
         }
     }
