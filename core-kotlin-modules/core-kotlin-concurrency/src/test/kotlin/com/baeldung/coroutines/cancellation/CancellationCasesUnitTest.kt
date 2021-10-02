@@ -5,6 +5,7 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.async
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.cancelAndJoin
@@ -37,16 +38,17 @@ class CancellationCasesUnitTest {
 
     @Test
     fun `when cancelled then exits the long loop but prints final words`() = runBlocking {
-        val job = launch {
-            val allPrimes = mutableSetOf<Long>()
-            var i = 1L
-            while (i++ < Long.MAX_VALUE && coroutineContext.isActive) {
-                if (allPrimes.none { i % it == 0L })
-                    allPrimes.add(i)
+        val job = with(CoroutineScope(Dispatchers.Default)) {
+            launch {
+                val allPrimes = mutableSetOf<Long>()
+                var i = 1L
+                while (i++ < Long.MAX_VALUE && coroutineContext.isActive) {
+                    if (allPrimes.none { i % it == 0L })
+                        allPrimes.add(i)
+                }
+                println("job: The biggest primes was: ${allPrimes.last()}")
             }
-            println("job: The biggest primes was: ${allPrimes.last()}")
         }
-
         delay(100L)
         println("main: That's enough, let's cancel you")
         job.cancelAndJoin()
@@ -105,7 +107,11 @@ class CancellationCasesUnitTest {
                 delay(30_000L)
                 42
             }
-            val result = withTimeout(100) { deferredResult.await() }
+            try {
+                val result = withTimeout(100) { deferredResult.await() }
+            } catch (ex: TimeoutCancellationException) {
+                println("Time is up")
+            }
         }
     }
 
