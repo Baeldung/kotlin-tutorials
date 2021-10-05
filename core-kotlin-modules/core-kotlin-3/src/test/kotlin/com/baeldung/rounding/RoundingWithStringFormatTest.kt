@@ -1,6 +1,7 @@
 package com.baeldung.rounding
 
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Test
 import java.util.*
 
 class RoundingWithStringFormatTest {
@@ -11,18 +12,18 @@ class RoundingWithStringFormatTest {
     @Test
     fun rounded1() {
         val rounded: Double = String.format(Locale.ENGLISH, "%.1f", raw1).toDouble()
-        assert(rounded == 0.3)
+        assertTrue(rounded == 0.3)
     }
 
     @Test
     fun rounded2() {
         val rounded: Double = String.format("%.1f", raw2).toDouble()
-        assert(rounded == 0.4)
+        assertTrue(rounded == 0.4)
     }
 
     @Test
     fun rounded3() {
         val rounded: Double = String.format("%.1f", raw3).toDouble()
-        assert(rounded == 0.4)
+        assertTrue(rounded == 0.4)
     }
 }

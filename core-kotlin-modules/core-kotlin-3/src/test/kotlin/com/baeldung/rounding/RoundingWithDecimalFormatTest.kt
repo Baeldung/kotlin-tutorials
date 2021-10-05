@@ -1,6 +1,7 @@
 package com.baeldung.rounding
 
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Test
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
@@ -15,19 +16,19 @@ class RoundingWithDecimalFormatTest {
     @Test
     fun rounded1() {
         val rounded = df.format(raw1).toDouble()
-        assert(rounded == 0.3)
+        assertTrue(rounded == 0.3)
     }
 
     @Test
     fun rounded2() {
         val rounded = df.format(raw2).toDouble()
-        assert(rounded == 0.3)
+        assertTrue(rounded == 0.3)
     }
 
     @Test
     fun rounded3() {
         val rounded = df.format(raw3).toDouble()
-        assert(rounded == 0.4)
+        assertTrue(rounded == 0.4)
     }
 
     @Test
@@ -35,6 +36,6 @@ class RoundingWithDecimalFormatTest {
         val df = DecimalFormat("#.#", DecimalFormatSymbols(Locale.ENGLISH))
         df.roundingMode = RoundingMode.FLOOR
         val rounded3Floor = df.format(raw3).toDouble()
-        assert(rounded3Floor == 0.3)
+        assertTrue(rounded3Floor == 0.3)
     }
 }
