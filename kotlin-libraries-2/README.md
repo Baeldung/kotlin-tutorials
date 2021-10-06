@@ -11,4 +11,5 @@ This module contains articles about Kotlin Libraries.
 - [Introduction to Kovenant Library for Kotlin](https://www.baeldung.com/kotlin/kovenant)
 - [Converting Kotlin Data Class from JSON using GSON](https://www.baeldung.com/kotlin/json-convert-data-class)
 - [Iterate Through a JSONArray in Kotlin](https://www.baeldung.com/kotlin/iterate-over-jsonarray)
+- [Parsing JSON Arrays in Kotlin with Gson](https://www.baeldung.com/kotlin/gson-parse-arrays)
 - More articles: [[<-- prev]](/kotlin-libraries)
