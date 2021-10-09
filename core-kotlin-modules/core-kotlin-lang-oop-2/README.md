@@ -9,4 +9,5 @@ This module contains articles about Object-Oriented Programming in Kotlin
 - [Delegation Pattern in Kotlin](https://www.baeldung.com/kotlin/delegation-pattern)
 - [Anonymous Inner Classes in Kotlin](https://www.baeldung.com/kotlin/anonymous-inner-classes)
 - [Get All Subclasses of a Sealed Class in Kotlin](https://www.baeldung.com/kotlin/subclasses-of-sealed-class)
+- [Sealed Class vs Enum in Kotlin](https://www.baeldung.com/kotlin/sealed-class-vs-enum)
 - [[<-- Prev]](/core-kotlin-modules/core-kotlin-lang-oop)
