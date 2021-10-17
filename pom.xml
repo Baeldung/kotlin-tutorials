@@ -273,6 +273,7 @@
         <module>spring-reactive-kotlin</module>
         <module>spring-security-kotlin-dsl</module>
         <module>kotlin-immutable-collections</module>
+        <module>kotlin-logging</module>
     </modules>
 
     <profiles>
