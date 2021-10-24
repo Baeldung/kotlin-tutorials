@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test
 import java.util.*
 
 class RoundingWithStringFormatTest {
-    private val raw1 = 0.34
-    private val raw2 = 0.35
-    private val raw3 = 0.36
+    private val raw1 = 0.34.toBigDecimal()
+    private val raw2 = 0.35.toBigDecimal()
+    private val raw3 = 0.36.toBigDecimal()
 
     @Test
     fun `given a decimal number, when formatted, round down as expected`() {

@@ -9,9 +9,9 @@ import java.util.*
 
 class RoundingWithDecimalFormatTest {
     private val df = DecimalFormat("#.#", DecimalFormatSymbols(Locale.ENGLISH))
-    private val raw1 = 0.34
-    private val raw2 = 0.35
-    private val raw3 = 0.36
+    private val raw1 = 0.34.toBigDecimal()
+    private val raw2 = 0.35.toBigDecimal()
+    private val raw3 = 0.36.toBigDecimal()
 
     @Test
     fun `given a decimal number, when formatted with decimal format, round down as expected`() {
@@ -24,7 +24,7 @@ class RoundingWithDecimalFormatTest {
     fun `given another decimal number, when formatted with decimal format, round down as expected`() {
         val rounded = df.format(raw2).toDouble()
 
-        assertTrue(rounded == 0.3)
+        assertTrue(rounded == 0.4)
     }
 
     @Test
