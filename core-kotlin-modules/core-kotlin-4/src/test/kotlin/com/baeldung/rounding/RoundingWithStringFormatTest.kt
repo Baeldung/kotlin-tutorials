@@ -10,20 +10,23 @@ class RoundingWithStringFormatTest {
     private val raw3 = 0.36
 
     @Test
-    fun rounded1() {
+    fun `given a decimal number, when formatted, round down as expected`() {
         val rounded: Double = String.format(Locale.ENGLISH, "%.1f", raw1).toDouble()
+
         assertTrue(rounded == 0.3)
     }
 
     @Test
-    fun rounded2() {
+    fun `given a decimal number, when formatted, round up as expected`() {
         val rounded: Double = String.format("%.1f", raw2).toDouble()
+
         assertTrue(rounded == 0.4)
     }
 
     @Test
-    fun rounded3() {
+    fun `given another decimal number, when formatted, round up as expected`() {
         val rounded: Double = String.format("%.1f", raw3).toDouble()
+
         assertTrue(rounded == 0.4)
     }
 }
