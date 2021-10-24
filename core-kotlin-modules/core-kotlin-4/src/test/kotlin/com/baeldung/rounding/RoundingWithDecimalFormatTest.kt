@@ -14,28 +14,32 @@ class RoundingWithDecimalFormatTest {
     private val raw3 = 0.36
 
     @Test
-    fun rounded1() {
+    fun `given a decimal number, when formatted with decimal format, round down as expected`() {
         val rounded = df.format(raw1).toDouble()
+
         assertTrue(rounded == 0.3)
     }
 
     @Test
-    fun rounded2() {
+    fun `given another decimal number, when formatted with decimal format, round down as expected`() {
         val rounded = df.format(raw2).toDouble()
+
         assertTrue(rounded == 0.3)
     }
 
     @Test
-    fun rounded3() {
+    fun `given a decimal number, when formatted with decimal format, round up as expected`() {
         val rounded = df.format(raw3).toDouble()
+
         assertTrue(rounded == 0.4)
     }
 
     @Test
-    fun roundingMode() {
+    fun `given a decimal number, when formatted with decimal format and a rounding mode, round down as expected`() {
         val df = DecimalFormat("#.#", DecimalFormatSymbols(Locale.ENGLISH))
         df.roundingMode = RoundingMode.FLOOR
         val rounded3Floor = df.format(raw3).toDouble()
+
         assertTrue(rounded3Floor == 0.3)
     }
 }
