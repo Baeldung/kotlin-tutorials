@@ -10,3 +10,4 @@
 - [The Difference Between init Block and Constructor in Kotlin](https://www.baeldung.com/kotlin/init-vs-constructor-block)
 - [Why Kotlin lateinit Can’t Be Used With Primitive Types](https://www.baeldung.com/kotlin/lateinit-primitive-types)
 - [Introduction to “this” Keyword in Kotlin](https://www.baeldung.com/kotlin/this-keyword)
+- [Using bitwise operators in Kotlin](https://drafts.baeldung.com/kotlin/using-bitwise-operators-in-kotlin)
