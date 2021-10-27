@@ -3,8 +3,18 @@ package com.baeldung.coroutines.cancellation
 import kotlinx.coroutines.*
 
 fun main() {
+    println("cancellation")
+    println("------------")
     simple()
+    println()
+
+    println("cleaning up")
+    println("-----------")
     exception()
+    println()
+
+    println("timeout")
+    println("-------")
     timeout()
 }
 
