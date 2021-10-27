@@ -254,26 +254,27 @@
     </build>
 
     <modules>
-        <module>parent-boot-2</module>
+<!--        <module>parent-boot-2</module>-->
 
-        <module>core-kotlin-modules</module>
-        <module>jee-kotlin</module>
-        <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
-        <module>kotlin-lambda</module>
-        <!-- <module>kotlin-tornadofx</module>--> <!-- It's a Java 11 module -->
-        <module>kotlin-libraries</module>
-        <module>kotlin-libraries-2</module>
-        <module>kotlin-libraries-http</module>
-        <module>kotlin-patterns</module>
-        <module>kotlin-quasar</module>
-        <module>kotlin-testing</module>
-        <module>machine-learning</module>
-        <module>spring-boot-kotlin</module>
-        <module>spring-mvc-kotlin</module>
-        <module>spring-reactive-kotlin</module>
-        <module>spring-security-kotlin-dsl</module>
-        <module>kotlin-immutable-collections</module>
-        <module>kotlin-logging</module>
+<!--        <module>core-kotlin-modules</module>-->
+<!--        <module>jee-kotlin</module>-->
+<!--        &lt;!&ndash; <module>kotlin-js</module> &ndash;&gt; &lt;!&ndash; not a Maven module &ndash;&gt;-->
+<!--        <module>kotlin-lambda</module>-->
+<!--        &lt;!&ndash; <module>kotlin-tornadofx</module>&ndash;&gt; &lt;!&ndash; It's a Java 11 module &ndash;&gt;-->
+<!--        <module>kotlin-libraries</module>-->
+<!--        <module>kotlin-libraries-2</module>-->
+<!--        <module>kotlin-libraries-http</module>-->
+<!--        <module>kotlin-patterns</module>-->
+<!--        <module>kotlin-quasar</module>-->
+<!--        <module>kotlin-testing</module>-->
+<!--        <module>machine-learning</module>-->
+<!--        <module>spring-boot-kotlin</module>-->
+<!--        <module>spring-mvc-kotlin</module>-->
+<!--        <module>spring-reactive-kotlin</module>-->
+<!--        <module>spring-security-kotlin-dsl</module>-->
+<!--        <module>kotlin-immutable-collections</module>-->
+<!--        <module>kotlin-logging</module>-->
+        <module>kotlin-libraries-coroutines</module>
     </modules>
 
     <profiles>
