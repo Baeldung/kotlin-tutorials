@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import kotlin.test.assertTrue
 
-class BitwiseOperatorsTest {
+class BitwiseOperatorsUnitTest {
 
     @Test
     fun given_two_binaries_when_they_are_conjuncted_then_only_bits_set_in_both_survive() {
