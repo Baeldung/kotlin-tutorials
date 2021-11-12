@@ -7,7 +7,7 @@ import kotlin.test.assertNotNull
 internal class AbstractFactoryPatternUnitTest {
 
     @Test
-    fun crossbowWeaponFactoryTest() {
+    fun givenCrossbowFactory_whenBuildWeapon_thenCrossbowWeaponIsReturned() {
 
         val factory: WeaponFactory = Crossbow.Factory
 
@@ -18,7 +18,7 @@ internal class AbstractFactoryPatternUnitTest {
     }
 
     @Test
-    fun katanaWeaponFactoryTest() {
+    fun givenKatanaFactory_whenBuildWeapon_thenKatanaWeaponIsReturned() {
 
         val factory: WeaponFactory = Katana.Factory
 
