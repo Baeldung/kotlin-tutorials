@@ -8,15 +8,9 @@ class SingletonWithParam private constructor(str: String) {
         @Volatile
         var instance: SingletonWithParam? = null
 
-        fun getInstance(c: String): SingletonWithParam {
-            if (instance == null) {
-                synchronized(SingletonWithParam::class) {
-                    if (instance == null) {
-                        instance = SingletonWithParam(c)
-                    }
-                }
+        fun getInstance(c: String): SingletonWithParam =
+            instance ?: synchronized(this) {
+                instance ?: SingletonWithParam(c).also { instance = it }
             }
-            return instance!!
-        }
     }
 }

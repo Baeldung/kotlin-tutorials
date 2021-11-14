@@ -2,8 +2,14 @@ package com.baeldung.singleton
 
 import org.junit.Assert
 import org.junit.jupiter.api.Test
+import java.util.*
 import java.util.concurrent.Executors
+import kotlin.math.sin
+import kotlin.random.Random
 
+/**
+ *
+ */
 class SingletonWithParamTest {
     @Test
     fun `Get two singleton object and assert them same`() {
@@ -32,7 +38,7 @@ class SingletonWithParamTest {
     @Test
     fun `Create multi singleton and test thread safe`() {
         val param: String = "InitParam"
-        val singletonSet = mutableSetOf<SingletonWithParam>(SingletonWithParam.getInstance(param))
+        val singletonSet = mutableSetOf<SingletonWithParam>()
 
         val executor = Executors.newFixedThreadPool(5)
         for (i in 0..1000) {
@@ -45,6 +51,11 @@ class SingletonWithParamTest {
         while (!executor.isTerminated) {
         }
 
-        Assert.assertSame(singletonSet.size, 1)
+        // Create multi singleton by multi thread, and find all is same
+        val singletonHashCode = singletonSet.iterator().next()
+
+        singletonSet.forEach {
+            Assert.assertEquals(it, singletonHashCode)
+        }
     }
 }
