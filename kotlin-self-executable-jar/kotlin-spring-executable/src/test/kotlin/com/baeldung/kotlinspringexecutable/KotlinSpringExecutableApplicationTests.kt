@@ -25,7 +25,7 @@ class KotlinSpringExecutableApplicationTests {
     }
 
     @Test
-    fun then_joke_method_works() {
+    fun when_queried_on_root_then_joke_method_works() {
         webTestClient.get()
             .uri("/")
             .exchange()

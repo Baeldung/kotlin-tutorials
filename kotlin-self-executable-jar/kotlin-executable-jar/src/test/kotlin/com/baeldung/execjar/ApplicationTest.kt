@@ -13,7 +13,7 @@ import kotlin.test.assertTrue
 class ApplicationTest {
 
     @Test
-    fun then_joke_works() {
+    fun when_queried_on_root_then_joke_works() {
         withTestApplication(Application::module) {
             handleRequest(HttpMethod.Get, "/").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
