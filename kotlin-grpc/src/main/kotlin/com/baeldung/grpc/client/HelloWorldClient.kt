@@ -1,6 +1,5 @@
 package com.baeldung.grpc.client
 
-
 import com.baeldung.grpc.helloworld.HelloRequest
 import com.baeldung.grpc.helloworld.HelloServiceGrpc
 import io.grpc.ManagedChannelBuilder
