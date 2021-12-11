@@ -111,3 +111,11 @@ class HTTPClientMock(private val mockAnswering: (URL) -> String) {
 }
 
 class Response(val status: Int, val body: String)
+
+data class UserInput(val query: String)
+
+class HTTPClientMock(private val mockAnswering: (URL) -> String) {
+    suspend fun get(url: URL, params: String): Response = Response(200, mockAnswering(url))
+}
+
+class Response(val status: Int, val body: String)
