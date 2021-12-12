@@ -18,14 +18,6 @@ import java.net.URL
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.Executors
 
-/*
-Make two requests to other endpoints, the order of the requests does not matter
-Apply some business logic
-Write the result of the business logic procedure into the database via JDBC
-Log some information for audit and debug
-Return the response to the user
-* */
-
 val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
 
 class DataProcessUseCase(dispatcher: CoroutineDispatcher) : CoroutineScope by CoroutineScope(dispatcher) {
