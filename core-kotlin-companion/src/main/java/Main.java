@@ -1,8 +1,6 @@
 public class Main {
     public static void main(String[] args) {
         System.out.println(FieldSample.age);
-        System.out.println(AppDatabase.version);
-        AppDatabase.version = 2;
         callLateInit();
         callConst();
         MethodSample.increment(10);
