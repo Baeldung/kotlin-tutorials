@@ -8,7 +8,6 @@ import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.future.await
 import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -55,31 +54,24 @@ class DataProcessUseCase(dispatcher: CoroutineDispatcher) : CoroutineScope by Co
             }
     }
 
-    fun processCall(userInput: UserInput): String = runBlocking {
-        processCallAsync(userInput).await()
-    }
-
-    fun processCallAndForget(userInput: UserInput) = launch {
-        processCallAsync(userInput)
-    }
-
     suspend fun callManyHttpUrlsAtOnce(userInput: UserInput, urls: List<URL>): List<Response> = coroutineScope {
         urls.map { url -> async { client.get(url, userInput.query) } }
             .awaitAll()
     }
 
-    suspend fun callManyHttpUrlsAtOnceUnre(userInput: UserInput, urls: List<URL>): List<Response> = coroutineScope {
-        urls.map { url -> async { client.get(url, userInput.query) } }
-            .mapNotNull { deferred ->
-                runCatching { deferred.await() }.fold(
-                    onSuccess = { it },
-                    onFailure = {
-                        logger.error("Error during one of the calls", it)
-                        null
-                    }
-                )
-            }
-    }
+    suspend fun callManyHttpUrlsAtOnceIgnoreErrors(userInput: UserInput, urls: List<URL>): List<Response> =
+        coroutineScope {
+            urls.map { url -> async { runCatching { client.get(url, userInput.query) } } }
+                .mapNotNull { deferred ->
+                    deferred.await().fold(
+                        onSuccess = { it },
+                        onFailure = {
+                            logger.error("Error during one of the calls", it)
+                            null
+                        }
+                    )
+                }
+        }
 
     suspend fun saveManyResults(results: List<String>, userInput: UserInput) = coroutineScope {
         results.map { launch { storeToDatabase(userInput, it) } }.joinAll()
@@ -90,12 +82,8 @@ class DataProcessUseCase(dispatcher: CoroutineDispatcher) : CoroutineScope by Co
         return 1 // Supposed number of changed rows
     }
 
-
-    private fun storeToDatabaseAsync(userInput: UserInput, result: String): CompletableFuture<Int> =
+    fun storeToDatabaseAsync(userInput: UserInput, result: String): CompletableFuture<Int> =
         asyncDbWriter.submit(userInput to result)
-
-    suspend fun storeToDatabaseAndWait(userInput: UserInput, result: String) =
-        storeToDatabaseAsync(userInput, result).await()
 
     companion object {
         val urlA = URL("https://service-a.domain.dom")
@@ -103,14 +91,6 @@ class DataProcessUseCase(dispatcher: CoroutineDispatcher) : CoroutineScope by Co
         val logger: Logger = LoggerFactory.getLogger(DataProcessUseCase.javaClass)
     }
 }
-
-data class UserInput(val query: String)
-
-class HTTPClientMock(private val mockAnswering: (URL) -> String) {
-    suspend fun get(url: URL, params: String): Response = Response(200, mockAnswering(url))
-}
-
-class Response(val status: Int, val body: String)
 
 data class UserInput(val query: String)
 
