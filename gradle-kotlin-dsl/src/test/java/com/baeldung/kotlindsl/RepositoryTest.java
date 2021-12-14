@@ -14,7 +14,7 @@ class RepositoryTest {
     Repository repo = new Repository();
 
     @Test
-    void should_return_stored_values() {
+    void should_return_stored_list() {
         // given
         var stock = stockSymbol("TSL");
 
