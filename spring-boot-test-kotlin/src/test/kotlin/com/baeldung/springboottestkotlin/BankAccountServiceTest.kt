@@ -9,10 +9,10 @@ import org.junit.Assert.assertEquals;
 
 class BankAccountServiceTest {
 
-    private val bankAccount = BankAccount("ING", "123ING456", "JOHN SMITH");
+    val bankAccount = BankAccount("ING", "123ING456", "JOHN SMITH");
 
-    private val bankAccountRepository: BankAccountRepository = mockk();
-    private val bankAccountService = BankAccountService(bankAccountRepository);
+    val bankAccountRepository: BankAccountRepository = mockk();
+    val bankAccountService = BankAccountService(bankAccountRepository);
 
     @Test
     fun `should call bankAccountRespository to retrieve bankAccount`() {
