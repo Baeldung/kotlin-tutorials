@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.system.measureTimeMillis
 import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 import kotlin.test.assertFailsWith
+import kotlin.test.assertTrue
 
 
 class CoroutinesTest {
@@ -61,9 +61,8 @@ class CoroutinesTest {
 
         //when
         runBlocking {
-            val promise = launch(Dispatchers.Default) { expensiveComputation(res) }
+            launch { expensiveComputation(res) }
             res.add("Hello,")
-            promise.join()
         }
 
         //then
@@ -85,7 +84,7 @@ class CoroutinesTest {
 
             //when
             val jobs = List(numberOfCoroutines) {
-                launch(Dispatchers.Default) {
+                launch {
                     delay(1L)
                     counter.incrementAndGet()
                 }
@@ -113,7 +112,6 @@ class CoroutinesTest {
             job.cancel()
 
             //then cancel successfully
-
         }
     }
 
