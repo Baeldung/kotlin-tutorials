@@ -9,16 +9,16 @@ import org.springframework.data.repository.findByIdOrNull
 
 @DataJpaTest
 class BankAccountRepositoryTest {
-    
+
     @Autowired
     lateinit var entityManager: TestEntityManager
-            
+
     @Autowired
     lateinit var bankAccountRepository: BankAccountRepository
 
     @Test
-    fun `When findById then return BankAccount`() {
-        val ingBankAccount = BankAccount("ING", "BUCHAREST", "ING101");
+    fun WhenFindById_thenReturnBankAccount() {
+        val ingBankAccount = BankAccount("ING", "123ING456", "JOHN SMITH");
         entityManager.persist(ingBankAccount)
         entityManager.flush()
         val ingBankAccountFound = bankAccountRepository.findByIdOrNull(ingBankAccount.id!!)

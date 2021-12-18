@@ -19,12 +19,12 @@ class BankControllerTest(@Autowired val mockMvc: MockMvc) {
 
     @MockkBean
     lateinit var bankAccountService: BankAccountService
+    val mapper = jacksonObjectMapper()
 
-    val bankAccount = BankAccount("ING", "123ING456", "JOHN SMITH");
-    val mapper = jacksonObjectMapper();
+    val bankAccount = BankAccount("ING", "123ING456", "JOHN SMITH")
 
     @Test
-    fun `given bank exists when Get bankAccount then returns bank json with status 200`() {
+    fun givenExistingBankAccount_whenGetRequest_thenReturnsBankAccountJsonWithStatus200() {
         every { bankAccountService.getBankAccount(1) } returns bankAccount;
 
         mockMvc.perform(get("/api/bankAccount?id=1"))
@@ -34,22 +34,21 @@ class BankControllerTest(@Autowired val mockMvc: MockMvc) {
     }
 
     @Test
-    fun `when bank doesn't exist when Get bankAccount then returns status 400`() {
-    every { bankAccountService.getBankAccount(2) } returns null;
+    fun givenBankAccountDoesntExist_whenGetRequest_thenReturnsStatus400() {
+        every { bankAccountService.getBankAccount(2) } returns null;
 
-    mockMvc.perform(get("/api/bankAccount?id=2"))
-    .andExpect(status().isBadRequest())
-}
+        mockMvc.perform(get("/api/bankAccount?id=2"))
+        .andExpect(status().isBadRequest());
+    }
 
-@Test
-fun `when Add bank with bankAccount json then 200`() {
-    every { bankAccountService.addBankAccount(bankAccount) } returns bankAccount;
+    @Test
+    fun whenPostRequestWithBankAccountJson_thenReturnsStatus200() {
+        every { bankAccountService.addBankAccount(bankAccount) } returns bankAccount;
 
-
-    mockMvc.perform(post("/api/bankAccount").content(mapper.writeValueAsString(bankAccount)).contentType(MediaType.APPLICATION_JSON))
-    .andExpect(status().isOk)
-    .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-    .andExpect(jsonPath("$.bankCode").value("ING"));
-}
+        mockMvc.perform(post("/api/bankAccount").content(mapper.writeValueAsString(bankAccount)).contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk)
+        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+        .andExpect(jsonPath("$.bankCode").value("ING"));
+    }
 }
 

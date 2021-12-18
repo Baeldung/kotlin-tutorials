@@ -18,7 +18,7 @@ class KotlinTestingDemoApplicationIntegrationTest {
 
     @Test
     fun whePostCalled_thenShouldReturnBankObject() {
-        val result = restTemplate.postForEntity("/api/bankAccount", BankAccount("ING", "BUCHAREST", "ING101"), BankAccount::class.java);
+        val result = restTemplate.postForEntity("/api/bankAccount", BankAccount("ING", "123ING456", "JOHN SMITH"), BankAccount::class.java);
 
         assertNotNull(result)
         assertEquals(HttpStatus.OK, result?.statusCode)
