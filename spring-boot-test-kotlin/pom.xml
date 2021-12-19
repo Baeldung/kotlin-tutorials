@@ -122,8 +122,8 @@
     </build>
 
     <properties>
-        <kotlin.version>1.4.32</kotlin.version>
-        <spring-boot.version>2.4.4</spring-boot.version>
+        <kotlin.version>1.6.10</kotlin.version>
+        <spring-boot.version>2.6.1</spring-boot.version>
     </properties>
 
 </project>
