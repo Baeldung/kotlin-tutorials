@@ -44,7 +44,7 @@ class CoroutineComposingUnitTest {
     fun given_urls_that_succeed_when_called_at_once_then_produces_results() = runBlocking {
         val input = UserInput(query = "I feel lucky")
         val results = listOf(DataProcessUseCase.urlA, DataProcessUseCase.urlB, DataProcessUseCase.urlB)
-            .let { DataProcessUseCase(dispatcher).callManyHttpUrlsAtOnce(input, it) }
+          .let { DataProcessUseCase(dispatcher).callManyHttpUrlsAtOnce(input, it) }
         assertEquals(3, results.size)
         results.forEach { assertNotNull(it) }
     }
@@ -53,7 +53,7 @@ class CoroutineComposingUnitTest {
     fun given_urls_that_partly_fails_when_called_at_once_then_partly_succeeds() = runBlocking {
         val input = UserInput(query = "I feel lucky")
         val results = listOf(DataProcessUseCase.urlA, DataProcessUseCase.urlB, URL("https://fail.com"))
-            .let { DataProcessUseCase(dispatcher).callManyHttpUrlsAtOnceIgnoreErrors(input, it) }
+          .let { DataProcessUseCase(dispatcher).callManyHttpUrlsAtOnceIgnoreErrors(input, it) }
         assertEquals(2, results.size)
         val (one, two) = results.map { it.body }
         assertEquals("Hello, world!", one + two)
