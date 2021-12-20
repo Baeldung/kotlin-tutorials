@@ -39,9 +39,11 @@ class ReporterTest {
         var result = reporter.getStockPrice(stock);
 
         // then
-        assertEquals(result, List.of(
+        assertEquals(List.of(
           stockPrice(new BigDecimal("1.57"), Instant.parse("2021-05-05T15:00:00Z")),
           stockPrice(new BigDecimal("1.89"), Instant.parse("2021-02-03T15:00:00Z")),
-          stockPrice(new BigDecimal("1.32"), Instant.parse("2021-01-01T15:00:00Z"))));
+          stockPrice(new BigDecimal("1.32"), Instant.parse("2021-01-01T15:00:00Z"))),
+          result
+        );
     }
 }

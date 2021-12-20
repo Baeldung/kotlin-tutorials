@@ -27,8 +27,8 @@ class SorterTest {
         var result = sorter.sort(list);
 
         // then
-        assertEquals(result.get(0), stockPrice(new BigDecimal("12.9"), now.minusSeconds(45)));
-        assertEquals(result.get(1), stockPrice(new BigDecimal("12.5"), now.minusSeconds(12)));
-        assertEquals(result.get(2), stockPrice(new BigDecimal("11.5"), now.minusSeconds(10)));
+        assertEquals(stockPrice(new BigDecimal("12.9"), now.minusSeconds(45)), result.get(0));
+        assertEquals(stockPrice(new BigDecimal("12.5"), now.minusSeconds(12)), result.get(1));
+        assertEquals(stockPrice(new BigDecimal("11.5"), now.minusSeconds(10)), result.get(2));
     }
 }

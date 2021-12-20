@@ -22,8 +22,8 @@ class RepositoryTest {
         var result = repo.getStockPrice(stock);
 
         // then
-        assertEquals(result.get(0), stockPrice(new BigDecimal("1.32"), Instant.parse("2021-01-01T15:00:00Z")));
-        assertEquals(result.get(1), stockPrice(new BigDecimal("1.57"), Instant.parse("2021-05-05T15:00:00Z")));
-        assertEquals(result.get(2), stockPrice(new BigDecimal("1.89"), Instant.parse("2021-02-03T15:00:00Z")));
+        assertEquals(stockPrice(new BigDecimal("1.32"), Instant.parse("2021-01-01T15:00:00Z")), result.get(0));
+        assertEquals(stockPrice(new BigDecimal("1.57"), Instant.parse("2021-05-05T15:00:00Z")), result.get(1));
+        assertEquals(stockPrice(new BigDecimal("1.89"), Instant.parse("2021-02-03T15:00:00Z")), result.get(2));
     }
 }
