@@ -257,6 +257,7 @@
         <module>parent-boot-2</module>
 
         <module>core-kotlin-modules</module>
+        <module>core-kotlin-companion</module>
         <module>jee-kotlin</module>
         <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
         <module>kotlin-lambda</module>
