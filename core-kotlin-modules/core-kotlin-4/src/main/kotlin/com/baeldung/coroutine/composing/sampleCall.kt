@@ -8,10 +8,8 @@ import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.future.await
 import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.net.URL
@@ -35,51 +33,44 @@ class DataProcessUseCase(dispatcher: CoroutineDispatcher) : CoroutineScope by Co
         val responseA = client.get(urlA, userInput.query)
         val responseB = client.get(urlB, userInput.query)
         (responseA.body + responseB.body)
-            .also {
-                storeToDatabase(userInput, it)
-                logger.info("User input $userInput was processed with the result $it")
-            }
+          .also {
+              storeToDatabase(userInput, it)
+              logger.info("User input $userInput was processed with the result $it")
+          }
     }
 
     fun processCallEfficientlyAsync(userInput: UserInput): Deferred<String> = async {
         val responseA = async { client.get(urlA, userInput.query) }
         val responseB = async { client.get(urlB, userInput.query) }
         (responseA.await().body + responseB.await().body)
-            .also {
-                launch(Dispatchers.IO) {
-                    storeToDatabase(userInput, it)
-                }.join()
-                launch {
-                    logger.info("User input $userInput was processed with the result $it")
-                }
-            }
-    }
-
-    fun processCall(userInput: UserInput): String = runBlocking {
-        processCallAsync(userInput).await()
-    }
-
-    fun processCallAndForget(userInput: UserInput) = launch {
-        processCallAsync(userInput)
+          .also {
+              launch(Dispatchers.IO) {
+                  storeToDatabase(userInput, it)
+              }.join()
+              launch {
+                  logger.info("User input $userInput was processed with the result $it")
+              }
+          }
     }
 
     suspend fun callManyHttpUrlsAtOnce(userInput: UserInput, urls: List<URL>): List<Response> = coroutineScope {
         urls.map { url -> async { client.get(url, userInput.query) } }
-            .awaitAll()
+          .awaitAll()
     }
 
-    suspend fun callManyHttpUrlsAtOnceUnre(userInput: UserInput, urls: List<URL>): List<Response> = coroutineScope {
-        urls.map { url -> async { client.get(url, userInput.query) } }
+    suspend fun callManyHttpUrlsAtOnceIgnoreErrors(userInput: UserInput, urls: List<URL>): List<Response> =
+      coroutineScope {
+          urls.map { url -> async { runCatching { client.get(url, userInput.query) } } }
             .mapNotNull { deferred ->
-                runCatching { deferred.await() }.fold(
-                    onSuccess = { it },
-                    onFailure = {
-                        logger.error("Error during one of the calls", it)
-                        null
-                    }
+                deferred.await().fold(
+                  onSuccess = { it },
+                  onFailure = {
+                      logger.error("Error during one of the calls", it)
+                      null
+                  }
                 )
             }
-    }
+      }
 
     suspend fun saveManyResults(results: List<String>, userInput: UserInput) = coroutineScope {
         results.map { launch { storeToDatabase(userInput, it) } }.joinAll()
@@ -90,12 +81,8 @@ class DataProcessUseCase(dispatcher: CoroutineDispatcher) : CoroutineScope by Co
         return 1 // Supposed number of changed rows
     }
 
-
-    private fun storeToDatabaseAsync(userInput: UserInput, result: String): CompletableFuture<Int> =
-        asyncDbWriter.submit(userInput to result)
-
-    suspend fun storeToDatabaseAndWait(userInput: UserInput, result: String) =
-        storeToDatabaseAsync(userInput, result).await()
+    fun storeToDatabaseAsync(userInput: UserInput, result: String): CompletableFuture<Int> =
+      asyncDbWriter.submit(userInput to result)
 
     companion object {
         val urlA = URL("https://service-a.domain.dom")
