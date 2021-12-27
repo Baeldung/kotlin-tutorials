@@ -21,11 +21,14 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("javax.validation:validation-api:2.0.1.Final")
-    implementation("org.springdoc:springdoc-openapi-data-rest:1.6.0")
-    implementation("org.springdoc:springdoc-openapi-ui:1.6.0")
-    implementation("org.springdoc:springdoc-openapi-kotlin:1.6.0")
+    implementation("org.springdoc:springdoc-openapi-data-rest:1.6.3")
+    implementation("org.springdoc:springdoc-openapi-ui:1.6.3")
+    implementation("org.springdoc:springdoc-openapi-kotlin:1.6.3")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("com.squareup.moshi:moshi-kotlin:1.13.0")
+    testImplementation("com.squareup.moshi:moshi-adapters:1.13.0")
+    testImplementation("com.squareup.okhttp3:okhttp:4.9.3")
 }
 
 val oasPackage = "com.baeldung.car"
@@ -40,22 +43,6 @@ tasks.register("generateServer", org.openapitools.generator.gradle.plugin.tasks.
     packageName.set(oasPackage)
     generatorName.set("kotlin-spring")
     configOptions.set(
-        mapOf(
-            "dateLibrary" to "java8",
-            "interfaceOnly" to "true",
-            "useTags" to "true"
-        )
-    )
-}
-
-tasks.register("generateClient", org.openapitools.generator.gradle.plugin.tasks.GenerateTask::class) {
-    input = project.file(oasSpecLocation).path
-    outputDir.set(oasGenOutputDir.get().toString())
-    modelPackage.set("$oasPackage.client.model")
-    apiPackage.set("$oasPackage.client.api")
-    packageName.set(oasPackage)
-    generatorName.set("kotlin")
-    configOptions.set(
       mapOf(
         "dateLibrary" to "java8",
         "interfaceOnly" to "true",
@@ -64,9 +51,28 @@ tasks.register("generateClient", org.openapitools.generator.gradle.plugin.tasks.
     )
 }
 
+val clientOutput = project.layout.buildDirectory.dir("generated-oas-test")
+
+tasks.register("generateClient", org.openapitools.generator.gradle.plugin.tasks.GenerateTask::class) {
+    input = project.file(oasSpecLocation).path
+    outputDir.set(clientOutput.get().toString())
+    modelPackage.set("$oasPackage.client.model")
+    apiPackage.set("$oasPackage.client.api")
+    packageName.set(oasPackage)
+    generatorName.set("kotlin")
+    configOptions.set(
+      mapOf(
+        "dateLibrary" to "java8",
+        "useTags" to "true"
+      )
+    )
+}
+
 sourceSets {
     val main by getting
     main.java.srcDir("${oasGenOutputDir.get()}/src/main/kotlin")
+    val test by getting
+    test.java.srcDir("${clientOutput.get()}/src/main/kotlin")
 }
 
 tasks.withType<KotlinCompile> {

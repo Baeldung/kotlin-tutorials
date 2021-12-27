@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import java.math.BigDecimal
-import io.swagger.v3.oas.annotations.parameters.RequestBody as OASRequestBody
+import io.swagger.v3.oas.annotations.parameters.RequestBody as OASRequestBody // Need to do this because of https://github.com/swagger-api/swagger-core/issues/3628
 
 @RestController
 @RequestMapping("/v1/cars")
@@ -59,6 +59,13 @@ class CarDealerController(private val carService: CarService) {
         ?: throw IllegalArgumentException("Car not found")
 
     @Operation(summary = "Get a dealer view of the car collection", description = "Returns all cars with their price")
+    @ApiResponses(
+      value = [ApiResponse(
+        responseCode = "200",
+        description = "Successful Operation",
+        content = [Content(mediaType = "application/json", schema = Schema(implementation = DealerCar::class))]
+      )]
+    )
     @GetMapping("/price/all")
     fun getDealerView(): ResponseEntity<List<DealerCar>> =
       carService.getAllCars().map { DealerCar(it.model, it.make, it.year.value, it.price) }
