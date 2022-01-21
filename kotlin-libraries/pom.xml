@@ -131,7 +131,7 @@
         <rxkotlin.version>2.3.0</rxkotlin.version>
         <arrow-core.version>0.7.3</arrow-core.version>
       
-        <h2.version>1.4.200</h2.version>
+        <h2.version>2.1.210</h2.version>
         <ktor.io.version>1.4.2</ktor.io.version>
     </properties>
 
