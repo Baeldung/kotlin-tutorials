@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
 
-internal class LateinitSampleTest {
+internal class LateinitSampleUnitTest {
 
     @Test
     fun given_lateinit_value_is_not_initialized_when_accessed_then_exception_thrown() {
