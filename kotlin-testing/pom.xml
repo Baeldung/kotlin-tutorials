@@ -53,8 +53,8 @@
         </dependency>
         <dependency>
             <groupId>io.kotest</groupId>
-            <artifactId>kotest-framework-datatest</artifactId>
-            <version>5.1.0</version>
+            <artifactId>kotest-framework-datatest-jvm</artifactId>
+            <version>${kotest.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
