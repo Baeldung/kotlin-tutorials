@@ -2,12 +2,7 @@ package com.baeldung.numeric_strings
 
 object NumericStrings {
     fun isNumericToX(toCheck: String): Boolean {
-        return try {
-            toCheck.toDouble()
-            true
-        } catch (numberFormatException: NumberFormatException) {
-            false
-        }
+        return toCheck.toDoubleOrNull() != null
     }
 
     fun isNumericRegex(toCheck: String): Boolean {
