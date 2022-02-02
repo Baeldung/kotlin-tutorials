@@ -10,12 +10,12 @@ class OtherRangeFunctionsUnitTest {
 
     @Test
     fun testMin() {
-        assertEquals(1, r.min())
+        assertEquals(1, r.minOrNull())
     }
 
     @Test
     fun testMax() {
-        assertEquals(20, r.max())
+        assertEquals(20, r.maxOrNull())
     }
 
     @Test
