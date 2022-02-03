@@ -33,6 +33,7 @@
         <module>core-kotlin-lang-oop</module>
         <module>core-kotlin-lang-oop-2</module>
         <module>core-kotlin-strings</module>
+        <module>core-kotlin-strings-2</module>
         <module>core-kotlin-files</module>
         <module>core-kotlin-4</module>
     </modules>
