@@ -16,29 +16,29 @@ class AggregateOperations {
     }
 
     fun maximumInList(): Int? {
-        return numbers.max()
+        return numbers.maxOrNull()
     }
 
     fun minimumInList(): Int? {
-        return numbers.min()
+        return numbers.minOrNull()
     }
 
     fun maximumByList(): Int? {
-        return numbers.maxBy { it % 5 }
+        return numbers.maxByOrNull { it % 5 }
     }
 
     fun minimumByList(): Int? {
-        return numbers.minBy { it % 5 }
+        return numbers.minByOrNull { it % 5 }
     }
 
     fun maximumWithList(): String? {
         val strings = listOf("Berlin", "Kolkata", "Prague", "Barcelona")
-        return strings.maxWith(compareBy { it.length % 4 })
+        return strings.maxWithOrNull(compareBy { it.length % 4 })
     }
 
     fun minimumWithList(): String? {
         val strings = listOf("Berlin", "Kolkata", "Prague", "Barcelona")
-        return strings.minWith(compareBy { it.length % 4 })
+        return strings.minWithOrNull(compareBy { it.length % 4 })
     }
 
     fun sumByList(): Int {
