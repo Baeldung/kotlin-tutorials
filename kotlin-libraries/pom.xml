@@ -33,7 +33,7 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-math3</artifactId>
             <version>${commons-math3.version}</version>
-        </dependency>      
+        </dependency>
         <dependency>
             <groupId>com.github.salomonbrys.kodein</groupId>
             <artifactId>kodein</artifactId>
@@ -103,7 +103,7 @@
             <artifactId>rxkotlin</artifactId>
             <version>${rxkotlin.version}</version>
         </dependency>
-        
+
         <dependency>
             <groupId>io.ktor</groupId>
             <artifactId>ktor-server-netty</artifactId>
@@ -114,11 +114,10 @@
             <artifactId>ktor-gson</artifactId>
             <version>${ktor.io.version}</version>
         </dependency>
-        
+
     </dependencies>
 
     <properties>
-      
         <kodein.version>4.1.0</kodein.version>
         <klaxon.version>3.0.4</klaxon.version>
         <commons-math3.version>3.6.1</commons-math3.version>
@@ -130,7 +129,7 @@
         <objenesis.version>2.6</objenesis.version>
         <rxkotlin.version>2.3.0</rxkotlin.version>
         <arrow-core.version>0.7.3</arrow-core.version>
-      
+
         <h2.version>1.4.200</h2.version>
         <ktor.io.version>1.4.2</ktor.io.version>
     </properties>

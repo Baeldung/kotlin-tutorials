@@ -4,11 +4,14 @@ import org.jetbrains.exposed.dao.*
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.TransactionManager
 import org.jetbrains.exposed.sql.transactions.transaction
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import java.sql.DriverManager
-import kotlin.test.*
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
+import kotlin.test.assertTrue
 
-class ExposedTest {
+class ExposedUnitTest {
 
     @Test
     fun whenH2Database_thenConnectionSuccessful() {
@@ -41,7 +44,7 @@ class ExposedTest {
     fun whenManualCommit_thenOk() {
         Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver")
         transaction {
-            assertTrue(this is Transaction)
+            assertTrue(true)
             commit()
             commit()
             commit()
@@ -78,7 +81,7 @@ class ExposedTest {
             StarWarsFilms.update ({ StarWarsFilms.sequelId eq 8 }) {
                 it[name] = "Episode VIII – The Last Jedi"
                 with(SqlExpressionBuilder) {
-                    it.update(StarWarsFilms.sequelId, StarWarsFilms.sequelId + 1)
+                    it.update(sequelId, sequelId + 1)
                 }
             }
         }
@@ -181,7 +184,7 @@ class ExposedTest {
         transaction {
             val theLastJedi = StarWarsFilm.findById(1)
             assertNotNull(theLastJedi)
-            assertEquals(inserted.id, theLastJedi?.id)
+            assertEquals(inserted.id, theLastJedi.id)
         }
         connection.close()
     }

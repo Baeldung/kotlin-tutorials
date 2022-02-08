@@ -2,10 +2,9 @@ package com.baeldung.kotlin.rxkotlin
 
 import io.reactivex.Maybe
 import io.reactivex.Observable
-import io.reactivex.functions.BiFunction
 import io.reactivex.rxkotlin.*
 import io.reactivex.subjects.PublishSubject
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 
@@ -151,7 +150,7 @@ class RxKotlinUnitTest {
         zipWith.subscribeBy(onNext = { println(it) })
         val zip = Observables.zip(Observable.just(1), Observable.just(2)) { a, b -> a + b }
         zip.subscribeBy(onNext = { println(it) })
-        val zipOrig = Observable.zip(Observable.just(1), Observable.just(2), BiFunction<Int, Int, Int> { a, b -> a + b })
+        val zipOrig = Observable.zip(Observable.just(1), Observable.just(2)) { a, b -> a + b }
         zipOrig.subscribeBy(onNext = { println(it) })
     }
 }
