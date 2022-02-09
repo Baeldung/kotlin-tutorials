@@ -15,36 +15,43 @@ class ExposedUnitTest {
 
     @Test
     fun whenH2Database_thenConnectionSuccessful() {
-        val database = Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver")
-        transaction {
-            assertEquals(1.4.toBigDecimal(), database.version)
-            assertEquals("h2", database.vendor)
+        val db = Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver")
+
+        transaction(db) {
+            assertEquals(1.4.toBigDecimal(), db.version)
+            assertEquals("h2", db.vendor)
         }
     }
 
     @Test
     fun whenH2DatabaseWithCredentials_thenConnectionSuccessful() {
-        Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver", user = "myself", password = "secret")
+        val db = Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver", user = "myself", password = "secret")
+
+        transaction(db) {
+            commit()
+        }
     }
 
     @Test
     fun whenH2DatabaseWithManualConnection_thenConnectionSuccessful() {
         var connected = false
-        Database.connect({ connected = true; DriverManager.getConnection("jdbc:h2:mem:test;MODE=MySQL") })
-        assertEquals(false, connected)
-        transaction {
+        val db = Database.connect({ connected = true; DriverManager.getConnection("jdbc:h2:mem:test;MODE=MySQL") })
+        assertFalse(connected)
+
+        transaction(db) {
             addLogger(StdOutSqlLogger)
-            assertEquals(false, connected)
+            assertFalse(connected)
+
             SchemaUtils.create(Cities)
-            assertEquals(true, connected)
+            assertTrue(connected)
         }
     }
 
     @Test
     fun whenManualCommit_thenOk() {
-        Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver")
-        transaction {
-            assertTrue(true)
+        val db = Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver")
+
+        transaction(db) {
             commit()
             commit()
             commit()
@@ -54,6 +61,7 @@ class ExposedUnitTest {
     @Test
     fun whenInsert_thenGeneratedKeys() {
         Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver")
+
         transaction {
             SchemaUtils.create(StarWarsFilms)
             val id = StarWarsFilms.insertAndGetId {
@@ -62,23 +70,29 @@ class ExposedUnitTest {
                 it[director] = "Rian Johnson"
             }
             assertEquals(1, id.value)
+
             val insert = StarWarsFilms.insert {
                 it[name] = "The Force Awakens"
                 it[sequelId] = 7
                 it[director] = "J.J. Abrams"
             }
-            assertEquals(2, insert[StarWarsFilms.id]?.value)
-            val selectAll = StarWarsFilms.selectAll()
-            selectAll.forEach {
-                assertTrue { it[StarWarsFilms.sequelId] >= 7 }
-            }
-            StarWarsFilms.slice(StarWarsFilms.name, StarWarsFilms.director).selectAll()
+            assertEquals(2, insert[StarWarsFilms.id].value)
+
+            StarWarsFilms.selectAll()
+                    .forEach {
+                        assertTrue { it[StarWarsFilms.sequelId] >= 7 }
+                    }
+
+            StarWarsFilms.slice(StarWarsFilms.name, StarWarsFilms.director)
+                    .selectAll()
                     .forEach {
                         assertTrue { it[StarWarsFilms.name].startsWith("The") }
                     }
+
             val select = StarWarsFilms.select { (StarWarsFilms.director like "J.J.%") and (StarWarsFilms.sequelId eq 7) }
             assertEquals(1, select.count())
-            StarWarsFilms.update ({ StarWarsFilms.sequelId eq 8 }) {
+
+            StarWarsFilms.update({ StarWarsFilms.sequelId eq 8 }) {
                 it[name] = "Episode VIII – The Last Jedi"
                 with(SqlExpressionBuilder) {
                     it.update(sequelId, sequelId + 1)
@@ -90,6 +104,7 @@ class ExposedUnitTest {
     @Test
     fun whenForeignKey_thenAutoJoin() {
         Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver")
+
         transaction {
             addLogger(StdOutSqlLogger)
             SchemaUtils.create(StarWarsFilms, Players)
@@ -111,6 +126,7 @@ class ExposedUnitTest {
                 it[name] = "Mark Hamill"
                 it[sequelId] = 8
             }
+
             val simpleInnerJoin = (StarWarsFilms innerJoin Players).selectAll()
             assertEquals(2, simpleInnerJoin.count())
             simpleInnerJoin.forEach {
@@ -118,30 +134,34 @@ class ExposedUnitTest {
                 assertEquals(it[StarWarsFilms.sequelId], it[Players.sequelId])
                 assertEquals("Mark Hamill", it[Players.name])
             }
+
             val innerJoinWithCondition = (StarWarsFilms innerJoin Players)
                     .select { StarWarsFilms.sequelId eq Players.sequelId }
             assertEquals(2, innerJoinWithCondition.count())
+
             innerJoinWithCondition.forEach {
                 assertNotNull(it[StarWarsFilms.name])
                 assertEquals(it[StarWarsFilms.sequelId], it[Players.sequelId])
                 assertEquals("Mark Hamill", it[Players.name])
             }
+
             val complexInnerJoin = Join(StarWarsFilms, Players, joinType = JoinType.INNER, onColumn = StarWarsFilms.sequelId, otherColumn = Players.sequelId, additionalConstraint = {
                 StarWarsFilms.sequelId eq 8
             }).selectAll()
             assertEquals(1, complexInnerJoin.count())
+
             complexInnerJoin.forEach {
                 assertNotNull(it[StarWarsFilms.name])
                 assertEquals(it[StarWarsFilms.sequelId], it[Players.sequelId])
                 assertEquals("Mark Hamill", it[Players.name])
             }
-
         }
     }
 
     @Test
     fun whenJoinWithAlias_thenFun() {
         Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver")
+
         transaction {
             addLogger(StdOutSqlLogger)
             SchemaUtils.create(StarWarsFilms, Players)
@@ -158,9 +178,10 @@ class ExposedUnitTest {
             val sequel = StarWarsFilms.alias("sequel")
             Join(StarWarsFilms, sequel,
                     additionalConstraint = { sequel[StarWarsFilms.sequelId] eq StarWarsFilms.sequelId + 1 })
-                    .selectAll().forEach {
-                assertEquals(it[sequel[StarWarsFilms.sequelId]], it[StarWarsFilms.sequelId] + 1)
-            }
+                    .selectAll()
+                    .forEach {
+                        assertEquals(it[sequel[StarWarsFilms.sequelId]], it[StarWarsFilms.sequelId] + 1)
+                    }
         }
     }
 
@@ -168,9 +189,11 @@ class ExposedUnitTest {
     fun whenEntity_thenDAO() {
         val database = Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver")
         val connection = database.connector.invoke() //Keep a connection open so the DB is not destroyed after the first transaction
+
         val inserted = transaction {
             addLogger(StdOutSqlLogger)
             SchemaUtils.create(StarWarsFilms, Players)
+
             val theLastJedi = StarWarsFilm.new {
                 name = "The Last Jedi"
                 sequelId = 8
@@ -181,11 +204,12 @@ class ExposedUnitTest {
             assertTrue(TransactionManager.current().entityCache.inserts.isEmpty())
             theLastJedi
         }
+
         transaction {
             val theLastJedi = StarWarsFilm.findById(1)
-            assertNotNull(theLastJedi)
-            assertEquals(inserted.id, theLastJedi.id)
+            assertEquals(inserted.id, theLastJedi?.id)
         }
+
         connection.close()
     }
 
@@ -193,9 +217,11 @@ class ExposedUnitTest {
     fun whenManyToOne_thenNavigation() {
         val database = Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver")
         val connection = database.connector.invoke()
+
         transaction {
             addLogger(StdOutSqlLogger)
             SchemaUtils.create(StarWarsFilms, Players, Users, UserRatings)
+
             val theLastJedi = StarWarsFilm.new {
                 name = "The Last Jedi"
                 sequelId = 8
@@ -213,13 +239,16 @@ class ExposedUnitTest {
             assertEquals(someUser, rating.user)
             assertEquals(rating, theLastJedi.ratings.first())
         }
+
         transaction {
             val theLastJedi = StarWarsFilm.find { StarWarsFilms.sequelId eq 8 }.first()
             val ratings = UserRating.find { UserRatings.film eq theLastJedi.id }
             assertEquals(1, ratings.count())
+
             val rating = ratings.first()
             assertEquals("Some User", rating.user.name)
             assertEquals(rating, theLastJedi.ratings.first())
+
             UserRating.new {
                 value = 8
                 user = rating.user
@@ -227,6 +256,7 @@ class ExposedUnitTest {
             }
             assertEquals(2, theLastJedi.ratings.count())
         }
+
         connection.close()
     }
 
@@ -234,6 +264,7 @@ class ExposedUnitTest {
     fun whenManyToMany_thenAssociation() {
         val database = Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver")
         val connection = database.connector.invoke()
+
         val film = transaction {
             SchemaUtils.create(StarWarsFilms)
             StarWarsFilm.new {
@@ -255,6 +286,7 @@ class ExposedUnitTest {
             SchemaUtils.create(StarWarsFilmActors)
             film.actors = SizedCollection(listOf(actor))
         }
+
         connection.close()
     }
 
