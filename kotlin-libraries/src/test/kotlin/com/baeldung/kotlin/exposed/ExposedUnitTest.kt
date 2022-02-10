@@ -1,9 +1,28 @@
 package com.baeldung.kotlin.exposed
 
-import org.jetbrains.exposed.dao.*
-import org.jetbrains.exposed.sql.*
-import org.jetbrains.exposed.sql.transactions.TransactionManager
+import org.jetbrains.exposed.dao.Entity
+import org.jetbrains.exposed.dao.EntityClass
+import org.jetbrains.exposed.dao.IntEntity
+import org.jetbrains.exposed.dao.IntEntityClass
+import org.jetbrains.exposed.dao.id.EntityID
+import org.jetbrains.exposed.dao.id.IntIdTable
+import org.jetbrains.exposed.sql.Database
+import org.jetbrains.exposed.sql.Join
+import org.jetbrains.exposed.sql.JoinType
+import org.jetbrains.exposed.sql.SchemaUtils
+import org.jetbrains.exposed.sql.SizedCollection
+import org.jetbrains.exposed.sql.SqlExpressionBuilder
+import org.jetbrains.exposed.sql.StdOutSqlLogger
+import org.jetbrains.exposed.sql.Table
+import org.jetbrains.exposed.sql.addLogger
+import org.jetbrains.exposed.sql.alias
+import org.jetbrains.exposed.sql.and
+import org.jetbrains.exposed.sql.insert
+import org.jetbrains.exposed.sql.insertAndGetId
+import org.jetbrains.exposed.sql.select
+import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.sql.update
 import org.junit.jupiter.api.Test
 import java.sql.DriverManager
 import kotlin.test.assertEquals
@@ -18,7 +37,7 @@ class ExposedUnitTest {
         val db = Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver")
 
         transaction(db) {
-            assertEquals(1.4.toBigDecimal(), db.version)
+            assertEquals(2.1.toBigDecimal(), db.version)
             assertEquals("h2", db.vendor)
         }
     }
@@ -40,8 +59,6 @@ class ExposedUnitTest {
 
         transaction(db) {
             addLogger(StdOutSqlLogger)
-            assertFalse(connected)
-
             SchemaUtils.create(Cities)
             assertTrue(connected)
         }
@@ -192,6 +209,7 @@ class ExposedUnitTest {
 
         val inserted = transaction {
             addLogger(StdOutSqlLogger)
+
             SchemaUtils.create(StarWarsFilms, Players)
 
             val theLastJedi = StarWarsFilm.new {
@@ -199,9 +217,8 @@ class ExposedUnitTest {
                 sequelId = 8
                 director = "Rian Johnson"
             }
-            assertFalse(TransactionManager.current().entityCache.inserts.isEmpty())
-            assertEquals(1, theLastJedi.id.value) //Reading this causes a flush
-            assertTrue(TransactionManager.current().entityCache.inserts.isEmpty())
+
+            assertEquals(1, theLastJedi.id.value)
             theLastJedi
         }
 
@@ -297,10 +314,11 @@ object Cities: IntIdTable() {
 }
 
 object StarWarsFilms_Simple : Table() {
-    val id = integer("id").autoIncrement().primaryKey()
+    val id = integer("id").autoIncrement()
     val sequelId = integer("sequel_id").uniqueIndex()
     val name = varchar("name", 50)
     val director = varchar("director", 50)
+    override val primaryKey = PrimaryKey(id, name = "PK_StarWarsFilms_Id")
 }
 
 object StarWarsFilms : IntIdTable() {
@@ -363,6 +381,7 @@ class Actor(id: EntityID<Int>): IntEntity(id) {
 }
 
 object StarWarsFilmActors : Table() {
-    val starWarsFilm = reference("starWarsFilm", StarWarsFilms).primaryKey(0)
-    val actor = reference("actor", Actors).primaryKey(1)
+    val starWarsFilm = reference("starWarsFilm", StarWarsFilms)
+    val actor = reference("actor", Actors)
+    override val primaryKey = PrimaryKey(starWarsFilm, actor, name = "PK_StarWarsFilmActors_swf_act")
 }
