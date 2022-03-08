@@ -2,7 +2,7 @@ package com.baeldung.kotlin.kodein
 
 import com.github.salomonbrys.kodein.*
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 class KodeinUnitTest {
 
@@ -18,11 +18,11 @@ class KodeinUnitTest {
             }
         }
 
-        assertThat(created).isFalse()
+        assertThat(created).isFalse
 
         val dao1: Dao = kodein.instance()
 
-        assertThat(created).isTrue()
+        assertThat(created).isTrue
 
         val dao2: Dao = kodein.instance()
 
@@ -74,7 +74,7 @@ class KodeinUnitTest {
             }
         }
 
-        assertThat(created).isTrue()
+        assertThat(created).isTrue
         val dao1: Dao = kodein.instance()
         val dao2: Dao = kodein.instance()
 

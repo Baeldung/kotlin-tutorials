@@ -49,6 +49,7 @@ class InputStreamToFileUnitTest {
         }
 
         assertThat(File("./copied")).hasContent(content)
+        Files.deleteIfExists(Paths.get("./copied"))
     }
 
     @Test

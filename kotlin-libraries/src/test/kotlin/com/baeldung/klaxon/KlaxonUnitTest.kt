@@ -7,8 +7,8 @@ import com.beust.klaxon.Klaxon
 import com.beust.klaxon.Parser
 import com.beust.klaxon.PathMatcher
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.fail
 import org.assertj.core.api.SoftAssertions.assertSoftly
-import org.junit.Assert
 import org.junit.jupiter.api.Test
 import java.io.StringReader
 import java.util.regex.Pattern
@@ -92,12 +92,12 @@ class KlaxonUnitTest {
         val parser = Parser()
         val json = parser.parse(jsonString) as JsonArray<JsonObject>
 
-        assertSoftly({ softly ->
+        assertSoftly { softly ->
             softly.assertThat(json).hasSize(3)
             softly.assertThat(json[0]["name"]).isEqualTo("SDD")
             softly.assertThat(json[1]["madeIn"]).isEqualTo("Taiwan")
             softly.assertThat(json[2]["warrantyInYears"]).isEqualTo(5)
-        })
+        }
     }
 
     @Test
@@ -115,15 +115,14 @@ class KlaxonUnitTest {
         JsonReader(StringReader(jsonString)).use { reader ->
             reader.beginObject {
                 while (reader.hasNext()) {
-                    val readName = reader.nextName()
-                    when (readName) {
+                    when (val readName = reader.nextName()) {
                         "name" -> assertThat(reader.nextString()).isEqualTo("HDD")
                         "madeIn" -> assertThat(reader.nextString()).isEqualTo("Taiwan")
                         "warrantyInYears" -> assertThat(reader.nextInt()).isEqualTo(5)
                         "hasStock" -> assertThat(reader.nextBoolean()).isEqualTo(true)
                         "capacitiesInTb" -> assertThat(reader.nextArray()).contains(1, 2)
                         "features" -> assertThat(reader.nextObject()).containsEntry("cacheInMb", 64).containsEntry("speedInRpm", 7200)
-                        else -> Assert.fail("Unexpected name: $readName")
+                        else -> fail("Unexpected name: $readName")
                     }
                 }
             }

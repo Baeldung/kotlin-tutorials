@@ -12,28 +12,12 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <repositories>
-        <repository>
-            <id>exposed</id>
-            <name>exposed</name>
-            <url>https://dl.bintray.com/kotlin/exposed</url>
-        </repository>
-        <repository>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>kotlinx</id>
-            <name>bintray</name>
-            <url>https://dl.bintray.com/kotlin/kotlinx</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-math3</artifactId>
             <version>${commons-math3.version}</version>
-        </dependency>      
+        </dependency>
         <dependency>
             <groupId>com.github.salomonbrys.kodein</groupId>
             <artifactId>kodein</artifactId>
@@ -46,7 +30,17 @@
         </dependency>
         <dependency>
             <groupId>org.jetbrains.exposed</groupId>
-            <artifactId>exposed</artifactId>
+            <artifactId>exposed-core</artifactId>
+            <version>${exposed.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.exposed</groupId>
+            <artifactId>exposed-dao</artifactId>
+            <version>${exposed.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.exposed</groupId>
+            <artifactId>exposed-jdbc</artifactId>
             <version>${exposed.version}</version>
         </dependency>
         <dependency>
@@ -103,7 +97,7 @@
             <artifactId>rxkotlin</artifactId>
             <version>${rxkotlin.version}</version>
         </dependency>
-        
+
         <dependency>
             <groupId>io.ktor</groupId>
             <artifactId>ktor-server-netty</artifactId>
@@ -114,24 +108,22 @@
             <artifactId>ktor-gson</artifactId>
             <version>${ktor.io.version}</version>
         </dependency>
-        
+
     </dependencies>
 
     <properties>
-      
         <kodein.version>4.1.0</kodein.version>
         <klaxon.version>3.0.4</klaxon.version>
         <commons-math3.version>3.6.1</commons-math3.version>
         <junit.vintage.version>5.2.0</junit.vintage.version>
         <assertj.version>3.10.0</assertj.version>
-        <exposed.version>0.10.4</exposed.version>
+        <exposed.version>0.37.3</exposed.version>
         <kovenant.version>3.3.0</kovenant.version>
         <byte-buddy.version>1.8.13</byte-buddy.version>
         <objenesis.version>2.6</objenesis.version>
         <rxkotlin.version>2.3.0</rxkotlin.version>
         <arrow-core.version>0.7.3</arrow-core.version>
-      
-        <h2.version>1.4.200</h2.version>
+        <h2.version>2.1.210</h2.version>
         <ktor.io.version>1.4.2</ktor.io.version>
     </properties>
 
