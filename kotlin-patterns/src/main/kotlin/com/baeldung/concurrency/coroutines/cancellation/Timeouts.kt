@@ -8,8 +8,7 @@ fun main() = runBlocking {
         }
     }
 }
-
-fun fibonacci(num: Int): Int {
+private fun fibonacci(num: Int): Int {
     return if (num == 0 || num == 1) num
     else fibonacci(num - 1) + fibonacci(num - 2)
 }
