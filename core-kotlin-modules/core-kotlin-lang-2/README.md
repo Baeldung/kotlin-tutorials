@@ -13,4 +13,4 @@ This module contains articles about core features in the Kotlin language.
 - [If-Else Expression in Kotlin](https://www.baeldung.com/kotlin/if-else-expression)
 - [Checking Whether a lateinit var Is Initialized in Kotlin](https://www.baeldung.com/kotlin/checking-lateinit)
 - [Guide to Kotlin’s yield Function](https://www.baeldung.com/kotlin/yield-function)
-- [[<-- Prev]](/core-kotlin-modules/core-kotlin-lang)
+- More articles: [[<-- Prev]](/core-kotlin-modules/core-kotlin-lang) [[next --> ]](/core-kotlin-modules/core-kotlin-lang-3)
