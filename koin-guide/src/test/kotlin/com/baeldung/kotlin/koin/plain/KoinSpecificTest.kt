@@ -38,4 +38,18 @@ class KoinSpecificTest : KoinTest {
         assertEquals("I've heard that I know everything about everyone!", rumourTeller.tellRumour())
     }
 
+    @Test
+    fun when_properties_are_present_in_the_context_then_definitions_can_use_them() {
+        startKoin {
+            modules(
+                module {
+                    single<RumourTeller> { RumourSource(getProperty("rumour", "I've seen nothing")) }
+                }
+            )
+            properties(mapOf("rumour" to "Jane is seeing Gill"))
+        }
+        val rumourTeller = get<RumourTeller>()
+        assertEquals("I've heard that Jane is seeing Gill", rumourTeller.tellRumour())
+    }
+
 }
