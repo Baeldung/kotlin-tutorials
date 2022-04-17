@@ -1,0 +1,134 @@
+openapi: "3.0.0"
+info:
+  version: 0.0.1
+  title: Car Repo
+servers:
+  - url: http://localhost:8080
+paths:
+  /v1/cars:
+    get:
+      summary: List of venues.
+      description: Returns the list of all cars
+      operationId: get_cars
+      tags:
+        - Cars
+      responses:
+        '200':
+          description: List of all cars
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": '#/components/schemas/Car'
+    post:
+      summary: Creates a venue.
+      description: Creates a venue using given fields. If woltVenueId is given and it exists on Wolt Side, no need to provide Venue information fields. If any other field is given, that will be the one stored, dismissing the data coming from Wolt.
+      operationId: create_car
+      tags:
+        - Cars
+      requestBody:
+        description: Required information to create a car
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": '#/components/schemas/CarBody'
+      responses:
+        '200':
+          description: Created car
+          content:
+            application/json:
+              schema:
+                "$ref": '#/components/schemas/Car'
+        '400':
+          description: Request was wrong. Some fields in body might be missing or invalid.
+          content:
+            application/json:
+              schema:
+                "$ref": '#/components/schemas/Error'
+  /v1/cars/{id}:
+    get:
+      summary: Particular car info
+      description: All the information on a single car
+      operationId: get_car
+      parameters:
+        - name: id
+          schema:
+            type: integer
+          required: true
+          in: path
+      tags:
+        - Cars
+      responses:
+        '200':
+          description: A car object
+          content:
+            application/json:
+              schema:
+                "$ref": '#/components/schemas/Car'
+        '404':
+          description: Provided car ID does not correspond to any object in the DB
+          content:
+            application/json:
+              schema:
+                "$ref": '#/components/schemas/Error'
+components:
+  parameters:
+    slug:
+      in: path
+      name: slug
+      schema:
+        type: string
+      required: true
+      description: Human readable id of venue
+
+  schemas:
+    Car:
+      required:
+        - id
+        - model
+        - make
+        - year
+      properties:
+        id:
+          type: integer
+          description: "Database id of the car"
+        model:
+          type: string
+        make:
+          type: string
+        year:
+          type: integer
+          description: "Year in which this model was issued"
+      example:
+        id: 3986238010
+        model: "Prius"
+        make: "Toyota"
+        year: 2011
+    CarBody:
+      required:
+        - model
+        - make
+        - year
+      properties:
+        model:
+          type: string
+        make:
+          type: string
+        year:
+          type: integer
+          description: "Year in which this model was issued"
+      example:
+        model: "Yaris"
+        make: "Toyota"
+        year: 2019
+    Error:
+      required:
+        - msg
+        - errorCode
+      properties:
+        msg:
+          type: string
+        errorCode:
+          type: integer

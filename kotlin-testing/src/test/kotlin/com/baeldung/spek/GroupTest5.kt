@@ -1,4 +1,4 @@
-package com.baeldung.kotlin.spek
+package com.baeldung.spek
 
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.describe
