@@ -1,3 +1,3 @@
 ### Relevant Articles:
 
-- [How to Initialize a List](https://www.baeldung.com/kotlin/initialize-list)
+- [Initialize a List in Kotlin](https://www.baeldung.com/kotlin/initialize-list)
