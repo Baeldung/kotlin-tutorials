@@ -6,3 +6,4 @@
 - [Composing Coroutines and Suspend Functions](https://www.baeldung.com/kotlin/composing-coroutines-suspend-functions)
 - [Launching Kotlin Coroutines: With a Result or a Side Effect](https://www.baeldung.com/kotlin/coroutine-launch-async)
 - [Lazy Initialization vs Late Initialization in Kotlin](https://www.baeldung.com/kotlin/late-vs-lazy-init)
+- [Run Kotlin Class From the Command Line](https://www.baeldung.com/kotlin/run-class-from-command-line)
