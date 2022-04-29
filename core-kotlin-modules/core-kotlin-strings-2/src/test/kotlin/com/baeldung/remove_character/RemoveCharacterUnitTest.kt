@@ -21,7 +21,7 @@ class RemoveCharacterUnitTest {
     fun `should remove character from string using deleteAt`() {
         val string = "Ba.eldung"
         val stringBuilder = StringBuilder(string)
-        assertEquals("Baeldung", stringBuilder.deleteAt(3).toString())
+        assertEquals("Baeldung", stringBuilder.deleteAt(2).toString())
     }
 
     @Test
