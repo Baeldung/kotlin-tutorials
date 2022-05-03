@@ -34,11 +34,13 @@ class RemoveCharacterUnitTest {
     fun `should remove last character from string`() {
         val string = "Baeldung"
         assertEquals("Baeldun", string.removeSuffix("g"))
+        assertEquals("Baeldung", string.removePrefix("Z"))
     }
 
     @Test
     fun `should remove first character from string`() {
         val string = "Baeldung"
         assertEquals("aeldung", string.removePrefix("B"))
+        assertEquals("Baeldung", string.removePrefix("Z"))
     }
 }
