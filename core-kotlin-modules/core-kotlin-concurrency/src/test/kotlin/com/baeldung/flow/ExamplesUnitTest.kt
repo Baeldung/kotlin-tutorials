@@ -26,6 +26,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 internal class ExamplesUnitTest {
+    
     @Test
     fun when_collected_flow_then_yields_all_values() = runBlocking {
         val inscription = buildString {
