@@ -9,6 +9,19 @@ import org.junit.jupiter.api.assertThrows
 import kotlin.test.assertEquals
 
 class JacksonMapHelperTest {
+
+    private val expected = mapOf(
+        "name" to "test1",
+        "type" to ProjectType.APPLICATION.name,
+        "createdDate" to DATE_FORMAT.format(PROJECT.createdDate),
+        "repository" to mapOf(
+            "url" to "http://test.baeldung.com/test1"
+        ),
+        "deleted" to false,
+        "owner" to null,
+        "description" to "a new project"
+    )
+
     @Test
     fun whenConvertToMapWithDefaultMapper_thenGetMapWithLongTypeDate() {
         assertEquals(
@@ -28,41 +41,17 @@ class JacksonMapHelperTest {
 
     @Test
     fun whenConvertToMapWithDateFormat_thenGetMapWithFormattedDate() {
-        assertEquals(
-            mapOf(
-                "name" to "test1",
-                "type" to ProjectType.APPLICATION.name,
-                "createdDate" to DATE_FORMAT.format(PROJECT.createdDate),
-                "repository" to mapOf(
-                    "url" to "http://test.baeldung.com/test1"
-                ),
-                "deleted" to false,
-                "owner" to null,
-                "description" to "a new project"
-            ), JACKSON_MAPPER_WITH_DATE_FORMAT.convertValue(PROJECT, Map::class.java)
-        )
+        assertEquals(expected, JACKSON_MAPPER_WITH_DATE_FORMAT.convertValue(PROJECT, Map::class.java))
     }
 
     @Test
     fun whenConvertFromMapWithDateFormat_thenGetCorrectObject() {
-        val expected = mapOf(
-            "name" to "test1",
-            "type" to ProjectType.APPLICATION.name,
-            "createdDate" to DATE_FORMAT.format(PROJECT.createdDate),
-            "repository" to mapOf(
-                "url" to "http://test.baeldung.com/test1"
-            ),
-            "deleted" to false,
-            "owner" to null,
-            "description" to "a new project"
-        )
-
         assertEquals(PROJECT, JACKSON_MAPPER_WITH_DATE_FORMAT.convertValue(expected, Project::class.java))
     }
 
     @Test
     fun whenConvertMapButMissingProperty_thenThrowException() {
-        val map = mapOf(
+        val mapWithoutCreatedDate = mapOf(
             "name" to "test1",
             "type" to ProjectType.APPLICATION.name,
             "repository" to mapOf(
@@ -72,6 +61,11 @@ class JacksonMapHelperTest {
             "owner" to null,
             "description" to "a new project"
         )
-        assertThrows<IllegalArgumentException> { DEFAULT_JACKSON_MAPPER.convertValue(map, Project::class.java) }
+        assertThrows<IllegalArgumentException> {
+            DEFAULT_JACKSON_MAPPER.convertValue(
+                mapWithoutCreatedDate,
+                Project::class.java
+            )
+        }
     }
 }
