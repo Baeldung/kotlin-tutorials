@@ -5,7 +5,7 @@ import com.baeldung.grpc.helloworld.HelloRequest
 import com.baeldung.grpc.helloworld.HelloServiceGrpcKt
 import io.grpc.ServerBuilder
 
-class HelloService : HelloServiceGrpcKt.HelloServiceImplBase() {
+class HelloService : HelloServiceGrpcKt.HelloServiceCoroutineImplBase() {
     override suspend fun hello(request: HelloRequest): HelloReply {
         return HelloReply.newBuilder()
             .setMessage("Hello, ${request.name}")
