@@ -1,4 +1,4 @@
-package kotlin.com.baeldung.list_to_string
+package com.baeldung.list_to_string
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -36,9 +36,17 @@ class ListToStringUnitTest {
 
     @Test
     fun `Given a list, when reduce is executed, output is string`() {
-        val strings = listOf("a", "b", "c", "d")
-        val string = strings.reduce { acc, string -> acc + string }
-        assertEquals("abcd", string)
+        val strings = listOf("a", "b", "a", "c", "c", "d", "b", "a")
+        val uniqueSubstrings = strings.reduce { acc, string -> if (string !in acc) acc + string else acc }
+        assertEquals("abcd", uniqueSubstrings)
+    }
+
+    @Test
+    fun `Given a list, when fold is executed, output is string`() {
+        val strings = listOf("a", "b", "a", "c", "c", "d", "b", "a")
+        val uniqueSubstrings =
+            strings.fold(StringBuilder()) { acc, string -> if (string !in acc) acc.append(string) else acc }
+        assertEquals("abcd", uniqueSubstrings.toString())
     }
 
     @Test
@@ -46,7 +54,7 @@ class ListToStringUnitTest {
         val elements = listOf("a", "b", "c", "d", "e")
         var string = ""
 
-        for(s in elements){
+        for (s in elements) {
             string += s
         }
 
@@ -58,7 +66,7 @@ class ListToStringUnitTest {
         val letters = listOf("a", "b", "c", "d", "e", "f")
         val builder = StringBuilder()
 
-        for(s in letters){
+        for (s in letters) {
             builder.append(s)
         }
 
@@ -66,15 +74,17 @@ class ListToStringUnitTest {
     }
 
     @Test
+    fun `Given a list, when StringBuilder appends, output is again a string, but with cool syntax`() {
+        val letters = listOf("a", "b", "c", "d", "e", "f")
+        val alreadyAString = buildString { for (s in letters) append(s) } // `this` is a StringBuilder inside the lambda
+        assertEquals("abcdef", alreadyAString)
+    }
+
+    @Test
     fun `Given a list, when StringBuilder appends with suffix, output is string`() {
         val letters = listOf("a", "b", "c", "d", "e", "f")
-        val builder = StringBuilder()
-
-        for(s in letters){
-            builder.append(s)
-        }
-
-        val withoutSuffix = builder.toString().removeSuffix("f")
+        val string = buildString { letters.forEach(::append) }
+        val withoutSuffix = string.removeSuffix("f")
         assertEquals("abcde", withoutSuffix)
     }
 }

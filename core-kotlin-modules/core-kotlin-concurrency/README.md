@@ -10,3 +10,4 @@ This module contains articles about concurrency in Kotlin.
 - [Kotlin withContext() vs. async-await](https://www.baeldung.com/kotlin/withcontext-vs-async-await)
 - [Coroutine Context and Dispatchers](https://www.baeldung.com/kotlin/coroutine-context-dispatchers)
 - [Kotlin Coroutines: Waiting for Multiple Threads to Finish](https://www.baeldung.com/kotlin/coroutines-waiting-for-multiple-threads)
+- [Introduction to the Kotlin Flow Class](https://www.baeldung.com/kotlin/flow-intro)

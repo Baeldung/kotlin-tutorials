@@ -8,3 +8,5 @@ This module contains articles about core Kotlin strings.
 - [Get Character by Index in a Kotlin String](https://www.baeldung.com/kotlin/string-get-character-by-index)
 - [Convert a Character Array to a String in Kotlin](https://www.baeldung.com/kotlin/char-array-to-string)
 - [Check if a String Contains a Substring in Kotlin](https://www.baeldung.com/kotlin/check-substring)
+- [Count Occurrences of a Character in a String in Kotlin](https://www.baeldung.com/kotlin/string-character-count-occurrences)
+- [Remove a Character From a String in Kotlin](https://www.baeldung.com/kotlin/remove-character)
