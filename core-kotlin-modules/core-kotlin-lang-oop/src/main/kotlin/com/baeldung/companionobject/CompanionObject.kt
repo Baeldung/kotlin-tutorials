@@ -22,6 +22,11 @@ class CompanionObject {
         }
     }
 
+    interface MyInterface { 
+        companion object { 
+            const val PROPERTY = "value"
+        }
+    }
 
     abstract class AbstractFactory {
         interface Theme {
