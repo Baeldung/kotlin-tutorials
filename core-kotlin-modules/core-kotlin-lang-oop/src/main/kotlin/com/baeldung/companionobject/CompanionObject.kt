@@ -7,6 +7,8 @@ class CompanionObject {
         }
 
         companion object {
+            // companion object members can be marked @JvmStatic for better java inter-op
+            @JvmStatic
             const val propertyName: String = "Something..."
             fun funName() {
                 //...
