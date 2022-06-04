@@ -7,7 +7,8 @@ class CompanionObject {
         }
 
         companion object {
-            const val propertyName: String = "Something..."
+            @JvmStatic
+            val propertyName: String = "Something..."
             fun funName() {
                 //...
             }
@@ -48,6 +49,12 @@ class CompanionObject {
             override fun someFunction(): String {
                 return "I am from the second factory."
             }
+        }
+    }
+
+    interface MyInterface {
+        companion object {
+            const val PROPERTY = "value"
         }
     }
 }
