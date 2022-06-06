@@ -26,7 +26,7 @@ class VarargSpread {
     }
 
     @Test
-    fun `given array when passed to concat functions then should return concatenated string`() {
+    fun `given string array when passed to concat functions then should return concatenated string`() {
         val strings = arrayOf("ab", "cd")
         val moreStrings = arrayOf("gh", "ij")
         val listOfStrings = listOf("ab", "cd")
