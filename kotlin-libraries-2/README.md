@@ -13,4 +13,5 @@ This module contains articles about Kotlin Libraries.
 - [Converting Kotlin Data Class from JSON using GSON](https://www.baeldung.com/kotlin/json-convert-data-class)
 - [Iterate Through a JSONArray in Kotlin](https://www.baeldung.com/kotlin/iterate-over-jsonarray)
 - [Parsing JSON Arrays in Kotlin with Gson](https://www.baeldung.com/kotlin/gson-parse-arrays)
+- [Convert a Kotlin data class object to a Map](https://www.baeldung.com/kotlin/data-class-to-map)
 - More articles: [[<-- prev]](/kotlin-libraries)
