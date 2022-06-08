@@ -36,15 +36,13 @@ class HibernateKotlinIntegrationTest : BaseCoreFunctionalTestCase() {
     fun givenPersonWithFullData_whenSaved_thenFound() {
         doInHibernate(({ this.sessionFactory() })) { session ->
             val personToSave = Person(
-                0,
                 "John",
                 "jhon@test.com",
-                Arrays.asList(PhoneNumber(0, "202-555-0171"), PhoneNumber(0, "202-555-0102"))
+                listOf(PhoneNumber("202-555-0171"), PhoneNumber("202-555-0102"))
             )
             session.persist(personToSave)
             val personFound = session.find(Person::class.java, personToSave.id)
             session.refresh(personFound)
-
             assertTrue(personToSave.name == personFound.name)
         }
     }
@@ -52,7 +50,7 @@ class HibernateKotlinIntegrationTest : BaseCoreFunctionalTestCase() {
     @Test
     fun givenPerson_whenSaved_thenFound() {
         doInHibernate(({ this.sessionFactory() })) { session ->
-            val personToSave = Person(0, "John")
+            val personToSave = Person( "John")
             session.persist(personToSave)
             val personFound = session.find(Person::class.java, personToSave.id)
             session.refresh(personFound)
@@ -64,7 +62,7 @@ class HibernateKotlinIntegrationTest : BaseCoreFunctionalTestCase() {
     @Test
     fun givenPersonWithNullFields_whenSaved_thenFound() {
         doInHibernate(({ this.sessionFactory() })) { session ->
-            val personToSave = Person(0, "John", null, null)
+            val personToSave = Person("John", null, null)
             session.persist(personToSave)
             val personFound = session.find(Person::class.java, personToSave.id)
             session.refresh(personFound)
@@ -77,7 +75,7 @@ class HibernateKotlinIntegrationTest : BaseCoreFunctionalTestCase() {
     fun givenAddressWithDefaultEquals_whenAddedToSet_thenNotFound() {
         doInHibernate({ sessionFactory() }) { session ->
             val addresses = mutableSetOf<Address>()
-            val address = Address(name = "Berlin", phoneNumbers = listOf(PhoneNumber(0, "42")))
+            val address = Address(name = "Berlin", phoneNumbers = listOf(PhoneNumber( "42")))
             addresses.add(address)
 
             assertTrue(address in addresses)
@@ -89,7 +87,7 @@ class HibernateKotlinIntegrationTest : BaseCoreFunctionalTestCase() {
     @Test
     fun givenAddress_whenLogging_thenFetchesLazyAssociations() {
         doInHibernate({ this.sessionFactory() }) { session ->
-            val addressToSave = Address(name = "Berlin", phoneNumbers = listOf(PhoneNumber(0, "42")))
+            val addressToSave = Address(name = "Berlin", phoneNumbers = listOf(PhoneNumber("42")))
             session.persist(addressToSave)
             session.clear()
 

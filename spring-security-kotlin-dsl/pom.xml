@@ -75,7 +75,7 @@
 
     <properties>
         <java.version>11</java.version>
-        <kotlin.version>1.3.72</kotlin.version>
+      
     </properties>
 
 </project>

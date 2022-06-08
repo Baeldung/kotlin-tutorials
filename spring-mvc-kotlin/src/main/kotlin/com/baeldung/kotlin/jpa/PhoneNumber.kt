@@ -8,8 +8,8 @@ import javax.persistence.Id
 
 @Entity
 class PhoneNumber(
+        @Column(nullable = false)
+        val number: String,
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id: Int,
-        @Column(nullable = false)
-        val number: String)
+        var id: Int?=null)
