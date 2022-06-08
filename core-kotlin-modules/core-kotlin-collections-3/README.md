@@ -6,3 +6,5 @@ This module contains articles about core Kotlin collections.
 - [Iterate Over a Map in Kotlin](https://www.baeldung.com/kotlin/iterate-map)
 - [Initialize a Map in Kotlin](https://www.baeldung.com/kotlin/initialize-map)
 - [Convert List to String in Kotlin](https://www.baeldung.com/kotlin/convert-list-to-string)
+- [Initialize a List in Kotlin](https://www.baeldung.com/kotlin/initialize-list)
+
