@@ -21,7 +21,6 @@ class CompanionObject {
         }
     }
 
-
     abstract class AbstractFactory {
         interface Theme {
             fun someFunction(): String
@@ -58,7 +57,6 @@ class CompanionObject {
         }
     }
 }
-
 
 fun main() {
     val firstFactory: CompanionObject.AbstractFactory.FactoryCreator = CompanionObject.AbstractFactory.FirstRelatedClass

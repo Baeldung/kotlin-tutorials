@@ -1,7 +1,5 @@
 package com.baeldung.companionobject
 
-import com.baeldung.enums.CardType
-import org.junit.Assert.*
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
