@@ -11,4 +11,5 @@ class CompanionObjectTest{
         val firstFactory: CompanionObject.AbstractFactory.FactoryCreator = CompanionObject.AbstractFactory.FirstRelatedClass.Factory
         Assertions.assertTrue(firstFactory.produce() is CompanionObject.AbstractFactory.FirstRelatedClass)
     }
+
 }

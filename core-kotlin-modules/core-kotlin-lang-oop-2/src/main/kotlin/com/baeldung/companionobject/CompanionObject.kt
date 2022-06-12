@@ -61,9 +61,9 @@ class CompanionObject {
 
 
 fun main() {
-    val firstFactory: CompanionObject.AbstractFactory.FactoryCreator = CompanionObject.AbstractFactory.FirstRelatedClass.Factory
+    val firstFactory: CompanionObject.AbstractFactory.FactoryCreator = CompanionObject.AbstractFactory.FirstRelatedClass
     println(firstFactory.produce().someFunction())
 
-    val secondFactory: CompanionObject.AbstractFactory.FactoryCreator = CompanionObject.AbstractFactory.SecondRelatedClass.Factory
+    val secondFactory: CompanionObject.AbstractFactory.FactoryCreator = CompanionObject.AbstractFactory.SecondRelatedClass
     println(secondFactory.produce().someFunction())
 }
