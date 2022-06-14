@@ -7,4 +7,5 @@ This module contains articles about core Kotlin collections.
 - [Initialize a Map in Kotlin](https://www.baeldung.com/kotlin/initialize-map)
 - [Convert List to String in Kotlin](https://www.baeldung.com/kotlin/convert-list-to-string)
 - [Initialize a List in Kotlin](https://www.baeldung.com/kotlin/initialize-list)
+- [Convert Between List and Set in Kotlin](https://www.baeldung.com/kotlin/convert-list-to-set)
 
