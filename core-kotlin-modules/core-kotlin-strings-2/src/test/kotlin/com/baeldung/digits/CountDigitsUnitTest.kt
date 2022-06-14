@@ -5,16 +5,26 @@ import org.junit.jupiter.api.Test
 
 class CountDigitsUnitTest {
 
-    private fun Int.countDigits() = when(this) {
+    private fun Int.countDigits() = when (this) {
         0 -> 1
-        else -> kotlin.math.log10(kotlin.math.abs(toDouble())).toInt() + 1
+        else -> {
+            var count = 0
+            var value = this
+
+            do {
+                value /= 10; count++
+            } while (value != 0)
+
+            count
+        }
     }
 
-    private fun CharSequence.countDigits(): Int = when(this){
+    private fun CharSequence.countDigits(): Int = when (this) {
         "" -> 0
         else -> this.count { it.isDigit() }
     }
-    private fun CharSequence.countDigitsCustom(): Int = when(this){
+
+    private fun CharSequence.countDigitsCustom(): Int = when (this) {
         "" -> 0
         else -> this.count { it in ("0123456789") }
     }
@@ -63,7 +73,7 @@ class CountDigitsUnitTest {
     @Test
     fun `given an integer value when counting digits then number of digits should be returned`() {
 
-        val number = 123450
+        val number = -123450
 
         assertThat(number.countDigits()).isNotNull
         assertThat(number.countDigits()).isEqualTo(6)
