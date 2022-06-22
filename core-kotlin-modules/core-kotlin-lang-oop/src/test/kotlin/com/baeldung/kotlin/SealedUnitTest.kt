@@ -39,6 +39,10 @@ class SealedUnitTest {
             is Failure -> {
                 // Expected
             }
+            is Success -> {
+                //
+            }
+            
         }
     }
 
