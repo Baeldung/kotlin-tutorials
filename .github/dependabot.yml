@@ -1,1 +1,25 @@
-#
+version: 1
+updates:
+  - package-ecosystem: "maven"
+    directory: /
+    schedule:
+      interval: daily
+    ignore:
+      - dependency_name: "com.google.code.gson:gson"
+        versions: ["2.8.5"]
+      - dependency_name: "com.google.protobuf:protobuf-java"
+        versions: ["3.18.1"]
+      - dependency_name: "com.google.protobuf:protobuf-kotlin"
+        versions: ["3.18.1"]
+      - dependency_name: "ch.qos.logback:logback-core"
+        versions: ["1.1.7", "1.2.3"]
+      - dependency_name: "org.jboss.resteasy:resteasy-client"
+        versions: ["3.8.0.Final"]
+      - dependency_name: "ch.qos.logback:logback-classic"
+        versions: ["1.2.3"]
+      - dependency_name: "com.fasterxml.jackson.core:jackson-databind"
+        versions: ["2.11.1"]
+      - dependency_name: "com.h2database:h2"
+        versions: ["2.1.210"]
+      - dependency_name: "com.google.guava:guava"
+        versions: ["29.0-jre"]
