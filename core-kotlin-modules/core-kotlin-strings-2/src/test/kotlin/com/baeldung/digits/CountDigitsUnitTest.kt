@@ -2,37 +2,24 @@ package com.baeldung.digits
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import java.lang.Math.abs
+import java.lang.Math.log10
 
 class CountDigitsUnitTest {
 
     private fun Int.countDigits() = when (this) {
         0 -> 1
-        else -> {
-            var count = 0
-            var value = this
-
-            do {
-                value /= 10; count++
-            } while (value != 0)
-
-            count
-        }
+        else -> log10(abs(toDouble())).toInt() + 1
     }
 
-    private fun CharSequence.countDigits(): Int = when (this) {
-        "" -> 0
-        else -> this.count { it.isDigit() }
-    }
+    private fun CharSequence.countDigits(): Int = count { it.isDigit() }
 
     private fun CharSequence.countDigitsCustom(): Int = when (this) {
         "" -> 0
         else -> this.count { it in ("0123456789") }
     }
 
-    private fun CharSequence.countDigitsRegex(): Int = when (this) {
-        "" -> 0
-        else -> this.length - this.replace(Regex("\\d"), "").length
-    }
+    private fun CharSequence.countDigitsRegex(): Int = Regex("\\d").findAll(this).count()
 
     @Test
     fun `given a value when counting digits then number of digits should be returned`() {
