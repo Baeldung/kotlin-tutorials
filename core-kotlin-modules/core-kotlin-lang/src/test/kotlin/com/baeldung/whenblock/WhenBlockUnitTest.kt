@@ -51,6 +51,7 @@ class WhenBlockUnitTest {
         when (fileType) {
             UnixFileType.HYPHEN_MINUS -> println("Regular file type")
             UnixFileType.D -> println("Directory file type")
+            else -> println("Other file type")
         }
     }
 
