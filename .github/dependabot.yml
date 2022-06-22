@@ -1,4 +1,4 @@
-version:
+version: 1
 updates:
   - package-ecosystem: "maven"
     directory: /
@@ -23,6 +23,3 @@ updates:
         versions: ["2.1.210"]
       - dependency_name: "com.google.guava:guava"
         versions: ["29.0-jre"]
-
-
-
