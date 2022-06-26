@@ -306,8 +306,8 @@
     </profiles>
 
     <properties>
-        <kotlin.version>1.6.0</kotlin.version>
-        <kotlinx.version>1.6.1</kotlinx.version>
+        <kotlin.version>1.7.0</kotlin.version>
+        <kotlinx.version>1.6.2</kotlinx.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
