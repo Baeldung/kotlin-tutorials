@@ -2,25 +2,25 @@ package com.baeldung.dataclass
 
 fun main(args: Array<String>) {
 
-    val movie = Movie("Whiplash", "Sony Pictures", 8.5F)
+    val task = Task(1001, "Replace Fuel Tank Filler Caps", 5)
 
-    println(movie.name) //Whiplash
-    println(movie.studio) //Sony Pictures
-    println(movie.rating) //8.5
+    println(task.id)
+    println(task.description)
+    println(task.priority)
 
-    movie.rating = 9F
+    task.priority = 4
 
-    println(movie.toString()) //Movie(name=Whiplash, studio=Sony Pictures, rating=9.0)
+    println(task.toString())
 
-    val betterRating = movie.copy(rating = 9.5F)
-    println(betterRating.toString()) //Movie(name=Whiplash, studio=Sony Pictures, rating=9.5)
+    val copyTask = task.copy(priority = 4)
+    println(copyTask.toString())
 
-    movie.component1() //name
-    movie.component2() //studio
-    movie.component3() //rating
+    task.component1()
+    task.component2()
+    task.component3()
 
-    val(name, studio, rating) = movie
+    val(id, description, priority) = task
 
-    fun getMovieInfo() = movie
-    val(namef, studiof, ratingf) = getMovieInfo()
+    fun getTask() = task
+    val (idf, descriptionf, priorityf) = getTask()
 }
