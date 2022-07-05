@@ -10,3 +10,4 @@ This module contains articles about core Kotlin strings.
 - [Check if a String Contains a Substring in Kotlin](https://www.baeldung.com/kotlin/check-substring)
 - [Count Occurrences of a Character in a String in Kotlin](https://www.baeldung.com/kotlin/string-character-count-occurrences)
 - [Remove a Character From a String in Kotlin](https://www.baeldung.com/kotlin/remove-character)
+- [Number Formatting in Kotlin](https://www.baeldung.com/kotlin/number-formatting)
