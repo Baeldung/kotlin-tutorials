@@ -11,3 +11,4 @@ This module contains articles about core Kotlin strings.
 - [Count Occurrences of a Character in a String in Kotlin](https://www.baeldung.com/kotlin/string-character-count-occurrences)
 - [Remove a Character From a String in Kotlin](https://www.baeldung.com/kotlin/remove-character)
 - [Number Formatting in Kotlin](https://www.baeldung.com/kotlin/number-formatting)
+- [Count Number of Digits With Kotlin](https://www.baeldung.com/kotlin/count-digits)
