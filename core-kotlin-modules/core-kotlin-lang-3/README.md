@@ -10,4 +10,5 @@ This module contains articles about core features in the Kotlin language.
 - [Package-Private Alternative in Kotlin](https://www.baeldung.com/kotlin/package-private-alternative)
 - [Best Practices for Using Constants in Kotlin](https://www.baeldung.com/kotlin/constants-best-practices)
 - [Fixing the Kotlin Error “Smart cast to ‘Type’ is impossible”](https://www.baeldung.com/kotlin/smart-cast-to-type-is-impossible)
+- [Type Checks and Casts in Kotlin](https://www.baeldung.com/kotlin/type-checks-casts)
 - [[<-- prev]](/core-kotlin-modules/core-kotlin-lang-2)
