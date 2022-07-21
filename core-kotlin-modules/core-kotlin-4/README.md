@@ -9,3 +9,4 @@
 - [Run Kotlin Class From the Command Line](https://www.baeldung.com/kotlin/run-class-from-command-line)
 - [Convert Kotlin Array to Varargs](https://www.baeldung.com/kotlin/array-to-varargs)
 - [Define Multiple Variables at Once in Kotlin](https://www.baeldung.com/kotlin/define-multiple-variables)
+- [Idiomatic Way to Treat Nullable Values](https://www.baeldung.com/kotlin/idiomatic-nullable-values)
