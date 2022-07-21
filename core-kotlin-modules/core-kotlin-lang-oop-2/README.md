@@ -13,4 +13,5 @@ This module contains articles about Object-Oriented Programming in Kotlin
 - [Kotlin Companion Object](https://www.baeldung.com/kotlin/companion-object)
 - [Instantiate a Kotlin Data Class Using an Empty Constructor](https://www.baeldung.com/kotlin/instantiate-data-class-empty-constructor)
 - [Anonymous Objects in Kotlin](https://www.baeldung.com/kotlin/anonymous-objects)
+- [SOLID Principles with Kotlin](https://www.baeldung.com/kotlin/solid-principles)
 - [[<-- Prev]](/core-kotlin-modules/core-kotlin-lang-oop)
