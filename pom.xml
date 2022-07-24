@@ -276,6 +276,7 @@
         <module>spring-security-kotlin-dsl</module>
         <module>kotlin-immutable-collections</module>
         <module>kotlin-logging</module>
+        <module>kotlin-default-param</module>
     </modules>
 
     <profiles>
