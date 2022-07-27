@@ -146,7 +146,7 @@
                             </sourceDirs>
                             <jvmTarget>${java.version}</jvmTarget>
                             <args>
-                                <arg>-Xjvm-default=enable</arg>
+                                <arg>-Xjvm-default=all-compatibility</arg>
                             </args>
                         </configuration>
                     </execution>
