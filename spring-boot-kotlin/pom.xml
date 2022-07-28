@@ -107,7 +107,7 @@
     </build>
 
     <properties>
-        <kotlin.version>1.3.31</kotlin.version>
+        <kotlin.version>1.7.0</kotlin.version>
         <r2dbc.version>1.0.0.RELEASE</r2dbc.version>
         <r2dbc-spi.version>1.0.0.M7</r2dbc-spi.version>
         <h2-r2dbc.version>1.0.0.BUILD-SNAPSHOT</h2-r2dbc.version>
