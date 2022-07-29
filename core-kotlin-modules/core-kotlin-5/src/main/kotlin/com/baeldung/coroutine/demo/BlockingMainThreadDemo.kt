@@ -46,4 +46,6 @@ fun main() {
         demoWithCoroutineScope()
     }
     println("coroutineScopeTimeInMills = $coroutineScopeTimeInMills")
+
+    context.close()
 }
