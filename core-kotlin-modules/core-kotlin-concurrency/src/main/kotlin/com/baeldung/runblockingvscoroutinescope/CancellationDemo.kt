@@ -1,4 +1,4 @@
-package com.baeldung.coroutine.demo
+package com.baeldung.runblockingvscoroutinescope
 
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay

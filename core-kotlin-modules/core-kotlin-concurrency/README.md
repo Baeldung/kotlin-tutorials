@@ -11,3 +11,4 @@ This module contains articles about concurrency in Kotlin.
 - [Coroutine Context and Dispatchers](https://www.baeldung.com/kotlin/coroutine-context-dispatchers)
 - [Kotlin Coroutines: Waiting for Multiple Threads to Finish](https://www.baeldung.com/kotlin/coroutines-waiting-for-multiple-threads)
 - [Introduction to the Kotlin Flow Class](https://www.baeldung.com/kotlin/flow-intro)
+- [Coroutines: runBlocking vs coroutineScope](https://www.baeldung.com/kotlin/coroutines-runblocking-vs-coroutinescope)
