@@ -13,7 +13,8 @@ fun main() {
     //        age = nullableAge
     //    )
 
-    // Compiles, because we inserted defaults for nullableName and nullableAge. It's ugly though.
+    // Compiles, because we inserted defaults for nullableName and nullableAge.
+    //  The issue is that we have to remember to provide defaults each time.
     Person(
         name = nullableName ?: "John",
         age = nullableAge ?: 0
