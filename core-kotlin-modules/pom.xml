@@ -18,6 +18,8 @@
         <module>core-kotlin</module>
         <module>core-kotlin-2</module>
         <module>core-kotlin-3</module>
+        <module>core-kotlin-4</module>
+        <module>core-kotlin-5</module>
         <module>core-kotlin-advanced</module>
         <module>core-kotlin-advanced-2</module>
         <module>core-kotlin-annotations</module>
@@ -38,7 +40,6 @@
         <module>core-kotlin-strings-2</module>
         <module>core-kotlin-files</module>
         <module>core-kotlin-4</module>
-        <module>core-kotlin-5</module>
     </modules>
 
 </project>
