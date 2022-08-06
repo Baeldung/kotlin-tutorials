@@ -19,6 +19,7 @@ bin/
 
 # Intellij
 .idea/
+**/.idea/*
 *.iml
 *.iws
 out/
@@ -35,6 +36,7 @@ target/
 
 # Gradle
 .gradle/
+**/build/*
 
 spring-openid/src/main/resources/application.properties
 .recommenders/
