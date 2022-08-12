@@ -5,7 +5,7 @@ import org.junit.Test
 import org.junit.jupiter.api.Assertions
 import java.util.concurrent.atomic.AtomicInteger
 
-class CoroutinesCancellationTest {
+class CoroutinesCancellationUnitTest {
 
     @Test
     fun whenCoroutineCancelled_thenCounterEquals3() {
