@@ -306,8 +306,8 @@
     </profiles>
 
     <properties>
-        <kotlin.version>1.7.0</kotlin.version>
-        <kotlinx.version>1.6.2</kotlinx.version>
+        <kotlin.version>1.7.10</kotlin.version>
+        <kotlinx.version>1.6.4</kotlinx.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -328,7 +328,7 @@
 
         <!-- plugins -->
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
-        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
 
         <gitflow-incremental-builder.version>3.10.1</gitflow-incremental-builder.version>
