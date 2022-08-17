@@ -1,3 +1,5 @@
+package com.baeldung.cancelcoroutine
+
 import kotlinx.coroutines.*
 
 fun main() = runBlocking {
