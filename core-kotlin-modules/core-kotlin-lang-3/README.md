@@ -12,4 +12,5 @@ This module contains articles about core features in the Kotlin language.
 - [Fixing the Kotlin Error “Smart cast to ‘Type’ is impossible”](https://www.baeldung.com/kotlin/smart-cast-to-type-is-impossible)
 - [Type Checks and Casts in Kotlin](https://www.baeldung.com/kotlin/type-checks-casts)
 - [Kotlin “super is not an expression” Error](https://www.baeldung.com/kotlin/super-not-expression-error)
+- [Extending a Class And Implementing Interfaces at the Same Time in Kotlin](https://www.baeldung.com/kotlin/extending-class-and-implementing-interfaces)
 - [[<-- prev]](/core-kotlin-modules/core-kotlin-lang-2)
