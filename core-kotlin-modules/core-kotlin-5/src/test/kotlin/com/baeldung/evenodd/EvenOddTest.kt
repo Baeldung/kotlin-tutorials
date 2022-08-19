@@ -5,6 +5,13 @@ import org.junit.jupiter.api.Test
 
 class EvenOddTest {
 
+  @Test
+  fun using_modulo_operator() {
+    assertTrue(10 % 4 == 2)
+    assertTrue(25 % 5 == 0)
+    assertTrue(24 % 5 == 4)
+    assertTrue(100 % 20 == 0)
+  }
 
   @Test
   fun is_even_function() {
