@@ -6,6 +6,20 @@ import org.junit.jupiter.api.Test
 class EvenOddTest {
 
   @Test
+  fun is_even_is_odd_demo() {
+    val a = 42
+    val b = 25
+
+    val aRem2 = a % 2
+    val bRem2 = b % 2
+    val isAEven: Boolean = aRem2 == 0
+    val isBEven: Boolean = bRem2 == 0
+
+    assertTrue(isAEven)
+    assertFalse(isBEven)
+  }
+
+  @Test
   fun using_modulo_operator() {
     assertTrue(10 % 4 == 2)
     assertTrue(25 % 5 == 0)
