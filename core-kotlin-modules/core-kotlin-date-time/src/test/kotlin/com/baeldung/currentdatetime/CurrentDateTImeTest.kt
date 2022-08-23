@@ -49,15 +49,15 @@ class CurrentDateTImeTest {
     @Test
     fun givenCalendar_whenGettingCurrentTimeFromComponents_CurrentDateTimeIsCreated() {
 
-        val c = Calendar.getInstance()
+        val calendar = Calendar.getInstance()
 
         val current = LocalDateTime.of(
-            c.get(Calendar.YEAR),
-            c.get(Calendar.MONTH),
-            c.get(Calendar.DAY_OF_MONTH),
-            c.get(Calendar.HOUR_OF_DAY),
-            c.get(Calendar.MINUTE),
-            c.get(Calendar.SECOND)
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH),
+            calendar.get(Calendar.HOUR_OF_DAY),
+            calendar.get(Calendar.MINUTE),
+            calendar.get(Calendar.SECOND)
         )
 
         Assertions.assertThat(current).isNotNull()
