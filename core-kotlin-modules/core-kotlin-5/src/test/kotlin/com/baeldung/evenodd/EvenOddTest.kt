@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 class EvenOddTest {
 
   @Test
-  fun is_even_is_odd_demo() {
+  fun `Given odd or even numbers should get the right response from rem`() {
     val a = 42
     val b = 25
 
@@ -20,7 +20,7 @@ class EvenOddTest {
   }
 
   @Test
-  fun using_modulo_operator() {
+  fun `Given the remainder function, assertions on the remainder should pass`() {
     assertTrue(10 % 4 == 2)
     assertTrue(25 % 5 == 0)
     assertTrue(24 % 5 == 4)
@@ -28,20 +28,22 @@ class EvenOddTest {
   }
 
   @Test
-  fun is_even_function() {
-    assertEquals(true, isEven(2))
-    assertEquals(true, isEven(4))
-    assertEquals(true, isEven(6))
-    assertEquals(false, isEven(1))
-    assertEquals(false, isEven(3))
+  fun `Given odd and even values the isEven function should answer correctly`() {
+    assertTrue(isEven(2))
+    assertTrue(isEven(4))
+    assertTrue(isEven(6))
+
+    assertFalse(isEven(1))
+    assertFalse(isEven(3))
   }
 
   @Test
-  fun is_odd_function() {
-    assertEquals(true, isOdd(1))
-    assertEquals(true, isOdd(3))
-    assertEquals(true, isOdd(5))
-    assertEquals(false, isOdd(2))
-    assertEquals(false, isOdd(4))
+  fun `Given odd and even values the isOdd function should answer correctly`() {
+    assertTrue(isOdd(1))
+    assertTrue(isOdd(3))
+    assertTrue(isOdd(5))
+
+    assertFalse(isOdd(2))
+    assertFalse(isOdd(4))
   }
 }
