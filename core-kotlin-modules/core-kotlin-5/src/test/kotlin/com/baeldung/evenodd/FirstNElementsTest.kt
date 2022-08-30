@@ -41,4 +41,10 @@ class FirstNElementsTest {
     assertContentEquals(listOf(1, 2, 3), tempList)
   }
 
+  @Test
+  fun `Convert a list to an array`() {
+    val list: List<Int> = listOf(1, 2, 3, 4)
+    val array: Array<Int> = list.toTypedArray()
+  }
+
 }
