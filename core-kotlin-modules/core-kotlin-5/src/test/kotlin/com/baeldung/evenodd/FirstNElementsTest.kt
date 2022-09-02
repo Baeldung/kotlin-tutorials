@@ -58,7 +58,7 @@ class FirstNElementsTest {
 
   @Test
   fun `Given a list take elements while predicate in an unsorted list`() {
-    val list = listOf(5, 4, 3, 2, 1)
+    val list = listOf(5, 3, 2, 4, 1)
 
     val takenList = list.takeWhile { it < 4 }
 
