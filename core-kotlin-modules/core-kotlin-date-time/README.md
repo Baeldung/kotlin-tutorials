@@ -6,3 +6,4 @@ This module contains articles about Kotlin core date/time features.
 
 - [Working with Dates in Kotlin](https://www.baeldung.com/kotlin/dates)
 - [Converting Strings to Date in Kotlin](https://www.baeldung.com/kotlin/string-to-date)
+- [Get the Current Date/Time in Kotlin](https://www.baeldung.com/kotlin/current-date-time)
