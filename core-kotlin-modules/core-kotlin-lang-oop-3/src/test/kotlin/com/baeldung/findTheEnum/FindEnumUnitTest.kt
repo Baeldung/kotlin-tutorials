@@ -55,55 +55,52 @@ class FindEnumUnitTest {
     @Test
     fun `given an enum class, when find enum by value using approach1 should find the enum or null`() {
         val searchOne = NumberV1 from 1
-        val searchTwo = NumberV1 from 2
-        val shouldBeNull = NumberV1.from(42)
         assertEquals(NumberV1.ONE, searchOne)
+        val searchTwo = NumberV1 from 2
         assertEquals(NumberV1.TWO, searchTwo)
+        val shouldBeNull = NumberV1.from(42)
         assertNull(shouldBeNull)
     }
 
     @Test
     fun `given an enum class, when find enum by value using approach2 should find the enum or null`() {
         val searchOne = NumberV2 from 1
-        val searchTwo = NumberV2 from 2
-        val shouldBeNull = NumberV2 from 42
-
         assertEquals(NumberV2.ONE, searchOne)
+        val searchTwo = NumberV2 from 2
         assertEquals(NumberV2.TWO, searchTwo)
+        val shouldBeNull = NumberV2 from 42
         assertNull(shouldBeNull)
 
         val searchOneAgain = NumberV2[1]
-        val searchTwoAgain = NumberV2[2]
-        val shouldBeNullAgain = NumberV2[42]
-
         assertEquals(NumberV2.ONE, searchOneAgain)
+        val searchTwoAgain = NumberV2[2]
         assertEquals(NumberV2.TWO, searchTwoAgain)
+        val shouldBeNullAgain = NumberV2[42]
         assertNull(shouldBeNullAgain)
     }
 
     @Test
     fun `given an enum class, when find enum by value using approach3 should find the enum or null`() {
         val searchOne = NumberV3 from 1
-        val searchTwo = NumberV3 from 2
-        val shouldBeNull = NumberV3 from 42
-
         assertEquals(NumberV3.ONE, searchOne)
+        val searchTwo = NumberV3 from 2
         assertEquals(NumberV3.TWO, searchTwo)
+        val shouldBeNull = NumberV3 from 42
         assertNull(shouldBeNull)
     }
 
     @Test
     fun `given an enum class, when find enum by value using approach4 should find the enum or null`() {
         val searchOne = NumberV4::value findBy 1
-        val searchTwo = NumberV4::value findBy 2
-        val shouldBeNull = NumberV4::value findBy 42
         assertEquals(NumberV4.ONE, searchOne)
+        val searchTwo = NumberV4::value findBy 2
         assertEquals(NumberV4.TWO, searchTwo)
+        val shouldBeNull = NumberV4::value findBy 42
         assertNull(shouldBeNull)
 
         val linux = OS::input findBy "linux"
-        val windows = OS::input findBy "windows"
         assertEquals(OS.Linux, linux)
+        val windows = OS::input findBy "windows"
         assertNull(windows)
     }
 }
