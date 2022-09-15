@@ -31,9 +31,4 @@
             </plugin>
         </plugins>
     </build>
-    <properties>
-		<java.version>11</java.version>
-		<maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
-    </properties>
-
 </project>
