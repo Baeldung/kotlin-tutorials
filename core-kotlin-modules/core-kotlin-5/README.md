@@ -5,4 +5,5 @@
 - [Convert Boolean to Int in Kotlin](https://www.baeldung.com/kotlin/boolean-to-int)
 - [Check if a Number Is Odd or Even in Kotlin](https://www.baeldung.com/kotlin/number-odd-even)
 - [Creating a Directory In Kotlin](https://www.baeldung.com/kotlin/create-directory)
+- [Taking the First N Elements of an Array in Kotlin](https://www.baeldung.com/kotlin/first-n-elements-array)
 
