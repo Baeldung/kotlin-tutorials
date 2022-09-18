@@ -15,7 +15,7 @@ fun main() = runBlocking {
     val cancelRunBlockingTime = measureTimeMillis {
         cancelRunBlocking()
     }
-    println("cancelCoroutineScopeTime = $cancelRunBlockingTime")
+    println("cancelRunBlockingTime = $cancelRunBlockingTime")
 }
 
 private fun cancelCoroutineScope() = runBlocking {
