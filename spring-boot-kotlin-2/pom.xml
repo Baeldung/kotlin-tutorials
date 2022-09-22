@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>spring-boot-kotlin-v2</artifactId>
-    <name>spring-boot-kotlin-v2</name>
+    <artifactId>spring-boot-kotlin-2</artifactId>
+    <name>spring-boot-kotlin-2</name>
     <packaging>jar</packaging>
     <description>Demo project showing how to use Kotlin with Spring Boot version 2.7.3</description>
 
