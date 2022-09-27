@@ -271,6 +271,7 @@
         <module>machine-learning</module>
         <module>spring-boot-kotlin</module>
         <module>spring-boot-test-kotlin</module>
+        <module>spring-boot-kotlin-configuration-property-value</module>
         <module>spring-mvc-kotlin</module>
         <module>spring-reactive-kotlin</module>
         <module>spring-security-kotlin-dsl</module>
