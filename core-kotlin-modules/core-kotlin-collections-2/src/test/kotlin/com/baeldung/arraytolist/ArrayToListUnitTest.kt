@@ -1,9 +1,13 @@
 package com.baeldung.arraytolist
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
 class ArrayToListUnitTest {
+
+    private val givenArray = arrayOf("one", "two", "three", "four", "five")
+    private val expectedList = listOf("one", "two", "three", "four", "five")
 
     @Test
     fun `asList maintains a reference to the original array`() {
@@ -31,4 +35,27 @@ class ArrayToListUnitTest {
         mutable.add(5)
         assertEquals(listOf(1, 2, 3, 4, 5), mutable)
     }
+
+    @Test
+    fun `Given an array, when call listOf() method, should get the expected list`() {
+        val myList = listOf(*givenArray)
+        assertThat(myList).isEqualTo(expectedList)
+    }
+
+    @Test
+    fun `Given an array, when call array's toList() function should get the expected list`() {
+        val myList = givenArray.toList()
+        assertThat(myList).isEqualTo(expectedList)
+    }
+
+    @Test
+    fun `Given an array, when call array's toCollection(destination) function should get the expected list`() {
+        val myList = givenArray.toCollection(ArrayList())
+        assertThat(myList).isEqualTo(expectedList)
+
+        val existingList = mutableListOf("I have an element already.")
+        val appendedList = givenArray.toCollection(existingList)
+        assertThat(appendedList).isEqualTo(mutableListOf("I have an element already.", *givenArray))
+    }
+
 }
