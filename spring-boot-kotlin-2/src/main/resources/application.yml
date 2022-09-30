@@ -1,0 +1,5 @@
+
+api:
+    clientId: "client123"
+    url: "https://api.url.com"
+    key: "api-access-key"
