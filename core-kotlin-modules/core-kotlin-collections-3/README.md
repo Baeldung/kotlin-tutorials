@@ -11,3 +11,4 @@ This module contains articles about core Kotlin collections.
 - [Comparing Two Lists in Kotlin](https://www.baeldung.com/kotlin/compare-lists)
 - [Sort Collection of Objects by Multiple Fields in Kotlin](https://www.baeldung.com/kotlin/sort-collection-multiple-fields)
 - [Add an Element to a List in Kotlin](https://www.baeldung.com/kotlin/add-element-to-list)
+- [Sum All the Items in a List of Integers in Kotlin](https://www.baeldung.com/kotlin/sum-integer-list)
