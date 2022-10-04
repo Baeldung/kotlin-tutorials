@@ -82,7 +82,7 @@ fun save3(theKey: String): SaveKeyResult {
     }
 }
 
-inline fun <R, T : R> Result<T>.raise(
+inline fun <R, T : R> Result<T>.onException(
     vararg exceptions: KClass<out Throwable>,
     transform: (exception: Throwable) -> T
 ) = recoverCatching { ex ->
@@ -95,13 +95,13 @@ fun save4(theKey: String): SaveKeyResult {
     return runCatching {
         KeyService.saveSixDigitsKey(theKey)
         SUCCESS
-    }.raise(
+    }.onException(
         KeyTooShortException::class,
         KeyTooLongException::class,
         InvalidKeyException::class
     ) {
         FAILED
-    }.raise(KeyAlreadyExistsException::class) {
+    }.onException(KeyAlreadyExistsException::class) {
         SKIPPED_EXISTED_KEY
     }.getOrThrow()
 }
