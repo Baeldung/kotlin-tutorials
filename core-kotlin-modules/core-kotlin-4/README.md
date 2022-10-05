@@ -12,3 +12,4 @@
 - [Idiomatic Way to Treat Nullable Values](https://www.baeldung.com/kotlin/idiomatic-nullable-values)
 - [Use of Boolean? in Kotlin if Statement](https://www.baeldung.com/kotlin/boolean-in-if-statement)
 - [Creating a Thread Pool in Kotlin](https://www.baeldung.com/kotlin/create-thread-pool)
+- [Convert Long to Int](https://www.baeldung.com/kotlin/long-to-int)
