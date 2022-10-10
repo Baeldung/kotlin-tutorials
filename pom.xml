@@ -307,17 +307,17 @@
     </profiles>
 
     <properties>
-        <kotlin.version>1.7.10</kotlin.version>
+        <kotlin.version>1.7.20</kotlin.version>
         <kotlinx.version>1.6.4</kotlinx.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- testing -->
-        <junit-jupiter.version>5.6.2</junit-jupiter.version>
+        <junit-jupiter.version>5.9.1</junit-jupiter.version>
         <mockito.version>3.3.3</mockito.version>
         <assertj-core.version>3.11.1</assertj-core.version>
-        <junit.platform.version>1.1.1</junit.platform.version>
+        <junit.platform.version>1.9.1</junit.platform.version>
 
         <!-- logging -->
         <org.slf4j.version>1.7.30</org.slf4j.version>
