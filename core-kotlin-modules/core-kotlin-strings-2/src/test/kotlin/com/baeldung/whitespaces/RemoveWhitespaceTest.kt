@@ -11,7 +11,7 @@ class RemoveWhitespaceTest {
         val example = "House Of The Dragon"
         val withOutSpaces = example.replace(" ", "")
 
-        assertThat(withOutSpaces).hasToString("HouseOfTheDragon")
+        assertThat(withOutSpaces).isEqualTo("HouseOfTheDragon")
     }
 
     @Test
@@ -20,16 +20,25 @@ class RemoveWhitespaceTest {
         val example = "Kotlin is a programming language"
         val withOutSpaces = example.replace("\\s".toRegex(), "")
 
-        assertThat(withOutSpaces).hasToString("Kotlinisaprogramminglanguage")
+        assertThat(withOutSpaces).isEqualTo("Kotlinisaprogramminglanguage")
+    }
+
+    @Test
+    fun givenString_whenReplaceWithRegexUnicode_WhitespacesShouldBeRemoved() {
+
+        val example = "House Of The Dragon"
+        val withOutSpaces = example.replace("\\p{Zs}+".toRegex(), "")
+
+        assertThat(withOutSpaces).isEqualTo("HouseOfTheDragon")
     }
 
     @Test
     fun givenString_whenFilterByNonWhitespace_WhitespacesShouldBeRemoved() {
 
         val example = "House Of The Dragon"
-        val withOutSpaces = example.filter { !it.isWhitespace() }
+        val withOutSpaces = example.filterNot { it.isWhitespace() }
 
-        assertThat(withOutSpaces).hasToString("HouseOfTheDragon")
+        assertThat(withOutSpaces).isEqualTo("HouseOfTheDragon")
     }
 
     @Test
@@ -38,7 +47,7 @@ class RemoveWhitespaceTest {
         val example = " House Of The Dragon "
         val trimmed = example.trim()
 
-        assertThat(trimmed).hasToString("House Of The Dragon")
+        assertThat(trimmed).isEqualTo("House Of The Dragon")
     }
 
     @Test
