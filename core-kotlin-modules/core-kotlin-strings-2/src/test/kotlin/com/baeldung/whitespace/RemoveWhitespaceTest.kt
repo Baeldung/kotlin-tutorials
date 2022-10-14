@@ -1,4 +1,4 @@
-package com.baeldung.whitespaces
+package com.baeldung.whitespace
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -17,10 +17,10 @@ class RemoveWhitespaceTest {
     @Test
     fun givenString_whenReplaceWithRegex_WhitespacesShouldBeRemoved() {
 
-        val example = "Kotlin is a programming language"
+        val example = "House Of The Dragon"
         val withOutSpaces = example.replace("\\s".toRegex(), "")
 
-        assertThat(withOutSpaces).isEqualTo("Kotlinisaprogramminglanguage")
+        assertThat(withOutSpaces).isEqualTo("HouseOfTheDragon")
     }
 
     @Test
