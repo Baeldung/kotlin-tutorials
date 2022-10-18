@@ -1,0 +1,23 @@
+[
+  {
+    "firstName": "John",
+    "lastName": "Doe",
+    "title": "Sales Manager",
+    "age": 23,
+    "salary": "869463.32"
+  },
+  {
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "title": "Senior Sales Manager",
+    "age": 35,
+    "salary": "166423.54"
+  },
+  {
+    "firstName": "Max",
+    "lastName": "Creep",
+    "title": "Secretary",
+    "age": 45,
+    "salary": "469193.19"
+  }
+]
