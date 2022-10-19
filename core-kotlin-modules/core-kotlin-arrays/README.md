@@ -8,3 +8,4 @@
 - [Convert a List Into an Array in Kotlin](https://www.baeldung.com/kotlin/convert-list-to-array)
 - [Convert Array to List in Kotlin](https://www.baeldung.com/kotlin/convert-array-to-list)
 - [Check if an Array Contains a Given Value in Kotlin](https://www.baeldung.com/kotlin/check-if-array-contains-value)
+- [Creating a Byte Array in Kotlin](https://www.baeldung.com/kotlin/byte-array)
