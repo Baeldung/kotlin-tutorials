@@ -1,1 +1,0 @@
-In shell script, ${ parameter } is called parameter substitution.
