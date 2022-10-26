@@ -57,7 +57,7 @@ class RemoveWhitespaceTest {
         val trimmedAtStart = example.trimStart()
         val trimmedAtEnd = example.trimEnd()
 
-        assertThat(trimmedAtStart).hasToString("House Of The Dragon  ")
-        assertThat(trimmedAtEnd).hasToString("  House Of The Dragon")
+        assertThat(trimmedAtStart).isEqualTo("House Of The Dragon  ")
+        assertThat(trimmedAtEnd).isEqualTo("  House Of The Dragon")
     }
 }
