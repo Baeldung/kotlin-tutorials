@@ -16,4 +16,5 @@ This module contains articles about Kotlin Libraries.
 - [Convert a Kotlin data class object to a Map](https://www.baeldung.com/kotlin/data-class-to-map)
 - [Read and Write CSV Files With Kotlin](https://www.baeldung.com/kotlin/csv-files)
 - [Kotlin Coroutines and RxKotlin Comparison](https://www.baeldung.com/kotlin/coroutines-vs-rxkotlin)
+- [Moshi JSON Library for Kotlin Applications](https://www.baeldung.com/kotlin/moshi-json-library)
 - More articles: [[<-- prev]](/kotlin-libraries)
