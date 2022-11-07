@@ -17,8 +17,7 @@ fun capitalizeWithSequence(input: String): String = sequence {
         yield(input.substring(startIndex, endIndex))
         startIndex = endIndex + 1
     }
-}.map { it.replaceFirstChar(Char::uppercaseChar) }
-    .joinToString(" ")
+}.joinToString(" ") { it.replaceFirstChar(Char::uppercaseChar) }
 
 fun capitalizeWithDoubleSpaces(input: String): String = input
     .split("\\W+".toRegex())
@@ -31,8 +30,7 @@ fun capitalizeWithDoubleSpacesAndSequence(input: String): String = sequence {
         yield(input.substring(startIndex, endIndex))
         startIndex = input.findFirstSince(endIndex) { it != ' ' }
     }
-}.map { it.replaceFirstChar(Char::uppercaseChar) }
-    .joinToString(" ")
+}.joinToString(" ") { it.replaceFirstChar(Char::uppercaseChar) }
 
 fun capitalizeWithPressRules(input: String): String {
     val components = input.split("\\W+".toRegex())
