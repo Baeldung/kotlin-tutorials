@@ -19,14 +19,8 @@ class LoggingResponseDecorator internal constructor(val log: Logger, delegate: S
                 if (log.isDebugEnabled) {
                     val bodyStream = ByteArrayOutputStream()
                     Channels.newChannel(bodyStream).write(buffer.asByteBuffer().asReadOnlyBuffer())
-                    log.debug("{}: {}", "response", String(bodyStream.toByteArray()))
-                }
+                    log.debug("{}: {} - {} : {}", "response", String(bodyStream.toByteArray()), "header", delegate.headers.asString())
+               }
             })
-    }
-
-    init {
-        if (log.isDebugEnabled) {
-            log.debug("{}", delegate.headers.asString())
-        }
     }
 }
