@@ -3,7 +3,7 @@ package com.baeldung.whitespace
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class RemoveWhitespaceTest {
+class RemoveWhitespaceUnitTest {
 
     @Test
     fun givenString_whenReplace_WhitespacesShouldBeRemoved() {
