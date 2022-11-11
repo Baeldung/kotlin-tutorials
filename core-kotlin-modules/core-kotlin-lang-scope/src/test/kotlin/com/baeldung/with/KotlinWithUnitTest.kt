@@ -1,4 +1,4 @@
-package com.baedlung.with
+package com.baeldung.with
 
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
