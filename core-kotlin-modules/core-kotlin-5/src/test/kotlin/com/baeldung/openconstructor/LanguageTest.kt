@@ -12,16 +12,16 @@ class LanguageTest {
     val languageA: NonLazyLanguage = NonLazyEnglish()
     val languageB: NonLazyLanguage = NonLazySpanish()
 
-    assertEquals(languageA.alphabetSize, 26)
-    assertEquals(languageB.alphabetSize, 27)
+    assertEquals(26, languageA.alphabetSize)
+    assertEquals(27, languageB.alphabetSize)
   }
 
   @Test
   fun `Languages should return their alphabet sizes`() {
     val languageA: Language = English()
     val languageB: Language = Spanish()
-    assertEquals(languageA.alphabetSize, 26)
-    assertEquals(languageB.alphabetSize, 27)
+    assertEquals(26, languageA.alphabetSize)
+    assertEquals(27, languageB.alphabetSize)
   }
 
 }
