@@ -3,9 +3,7 @@ package com.baeldung.kotlin.gson
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.assertj.core.api.Assertions.assertThat
-import org.checkerframework.checker.units.qual.A
 import org.junit.Test
-import java.time.LocalDate
 import kotlin.test.assertEquals
 
 class GsonUnitTest {

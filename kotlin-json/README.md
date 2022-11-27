@@ -1,0 +1,9 @@
+## JSON
+
+This module contains modules about JSON.
+
+- [Jackson Support for Kotlin](https://www.baeldung.com/kotlin/jackson-kotlin)
+- [Converting Kotlin Data Class from JSON using GSON](https://www.baeldung.com/kotlin/json-convert-data-class)
+- [Iterate Through a JSONArray in Kotlin](https://www.baeldung.com/kotlin/iterate-over-jsonarray)
+- [Parsing JSON Arrays in Kotlin with Gson](https://www.baeldung.com/kotlin/gson-parse-arrays)
+- [Moshi JSON Library for Kotlin Applications](https://www.baeldung.com/kotlin/moshi-json-library)
