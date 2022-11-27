@@ -1,12 +1,8 @@
-package com.baeldung.json
+package com.baeldung.kotlin.json
 
 import org.json.JSONArray
-import org.json.JSONObject
 
-operator fun <T> JSONArray.iterator(): Iterator<T> =
-    (0 until this.length()).asSequence().map { this.get(it) as T }.iterator()
-
-class JsonArrayIteratorExtension {
+class JsonArrayForLoop {
     private companion object
 
     val BOOKS_STRING = """
@@ -28,8 +24,9 @@ class JsonArrayIteratorExtension {
 
     fun main() {
         val booksJSONArray = JSONArray(BOOKS_STRING)
-        for (book in booksJSONArray) {
-            println("${(book as JSONObject).get("book_name")} by ${(book as JSONObject).get("author")}")
+        for (i in 0 until booksJSONArray.length()) {
+            val book = booksJSONArray.getJSONObject(i)
+            println("${book.get("book_name")} by ${book.get("author")}")
         }
     }
 }

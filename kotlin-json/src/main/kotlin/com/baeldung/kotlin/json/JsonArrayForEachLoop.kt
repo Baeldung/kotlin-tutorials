@@ -1,8 +1,8 @@
-package com.baeldung.json
+package com.baeldung.kotlin.json
 
 import org.json.JSONArray
 
-class JsonArrayForLoop {
+class JsonArrayForEachLoop {
     private companion object
 
     val BOOKS_STRING = """
@@ -24,8 +24,8 @@ class JsonArrayForLoop {
 
     fun main() {
         val booksJSONArray = JSONArray(BOOKS_STRING)
-        for (i in 0 until booksJSONArray.length()) {
-            val book = booksJSONArray.getJSONObject(i)
+        (0 until booksJSONArray.length()).forEach {
+            val book = booksJSONArray.getJSONObject(it)
             println("${book.get("book_name")} by ${book.get("author")}")
         }
     }
