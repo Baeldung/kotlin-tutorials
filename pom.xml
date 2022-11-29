@@ -260,6 +260,7 @@
         <module>core-kotlin-companion</module>
         <module>jee-kotlin</module>
         <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
+        <module>kotlin-json</module>
         <module>kotlin-lambda</module>
         <!-- <module>kotlin-tornadofx</module>--> <!-- It's a Java 11 module -->
         <module>kotlin-libraries</module>

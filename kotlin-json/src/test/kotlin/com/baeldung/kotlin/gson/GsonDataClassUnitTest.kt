@@ -1,11 +1,11 @@
-package com.baeldung.gson
+package com.baeldung.kotlin.gson
 
 import com.google.gson.Gson
 
 import org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test
 
-class GsonUnitTest {
+class GsonDataClassUnitTest {
 
     var gson = Gson()
 
