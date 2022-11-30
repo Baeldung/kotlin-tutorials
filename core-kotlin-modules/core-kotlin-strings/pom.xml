@@ -17,8 +17,12 @@
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
-            <version>1.14</version>
+            <version>${commons-codec.version}</version>
         </dependency>
     </dependencies>
+
+    <properties>
+        <commons-codec.version>1.14</commons-codec.version>
+    </properties>
 
 </project>
