@@ -15,3 +15,5 @@ This module contains articles about Object-Oriented Programming in Kotlin
 - [Anonymous Objects in Kotlin](https://www.baeldung.com/kotlin/anonymous-objects)
 - [SOLID Principles with Kotlin](https://www.baeldung.com/kotlin/solid-principles)
 - [[<-- Prev]](/core-kotlin-modules/core-kotlin-lang-oop)
+- More articles: [[<-- prev]](/core-kotlin-modules/core-kotlin-lang-oop) [[next -->]](/core-kotlin-modules/core-kotlin-lang-oop-3)
+
