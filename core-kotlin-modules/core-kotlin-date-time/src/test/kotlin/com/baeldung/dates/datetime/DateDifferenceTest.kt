@@ -6,11 +6,11 @@ import kotlin.test.assertEquals
 class DateDifferenceTest {
 
     @Test
-    fun given2DateStrings_whenUsingJava8DateTimeClasses_thenReturnDateDifference() {
+    fun givenTwoDateStrings_whenUsingJavaDateTimeClasses_thenReturnDateDifference() {
         val dateDiff = DateDifference()
         val from = "02/01/2007"
         val to = "11/25/2022"
-        val period = dateDiff.dateDiffUsingJava8(from, to)
+        val period = dateDiff.dateDiffUsingJavaClasses(from, to)
 
         val years = period.years
         val months = period.months
@@ -22,7 +22,7 @@ class DateDifferenceTest {
     }
 
     @Test
-    fun given2DateStrings_whenUsingJodaDateTimeClasses_thenReturnDateDifference() {
+    fun givenTwoDateStrings_whenUsingJodaDateTimeClasses_thenReturnDateDifference() {
         val dateDiff = DateDifference()
         val from = "02/01/2007"
         val to = "11/25/2022"

@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter
 
 class DateDifference {
 
-    fun dateDiffUsingJava8(fromDate: String, toDate: String): Period {
+    fun dateDiffUsingJavaClasses(fromDate: String, toDate: String): Period {
         val dateFormatter: DateTimeFormatter =  DateTimeFormatter.ofPattern("MM/dd/yyyy")
 
         val from = LocalDate.parse(fromDate, dateFormatter)
