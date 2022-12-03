@@ -6,3 +6,5 @@ This module contains articles about Object-Oriented Programming in Kotlin
 - [How to Create “static” methods for Enum in Kotiln](https://www.baeldung.com/kotlin/enum-static-method)
 - [Convert String Into Enum in Kotlin](https://www.baeldung.com/kotlin/convert-string-enum)
 - [Companion Objects in Kotlin Interfaces](https://www.baeldung.com/kotlin/companion-objects-interfaces)
+- [Comparing Objects in Kotlin](https://www.baeldung.com/kotlin/compare-objects)
+- More articles: [[<-- prev]](/core-kotlin-modules/core-kotlin-lang-oop-2)
