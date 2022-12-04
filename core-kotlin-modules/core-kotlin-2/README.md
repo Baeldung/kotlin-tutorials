@@ -1,7 +1,5 @@
 ### Relevant Articles:
 
-- [Deprecation in Kotlin](https://www.baeldung.com/kotlin/deprecation)
-- [Measuring Elapsed Time in Kotlin](https://www.baeldung.com/kotlin/measure-elapsed-time)
 - [Unsigned Integers in Kotlin](https://www.baeldung.com/kotlin/unsigned-integers)
 - [Kotlin NullPointerException: Parameter specified as non-null is null](https://www.baeldung.com/kotlin/illegalargumentexception-parameter-specified-as-non-null-is-null)
 - [Static Initialization Block in Kotlin](https://www.baeldung.com/kotlin/static-initialization-block)
