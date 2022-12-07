@@ -17,6 +17,14 @@ class LanguageTest {
   }
 
   @Test
+  fun `Languages should return their alphabet name sizes`() {
+    val languageA: Language = English()
+    val languageB: Language = Spanish()
+    assertEquals(7, languageA.alphabetNameSize)
+    assertEquals(7, languageB.alphabetNameSize)
+  }
+
+  @Test
   fun `Languages should return their alphabet sizes`() {
     val languageA: Language = English()
     val languageB: Language = Spanish()
