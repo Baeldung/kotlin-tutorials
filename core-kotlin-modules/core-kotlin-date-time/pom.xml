@@ -14,9 +14,15 @@
     </parent>
 
     <dependencies>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>${joda-time.version}</version>
+        </dependency>
     </dependencies>
 
     <properties>
+        <joda-time.version>2.12.1</joda-time.version>
     </properties>
 
 </project>
