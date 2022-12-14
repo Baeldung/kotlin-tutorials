@@ -2,6 +2,7 @@ package com.baeldung.maxvalue
 
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Test
 
 class MaxValueArrayTest {
@@ -18,7 +19,11 @@ class MaxValueArrayTest {
     @Test
     fun givenNonEmptyArray_whenGetMaxBy_thenMaxValueIsReturned() {
 
-        val array = listOf(Person("Alan", 34), Person("Jason", 45), Person("Joe", 28))
+        val array = listOf(
+            Person("Alan", 34, Height(5, 10)),
+            Person("Jason", 45, Height(5, 11)),
+            Person("Joe", 28, Height(5, 9))
+        )
         val max = array.maxByOrNull { p -> p.age }
 
         assertThat(max).isNotNull()
@@ -31,8 +36,12 @@ class MaxValueArrayTest {
     @Test
     fun givenNonEmptyArray_whenGetMaxWith_thenMaxValueIsReturned() {
 
-        val array = listOf(Person("Alan", 34), Person("Jason", 45), Person("Joe", 28))
-        val max = array.maxWithOrNull(Comparator<Person> { a, b -> a.age.compareTo(b.age) })
+val array = listOf(
+    Person("Alan", 34, Height(5, 10)),
+    Person("Jason", 45, Height(5, 11)),
+    Person("Joe", 28, Height(5, 9))
+)
+val max = array.maxWithOrNull(compareBy({ it.height.feet }, { it.height.inches }))
 
         assertThat(max).isNotNull()
         if (max != null) {
@@ -44,11 +53,32 @@ class MaxValueArrayTest {
     @Test
     fun givenNonEmptyArray_whenGetBySorting_thenMaxValueShouldBeReturned() {
 
-        val array = listOf(Person("Alan", 34), Person("Jason", 45), Person("Joe", 28))
+        val array = listOf(
+            Person("Alan", 34, Height(5, 10)),
+            Person("Jason", 45, Height(5, 11)),
+            Person("Joe", 28, Height(5, 9))
+        )
         val max = array.sortedByDescending { p -> p.age }[0]
 
         assertThat(max).isNotNull()
         assertThat(max.name).isEqualTo("Jason")
+    }
+
+    @Test
+    fun givenEmptyArray_whenGetMax_thenExceptionIsThrown() {
+        assertThatExceptionOfType(NoSuchElementException::class.java).isThrownBy {
+            val array = emptyArray<Int>()
+            val max = array.max()
+        }
+    }
+
+    @Test
+    fun givenEmptyArray_whenGetMaxBy_thenExceptionIsThrown() {
+
+        assertThatExceptionOfType(NoSuchElementException::class.java).isThrownBy {
+            val array = emptyArray<Person>()
+            val max = array.maxBy { p -> p.age }
+        }
     }
 }
 
