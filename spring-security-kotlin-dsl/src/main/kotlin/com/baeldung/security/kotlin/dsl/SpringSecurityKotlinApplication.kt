@@ -23,7 +23,7 @@ class SpringSecurityKotlinApplication
 @Configuration
 class AdminSecurityConfiguration {
     @Bean
-    open fun filterChainAdmin(http: HttpSecurity): SecurityFilterChain {
+     fun filterChainAdmin(http: HttpSecurity): SecurityFilterChain {
         http {
             securityMatcher("/greetings/**")
             authorizeRequests {
@@ -38,7 +38,7 @@ class AdminSecurityConfiguration {
 @Configuration
 class BasicSecurityConfiguration {
     @Bean
-    open fun filterChainBasic(http: HttpSecurity): SecurityFilterChain {
+     fun filterChainBasic(http: HttpSecurity): SecurityFilterChain {
         http {
             authorizeRequests {
                 authorize("/**", permitAll)
