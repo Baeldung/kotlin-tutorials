@@ -1,4 +1,4 @@
-package com.baeldung
+package com.baeldung.custom_exception
 
 class CustomException {
     /**
@@ -15,6 +15,11 @@ class CustomException {
         constructor(message: String, cause: Throwable) : super(message, cause)
         constructor(cause: Throwable) : super(cause)
     }
+
+    /**
+     * A full-featured custom exception with less boilerplate.
+     */
+    class CustomException(message: String? = null, cause: Throwable? = null) : Exception(message, cause)
 
     private fun throwMyCustomException() {
         throw MyCustomException("This is a detail message for my custom exception")
