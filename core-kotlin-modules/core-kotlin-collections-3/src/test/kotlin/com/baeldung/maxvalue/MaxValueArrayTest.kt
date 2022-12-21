@@ -36,18 +36,29 @@ class MaxValueArrayTest {
     @Test
     fun givenNonEmptyArray_whenGetMaxWith_thenMaxValueIsReturned() {
 
-val array = listOf(
-    Person("Alan", 34, Height(5, 10)),
-    Person("Jason", 45, Height(5, 11)),
-    Person("Joe", 28, Height(5, 9))
-)
-val max = array.maxWithOrNull(compareBy({ it.height.feet }, { it.height.inches }))
+        val array = listOf(
+            Person("Alan", 34, Height(5, 10)),
+            Person("Jason", 45, Height(5, 13)),
+            Person("Joe", 45, Height(5, 11))
+        )
+        val max = array.maxWith(compareBy({ it.height.feet }, { it.height.inches }))
 
         assertThat(max).isNotNull()
-        if (max != null) {
-            assertThat(max.name).isEqualTo("Jason")
-        }
+        assertThat(max.name).isEqualTo("Jason")
+    }
 
+    @Test
+    fun givenNonEmptyArrayWithMultipleMaxCandidate_whenGetMaxWith_thenMaxValueIsReturned() {
+
+        val array = listOf(
+            Person("Alan", 34, Height(5, 10)),
+            Person("Jason", 45, Height(5, 11)),
+            Person("Joe", 45, Height(5, 11))
+        )
+        val max = array.maxWith(compareBy({ it.height.feet }, { it.height.inches }))
+
+        assertThat(max).isNotNull()
+        assertThat(max.name).isEqualTo("Jason")
     }
 
     @Test
@@ -58,7 +69,7 @@ val max = array.maxWithOrNull(compareBy({ it.height.feet }, { it.height.inches }
             Person("Jason", 45, Height(5, 11)),
             Person("Joe", 28, Height(5, 9))
         )
-        val max = array.sortedByDescending { p -> p.age }[0]
+        val max = array.sortedByDescending { p -> p.age }.first()
 
         assertThat(max).isNotNull()
         assertThat(max.name).isEqualTo("Jason")
