@@ -2,15 +2,16 @@ package com.baeldung.security.kotlin.dsl
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
+import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.support.beans
 import org.springframework.core.annotation.Order
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.config.web.servlet.invoke
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.provisioning.InMemoryUserDetailsManager
+import org.springframework.security.web.SecurityFilterChain
 import org.springframework.web.servlet.function.ServerResponse
 import org.springframework.web.servlet.function.router
 
@@ -20,8 +21,9 @@ class SpringSecurityKotlinApplication
 
 @Order(1)
 @Configuration
-class AdminSecurityConfiguration : WebSecurityConfigurerAdapter() {
-    override fun configure(http: HttpSecurity?) {
+class AdminSecurityConfiguration {
+    @Bean
+     fun filterChainAdmin(http: HttpSecurity): SecurityFilterChain {
         http {
             securityMatcher("/greetings/**")
             authorizeRequests {
@@ -29,18 +31,21 @@ class AdminSecurityConfiguration : WebSecurityConfigurerAdapter() {
             }
             httpBasic {}
         }
+        return http.build()
     }
 }
 
 @Configuration
-class BasicSecurityConfiguration : WebSecurityConfigurerAdapter() {
-    override fun configure(http: HttpSecurity?) {
+class BasicSecurityConfiguration {
+    @Bean
+     fun filterChainBasic(http: HttpSecurity): SecurityFilterChain {
         http {
             authorizeRequests {
                 authorize("/**", permitAll)
             }
             httpBasic {}
         }
+        return http.build()
     }
 }
 
