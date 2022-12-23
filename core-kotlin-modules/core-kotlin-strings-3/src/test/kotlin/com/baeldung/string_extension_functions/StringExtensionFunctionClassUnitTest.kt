@@ -11,17 +11,17 @@ internal class StringExtensionFunctionClassUnitTest {
     fun `using replace() method`(){
         val inputString0 = "Jelly"
         val inputString1 = "Kotlin Replace Program"
-        assertEquals(inputString0.replace( 'l', 'z'), "Jezzy")
-        assertEquals(inputString0.replace('j', 'P', true), "Pelly")
-        assertEquals(inputString0.replace('j', 'P'), "Jelly")
-        assertEquals(inputString1.replace("PROGRAM", "Examples", true), "Kotlin Replace Examples")
+        assertEquals("Jezzy", inputString0.replace( 'l', 'z'))
+        assertEquals("Pelly", inputString0.replace('j', 'P', true))
+        assertEquals("Jelly",inputString0.replace('j', 'P'))
+        assertEquals("Kotlin Replace Examples", inputString1.replace("PROGRAM", "Examples", true))
     }
 
     @Test
     fun `using uppercase() method`(){
         var str = "Extension Functions"
         var result = str.uppercase()
-        assertEquals(result, "EXTENSION FUNCTIONS")
+        assertEquals("EXTENSION FUNCTIONS",result)
     }
 
     @Test
@@ -36,7 +36,7 @@ internal class StringExtensionFunctionClassUnitTest {
         val str = "functions"
         val chars = str.toCharArray()
         val convertedString = String(chars)
-        assertEquals(convertedString, "functions")
+        assertEquals("functions", convertedString)
     }
 
     @Test
@@ -44,8 +44,8 @@ internal class StringExtensionFunctionClassUnitTest {
         val str1 = "Hello World"
         val substring1 = str1.substring(6)
         val substring2 = str1.substring(0, 5)
-        assertEquals(substring1,"World")
-        assertEquals(substring2,"Hello")
+        assertEquals("World",substring1)
+        assertEquals("Hello",substring2)
     }
 
     @Test
@@ -65,7 +65,7 @@ internal class StringExtensionFunctionClassUnitTest {
     fun `using compareTo() method`(){
         var str1 = "Hello"
         var str2 = "Hello"
-        assertEquals(str1.compareTo(str2), 0)
+        assertEquals(0,str1.compareTo(str2))
         assertTrue(str1.compareTo(str2) == 0)
 
         str2 = "Hallo"
@@ -78,12 +78,12 @@ internal class StringExtensionFunctionClassUnitTest {
     fun `using toByteArray() method`(){
         val str = "Hello"
         val byteArray = str.toByteArray()
-        assertEquals(byteArray.contentToString(), "[72, 101, 108, 108, 111]")
+        assertEquals("[72, 101, 108, 108, 111]",byteArray.contentToString())
     }
 
     @Test
     fun `using capitalize() method`(){
         var str = "kotlin functions"
-        assertEquals(str.capitalize(), "Kotlin functions")
+        assertEquals("Kotlin functions",str.capitalize())
     }
 }
