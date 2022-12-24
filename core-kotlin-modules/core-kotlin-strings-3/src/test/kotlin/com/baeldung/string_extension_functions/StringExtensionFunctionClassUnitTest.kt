@@ -28,7 +28,7 @@ internal class StringExtensionFunctionClassUnitTest {
     fun `using lowercase() method`(){
         var str = "Extension Functions"
         var result = str.lowercase()
-        assertEquals(result, "extension functions")
+        assertEquals("extension functions",result)
     }
 
     @Test
