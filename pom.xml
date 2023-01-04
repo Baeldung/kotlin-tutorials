@@ -269,6 +269,7 @@
         <module>kotlin-patterns</module>
         <module>kotlin-quasar</module>
         <module>kotlin-testing</module>
+        <module>kotlin-testing-2</module>
         <module>machine-learning</module>
         <module>spring-boot-kotlin</module>
         <module>spring-boot-kotlin-2</module>
