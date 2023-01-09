@@ -125,6 +125,12 @@
             <artifactId>json</artifactId>
             <version>20210307</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-serialization-json</artifactId>
+            <version>${serialization.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -242,6 +248,33 @@
                     <executable>maven</executable>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <version>${kotlin.version}</version>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <compilerPlugins>
+                        <plugin>kotlinx-serialization</plugin>
+                    </compilerPlugins>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-maven-serialization</artifactId>
+                        <version>${kotlin.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
 
         <extensions>
@@ -343,6 +376,10 @@
         <gib.enabled>false</gib.enabled>
 
         <java.version>1.8</java.version>
+
+        <!-- serialization api-->
+        <kotlin.version>1.7.20</kotlin.version>
+        <serialization.version>1.4.1</serialization.version>
     </properties>
 
 </project>
