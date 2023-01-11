@@ -1,4 +1,4 @@
-package com.baeldung.serialization.default_value_paramters
+package com.baeldung.serialization.default_value_parameters
 
 import kotlinx.serialization.EncodeDefault
 import kotlinx.serialization.Serializable
