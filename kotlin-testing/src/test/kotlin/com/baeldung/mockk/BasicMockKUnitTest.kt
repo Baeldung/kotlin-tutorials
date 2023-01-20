@@ -3,6 +3,7 @@ package com.baeldung.mockk
 import io.mockk.*
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 
 class BasicMockKUnitTest {
@@ -89,4 +90,51 @@ class BasicMockKUnitTest {
     }
 
 
+    @Test
+    fun givenServiceMock_whenCallingMethodReturnsUnit_thenCorrectlyVerified() {
+        // given
+        val service = mockk<TestableService>()
+        val myList = mutableListOf<String>()
+
+        // when
+        every { service.addHelloWorld(any()) } just Runs
+        service.addHelloWorld(myList)
+
+        // then
+        assertTrue(myList.isEmpty())
+    }
+
+    @Test
+    fun givenServiceMock_whenCallingOriginalMethod_thenCorrectlyVerified() {
+        // given
+        val service = mockk<TestableService>()
+        val myList = mutableListOf<String>()
+
+        // when
+        every { service.addHelloWorld(any()) } answers { callOriginal() }
+        service.addHelloWorld(myList)
+
+        // then
+        assertEquals(1, myList.size)
+        assertEquals("Hello World!", myList.first())
+    }
+
+    @Test
+    fun givenServiceMock_whenStubbingTwoScenarios_thenCorrectlyVerified() {
+        // given
+        val service = mockk<TestableService>()
+        val kaiList = mutableListOf("Kai")
+        val emptyList = mutableListOf<String>()
+
+        // when
+        every { service.addHelloWorld(any()) } just runs
+        every { service.addHelloWorld(match { "Kai" in it }) } answers { callOriginal() }
+
+        service.addHelloWorld(kaiList)
+        service.addHelloWorld(emptyList)
+
+        // then
+        assertEquals(listOf("Kai", "Hello World!"), kaiList)
+        assertTrue(emptyList.isEmpty())
+    }
 }
