@@ -6,3 +6,4 @@
 - [Create and Throw a Custom Exception With Kotlin](https://www.baeldung.com/kotlin/throw-custom-exception)
 - [How to Invoke External Command From Within Kotlin](https://www.baeldung.com/kotlin/invoke-external-command)
 - [Kotlin Equivalent to Java String Arrays](https://www.baeldung.com/kotlin/java-string-arrays-equivalent)
+- [Kotlin Bit Operations](https://www.baeldung.com/kotlin/bit-operations)
