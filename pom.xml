@@ -40,11 +40,6 @@
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib-jdk8</artifactId>
-            <version>${kotlin.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-reflect</artifactId>
             <version>${kotlin.version}</version>
         </dependency>
@@ -342,7 +337,7 @@
     </profiles>
 
     <properties>
-        <kotlin.version>1.7.22</kotlin.version>
+        <kotlin.version>1.8.0</kotlin.version>
         <kotlinx.version>1.6.4</kotlinx.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -350,7 +345,7 @@
 
         <!-- testing -->
         <junit-jupiter.version>5.9.1</junit-jupiter.version>
-        <mockito.version>3.3.3</mockito.version>
+        <mockito.version>5.1.0</mockito.version>
         <assertj-core.version>3.11.1</assertj-core.version>
         <junit.platform.version>1.9.1</junit.platform.version>
 
@@ -375,10 +370,8 @@
         <gib.failOnError>false</gib.failOnError>
         <gib.enabled>false</gib.enabled>
 
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
 
-        <!-- serialization api-->
-        <kotlin.version>1.7.20</kotlin.version>
         <serialization.version>1.4.1</serialization.version>
     </properties>
 
