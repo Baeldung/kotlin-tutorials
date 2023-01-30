@@ -50,7 +50,7 @@ class MockMvcControllerTest {
             content = mapper.writeValueAsString(input)
             accept = MediaType.APPLICATION_JSON
         }.andExpect {
-            status { isOk }
+            status { isOk() }
             content { contentType(MediaType.APPLICATION_JSON) }
             content { json(mapper.writeValueAsString(expectation)) }
         }
