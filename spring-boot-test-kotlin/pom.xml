@@ -61,7 +61,7 @@
         <dependency>
             <groupId>com.ninja-squad</groupId>
             <artifactId>springmockk</artifactId>
-            <version>4.0.0</version>
+            <version>3.1.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
