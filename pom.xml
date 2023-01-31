@@ -286,7 +286,7 @@
 
         <module>core-kotlin-modules</module>
         <module>core-kotlin-companion</module>
-        <module>jee-kotlin</module>
+        <!-- <module>jee-kotlin</module> fixing in https://jira.baeldung.com/browse/KTLN-426 -->
         <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
         <module>kotlin-json</module>
         <module>kotlin-lambda</module>
