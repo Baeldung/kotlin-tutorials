@@ -1,4 +1,4 @@
-package com.baeldung.datetime_toinstant
+package com.baeldung.dateTimeToInstant
 
 import org.junit.jupiter.api.Test
 import java.time.*
@@ -8,7 +8,7 @@ import kotlin.test.assertEquals
 class DateTimeStringToInstantTest {
 
     @Test
-    fun `method one combining date and time string and parsing to localdatetime and using zoneId`(){
+    fun `given date and time as strings,combine them and parse to localdatetime then use zoneId`(){
         var strDate = "2021-11-25"
         var strTime = "15:20"
         var strDateTime = strDate + "T" + strTime
@@ -18,7 +18,7 @@ class DateTimeStringToInstantTest {
     }
 
     @Test
-    fun `method two by parsing date and time string to localdatetime and using zoneId`(){
+    fun `given date and time strings parse directly to localdatetime then use zoneId`(){
         var strDate = "2021-11-25"
         var strTime = "15:20"
         val ldt = LocalDateTime.of(LocalDate.parse(strDate), LocalTime.parse(strTime))
@@ -27,7 +27,7 @@ class DateTimeStringToInstantTest {
     }
 
     @Test
-    fun `method 3 using zoneddatetime object`(){
+    fun `given date and time strings, parse directly to  zoneddatetime object`(){
         var strDate = "2021-11-25"
         var strTime = "15:20"
         val zdt1 = ZonedDateTime.of(LocalDate.parse(strDate), LocalTime.parse(strTime),ZoneId.systemDefault() )
@@ -39,7 +39,7 @@ class DateTimeStringToInstantTest {
     }
 
     @Test
-    fun `method four using zoneddatetime and datetimeformatter`(){
+    fun `given date and time strings, use it together with datetimeformatter on zoneddatetime object`(){
         val strDate = "2021-11-25"
         val strTime = "15:20"
         val dtf = DateTimeFormatter.ISO_LOCAL_DATE_TIME.withZone(ZoneId.systemDefault())
@@ -49,7 +49,7 @@ class DateTimeStringToInstantTest {
     }
 
     @Test
-    fun `method five using toinstant method directly on localdatetime`(){
+    fun `given date and time strings, parse directly on localdatetime and call toinstant method`(){
         val strDate = "2021-11-25"
         val strTime = "15:20"
         val ldt = LocalDateTime.of(LocalDate.parse(strDate), LocalTime.parse(strTime))
