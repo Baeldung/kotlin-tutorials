@@ -1,5 +1,6 @@
 package com.baeldung.accidental_override
 
+// This example will create an accidental override error, because of the conflicting `getSound()` function.
 //class Cat : Animal {
 //    val sound: String = "Meow"
 //}
