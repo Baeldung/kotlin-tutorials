@@ -272,6 +272,24 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <configuration>
+                    <sourceDirectories>
+                        <dir>${project.basedir}/src/main/kotlin/com/baeldung/dokka</dir>
+                    </sourceDirectories>
+                </configuration>
+                <groupId>org.jetbrains.dokka</groupId>
+                <artifactId>dokka-maven-plugin</artifactId>
+                <version>1.7.20</version>
+                <executions>
+                    <execution>
+                        <phase>pre-site</phase>
+                        <goals>
+                            <goal>dokka</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
