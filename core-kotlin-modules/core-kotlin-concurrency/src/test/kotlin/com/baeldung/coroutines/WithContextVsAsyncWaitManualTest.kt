@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import java.util.concurrent.Executors
 import kotlin.system.measureTimeMillis
 
-class WithContextVsAsyncWaitUnitTest {
+class WithContextVsAsyncWaitManualTest {
 
     suspend fun doTheTask(delayMilli: Long): Thread {
         delay(delayMilli)
