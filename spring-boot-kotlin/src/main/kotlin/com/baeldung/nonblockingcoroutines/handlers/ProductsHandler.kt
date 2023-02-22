@@ -38,11 +38,11 @@ class ProductsHandler(
               .accept(MediaType.APPLICATION_JSON)
               .retrieve().awaitBody<Int>()
         }
-        return ServerResponse.ok().json().bodyAndAwait(ProductStockView(product.await()!!, quantity.await()))
+        return ServerResponse.ok().json().bodyAndAwait(ProductStockView(product.await()!!, quantity.await()).asFlow())
     }
 
     suspend fun findOne(request: ServerRequest): ServerResponse {
         val id = request.pathVariable("id").toInt()
-        return ServerResponse.ok().json().bodyAndAwait(productRepository.getProductById(id)!!)
+        return ServerResponse.ok().json().bodyAndAwait(productRepository.getProductById(id))
     }
 }
