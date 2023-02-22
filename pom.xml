@@ -356,6 +356,7 @@
 
         <!-- utilities -->
         <apache-commons.version>3.11</apache-commons.version>
+        <apache-commons.io.version>2.11.0</apache-commons.io.version>
 
         <!-- plugins -->
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>

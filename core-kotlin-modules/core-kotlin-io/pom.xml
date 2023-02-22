@@ -14,7 +14,12 @@
     </parent>
 
     <dependencies>
-        
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${apache-commons.io.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <properties>
