@@ -1,14 +1,9 @@
 package com.baeldung.coroutine.dispatchers
 
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import org.json.JSONObject
 
 class IoAndDefaultDemo {
-    private val ioDispatcher = Dispatchers.IO
-    private val defaultDispatcher = Dispatchers.Default
 
     suspend fun switchDispatcher(dispatcher: CoroutineDispatcher) {
         println("Started execution on ${Thread.currentThread().name}")
@@ -20,7 +15,7 @@ class IoAndDefaultDemo {
     }
 
     suspend fun fetchData(): String {
-        return withContext(ioDispatcher) {
+        return withContext(Dispatchers.IO) {
             // perform network request to fetch data
             val response = networkRequest()
 
@@ -32,11 +27,18 @@ class IoAndDefaultDemo {
     }
 
     suspend fun calculateSum(a: Int, b: Int): Int {
-        return withContext(defaultDispatcher) {
+        return withContext(Dispatchers.Default) {
             // perform CPU-bound calculation
             val sum = a + b
 
             return@withContext sum
+        }
+    }
+
+    fun unspecifiedDispatcher() {
+        GlobalScope.launch {
+            // this coroutine will run on Dispatchers.Default
+            println("Running in ${Thread.currentThread().name}")
         }
     }
 
