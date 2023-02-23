@@ -45,7 +45,6 @@ class ProductsHandler(
 
     suspend fun findOne(request: ServerRequest): ServerResponse {
         val id = request.pathVariable("id").toInt()
-        //return ServerResponse.ok().json().bodyAndAwait(productRepository.getProductById(id))
 
         return productRepository.getProductById(id)?.let { ServerResponse.ok().json().bodyValueAndAwait(it) }
 				?: ServerResponse.notFound().buildAndAwait()
