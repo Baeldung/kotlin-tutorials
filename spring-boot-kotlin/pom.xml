@@ -18,12 +18,10 @@
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-core</artifactId>
-            <version>${kotlinx-coroutines.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-reactor</artifactId>
-              <version>${kotlinx-coroutines.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -95,8 +93,8 @@
         <r2dbc.version>1.0.0.RELEASE</r2dbc.version>
         <r2dbc-spi.version>1.0.0.RELEASE</r2dbc-spi.version>
         <h2-r2dbc.version>1.0.0.RELEASE</h2-r2dbc.version>
-        <kotlinx-coroutines.version>1.2.1</kotlinx-coroutines.version>
         <spring-boot.version>2.2.0.RELEASE</spring-boot.version>
+        <mockito.version>3.1.0</mockito.version>
     </properties>
 
 </project>
