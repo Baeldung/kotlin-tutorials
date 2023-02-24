@@ -15,6 +15,8 @@ import org.springframework.web.reactive.function.client.awaitBody
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
 import org.springframework.web.reactive.function.server.bodyAndAwait
+import org.springframework.web.reactive.function.server.bodyValueAndAwait
+import org.springframework.web.reactive.function.server.buildAndAwait
 import org.springframework.web.reactive.function.server.json
 
 @Component
@@ -38,11 +40,14 @@ class ProductsHandler(
               .accept(MediaType.APPLICATION_JSON)
               .retrieve().awaitBody<Int>()
         }
-        return ServerResponse.ok().json().bodyAndAwait(ProductStockView(product.await()!!, quantity.await()))
+        return ServerResponse.ok().json().bodyValueAndAwait(ProductStockView(product.await()!!, quantity.await()))
     }
 
     suspend fun findOne(request: ServerRequest): ServerResponse {
         val id = request.pathVariable("id").toInt()
-        return ServerResponse.ok().json().bodyAndAwait(productRepository.getProductById(id)!!)
+
+        return productRepository.getProductById(id)?.let { ServerResponse.ok().json().bodyValueAndAwait(it) }
+				?: ServerResponse.notFound().buildAndAwait()
+
     }
 }
