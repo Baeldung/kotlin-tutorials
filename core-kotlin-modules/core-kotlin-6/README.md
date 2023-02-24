@@ -7,3 +7,4 @@
 - [How to Invoke External Command From Within Kotlin](https://www.baeldung.com/kotlin/invoke-external-command)
 - [Kotlin Equivalent to Java String Arrays](https://www.baeldung.com/kotlin/java-string-arrays-equivalent)
 - [Kotlin Bit Operations](https://www.baeldung.com/kotlin/bit-operations)
+- [Mark Unused Parameters in Kotlin](https://www.baeldung.com/kotlin/mark-unused-parameters)

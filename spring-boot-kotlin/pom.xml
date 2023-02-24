@@ -14,32 +14,14 @@
         <relativePath>../parent-boot-2</relativePath>
     </parent>
 
-<repositories>
-    <repository>
-        <id>spring-snapshots</id>
-        <name>Spring Snapshots</name>
-        <url>https://repo.spring.io/snapshot</url>
-        <snapshots>
-            <enabled>true</enabled>
-        </snapshots>
-    </repository>
-    <repository>
-        <id>spring-milestones</id>
-        <name>Spring Milestones</name>
-        <url>https://repo.spring.io/milestone</url>
-    </repository>
-</repositories>
-
     <dependencies>
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-core</artifactId>
-            <version>${kotlinx-coroutines.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-reactor</artifactId>
-              <version>${kotlinx-coroutines.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -109,10 +91,10 @@
     <properties>
         <kotlin.version>1.7.0</kotlin.version>
         <r2dbc.version>1.0.0.RELEASE</r2dbc.version>
-        <r2dbc-spi.version>1.0.0.M7</r2dbc-spi.version>
-        <h2-r2dbc.version>1.0.0.BUILD-SNAPSHOT</h2-r2dbc.version>
-        <kotlinx-coroutines.version>1.2.1</kotlinx-coroutines.version>
-        <spring-boot.version>2.2.0.M2</spring-boot.version>
+        <r2dbc-spi.version>1.0.0.RELEASE</r2dbc-spi.version>
+        <h2-r2dbc.version>1.0.0.RELEASE</h2-r2dbc.version>
+        <spring-boot.version>2.2.0.RELEASE</spring-boot.version>
+        <mockito.version>3.1.0</mockito.version>
     </properties>
 
 </project>
