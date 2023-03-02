@@ -12,3 +12,4 @@ This module contains articles about concurrency in Kotlin.
 - [Kotlin Coroutines: Waiting for Multiple Threads to Finish](https://www.baeldung.com/kotlin/coroutines-waiting-for-multiple-threads)
 - [Introduction to the Kotlin Flow Class](https://www.baeldung.com/kotlin/flow-intro)
 - [Difference Between Coroutine Scope and Coroutine Context](https://www.baeldung.com/kotlin/coroutines-scope-vs-context)
+- [Difference Between Flows and Channels in Kotlin](https://www.baeldung.com/kotlin/flows-vs-channels)

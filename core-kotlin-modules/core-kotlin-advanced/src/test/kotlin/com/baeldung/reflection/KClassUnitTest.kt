@@ -8,7 +8,7 @@ import java.math.BigDecimal
 import kotlin.reflect.full.*
 
 class KClassUnitTest {
-    private val LOG = LoggerFactory.getLogger(KClassUnitTest::class.java)
+    private val LOG = LoggerFactory.getLogger(AnnotationReflectionUnitTest::class.java)
 
     @Test
     fun testKClassDetails() {
