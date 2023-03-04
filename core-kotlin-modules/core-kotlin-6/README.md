@@ -9,3 +9,4 @@
 - [Kotlin Bit Operations](https://www.baeldung.com/kotlin/bit-operations)
 - [Mark Unused Parameters in Kotlin](https://www.baeldung.com/kotlin/mark-unused-parameters)
 - [Singleton Classes in Kotlin](https://www.baeldung.com/kotlin/singleton-classes)
+- [“Accidental override” Error in Kotlin](https://www.baeldung.com/kotlin/accidental-override-error)
