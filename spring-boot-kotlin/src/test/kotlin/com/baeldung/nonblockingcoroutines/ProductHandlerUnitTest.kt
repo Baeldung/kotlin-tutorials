@@ -5,7 +5,7 @@ import com.baeldung.nonblockingcoroutines.handlers.ProductsHandler
 import com.baeldung.nonblockingcoroutines.model.Product
 import com.baeldung.nonblockingcoroutines.repository.ProductRepositoryCoroutines
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.reactive.flow.asFlow
+import kotlinx.coroutines.reactive.asFlow
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.BDDMockito.given
