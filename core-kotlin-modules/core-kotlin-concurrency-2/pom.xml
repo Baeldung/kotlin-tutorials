@@ -19,10 +19,22 @@
             <artifactId>kotlinx-coroutines-jdk8</artifactId>
             <version>${kotlinx-coroutines-jdk8.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-reactor</artifactId>
+            <version>${kotlinx-coroutines-reactor.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-rx3</artifactId>
+            <version>${kotlinx-coroutines-rx3.version}</version>
+        </dependency>
     </dependencies>
 
     <properties>
         <kotlinx-coroutines-jdk8.version>1.6.4</kotlinx-coroutines-jdk8.version>
+        <kotlinx-coroutines-reactor.version>1.6.4</kotlinx-coroutines-reactor.version>
+        <kotlinx-coroutines-rx3.version>1.6.4</kotlinx-coroutines-rx3.version>
     </properties>
 
 </project>
