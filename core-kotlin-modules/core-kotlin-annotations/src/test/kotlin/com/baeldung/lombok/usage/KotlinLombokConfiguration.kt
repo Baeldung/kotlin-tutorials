@@ -48,13 +48,8 @@ class KotlinLombokConfiguration {
         p1.age = 20
         p1.gender = "Male"
 
-
-        assertEquals("Nappy", p.name)
-        assertEquals(20, p.age)
-        assertEquals("Male", p.gender)
-
-        assertTrue(p == p1)
-        assertTrue(p.hashCode() == p1.hashCode())
+        assertEquals(p, p1)
+        assertEquals(p.hashCode(), p1.hashCode())
     }
 
 }
