@@ -67,25 +67,35 @@ public class CoroutineInteropUnitTest {
 
     @Test
     void givenFutureHelper_whenCheckIn_getResult() throws InterruptedException, ExecutionException {
-        CompletableFuture<String> suspendResult = FutureKt.future(CoroutineScopeKt.CoroutineScope(EmptyCoroutineContext.INSTANCE), EmptyCoroutineContext.INSTANCE, CoroutineStart.DEFAULT, (scope, continuation) -> checkIn(continuation));
+        CompletableFuture<String> suspendResult = FutureKt.future(
+          CoroutineScopeKt.CoroutineScope(EmptyCoroutineContext.INSTANCE),
+          EmptyCoroutineContext.INSTANCE,
+          CoroutineStart.DEFAULT,
+          (scope, continuation) -> checkIn(continuation));
         Assertions.assertEquals(WELCOME, suspendResult.get());
     }
 
     @Test
     void givenBlockingHelper_whenCheckIn_getResult() throws InterruptedException {
-        String result = BuildersKt.runBlocking(EmptyCoroutineContext.INSTANCE, (scope, continuation) -> checkIn(continuation));
+        String result = BuildersKt.runBlocking(
+          EmptyCoroutineContext.INSTANCE,
+          (scope, continuation) -> checkIn(continuation));
         Assertions.assertEquals(WELCOME, result);
     }
 
     @Test
     void givenRxHelper_whenCheckIn_getResult() {
-        Single<String> suspendResult = RxSingleKt.rxSingle(EmptyCoroutineContext.INSTANCE, (scope, continuation) -> checkIn(continuation));
+        Single<String> suspendResult = RxSingleKt.rxSingle(
+          EmptyCoroutineContext.INSTANCE,
+          (scope, continuation) -> checkIn(continuation));
         Assertions.assertEquals(WELCOME, suspendResult.blockingGet());
     }
 
     @Test
     void givenReactorHelper_whenCheckIn_getResult() {
-        Mono<String> suspendResult = MonoKt.mono(EmptyCoroutineContext.INSTANCE, (scope, continuation) -> checkIn(continuation));
+        Mono<String> suspendResult = MonoKt.mono(
+          EmptyCoroutineContext.INSTANCE,
+          (scope, continuation) -> checkIn(continuation));
         Assertions.assertEquals(WELCOME, suspendResult.block());
     }
 
