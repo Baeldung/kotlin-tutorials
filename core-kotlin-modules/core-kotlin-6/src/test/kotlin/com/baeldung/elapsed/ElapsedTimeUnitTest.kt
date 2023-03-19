@@ -44,7 +44,6 @@ class ElapsedTimeUnitTest {
             println("Measuring time via measureTime")
         }
 
-        assertThat(elapsed).isGreaterThanOrEqualTo(100.milliseconds)
         assertThat(elapsed).isGreaterThanOrEqualTo(100.toDuration(DurationUnit.MILLISECONDS))
     }
 
@@ -57,7 +56,7 @@ class ElapsedTimeUnitTest {
         }
 
         assertThat(value).isEqualTo(42)
-        assertThat(elapsed).isGreaterThanOrEqualTo(100.milliseconds)
+        assertThat(elapsed).isGreaterThanOrEqualTo(100.toDuration(DurationUnit.MILLISECONDS))
     }
 
     @Test
@@ -69,7 +68,7 @@ class ElapsedTimeUnitTest {
         }
 
         assertThat(timedValue.value).isEqualTo(42)
-        assertThat(timedValue.duration).isGreaterThanOrEqualTo(100.milliseconds)
+        assertThat(timedValue.duration).isGreaterThanOrEqualTo(100.toDuration(DurationUnit.MILLISECONDS))
     }
 
     @Test
