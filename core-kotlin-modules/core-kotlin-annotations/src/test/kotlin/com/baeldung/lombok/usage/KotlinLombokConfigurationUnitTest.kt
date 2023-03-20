@@ -6,7 +6,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import kotlin.test.assertTrue
 
-class KotlinLombokConfiguration {
+class KotlinLombokConfigurationUnitTest {
 
     @Test
     fun `lombok usage for getter and setter in kotlin`() {
