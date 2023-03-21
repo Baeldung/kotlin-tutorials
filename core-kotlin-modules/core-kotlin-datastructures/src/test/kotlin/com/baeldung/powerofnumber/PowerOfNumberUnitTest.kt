@@ -6,6 +6,7 @@ import kotlin.math.pow
 
 class PowerOfNumberUnitTest {
     private val DELTA = 1e-15
+
     @Test
     fun `get power of number algorithmically`(){
         assertEquals(4, PowerOfNumber.power(2,2))
@@ -20,6 +21,7 @@ class PowerOfNumberUnitTest {
 
     @Test
     fun `get power of number using pow() function`(){
+
         val baseDouble = 5.0
         val exponentDouble = 2.5
         assertEquals(55.90169943749474, baseDouble.pow(exponentDouble), DELTA)
@@ -31,7 +33,6 @@ class PowerOfNumberUnitTest {
 
     @Test
     fun `get power of number using Math pow() function`(){
-//        println(Math.pow(3.0, -4.0))
         assertEquals(55.90169943749474, Math.pow(5.0, 2.5), DELTA)
         assertEquals(0.012345679012345678, Math.pow(3.0, -4.0), DELTA)
 
