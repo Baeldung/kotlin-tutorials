@@ -9,3 +9,10 @@ fun printListSize(list: List<Int>, size: Int) {
     check(list.size == size) { "List must contain $size elements" }
     println(list)
 }
+
+fun divide(a: Int, b: Int): Int {
+    if (b == 0) {
+        error("Cannot divide by zero")
+    }
+    return a / b
+}
