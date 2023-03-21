@@ -1,0 +1,16 @@
+{
+  "the_string": "string",
+  "the_number": 3.14,
+  "the_boolean": true,
+  "the_null": null,
+  "the_string_array": ["string1", "string2"],
+  "the_number_array": [1.0, 2.0],
+  "the_boolean_array": [true, false],
+  "the_null_array": [null, null],
+  "the_object": {
+    "message": "Hello from nested object"
+  },
+  "the_mixed_array": [1.0, "string", null, {
+    "message": "Hello from array object element"
+  }]
+}
