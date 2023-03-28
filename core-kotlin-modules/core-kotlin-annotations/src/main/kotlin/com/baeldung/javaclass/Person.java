@@ -1,4 +1,4 @@
-package com.baeldung;
+package com.baeldung.javaclass;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

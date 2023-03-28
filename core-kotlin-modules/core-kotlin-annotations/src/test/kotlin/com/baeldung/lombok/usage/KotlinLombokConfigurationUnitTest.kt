@@ -1,10 +1,9 @@
 package com.baeldung.lombok.usage
 
-import com.baeldung.Person
-import com.baeldung.Person1
+import com.baeldung.javaclass.Person
+import com.baeldung.javaclass.Person1
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import kotlin.test.assertTrue
 
 class KotlinLombokConfigurationUnitTest {
 
@@ -22,7 +21,7 @@ class KotlinLombokConfigurationUnitTest {
 
     @Test
     fun `lombok usage for all arg constructor`() {
-        val person = Person("Nappy", 20, "Male",1)
+        val person = Person("Nappy", 20, "Male", 1)
 
         assertEquals("Nappy", person.name)
         assertEquals(20, person.age)
@@ -31,7 +30,7 @@ class KotlinLombokConfigurationUnitTest {
 
     @Test
     fun `lombok usage for toString method`() {
-        val person = Person("Nappy", 20, "Male",1)
+        val person = Person("Nappy", 20, "Male", 1)
 
         assertEquals("Person(name=Nappy, age=20, gender=Male, id=1)", person.toString())
     }
