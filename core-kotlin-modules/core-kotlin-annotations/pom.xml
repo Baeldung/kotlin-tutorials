@@ -19,7 +19,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.26</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>
@@ -34,21 +34,12 @@
                     <compilerPlugins>
                         <plugin>lombok</plugin>
                     </compilerPlugins>
-<!--                    <pluginOptions>-->
-<!--                        <option>lombok:config=${project.basedir}/lombok.config</option>-->
-<!--                    </pluginOptions>-->
                 </configuration>
                 <dependencies>
                     <dependency>
                         <groupId>org.jetbrains.kotlin</groupId>
                         <artifactId>kotlin-maven-lombok</artifactId>
                         <version>${kotlin.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.projectlombok</groupId>
-                        <artifactId>lombok</artifactId>
-                        <version>1.18.20</version>
-                        <scope>provided</scope>
                     </dependency>
                 </dependencies>
             </plugin>
