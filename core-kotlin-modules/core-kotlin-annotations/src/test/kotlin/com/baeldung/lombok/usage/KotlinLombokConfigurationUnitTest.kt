@@ -2,8 +2,8 @@ package com.baeldung.lombok.usage
 
 import com.baeldung.javaclass.Person
 import com.baeldung.javaclass.Person1
-import org.junit.Assert.assertEquals
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Test
 
 class KotlinLombokConfigurationUnitTest {
 
