@@ -1,7 +1,7 @@
 package com.baeldung.lombok.usage
 
-import com.baeldung.javaclass.Person
-import com.baeldung.javaclass.Person1
+
+import javaclass.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
