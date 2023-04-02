@@ -5,7 +5,7 @@ import com.baeldung.nonblockingcoroutines.model.Product
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.reactive.awaitFirstOrNull
-import kotlinx.coroutines.reactive.flow.asFlow
+import kotlinx.coroutines.reactive.asFlow
 import org.springframework.data.r2dbc.core.DatabaseClient
 import org.springframework.stereotype.Repository
 

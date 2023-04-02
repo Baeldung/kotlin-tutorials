@@ -15,22 +15,6 @@
         <relativePath>../parent-boot-2</relativePath>
     </parent>
 
-    <repositories>
-        <repository>
-            <id>spring-snapshots</id>
-            <name>Spring Snapshots</name>
-            <url>https://repo.spring.io/snapshot</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -77,7 +61,7 @@
         <dependency>
             <groupId>com.ninja-squad</groupId>
             <artifactId>springmockk</artifactId>
-            <version>3.0.1</version>
+            <version>3.1.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -120,10 +104,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <properties>
-        <kotlin.version>1.7.0</kotlin.version>
-        <spring-boot.version>2.6.1</spring-boot.version>
-    </properties>
 
 </project>
