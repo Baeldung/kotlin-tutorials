@@ -105,8 +105,4 @@
         </plugins>
     </build>
 
-    <properties>
-        <spring-boot.version>2.7.0</spring-boot.version>
-    </properties>
-
 </project>
