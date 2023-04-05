@@ -1,7 +1,8 @@
 package com.baeldung.commanddesign.receiver
 
 class TextEditor(initialContent: String) {
-    private var content = initialContent
+    var content = initialContent
+        private set
 
     fun cut(): String {
         val cutContent = content.takeLast(1)
