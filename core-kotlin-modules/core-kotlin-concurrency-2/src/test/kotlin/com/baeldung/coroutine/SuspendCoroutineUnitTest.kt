@@ -1,4 +1,4 @@
-package com.baeldung.kotlin.suspendcoroutine
+package com.baeldung.coroutine
 
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test

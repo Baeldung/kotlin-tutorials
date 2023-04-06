@@ -1,4 +1,5 @@
-package com.baeldung.kotlin.suspendcoroutine
+package com.baeldung.coroutine
+
 
 import org.apache.commons.lang3.RandomStringUtils
 import kotlin.coroutines.suspendCoroutine
