@@ -7,3 +7,4 @@ This module contains modules about JSON.
 - [Iterate Through a JSONArray in Kotlin](https://www.baeldung.com/kotlin/iterate-over-jsonarray)
 - [Parsing JSON Arrays in Kotlin with Gson](https://www.baeldung.com/kotlin/gson-parse-arrays)
 - [Moshi JSON Library for Kotlin Applications](https://www.baeldung.com/kotlin/moshi-json-library)
+- [How to Parse JSON Without Data Class in Kotlin](https://www.baeldung.com/kotlin/parse-json-without-data-class)
