@@ -3,6 +3,7 @@ package com.baeldung.console
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 import java.io.BufferedReader
@@ -12,6 +13,7 @@ import java.io.Console
 import java.io.InputStreamReader
 import java.io.PrintStream
 import java.util.*
+import java.lang.RuntimeException
 
 
 class ConsoleIOUnitTest {
@@ -38,6 +40,39 @@ class ConsoleIOUnitTest {
         val readText = readLine()
 
         assertThat(readText).isEqualTo(expectedTest)
+    }
+
+    @Test
+    fun givenInput_whenReadln_thenReadText() {
+        val expectedInput = "Hello from Kotlin"
+        val input = ByteArrayInputStream(expectedInput.toByteArray())
+        System.setIn(input)
+
+        val readText = readln()
+
+        assertThat(readText).isEqualTo(expectedInput)
+    }
+
+    @Test
+    fun givenInput_whenReadlnOrNull_thenReadText() {
+        val expectedInput = "Hello from Kotlin"
+        val input = ByteArrayInputStream(expectedInput.toByteArray())
+        System.setIn(input)
+
+        val readText = readlnOrNull()
+
+        assertThat(readText).isEqualTo(expectedInput)
+    }
+
+    @Test
+    fun givenEofReachedInput_whenReadlnOrNull_thenReadNull() {
+        val readText = readlnOrNull()
+        assertThat(readText).isEqualTo(null)
+    }
+
+    @Test
+    fun givenEofReachedInput_whenReadln_thenThrowsRunTimeException() {
+        assertThrows<RuntimeException> {  var readText = readln()}
     }
 
     @Test
