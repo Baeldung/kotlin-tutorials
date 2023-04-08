@@ -1,4 +1,4 @@
-package com.baeldung.mapstruct.simple
+package com.baeldung.mapstruct.dto
 
 data class UserDto(
     val id: Long,

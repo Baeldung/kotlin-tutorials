@@ -1,6 +1,6 @@
-package com.baeldung.mapstruct.simple
+package com.baeldung.mapstruct.entity
 
-import java.util.Date
+import java.util.*
 
 class User(
     var name: String,

@@ -1,6 +1,6 @@
-package com.baeldung.mapstruct.custom
+package com.baeldung.mapstruct.mapper.custom
 
-import com.baeldung.mapstruct.simple.UserMapper
+import com.baeldung.mapstruct.mapper.UserMapper
 import org.mapstruct.DecoratedWith
 import org.mapstruct.Mapper
 

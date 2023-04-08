@@ -1,9 +1,9 @@
-package com.baeldung.mapstruct.custom
+package com.baeldung.mapstruct.mapper.custom
 
-import com.baeldung.mapstruct.simple.AddressDto
-import com.baeldung.mapstruct.simple.User
-import com.baeldung.mapstruct.simple.UserDto
-import com.baeldung.mapstruct.simple.UserMapper
+import com.baeldung.mapstruct.dto.AddressDto
+import com.baeldung.mapstruct.entity.User
+import com.baeldung.mapstruct.dto.UserDto
+import com.baeldung.mapstruct.mapper.UserMapper
 import java.text.SimpleDateFormat
 import org.mapstruct.Mapper
 

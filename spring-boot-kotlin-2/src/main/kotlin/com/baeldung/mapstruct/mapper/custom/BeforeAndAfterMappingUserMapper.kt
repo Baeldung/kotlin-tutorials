@@ -1,5 +1,7 @@
-package com.baeldung.mapstruct.simple
+package com.baeldung.mapstruct.mapper.custom
 
+import com.baeldung.mapstruct.dto.UserDto
+import com.baeldung.mapstruct.mapper.UserMapper
 import org.mapstruct.AfterMapping
 import org.mapstruct.BeforeMapping
 import org.mapstruct.Mapper

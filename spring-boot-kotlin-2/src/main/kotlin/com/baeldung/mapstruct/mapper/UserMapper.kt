@@ -1,5 +1,9 @@
-package com.baeldung.mapstruct.simple
+package com.baeldung.mapstruct.mapper
 
+import com.baeldung.mapstruct.dto.AddressDto
+import com.baeldung.mapstruct.dto.UserDto
+import com.baeldung.mapstruct.entity.Address
+import com.baeldung.mapstruct.entity.User
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping
 

@@ -1,4 +1,4 @@
-package com.baeldung.mapstruct.simple
+package com.baeldung.mapstruct.entity
 
 data class Address (
     var streetAddress: String,

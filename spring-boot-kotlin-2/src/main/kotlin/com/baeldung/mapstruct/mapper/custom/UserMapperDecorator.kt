@@ -1,6 +1,10 @@
-package com.baeldung.mapstruct.custom
+package com.baeldung.mapstruct.mapper.custom
 
-import com.baeldung.mapstruct.simple.*
+import com.baeldung.mapstruct.dto.AddressDto
+import com.baeldung.mapstruct.dto.UserDto
+import com.baeldung.mapstruct.entity.Address
+import com.baeldung.mapstruct.entity.User
+import com.baeldung.mapstruct.mapper.*
 import org.mapstruct.factory.Mappers
 
 open class UserMapperDecorator: DecoratedMapper() {

@@ -1,16 +1,17 @@
-package com.baeldung.mapstruct.custom
+package com.baeldung.mapstruct.mapper
 
-import com.baeldung.mapstruct.simple.*
-
+import com.baeldung.mapstruct.dto.AddressDto
+import com.baeldung.mapstruct.dto.UserDto
+import com.baeldung.mapstruct.entity.Address
+import com.baeldung.mapstruct.entity.User
 import org.junit.jupiter.api.Test
 import org.mapstruct.factory.Mappers
 import java.util.*
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
-
-class BeforeAfterMapperUnitTest {
-    private var userMapper: UserMapper = Mappers.getMapper(BeforeAndAfterMappingUserMapper::class.java)
+class UserMapperUnitTest {
+    private var userMapper: UserMapper = Mappers.getMapper(UserMapper::class.java)
 
     @Test
     fun `should map entity to dto`() {
@@ -28,7 +29,7 @@ class BeforeAfterMapperUnitTest {
         )
         val userDto = userMapper.toDto(user)
         assertEquals( user.id, userDto.id)
-        assertEquals("Mr. John Doe", userDto.name)
+        assertEquals(user.name, userDto.name)
         assertEquals("2023-03-25 00:00:00", userDto.createdOn)
         assertEquals( user.address.zipCode, userDto.address.zipCode)
         assertEquals("ACTIVE", userDto.status)
@@ -38,7 +39,7 @@ class BeforeAfterMapperUnitTest {
     fun `should map dto to entity`() {
         val userDto = UserDto(
             id = 1,
-            name = "Mr. John Doe",
+            name = "John Doe",
             address = AddressDto (
                 streetAddress = "123 Main St",
                 zipCode = "12345"
@@ -46,7 +47,7 @@ class BeforeAfterMapperUnitTest {
         )
         val user = userMapper.toBean(userDto)
         assertEquals(userDto.id, user.id)
-        assertEquals("John Doe", user.name)
+        assertEquals(userDto.name, user.name)
         assertNotNull(user.createdAt)
         assertEquals(userDto.address.zipCode, user.address.zipCode)
         assertEquals("ACTIVE", user.status)
