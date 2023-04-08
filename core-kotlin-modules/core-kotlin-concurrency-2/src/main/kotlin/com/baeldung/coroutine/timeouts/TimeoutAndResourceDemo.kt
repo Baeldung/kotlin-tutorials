@@ -19,23 +19,24 @@ class Resource {
     }
 }
 
-fun acquireAndReleaseWithLeak() {
+fun acquireAndReleaseWithLeak(): Int {
     runBlocking {
         repeat(1000) {
             launch {
-                val resource = withTimeout(60) {
-                    delay(50)
+                val resource = withTimeout(50) {
                     // Acquire a resource right before timeout happens
-                    Resource().apply { acquire() }
+                    Resource()
+                        .apply { acquire() }
+                        .also { delay(60) }
                 }
                 resource.release() // Release the resource
             }
         }
     }
-    println(acquired)
+    return acquired
 }
 
-fun acquireAndReleaseWithoutLeak() {
+fun acquireAndReleaseWithoutLeak(): Int {
     runBlocking {
         repeat(1000) {
             launch {
@@ -51,5 +52,5 @@ fun acquireAndReleaseWithoutLeak() {
             }
         }
     }
-    println(acquired)
+    return acquired
 }

@@ -7,45 +7,40 @@ class TimeoutsDemo(
     executor: CoroutineScope = CoroutineScope(Executors.newSingleThreadExecutor().asCoroutineDispatcher())
 ) : CoroutineScope by executor {
 
-    private suspend fun performTask(): String {
+    suspend fun performTask(): String {
         delay(2000) // Simulate a long-running task
         return "Task completed successfully!"
     }
 
-    fun withTimeoutDemo() = runBlocking {
+    fun withTimeoutDemo(): String = runBlocking {
         try {
             val result = withTimeout(1000) {
                 performTask()
             }
-            println(result)
+            result
         } catch (ex: TimeoutCancellationException) {
-            println("Task timed out!")
+            "Task timed out with exception!"
         }
     }
 
-    fun withTimeoutOrNullDemo() = runBlocking {
-        val result = withTimeoutOrNull(1000) {
+    fun withTimeoutOrNullDemo(): String? = runBlocking {
+        withTimeoutOrNull(1000) {
             performTask()
         }
-        if (result == null) {
-            println("Task timed out!")
-        } else {
-            println(result)
-        }
     }
 
-    fun usingExceptionHandlingDemo() = runBlocking {
+    fun usingExceptionHandlingDemo(): String = runBlocking {
         try {
             val result = withTimeout(1000) {
                 performTask()
             }
-            println(result)
+            result
         } catch (ex: TimeoutCancellationException) {
-            println("Task timed out! Retrying...")
+            println("Task timed out!")
             val result = withTimeout(2500) {
                 performTask()
             }
-            println(result)
+            "Retrying... $result"
         }
     }
 
@@ -55,10 +50,10 @@ class TimeoutsDemo(
         }
         if (result == null) {
             // Handle the timeout case here
-            println("Task timed out!")
+            "Task timed out with null!"
         } else {
             // Handle the successful completion case here
-            println(result)
+            result
         }
     }
 }
