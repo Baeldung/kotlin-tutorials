@@ -18,6 +18,4 @@ abstract class BeforeAndAfterMappingUserMapper: UserMapper {
     fun afterMapping(@MappingTarget userDto: UserDto) {
         userDto.name = "Mr. " + userDto.name;
     }
-
-
 }   

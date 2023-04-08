@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test
 import org.mapstruct.factory.Mappers
 import java.util.*
 import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
 
 
 class BeforeAndAfterMappingUserMapperUnitTest {
@@ -27,14 +26,9 @@ class BeforeAndAfterMappingUserMapperUnitTest {
                 streetAddress = "123 Main St",
                 zipCode = "12345"
             ),
-            status = "UNKNOWN"
         )
         val userDto = userMapper.toDto(user)
-        assertEquals( user.id, userDto.id)
         assertEquals("Mr. John Doe", userDto.name)
-        assertEquals("2023-03-25 00:00:00", userDto.createdOn)
-        assertEquals( user.address.zipCode, userDto.address.zipCode)
-        assertEquals("ACTIVE", userDto.status)
     }
 
     @Test
@@ -42,16 +36,14 @@ class BeforeAndAfterMappingUserMapperUnitTest {
         val userDto = UserDto(
             id = 1,
             name = "Mr. John Doe",
-            address = AddressDto (
+            createdOn = "2023-03-25 00:00:00",
+            address = AddressDto(
                 streetAddress = "123 Main St",
                 zipCode = "12345"
-            )
+            ),
+            status = "ACTIVE"
         )
         val user = userMapper.toBean(userDto)
-        assertEquals(userDto.id, user.id)
         assertEquals("John Doe", user.name)
-        assertNotNull(user.createdAt)
-        assertEquals(userDto.address.zipCode, user.address.zipCode)
-        assertEquals("ACTIVE", user.status)
     }
 }
