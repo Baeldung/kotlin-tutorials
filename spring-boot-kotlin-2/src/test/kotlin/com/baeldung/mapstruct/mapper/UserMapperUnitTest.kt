@@ -19,7 +19,7 @@ class UserMapperUnitTest {
             id = 1,
             name = "John Doe",
             createdAt = Date().apply {
-                time = 1679682600000 // 2023-03-25 00:00:00
+                time = 1679682600000 // 2023-03-24 18:30:00
             },
             address = Address (
                 streetAddress = "123 Main St",

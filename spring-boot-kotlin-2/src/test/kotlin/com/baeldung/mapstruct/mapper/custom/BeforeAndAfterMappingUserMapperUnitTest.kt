@@ -20,7 +20,7 @@ class BeforeAndAfterMappingUserMapperUnitTest {
             id = 1,
             name = "John Doe",
             createdAt = Date().apply {
-                time = 1679682600000 // 2023-03-25 00:00:00
+                time = 1679682600000 // 2023-03-24 18:30:00
             },
             address = Address (
                 streetAddress = "123 Main St",
@@ -36,7 +36,7 @@ class BeforeAndAfterMappingUserMapperUnitTest {
         val userDto = UserDto(
             id = 1,
             name = "Mr. John Doe",
-            createdOn = "2023-03-25 00:00:00",
+            createdOn = "2023-03-24 18:30:00",
             address = AddressDto(
                 streetAddress = "123 Main St",
                 zipCode = "12345"
