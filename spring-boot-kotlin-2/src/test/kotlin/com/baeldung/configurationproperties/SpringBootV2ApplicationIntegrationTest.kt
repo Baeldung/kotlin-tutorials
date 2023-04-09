@@ -39,6 +39,13 @@ class SpringBootV2ApplicationIntegrationTest {
     }
 
     @Test
+    fun givenTargetBeanHavingMultipleConstructorsWithoutAutowired_whenComponentPassedToConstructor_thenTargetBeanWithDefaultConstructorIsAutowiredImplicitly() {
+        assertNotNull( personController.locationService)
+        assertEquals(109.344550, personController.locationService.lat)
+        assertEquals(133.973849, personController.locationService.lon)
+    }
+
+    @Test
     fun givenAConstructor_whenComponentPassedToConstructorWithExplicitAutowiredAnnotated_thenComponentIsAutowired() {
         assertNotNull( personController.personService)
         assertNotNull(personController.addressService.address)

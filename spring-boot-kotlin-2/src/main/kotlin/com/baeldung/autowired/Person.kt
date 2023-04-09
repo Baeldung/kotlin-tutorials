@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/person")
 class PersonController(
     val personService: PersonService,
-    val addressService: AddressService) {
+    val addressService: AddressService,
+    val locationService: LocationService
+) {
 
     @GetMapping
     fun person(): String {
@@ -31,6 +33,17 @@ class PersonService {
     @Autowired
     constructor(person: Person, address: Address): this(person) {
         this.address = address
+    }
+}
+
+@Service
+class LocationService() {
+    var lat: Double = 109.344550
+    var lon: Double = 133.973849
+
+    constructor(lat: Double, lon: Double) : this() {
+        this.lat = lat
+        this.lon = lon
     }
 }
 
