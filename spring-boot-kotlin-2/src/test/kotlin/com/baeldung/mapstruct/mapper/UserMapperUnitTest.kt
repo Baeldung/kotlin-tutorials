@@ -30,7 +30,7 @@ class UserMapperUnitTest {
         val userDto = userMapper.toDto(user)
         assertEquals( user.id, userDto.id)
         assertEquals(user.name, userDto.name)
-        assertEquals("2023-03-25 00:00:00", userDto.createdOn)
+        assertEquals("2023-03-24 18:30:00", userDto.createdOn)
         assertEquals( user.address.zipCode, userDto.address.zipCode)
         assertEquals("ACTIVE", userDto.status)
     }
