@@ -1,13 +1,17 @@
 package com.baeldung.coroutine.timeouts
 
+import kotlinx.coroutines.TimeoutCancellationException
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import kotlin.test.assertFailsWith
 
 class TimeoutsDemoTest {
 
     @Test
     fun when_coroutine_withTimeout_launched_then_it_finishes_with_exception() {
-        assertThat(TimeoutsDemo().withTimeoutDemo()).isEqualTo("Task timed out with exception!")
+        assertFailsWith<TimeoutCancellationException> {
+            TimeoutsDemo().withTimeoutDemo()
+        }
     }
 
     @Test

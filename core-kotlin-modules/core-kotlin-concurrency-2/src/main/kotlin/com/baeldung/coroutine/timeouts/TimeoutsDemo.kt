@@ -13,14 +13,10 @@ class TimeoutsDemo(
     }
 
     fun withTimeoutDemo(): String = runBlocking {
-        try {
-            val result = withTimeout(1000) {
-                performTask()
-            }
-            result
-        } catch (ex: TimeoutCancellationException) {
-            "Task timed out with exception!"
+        val result = withTimeout(1000) {
+            performTask()
         }
+        result
     }
 
     fun withTimeoutOrNullDemo(): String? = runBlocking {
