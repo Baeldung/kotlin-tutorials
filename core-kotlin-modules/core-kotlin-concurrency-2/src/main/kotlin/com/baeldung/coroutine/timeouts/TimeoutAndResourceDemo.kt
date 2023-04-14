@@ -22,11 +22,11 @@ class Resource {
 fun acquireAndReleaseWithLeak(): Int {
     runBlocking {
         launch {
-            val resource = withTimeout(50) {
+            val resource = withTimeout(60) {
                 // Acquire a resource right before timeout happens
                 Resource()
                     .apply { acquire() }
-                    .also { delay(60) }
+                    .also { delay(59) }
             }
             resource.release() // Release the resource
         }
