@@ -10,12 +10,12 @@ class CollectionAndSequenceDifferenceTest {
     fun `collection eagerly iterate through all the items in map`() {
         var mapIterations = 0
         (1..100)
-            .map {
-                mapIterations++
-                it * it
-            }
-            .filter { it % 2 == 0 }
-            .first { it > 50 }
+                .map {
+                    mapIterations++
+                    it * it
+                }
+                .filter { it % 2 == 0 }
+                .first { it > 50 }
         assertEquals(mapIterations, 100)
     }
 
@@ -23,13 +23,13 @@ class CollectionAndSequenceDifferenceTest {
     fun `sequence lazily iterate through only items in map that matches all the condition`() {
         var mapIterations = 0
         (1..100)
-            .asSequence()
-            .map {
-                mapIterations++
-                it * it
-            }
-            .filter { it % 2 == 0 }
-            .first { it > 50 }
+                .asSequence()
+                .map {
+                    mapIterations++
+                    it * it
+                }
+                .filter { it % 2 == 0 }
+                .first { it > 50 }
         assertEquals(mapIterations, 8)
     }
 
@@ -38,8 +38,8 @@ class CollectionAndSequenceDifferenceTest {
     fun `sequence does not evaluate if there is no terminal operation`() {
         var isEvaluated = false
         val evens = sequenceOf(1, 2, 3, 4, 5)
-            .filter { it % 2 == 0 }
-            .map { it * it }
+                .filter { it % 2 == 0 }
+                .map { it * it }
 
         evens.onEach {
             isEvaluated = true
@@ -51,9 +51,9 @@ class CollectionAndSequenceDifferenceTest {
     fun `sequence evaluate if there is a terminal operation`() {
         var isEvaluated = false
         val evens = sequenceOf(1, 2, 3, 4, 5)
-            .filter { it % 2 == 0 }
-            .map { it * it }
-            .toList()
+                .filter { it % 2 == 0 }
+                .map { it * it }
+                .toList()
 
         evens.onEach {
             isEvaluated = true
@@ -63,27 +63,29 @@ class CollectionAndSequenceDifferenceTest {
 
     //Order matter for performance
     @Test
-    fun `iterate through 100 item on map if it is before filter operation`() {
-        var mapIterations = 0
+    fun `iterate through 100 item on onEach if it is before filter operation`() {
+        var iterations = 0
         (1..100)
-            .map {
-                mapIterations++
-                it % it
-            }.filter { it % 2 == 0 }
+                .onEach {
+                    iterations++
+                }.filter {
+                    it % 2 == 0
+                }
 
-        assertEquals(mapIterations, 100)
+        assertEquals(iterations, 100)
     }
 
     @Test
-    fun `iterate through 50 item on map if it is after filter operation`() {
-        var mapIterations = 0
+    fun `iterate through 50 item on onEach if it is after filter operation`() {
+        var iterations = 0
         (1..100)
-            .filter { it % 2 == 0 }
-            .map {
-                mapIterations++
-                it % it
-            }
+                .filter {
+                    it % 2 == 0
+                }
+                .onEach {
+                    iterations++
+                }
 
-        assertEquals(mapIterations, 50)
+        assertEquals(iterations, 50)
     }
 }
