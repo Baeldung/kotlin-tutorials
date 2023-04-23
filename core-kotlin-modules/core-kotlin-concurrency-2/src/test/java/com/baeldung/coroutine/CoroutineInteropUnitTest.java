@@ -50,7 +50,7 @@ public class CoroutineInteropUnitTest {
     }
 
     @Test
-    void givenCustomContinuation_whenCheckIn_getResult() throws ExecutionException, InterruptedException {
+    void givenCustomContinuation_whenCheckIn_thenGetResult() throws ExecutionException, InterruptedException {
         CompletableFuture<String> suspendResult = new CompletableFuture<>();
         checkIn(new CustomContinuation<>(suspendResult));
 
@@ -58,7 +58,7 @@ public class CoroutineInteropUnitTest {
     }
 
     @Test
-    void givenCustomContinuation_whenCheckInClosed_getException() {
+    void givenCustomContinuation_whenCheckInClosed_thenGetException() {
         CompletableFuture<String> suspendResult = new CompletableFuture<>();
         checkInClosed(new CustomContinuation<>(suspendResult));
 
@@ -66,7 +66,7 @@ public class CoroutineInteropUnitTest {
     }
 
     @Test
-    void givenFutureHelper_whenCheckIn_getResult() throws InterruptedException, ExecutionException {
+    void givenFutureHelper_whenCheckIn_thenGetResult() throws InterruptedException, ExecutionException {
         CompletableFuture<String> suspendResult = FutureKt.future(
           CoroutineScopeKt.CoroutineScope(EmptyCoroutineContext.INSTANCE),
           EmptyCoroutineContext.INSTANCE,
@@ -76,7 +76,7 @@ public class CoroutineInteropUnitTest {
     }
 
     @Test
-    void givenBlockingHelper_whenCheckIn_getResult() throws InterruptedException {
+    void givenBlockingHelper_whenCheckIn_thenGetResult() throws InterruptedException {
         String result = BuildersKt.runBlocking(
           EmptyCoroutineContext.INSTANCE,
           (scope, continuation) -> checkIn(continuation));
@@ -84,7 +84,7 @@ public class CoroutineInteropUnitTest {
     }
 
     @Test
-    void givenRxHelper_whenCheckIn_getResult() {
+    void givenRxHelper_whenCheckIn_thenGetResult() {
         Single<String> suspendResult = RxSingleKt.rxSingle(
           EmptyCoroutineContext.INSTANCE,
           (scope, continuation) -> checkIn(continuation));
@@ -92,7 +92,7 @@ public class CoroutineInteropUnitTest {
     }
 
     @Test
-    void givenReactorHelper_whenCheckIn_getResult() {
+    void givenReactorHelper_whenCheckIn_thenGetResult() {
         Mono<String> suspendResult = MonoKt.mono(
           EmptyCoroutineContext.INSTANCE,
           (scope, continuation) -> checkIn(continuation));
@@ -100,7 +100,7 @@ public class CoroutineInteropUnitTest {
     }
 
     @Test
-    void whenCheckInAsync_getResult() throws ExecutionException, InterruptedException {
+    void whenCheckInAsync_thenGetResult() throws ExecutionException, InterruptedException {
         CompletableFuture<String> suspendResult = checkInAsync();
         Assertions.assertEquals(WELCOME, suspendResult.get());
     }
