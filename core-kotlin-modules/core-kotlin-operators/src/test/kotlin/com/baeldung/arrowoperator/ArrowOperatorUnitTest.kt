@@ -29,8 +29,8 @@ class ArrowOperatorUnitTest {
     @Test
     fun `should return number multiplication in function type`() {
         val multiplication: (Int, Int) -> Int = { a, b -> a * b }
-        val appliedOperation = applyOperation(1, 5, multiplication)
-        assertEquals(5, appliedOperation)
+        val appliedOperation = applyOperation(2, 5, multiplication)
+        assertEquals(10, appliedOperation)
     }
 
     @Test
