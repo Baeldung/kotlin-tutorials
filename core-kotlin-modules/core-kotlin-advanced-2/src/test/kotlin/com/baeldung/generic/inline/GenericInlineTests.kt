@@ -17,7 +17,7 @@ class GenericInlineTests {
     }
 
     @Test
-    fun `Calculate distance`() {
+    fun `Calculate full name`() {
         val firstName = Name("Leonardo")
         val lastName = Name("Colman")
 
