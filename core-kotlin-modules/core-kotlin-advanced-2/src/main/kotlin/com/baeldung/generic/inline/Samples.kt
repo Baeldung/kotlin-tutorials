@@ -11,15 +11,17 @@ fun main() {
 }
 
 @JvmInline
-value class Id<T>(val value: String)
+value class Id<T>(val value: T)
 
-interface Identifiable {
-    val id: Id<*>
+interface Identifiable<T> {
+    val id: Id<T>
 }
 
-data class User(override val id: Id<User>, val name: String) : Identifiable
+data class User(override val id: Id<String>, val name: String) : Identifiable<String>
 
-fun <T : Identifiable> findById(entities: List<T>, id: Id<T>): T? {
+data class Wallet(override val id: Id<Int>, val currency: String) : Identifiable<Int>
+
+fun <T : Identifiable<*>> findById(entities: List<T>, id: Id<*>): T? {
     return entities.firstOrNull { it.id == id }
 }
 

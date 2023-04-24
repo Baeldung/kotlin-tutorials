@@ -9,10 +9,11 @@ class GenericInlineTests {
     fun `Find User with Generic Inline Classes`() {
         val user1 = User(Id("1"), "Alice")
         val user2 = User(Id("2"), "Bob")
+        val wallet = Wallet(Id(1), "Bitcoin")
 
-        val foundUser = findById(listOf(user1, user2), Id<User>("2"))
+        val foundUser = findById(listOf(user1, user2, wallet), Id("2"))
 
-        assertEquals("Bob", foundUser?.name)
+        assertEquals(user2, foundUser)
     }
 
     @Test
