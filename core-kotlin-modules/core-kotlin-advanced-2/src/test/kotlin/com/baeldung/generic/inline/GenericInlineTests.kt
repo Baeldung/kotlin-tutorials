@@ -18,12 +18,12 @@ class GenericInlineTests {
 
     @Test
     fun `Calculate distance`() {
-        val distance1 = Distance(5)
-        val distance2 = Distance(10)
+        val firstName = Name("Leonardo")
+        val lastName = Name("Colman")
 
-        val totalDistance = distance1 + distance2
+        val fullName = firstName + lastName
 
-        assertEquals(15, totalDistance.value)
+        assertEquals("Leonardo Colman", fullName.value)
     }
 
 }
