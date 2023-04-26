@@ -1,3 +1,4 @@
 package com.baeldung.inline.classes
 
-inline class InlineDoubleWrapper(val doubleValue : Double)
+@JvmInline
+value class InlineDoubleWrapper(val doubleValue : Double)
