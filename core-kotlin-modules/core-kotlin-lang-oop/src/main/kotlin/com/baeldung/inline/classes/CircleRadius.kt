@@ -17,3 +17,13 @@ value class CircleRadius(private val circleRadius : Double) : Drawable {
         println("Draw my circle")
     }
 }
+
+fun useAsDrawable(drawableInline: Drawable) { }
+fun useAsNullableDrawable(drawableInline: Drawable?) { }
+fun <T> useAsGeneric(genericInline: T) { }
+
+fun main(args: Array<String>) {
+    useAsDrawable(CircleRadius(5.0))
+    useAsNullableDrawable(CircleRadius(5.0))
+    useAsGeneric(CircleRadius(5.0))
+}
