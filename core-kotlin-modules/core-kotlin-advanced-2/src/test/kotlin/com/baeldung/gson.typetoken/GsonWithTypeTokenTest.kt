@@ -29,7 +29,7 @@ class GsonWithTypeTokenTest {
 
     @Test
     fun `get list of Books with Gson extension function`() {
-        val books = Gson().fromJson<Book>(jsonStr)
+        val books = Gson().fromJsonList<Book>(jsonStr)
         assertEquals(3, books.size)
         assertFalse(books.isEmpty())
         assertEquals("Second title", books[1].title)
@@ -54,5 +54,5 @@ class GsonWithTypeTokenTest {
     }
 }
 
-inline fun <reified T> Gson.fromJson(json: String) = fromJson<List<T>>(json, object : TypeToken<List<T>>() {}.type)
+inline fun <reified T> Gson.fromJsonList(json: String) = fromJson<List<T>>(json, object : TypeToken<List<T>>() {}.type)
 inline fun <reified T> genericType(): Type = object: TypeToken<T>() {}.type
