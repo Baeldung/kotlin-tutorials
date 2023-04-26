@@ -16,7 +16,7 @@ class CollectionAndSequenceDifferenceTest {
                 }
                 .filter { it % 2 == 0 }
                 .first { it > 50 }
-        assertEquals(mapIterations, 100)
+        assertEquals(100, mapIterations)
     }
 
     @Test
@@ -30,7 +30,7 @@ class CollectionAndSequenceDifferenceTest {
                 }
                 .filter { it % 2 == 0 }
                 .first { it > 50 }
-        assertEquals(mapIterations, 8)
+        assertEquals(8, mapIterations)
     }
 
     //Sequence needs terminal operation
@@ -44,7 +44,7 @@ class CollectionAndSequenceDifferenceTest {
         evens.onEach {
             isEvaluated = true
         }
-        assertEquals(isEvaluated, false)
+        assertEquals(false, isEvaluated)
     }
 
     @Test
@@ -58,7 +58,7 @@ class CollectionAndSequenceDifferenceTest {
         evens.onEach {
             isEvaluated = true
         }
-        assertEquals(isEvaluated, true)
+        assertEquals(true, isEvaluated)
     }
 
     //Order matter for performance
@@ -72,7 +72,7 @@ class CollectionAndSequenceDifferenceTest {
                     it % 2 == 0
                 }
 
-        assertEquals(iterations, 100)
+        assertEquals(100, iterations)
     }
 
     @Test
@@ -86,6 +86,6 @@ class CollectionAndSequenceDifferenceTest {
                     iterations++
                 }
 
-        assertEquals(iterations, 50)
+        assertEquals(50,iterations)
     }
 }
