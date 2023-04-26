@@ -21,7 +21,7 @@ data class User(override val id: Id<String>, val name: String) : Identifiable<St
 
 data class Wallet(override val id: Id<Int>, val currency: String) : Identifiable<Int>
 
-fun <ID, T : Identifiable<ID>> findById(entities: List<T>, id: Id<ID>): T? {
+fun <ID, T : Identifiable<out ID>> findById(entities: List<T>, id: Id<ID>): T? {
     return entities.firstOrNull { it.id == id }
 }
 
