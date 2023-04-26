@@ -21,7 +21,7 @@ data class User(override val id: Id<String>, val name: String) : Identifiable<St
 
 data class Wallet(override val id: Id<Int>, val currency: String) : Identifiable<Int>
 
-fun <T : Identifiable<ID: Any>> findById(entities: List<T>, id: Id<ID>): T? {
+fun <ID, T : Identifiable<ID>> findById(entities: List<T>, id: Id<ID>): T? {
     return entities.firstOrNull { it.id == id }
 }
 
@@ -42,5 +42,5 @@ val stringBox: Box<String> = Box("Hello, Baeldung!")
 
 @JvmInline
 value class Name<T : CharSequence>(val value: T) {
-    operator fun plus(other: Name<T>): Name<T> = Name("$value ${other.value}")
+    operator fun plus(other: Name<T>): Name<CharSequence> = Name("$value ${other.value}")
 }
