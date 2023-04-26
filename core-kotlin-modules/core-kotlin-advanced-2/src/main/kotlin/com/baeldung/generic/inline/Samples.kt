@@ -42,5 +42,5 @@ val stringBox: Box<String> = Box("Hello, Baeldung!")
 
 @JvmInline
 value class Name<T : CharSequence>(val value: T) {
-    operator fun plus(other: Name<*>): Name<CharSequence> = Name(value.toString() + " " + other.value)
+    operator fun plus(other: Name<T>): Name<T> = Name("$value ${other.value}")
 }
