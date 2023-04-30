@@ -1,4 +1,4 @@
-package com.baeldung.configurationproperties
+package com.baeldung
 
 import com.baeldung.configurationproperties.config.ApiConfiguration
 import org.springframework.boot.autoconfigure.SpringBootApplication
