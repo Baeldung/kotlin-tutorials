@@ -27,14 +27,14 @@ class Utf8EncodingTest {
     fun givenByteArray_whenGivenToDefaultStringConstructor_itIsUtf8Encoded() {
         val utf8String = String(byteArray)
 
-        Assertions.assertEquals(originalString, utf8String)
+        Assertions.assertEquals(expectedString, utf8String)
     }
 
     @Test
     fun givenByteArray_whenGivenToStringConstructorWithCharset_itIsUtf8Encoded() {
         val utf8String = String(byteArray, Charsets.UTF_8)
 
-        Assertions.assertEquals(originalString, utf8String)
+        Assertions.assertEquals(expectedString, utf8String)
     }
 
     @Test
@@ -42,8 +42,8 @@ class Utf8EncodingTest {
         val utf8StringDefault = byteArray.toString()
         val utf8StringExplicit = byteArray.toString(Charsets.UTF_8)
 
-        Assertions.assertNotEquals(originalString, utf8StringDefault)
-        Assertions.assertEquals(originalString, utf8StringExplicit)
+        Assertions.assertNotEquals(expectedString, utf8StringDefault)
+        Assertions.assertEquals(expectedString, utf8StringExplicit)
     }
 
     @Test
@@ -51,6 +51,6 @@ class Utf8EncodingTest {
         val encodedCharBuffer = Charsets.UTF_8.encode(CharBuffer.wrap(charArray))
         val utf8String = Charsets.UTF_8.decode(encodedCharBuffer).toString()
 
-        Assertions.assertEquals("That will cost €10.", utf8String)
+        Assertions.assertEquals(expectedString, utf8String)
     }
 }
