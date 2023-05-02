@@ -1,6 +1,10 @@
 package com.baeldung.privatesetter
 
 
+fun main() {
+    println("Private Setter Examples")
+}
+
 object PrivateSetterExamples {
 
 //    fun myClassExample() {
