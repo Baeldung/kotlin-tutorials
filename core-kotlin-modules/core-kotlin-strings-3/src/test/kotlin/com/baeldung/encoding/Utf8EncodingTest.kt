@@ -5,14 +5,18 @@ import org.junit.jupiter.api.Test
 import java.nio.CharBuffer
 
 class Utf8EncodingTest {
+    
+    private val byteArray = byteArrayOf(84, 104, 97, 116, 32, 119, 105, 108, 108, 32, 99, 111, 115, 116, 32, -30, -126, -84, 49, 48, 46) 
+    private val charArray = charArrayOf('T', 'h', 'a', 't', ' ', 'w', 'i', 'l', 'l', ' ', 'c', 'o', 's', 't', ' ', '€', '1', '0', '.') 
+    private val expectedString = "That will cost €10." 
 
     @Test
     fun givenUnicodeString_whenAsciiOrUtf8Encoding_itIsOnlyPreservedWithUtf8() {
         val originalString = "That will cost €10."
-        val byteArray = originalString.toByteArray()
+        val stringAsByteArray = originalString.toByteArray()
 
-        val utf8String = String(byteArray, Charsets.UTF_8)
-        val asciiString = String(byteArray, Charsets.US_ASCII)
+        val utf8String = String(stringAsByteArray, Charsets.UTF_8)
+        val asciiString = String(stringAsByteArray, Charsets.US_ASCII)
 
         Assertions.assertEquals(originalString, utf8String)
         Assertions.assertNotEquals(originalString, asciiString)
@@ -21,9 +25,6 @@ class Utf8EncodingTest {
 
     @Test
     fun givenByteArray_whenGivenToDefaultStringConstructor_itIsUtf8Encoded() {
-        val originalString = "That will cost €10."
-        val byteArray = originalString.toByteArray()
-
         val utf8String = String(byteArray)
 
         Assertions.assertEquals(originalString, utf8String)
@@ -31,9 +32,6 @@ class Utf8EncodingTest {
 
     @Test
     fun givenByteArray_whenGivenToStringConstructorWithCharset_itIsUtf8Encoded() {
-        val originalString = "That will cost €10."
-        val byteArray = originalString.toByteArray()
-
         val utf8String = String(byteArray, Charsets.UTF_8)
 
         Assertions.assertEquals(originalString, utf8String)
@@ -41,9 +39,6 @@ class Utf8EncodingTest {
 
     @Test
     fun givenByteArray_whenUsingToStringWithCharset_itIsUtf8Encoded() {
-        val originalString = "That will cost €10."
-        val byteArray = originalString.toByteArray()
-
         val utf8StringDefault = byteArray.toString()
         val utf8StringExplicit = byteArray.toString(Charsets.UTF_8)
 
@@ -53,20 +48,8 @@ class Utf8EncodingTest {
 
     @Test
     fun givenCharArray_whenEncodingAndDecoding_itIsUtf8Encoded() {
-        val charArray = charArrayOf('T', 'h', 'a', 't', ' ', 'w', 'i', 'l', 'l', ' ', 'c', 'o', 's', 't', ' ', '€', '1', '0', '.')
-
         val encodedCharBuffer = Charsets.UTF_8.encode(CharBuffer.wrap(charArray))
         val utf8String = Charsets.UTF_8.decode(encodedCharBuffer).toString()
-
-        Assertions.assertEquals("That will cost €10.", utf8String)
-    }
-
-    @Test
-    fun givenString_whenConvertedToByteArrayThenToString_itIsUtf8Encoded() {
-        val originalString = "That will cost €10."
-
-        val byteArray = originalString.toByteArray()
-        val utf8String = byteArray.toString(Charsets.UTF_8)
 
         Assertions.assertEquals("That will cost €10.", utf8String)
     }
