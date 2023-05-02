@@ -4,7 +4,10 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.integration.config.EnableIntegration
 import org.springframework.integration.core.MessageSource
-import org.springframework.integration.dsl.*
+import org.springframework.integration.dsl.IntegrationFlow
+import org.springframework.integration.dsl.MessageChannels
+import org.springframework.integration.dsl.StandardIntegrationFlow
+import org.springframework.integration.dsl.integrationFlow
 import org.springframework.integration.file.FileReadingMessageSource
 import org.springframework.integration.file.FileWritingMessageHandler
 import org.springframework.messaging.MessageChannel
@@ -33,13 +36,10 @@ class IntegrationFlowConfig {
     }
 
     @Bean
-    fun kotlinFileMover(): IntegrationFlow = integrationFlow (
-                { "${sourceDirectory()}"}, { poller { it.fixedDelay(10000)}} )
-                    {
-                filter { message: Any ->
-                    (message as File).name
-                            .endsWith(".jpg")
-                }
+    fun kotlinFileMover(): IntegrationFlow =
+            integrationFlow({ "${sourceDirectory()}" },
+                    { poller { it.fixedDelay(10000) } }) {
+                filter { message: File -> message.name.endsWith(".jpg") }
                 handle("${targetDirectory()}")
             }
 
@@ -47,7 +47,7 @@ class IntegrationFlowConfig {
     @Bean
     fun simpleFlow(): IntegrationFlow {
         return integrationFlow {
-            filter<String> { it  === "Spring Integration with Kotlin | Baeldung" }
+            filter<String> { it === "Spring Integration with Kotlin | Baeldung" }
             wireTap {
                 handle { message -> println(message.payload) }
             }
@@ -56,6 +56,7 @@ class IntegrationFlowConfig {
     }
 
     fun baeldung(): MessageChannel = MessageChannels.queue().get()
+
     @Bean
     fun mixedFlow(): StandardIntegrationFlow = IntegrationFlow.from(simpleFlow()).channel("baeldung").get()
 }
