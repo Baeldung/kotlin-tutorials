@@ -36,11 +36,11 @@ class IntegrationFlowConfig {
         return handler
     }
 
-    @Bean
-    fun kotlinFileMover(): IntegrationFlow = integrationFlow(sourceDirectory(), { poller { it.fixedDelay(10000) } }) {
-        filter { message: File -> message.name.endsWith(".jpg") }
-        handle("targetDirectory")
-    }
+@Bean
+fun kotlinFileMover(): IntegrationFlow = integrationFlow(sourceDirectory(), { poller { it.fixedDelay(10000) } }) {
+    filter { message: File -> message.name.endsWith(".jpg") }
+    handle("targetDirectory")
+}
 
 
     @Bean
@@ -60,6 +60,7 @@ class IntegrationFlowConfig {
     @Bean
     fun mixedFlow(): IntegrationFlow {
         return integrationFlow(simpleFlow()) {
+            channel("baeldung")
             transform<String> { it.lowercase() }
         }
     }
