@@ -31,7 +31,7 @@ class IntegrationFlowConfig {
     @Bean
     fun targetDirectory(): MessageHandler? {
         val handler = FileWritingMessageHandler(File(outputDir))
-        handler.setFileExistsMode(FileExistsMode.REPLACE);
+        handler.setFileExistsMode(FileExistsMode.REPLACE)
         handler.setExpectReply(false)
         return handler
     }
