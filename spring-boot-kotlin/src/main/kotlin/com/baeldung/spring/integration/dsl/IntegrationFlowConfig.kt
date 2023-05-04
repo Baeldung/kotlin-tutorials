@@ -6,10 +6,10 @@ import org.springframework.integration.config.EnableIntegration
 import org.springframework.integration.core.MessageSource
 import org.springframework.integration.dsl.IntegrationFlow
 import org.springframework.integration.dsl.MessageChannels
-import org.springframework.integration.dsl.StandardIntegrationFlow
 import org.springframework.integration.dsl.integrationFlow
 import org.springframework.integration.file.FileReadingMessageSource
 import org.springframework.integration.file.FileWritingMessageHandler
+import org.springframework.integration.file.support.FileExistsMode
 import org.springframework.messaging.MessageChannel
 import org.springframework.messaging.MessageHandler
 import java.io.File
@@ -22,7 +22,7 @@ class IntegrationFlowConfig {
     val outputDir = "target"
 
     @Bean
-    fun sourceDirectory(): MessageSource<File?>? {
+    fun sourceDirectory(): MessageSource<File> {
         val messageSource = FileReadingMessageSource()
         messageSource.setDirectory(File(inputDir))
         return messageSource
@@ -31,19 +31,16 @@ class IntegrationFlowConfig {
     @Bean
     fun targetDirectory(): MessageHandler? {
         val handler = FileWritingMessageHandler(File(outputDir))
+        handler.setFileExistsMode(FileExistsMode.REPLACE);
         handler.setExpectReply(false)
         return handler
     }
 
     @Bean
-    fun kotlinFileMover(): IntegrationFlow =
-            integrationFlow(
-                    { "${sourceDirectory()}" },
-                    { poller { it.fixedDelay(10000) } }
-            ) {
-                filter { message: File -> message.name.endsWith(".jpg") }
-                handle("${targetDirectory()}")
-            }
+    fun kotlinFileMover(): IntegrationFlow = integrationFlow(sourceDirectory(), { poller { it.fixedDelay(10000) } }) {
+        filter { message: File -> message.name.endsWith(".jpg") }
+        handle("targetDirectory")
+    }
 
 
     @Bean
@@ -57,8 +54,14 @@ class IntegrationFlowConfig {
         }
     }
 
+    @Bean
     fun baeldung(): MessageChannel = MessageChannels.queue().get()
 
     @Bean
-    fun mixedFlow(): StandardIntegrationFlow = IntegrationFlow.from(simpleFlow()).channel("baeldung").get()
+    fun mixedFlow(): IntegrationFlow {
+        return integrationFlow(simpleFlow()) {
+            transform<String> { it.lowercase() }
+        }
+    }
+
 }
