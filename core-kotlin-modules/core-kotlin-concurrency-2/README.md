@@ -10,3 +10,4 @@ This module contains articles about concurrency in Kotlin.
 - [IO and Default Dispatchers in Kotlin Coroutines](https://www.baeldung.com/kotlin/io-and-default-dispatcher)
 - [Construct Suspend Functions With Kotlin’s suspendCoroutine](https://www.baeldung.com/kotlin/suspendcoroutine)
 - [Calling Kotlin Suspending Functions from Java](https://www.baeldung.com/kotlin/suspend-functions-from-java)
+- [Kotlin Coroutines With Timeout](https://www.baeldung.com/kotlin/coroutines-timeout)
