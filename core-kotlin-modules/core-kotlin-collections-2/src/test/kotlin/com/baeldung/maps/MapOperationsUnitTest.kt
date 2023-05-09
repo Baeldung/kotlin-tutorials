@@ -6,29 +6,29 @@ import org.junit.jupiter.api.Test
 class MapOperationsUnitTest {
 
     private val defaultIceCreamInventory = mapOf(
-        "Vanilla" to 24,
-        "Chocolate" to 14,
-        "Strawberry" to 9,
-        "Rocky Road" to 7,
-        "Maple Walnut" to 0
+      "Vanilla" to 24,
+      "Chocolate" to 14,
+      "Strawberry" to 9,
+      "Rocky Road" to 7,
+      "Maple Walnut" to 0
     )
 
     @Test
     fun `Given a list of IceCreamShipments, When there are multiple of each type, Then generate a map`() {
 
         val shipments = listOf(
-            IceCreamShipment("Chocolate", 3),
-            IceCreamShipment("Strawberry", 7),
-            IceCreamShipment("Vanilla", 5),
-            IceCreamShipment("Chocolate", 5),
-            IceCreamShipment("Vanilla", 1),
-            IceCreamShipment("Rocky Road", 10),
+          IceCreamShipment("Chocolate", 3),
+          IceCreamShipment("Strawberry", 7),
+          IceCreamShipment("Vanilla", 5),
+          IceCreamShipment("Chocolate", 5),
+          IceCreamShipment("Vanilla", 1),
+          IceCreamShipment("Rocky Road", 10),
         )
 
         // Using Kotlin functional APIs
         val iceCreamInventory = shipments
-            .groupBy({ it.flavor }, { it.quantity })
-            .mapValues { it.value.sum() }
+          .groupBy({ it.flavor }, { it.quantity })
+          .mapValues { it.value.sum() }
 
         // Using a for loop - not recommended
 //        val iceCreamInventory = mutableMapOf<String, Int>()
@@ -56,20 +56,20 @@ class MapOperationsUnitTest {
 
         //Creating a map contains vanilla and rockyRoadPair only if their quantity > 5
         val map1 = listOfNotNull(chocolatePair,
-            strawberryPair,
-            vanillaPair.takeIf { it.second > 5 },
-            rockyRoadPair.takeIf { it.second > 5 }).toMap()
+          strawberryPair,
+          vanillaPair.takeIf { it.second > 5 },
+          rockyRoadPair.takeIf { it.second > 5 }).toMap()
         assertEquals(expectedMap, map1)
 
         val map2 = buildMap {
-            put(chocolatePair.first, chocolatePair.second)
-            put(strawberryPair.first, strawberryPair.second)
-            if (vanillaPair.second > 5) {
-                put(vanillaPair.first, vanillaPair.second)
-            }
-            if (rockyRoadPair.second > 5) {
-                put(rockyRoadPair.first, rockyRoadPair.second)
-            }
+          put(chocolatePair.first, chocolatePair.second)
+          put(strawberryPair.first, strawberryPair.second)
+          if (vanillaPair.second > 5) {
+              put(vanillaPair.first, vanillaPair.second)
+          }
+          if (rockyRoadPair.second > 5) {
+              put(rockyRoadPair.first, rockyRoadPair.second)
+          }
         }
         assertEquals(expectedMap, map2)
     }
@@ -175,7 +175,7 @@ class MapOperationsUnitTest {
         val inventory = defaultIceCreamInventory
         val popularFlavors = mutableMapOf<String, Int>()
 
-        inventory.filterTo(popularFlavors, { (flavor, _) -> flavor == "Chocolate" || flavor == "Vanilla" })
+        inventory.filterTo(popularFlavors, { (flavor, _) -> flavor == "Chocolate" || flavor == "Vanilla"})
 
         assertEquals(setOf("Vanilla", "Chocolate"), popularFlavors.keys)
     }
@@ -187,15 +187,11 @@ class MapOperationsUnitTest {
 
         val asStrings = inventory.map { (flavor, qty) -> "$qty tubs of $flavor" }
 
-        assertTrue(
-            asStrings.containsAll(
-                setOf(
-                    "24 tubs of Vanilla",
-                    "14 tubs of Chocolate",
-                    "9 tubs of Strawberry",
-                )
-            )
-        )
+        assertTrue(asStrings.containsAll(setOf(
+          "24 tubs of Vanilla",
+          "14 tubs of Chocolate",
+          "9 tubs of Strawberry",
+        )))
         assertEquals(5, asStrings.size)
     }
 
@@ -207,17 +203,13 @@ class MapOperationsUnitTest {
 
         val allFlavors = inventory.keys
 
-        assertTrue(
-            allFlavors.containsAll(
-                setOf(
-                    "Vanilla",
-                    "Chocolate",
-                    "Strawberry",
-                    "Rocky Road",
-                    "Maple Walnut"
-                )
-            )
-        )
+        assertTrue(allFlavors.containsAll(setOf(
+          "Vanilla",
+          "Chocolate",
+          "Strawberry",
+          "Rocky Road",
+          "Maple Walnut"
+        )))
         assertEquals(5, allFlavors.size)
     }
 
@@ -236,9 +228,9 @@ class MapOperationsUnitTest {
     fun `Given a list of shipments and a map of sales, When merging with inventory, Then update the inventory`() {
 
         val inventory = mutableMapOf(
-            "Vanilla" to 24,
-            "Chocolate" to 14,
-            "Strawberry" to 9,
+          "Vanilla" to 24,
+          "Chocolate" to 14,
+          "Strawberry" to 9,
         )
 
         val sales = mapOf("Vanilla" to 7, "Chocolate" to 4, "Strawberry" to 5)
