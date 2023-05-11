@@ -5,7 +5,7 @@
     <artifactId>spring-boot-kotlin</artifactId>
     <name>spring-boot-kotlin</name>
     <packaging>jar</packaging>
-    <description>Demo project showing how to use non-blocking in Kotlin with Spring Boot</description>
+    <description>Demo projects showing how to use Kotlin with Spring Boot</description>
 
     <parent>
         <groupId>com.baeldung</groupId>
@@ -62,6 +62,16 @@
             <artifactId>reactor-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.integration</groupId>
+            <artifactId>spring-integration-core</artifactId>
+            <version>${spring.integration.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.integration</groupId>
+            <artifactId>spring-integration-file</artifactId>
+            <version>${spring.integration.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -69,6 +79,7 @@
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
+                <version>${kotlin.version}</version>
                 <configuration>
                     <args>
                         <arg>-Xjsr305=strict</arg>
@@ -95,6 +106,7 @@
         <h2-r2dbc.version>1.0.0.RELEASE</h2-r2dbc.version>
         <spring-boot.version>2.2.0.RELEASE</spring-boot.version>
         <mockito.version>3.1.0</mockito.version>
+        <spring.integration.version>6.0.5</spring.integration.version>
     </properties>
 
 </project>
