@@ -45,6 +45,36 @@ class MapOperationsUnitTest {
     }
 
     @Test
+    fun `Given a list of flavor-quantity pairs, When constructing and filling a map conditionally, Then get exepected map`() {
+
+        val chocolatePair = "Chocolate" to 3
+        val strawberryPair = "Strawberry" to 7
+        val vanillaPair = "Vanilla" to 5
+        val rockyRoadPair = "Rocky Road" to 10
+
+        val expectedMap = mapOf(chocolatePair, strawberryPair, rockyRoadPair)
+
+        //Creating a map contains vanilla and rockyRoadPair only if their quantity > 5
+        val map1 = listOfNotNull(chocolatePair,
+          strawberryPair,
+          vanillaPair.takeIf { it.second > 5 },
+          rockyRoadPair.takeIf { it.second > 5 }).toMap()
+        assertEquals(expectedMap, map1)
+
+        val map2 = buildMap {
+          put(chocolatePair.first, chocolatePair.second)
+          put(strawberryPair.first, strawberryPair.second)
+          if (vanillaPair.second > 5) {
+              put(vanillaPair.first, vanillaPair.second)
+          }
+          if (rockyRoadPair.second > 5) {
+              put(rockyRoadPair.first, rockyRoadPair.second)
+          }
+        }
+        assertEquals(expectedMap, map2)
+    }
+
+    @Test
     fun `Given a map, When the key exists, Then getter methods return the value`() {
 
         val map = defaultIceCreamInventory
