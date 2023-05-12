@@ -3,6 +3,7 @@ package com.baeldung.split
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import java.util.regex.Pattern
+import kotlin.test.assertEquals
 
 class StringSplitUnitTest {
 
@@ -60,5 +61,32 @@ class StringSplitUnitTest {
     fun `splitToSequence works lazily`() {
         val info = "random_text,".repeat(1000)
         assertThat(info.splitToSequence(",").first()).isEqualTo("random_text")
+    }
+
+    @Test
+    fun `should be able to get split values into an array using toTypedArray`() {
+        val fruits = "apple,banana,grapes,orange"
+        val fruitsArrayList = fruits.split(",")
+        assertEquals("ArrayList", fruitsArrayList::class.simpleName)
+        val fruitsArray = fruitsArrayList.toTypedArray()
+        assertEquals("Array", fruitsArray::class.simpleName)
+        assertEquals(4, fruitsArray.size)
+        assertEquals("apple", fruitsArray[0])
+        assertEquals("banana", fruitsArray[1])
+        assertEquals("grapes", fruitsArray[2])
+        assertEquals("orange", fruitsArray[3])
+    }
+
+    @Test
+    fun `should be able to construct an array using the split values`() {
+        val fruits = "apple,banana,grapes,orange"
+        val fruitsArrayList = fruits.split(",")
+        assertEquals("ArrayList", fruitsArrayList::class.simpleName)
+        val fruitsArray = Array(fruitsArrayList.size) { i -> fruitsArrayList[i] }
+        assertEquals(4, fruitsArray.size)
+        assertEquals("apple", fruitsArray[0])
+        assertEquals("banana", fruitsArray[1])
+        assertEquals("grapes", fruitsArray[2])
+        assertEquals("orange", fruitsArray[3])
     }
 }

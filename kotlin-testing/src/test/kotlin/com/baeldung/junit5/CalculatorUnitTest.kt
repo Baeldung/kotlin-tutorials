@@ -79,4 +79,11 @@ class CalculatorUnitTest {
     fun `Log to base 2 of 8 should be equal to 3`() {
         Assertions.assertEquals(3.0, calculator.log(2, 8))
     }
+
+    // JVM bytecode: @Tag.Container(value = {@Tag("slow"), @Tag("logarithms")})
+    @Tag("slow") @Tag("logarithms")
+    @Test
+    fun `Repeatable Tag Log to base 2 of 8 should be equal to 3`() {
+        Assertions.assertEquals(3.0, calculator.log(2, 8))
+    }
 }
