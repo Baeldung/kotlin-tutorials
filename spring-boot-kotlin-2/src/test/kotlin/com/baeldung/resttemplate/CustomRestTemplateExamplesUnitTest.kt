@@ -17,7 +17,7 @@ class CustomRestTemplateExamplesUnitTest {
     lateinit var restTemplate: RestTemplate
 
     @Test
-    fun givenFooService_whenCallPatchForObject_thenOK() {
+    fun `should update the name of Foo`() {
         var foo = Foo(1, "John")
         restTemplate.postForObject("http://localhost:8082/spring-rest/foos", foo, Foo::class.java)
 
