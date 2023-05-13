@@ -14,7 +14,7 @@ class RestTemplateExamplesManualTest {
         val foo = Foo(1, "John")
         val response = restTemplate.postForObject("http://localhost:8082/spring-rest/foos", foo, Foo::class.java)
         assertThat(response).isNotNull
-        assertThat(response.id).isEqualTo(foo.id)
+        assertThat(response!!.id).isEqualTo(foo.id)
         assertThat(response.name).isEqualTo(foo.name)
     }
 
@@ -26,8 +26,8 @@ class RestTemplateExamplesManualTest {
         assertThat(response).isNotNull
         assertThat(response.statusCode).isEqualTo(HttpStatus.CREATED)
         assertThat(response.body).isNotNull
-        assertThat(response.body.id).isEqualTo(foo.id)
-        assertThat(response.body.name).isEqualTo(foo.name)
+        assertThat(response.body!!.id).isEqualTo(foo.id)
+        assertThat(response.body!!.name).isEqualTo(foo.name)
     }
 
     @Test
@@ -35,7 +35,7 @@ class RestTemplateExamplesManualTest {
         val foo = Foo(1, "John")
         val location = restTemplate.postForLocation("http://localhost:8082/spring-rest/foos", foo)
         assertThat(location).isNotNull
-        assertThat(location.path).isEqualTo("/spring-rest/foos/1")
+        assertThat(location!!.path).isEqualTo("/spring-rest/foos/1")
     }
 
     @Test
@@ -53,7 +53,7 @@ class RestTemplateExamplesManualTest {
     fun `should get a Foo by id using path param`() {
         val foo = restTemplate.getForObject("http://localhost:8082/spring-rest/foos/{id}", Foo::class.java, 1)
         assertThat(foo).isNotNull
-        assertThat(foo.id).isEqualTo(1)
+        assertThat(foo!!.id).isEqualTo(1)
         assertThat(foo.name).isEqualTo("John")
     }
 
@@ -62,7 +62,7 @@ class RestTemplateExamplesManualTest {
         val uriVariables = mapOf("sample" to "value")
         val foo = restTemplate.getForObject("http://localhost:8082/spring-rest/foos/{id}", Foo::class.java, 1, uriVariables)
         assertThat(foo).isNotNull
-        assertThat(foo.id).isEqualTo(1)
+        assertThat(foo!!.id).isEqualTo(1)
         assertThat(foo.name).isEqualTo("John")
     }
 
