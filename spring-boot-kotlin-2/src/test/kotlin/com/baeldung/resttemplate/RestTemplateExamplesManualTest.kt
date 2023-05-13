@@ -43,7 +43,7 @@ class RestTemplateExamplesManualTest {
         var foo = Foo(1, "John")
         restTemplate.postForObject("http://localhost:8082/spring-rest/foos", foo, Foo::class.java)
 
-        foo = restTemplate.getForObject("http://localhost:8082/spring-rest/foos/1", Foo::class.java)
+        foo = restTemplate.getForObject("http://localhost:8082/spring-rest/foos/1", Foo::class.java)!!
         assertThat(foo).isNotNull
         assertThat(foo.id).isEqualTo(1)
         assertThat(foo.name).isEqualTo("John")

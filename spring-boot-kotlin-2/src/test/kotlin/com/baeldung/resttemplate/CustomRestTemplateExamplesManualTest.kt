@@ -22,7 +22,7 @@ class CustomRestTemplateExamplesManualTest {
         restTemplate.postForObject("http://localhost:8082/spring-rest/foos", foo, Foo::class.java)
 
         val update = mapOf("name" to "Jane")
-        foo = restTemplate.patchForObject("http://localhost:8082/spring-rest/foos/{id}", update, Foo::class.java, 1)
+        foo = restTemplate.patchForObject("http://localhost:8082/spring-rest/foos/{id}", update, Foo::class.java, 1)!!
         Assertions.assertThat(foo).isNotNull
         Assertions.assertThat(foo.name).isEqualTo("Jane")
     }
