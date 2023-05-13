@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.web.client.RestTemplate
 
 @SpringBootTest(classes = [RestTemplateConfig::class])
-class CustomRestTemplateExamplesUnitTest {
+class CustomRestTemplateExamplesManualTest {
 
     @Autowired
     @Qualifier("restTemplateCustom")

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import org.springframework.http.*
 import org.springframework.web.client.RestTemplate
 
-class RestTemplateExamplesUnitTest {
+class RestTemplateExamplesManualTest {
     private val restTemplate = RestTemplate()
 
     @Test
