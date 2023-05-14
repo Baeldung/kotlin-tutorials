@@ -9,3 +9,10 @@ enum class Weekday {
     FRIDAY,
     SATURDAY,
 }
+
+
+// Demonstration: extending an enum gives compilation failure
+/*
+enum class MyWeekday: Weekday {
+}
+*/
