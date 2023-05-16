@@ -1,5 +1,9 @@
 package com.baeldung.preconditions
 
+import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.node.ArrayNode
+import com.fasterxml.jackson.databind.node.ObjectNode
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import kotlin.test.assertEquals
@@ -102,5 +106,28 @@ class PreconditionsTest {
         calculator.add(7)
         calculator.add(10)
         assertEquals(6.67, calculator.average(), 0.01)
+    }
+
+    @Test
+    fun `parsing json when a case is not supported error should be thrown`() {
+
+        val exception = assertThrows<IllegalStateException> {
+            val json = """
+            "Hello, World!"
+        """.trimIndent()
+            val genericJson: JsonNode = jacksonObjectMapper().readTree(json)
+
+            when (genericJson) {
+                is ArrayNode -> { /* we have a json list */
+                }
+
+                is ObjectNode -> { /* we have an object */
+                }
+
+                else -> error("This function only handles list and object wrappers in Json")
+            }
+        }
+
+        assert(exception.message == "This function only handles list and object wrappers in Json")
     }
 }
