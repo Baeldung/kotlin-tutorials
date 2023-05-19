@@ -12,8 +12,8 @@ class RestTemplateConfig {
     fun restTemplate(): RestTemplate {
         val restTemplate = RestTemplate()
         val requestFactory = HttpComponentsClientHttpRequestFactory()
-        requestFactory.setConnectTimeout(5)
-        requestFactory.setReadTimeout(5)
+        requestFactory.setConnectTimeout(5000)
+        requestFactory.setReadTimeout(5000)
         restTemplate.requestFactory = requestFactory;
 
         return restTemplate;

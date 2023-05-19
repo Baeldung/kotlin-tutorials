@@ -92,7 +92,7 @@ class RestTemplateExamplesManualTest {
     }
 
     @Test
-    fun `should get entity using exchange`() {
+    fun `should create entity using exchange`() {
         val headers = HttpHeaders()
         headers.contentType = MediaType.APPLICATION_JSON
         val foo = Foo(1, "John")
