@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 class TestIntToChar {
+
     @Test
     fun `Given an Int, When it's valid number, Then should convert Int to the corresponding Unicode character`() {
         assertEquals('A',  'A')
