@@ -18,6 +18,7 @@ class TestIntToChar {
         assertEquals('A'.code, 65)
         assertEquals('\u0041'.code, 65)
     }
+
     @Test
     fun `Given an Int, When it's a valid digit, Then should convert to the corresponding Char with the specified radix`() {
         assertEquals(1.digitToChar(2), '1')
