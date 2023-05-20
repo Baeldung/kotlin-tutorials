@@ -13,10 +13,12 @@ class TestIntToChar {
         assertEquals(65.toChar(), '\u0041')
     }
 
-    @Test
-    fun `Given a Char, When it's valid char, Then should convert to Int`() {
-        assertEquals('A'.code, 65)
-        assertEquals('\u0041'.code, 65)
+    @Test fun `Given an Int, When it's a valid digit, Then should convert to the corresponding Char`() {
+        assertEquals(0.digitToChar(), '0')
+        assertEquals(9.digitToChar(), '9')
+
+        assertThrows<IllegalArgumentException> { (-1).digitToChar() }
+        assertThrows<IllegalArgumentException> { 10.digitToChar() }
     }
 
     @Test
