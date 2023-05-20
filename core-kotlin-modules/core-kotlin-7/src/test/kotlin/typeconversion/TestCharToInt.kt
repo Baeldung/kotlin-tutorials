@@ -6,7 +6,9 @@ import org.junit.jupiter.api.assertThrows
 import kotlin.test.assertNull
 
 class TestCharToInt {
-    @Test fun `Given a Char, When it's a valid Unicode character, Then should convert to the corresponding Int`() {
+
+    @Test
+    fun `Given a Char, When it's a valid Unicode character, Then should convert to the corresponding Int`() {
         assertEquals('A'.code, 65)
         assertEquals('\u0041'.code, 65)
     }
