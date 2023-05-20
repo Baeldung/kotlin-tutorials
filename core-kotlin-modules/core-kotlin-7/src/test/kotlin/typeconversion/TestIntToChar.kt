@@ -5,11 +5,12 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 class TestIntToChar {
+
     @Test
     fun `Given an Int, When it's valid number, Then should convert Int to the corresponding Unicode character`() {
-        assertEquals('A',  'A')
+        assertEquals(65.toChar(), 'A')
         // The escaped Unicode representation of 'A'
-        assertEquals('\u0041',  'A')
+        assertEquals(65.toChar(), '\u0041')
     }
 
     @Test
@@ -17,6 +18,7 @@ class TestIntToChar {
         assertEquals('A'.code, 65)
         assertEquals('\u0041'.code, 65)
     }
+
     @Test
     fun `Given an Int, When it's a valid digit, Then should convert to the corresponding Char with the specified radix`() {
         assertEquals(1.digitToChar(2), '1')
@@ -26,5 +28,7 @@ class TestIntToChar {
         assertThrows<IllegalArgumentException> { 16.digitToChar(16) }
 
         assertEquals(35.digitToChar(36), 'Z')
-        assertThrows<IllegalArgumentException> { 36.digitToChar(36) } }
+        assertThrows<IllegalArgumentException> { 36.digitToChar(36) }
     }
+
+}
