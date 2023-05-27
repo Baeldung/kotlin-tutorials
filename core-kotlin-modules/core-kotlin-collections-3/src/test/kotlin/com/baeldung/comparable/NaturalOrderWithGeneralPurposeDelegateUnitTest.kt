@@ -16,13 +16,12 @@ class NaturalOrderWithGeneralPurposeDelegateUnitTest {
     class DelegatedComparable<T>(vararg criteria: Pair<Comparable<*>, Selector<T>>): Comparable<T> {
 
         @Suppress("UNCHECKED_CAST")
-        private val comparator: Comparator<Any> = criteria.fold(Comparator { _: Comparable<*>, _: Comparable<*> -> 0 }) { acc, crit ->
-            acc.then { _, b: Comparable<*> ->
-                (crit.first as Comparable<Any>).compareTo(crit.second(b as T))
+        private val comparator: Comparator<T> = criteria.fold(Comparator { _, _ -> 0 }) { acc, crit ->
+            acc.then { _, b ->
+                (crit.first as Comparable<Any>).compareTo(crit.second(b))
             }
-        } as Comparator<Any>
-
-        override fun compareTo(other: T): Int = comparator.compare(this, other)
+        }
+        override fun compareTo(other: T): Int = comparator.compare(null, other)
     }
 
     @Test
