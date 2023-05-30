@@ -109,23 +109,13 @@ class PreconditionsTest {
     }
 
     @Test
-    fun `parsing json when a case is not supported error should be thrown`() {
+    fun `parsing json when a case is not supported exception should be thrown`() {
 
         val exception = assertThrows<IllegalStateException> {
             val json = """
             "Hello, World!"
         """.trimIndent()
-            val genericJson: JsonNode = jacksonObjectMapper().readTree(json)
-
-            when (genericJson) {
-                is ArrayNode -> { /* we have a json list */
-                }
-
-                is ObjectNode -> { /* we have an object */
-                }
-
-                else -> error("This function only handles list and object wrappers in Json")
-            }
+            processJsonArrayOrObject(json)
         }
 
         assert(exception.message == "This function only handles list and object wrappers in Json")
