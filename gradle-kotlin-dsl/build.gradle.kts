@@ -1,3 +1,7 @@
+import java.io.ByteArrayOutputStream
+import java.io.FileOutputStream
+import java.io.OutputStream
+
 plugins {
     `java-library`
     id("org.flywaydb.flyway") version "8.0.2"
@@ -50,4 +54,45 @@ dependencies {
 
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
+}
+
+tasks.register("helloUserCmd") {
+    val user: String? = System.getenv("USER")
+    project.exec {
+        commandLine("echo", "Hello,", "$user!")
+    }
+}
+
+tasks.register("helloUserInVarCmd") {
+    val outputStream = ByteArrayOutputStream()
+    val user: String? = System.getenv("USER")
+    project.exec {
+        standardOutput = outputStream
+        commandLine("echo", "Hello,", "$user!")
+    }
+    val output = outputStream.toString().trim()
+    println("Command output: $output")
+}
+
+tasks.register("tmpFilesCmd") {
+    val outputFile = File("/tmp/output.txt")
+    val outputStream: OutputStream = FileOutputStream(outputFile)
+    project.exec {
+        standardOutput = outputStream
+        workingDir = project.file("/tmp")
+        commandLine("ls", workingDir)
+    }
+}
+
+tasks.register("alwaysFailCmd") {
+    val result = project.exec {
+        commandLine("ls", "invalid_path")
+        isIgnoreExitValue = true
+    }
+    if (result.exitValue == 0) {
+        println("Command executed successfully.")
+    } else {
+        println("Command execution failed.")
+        println("Command status: $result")
+    }
 }
