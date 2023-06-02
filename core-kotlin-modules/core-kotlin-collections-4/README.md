@@ -8,3 +8,4 @@ This module contains articles about core Kotlin collections.
 - [Difference Between Collection and Sequence in Kotlin](https://www.baeldung.com/kotlin/collection-vs-sequence)
 - [Reversing a Map in Kotlin](https://www.baeldung.com/kotlin/reversing-a-map)
 - [Get a Not Null Value From a Map in Kotlin](https://www.baeldung.com/kotlin/map-not-null-value)
+- [Sort LinkedHashMap by Values in Kotlin](https://www.baeldung.com/kotlin/linkedhashmap-sort-by-values)
