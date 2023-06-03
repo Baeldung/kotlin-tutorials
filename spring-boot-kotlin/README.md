@@ -6,3 +6,4 @@ This module contains articles about Kotlin in Spring Boot projects.
 - [Non-blocking Spring Boot with Kotlin Coroutines](https://www.baeldung.com/kotlin/spring-boot-kotlin-coroutines)
 - [Spring Boot and Kotlin](https://www.baeldung.com/kotlin/spring-boot-kotlin)
 - [Error Handling for REST with Spring in Kotlin](https://www.baeldung.com/kotlin/spring-rest-error-handling)
+- [Spring Integration With Kotlin](https://www.baeldung.com/kotlin/spring-integration)

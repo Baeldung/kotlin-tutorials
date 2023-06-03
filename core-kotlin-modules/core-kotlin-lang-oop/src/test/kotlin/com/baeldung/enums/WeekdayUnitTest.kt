@@ -51,4 +51,11 @@ class WeekdayUnitTest {
         Assertions.assertEquals(Weekday.FRIDAY, Weekday.values()[5])
         Assertions.assertEquals(Weekday.SATURDAY, Weekday.values()[6])
     }
+
+    @Test
+    fun givenEnumClass_whenCheckForFinalModififer_thenFindFinal() {
+        val weekdayClazz = Weekday::class.java
+        val isFinal = java.lang.reflect.Modifier.isFinal(weekdayClazz.modifiers)
+        Assertions.assertTrue(isFinal)
+    }
 }
