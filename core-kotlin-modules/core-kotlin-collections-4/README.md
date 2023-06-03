@@ -6,3 +6,4 @@ This module contains articles about core Kotlin collections.
 - [ArrayDeque in Kotlin](https://www.baeldung.com/kotlin/arraydeque)
 - [How to Work With List Casts in Kotlin](https://www.baeldung.com/kotlin/list-cast)
 - [Difference Between Collection and Sequence in Kotlin](https://www.baeldung.com/kotlin/collection-vs-sequence)
+- [Kotlin Comparable Interface](https://www.baeldung.com/kotlin/kotlin-comparable-interface)
