@@ -9,9 +9,10 @@ class NaturalOrderWithDelegateUnitTest {
     class Version(val value: Int, val timestamp: Instant) : Comparable<Version> by VersionCriteriaComparable(value, timestamp)
 
     class VersionCriteriaComparable(private val value: Int, private val timestamp: Instant): Comparable<Version> {
-        override fun compareTo(other: Version): Int = when {
-            value.compareTo(other.value) == 0 -> timestamp.compareTo(other.timestamp)
-            else -> value.compareTo(other.value)
+        override fun compareTo(other: Version): Int = when (
+            val valueComparison = value.compareTo(other.value)) {
+            0 -> timestamp compareTo other.timestamp
+            else -> valueComparison
         }
     }
 
