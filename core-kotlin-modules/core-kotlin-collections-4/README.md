@@ -9,5 +9,3 @@ This module contains articles about core Kotlin collections.
 - [Reversing a Map in Kotlin](https://www.baeldung.com/kotlin/reversing-a-map)
 - [Get a Not Null Value From a Map in Kotlin](https://www.baeldung.com/kotlin/map-not-null-value)
 - [Sort LinkedHashMap by Values in Kotlin](https://www.baeldung.com/kotlin/linkedhashmap-sort-by-values)
-- [Kotlin Comparable Interface](https://www.baeldung.com/kotlin/kotlin-comparable-interface)
-
