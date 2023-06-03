@@ -34,4 +34,9 @@ class NaturalOrderWithGeneralPurposeDelegateUnitTest {
         assertTrue(Version(0, Instant.EPOCH) < Version(1, Instant.now()))
     }
 
+    @Test
+    fun whenValueIsEqual_thenCorrect() {
+        assertTrue(Version(1, Instant.EPOCH).compareTo(Version(1, Instant.EPOCH)) == 0)
+    }
+
 }
