@@ -48,10 +48,12 @@ class DifferenceOfTwoListTest {
     fun `get difference of two lists with hashmap method`(){
         val userOccurrences = HashMap<User, Int>()
         val sum = list1 + list2
+
         for (user in sum) {
-            val numberOfOccurrences = userOccurrences[user]
-            userOccurrences[user] = if(numberOfOccurrences == null) 1 else numberOfOccurrences + 1
+            val numberOfOccurrences = userOccurrences.getOrDefault(user, 0) + 1
+            userOccurrences[user] = numberOfOccurrences
         }
+
         var res = sum.filter { user -> userOccurrences[user] == 1 }
         assertContentEquals(listOf(User(id=3, name="Nappy")), res)
     }
