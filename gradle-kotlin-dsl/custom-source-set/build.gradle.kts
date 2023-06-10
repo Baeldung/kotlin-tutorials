@@ -20,7 +20,7 @@ dependencies {
     }
 
 
-    api(sourceSets.named("analytics").get().output)
+    implementation(sourceSets.named("analytics").get().output)
 }
 
 application {
