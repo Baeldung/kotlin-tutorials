@@ -7,7 +7,7 @@ object FirstExample {
         fun onDrag() { /* default does nothing */ }
     }
 
-    class MyAdapterImpl : MyAdapter1 {
+    class MyAdapterImpl : MyAdapter {
         override fun onClick() {
             println("Clicked!")
         }
