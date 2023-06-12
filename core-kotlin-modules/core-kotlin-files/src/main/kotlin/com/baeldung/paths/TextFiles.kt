@@ -4,7 +4,7 @@ import java.io.File
 
 object TextFiles {
 
-    fun main() {
+    fun createFile() {
         val fileName = "data.txt"
         val file = File(fileName)
         val isNewFileCreated :Boolean = file.createNewFile()
