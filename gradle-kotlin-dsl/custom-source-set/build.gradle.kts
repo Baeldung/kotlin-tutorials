@@ -13,8 +13,8 @@ sourceSets {
 }
 
 dependencies {
-    // "analyticsImplementation"("org.apache.commons:commons-lang3:3.12.0")
-    // /\ \/ are equal
+    "analyticsImplementation"("org.apache.commons:commons-math3:3.6.1")
+    // /\ \/ are equal ways to add dependencies to the "analytics" source set
     sourceSets.named("analytics") {
         implementation("org.apache.commons:commons-lang3:3.12.0")
     }
