@@ -26,7 +26,7 @@ object SecondExample {
         override fun onDrag() { /* default does nothing */ }
     }
 
-    class MyOnClickAdapterImpl : OnClickAdapter {
+    class MyOnClickAdapterImpl : MyOnClickAdapter {
         override fun onClick() {
             println("Clicked!")
         }
