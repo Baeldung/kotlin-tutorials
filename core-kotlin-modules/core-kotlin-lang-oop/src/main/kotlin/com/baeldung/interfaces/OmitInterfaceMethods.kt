@@ -21,12 +21,12 @@ object SecondExample {
         fun onDrag()
     }
 
-    abstract class AbstractMyAdapter : MyAdapter {
+    interface MyOnClickAdapter : MyAdapter {
         override fun onFocus() { /* default does nothing */ }
         override fun onDrag() { /* default does nothing */ }
     }
 
-    class MyAdapterImpl : AbstractMyAdapter() {
+    class MyOnClickAdapterImpl : OnClickAdapter {
         override fun onClick() {
             println("Clicked!")
         }
