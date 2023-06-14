@@ -308,7 +308,7 @@
     <properties>
         <injekt-core.version>1.16.1</injekt-core.version>
         <kovenant.version>3.3.0</kovenant.version>
-        <guava.version>29.0-jre</guava.version>
+        <guava.version>32.0.0-jre</guava.version>
         <kotlinx-collections-immutable.version>0.1</kotlinx-collections-immutable.version>
         <rxkotlin.version>2.3.0</rxkotlin.version>
         <jackson.version>2.11.3</jackson.version>
