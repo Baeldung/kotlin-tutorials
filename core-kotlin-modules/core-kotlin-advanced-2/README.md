@@ -10,3 +10,4 @@ This module contains articles about advanced topics in Kotlin.
 - [How to Serialize Arrays in Kotlin With Kotlinx.serialization](https://www.baeldung.com/kotlin/kotlinx-serialization)
 - [Using the Gson TypeToken in Kotlin](https://www.baeldung.com/kotlin/gson-typetoken)
 - [Kotlin Generic Inline Classes](https://www.baeldung.com/kotlin/generic-inline-classes)
+- [Callback Functions in Kotlin](https://www.baeldung.com/kotlin/callback-functions)
