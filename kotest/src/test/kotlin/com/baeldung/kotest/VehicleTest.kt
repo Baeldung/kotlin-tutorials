@@ -26,6 +26,14 @@ class VehicleTest : FunSpec({
         vehicle.shouldNotBeInstanceOf<Car>()
     }
 
+    test("Motorcycle should not be instance of Vehicle") {
+        val vehicle: Vehicle = Motorcycle(15)
+
+        shouldFail {
+            vehicle.shouldNotBeInstanceOf<Vehicle>()
+        }
+    }
+
     test("A Car should be of type Car") {
         val vehicle: Vehicle = Car(10)
 
@@ -39,5 +47,11 @@ class VehicleTest : FunSpec({
         val vehicle: Vehicle = Motorcycle(15)
 
         vehicle.shouldNotBeTypeOf<Car>()
+    }
+
+    test("A Motorcycle should not be of type Vehicle") {
+        val motorcycle: Vehicle = Motorcycle(15)
+
+        motorcycle.shouldNotBeTypeOf<Vehicle>()
     }
 })
