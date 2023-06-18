@@ -11,10 +11,11 @@ class MapToStringTest {
 
     @Test
     fun `using joinToString function`(){
-        val map: MutableMap<Int, User> = mutableMapOf<Int, User>()
-        map[1] = User("Flore", "P")
-        map[2] = User("Nappy", "Sean")
-        map[3] = User("Ndole", "Paul")
+        val map = mapOf<Int, User>(
+            1 to User("Flore", "P"),
+            2 to User("Nappy", "Sean"),
+            3 to User("Ndole", "Paul"),
+        )
 
         val str = map.entries.joinToString(
             prefix = "[",
@@ -31,26 +32,44 @@ class MapToStringTest {
 
     @Test
     fun `using toString function`(){
-        val map: MutableMap<Int, User> = mutableMapOf<Int, User>()
-        map[1] = User("Flore", "P")
-        map[2] = User("Nappy", "Sean")
-        map[3] = User("Ndole", "Paul")
+        val map = mapOf<Int, User>(
+            1 to User("Flore", "P"),
+            2 to User("Nappy", "Sean"),
+            3 to User("Ndole", "Paul"),
+        )
 
         assertEquals("{1=User(firstName=Flore, lastName=P), 2=User(firstName=Nappy, lastName=Sean), 3=User(firstName=Ndole, lastName=Paul)}", map.toString())
     }
 
     @Test
+    fun `brute-force method`(){
+        val map = mapOf<Int, User>(
+            1 to User("Flore", "P"),
+            2 to User("Nappy", "Sean"),
+            3 to User("Ndole", "Paul"),
+        )
+
+        val sb = StringBuilder()
+        map.forEach { entry ->
+            sb.append("${entry.key}=${entry.value} ")
+        }
+
+        assertEquals("1=User(firstName=Flore, lastName=P) 2=User(firstName=Nappy, lastName=Sean) 3=User(firstName=Ndole, lastName=Paul) ", sb.toString())
+
+    }
+
+    @Test
     fun `converting to JSON first`(){
-        val map: MutableMap<Int, User> = mutableMapOf<Int, User>()
-        map[1] = User("Flore", "P")
-        map[2] = User("Nappy", "Sean")
-        map[3] = User("Ndole", "Paul")
+        val map = mapOf<Int, User>(
+            1 to User("Flore", "P"),
+            2 to User("Nappy", "Sean"),
+            3 to User("Ndole", "Paul"),
+        )
 
         val str = JSONObject(map).toString()
         val str1 = Gson().toJson(map).toString()
         assertEquals("{\"1\":{\"firstName\":\"Flore\",\"lastName\":\"P\"},\"2\":{\"firstName\":\"Nappy\",\"lastName\":\"Sean\"},\"3\":{\"firstName\":\"Ndole\",\"lastName\":\"Paul\"}}", str)
 
         assertEquals("{\"1\":{\"firstName\":\"Flore\",\"lastName\":\"P\"},\"2\":{\"firstName\":\"Nappy\",\"lastName\":\"Sean\"},\"3\":{\"firstName\":\"Ndole\",\"lastName\":\"Paul\"}}", str1)
-        println(str)
     }
 }
