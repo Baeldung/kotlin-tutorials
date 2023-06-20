@@ -68,8 +68,8 @@ class MapToStringTest {
 
         val str = JSONObject(map).toString()
         val str1 = Gson().toJson(map).toString()
-        assertEquals("{\"1\":{\"firstName\":\"Flore\",\"lastName\":\"P\"},\"2\":{\"firstName\":\"Nappy\",\"lastName\":\"Sean\"},\"3\":{\"firstName\":\"Ndole\",\"lastName\":\"Paul\"}}", str)
 
-        assertEquals("{\"1\":{\"firstName\":\"Flore\",\"lastName\":\"P\"},\"2\":{\"firstName\":\"Nappy\",\"lastName\":\"Sean\"},\"3\":{\"firstName\":\"Ndole\",\"lastName\":\"Paul\"}}", str1)
+        assertEquals("""{"1":{"firstName":"Flore","lastName":"P"},"2":{"firstName":"Nappy","lastName":"Sean"},"3":{"firstName":"Ndole","lastName":"Paul"}}""", str)
+        assertEquals("""{"1":{"firstName":"Flore","lastName":"P"},"2":{"firstName":"Nappy","lastName":"Sean"},"3":{"firstName":"Ndole","lastName":"Paul"}}""", str1)
     }
 }
