@@ -1,4 +1,4 @@
-package com.baeldung.kotest
+package com.baeldung.kotest.assertions.type
 
 import io.kotest.assertions.shouldFail
 import io.kotest.core.spec.style.FunSpec
@@ -11,6 +11,7 @@ class VehicleTest : FunSpec({
 
     test("Car should be instance of Vehicle") {
         val car = Car(10)
+
         car.shouldBeInstanceOf<Vehicle>()
     }
 

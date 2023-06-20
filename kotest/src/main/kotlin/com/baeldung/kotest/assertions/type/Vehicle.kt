@@ -1,4 +1,4 @@
-package com.baeldung.kotest
+package com.baeldung.kotest.assertions.type
 
 open class Vehicle(open val speed: Int, open val wheels: Int)
 
