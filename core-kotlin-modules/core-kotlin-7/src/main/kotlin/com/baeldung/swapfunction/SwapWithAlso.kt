@@ -1,17 +1,14 @@
 package com.baeldung.swapfunction
 
+class SwapWithAlso {
+    var a = 1
+    var b = 2
+    fun swapWithAlso(){
 
-class SwapWithAlso{
-
-    var x = 10
-    var y = 20
-
-    fun main() {
-        println("Before swap: x = $x, y = $y")
-        val swappedValues = Pair(y, x).also { (a, b) ->
-            x = a
-            y = b
-            println("After swap: x = $x, y = $y")
-        }
+        println("Before swap: a => $a; b => $b")
+        val temp = a
+        a = b
+        b = temp
+        println("After swap: a => $a; b => $b")
     }
 }

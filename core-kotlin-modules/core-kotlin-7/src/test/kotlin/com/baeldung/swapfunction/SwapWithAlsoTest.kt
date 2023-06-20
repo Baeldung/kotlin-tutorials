@@ -4,15 +4,13 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class SwapWithAlsoTest {
-
     @Test
     fun whenValuesAreSwappedUsingAlsoScope_thenTheseValuesShouldSwapCorrectly() {
+        val swap = SwapWithAlso()
 
-        val testSwap = SwapWithAlso()
+        swap.swapWithAlso()
 
-        testSwap.main()
-
-        assertEquals(20, testSwap.x)
-        assertEquals(10, testSwap.y)
+        assertEquals(2, swap.a)
+        assertEquals(1, swap.b)
     }
 }

@@ -5,17 +5,15 @@ import org.junit.Assert.assertEquals
 
 
 class SwapValueTest {
-
     @Test
     fun whenValuesAreSwapped_thenNewValuesShouldInterchange() {
-
         val swapValue = SwapValue()
-        val expectedX = 20
-        val expectedY = 10
 
-        swapValue.SwapValues()
+        swapValue.swapValues()
 
-        assertEquals(expectedX, swapValue.x)
-        assertEquals(expectedY, swapValue.y)
+
+        assertEquals(2, swapValue.a)
+        assertEquals(1, swapValue.b)
     }
 }
+
