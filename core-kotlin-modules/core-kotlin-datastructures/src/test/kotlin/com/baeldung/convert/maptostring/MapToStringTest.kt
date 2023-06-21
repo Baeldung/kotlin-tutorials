@@ -42,7 +42,7 @@ class MapToStringTest {
     }
 
     @Test
-    fun `brute-force method`(){
+    fun `using string builder methof`(){
         val map = mapOf<Int, User>(
             1 to User("Flore", "P"),
             2 to User("Nappy", "Sean"),
