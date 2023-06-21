@@ -4,7 +4,7 @@ fun <T> swap(a: T, b: T): Pair<T, T> {
     return Pair(b, a)
 }
 
-class SwapWithToOperator {
+class SwapWithPair {
     var x = 100
     var y = 200
 
