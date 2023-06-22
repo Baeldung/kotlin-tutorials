@@ -1,4 +1,4 @@
-package com.baeldung.kotest
+package com.baeldung.kotest.introduction
 
 enum class TaxClass(val percent: Int) {
     ONE(30), TWO(35), THREE(20)

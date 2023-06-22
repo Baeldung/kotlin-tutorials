@@ -1,6 +1,6 @@
-package com.baeldung.kotest
+package com.baeldung.kotest.introduction
 
-import com.baeldung.kotest.TaxClass.*
+import com.baeldung.kotest.introduction.TaxClass.*
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
