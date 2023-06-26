@@ -28,6 +28,10 @@ value class Password(val pwd: String) : CharSequence by pwd {
     fun hasSpecialCharRule() = require(pwd.any { !it.isLetterOrDigit() }) { ERR_SPECIAL }
 
     infix fun checkWith(rules: List<KFunction1<Password, Unit>>) = runCatching { rules.forEach { it(this) } }
+    infix fun validateWith(rules: List<KFunction1<Password, Unit>>) = runCatching {
+        val message = rules.mapNotNull { runCatching { it(this) }.exceptionOrNull()?.message }.joinToString(separator = "\n")
+        require(message.isEmpty()) { message }
+    }
 }
 
 class PasswordValidationUnitTest {
@@ -183,4 +187,31 @@ class PasswordValidationUnitTest {
             assertTrue { isSuccess }
         }
     }
+
+
+    @Test
+    fun `when using value class's validWith should validate the password`() {
+        val rules = listOf(
+            Password::hasDigitRule,
+            Password::longerThan8Rule,
+            Password::withoutWhitespaceRule,
+            Password::hasSpecialCharRule,
+            Password::hasUppercaseRule
+        )
+
+
+        val onlyOneSpace = " " // breaks four password rules
+
+        (Password(onlyOneSpace) validateWith rules).apply {
+            assertTrue { isFailure }
+            assertEquals(
+                setOf(ERR_LEN, ERR_WHITESPACE, ERR_DIGIT, ERR_UPPER), exceptionOrNull()?.message?.split("\n")?.toSet()
+            )
+        }
+
+        (Password(okPwd) validateWith rules).apply {
+            assertTrue { isSuccess }
+        }
+    }
+
 }
