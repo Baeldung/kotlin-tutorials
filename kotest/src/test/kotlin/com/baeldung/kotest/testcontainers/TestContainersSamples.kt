@@ -2,6 +2,7 @@ package com.baeldung.kotest.testcontainers
 
 import io.kotest.core.extensions.install
 import io.kotest.core.spec.style.FunSpec
+import io.kotest.extensions.testcontainers.ContainerLifecycleMode
 import io.kotest.extensions.testcontainers.JdbcDatabaseContainerExtension
 import io.kotest.matchers.shouldBe
 import org.testcontainers.containers.MySQLContainer
@@ -13,7 +14,14 @@ class TestContainersSamples : FunSpec({
         withExposedPorts(3306)
     }
 
-    val dataSource: DataSource = install(JdbcDatabaseContainerExtension(mysql))
+    val dataSource: DataSource = install(
+        JdbcDatabaseContainerExtension(
+            mysql,
+            mode = ContainerLifecycleMode.Spec,
+            beforeStart = {},
+            afterStart = {},
+            beforeShutdown = {})
+    )
 
     val service = DatabaseService(dataSource)
 
