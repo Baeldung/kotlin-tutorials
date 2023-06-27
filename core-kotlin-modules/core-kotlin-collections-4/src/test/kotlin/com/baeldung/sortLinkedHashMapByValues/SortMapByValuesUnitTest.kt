@@ -17,12 +17,13 @@ class SortMapByValuesUnitTest {
         )
 
         val sortedList = ageOfStudents.toList().sortedWith(compareBy { it.second })
+        val sortedMap = LinkedHashMap(sortedList.toMap())
         val expectedStudentsSortedByValues = linkedMapOf(
             "John" to 20,
             "Mark" to 22,
             "Peter" to 23
         )
-        assertThat(sortedList).containsExactlyElementsOf(expectedStudentsSortedByValues.toList())
+        assertThat(sortedMap.toList()).containsExactlyElementsOf(expectedStudentsSortedByValues.toList())
     }
 
     @Test
@@ -34,12 +35,13 @@ class SortMapByValuesUnitTest {
         )
 
         val sortedList = ageOfStudents.toList().sortedBy { it.second }
+        val sortedMap = LinkedHashMap(sortedList.toMap())
         val expectedStudentsSortedByValues = linkedMapOf(
             "John" to 20,
             "Mark" to 22,
             "Peter" to 23
         )
-        assertThat(sortedList).containsExactlyElementsOf(expectedStudentsSortedByValues.toList())
+        assertThat(sortedMap.toList()).containsExactlyElementsOf(expectedStudentsSortedByValues.toList())
     }
 
     @Test
