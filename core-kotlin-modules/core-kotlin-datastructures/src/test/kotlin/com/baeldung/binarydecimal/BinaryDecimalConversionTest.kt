@@ -15,17 +15,17 @@ class BinaryDecimalConversionTest {
     }
 
     @Test
-    fun `binary to decimal custom approach`(){
+    fun `binary to decimal mathematical approach`(){
 
-        assertEquals(439, binaryToDecimal(110110111))
-        assertEquals(109, binaryToDecimal(1101101))
-        assertEquals(27, binaryToDecimal(11011))
-        assertEquals(122979, binaryToDecimal(11110000001100011))
+        assertEquals(439, binaryToDecimal("110110111"))
+        assertEquals(109, binaryToDecimal("1101101"))
+        assertEquals(27, binaryToDecimal("11011"))
+        assertEquals(122979, binaryToDecimal("11110000001100011"))
 
     }
 
-    fun binaryToDecimal(binary: Long): Int{
-        var binaryNumber = binary
+    fun binaryToDecimal(binary: String): Int{
+        var binaryNumber = binary.toLong()
         var decimalNumber = 0
         var i = 0
         var remainder: Long
@@ -41,7 +41,7 @@ class BinaryDecimalConversionTest {
     }
 
     @Test
-    fun `decimal to binary custom approach`(){
+    fun `decimal to binary mathematical approach`(){
 
         assertEquals(110110111, decimalToBinary(439))
         assertEquals(1101101, decimalToBinary(109))
