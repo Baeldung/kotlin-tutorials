@@ -25,16 +25,13 @@ class BinaryDecimalConversionTest {
     }
 
     fun binaryToDecimal(binary: String): Int{
-        var binaryNumber = binary.toLong()
+        val reversedDigits = binary.reversed().toCharArray().map{it.digitToInt()}
         var decimalNumber = 0
         var i = 0
-        var remainder: Long
 
-        while (binaryNumber.toInt() != 0) {
-            remainder = binaryNumber % 10
-            binaryNumber /= 10
-            decimalNumber += (remainder * 2.0.pow(i.toDouble())).toInt()
-            ++i
+        for (n in reversedDigits) {
+            decimalNumber += (n * 2.0.pow(i)).toInt()
+            i++
         }
         return decimalNumber
 
@@ -43,30 +40,32 @@ class BinaryDecimalConversionTest {
     @Test
     fun `decimal to binary mathematical approach`(){
 
-        assertEquals(110110111, decimalToBinary(439))
-        assertEquals(1101101, decimalToBinary(109))
-        assertEquals(11011, decimalToBinary(27))
+        assertEquals("110110111", decimalToBinary(439))
+        assertEquals("1101101", decimalToBinary(109))
+        assertEquals("11011", decimalToBinary(27))
     }
 
     @Test
-    fun `decima to binary using toBinaryString() method`(){
+    fun `decimal to binary using toBinaryString() method`(){
         assertEquals("110110111", Integer.toBinaryString(439))
         assertEquals("1101101", Integer.toBinaryString(109))
         assertEquals("11011", Integer.toBinaryString(27))
     }
 
-    fun decimalToBinary(n: Int): Long {
-        var decimal = n
-        var binaryNumber: Long = 0
-        var remainder: Int
-        var i = 1
+    fun decimalToBinary( n: Int): String {
+        val binaryNumber = IntArray(1000)
+        var decimalNumber = n
+        var result = ""
+        var i = 0
 
-        while (decimal != 0) {
-            remainder = decimal % 2
-            decimal /= 2
-            binaryNumber += (remainder * i).toLong()
-            i *= 10
+        while (decimalNumber > 0) {
+            binaryNumber[i++] = decimalNumber % 2
+            decimalNumber /= 2
         }
-        return binaryNumber
+
+        for (j in i - 1 downTo 0)
+            result+=binaryNumber[j]
+
+        return result
     }
 }
