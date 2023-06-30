@@ -1,5 +1,6 @@
-package com.baeldung.swapfunction
+package com.baeldung.swapfunction.tests
 
+import com.baeldung.swapfunction.classes.SwapWithAlso
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

@@ -1,5 +1,6 @@
-package com.baeldung.swapfunction
+package com.baeldung.swapfunction.tests
 
+import com.baeldung.swapfunction.classes.SwapWithPair
 import org.junit.Test
 import kotlin.test.assertEquals
 
