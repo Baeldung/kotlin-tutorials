@@ -53,19 +53,16 @@ class BinaryDecimalConversionTest {
     }
 
     fun decimalToBinary( n: Int): String {
-        val binaryNumber = IntArray(1000)
+        val intList = mutableListOf<Int>()
         var decimalNumber = n
         var result = ""
         var i = 0
 
         while (decimalNumber > 0) {
-            binaryNumber[i++] = decimalNumber % 2
+            intList.add(decimalNumber % 2)
             decimalNumber /= 2
         }
 
-        for (j in i - 1 downTo 0)
-            result+=binaryNumber[j]
-
-        return result
+        return intList.reversed().joinToString("")
     }
 }
