@@ -1,17 +1,20 @@
 package com.baeldung.swapfunction.classes
 
 
-import junit.framework.TestCase.assertEquals
+import org.junit.Assert.assertEquals
+import org.junit.Test
 
 fun <T> swap(a: T, b: T): Pair<T, T> {
     return Pair(b, a)
 }
 
 class SwapWithPair {
-    var x = 100
-    var y = 200
 
+    @Test
     fun swapUsingDestructuring(){
+        var x = 100
+        var y = 200
+
         assertEquals(100, x)
         assertEquals(200, y)
         val result = swap(x, y)

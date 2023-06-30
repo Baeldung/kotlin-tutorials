@@ -1,15 +1,16 @@
 package com.baeldung.swapfunction.classes
 
-import junit.framework.TestCase
-import junit.framework.TestCase.assertEquals
+
+import org.junit.Assert.assertEquals
+import org.junit.Test
 
 class SwapWithAlso {
-    var a = 1
-    var b = 2
+    @Test
     fun swapWithAlso(){
-
+        var a = 1
+        var b = 2
         assertEquals(1, a)
-        TestCase.assertEquals(2, b)
+        assertEquals(2, b)
         val temp = a
         a = b
         b = temp
