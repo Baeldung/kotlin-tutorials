@@ -1,4 +1,4 @@
-package com.baeldung.kotest
+package com.baeldung.kotest.introduction
 
 class ExchangeService(val exchangeRateProvider: ExchangeRateProvider) {
     fun exchange(money: Money, targetCurrency: String) =
