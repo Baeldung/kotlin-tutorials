@@ -6,3 +6,4 @@ This module contains articles about data structures in Kotlin
 - [Implementing a Binary Tree in Kotlin](https://www.baeldung.com/kotlin/binary-tree)
 - [Calculate the Power of a Number in Kotlin](https://www.baeldung.com/kotlin/power-of-a-number)
 - [Get Difference Between Two Lists in Kotlin](https://www.baeldung.com/kotlin/lists-difference)
+- [Converting a Map to a String in Kotlin](https://www.baeldung.com/kotlin/map-to-string)
