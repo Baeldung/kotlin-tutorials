@@ -33,3 +33,21 @@ class UserServiceTest : FunSpec() {
         }
     }
 }
+
+@SpringBootTest(classes = [UserService::class])
+class UserServiceTestNoAutowired(
+    @MockBean private val userRepository: UserRepository,
+    private val userService: UserService
+) : FunSpec({
+    test("Get user by id should return the user") {
+        val userId = 1L
+        val expectedUser = User(userId, "John Doe")
+
+        // Mock the UserRepository behavior
+        given(userRepository.findUserById(1)).willReturn(expectedUser)
+
+        val result = userService.findUserById(userId)
+
+        result shouldBe expectedUser
+    }
+})

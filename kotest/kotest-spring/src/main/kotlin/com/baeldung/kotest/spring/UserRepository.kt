@@ -5,8 +5,15 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class UserRepository {
-    fun findUserById(id: Long): User {
-        return User(1, "John Doe")
+
+    private val users = mutableListOf<User>()
+
+    fun save(user: User) {
+        users += user
+    }
+
+    fun findUserById(id: Long): User? {
+        return users.find { it.userId == id }
     }
 }
 
