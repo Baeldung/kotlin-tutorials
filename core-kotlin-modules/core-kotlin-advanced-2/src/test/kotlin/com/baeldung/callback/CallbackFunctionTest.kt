@@ -91,7 +91,7 @@ class CallbackFunctionTest {
             return false
         }
 
-        fun openPDF(userId: Int, bookId: Int){
+        fun openPDF(bookId: Int){
             downloadBook { id ->
                 saveBook(bookId){bookId ->
                     openBook(bookId)
