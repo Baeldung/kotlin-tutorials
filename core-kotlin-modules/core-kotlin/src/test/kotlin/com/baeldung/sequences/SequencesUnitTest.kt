@@ -8,16 +8,16 @@ class SequencesUnitTest {
 
     @Test
     fun shouldBuildSequenceWhenUsingFromElements() {
-        val seqOfElements = sequenceOf("first" ,"second", "third")
-                .toList()
+        val seqOfElements = sequenceOf("first", "second", "third")
+            .toList()
         assertEquals(3, seqOfElements.count())
     }
 
     @Test
     fun shouldBuildSequenceWhenUsingFromFunction() {
-        val seqFromFunction = generateSequence(Instant.now()) {it.plusSeconds(1)}
-                .take(3)
-                .toList()
+        val seqFromFunction = generateSequence(Instant.now()) { it.plusSeconds(1) }
+            .take(3)
+            .toList()
         assertEquals(3, seqFromFunction.count())
     }
 
@@ -33,22 +33,45 @@ class SequencesUnitTest {
     @Test
     fun shouldBuildSequenceWhenUsingFromCollection() {
         val seqFromIterable = (1..10)
-                .asSequence()
-                .toList()
+            .asSequence()
+            .toList()
         assertEquals(10, seqFromIterable.count())
     }
 
     @Test
     fun shouldShowNoCountDiffWhenUsingWithAndWithoutSequence() {
         val withSequence = (1..10).asSequence()
-                .filter{it % 2 == 1}
-                .map { it * 2 }
-                .toList()
+            .filter { it % 2 == 1 }
+            .map { it * 2 }
+            .toList()
         val withoutSequence = (1..10)
-                .filter{it % 2 == 1}
-                .map { it * 2 }
-                .toList()
+            .filter { it % 2 == 1 }
+            .map { it * 2 }
         assertEquals(withSequence.count(), withoutSequence.count())
+    }
+
+    @Test
+    fun shouldNotCreateIntermediateCollections() {
+        val sequence = (0..10).asSequence()
+        assert(sequence is Sequence)
+        val filtered = sequence.filter { it % 2 == 1 }
+        assert(filtered is Sequence)
+        val mapped = filtered.map { it * 2 }
+        assert(mapped is Sequence)
+        val list = mapped.toList()
+        assert(list is List<Int>)
+        assert(list.size == 5)
+    }
+
+    @Test
+    fun shouldCreateIntermediateCollections() {
+        val list = (0..10)
+        assert(list is IntRange)
+        val filtered = list.filter { it % 2 == 1 }
+        assert(filtered is List<Int>)
+        val mapped = filtered.map { it * 2 }
+        assert(mapped is List<Int>)
+        assert(mapped.size == 5)
     }
 
 }
