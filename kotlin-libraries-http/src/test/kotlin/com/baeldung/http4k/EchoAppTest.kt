@@ -10,29 +10,29 @@ import org.junit.jupiter.api.Test
 
 class EchoAppTest {
 
-    private val testPayload = "hello"
+  private val testPayload = "hello"
 
-    @Test
-    fun whenEchoHandlerCalledWithHelloMessage_thenStatusOk() {
-        val expectedResponse = Response(OK).body(testPayload)
-        assertEquals(expectedResponse, echoHandler(Request(POST, "/").body(testPayload)))
-    }
+  @Test
+  fun whenEchoHandlerCalledWithHelloMessage_thenStatusOk() {
+    val expectedResponse = Response(OK).body(testPayload)
+    assertEquals(expectedResponse, echoHandler(Request(POST, "/").body(testPayload)))
+  }
 
-    @Test
-    fun whenAppHandlerCalledOnTheRightEndpoint_thenCorrect() {
-        val expectedResponse = Response(OK).body(testPayload)
-        val appResponse = app(Request(POST, "/echo").body(testPayload))
+  @Test
+  fun whenAppHandlerCalledOnTheRightEndpoint_thenCorrect() {
+    val expectedResponse = Response(OK).body(testPayload)
+    val appResponse = app(Request(POST, "/echo").body(testPayload))
 
-        assertEquals(expectedResponse, appResponse)
-        assertEquals(OK, appResponse.status)
-    }
+    assertEquals(expectedResponse, appResponse)
+    assertEquals(OK, appResponse.status)
+  }
 
-    @Test
-    fun whenAppHandlerCalledWOnTheWrongEndpoint_thenNotFound() {
-        val expectedResponse = Response(OK).body(testPayload)
-        val appResponse = app(Request(POST, "/").body(testPayload))
-        assertNotEquals(expectedResponse, appResponse)
-        assertEquals(NOT_FOUND, appResponse.status)
-    }
+  @Test
+  fun whenAppHandlerCalledWOnTheWrongEndpoint_thenNotFound() {
+    val expectedResponse = Response(OK).body(testPayload)
+    val appResponse = app(Request(POST, "/").body(testPayload))
+    assertNotEquals(expectedResponse, appResponse)
+    assertEquals(NOT_FOUND, appResponse.status)
+  }
 
 }
