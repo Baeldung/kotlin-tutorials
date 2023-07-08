@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 
 
 data class Pet(val owner: String, val colour: String)
-data class Car(val colour: String, val owner: String)
+data class Car(val color: String, val owner: String)
 class ListContainsPropertyUnitTest{
 
     val cars = listOf(Car("Blue", "John"), Car("Red", "Peter"), Car("White", "James"))
@@ -19,12 +19,12 @@ class ListContainsPropertyUnitTest{
         val pet = Pet("James", "White")
         cars.forAtLeastOne { car ->
             pet.owner shouldBe car.owner
-            pet.colour shouldBe car.colour
+            pet.colour shouldBe car.color
         }
 
         cars.forAtLeast(1) { car ->
             pet.owner shouldBe car.owner
-            pet.colour shouldBe car.colour
+            pet.colour shouldBe car.color
         }
     }
 
