@@ -7,7 +7,7 @@ import io.kotest.matchers.string.shouldNotBeBlank
 import org.junit.jupiter.api.Test
 
 
-data class Pet(val owner: String, val colour: String)
+data class Pet(val owner: String, val color: String)
 data class Car(val color: String, val owner: String)
 class ListContainsPropertyUnitTest{
 
@@ -19,12 +19,12 @@ class ListContainsPropertyUnitTest{
         val pet = Pet("James", "White")
         cars.forAtLeastOne { car ->
             pet.owner shouldBe car.owner
-            pet.colour shouldBe car.color
+            pet.color shouldBe car.color
         }
 
         cars.forAtLeast(1) { car ->
             pet.owner shouldBe car.owner
-            pet.colour shouldBe car.color
+            pet.color shouldBe car.color
         }
     }
 
