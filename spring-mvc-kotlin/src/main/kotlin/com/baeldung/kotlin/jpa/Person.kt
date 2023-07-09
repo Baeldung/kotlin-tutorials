@@ -1,12 +1,6 @@
 package com.baeldung.kotlin.jpa
 
-import javax.persistence.CascadeType
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.OneToMany
+import jakarta.persistence.*
 
 @Entity
 class Person @JvmOverloads constructor(

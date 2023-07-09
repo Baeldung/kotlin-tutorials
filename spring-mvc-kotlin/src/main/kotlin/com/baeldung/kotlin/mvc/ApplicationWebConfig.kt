@@ -4,34 +4,30 @@ import org.springframework.context.ApplicationContext
 import org.springframework.context.ApplicationContextAware
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.web.servlet.config.annotation.EnableWebMvc
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
-import org.thymeleaf.spring5.SpringTemplateEngine
-import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver
-import org.thymeleaf.spring5.view.ThymeleafViewResolver
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+import org.thymeleaf.spring6.SpringTemplateEngine
+import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver
+import org.thymeleaf.spring6.view.ThymeleafViewResolver
 import org.thymeleaf.templatemode.TemplateMode
 
-@EnableWebMvc
 @Configuration
-open class ApplicationWebConfig : WebMvcConfigurerAdapter(), ApplicationContextAware {
+open class ApplicationWebConfig : WebMvcConfigurer, ApplicationContextAware {
 
     private var applicationContext: ApplicationContext? = null
 
-    override fun setApplicationContext(applicationContext: ApplicationContext?) {
+    override fun setApplicationContext(applicationContext: ApplicationContext) {
         this.applicationContext = applicationContext
     }
 
-    override fun addViewControllers(registry: ViewControllerRegistry?) {
-        super.addViewControllers(registry)
-
-        registry!!.addViewController("/welcome.html")
+    override fun addViewControllers(registry: ViewControllerRegistry) {
+        registry.addViewController("/welcome").setViewName("welcome");
     }
 
     @Bean
     open fun templateResolver(): SpringResourceTemplateResolver {
         return SpringResourceTemplateResolver()
-                .apply { prefix = "/WEB-INF/view/" }
+                .apply { prefix = "classpath:/templates/" }
                 .apply { suffix = ".html"}
                 .apply { templateMode = TemplateMode.HTML }
                 .apply { setApplicationContext(applicationContext) }
@@ -48,5 +44,6 @@ open class ApplicationWebConfig : WebMvcConfigurerAdapter(), ApplicationContextA
         return ThymeleafViewResolver()
                 .apply { templateEngine = templateEngine() }
                 .apply { order = 1 }
+                .apply { excludedViewNames =  arrayOf("error") }
     }
 }

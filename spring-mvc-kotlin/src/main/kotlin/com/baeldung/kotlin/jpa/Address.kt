@@ -1,6 +1,6 @@
 package com.baeldung.kotlin.jpa
 
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 data class Address(
