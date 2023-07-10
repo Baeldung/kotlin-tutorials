@@ -9,3 +9,4 @@ This module contains articles about core Kotlin strings.
 - [Regular Expression Matching at Specific Indices in Kotlin](https://www.baeldung.com/kotlin/regexp-matching-specific-indices)
 - [Conversion Between Camel Case and Snake Case in Kotlin](https://www.baeldung.com/kotlin/convert-camel-case-snake-case)
 - [How to Encode a String in UTF-8 in Kotlin](https://www.baeldung.com/kotlin/encode-utf8-string)
+- [Password Validation in Kotlin](https://www.baeldung.com/kotlin/password-validation)
