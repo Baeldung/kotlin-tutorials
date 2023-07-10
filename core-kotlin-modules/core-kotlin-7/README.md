@@ -8,3 +8,4 @@
 - [Difference Between Object and Data Class in Kotlin](https://www.baeldung.com/kotlin/object-vs-data-class)
 - [Convert Between Int and Char in Kotlin](https://www.baeldung.com/kotlin/convert-between-int-and-char)
 - [Swap Function in Kotlin](https://www.baeldung.com/kotlin/swap-utility)
+- More articles: [[<-- prev]](../core-kotlin-6)

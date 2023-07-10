@@ -10,3 +10,4 @@
 - [Mark Unused Parameters in Kotlin](https://www.baeldung.com/kotlin/mark-unused-parameters)
 - [Singleton Classes in Kotlin](https://www.baeldung.com/kotlin/singleton-classes)
 - [“Accidental override” Error in Kotlin](https://www.baeldung.com/kotlin/accidental-override-error)
+- More articles: [[<-- prev]](../core-kotlin-5) [[next -->]](../core-kotlin-7)
