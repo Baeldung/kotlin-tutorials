@@ -27,6 +27,13 @@ class RandomNumberUnitTest {
     }
 
     @Test
+    fun whenRandomNumberWithKotlinJSMath_thenResultIsBetween0And1() {
+        val randomDouble = Math.random()
+        assertTrue { randomDouble >=0 }
+        assertTrue { randomDouble <= 1 }
+    }
+
+    @Test
     fun whenRandomNumberWithKotlinNumberRange_thenResultInGivenRange() {
         val randomInteger = (1..12).shuffled().first()
         assertTrue { randomInteger >= 1 }
