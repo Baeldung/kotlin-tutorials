@@ -72,16 +72,16 @@ class SplitListIntoPartsUnitTest {
     @Test
     fun whenWithIndexGroupBy_thenListIsSplit() {
         val resultList = evenList.withIndex()
-                .groupBy { it.index / 2 }
-                .map { it.value.map { it.value } }
+          .groupBy { it.index / 2 }
+          .map { it.value.map { it.value } }
         verifyList(resultList)
     }
 
     @Test
     fun whenWithIndexGroupByUneven_thenListIsSplit() {
         val resultList = unevenList.withIndex()
-                .groupBy { it.index / 2 }
-                .map { it.value.map { it.value } }
+          .groupBy { it.index / 2 }
+          .map { it.value.map { it.value } }
         verifyPartialList(resultList)
     }
 
@@ -95,5 +95,20 @@ class SplitListIntoPartsUnitTest {
             acc
         }
         verifyList(resultList)
+    }
+
+    @Test
+    fun `when using partition() on a list then a pair of two lists`() {
+        val numbers = listOf(42, 1984, 1, 0, -4, 23, 100, 6, 8)
+        val aPairOfList = numbers.partition { it < 42 }
+        with(aPairOfList) {
+            assertEquals(listOf(1, 0, -4, 23, 6, 8), first)
+            assertEquals(listOf(42, 1984, 100), second)
+        }
+
+        val (lessThan42, greaterThanOrEq42) = numbers.partition { it < 42 }
+
+        assertEquals(listOf(1, 0, -4, 23, 6, 8), lessThan42)
+        assertEquals(listOf(42, 1984, 100), greaterThanOrEq42)
     }
 }
