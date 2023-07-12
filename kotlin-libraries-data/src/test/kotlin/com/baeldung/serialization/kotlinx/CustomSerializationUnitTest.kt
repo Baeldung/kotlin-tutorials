@@ -1,7 +1,9 @@
 package com.baeldung.serialization.kotlinx
 
 import java.time.LocalDateTime
+import kotlinx.serialization.Contextual
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.descriptors.PrimitiveKind
@@ -66,5 +68,38 @@ class CustomSerializerUnitTest {
         val deserializedDateTime = json.decodeFromString<LocalDateTime>("\"2023-04-24T15:30:00.123\"")
 
         assertEquals(dateTime, deserializedDateTime)
+    }
+
+    @Test
+    fun `serializes LocalDateTime using annotation declared serializer`() {
+        @Serializable
+        data class LocalDateTimeWrapper(
+            @Serializable(with = LocalDateTimeSerializer::class)
+            val dateTime: LocalDateTime,
+        )
+
+        val dateTimeWrapper = LocalDateTimeWrapper(
+            dateTime = LocalDateTime.parse("2023-04-24T15:30:00.123")
+        )
+        val serializedDateTimeWrapper = Json.encodeToString(dateTimeWrapper)
+
+        assertEquals("{\"dateTime\":\"2023-04-24T15:30:00.123\"}", serializedDateTimeWrapper)
+    }
+
+    @Test
+    fun `throws exception serializing LocalDateTime with unregistered contextual serializer`() {
+        @Serializable
+        data class LocalDateTimeWrapper(
+            @Contextual
+            val dateTime: LocalDateTime,
+        )
+
+        val wrappedDateTime = LocalDateTimeWrapper(
+            dateTime = LocalDateTime.parse("2023-04-24T15:30:00.123")
+        )
+
+        assertThrows<SerializationException> {
+            Json.encodeToString(wrappedDateTime)
+        }
     }
 }

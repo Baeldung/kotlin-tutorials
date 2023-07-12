@@ -1,4 +1,4 @@
-package com.baeldung.kotest
+package com.baeldung.kotest.introduction
 
 import io.kotest.core.spec.style.ShouldSpec
 
