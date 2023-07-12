@@ -5,16 +5,16 @@ import io.kotest.matchers.shouldBe
 
 class BeforeSpecSamples : FunSpec({
 
-    val database = Database()
+    val userRepository = UserRepository()
 
     beforeSpec {
-        database.addUser(User(1, "Admin"))
+        userRepository.addUser(User(1, "Admin"))
     }
 
     test("Accessing all users should include added user and Admin") {
-        database.addUser(User(2, "SimpleUser"))
+        userRepository.addUser(User(2, "SimpleUser"))
 
-        database.all() shouldBe listOf(
+        userRepository.all() shouldBe listOf(
             User(1, "Admin"),
             User(2, "SimpleUser")
         )

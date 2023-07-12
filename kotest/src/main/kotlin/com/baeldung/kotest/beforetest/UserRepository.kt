@@ -3,7 +3,7 @@ package com.baeldung.kotest.beforetest
 
 data class User(val id: Long, val username: String)
 
-class Database {
+class UserRepository {
     private val users = mutableListOf<User>()
 
     fun addUser(user: User) {
