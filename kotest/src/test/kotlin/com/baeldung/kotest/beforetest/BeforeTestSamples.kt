@@ -10,11 +10,11 @@ class BeforeTestSamples : FunSpec({
 
     val userRepository = UserRepository()
 
+    isolationMode = IsolationMode.InstancePerTest
+
     beforeEach {
         userRepository.addUser(User(1, "Admin"))
     }
-
-    isolationMode = IsolationMode.InstancePerTest
 
 
     test("Accessing all users should include added user and Admin") {
