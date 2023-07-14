@@ -28,7 +28,7 @@ class EchoAppTest {
   }
 
   @Test
-  fun whenAppHandlerCalledWOnTheWrongEndpoint_thenNotFound() {
+  fun whenAppHandlerCalledOnTheWrongEndpoint_thenNotFound() {
     val expectedResponse = Response(OK).body(testPayload)
     val appResponse = app(Request(POST, "/").body(testPayload))
     assertNotEquals(expectedResponse, appResponse)
