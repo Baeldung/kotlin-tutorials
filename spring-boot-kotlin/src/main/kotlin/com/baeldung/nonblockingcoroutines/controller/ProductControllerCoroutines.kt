@@ -31,13 +31,15 @@ class ProductControllerCoroutines {
     suspend fun findOneInStock(@PathVariable id: Int): ProductStockView = coroutineScope {
         val product: Deferred<Product?> = async(start = CoroutineStart.LAZY) {
             productRepository.getProductById(id)
-        }.apply { start() }
+        }
         val quantity: Deferred<Int> = async(start = CoroutineStart.LAZY) {
             webClient.get()
               .uri("/stock-service/product/$id/quantity")
               .accept(APPLICATION_JSON)
               .retrieve().awaitBody<Int>()
-        }.apply { start() }
+        }
+        product.start()
+        quantity.start()
         ProductStockView(product.await()!!, quantity.await())
     }
 
