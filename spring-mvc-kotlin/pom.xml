@@ -10,6 +10,7 @@
         <groupId>com.baeldung</groupId>
         <artifactId>kotlin-modules</artifactId>
         <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     
     <dependencyManagement>
@@ -23,7 +24,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    
 
     <dependencies>
         <dependency>
@@ -39,11 +39,11 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
+            <groupId>org.hibernate.orm</groupId>
             <artifactId>hibernate-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
+            <groupId>org.hibernate.orm</groupId>
             <artifactId>hibernate-testing</artifactId>
             <scope>test</scope>
         </dependency>
@@ -74,6 +74,11 @@
                 <dependencies>
                     <dependency>
                         <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-maven-allopen</artifactId>
+                        <version>${kotlin.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jetbrains.kotlin</groupId>
                         <artifactId>kotlin-maven-noarg</artifactId>
                         <version>${kotlin.version}</version>
                     </dependency>
@@ -83,7 +88,10 @@
     </build>
 
     <properties>
-        <boot.dependencies.version>2.7.0</boot.dependencies.version>
+        <boot.dependencies.version>3.1.1</boot.dependencies.version>
+        <java.version>17</java.version>
+        <org.slf4j.version>2.0.7</org.slf4j.version>
+        <logback.version>1.4.7</logback.version>
     </properties>
 
 </project>
