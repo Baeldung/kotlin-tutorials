@@ -1,10 +1,8 @@
 package com.baeldung.chainofresponsibility
 
-abstract class AbstractSupportCenterHandler(private val level: Int) {
-    object Constants {
-        val TECHNICAL: Int = 1
-        val Bill: Int = 2
-        val CustomerSatisfaction: Int = 3
+abstract class AbstractSupportCenterHandler(private val level: Constants) {
+    enum class Constants {
+        TECHNICAL, BILL, CUSTOMERSATISFACTION
     }
 
     private var nextHandler: AbstractSupportCenterHandler? = null
@@ -13,7 +11,7 @@ abstract class AbstractSupportCenterHandler(private val level: Int) {
         this.nextHandler = handler
     }
 
-    open fun receiveRequest(level: Int, message: String): String {
+    open fun receiveRequest(level: Constants, message: String): String? {
         when (this.level <= level) {
             true -> return handleRequest(message)
             else -> return nextHandler?.receiveRequest(level, message)
@@ -21,5 +19,5 @@ abstract class AbstractSupportCenterHandler(private val level: Int) {
         }
     }
 
-    protected abstract fun handleRequest(message: String): String
+    protected abstract fun handleRequest(message: String): String?
 }

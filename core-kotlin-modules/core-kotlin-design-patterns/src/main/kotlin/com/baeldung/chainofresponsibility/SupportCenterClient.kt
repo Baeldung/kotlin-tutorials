@@ -4,8 +4,8 @@ object SupportCenterClient {
     val handlerChain: AbstractSupportCenterHandler
         get() {
             val technical = TechnicalSupportCenter(AbstractSupportCenterHandler.Constants.TECHNICAL)
-            val bills = BillsSupportCenter(AbstractSupportCenterHandler.Constants.Bill)
-            val customerSatisfactionSupportCenter = CustomerSatisfactionSupportCenter(AbstractSupportCenterHandler.Constants.CustomerSatisfaction)
+            val bills = BillsSupportCenter(AbstractSupportCenterHandler.Constants.BILL)
+            val customerSatisfactionSupportCenter = CustomerSatisfactionSupportCenter(AbstractSupportCenterHandler.Constants.CUSTOMERSATISFACTION)
 
             technical.nextHandler(bills)
             bills.nextHandler(customerSatisfactionSupportCenter)
