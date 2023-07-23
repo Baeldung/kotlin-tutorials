@@ -30,10 +30,3 @@ class HandleJsonTest {
         assertEquals("Altima", car.model)
     }
 }
-
-
-
-
-
-
-
