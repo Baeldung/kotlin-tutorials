@@ -38,12 +38,28 @@
             <artifactId>fuel-coroutines</artifactId>
             <version>${fuel.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.http4k</groupId>
+            <artifactId>http4k-core</artifactId>
+            <version>${http4kVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.http4k</groupId>
+            <artifactId>http4k-resilience4j</artifactId>
+            <version>${http4kVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.http4k</groupId>
+            <artifactId>http4k-server-jetty</artifactId>
+            <version>${http4kVersion}</version>
+        </dependency>
         
     </dependencies>
 
     <properties>
         <khttp.version>0.1.0</khttp.version>
         <fuel.version>1.15.0</fuel.version>
+        <http4kVersion>5.1.1.0</http4kVersion>
     </properties>
 
 </project>
