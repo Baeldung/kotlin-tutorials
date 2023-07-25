@@ -1,6 +1,6 @@
 package com.baeldung.chainofresponsibility
 
-class CustomerSatisfactionSupportCenter(level: Role) : AbstractSupportCenterHandler(level) {
+class CustomerSatisfactionSupportCenter(requestType: RequestType) : AbstractSupportCenterHandler(requestType) {
 
     override var nextHandler: AbstractSupportCenterHandler? = null
     override fun handleRequest(message: String): String  {

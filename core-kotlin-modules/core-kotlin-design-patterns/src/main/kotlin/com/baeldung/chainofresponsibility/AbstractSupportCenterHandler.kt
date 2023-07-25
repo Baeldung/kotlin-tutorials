@@ -1,7 +1,7 @@
 package com.baeldung.chainofresponsibility
 
-abstract class AbstractSupportCenterHandler(private val level: Role) {
-    enum class Role {
+abstract class AbstractSupportCenterHandler(private val requestType: RequestType) {
+    enum class RequestType {
         TECHNICAL, BILL, CUSTOMER_SATISFACTION, UNKNOWN
     }
 
@@ -11,10 +11,10 @@ abstract class AbstractSupportCenterHandler(private val level: Role) {
         this.nextHandler = handler
     }
 
-    open fun receiveRequest(level: Role, message: String): String? {
-        when (this.level == level) {
+    open fun receiveRequest(requestType: RequestType, message: String): String? {
+        when (this.requestType == requestType) {
             true -> return handleRequest(message)
-            else -> return nextHandler?.receiveRequest(level, message)
+            else -> return nextHandler?.receiveRequest(requestType, message)
                 ?: return "No next handler for this request"
         }
     }
