@@ -1,0 +1,76 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.7.21'
+    id 'application'
+    id 'nu.studer.jooq' version '8.2'
+}
+
+group = 'org.baeldung'
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    jooqGenerator 'org.postgresql:postgresql:42.5.1'
+    implementation 'org.postgresql:postgresql:42.5.1'
+    implementation 'org.springframework:spring-jdbc:5.3.29'
+    implementation 'org.springframework.boot:spring-boot-starter:2.7.14'
+    implementation 'org.springframework.boot:spring-boot-starter-test:2.7.14'
+    implementation 'org.jooq:jooq:3.18.5'
+    implementation 'com.zaxxer:HikariCP:5.0.1'
+}
+
+import org.jooq.meta.jaxb.Logging
+
+jooq {
+    version = '3.18.4'
+    configurations {
+        main {
+            generateSchemaSourceOnCompilation = true
+            generationTool {
+                logging = Logging.WARN
+                jdbc {
+                    driver = 'org.postgresql.Driver'
+                    url = 'jdbc:postgresql://localhost:5999/local'
+                    user = 'local'
+                    password = 'local'
+                }
+                generator {
+                    name = 'org.jooq.codegen.KotlinGenerator'
+                    database {
+                        name = 'org.jooq.meta.postgres.PostgresDatabase'
+                        inputSchema = 'public'
+                    }
+                    generate {
+                        deprecated = false
+                        kotlinSetterJvmNameAnnotationsOnIsPrefix = true
+                        pojosAsKotlinDataClasses = true
+                        fluentSetters = true
+                    }
+                    target {
+                        packageName = 'com.baeldung.jooq.codegen.models'
+                        directory = 'build/generated-src/jooq/main'
+                    }
+                    strategy.name = 'org.jooq.codegen.DefaultGeneratorStrategy'
+                }
+            }
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = '1.8'
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = '1.8'
+}
+
+application {
+    mainClassName = 'MainKt'
+}
