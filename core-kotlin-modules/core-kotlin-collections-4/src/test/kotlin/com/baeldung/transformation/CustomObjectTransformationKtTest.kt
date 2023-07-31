@@ -129,7 +129,9 @@ class CustomObjectTransformationKtTest {
 
     @Test
     fun givenListOfEmployeeObjects_whenTransformedUsingflatMap_returnListOfEmployeeName() {
-        val empNameList = empByOrgList.flatMap { it.employees }.map { it.name() }
+        val empNameList = empByOrgList
+            .flatMap { it.employees }
+            .map { it.name() }
         assertNotNull(empNameList)
         empNameList.forEach {
             assertNotNull(it)
