@@ -118,7 +118,7 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20210307</version>
+            <version>20230227</version>
         </dependency>
 
         <dependency>
@@ -307,6 +307,7 @@
         <module>spring-security-kotlin-dsl</module>
         <module>kotlin-immutable-collections</module>
         <module>kotlin-logging</module>
+        <module>kotlin-libraries-data</module>
     </modules>
 
     <profiles>
@@ -337,8 +338,8 @@
     </profiles>
 
     <properties>
-        <kotlin.version>1.8.20</kotlin.version>
-        <kotlinx.version>1.6.4</kotlinx.version>
+        <kotlin.version>1.8.22</kotlin.version>
+        <kotlinx.version>1.7.1</kotlinx.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>

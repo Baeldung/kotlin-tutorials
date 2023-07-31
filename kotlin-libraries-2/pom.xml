@@ -271,20 +271,6 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.1.2</version>
-                <executions>
-                    <execution>
-                        <id>copy-dependencies</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <configuration>
                     <sourceDirectories>
                         <dir>${project.basedir}/src/main/kotlin/com/baeldung/dokka</dir>
@@ -317,7 +303,7 @@
         <grpc.version>1.46.0</grpc.version>
         <grpc.kotlin.version>1.2.0</grpc.kotlin.version>
         <protobuf.version>3.19.6</protobuf.version>
-        <java.grpc.version>1.39.0</java.grpc.version>
+        <java.grpc.version>1.53.0</java.grpc.version>
         <apache.csv.version>1.9.0</apache.csv.version>
         <apache.poi.version>5.2.3</apache.poi.version>
         <jackson.version>2.13.3</jackson.version>

@@ -1,0 +1,10 @@
+formatting:
+  Indentation:
+    active: true
+    autoCorrect: true
+    indentSize: 2
+  NoWildcardImports:
+    active: true
+style:
+  MagicNumber:
+    active: false

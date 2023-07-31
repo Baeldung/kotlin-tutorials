@@ -8,3 +8,7 @@ This module contains articles about advanced topics in Kotlin.
 - [Get the Type of a Variable in Kotlin](https://www.baeldung.com/kotlin/find-type-variable)
 - [Serialize Kotlin Data Class With Default Values Into JSON](https://www.baeldung.com/kotlin/data-class-json-serialize-default-values)
 - [How to Serialize Arrays in Kotlin With Kotlinx.serialization](https://www.baeldung.com/kotlin/kotlinx-serialization)
+- [Using the Gson TypeToken in Kotlin](https://www.baeldung.com/kotlin/gson-typetoken)
+- [Kotlin Generic Inline Classes](https://www.baeldung.com/kotlin/generic-inline-classes)
+- [Callback Functions in Kotlin](https://www.baeldung.com/kotlin/callback-functions)
+- [Resolving Kotlin Error: ‘public’ function exposes its ‘public/*package*/’ return type](https://www.baeldung.com/kotlin/public-function-exposes-its-public-package-return-type)

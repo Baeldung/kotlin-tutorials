@@ -1,6 +1,7 @@
 plugins {
     kotlin("multiplatform") version "1.4.10"
 }
+apply plugin: "com.squareup.sqldelight"
 group = "me.kchandrakant"
 version = "1.0-SNAPSHOT"
 
@@ -56,7 +57,11 @@ kotlin {
     }
     
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies{
+                implementation("com.squareup.sqldelight:runtime:1.5.0")
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
@@ -86,4 +91,11 @@ kotlin {
         val nativeTest by getting
     }
 
+}
+
+sqldelight {
+    database("AppDb") {
+        packageName = "com.baeldung.sqldelight"
+        sourceFolders = listOf("sqldelight")
+    }
 }

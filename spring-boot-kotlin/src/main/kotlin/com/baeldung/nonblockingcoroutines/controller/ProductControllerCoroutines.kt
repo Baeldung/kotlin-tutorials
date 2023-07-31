@@ -38,6 +38,8 @@ class ProductControllerCoroutines {
               .accept(APPLICATION_JSON)
               .retrieve().awaitBody<Int>()
         }
+        product.start()
+        quantity.start()
         ProductStockView(product.await()!!, quantity.await())
     }
 

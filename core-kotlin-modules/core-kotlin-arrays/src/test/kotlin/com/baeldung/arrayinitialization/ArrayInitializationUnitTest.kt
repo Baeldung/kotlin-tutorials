@@ -2,6 +2,7 @@ package com.baeldung.arrayinitialization
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import com.baeldung.array.toIntArray
 
 class ArrayInitializationUnitTest {
 
@@ -46,4 +47,39 @@ class ArrayInitializationUnitTest {
         assertEquals("Number of index: 0", generatedStringArray[0])
     }
 
+    @Test
+    fun `Given a non-empty intRange is converted to List, when toIntArray invoked, Then returns intArray`() {
+        val intRange = 1..10
+        val intArray = intRange.toList().toIntArray();
+        assertEquals(10, intArray.size)
+        var index = 0
+        for (element in intRange) {
+            assertEquals(element, intArray[index++])
+        }
+    }
+
+    @Test
+    fun `Given a non-empty intRange, When toIntArray() invoked, Then returns non-empty intArray`() {
+        val intRange = 1..10
+        val intArray = intRange.toIntArray()
+        assertEquals(10, intArray.size)
+        var index = 0
+        for (element in intRange) {
+            assertEquals(element, intArray[index++])
+        }
+    }
+
+    @Test
+    fun `Given an empty intRange is converted to List, when toIntArray invoked, Then returns empty intArray`() {
+        val intRange = 1..-1
+        val intArray = intRange.toList().toIntArray()
+        assertEquals(0, intArray.size)
+    }
+
+    @Test
+    fun `Given an empty intRange, When toIntArray() invoked, Then returns an empty intArray`() {
+        val intRange = 1..-1
+        val intArray = intRange.toIntArray()
+        assertEquals(0, intArray.size)
+    }
 }
