@@ -30,6 +30,6 @@
 
     <properties>
         <jackson.version>2.15.0</jackson.version>
-
+        <kotlin.version>1.9.0-RC</kotlin.version>
     </properties>
 </project>
