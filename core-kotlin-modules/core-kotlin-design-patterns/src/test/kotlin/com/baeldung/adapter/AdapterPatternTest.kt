@@ -1,6 +1,5 @@
-package com.baeldung.Adapter
+package com.baeldung.adapter
 
-import com.baeldung.adapter.AudioPlayer
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.io.ByteArrayOutputStream
