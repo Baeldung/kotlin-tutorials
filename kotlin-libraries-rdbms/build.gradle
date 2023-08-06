@@ -2,6 +2,8 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.7.21'
     id 'application'
     id 'nu.studer.jooq' version '8.2'
+    id 'com.bmuschko.docker-remote-api' version '9.3.2'
+    id "org.flywaydb.flyway" version "9.21.1"
 }
 
 group = 'org.baeldung'
@@ -21,7 +23,73 @@ dependencies {
     implementation 'com.zaxxer:HikariCP:5.0.1'
 }
 
+
+import com.bmuschko.gradle.docker.tasks.container.DockerCreateContainer
+import com.bmuschko.gradle.docker.tasks.container.DockerRemoveContainer
+import com.bmuschko.gradle.docker.tasks.container.DockerStartContainer
+import com.bmuschko.gradle.docker.tasks.image.DockerPullImage
 import org.jooq.meta.jaxb.Logging
+
+import java.nio.file.Files
+
+def postgres_test_container_name = "postgresql-kotlin-rdbms-test"
+def port_file = "pg-port"
+
+task pullPostgreImage(type: DockerPullImage) {
+    image = "postgres:15.2"
+}
+
+class ExceptionCatchingDockerRemoveContainer extends DockerRemoveContainer {
+
+    @Override
+    void runRemoteCommand() {
+        try {
+            super.runRemoteCommand()
+        } catch(Exception ignored) { }
+    }
+}
+
+task rmExistingCotnainer(type: ExceptionCatchingDockerRemoveContainer, dependsOn: pullPostgreImage) {
+    force = true
+    containerId = postgres_test_container_name
+}
+
+task postRmExistingCotnainer(type: ExceptionCatchingDockerRemoveContainer) {
+    force = true
+    containerId = postgres_test_container_name
+}
+
+task createDbContainer(type: DockerCreateContainer, dependsOn: rmExistingCotnainer) {
+    targetImageId("postgres:15.2")
+    containerName = postgres_test_container_name
+    withEnvVar('POSTGRES_PASSWORD', 'local')
+    withEnvVar('POSTGRES_USER', 'local')
+    withEnvVar('POSTGRES_USER', 'local')
+    hostConfig.autoRemove = false
+    exposePorts('tcp', [5432])
+    def openPort = getRandomPort()
+    hostConfig.portBindings = ["${openPort}:5432"]
+    def file = layout.buildDirectory.file(port_file).get()
+    file.asFile.getParentFile().mkdirs()
+    file.asFile.createNewFile()
+    Files.write(file.asFile.toPath(), List.of("$openPort"))
+}
+
+task startDbContainer(type: DockerStartContainer, dependsOn: createDbContainer) {
+    containerId = postgres_test_container_name
+}
+
+static int getRandomPort() {
+    try (def socket = new ServerSocket(0)) {
+        return socket.getLocalPort()
+    }
+}
+
+int getAllocatedPort(ProjectLayout layout) {
+    return new String(Files.readAllBytes(layout.getBuildDirectory().file("pg-port").get().asFile.toPath())).toInteger()
+}
+
+tasks.getByName("test").finalizedBy("postRmExistingCotnainer")
 
 jooq {
     version = '3.18.4'
@@ -31,8 +99,9 @@ jooq {
             generationTool {
                 logging = Logging.WARN
                 jdbc {
+                    def port = getAllocatedPort(layout)
                     driver = 'org.postgresql.Driver'
-                    url = 'jdbc:postgresql://localhost:5999/local'
+                    url = "jdbc:postgresql://localhost:$port/local"
                     user = 'local'
                     password = 'local'
                 }
@@ -57,6 +126,20 @@ jooq {
             }
         }
     }
+}
+
+task "init-sql"(type: org.flywaydb.gradle.task.FlywayMigrateTask, dependsOn: startDbContainer) {
+    def port = getAllocatedPort(layout)
+    url = "jdbc:postgresql://127.0.0.1:$port/local"
+    user = 'local'
+    password = 'local'
+    locations = layout.projectDirectory.dir("src").dir("test").dir("resources").asFile.toString()
+}
+
+tasks.named('generateJooq').get().dependsOn("init-sql")
+
+tasks.getByName("test").doFirst {
+    environment 'PG_PORT', getAllocatedPort(layout)
 }
 
 test {

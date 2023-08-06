@@ -17,7 +17,8 @@ open class ApplicationConfiguration {
     @Bean
     open fun dataSource(): DataSource {
         val jdbcDataSource = HikariDataSource();
-        jdbcDataSource.jdbcUrl = "jdbc:postgresql://localhost:5999/local"
+        val port: Int = System.getenv()["PG_PORT"]!!.toInt()
+        jdbcDataSource.jdbcUrl = "jdbc:postgresql://localhost:${port}/local"
         jdbcDataSource.username = "local"
         jdbcDataSource.password = "local"
         return jdbcDataSource
