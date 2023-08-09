@@ -1,45 +1,44 @@
 package com.baeldung.palindromicstring
 import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
+
 class PalindromicStringTest {
 
     @Test fun `palindrome check using loop function`(){
-        assert(isPalindrome("racecar") == true)
-        assert(isPalindrome("hello") == false)
-        assert(isPalindrome("level") == true)
-        assert(isPalindrome("madam") == true)
-        assert(isPalindrome("3553") == true)
-        assert(isPalindrome("123213") == false)
+        assert(isPalindromeUsingLoop("racecar") == true)
+        assert(isPalindromeUsingLoop("redivider") == true)
+        assert(isPalindromeUsingLoop("Palindrome") == false)
+        assert(isPalindromeUsingLoop("sever") == false)
+        assert(isPalindromeUsingLoop("3553") == true)
+        assert(isPalindromeUsingLoop("tattarrattat") == true)
     }
 
     @Test fun `palindrome check using built in function`(){
         assert(isPalindromeWithBuiltInFunction("racecar") == true)
-        assert(isPalindromeWithBuiltInFunction("dadar") == false)
-        assert(isPalindromeWithBuiltInFunction("edrarde") == true)
-        assert(isPalindromeWithBuiltInFunction("radar") == true)
-        assert(isPalindromeWithBuiltInFunction("abababa") == true)
-        assert(isPalindromeWithBuiltInFunction("123213") == false)
+        assert(isPalindromeWithBuiltInFunction("redivider") == true)
+        assert(isPalindromeWithBuiltInFunction("Palindrome") == false)
+        assert(isPalindromeWithBuiltInFunction("sever") == false)
+        assert(isPalindromeWithBuiltInFunction("3553") == true)
+        assert(isPalindromeWithBuiltInFunction("tattarrattat") == true)
     }
 
     @Test fun `palindrome check using recursion`(){
         assert(isPalindromeUsingRecursion("racecar") == true)
+        assert(isPalindromeUsingRecursion("redivider") == true)
         assert(isPalindromeUsingRecursion("Palindrome") == false)
-        assert(isPalindromeUsingRecursion("LoL") == true)
-        assert(isPalindromeUsingRecursion("madam") == true)
-        assert(isPalindromeUsingRecursion("anna") == true)
-        assert(isPalindromeUsingRecursion("civic") == true)
+        assert(isPalindromeUsingRecursion("sever") == false)
+        assert(isPalindromeUsingRecursion("3553") == true)
+        assert(isPalindromeUsingRecursion("tattarrattat") == true)
     }
 
-    fun isPalindrome(str: String): Boolean {
-        var i = 0
-        var j = str.length - 1
-        while (i < j) {
-            if (str[i] != str[j]) {
+    fun isPalindromeUsingLoop(str: String): Boolean {
+        var start = 0
+        var end = str.length - 1
+        while (start < end) {
+            if (str[start] != str[end]) {
                 return false
             }
-            i++
-            j--
+            start++
+            end--
         }
         return true
     }
@@ -56,6 +55,6 @@ class PalindromicStringTest {
         if (str.first() != str.last()) {
             return false
         }
-        return isPalindrome(str.substring(1, str.length - 1))
+        return isPalindromeUsingRecursion(str.substring(1, str.length - 1))
     }
 }
