@@ -19,6 +19,9 @@ dependencies {
     testImplementation("io.kotest.extensions:kotest-extensions-testcontainers:2.0.1")
     testImplementation("org.testcontainers:testcontainers:1.18.3")
     testImplementation("org.testcontainers:mysql:1.18.3")
+
+    testImplementation("io.kotest.extensions:kotest-extensions-mockserver:1.2.1")
+    testImplementation("org.apache.httpcomponents:httpclient:4.5.14")
 }
 
 tasks.withType<Test> {
