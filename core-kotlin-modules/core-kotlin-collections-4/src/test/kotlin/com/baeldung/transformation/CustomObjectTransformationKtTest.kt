@@ -8,21 +8,21 @@ import kotlin.random.Random
 
 class CustomObjectTransformationKtTest {
 
-    val namesList = listOf(
+    private val namesList = listOf(
         Pair("John", "Doe"),
         Pair("Jill", "Fowler"),
         Pair("Jack", "Smith"),
         Pair("John", "Doe"),
     )
 
-    val empList = listOf(
+    private val empList = listOf(
         Employee(1, "John", "Doe", 1200.0),
         Employee(2, "Jill", "Fowler", 1200.0),
         Employee(3, "Jack", "Smith", 1200.0),
         Employee(4, "John", "Doe", 1200.0),
     )
 
-    val empByOrgList = listOf(
+    private val empByOrgList = listOf(
         Organization(
             100,
             listOf(
