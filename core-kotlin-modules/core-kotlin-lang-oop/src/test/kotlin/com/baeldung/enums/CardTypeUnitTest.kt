@@ -1,8 +1,10 @@
 package com.baeldung.enums
 
+import kotlin.enums.EnumEntries
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+
 
 internal class CardTypeUnitTest {
 
@@ -81,4 +83,22 @@ internal class CardTypeUnitTest {
         Assertions.assertEquals(CardType.PLATINUM, CardType.getCardTypeByName("platinum"))
     }
 
+    @Test
+    fun givenCardType_whenIterateUsingEntriesProperty_thenSuccessful() {
+        for (cardType in CardType.entries) {
+            Assertions.assertTrue(cardType in CardType.values())
+        }
+    }
+
+    @Test
+    fun givenCardType_whenGetEntriesProperty_thenReturnAllMembers() {
+        val enumEntries: EnumEntries<CardType> = CardType.entries
+        Assertions.assertEquals(CardType.values().size, enumEntries.size)
+    }
+
+    @Test
+    fun givenCardType_whenFindCardTypeUsingEntriesProperty_thenReturnCorrectCardType() {
+        val actualCardType = CardType.entries.find { it.color == "gray" }
+        Assertions.assertEquals(CardType.SILVER, actualCardType)
+    }
 }
