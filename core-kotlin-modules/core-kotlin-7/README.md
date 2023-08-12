@@ -10,4 +10,5 @@
 - [Swap Function in Kotlin](https://www.baeldung.com/kotlin/swap-utility)
 - [Converting an Int? to an Int in Kotlin](https://www.baeldung.com/kotlin/nullable-int-extract-value)
 - [Bubble Sort in Kotlin](https://www.baeldung.com/kotlin/bubble-sort)
+- [The ..< Operator for Open-ended Ranges in Kotlin](https://www.baeldung.com/kotlin/open-ended-ranges-operator)
 - More articles: [[<-- prev]](../core-kotlin-6)

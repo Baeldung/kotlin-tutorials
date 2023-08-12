@@ -2,10 +2,10 @@ package com.baeldung.fuel
 
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.FuelManager
-import com.github.kittinunf.fuel.core.interceptors.cUrlLoggingRequestInterceptor
+import com.github.kittinunf.fuel.core.interceptors.LogRequestAsCurlInterceptor
 import com.github.kittinunf.fuel.gson.responseObject
 import com.github.kittinunf.fuel.httpGet
-import com.github.kittinunf.fuel.rx.rx_object
+import com.github.kittinunf.fuel.rx.rxObject
 import com.google.gson.Gson
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
@@ -117,7 +117,7 @@ internal class FuelHttpLiveTest {
         FuelManager.instance.basePath = "http://httpbin.org"
         FuelManager.instance.baseHeaders = mapOf("OS" to "macOS High Sierra")
 
-        FuelManager.instance.addRequestInterceptor(cUrlLoggingRequestInterceptor())
+        FuelManager.instance.addRequestInterceptor(LogRequestAsCurlInterceptor)
         FuelManager.instance.addRequestInterceptor(tokenInterceptor())
 
 
@@ -134,7 +134,7 @@ internal class FuelHttpLiveTest {
     fun givenInterceptors_whenMakingSyncHttpGetRequest_thenResponseNotNullAndErrorNullAndStatusCode200() {
 
         FuelManager.instance.basePath = "http://httpbin.org"
-        FuelManager.instance.addRequestInterceptor(cUrlLoggingRequestInterceptor())
+        FuelManager.instance.addRequestInterceptor(LogRequestAsCurlInterceptor)
         FuelManager.instance.addRequestInterceptor(tokenInterceptor())
 
         val (request, response, result) = "/get"
@@ -149,7 +149,7 @@ internal class FuelHttpLiveTest {
     @Test
     fun whenDownloadFile_thenCreateFileResponseNotNullAndErrorNullAndStatusCode200() {
 
-        Fuel.download("http://httpbin.org/bytes/32768").destination { response, url ->
+        Fuel.download("http://httpbin.org/bytes/32768").fileDestination  { response, request ->
             File.createTempFile("temp", ".tmp")
         }.response{
             request, response, result ->
@@ -165,7 +165,7 @@ internal class FuelHttpLiveTest {
     fun whenDownloadFilewithProgressHandler_thenCreateFileResponseNotNullAndErrorNullAndStatusCode200() {
 
         val (request, response, result) = Fuel.download("http://httpbin.org/bytes/327680")
-          .destination { response, url -> File.createTempFile("temp", ".tmp")
+          .fileDestination { response, request -> File.createTempFile("temp", ".tmp")
         }.progress { readBytes, totalBytes ->
             val progress = readBytes.toFloat() / totalBytes.toFloat()
         }.response ()
@@ -214,7 +214,7 @@ internal class FuelHttpLiveTest {
 
 
         "https://jsonplaceholder.typicode.com/posts?id=1"
-                .httpGet().rx_object(Post.Deserializer()).subscribe{
+                .httpGet().rxObject(Post.Deserializer()).subscribe{
                     res, throwable ->
 
                     val post = res.component1()
@@ -252,7 +252,7 @@ internal class FuelHttpLiveTest {
 
         val latch = CountDownLatch(1)
 
-        Fuel.request(PostRoutingAPI.posts("1",null))
+        Fuel.request(PostRoutingAPI.Post("1",null))
           .responseObject(Post.Deserializer()) {
               request, response, result ->
               Assertions.assertEquals(1, result.component1()?.get(0)?.userId)
@@ -267,7 +267,7 @@ internal class FuelHttpLiveTest {
 
         val latch = CountDownLatch(1)
 
-        Fuel.request(PostRoutingAPI.comments("1",null))
+        Fuel.request(PostRoutingAPI.Comment("1",null))
           .responseString { request, response, result ->
             Assertions.assertEquals(200, response.statusCode)
             latch.countDown()
