@@ -47,9 +47,10 @@ class CustomObjectTransformationKtTest {
     }
 
     @Test
-    fun givenListOfEmployeeObjects_whenTransformed_returnListOfEmployeeName() {
+    fun givenListOfEmployeeObjects_whenTransformedUsingMap_returnListOfEmployeeName() {
         val empNameList = empList.map { it.name() }
         assertNotNull(empNameList)
+        assertTrue(empNameList.size > 0)
         empNameList.forEach {
             assertNotNull(it)
             assert(it is String)
@@ -66,6 +67,45 @@ class CustomObjectTransformationKtTest {
     }
 
     @Test
+    fun givenListOfObjectsWithNulls_whenTransformedUsingMapNotNull_filterNullsAndReturnListOfStrings() {
+        val empListWithNulls = listOf(*empList.toTypedArray(), null)
+        val empNameList = empListWithNulls.mapNotNull { it?.name() }
+        assertNotNull(empNameList)
+        assertTrue(empNameList.size > 0)
+        empNameList.forEach {
+            assertNotNull(it)
+            assert(it is String)
+        }
+    }
+
+    @Test
+    fun givenListOfObjectsWithNulls_whenTransformedUsingMapTo_filterNullsAndReturnListOfStrings() {
+        var empNameList = mutableListOf<String>()
+        empList.mapTo(empNameList) { it.name() }
+        assertNotNull(empNameList)
+        assertTrue(empNameList.size > 0)
+        empNameList.forEach {
+            assertNotNull(it)
+            assert(it is String)
+        }
+    }
+
+    @Test
+    fun givenListOfObjectsWithNulls_whenTransformedUsingMapIndexed_filterNullsAndReturnListOfStrings() {
+        val empNameList = empList.mapIndexed { index, item -> {
+                println("Index: $index")
+                item.name()
+            }
+        }
+        assertNotNull(empNameList)
+        assertTrue(empNameList.isNotEmpty())
+        empNameList.forEach {
+            assertNotNull(it)
+            assert(it is String)
+        }
+    }
+
+    @Test
     fun givenListOfEmployeeObjects_whenTransformedUsingForLoop_returnListOfEmployeeName() {
         val empNameList = mutableListOf<String>()
         for (emp in empList) {
@@ -73,6 +113,7 @@ class CustomObjectTransformationKtTest {
         }
 
         assertNotNull(empNameList)
+        assertTrue(empNameList.size > 0)
         empNameList.forEach {
             assertNotNull(it)
             assert(it is String)
@@ -86,6 +127,7 @@ class CustomObjectTransformationKtTest {
             empNameList.add(empList[i].name())
         }
         assertNotNull(empNameList)
+        assertTrue(empNameList.size > 0)
         empNameList.forEach {
             assertNotNull(it)
             assert(it is String)
@@ -108,6 +150,7 @@ class CustomObjectTransformationKtTest {
         }
 
         assertNotNull(empNameList)
+        assertTrue(empNameList.size > 0)
         empNameList.forEach {
             assertNotNull(it)
             assert(it is String)
@@ -121,6 +164,7 @@ class CustomObjectTransformationKtTest {
             empNameList.add(emp.name())
         }
         assertNotNull(empNameList)
+        assertTrue(empNameList.size > 0)
         empNameList.forEach {
             assertNotNull(it)
             assert(it is String)
@@ -133,6 +177,7 @@ class CustomObjectTransformationKtTest {
             .flatMap { it.employees }
             .map { it.name() }
         assertNotNull(empNameList)
+        assertTrue(empNameList.size > 0)
         empNameList.forEach {
             assertNotNull(it)
             assert(it is String)
