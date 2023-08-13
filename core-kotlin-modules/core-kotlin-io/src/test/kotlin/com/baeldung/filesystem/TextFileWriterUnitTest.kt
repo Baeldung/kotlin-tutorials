@@ -63,9 +63,7 @@ internal class TextFileWriterUnitTest {
     fun whenWrittenUsingBufferedWriterAppendLine_thenCorrect() {
         textFileWriter.writeFileWithBufferedWriterAppend(pathname, "Kotlin\n", "Concise, Safe, Interoperable, Tool-friendly")
 
-        val multipleLineText = "Kotlin\nConcise, Safe, Interoperable, Tool-friendly"
-
-        assertEquals(multipleLineText, File(pathname).readText())
+        assertEquals(text, File(pathname).readText())
     }
 
 }
