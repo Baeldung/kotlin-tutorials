@@ -23,6 +23,7 @@ class SystemFacadeTest {
             verify(databaseHandler).connect()
             verify(businessLogicHandler).performTask()
             verify(notificationHandler).sendNotification()
+            verify(databaseHandler).disconnect()
         }
     }
 }
