@@ -1,6 +1,5 @@
 package com.baeldung.kotlin.jsontomap
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.google.gson.Gson
@@ -10,8 +9,6 @@ import com.google.gson.reflect.TypeToken
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.encodeToJsonElement
-import kotlinx.serialization.json.jsonObject
 import org.json.JSONObject
 
 @Serializable
