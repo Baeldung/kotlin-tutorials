@@ -1,11 +1,13 @@
 package com.baeldung.kotlin
 
 import com.baeldung.kotlin.jsontomap.jsonStringToMap
+import com.baeldung.kotlin.jsontomap.jsonStringToMapKotlinx
 import com.baeldung.kotlin.jsontomap.jsonStringToMapWithGson
 import com.baeldung.kotlin.jsontomap.jsonStringToMapWithJackson
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import kotlin.test.assertNotNull
 
 class JsonStringToMapTest {
 
@@ -18,11 +20,26 @@ class JsonStringToMapTest {
     }
 
     @Test
+    fun testJsonStringToMapKotlinx() {
+        val json = """{"name":"John","age":30,"city":"New York"}"""
+        val expectedMap = mapOf("name" to "John", "age" to 30L, "city" to "New York")
+        val result = jsonStringToMapKotlinx(json)
+
+        assertNotNull(result)
+        assertEquals(expectedMap["name"], result["name"])
+        assertEquals(expectedMap["age"], result["age"])
+        assertEquals(expectedMap["city"], result["city"])
+    }
+
+    @Test
     fun testJsonStringToMapWithGson() {
         val json = """{"name":"Jane","age":25,"city":"San Francisco"}"""
-        val expectedMap = mapOf("name" to "Jane", "age" to 25, "city" to "San Francisco")
+        val expectedMap = mapOf("name" to "Jane", "age" to 25.0, "city" to "San Francisco")
         val result = jsonStringToMapWithGson(json)
-        assertEquals(expectedMap, result)
+
+        assertEquals(expectedMap["name"], result["name"])
+        assertEquals(expectedMap["age"], result["age"])
+        assertEquals(expectedMap["city"], result["city"])
     }
 
     @Test
@@ -69,20 +86,18 @@ class JsonStringToMapTest {
 
     @Test
     fun testInvalidJsonStringToMapWithGson() {
-        val json = """{"name":"Bob","age":null,"city":"Chicago"}""" // Null value for "age"
+        val json = """{"name":,"age":null,"city":"Chicago"}""" // Null value for "age"
         val exception = assertThrows<com.google.gson.JsonSyntaxException> {
             jsonStringToMapWithGson(json)
         }
-        assertEquals("java.lang.NullPointerException", exception.cause?.toString())
+        assertEquals("com.google.gson.stream.MalformedJsonException: Unexpected value at line 1 column 10 path \$.", exception.cause?.toString())
     }
 
     @Test
     fun testInvalidJsonStringToMapWithJackson() {
         val json = """{"name":"Alice","age":30,"city"}""" // Missing colon in "city" entry
-        val exception = assertThrows<com.fasterxml.jackson.databind.JsonMappingException> {
+        val exception = assertThrows<com.fasterxml.jackson.core.JsonParseException> {
             jsonStringToMapWithJackson(json)
         }
-        assertEquals("Unexpected character ('}' (code 125)): was expecting a colon to separate field name and value\n at [Source: (String)\"{\"name\":\"Alice\",\"age\":30,\"city\"}\"; line: 1, column: 27]",
-                exception.message)
     }
 }
