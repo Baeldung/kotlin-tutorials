@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>kotlin-libraries-utils</artifactId>
-    <name>kotlin-libraries-data</name>
+    <name>kotlin-libraries-utils</name>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -18,15 +18,8 @@
     <dependencies>
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
-            <artifactId>kotlinx-serialization-json-jvm</artifactId>
-            <version>1.5.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlinx</groupId>
-            <artifactId>kotlinx-datetime-jvm</artifactId>
-            <version>0.4.0</version>
-            <scope>test</scope>
+            <artifactId>kotlinx-cli-jvm</artifactId>
+            <version>0.3.5</version>
         </dependency>
     </dependencies>
 
