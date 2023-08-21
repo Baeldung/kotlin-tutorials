@@ -9,10 +9,57 @@ import io.kotest.matchers.shouldBe
 class PythagoreanTripleTest : FunSpec({
     context("Pythagorean triples tests") {
         withData(
-            PythagTriple(3, 4, 5),
-            PythagTriple(6, 8, 10),
-            PythagTriple(8, 15, 17),
-            PythagTriple(7, 24, 25)
+            DefaultPythagTriple(3, 4, 5),
+            DefaultPythagTriple(6, 8, 10),
+            DefaultPythagTriple(8, 15, 17),
+            DefaultPythagTriple(7, 24, 25)
+        ) { (a, b, c) ->
+            isPythagTriple(a, b, c) shouldBe true
+        }
+    }
+
+    context("StablePythagorean triples tests") {
+        withData(
+            StablePythagTriple(3, 4, 5),
+            StablePythagTriple(6, 8, 10),
+            StablePythagTriple(8, 15, 17),
+            StablePythagTriple(7, 24, 25)
+        ) { (a, b, c) ->
+            isPythagTriple(a, b, c) shouldBe true
+        }
+    }
+
+    context("NamedPythagorean triples tests") {
+        withData(
+            NamedPythagTriple(3, 4, 5),
+            NamedPythagTriple(6, 8, 10),
+            NamedPythagTriple(8, 15, 17),
+            NamedPythagTriple(7, 24, 25)
+        ) { (a, b, c) ->
+            isPythagTriple(a, b, c) shouldBe true
+        }
+    }
+
+    context("Pythagorean triples tests with map") {
+        withData(
+            mapOf(
+                "3, 4, 5" to DefaultPythagTriple(3, 4, 5),
+                "6, 8, 10" to DefaultPythagTriple(6, 8, 10),
+                "8, 15, 17" to DefaultPythagTriple(8, 15, 17),
+                "7, 24, 25" to DefaultPythagTriple(7, 24, 25)
+            )
+        ) { (a, b, c) ->
+            isPythagTriple(a, b, c) shouldBe true
+        }
+    }
+
+    context("Pythagorean triples tests with name function") {
+        withData(
+            nameFn = { "${it.a}__${it.b}__${it.c}" },
+            DefaultPythagTriple(3, 4, 5),
+            DefaultPythagTriple(6, 8, 10),
+            DefaultPythagTriple(8, 15, 17),
+            DefaultPythagTriple(7, 24, 25)
         ) { (a, b, c) ->
             isPythagTriple(a, b, c) shouldBe true
         }
@@ -28,34 +75,13 @@ class PythagoreanTripleTest : FunSpec({
         }
     }
 
-    context("Pythagorean triples tests with map") {
-        withData(
-            mapOf(
-                "3, 4, 5" to PythagTriple(3, 4, 5),
-                "6, 8, 10" to PythagTriple(6, 8, 10),
-                "8, 15, 17" to PythagTriple(8, 15, 17),
-                "7, 24, 25" to PythagTriple(7, 24, 25)
-            )
-        ) { (a, b, c) ->
-            isPythagTriple(a, b, c) shouldBe true
-        }
-    }
-
-    context("Pythagorean triples tests with name function") {
-        withData(
-            nameFn = { "${it.a}__${it.b}__${it.c}" },
-            PythagTriple(3, 4, 5),
-            PythagTriple(6, 8, 10),
-            PythagTriple(8, 15, 17),
-            PythagTriple(7, 24, 25)
-        ) { (a, b, c) ->
-            isPythagTriple(a, b, c) shouldBe true
-        }
-    }
-
 })
 
-//@IsStableType
-data class PythagTriple(val a: Int, val b: Int, val c: Int) : WithDataTestName {
+data class DefaultPythagTriple(val a: Int, val b: Int, val c: Int)
+
+@IsStableType
+data class StablePythagTriple(val a: Int, val b: Int, val c: Int)
+
+data class NamedPythagTriple(val a: Int, val b: Int, val c: Int) : WithDataTestName {
     override fun dataTestName() = "Pythagorean Triple: $a, $b, $c"
 }
