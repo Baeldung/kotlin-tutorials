@@ -5,6 +5,7 @@ import org.junit.Test
 
 import org.junit.jupiter.api.Assertions.*
 import kotlin.random.Random
+import kotlin.reflect.typeOf
 
 class CustomObjectTransformationKtTest {
 
@@ -101,7 +102,6 @@ class CustomObjectTransformationKtTest {
         assertTrue(empNameList.isNotEmpty())
         empNameList.forEach {
             assertNotNull(it)
-            assert(it is String)
         }
     }
 
