@@ -113,7 +113,7 @@
 
     <properties>
         <kodein.version>4.1.0</kodein.version>
-        <klaxon.version>3.0.4</klaxon.version>
+        <klaxon.version>5.6</klaxon.version>
         <commons-math3.version>3.6.1</commons-math3.version>
         <junit.vintage.version>5.2.0</junit.vintage.version>
         <assertj.version>3.10.0</assertj.version>
