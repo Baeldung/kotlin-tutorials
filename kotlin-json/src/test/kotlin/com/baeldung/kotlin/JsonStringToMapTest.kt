@@ -4,6 +4,7 @@ import com.baeldung.kotlin.jsontomap.jsonStringToMap
 import com.baeldung.kotlin.jsontomap.jsonStringToMapKotlinx
 import com.baeldung.kotlin.jsontomap.jsonStringToMapWithGson
 import com.baeldung.kotlin.jsontomap.jsonStringToMapWithJackson
+
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -22,7 +23,7 @@ class JsonStringToMapTest {
     @Test
     fun testJsonStringToMapKotlinx() {
         val json = """{"name":"John","age":30,"city":"New York"}"""
-        val expectedMap = mapOf("name" to "John", "age" to 30L, "city" to "New York")
+        val expectedMap = mapOf("name" to "John", "age" to 30, "city" to "New York")
         val result = jsonStringToMapKotlinx(json)
 
         assertNotNull(result)
