@@ -10,3 +10,4 @@ This module contains articles about core Kotlin strings.
 - [Conversion Between Camel Case and Snake Case in Kotlin](https://www.baeldung.com/kotlin/convert-camel-case-snake-case)
 - [How to Encode a String in UTF-8 in Kotlin](https://www.baeldung.com/kotlin/encode-utf8-string)
 - [Password Validation in Kotlin](https://www.baeldung.com/kotlin/password-validation)
+- [Check if a String Is a Palindrome in Kotlin](https://www.baeldung.com/kotlin/palindrome)
