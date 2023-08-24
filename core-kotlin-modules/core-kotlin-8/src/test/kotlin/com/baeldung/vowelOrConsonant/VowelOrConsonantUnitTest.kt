@@ -40,7 +40,6 @@ class VowelOrConsonantUnitTest {
         assertFalse(isVowelUsingRegexMethod('@'))
         assertFalse(isConsonantUsingRegex('@'))
     }
-
     @Test
     fun `using ASCII values method`() {
         assertTrue(isVowelUsingAsciiValues('E'))
@@ -53,7 +52,6 @@ class VowelOrConsonantUnitTest {
         assertFalse(isConsonantUsingAscii('@'))
     }
 
-
     fun isVowel(c: Char): Boolean {
         return when (c) {
             'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' -> true
@@ -64,8 +62,6 @@ class VowelOrConsonantUnitTest {
     fun isConsonant(c: Char): Boolean {
         return !isVowel(c) && c.isLetter()
     }
-
-
 
     fun isVowelUsingMap(c: Char): Boolean {
         val vowels = mapOf(
@@ -87,7 +83,7 @@ class VowelOrConsonantUnitTest {
 
     fun isConsonantUsingRegex(c: Char): Boolean {
         val consonants = "[bcdfghjklmnpqrstvwxyz]"
-        return c.toString().matches(consonants.toRegex())
+        return c.lowercaseChar().toString().matches(consonants.toRegex())
     }
 
     fun isVowelUsingAsciiValues(c: Char): Boolean {
@@ -96,7 +92,7 @@ class VowelOrConsonantUnitTest {
     }
 
     fun isConsonantUsingAscii(c: Char): Boolean {
-        val ascii = c.code
+        val ascii = c.lowercaseChar().code
         return ascii in 97..122 && ascii !in setOf(97, 101, 105, 111, 117)
     }
 }
