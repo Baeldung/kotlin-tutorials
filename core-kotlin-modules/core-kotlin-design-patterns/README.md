@@ -8,3 +8,4 @@ This module contains articles about design patterns in Kotlin
 - [Abstract Factory Pattern in Kotlin](https://www.baeldung.com/kotlin/abstract-factory-pattern)
 - [The Chain of Responsibility Pattern in Kotlin](https://www.baeldung.com/kotlin/chain-of-responsibility-pattern)
 - [The Adapter Pattern in Kotlin](https://www.baeldung.com/kotlin/adapter-pattern)
+- [The Facade Pattern in Kotlin](https://www.baeldung.com/kotlin/facade-pattern)
