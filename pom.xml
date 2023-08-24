@@ -308,6 +308,7 @@
         <module>kotlin-immutable-collections</module>
         <module>kotlin-logging</module>
         <module>kotlin-libraries-data</module>
+        <module>kotlin-libraries-utils</module>
     </modules>
 
     <profiles>
