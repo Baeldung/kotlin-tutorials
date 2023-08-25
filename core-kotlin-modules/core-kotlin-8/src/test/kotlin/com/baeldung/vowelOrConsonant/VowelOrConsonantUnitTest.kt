@@ -82,8 +82,8 @@ class VowelOrConsonantUnitTest {
     }
 
     fun isConsonantUsingRegex(c: Char): Boolean {
-        val consonants = "[bcdfghjklmnpqrstvwxyz]"
-        return c.lowercaseChar().toString().matches(consonants.toRegex())
+        val isLetterRegex = "[a-zA-Z]".toRegex()
+        return !isVowelUsingRegexMethod(c) && c.toString().matches(isLetterRegex)
     }
 
     fun isVowelUsingAsciiValues(c: Char): Boolean {
@@ -93,6 +93,7 @@ class VowelOrConsonantUnitTest {
 
     fun isConsonantUsingAscii(c: Char): Boolean {
         val ascii = c.lowercaseChar().code
-        return ascii in 97..122 && ascii !in setOf(97, 101, 105, 111, 117)
+        return ascii in 97..122 && !isVowelUsingAsciiValues(c)
+
     }
 }
