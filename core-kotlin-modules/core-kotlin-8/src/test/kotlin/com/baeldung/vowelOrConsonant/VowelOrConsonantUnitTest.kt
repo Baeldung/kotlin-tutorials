@@ -92,8 +92,7 @@ class VowelOrConsonantUnitTest {
     }
 
     fun isConsonantUsingAscii(c: Char): Boolean {
-        val ascii = c.lowercaseChar().code
-        return ascii in 97..122 && !isVowelUsingAsciiValues(c)
-
+        val ascii = c.code
+        return (ascii in 65..90 || ascii in 97..122) && !isVowelUsingAsciiValues(c)
     }
 }
