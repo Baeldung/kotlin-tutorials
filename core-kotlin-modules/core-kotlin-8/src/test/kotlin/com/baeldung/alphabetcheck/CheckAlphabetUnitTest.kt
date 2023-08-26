@@ -44,14 +44,14 @@ class CheckAlphabetUnitTest {
 
     @Test
     fun `check using isAlphabetic method`(){
-        assertTrue(usingIsAlphabeticMethod('a'))
-        assertTrue(usingIsAlphabeticMethod('w'))
-        assertTrue(usingIsAlphabeticMethod('T'))
-        assertTrue(usingIsAlphabeticMethod('P'))
-        assertFalse(usingIsAlphabeticMethod('%'))
-        assertFalse(usingIsAlphabeticMethod('4'))
-        assertFalse(usingIsAlphabeticMethod('.'))
-        assertFalse(usingIsAlphabeticMethod('*'))
+        assertTrue(Character.isAlphabetic('a'.code))
+        assertTrue(Character.isAlphabetic('w'.code))
+        assertTrue(Character.isAlphabetic('T'.code))
+        assertTrue(Character.isAlphabetic('P'.code))
+        assertFalse(Character.isAlphabetic('%'.code))
+        assertFalse(Character.isAlphabetic('4'.code))
+        assertFalse(Character.isAlphabetic('.'.code))
+        assertFalse(Character.isAlphabetic('*'.code))
     }
 
     @Test
@@ -74,12 +74,7 @@ class CheckAlphabetUnitTest {
         return ch.toString().matches("[a-zA-Z]".toRegex())
     }
 
-    fun usingIsAlphabeticMethod(ch: Char): Boolean{
-        return Character.isAlphabetic(ch.code)
-    }
-
     fun usingAsciiValues(ch: Char): Boolean{
         return (ch.code in 65..90) || (ch.code in 97..122)
     }
-
 }
