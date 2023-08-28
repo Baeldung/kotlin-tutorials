@@ -5,6 +5,8 @@ import kotlin.test.assertTrue
 import kotlin.test.assertFalse
 
 class VowelOrConsonantUnitTest {
+    val isLetterRegex = "[a-zA-Z]".toRegex()
+    val isVowelLetterRegex = "[AEIOUaeiou]".toRegex()
     @Test
     fun `using when expression`() {
         assertTrue(isVowel('e'))
@@ -78,11 +80,10 @@ class VowelOrConsonantUnitTest {
     }
 
     fun isVowelUsingRegexMethod(c: Char): Boolean {
-        return c.toString().matches("[AEIOUaeiou]".toRegex())
+        return c.toString().matches(isVowelLetterRegex)
     }
 
     fun isConsonantUsingRegex(c: Char): Boolean {
-        val isLetterRegex = "[a-zA-Z]".toRegex()
         return !isVowelUsingRegexMethod(c) && c.toString().matches(isLetterRegex)
     }
 
