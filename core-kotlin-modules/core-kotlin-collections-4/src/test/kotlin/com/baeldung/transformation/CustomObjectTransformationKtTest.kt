@@ -5,7 +5,6 @@ import org.junit.Test
 
 import org.junit.jupiter.api.Assertions.*
 import kotlin.random.Random
-import kotlin.reflect.typeOf
 
 class CustomObjectTransformationKtTest {
 
@@ -51,7 +50,7 @@ class CustomObjectTransformationKtTest {
     fun givenListOfEmployeeObjects_whenTransformedUsingMap_returnListOfEmployeeName() {
         val empNameList = empList.map { it.name() }
         assertNotNull(empNameList)
-        assertTrue(empNameList.size > 0)
+        assertTrue(empNameList.isNotEmpty())
         empNameList.forEach {
             assertNotNull(it)
             assert(it is String)
@@ -72,7 +71,7 @@ class CustomObjectTransformationKtTest {
         val empListWithNulls = listOf(*empList.toTypedArray(), null)
         val empNameList = empListWithNulls.mapNotNull { it?.name() }
         assertNotNull(empNameList)
-        assertTrue(empNameList.size > 0)
+        assertTrue(empNameList.isNotEmpty())
         empNameList.forEach {
             assertNotNull(it)
             assert(it is String)
@@ -81,7 +80,7 @@ class CustomObjectTransformationKtTest {
 
     @Test
     fun givenListOfObjectsWithNulls_whenTransformedUsingMapTo_filterNullsAndReturnListOfStrings() {
-        var empNameList = mutableListOf<String>()
+        val empNameList = mutableListOf<String>()
         empList.mapTo(empNameList) { it.name() }
         assertNotNull(empNameList)
         assertTrue(empNameList.size > 0)
