@@ -7,15 +7,15 @@ import com.google.gson.reflect.TypeToken
 import kotlinx.serialization.json.*
 import org.json.JSONObject
 
-fun jsonStringToMap(json: String): Map<String, Any> {
-    val jsonObj = JSONObject(json)
-    return jsonObj.toMap()
+fun jsonStringToMapWithKotlinx(json: String): Map<String, JsonElement> {
+    val data = Json.parseToJsonElement(json)
+    require(data is JsonObject) { "Only Json Objects can be converted to a Map!" }
+    return data
 }
 
-fun jsonStringToMapKotlinx(json: String): Map<*, *> {
-
-    val myData = Json.parseToJsonElement(json)
-    return jsonElementToMap(myData) as Map<*, *>
+fun jsonStringToMapWithOrgJson(json: String): Map<String, Any> {
+    val jsonObj = JSONObject(json)
+    return jsonObj.toMap()
 }
 
 fun jsonStringToMapWithGson(json: String): Map<String, Any> {
@@ -27,25 +27,4 @@ fun jsonStringToMapWithGson(json: String): Map<String, Any> {
 fun jsonStringToMapWithJackson(json: String): Map<String, Any> {
     val objectMapper = jacksonObjectMapper()
     return objectMapper.readValue<Map<String, Any>>(json)
-}
-
-private fun jsonElementToMap(jsonElement: JsonElement): Any {
-    return when (jsonElement) {
-        is JsonObject -> {
-            jsonElement.keys.associateWith { key ->
-                jsonElementToMap(jsonElement[key]!!)
-            }
-        }
-        is JsonPrimitive -> {
-            when {
-                jsonElement.isString -> jsonElement.content
-                jsonElement.booleanOrNull != null -> jsonElement.boolean
-                jsonElement.intOrNull != null -> jsonElement.int
-                jsonElement.floatOrNull != null -> jsonElement.float
-                jsonElement.doubleOrNull != null -> jsonElement.double
-                else -> error("Unsupported JsonPrimitive type")
-            }
-        }
-        else -> error("Unsupported JsonElement type")
-    }
 }
