@@ -91,7 +91,7 @@ class KhttpLiveTest {
                 params = mapOf("p1" to "1", "p2" to "2"),
                 files = listOf(
                         FileLike("file1", "content1"),
-                        FileLike("file2", javaClass.getResource("KhttpTest.class").openStream().readBytes())))
+                        FileLike("file2", javaClass.getResource("KhttpLiveTest.class").openStream().readBytes())))
 
         val args = response.jsonObject.getJSONObject("args")
 

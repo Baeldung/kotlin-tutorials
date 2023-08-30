@@ -74,7 +74,7 @@ class KlaxonUnitTest {
                 "sizeInInch" : 2.5
             }
         """)
-        val parser = Parser()
+        val parser = Parser.default()
         val json = parser.parse(jsonString) as JsonObject
 
         assertThat(json).hasSize(3).containsEntry("name", "HDD").containsEntry("capacityInGb", 512).containsEntry("sizeInInch", 2.5)
@@ -89,7 +89,7 @@ class KlaxonUnitTest {
             { "madeIn" : "Taiwan" },
             { "warrantyInYears" : 5 }
         ]""")
-        val parser = Parser()
+        val parser = Parser.default()
         val json = parser.parse(jsonString) as JsonArray<JsonObject>
 
         assertSoftly { softly ->
