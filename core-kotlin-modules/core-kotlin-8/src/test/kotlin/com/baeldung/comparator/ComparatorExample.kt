@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 class ComparatorExample {
 
     @Test
-    fun lengthComparatorTest() {
+    fun `when custom comparator used to sort list then list sorted correctly`() {
         val words = listOf("apple", "blueberry", "cherry", "date")
         val lengthComparator = object : Comparator<String> {
             override fun compare(string1: String, string2: String): Int {
@@ -14,29 +14,24 @@ class ComparatorExample {
             }
         }
         assert(words.sortedWith(lengthComparator) == listOf("date", "apple", "cherry", "blueberry"))
-    }
-
-    @Test
-    fun lengthComparatorSimplifiedTest() {
-        val words = listOf("apple", "blueberry", "cherry", "date")
         assert(words.sortedWith(compareBy(String::length)) == listOf("date", "apple", "cherry", "blueberry"))
     }
 
     @Test
-    fun userDefinedObjectComparatorTest() {
+    fun `when custom comparator used to sort list of user defined objects then list sorted correctly`() {
         data class Person(val name: String, val age: Int)
         val people = listOf(Person("Alice", 29), Person("Bob", 31), Person("Bob", 29))
         assert(people.sortedWith(compareBy({ it.age }, { it.name })) == listOf(Person("Alice", 29), Person("Bob", 29), Person("Bob", 31)))
     }
 
     @Test
-    fun reversedComparatorTest() {
+    fun `when reversed function used then list sorted correctly`() {
         val words = listOf("apple", "blueberry", "cherry", "date")
         assert(words.sortedWith(compareBy<String> { it.length }.reversed()) == listOf("blueberry","cherry","apple","date"))
     }
 
     @Test
-    fun thenTest() {
+    fun `when then function used then list sorted correctly`() {
         data class Person(val name: String, val age: Int)
         val people = listOf(Person("Alice", 29), Person("Bob", 31), Person("Cleo", 29))
         val sortedPeople = people.sortedWith(compareBy(Person::age).then(compareBy(Person::name)))
@@ -44,7 +39,7 @@ class ComparatorExample {
     }
 
     @Test
-    fun thenByTest() {
+    fun `when thenBy function used then list sorted correctly`() {
         data class Person(val name: String, val age: Int)
         val people = listOf(Person("Alice", 29), Person("Bob", 31), Person("Cleo", 29))
         val sortedPeople = people.sortedWith(compareBy(Person::age).thenBy(Person::name))
@@ -52,7 +47,7 @@ class ComparatorExample {
     }
 
     @Test
-    fun thenDescendingAndThenByDescendingTest() {
+    fun `when thenDescending and thenByDescending function used then list sorted correctly`() {
         data class Person(val name: String, val age: Int)
         val people = listOf(Person("Alice", 29), Person("Bob", 31), Person("Cleo", 29))
         val sortedPeople = people.sortedWith(compareBy(Person::age).thenDescending(compareBy(Person::name)))
@@ -62,7 +57,7 @@ class ComparatorExample {
     }
 
     @Test
-    fun thenComparatorTest() {
+    fun `when thenComparator function used then list sorted correctly`() {
         data class Person(val name: String, val age: Int)
         val people = listOf(Person("Alice", 29), Person("Bob", 31), Person("Cleo", 29))
         val combinedComparator = compareBy(Person::age).thenComparator { person1, person2 -> person1.name.length - person2.name.length }
