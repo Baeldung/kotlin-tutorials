@@ -18,6 +18,7 @@
     </dependencies>
 
     <properties>
+        <kotlin.version>1.9.0-RC</kotlin.version>
     </properties>
 
 </project>

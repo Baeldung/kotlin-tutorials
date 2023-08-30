@@ -14,7 +14,7 @@
     </parent>
 
     <dependencies>
-         <!-- MockK dependencies-->
+        <!-- MockK dependencies-->
         <dependency>
             <groupId>io.mockk</groupId>
             <artifactId>mockk-jvm</artifactId>
