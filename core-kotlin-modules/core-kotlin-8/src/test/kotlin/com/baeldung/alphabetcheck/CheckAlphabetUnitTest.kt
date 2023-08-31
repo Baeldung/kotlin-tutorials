@@ -7,7 +7,7 @@ import kotlin.test.assertTrue
 class CheckAlphabetUnitTest {
 
     @Test
-    fun `check using isLetter() method`(){
+    fun `check using isLetter() method`() {
         assertTrue('a'.isLetter())
         assertTrue('w'.isLetter())
         assertTrue('T'.isLetter())
@@ -19,7 +19,7 @@ class CheckAlphabetUnitTest {
     }
 
     @Test
-    fun `check using range method`(){
+    fun `check using range method`() {
         assertTrue(usingRangeMethod('a'))
         assertTrue(usingRangeMethod('w'))
         assertTrue(usingRangeMethod('T'))
@@ -31,7 +31,7 @@ class CheckAlphabetUnitTest {
     }
 
     @Test
-    fun `check using regex method`(){
+    fun `check using regex method`() {
         assertTrue(usingRegexMethod('a'))
         assertTrue(usingRegexMethod('w'))
         assertTrue(usingRegexMethod('T'))
@@ -43,7 +43,7 @@ class CheckAlphabetUnitTest {
     }
 
     @Test
-    fun `check using isAlphabetic method`(){
+    fun `check using isAlphabetic method`() {
         assertTrue(Character.isAlphabetic('a'.code))
         assertTrue(Character.isAlphabetic('w'.code))
         assertTrue(Character.isAlphabetic('T'.code))
@@ -55,7 +55,7 @@ class CheckAlphabetUnitTest {
     }
 
     @Test
-    fun `check using ASCII method`(){
+    fun `check using ASCII method`() {
         assertTrue(usingAsciiValues('a'))
         assertTrue(usingAsciiValues('w'))
         assertTrue(usingAsciiValues('T'))
@@ -66,15 +66,15 @@ class CheckAlphabetUnitTest {
         assertFalse(usingAsciiValues('*'))
     }
 
-    fun usingRangeMethod(ch: Char): Boolean{
+    fun usingRangeMethod(ch: Char): Boolean {
         return ch in 'A'..'Z' || ch in 'a'..'z'
     }
 
-    fun usingRegexMethod(ch: Char): Boolean{
+    fun usingRegexMethod(ch: Char): Boolean {
         return ch.toString().matches("[a-zA-Z]".toRegex())
     }
 
-    fun usingAsciiValues(ch: Char): Boolean{
+    fun usingAsciiValues(ch: Char): Boolean {
         return (ch.code in 65..90) || (ch.code in 97..122)
     }
 }
