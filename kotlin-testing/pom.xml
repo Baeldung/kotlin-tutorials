@@ -14,8 +14,14 @@
     </parent>
 
     <dependencies>
-    <dependency>
-        <groupId>com.nhaarman</groupId>
+        <dependency>
+            <groupId>com.nhaarman</groupId>
+            <artifactId>mockito-kotlin</artifactId>
+            <version>${nhaarman-mockito-kotlin.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito.kotlin</groupId>
             <artifactId>mockito-kotlin</artifactId>
             <version>${mockito-kotlin.version}</version>
             <scope>test</scope>
@@ -48,7 +54,8 @@
     </dependencies>
 
     <properties>
-        <mockito-kotlin.version>1.5.0</mockito-kotlin.version>
+        <nhaarman-mockito-kotlin.version>1.5.0</nhaarman-mockito-kotlin.version>
+        <mockito-kotlin.version>5.1.0</mockito-kotlin.version>
         <spek.version>1.1.5</spek.version>
         <mockk.version>1.9.3</mockk.version>
     </properties>
