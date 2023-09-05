@@ -1,4 +1,4 @@
-package com.baeldung.serialization.kotlinx
+package com.baeldung.serialization.kotlinx.basic
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
