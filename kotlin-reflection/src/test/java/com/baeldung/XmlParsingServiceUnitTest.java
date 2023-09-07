@@ -10,17 +10,17 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class XmlParsingServiceTest {
+public class XmlParsingServiceUnitTest {
 
     @Test
-    void testFieldIsPresent() throws NoSuchFieldException {
+    void givenCompanionObjectInClass_whenAccessingStaticFieldInEnclosingObject_thenFoundInEnclosingClass() throws NoSuchFieldException {
         Class<XmlParsingService> xmlParsingServiceClass = XmlParsingService.class;
         Field factory = xmlParsingServiceClass.getDeclaredField("factory");
         Assertions.assertThat(factory.getType()).isSameAs(DocumentBuilderFactory.class);
     }
 
     @Test
-    void testNestedStaticClassIsPresent() throws ClassNotFoundException {
+    void givenCompanionObjectInClass_whenIteratingOverInnerClassesOfEnclosingClass_thenNestedCompanionClassFound() throws ClassNotFoundException {
         Class<XmlParsingService> xmlParsingServiceClass = XmlParsingService.class;
         Class<?>[] classes = xmlParsingServiceClass.getClasses();
         Assertions.assertThat(Arrays.asList(classes))
@@ -31,7 +31,7 @@ public class XmlParsingServiceTest {
     }
 
     @Test
-    void testMethodInvocationViaJavaReflectionAPI() throws Exception {
+    void givenCompanionObject_whenInvokingMethodViaReflection_thenEntityIdExtractedSuccessfully() throws Exception {
         Class<XmlParsingService> xmlParsingServiceClass = XmlParsingService.class;
         Field companion = xmlParsingServiceClass.getDeclaredField("Companion");
         companion.setAccessible(true);
