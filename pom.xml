@@ -296,6 +296,7 @@
         <module>kotlin-libraries-http</module>
         <module>kotlin-patterns</module>
         <module>kotlin-quasar</module>
+        <module>kotlin-reflection</module>
         <module>kotlin-testing</module>
         <module>kotlin-testing-2</module>
         <module>machine-learning</module>
