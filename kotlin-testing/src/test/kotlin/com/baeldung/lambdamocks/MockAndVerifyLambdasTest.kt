@@ -17,7 +17,7 @@ class CalculatorTest {
       }
   }
     @Test
-    fun testCalculateWithMockito() {
+    fun testLambda_WithMockito() {
         val operationMock: (Int, Int) -> Int = mock()
         val calculator = Calculator(operationMock)
         whenever(operationMock.invoke(any(), any())).thenReturn(50)
@@ -27,7 +27,7 @@ class CalculatorTest {
     }
 
 
-    @Test fun testCalculate() {
+    @Test fun whenWeMockLambdas_theVerifyCorrectly() {
         val operation: (Int, Int) -> Int = { a, b -> a - b }
         val calculator = Calculator(operation)
         val result = calculator.calculate(10, 5)
@@ -35,7 +35,7 @@ class CalculatorTest {
     }
 
     @Test
-    fun testCalculateWithMockk() {
+    fun testLambda_UsingMockk() {
         val operationMock = mockk<(Int, Int) -> Int>()
         every { operationMock(any(), any()) } returns 50
         val calculator = Calculator(operationMock)
