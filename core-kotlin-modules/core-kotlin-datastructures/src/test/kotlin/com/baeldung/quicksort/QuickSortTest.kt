@@ -9,72 +9,66 @@ class QuickSortTest {
     fun `sorts an unsorted array`() {
         val arr = intArrayOf(5, 3, 9, 7, 1)
         val expected = intArrayOf(1, 3, 5, 7, 9)
-        assertArrayEquals(expected, quickSort(arr, 0, arr.size - 1))
+        assertArrayEquals(expected, quickSort(arr))
     }
 
     @Test
     fun `sorts a sorted array`() {
         val arr = intArrayOf(1, 2, 3, 4, 5)
         val expected = intArrayOf(1, 2, 3, 4, 5)
-        assertArrayEquals(expected, quickSort(arr, 0, arr.size - 1))
+        assertArrayEquals(expected, quickSort(arr))
     }
 
     @Test
     fun `sorts a reverse sorted array`() {
         val arr = intArrayOf(5, 4, 3, 2, 1)
         val expected = intArrayOf(1, 2, 3, 4, 5)
-        assertArrayEquals(expected, quickSort(arr, 0, arr.size - 1))
+        assertArrayEquals(expected, quickSort(arr))
     }
 
     @Test
     fun `sorts an unsorted array using lomuto's scheme`() {
         val arr = intArrayOf(5, 3, 9, 7, 1)
-        val n = arr.size
-        quickSortLomuto(arr, 0, n - 1)
+        quickSortLomuto(arr)
         assert(arr.contentEquals(intArrayOf(1, 3, 5, 7, 9)))
     }
 
     @Test
     fun `sorts a sorted array using lomuto's scheme`() {
         val arr = intArrayOf(1, 2, 3, 4, 5)
-        val n = arr.size
-        quickSortLomuto(arr, 0, n - 1)
+        quickSortLomuto(arr)
         assert(arr.contentEquals(intArrayOf(1, 2, 3, 4, 5)))
     }
 
     @Test
     fun `sorts a reverse sorted array using lomuto's scheme`() {
         val arr = intArrayOf(5, 4, 3, 2, 1)
-        val n = arr.size
-        quickSortLomuto(arr, 0, n - 1)
+        quickSortLomuto(arr)
         assert(arr.contentEquals(intArrayOf(1, 2, 3, 4, 5)))
     }
 
     @Test
     fun `sorts an unsorted array using hoare's scheme`() {
         val arr = intArrayOf(5, 3, 9, 7, 1)
-        val n = arr.size
-        quickSortHoare(arr, 0, n - 1)
+        quickSortHoare(arr)
         assert(arr.contentEquals(intArrayOf(1, 3, 5, 7, 9)))
     }
 
     @Test
     fun `sorts a sorted array using hoare's scheme`() {
         val arr = intArrayOf(1, 2, 3, 4, 5)
-        val n = arr.size
-        quickSortHoare(arr, 0, n - 1)
+        quickSortHoare(arr)
         assert(arr.contentEquals(intArrayOf(1, 2, 3, 4, 5)))
     }
 
     @Test
     fun `sorts a reverse sorted array using hoare's scheme`() {
         val arr = intArrayOf(5, 4, 3, 2, 1)
-        val n = arr.size
-        quickSortHoare(arr, 0, n - 1)
+        quickSortHoare(arr)
         assert(arr.contentEquals(intArrayOf(1, 2, 3, 4, 5)))
     }
 }
-fun quickSort(arr: IntArray, left: Int, right: Int): IntArray {
+fun quickSort(arr: IntArray, left: Int = 0, right: Int = arr.size - 1): IntArray {
     var start = left
     var end = right
     val pivot = arr[(left + right) / 2]
@@ -104,7 +98,7 @@ fun quickSort(arr: IntArray, left: Int, right: Int): IntArray {
     return arr
 }
 
-fun quickSortLomuto(arr: IntArray, start: Int, end: Int) {
+fun quickSortLomuto(arr: IntArray, start: Int = 0, end: Int = arr.size - 1) {
     if (start < end) {
         val pivot = partitionLomuto(arr, start, end)
         quickSortLomuto(arr, start, pivot - 1)
@@ -129,7 +123,7 @@ fun partitionLomuto(arr: IntArray, start: Int, end: Int): Int {
     return i
 }
 
-fun quickSortHoare(arr: IntArray, low: Int, high: Int) {
+fun quickSortHoare(arr: IntArray, low: Int = 0, high: Int = arr.size - 1) {
     if (low < high) {
         val pivot = partitionHoare(arr, low, high)
         quickSortHoare(arr, low, pivot)
