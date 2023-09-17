@@ -14,21 +14,22 @@ class ComparatorExample {
                 return string1.length - string2.length
             }
         }
-        assertIterableEquals(words.sortedWith(lengthComparator), listOf("date", "apple", "cherry", "blueberry"))
-        assertIterableEquals(words.sortedWith(compareBy(String::length)), listOf("date", "apple", "cherry", "blueberry"))
+
+        assertIterableEquals(listOf("date", "apple", "cherry", "blueberry"), words.sortedWith(lengthComparator))
+        assertIterableEquals(listOf("date", "apple", "cherry", "blueberry"), words.sortedWith(compareBy(String::length)))
     }
 
     @Test
     fun `when custom comparator used to sort list of user defined objects then list sorted correctly`() {
         data class Person(val name: String, val age: Int)
         val people = listOf(Person("Alice", 29), Person("Bob", 31), Person("Bob", 29))
-        assertIterableEquals(people.sortedWith(compareBy({ it.age }, { it.name })), listOf(Person("Alice", 29), Person("Bob", 29), Person("Bob", 31)))
+        assertIterableEquals(listOf(Person("Alice", 29), Person("Bob", 29), Person("Bob", 31)), people.sortedWith(compareBy({ it.age }, { it.name })))
     }
 
     @Test
     fun `when reversed function used then list sorted correctly`() {
         val words = listOf("apple", "blueberry", "cherry", "date")
-        assertIterableEquals(words.sortedWith(compareBy<String> { it.length }.reversed()), listOf("blueberry","cherry","apple","date"))
+        assertIterableEquals(listOf("blueberry","cherry","apple","date"), words.sortedWith(compareBy<String> { it.length }.reversed()))
     }
 
     @Test
@@ -36,7 +37,7 @@ class ComparatorExample {
         data class Person(val name: String, val age: Int)
         val people = listOf(Person("Alice", 29), Person("Bob", 31), Person("Cleo", 29))
         val sortedPeople = people.sortedWith(compareBy(Person::age).then(compareBy(Person::name)))
-        assertIterableEquals(sortedPeople, listOf(Person("Alice", 29), Person("Cleo", 29), Person("Bob", 31)))
+        assertIterableEquals(listOf(Person("Alice", 29), Person("Cleo", 29), Person("Bob", 31)), sortedPeople)
     }
 
     @Test
@@ -44,7 +45,7 @@ class ComparatorExample {
         data class Person(val name: String, val age: Int)
         val people = listOf(Person("Alice", 29), Person("Bob", 31), Person("Cleo", 29))
         val sortedPeople = people.sortedWith(compareBy(Person::age).thenBy(Person::name))
-        assertIterableEquals(sortedPeople, listOf(Person("Alice", 29), Person("Cleo", 29), Person("Bob", 31)))
+        assertIterableEquals(listOf(Person("Alice", 29), Person("Cleo", 29), Person("Bob", 31)), sortedPeople)
     }
 
     @Test
@@ -52,9 +53,9 @@ class ComparatorExample {
         data class Person(val name: String, val age: Int)
         val people = listOf(Person("Alice", 29), Person("Bob", 31), Person("Cleo", 29))
         val sortedPeople = people.sortedWith(compareBy(Person::age).thenDescending(compareBy(Person::name)))
-        assertIterableEquals(sortedPeople, listOf(Person("Cleo", 29), Person("Alice", 29), Person("Bob", 31)))
+        assertIterableEquals(listOf(Person("Cleo", 29), Person("Alice", 29), Person("Bob", 31)), sortedPeople)
         val sortedPeople2 = people.sortedWith(compareByDescending(Person::age).thenByDescending(Person::name))
-        assertIterableEquals(sortedPeople2, listOf(Person("Bob", 31), Person("Cleo", 29), Person("Alice", 29)))
+        assertIterableEquals(listOf(Person("Bob", 31), Person("Cleo", 29), Person("Alice", 29)), sortedPeople2)
     }
 
     @Test
@@ -63,6 +64,6 @@ class ComparatorExample {
         val people = listOf(Person("Alice", 29), Person("Bob", 31), Person("Cleo", 29))
         val combinedComparator = compareBy(Person::age).thenComparator { person1, person2 -> person1.name.length - person2.name.length }
         val sortedPeople = people.sortedWith(combinedComparator)
-        assertIterableEquals(sortedPeople, listOf(Person("Cleo", 29), Person("Alice", 29), Person("Bob", 31)))
+        assertIterableEquals(listOf(Person("Cleo", 29), Person("Alice", 29), Person("Bob", 31)), sortedPeople)
     }
 }
