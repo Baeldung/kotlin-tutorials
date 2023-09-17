@@ -2,6 +2,8 @@ package com.baeldung.compareLists
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertTrue
 
 
 infix fun <T> List<T>.equalsIgnoreOrder(other: List<T>) = this.size == other.size && this.toSet() == other.toSet()
@@ -35,4 +37,21 @@ class CompareTwoListsUnitTest {
             assertThat(listInDiffElement equalsIgnoreOrder it).isFalse
         }
     }
+
+    @Test
+    fun `Given two list, when compare by length, should return true if length is equal`() {
+        val names1 = listOf("Ron", "Roby", "Peter")
+        val names2 = listOf("Bob", "John", "Betty")
+        val areEqual = names1.zip(names2).all { (n1, n2) -> n1.length == n2.length }
+        assertTrue(areEqual)
+    }
+
+    @Test
+    fun `Given two list, when compare by length, should return false if length is not equal`() {
+        val names1 = listOf("John", "Hagrid", "Rickson")
+        val names2 = listOf("Abby", "Patrick", "Wren")
+        val areEqual = names1.zip(names2).all { (n1, n2) -> n1.length == n2.length }
+        assertFalse(areEqual)
+    }
+
 }
