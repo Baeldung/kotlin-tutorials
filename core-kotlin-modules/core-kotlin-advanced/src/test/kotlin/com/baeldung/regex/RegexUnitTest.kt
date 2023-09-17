@@ -64,8 +64,20 @@ class RegexTest {
     @Test
     fun givenPartiallyMatchingRegex_whenMatchResult_thenDestructuring() {
         val regex = """([\w\s]+) is (\d+) years old""".toRegex()
-        val matchResult = regex.find("Mickey Mouse is 95 years old")
-        val (name, age) = matchResult!!.destructured
+        val matchResult = regex.find("Mickey Mouse is 95 years old")!!
+        val (name, age) = matchResult.destructured
+
+        assertEquals("Mickey Mouse", name)
+        assertEquals("95", age)
+    }
+
+    @Test
+    fun givenPartiallyMatchingRegex_whenUsingGroupByName_thenRetrievingByNames() {
+        val regex = """(?<name>[\w\s]+) is (?<age>\d+) years old""".toRegex()
+        val matchResult = regex.find("Mickey Mouse is 95 years old")!!
+
+        val age = matchResult.groups["age"]?.value
+        val name = matchResult.groups["name"]?.value
 
         assertEquals("Mickey Mouse", name)
         assertEquals("95", age)

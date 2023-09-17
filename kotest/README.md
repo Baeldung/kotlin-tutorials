@@ -10,3 +10,4 @@ This module contains articles about Kotest
 - [How to Run a Function Before Every Test Using Kotest](https://www.baeldung.com/kotlin/kotest-before-test)
 - [How to Use MockServer in a Kotest Test](https://www.baeldung.com/kotlin/kotest-mockserver)
 - [JUnit 5 vs. Kotest: A Comparison for Unit Testing](https://www.baeldung.com/kotlin/kotest-vs-junit-5)
+- [Data-Driven Testing With Kotest](https://www.baeldung.com/kotlin/kotest-data-driven-testing)
