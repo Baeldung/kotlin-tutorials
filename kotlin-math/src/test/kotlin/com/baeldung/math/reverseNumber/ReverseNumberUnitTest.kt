@@ -44,7 +44,7 @@ fun Int.reverse3(): Int {
 class ReverseNumberUnitTest {
 
     @Test
-    fun `when calling reverseNumber1 then the number gets reversed`() {
+    fun `when calling reverseNumber then the number gets reversed`() {
         val rev1 = reverseNumber(1230456)
         assertEquals(6540321, rev1)
 
@@ -62,14 +62,14 @@ class ReverseNumberUnitTest {
     }
 
     @Test
-    fun `when calling the reverse3 extension then overflow is handled`() {
+    fun `when calling the reverse2 extension then overflow is handled`() {
         assertThrows<IllegalArgumentException> { 1234123409.reverse2() }.also {
             assertEquals("Cannot reverse 1234123409! Cause: Int overflow", it.message)
         }
     }
 
     @Test
-    fun `when calling the reverse4 then the number gets reversed`() {
+    fun `when calling the reverse3 then the number gets reversed`() {
         val rev1 = 1234.reverse3()
         assertEquals(4321, rev1)
 
