@@ -1,7 +1,6 @@
-package com.baeldung.serialization.kotlinx
+package com.baeldung.serialization.kotlinx.basic
 
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
