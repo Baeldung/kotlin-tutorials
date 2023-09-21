@@ -6,3 +6,4 @@
 - [How to Check Leap Year in Kotlin](https://www.baeldung.com/kotlin/check-leap-year)
 - [Guide to Finding the Roots of a Quadratic Equation in Kotlin](https://www.baeldung.com/kotlin/solve-quadratic-equation)
 - [Calculate Sum of the First N Natural Numbers in Kotlin](https://www.baeldung.com/kotlin/sum-first-n-natural-numbers)
+- [Compute Quotient and Remainder in Kotlin](https://www.baeldung.com/kotlin/integer-division-modulus)
