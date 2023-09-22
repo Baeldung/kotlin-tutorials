@@ -12,3 +12,4 @@ This module contains articles about concurrency in Kotlin.
 - [Calling Kotlin Suspending Functions from Java](https://www.baeldung.com/kotlin/suspend-functions-from-java)
 - [Kotlin Coroutines With Timeout](https://www.baeldung.com/kotlin/coroutines-timeout)
 - [How to Run Parallel Coroutines in Kotlin](https://www.baeldung.com/kotlin/parallel-coroutines)
+- [Difference Between flatMapMerge(), flatMapConcat() and flatMapLatest() in Kotlin](https://www.baeldung.com/kotlin/flows-advanced-flattening)

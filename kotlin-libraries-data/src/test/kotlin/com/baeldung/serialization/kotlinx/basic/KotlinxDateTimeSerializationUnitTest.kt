@@ -1,4 +1,4 @@
-package com.baeldung.serialization.kotlinx
+package com.baeldung.serialization.kotlinx.basic
 
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.Serializable

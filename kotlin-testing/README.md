@@ -8,3 +8,4 @@ This module contains articles about testing in Kotlin
 - [Writing Specifications with Kotlin and Spek](https://www.baeldung.com/kotlin/spek)
 - [MockK: A Mocking Library for Kotlin](https://www.baeldung.com/kotlin/mockk)
 - [Testing a Lambda Function With Mockito Kotlin](https://www.baeldung.com/kotlin/mockito-verify-lambda)
+- [How to Mock and Verify Lambda Expression in Kotlin](https://www.baeldung.com/kotlin/lambda-mock-verify)
