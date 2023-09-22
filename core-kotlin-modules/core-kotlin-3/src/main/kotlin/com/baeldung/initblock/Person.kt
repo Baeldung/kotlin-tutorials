@@ -20,7 +20,7 @@ class Person(val firstName: String, val lastName: String) {
         println("I'm secondary")
     }
 
-    private fun String.firstOrEmpty(): Char = firstOrNull()?.toUpperCase() ?: ' '
+    private fun String.firstOrEmpty(): Char = firstOrNull()?.uppercaseChar() ?: ' '
 }
 
 fun main() {
