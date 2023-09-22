@@ -7,16 +7,12 @@ import kotlin.random.Random
 
 class CustomObjectTransformationKtTest {
 
-    private val sourceEmpNameList = listOf(
-        Pair("John", "Doe"),
-        Pair("Jill", "Fowler"),
-        Pair("Jack", "Smith"),
-        Pair("John", "Doe"),
+    private val empList = listOf(
+        Employee(1,"John", "Doe", Random.nextDouble(1000.0, 5000.0)),
+        Employee(2,"Jill", "Fowler", Random.nextDouble(1000.0, 5000.0)),
+        Employee(3,"Jack", "Smith", Random.nextDouble(1000.0, 5000.0)),
+        Employee(4,"John", "Doe", Random.nextDouble(1000.0, 5000.0)),
     )
-
-    private val empList = sourceEmpNameList.mapIndexed { index, names ->
-        Employee(index, names.first, names.second, Random.nextDouble(1000.0, 5000.0))
-    }
 
     private val empByOrgList = listOf(
         Organization(
@@ -35,12 +31,11 @@ class CustomObjectTransformationKtTest {
         ),
     )
 
-    private val expectedEmpNames = sourceEmpNameList.map { "${it.first} ${it.second}" }
+    private val expectedEmpNames = listOf("John Doe", "Jill Fowler", "Jack Smith", "John Doe")
 
     @Test
     fun givenListOfEmployeeObjects_whenTransformedUsingMap_returnListOfEmployeeName() {
         val empNameList = empList.map { it.name() }
-        assertNotNull(empNameList)
         assertTrue(empNameList.isNotEmpty())
         assertTrue(empNameList == expectedEmpNames)
         empNameList.forEach {
@@ -62,7 +57,6 @@ class CustomObjectTransformationKtTest {
     fun givenListOfObjectsWithNulls_whenTransformedUsingMapNotNull_filterNullsAndReturnListOfStrings() {
         val empListWithNulls = listOf(*empList.toTypedArray(), null)
         val empNameList = empListWithNulls.mapNotNull { it?.name() }
-        assertNotNull(empNameList)
         assertTrue(empNameList.isNotEmpty())
         assertTrue(empNameList == expectedEmpNames)
         empNameList.forEach {
@@ -75,7 +69,6 @@ class CustomObjectTransformationKtTest {
     fun givenListOfObjectsWithNulls_whenTransformedUsingMapTo_filterNullsAndReturnListOfStrings() {
         val empNameList = mutableListOf<String>()
         empList.mapTo(empNameList) { it.name() }
-        assertNotNull(empNameList)
         assertTrue(empNameList.isNotEmpty())
         assertTrue(empNameList == expectedEmpNames)
         empNameList.forEach {
@@ -89,7 +82,6 @@ class CustomObjectTransformationKtTest {
         val empNameList = empList.mapIndexed { index, item ->
             item.name()
         }
-        assertNotNull(empNameList)
         assertTrue(empNameList.isNotEmpty())
         assertTrue(empNameList == expectedEmpNames)
         empNameList.forEach {
@@ -103,7 +95,6 @@ class CustomObjectTransformationKtTest {
         for (emp in empList) {
             empNameList.add(emp.name())
         }
-        assertNotNull(empNameList)
         assertTrue(empNameList.isNotEmpty())
         assertTrue(empNameList == expectedEmpNames)
         empNameList.forEach {
@@ -118,7 +109,6 @@ class CustomObjectTransformationKtTest {
         for (i in empList.indices) {
             empNameList.add(empList[i].name())
         }
-        assertNotNull(empNameList)
         assertTrue(empNameList.isNotEmpty())
         assertTrue(empNameList == expectedEmpNames)
         empNameList.forEach {
@@ -133,7 +123,6 @@ class CustomObjectTransformationKtTest {
             // Or
             // anotherEmpNameList.add(emp.name())
         }
-        assertNotNull(anotherEmpNameList)
         assertTrue(anotherEmpNameList.isNotEmpty())
         assertTrue(anotherEmpNameList == expectedEmpNames)
         anotherEmpNameList.forEach {
@@ -148,7 +137,6 @@ class CustomObjectTransformationKtTest {
         for (i in 0 until empList.size) {
             empNameList.add(empList[i].name())
         }
-        assertNotNull(empNameList)
         assertTrue(empNameList.isNotEmpty())
         assertTrue(empNameList == expectedEmpNames)
         empNameList.forEach {
@@ -163,7 +151,6 @@ class CustomObjectTransformationKtTest {
         empList.forEach { emp ->
             empNameList.add(emp.name())
         }
-        assertNotNull(empNameList)
         assertTrue(empNameList.isNotEmpty())
         assertTrue(empNameList == expectedEmpNames)
         empNameList.forEach {
@@ -177,7 +164,6 @@ class CustomObjectTransformationKtTest {
         val empNameList = empByOrgList
             .flatMap { it.employees }
             .map { it.name() }
-        assertNotNull(empNameList)
         assertTrue(empNameList.isNotEmpty())
         assertTrue(empNameList == expectedEmpNames)
         empNameList.forEach {
