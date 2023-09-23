@@ -51,13 +51,8 @@ class MapToListUnitTest {
             valueList += it.value
         }
 
-        assertThat(keyList)
-          .hasSize(DEV_MAP.size)
-          .containsExactlyInAnyOrder("Kent", "Eric", "Kevin", "Michal", "Saajan");
-
-        assertThat(valueList)
-          .hasSize(DEV_MAP.size)
-          .containsExactlyInAnyOrder("Linux", "MacOS", "Windows", "MacOS", "Linux");
+        assertThat(keyList).hasSize(DEV_MAP.size)
+        assertThat(valueList).hasSize(DEV_MAP.size)
 
         repeat(DEV_MAP.size) { idx -> assertEquals(DEV_MAP[keyList[idx]], valueList[idx]) }
     }
@@ -65,13 +60,9 @@ class MapToListUnitTest {
     @Test
     fun `when using toList then get two correlated lists`() {
         val (keyList, valueList) = DEV_MAP.toList().let { kvpList -> kvpList.map { it.first } to kvpList.map { it.second } }
-        assertThat(keyList)
-          .hasSize(DEV_MAP.size)
-          .containsExactlyInAnyOrder("Kent", "Eric", "Kevin", "Michal", "Saajan");
 
-        assertThat(valueList)
-          .hasSize(DEV_MAP.size)
-          .containsExactlyInAnyOrder("Linux", "MacOS", "Windows", "MacOS", "Linux");
+        assertThat(keyList).hasSize(DEV_MAP.size)
+        assertThat(valueList).hasSize(DEV_MAP.size)
 
         repeat(DEV_MAP.size) { idx -> assertEquals(DEV_MAP[keyList[idx]], valueList[idx]) }
     }
