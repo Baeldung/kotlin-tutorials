@@ -10,9 +10,9 @@
 
     <parent>
         <groupId>com.baeldung</groupId>
-        <artifactId>parent-boot-2</artifactId>
+        <artifactId>parent-boot-3</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../parent-boot-2</relativePath>
+        <relativePath>../parent-boot-3</relativePath>
     </parent>
 
     <dependencies>
@@ -27,7 +27,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-r2dbc</artifactId>
-            <version>2.3.0.RELEASE</version>
+            <version>3.1.4</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -115,11 +115,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <properties>
-        <java.version>1.8</java.version>
-        <spring-boot.version>2.2.6.RELEASE</spring-boot.version>
-    </properties>
-
 
 </project>

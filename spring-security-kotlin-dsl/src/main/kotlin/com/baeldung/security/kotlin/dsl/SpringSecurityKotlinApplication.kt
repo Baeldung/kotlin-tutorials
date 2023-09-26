@@ -8,7 +8,7 @@ import org.springframework.context.support.beans
 import org.springframework.core.annotation.Order
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
-import org.springframework.security.config.web.servlet.invoke
+import org.springframework.security.config.annotation.web.invoke
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.provisioning.InMemoryUserDetailsManager
 import org.springframework.security.web.SecurityFilterChain
@@ -24,7 +24,7 @@ class SpringSecurityKotlinApplication
 class AdminSecurityConfiguration {
     @Bean
      fun filterChainAdmin(http: HttpSecurity): SecurityFilterChain {
-        http {
+        http.invoke {
             securityMatcher("/greetings/**")
             authorizeRequests {
                 authorize("/greetings/**", hasAuthority("ROLE_ADMIN"))

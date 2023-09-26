@@ -2,8 +2,8 @@ package com.baeldung.exceptionhandling.service
 
 import com.baeldung.exceptionhandling.exception.ArticleNotFoundException
 import com.baeldung.exceptionhandling.model.ArticleModel
+import jakarta.annotation.PostConstruct
 import org.springframework.stereotype.Service
-import javax.annotation.PostConstruct
 
 @Service
 class ArticleService {
