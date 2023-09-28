@@ -290,12 +290,14 @@
         <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
         <module>kotlin-json</module>
         <module>kotlin-lambda</module>
+        <!-- <module>kotlin-multiplatform-mobile</module> not included becasue written in gradle-->
         <!-- <module>kotlin-tornadofx</module> --> <!-- not compatible with Java 9+ -->
         <module>kotlin-libraries</module>
         <module>kotlin-libraries-2</module>
         <module>kotlin-libraries-http</module>
         <module>kotlin-patterns</module>
         <module>kotlin-quasar</module>
+        <module>kotlin-reflection</module>
         <module>kotlin-testing</module>
         <module>kotlin-testing-2</module>
         <module>machine-learning</module>
@@ -340,7 +342,7 @@
     </profiles>
 
     <properties>
-        <kotlin.version>1.8.22</kotlin.version>
+        <kotlin.version>1.9.10</kotlin.version>
         <kotlinx.version>1.7.1</kotlinx.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

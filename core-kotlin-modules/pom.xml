@@ -42,6 +42,7 @@
         <module>core-kotlin-lang</module>
         <module>core-kotlin-lang-2</module>
         <module>core-kotlin-lang-3</module>
+        <module>core-kotlin-lang-4</module>
         <module>core-kotlin-lang-scope</module>
         <module>core-kotlin-lang-oop</module>
         <module>core-kotlin-lang-oop-2</module>
