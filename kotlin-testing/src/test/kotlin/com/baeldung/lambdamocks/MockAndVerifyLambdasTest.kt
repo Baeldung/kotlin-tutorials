@@ -27,7 +27,7 @@ class CalculatorTest {
     }
 
 
-    @Test fun whenWeMockLambdas_theVerifyCorrectly() {
+    @Test fun verifyLambdasCorrectly() {
         val operation: (Int, Int) -> Int = { a, b -> a - b }
         val calculator = Calculator(operation)
         val result = calculator.calculate(10, 5)
