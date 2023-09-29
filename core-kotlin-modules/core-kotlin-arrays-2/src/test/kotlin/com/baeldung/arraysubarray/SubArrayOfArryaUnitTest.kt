@@ -41,10 +41,14 @@ class SubArrayOfArryaUnitTest {
     }
 
     @Test
-    fun `using filter() method`() {
-        val array = arrayOf(1, 2, 3, 4, 5, 6)
-        val subArray = array.filter { it in 3..5 }.toTypedArray()
-        assertArrayEquals(intArrayOf(3, 4, 5), subArray.toIntArray())
+    fun `using arraycopy() method`() {
+        val arr = arrayOf(1, 2, 3, 4, 5, 6)
+        val start = 2
+        val end = 4
+
+        val subArray = arrayOfNulls<Int>(end - start + 1)
+        System.arraycopy(arr, start, subArray, 0, subArray.size)
+        assertArrayEquals(arrayOf(3, 4, 5), subArray)
     }
 
     @Test
