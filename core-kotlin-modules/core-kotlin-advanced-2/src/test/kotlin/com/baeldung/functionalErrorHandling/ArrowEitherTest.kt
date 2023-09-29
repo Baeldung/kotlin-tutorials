@@ -33,23 +33,23 @@ class ArrowEitherTest {
         }
 
         fun findOrderWithDomainError(id: Int): Either<DomainError, Order> = findOrder(id)
-            .mapLeft {
-                DomainError.OrderNotFound(id)
-            }
+          .mapLeft {
+              DomainError.OrderNotFound(id)
+          }
 
         fun findCustomerWithDomainError(id: Int): Either<DomainError, Customer> = findCustomer(id)
-            .mapLeft {
-                DomainError.CustomerNotFound(id)
-            }
+          .mapLeft {
+              DomainError.CustomerNotFound(id)
+          }
     }
 
     @Test
     fun whenCallingFindOrderWithPositiveId_thenSuccess() {
 
         val either = ArrowEither.findOrder(1)
-            .map(Order::customerId)
-            .flatMap(ArrowEither::findCustomer)
-            .map(Customer::email)
+          .map(Order::customerId)
+          .flatMap(ArrowEither::findCustomer)
+          .map(Customer::email)
 
         assertEquals("john.doe@mycompany.com", either.getOrNull())
     }
@@ -57,9 +57,9 @@ class ArrowEitherTest {
     @Test
     fun whenCallingFindOrderWithNegativeId_thenFailure() {
         val either = ArrowEither.findOrder(-1)
-            .map(Order::customerId)
-            .flatMap(ArrowEither::findCustomer)
-            .map(Customer::email)
+          .map(Order::customerId)
+          .flatMap(ArrowEither::findCustomer)
+          .map(Customer::email)
 
         assertTrue(either.isLeft())
     }
@@ -68,9 +68,9 @@ class ArrowEitherTest {
     fun whenCallingFindOrderWithNegativeIdOnDomainVariant_thenFailure() {
 
         val either = ArrowEither.WithDomainError.findOrder(-1)
-            .map(Order::customerId)
-            .flatMap(ArrowEither.WithDomainError::findCustomer)
-            .map(Customer::email)
+          .map(Order::customerId)
+          .flatMap(ArrowEither.WithDomainError::findCustomer)
+          .map(Customer::email)
 
         assertTrue(either.leftOrNull() is DomainError.OrderNotFound)
     }
@@ -79,9 +79,9 @@ class ArrowEitherTest {
     fun whenCallingFindOrderWithDomainErrorOnNegativeId_thenFailure() {
 
         val either = ArrowEither.findOrderWithDomainError(-1)
-            .map(Order::customerId)
-            .flatMap(ArrowEither.WithDomainError::findCustomer)
-            .map(Customer::email)
+          .map(Order::customerId)
+          .flatMap(ArrowEither.WithDomainError::findCustomer)
+          .map(Customer::email)
 
         assertTrue(either.leftOrNull() is DomainError.OrderNotFound)
     }
@@ -89,11 +89,10 @@ class ArrowEitherTest {
     @Test
     fun whenCallingFindCustomerWithDomainErrorOnNegativeId_thenFailure() {
         val either = ArrowEither.findCustomerWithDomainError(-1)
-            .map(Customer::email)
+          .map(Customer::email)
 
         assertTrue(either.leftOrNull() is DomainError.CustomerNotFound)
     }
-
 
 
 }

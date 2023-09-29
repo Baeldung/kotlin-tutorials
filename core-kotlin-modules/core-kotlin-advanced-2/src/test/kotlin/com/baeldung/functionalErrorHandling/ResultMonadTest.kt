@@ -17,9 +17,9 @@ class ResultMonadTest {
     @Test
     fun whenCallingFindOrderWithPositiveId_thenSuccess() = with(ResultMonad) {
         val result = findOrder(1)
-            .map(Order::customerId)
-            .flatMap(::findCustomer)
-            .map(Customer::email)
+          .map(Order::customerId)
+          .flatMap(::findCustomer)
+          .map(Customer::email)
 
         Assertions.assertEquals("john.doe@mycompany.com", result.getOrNull())
     }
@@ -27,9 +27,9 @@ class ResultMonadTest {
     @Test
     fun whenCallingFindOrderWithNegativeId_thenFailure() = with(ResultMonad) {
         val result = findOrder(-1)
-            .map(Order::customerId)
-            .flatMap(::findCustomer)
-            .map(Customer::email)
+          .map(Order::customerId)
+          .flatMap(::findCustomer)
+          .map(Customer::email)
 
         Assertions.assertTrue(result.isFailure)
     }
