@@ -9,3 +9,4 @@ This module contains articles about data structures in Kotlin
 - [Converting a Map to a String in Kotlin](https://www.baeldung.com/kotlin/map-to-string)
 - [Convert Binary Number to Decimal and Vice Versa in Kotlin](https://www.baeldung.com/kotlin/convert-binary-decimal)
 - [Bubble Sort in Kotlin](https://www.baeldung.com/kotlin/bubble-sort)
+- [Quicksort in Kotlin](https://www.baeldung.com/kotlin/quicksort)
