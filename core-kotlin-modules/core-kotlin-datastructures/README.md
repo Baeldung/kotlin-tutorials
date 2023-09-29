@@ -11,3 +11,4 @@ This module contains articles about data structures in Kotlin
 - [Bubble Sort in Kotlin](https://www.baeldung.com/kotlin/bubble-sort)
 - [Quicksort in Kotlin](https://www.baeldung.com/kotlin/quicksort)
 - [Insertion Sort in Kotlin](https://www.baeldung.com/kotlin/insertion-sort)
+- [Merge Sort in Kotlin](https://www.baeldung.com/kotlin/merge-sort)
