@@ -41,7 +41,6 @@ class LexicographicalSortUnitTest {
         for (i in 0..words.size - 2) {
             for (j in i + 1 until words.size) {
                 if (words[i].lowercase() > words[j].lowercase()) {
-
                     val temp = words[i]
                     words[i] = words[j]
                     words[j] = temp
