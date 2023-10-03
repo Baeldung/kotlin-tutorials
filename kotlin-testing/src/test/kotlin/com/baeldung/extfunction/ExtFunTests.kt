@@ -11,13 +11,22 @@ class ExtFunTests {
     }
 
     @Test
-    fun testReverseWithJUnit() {
+    fun testEmptyStringReverse() {
         val emptyString = ""
         assertEquals("", emptyString.reverse())
+    }
+
+    @Test
+    fun testSingleCharStringReverse() {
         val singleCharString = "a"
         assertEquals("a", singleCharString.reverse())
+    }
+
+    @Test
+    fun testMultiCharStringReverse() {
         val multiCharString = "Hello, World!"
         assertEquals("!dlroW ,olleH", multiCharString.reverse())
     }
+
 
 }
