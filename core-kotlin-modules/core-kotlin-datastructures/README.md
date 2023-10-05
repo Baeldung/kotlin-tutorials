@@ -12,3 +12,4 @@ This module contains articles about data structures in Kotlin
 - [Quicksort in Kotlin](https://www.baeldung.com/kotlin/quicksort)
 - [Insertion Sort in Kotlin](https://www.baeldung.com/kotlin/insertion-sort)
 - [Merge Sort in Kotlin](https://www.baeldung.com/kotlin/merge-sort)
+- [How to Sort Elements in Lexicographical Order in Kotlin](https://www.baeldung.com/kotlin/lexicographical-sort)
