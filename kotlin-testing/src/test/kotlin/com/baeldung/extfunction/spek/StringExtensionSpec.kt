@@ -9,7 +9,7 @@ fun String.reverse(): String {
     return this.reversed()
 }
 
-Class StringExtensionSpec : Spek({
+class StringExtensionSpec : Spek({
     describe("String Extension Tests") {
         it("should reverse a string correctly") {
             val inputString = "Hello, World!"
