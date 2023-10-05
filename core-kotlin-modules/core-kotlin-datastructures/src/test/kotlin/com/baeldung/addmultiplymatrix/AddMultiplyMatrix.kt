@@ -5,7 +5,7 @@ import org.junit.Test
 
 class AddMultiplyMatrix {
     @Test
-    fun `addition of matrices`() {
+    fun `test cases to ensure correct addition of matrices`() {
         val matrix1 = arrayOf(
             arrayOf(1, 2),
             arrayOf(3, 4)
@@ -25,7 +25,7 @@ class AddMultiplyMatrix {
     }
 
     @Test
-    fun `multiplication of Matrices`() {
+    fun `test case to ensure correct multiplication of matrices `() {
         val matrix1 = arrayOf(
             arrayOf(1, 2),
             arrayOf(3, 4)
