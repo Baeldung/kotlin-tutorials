@@ -21,9 +21,7 @@ class SwapFunctionUnitTest {
     fun `when using the also() function, then get the expected result`() {
         var a = 1
         var b = 2
-        val temp = a
-        a = b
-        b = temp
+        a = b.also { b = a }
         assertEquals(2, a)
         assertEquals(1, b)
     }
