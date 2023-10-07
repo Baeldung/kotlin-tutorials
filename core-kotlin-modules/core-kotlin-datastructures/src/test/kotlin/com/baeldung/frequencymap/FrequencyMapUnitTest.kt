@@ -87,10 +87,19 @@ class FrequencyMapUnitTest {
     }
 
     @Test
-    fun `test frequency map binary search method`() {
+    fun `test frequency map using binary search method`() {
         val list = listOf(1, 2, 1, 3, 2, 4, 4, 7,9,7,3,2,1)
         val expectedMap = mapOf(1 to 3, 2 to 3, 3 to 2, 4 to 2, 7 to 2, 9 to 1)
         val actualMap = frequencyMapUsingBinarySearchMethod(list)
+
+        assertEquals(expectedMap, actualMap)
+    }
+
+    @Test
+    fun `test frequency map using hashset method`() {
+        val list = listOf(1, 2, 1, 3, 2, 4, 4, 7,9,7,3,2,1)
+        val expectedMap = mapOf(1 to 3, 2 to 3, 3 to 2, 4 to 2, 7 to 2, 9 to 1)
+        val actualMap = FrequencyMapUsingHashSetMethod(list)
 
         assertEquals(expectedMap, actualMap)
     }
@@ -176,5 +185,13 @@ fun frequencyMapUsingBinarySearchMethod(list: List<Int>): MutableMap<Int, Int>{
         map[element] = freq
     }
 
+    return map
+}
+fun FrequencyMapUsingHashSetMethod(list: List<Int>): Map<Int, Int> {
+    val set = HashSet(list)
+    val map = mutableMapOf<Int, Int>()
+    for (elem in set) {
+        map[elem] = Collections.frequency(list, elem)
+    }
     return map
 }
