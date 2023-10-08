@@ -28,12 +28,13 @@
         <dependency>
             <groupId>io.arrow-kt</groupId>
             <artifactId>arrow-core</artifactId>
-            <version>1.2.0</version>
+            <version>${arrow.stack.version}</version>
         </dependency>
     </dependencies>
 
     <properties>
         <gson.version>2.10.1</gson.version>
+        <arrow.stack.version>1.2.0</arrow.stack.version>
     </properties>
 
 </project>
