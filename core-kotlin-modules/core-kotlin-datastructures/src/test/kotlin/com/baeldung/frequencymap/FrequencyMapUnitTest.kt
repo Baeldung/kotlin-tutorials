@@ -14,7 +14,7 @@ class FrequencyMapUnitTest {
     }
 
     @Test
-    fun `test frequency map using groupBy() method`() {
+    fun `test frequency map using groupingBy() method`() {
         val list = listOf(1, 2, 1, 3, 2, 4, 4, 7,9,7,3,2,1)
         val expectedMap = mapOf(1 to 3, 2 to 3, 3 to 2, 4 to 2, 7 to 2, 9 to 1)
         val actualMap = list.groupingBy { it }.eachCount()
@@ -26,18 +26,9 @@ class FrequencyMapUnitTest {
         val list = listOf(1, 2, 1, 3, 2, 4, 4, 7,9,7,3,2,1)
         val expectedMap = mapOf(1 to 3, 2 to 3, 3 to 2, 4 to 2, 7 to 2, 9 to 1)
         val actualMap = mutableMapOf<Int, Int>()
-        for(value in list){
+        for(value in list.distinct()){
             actualMap[value] = Collections.frequency(list, value)
         }
-        assertEquals(expectedMap, actualMap)
-    }
-
-    @Test
-    fun `test frequency map using filter() and count() methods`() {
-        val list = listOf(1, 2, 1, 3, 2, 4, 4, 7,9,7,3,2,1)
-        val expectedMap = mapOf(1 to 3, 2 to 3, 3 to 2, 4 to 2, 7 to 2, 9 to 1)
-        val actualMap = frequencyMapUsingFilterAndCountMethod(list)
-
         assertEquals(expectedMap, actualMap)
     }
 
@@ -50,14 +41,6 @@ class FrequencyMapUnitTest {
         assertEquals(expectedMap, actualMap)
     }
 
-    @Test
-    fun `test frequency map using linkedhashmap method`() {
-        val list = listOf(1, 2, 1, 3, 2, 4, 4, 7,9,7,3,2,1)
-        val expectedMap = mapOf(1 to 3, 2 to 3, 3 to 2, 4 to 2, 7 to 2, 9 to 1)
-        val actualMap = frequencyMapUsingLinkedHashMapMethod(list)
-
-        assertEquals(expectedMap, actualMap)
-    }
 
     @Test
     fun `test frequency map using sequence method`() {
@@ -103,38 +86,26 @@ class FrequencyMapUnitTest {
 
         assertEquals(expectedMap, actualMap)
     }
+
+    @Test
+    fun `test frequency map using merge() method`() {
+        val list = listOf(1, 2, 1, 3, 2, 4, 4, 7,9,7,3,2,1)
+        val expectedMap = mapOf(1 to 3, 2 to 3, 3 to 2, 4 to 2, 7 to 2, 9 to 1)
+        val actualMap = FrequencyMapUsingReduceMethod(list)
+
+        assertEquals(expectedMap, actualMap)
+    }
 }
 fun frequencyMapUsingMutableMap(list: List<Int>): MutableMap<Int, Int> {
     val map = mutableMapOf<Int, Int>()
     for (value in list) {
-        if (map.containsKey(value)) {
-            map[value] = map[value]!! + 1
-        } else {
-            map[value] = 1
-        }
+        val count = map.getOrDefault(value, 0)
+        map[value] = count + 1
     }
-    return map
-}
-fun frequencyMapUsingFilterAndCountMethod(list: List<Int>): MutableMap<Int, Int>{
-    val map = mutableMapOf<Int, Int>()
-
-    list.filter { it == it }.forEach {
-        map[it] = map.getOrDefault(it, 0) + 1
-    }
-
     return map
 }
 fun frequencyMapUsingTreeMapMethod(list: List<Int>): MutableMap<Int, Int>{
     val map = TreeMap<Int, Int>()
-
-    list.forEach { element ->
-        map[element] = map.getOrDefault(element, 0) + 1
-    }
-
-    return map
-}
-fun frequencyMapUsingLinkedHashMapMethod(list: List<Int>): MutableMap<Int, Int>{
-    val map = LinkedHashMap<Int, Int>()
 
     list.forEach { element ->
         map[element] = map.getOrDefault(element, 0) + 1
@@ -193,5 +164,13 @@ fun FrequencyMapUsingHashSetMethod(list: List<Int>): Map<Int, Int> {
     for (elem in set) {
         map[elem] = Collections.frequency(list, elem)
     }
+    return map
+}
+fun FrequencyMapUsingReduceMethod(list: List<Int>): Map<Int, Int> {
+    val map = mutableMapOf<Int, Int>()
+    for (element in list) {
+        map.merge(element, 1) {  oldValue, _ -> oldValue + 1 }
+    }
+
     return map
 }
