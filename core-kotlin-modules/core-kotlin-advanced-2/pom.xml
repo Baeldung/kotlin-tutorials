@@ -21,20 +21,20 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.jetbrains.kotlinx</groupId>
-            <artifactId>kotlinx-serialization-json-jvm</artifactId>
-            <version>1.4.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>${gson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.arrow-kt</groupId>
+            <artifactId>arrow-core</artifactId>
+            <version>${arrow.stack.version}</version>
         </dependency>
     </dependencies>
 
     <properties>
         <gson.version>2.10.1</gson.version>
+        <arrow.stack.version>1.2.0</arrow.stack.version>
     </properties>
 
 </project>
