@@ -7,3 +7,4 @@ This module contains articles about core Kotlin collections.
 - [Join Two Lists in Kotlin](https://www.baeldung.com/kotlin/join-two-lists)
 - [Converting a Custom Object List to Simple List in Kotlin](https://www.baeldung.com/kotlin/list-custom-object-simple-conversion)
 - [Convert Map to List in Kotlin](https://www.baeldung.com/kotlin/map-list-transformation)
+- [Swap Elements in MutableList in Kotlin](https://www.baeldung.com/kotlin/mutablelist-swap-items)
