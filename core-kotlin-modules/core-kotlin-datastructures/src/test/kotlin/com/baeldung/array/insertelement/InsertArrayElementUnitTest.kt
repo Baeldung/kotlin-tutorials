@@ -48,15 +48,6 @@ class InsertArrayElementUnitTest {
         assertArrayEquals(arrayOf("one", "two","three", "four", "five"), newArray)
     }
 
-    @Test
-    fun `insert array element at specific position using set method`() {
-        val array = arrayOf("one", "three", "four", "five")
-        val position = 1
-        val element = "two"
-        array.set(position, element)
-
-        assertArrayEquals(arrayOf("one", "two","four", "five"), array)
-    }
 
     @Test
     fun `insert array element at specific position using slice() and plus operator`() {
@@ -78,25 +69,7 @@ class InsertArrayElementUnitTest {
         assertArrayEquals(arrayOf("one", "two", "three","four", "five"), newArray)
     }
 
-    @Test
-    fun `insert array element at specific position using arraycopyof method`() {
-        val array = arrayOf("one", "three", "four", "five")
-        val position = 1
-        val element = "two"
-        val newArray = insertArrayElementUsingArrayCopyOfMethod(array, position, element)
 
-        assertArrayEquals(arrayOf("one", "two", "three","four", "five"), newArray)
-    }
-
-    @Test
-    fun `insert array element at specific position using map method`() {
-        val array = arrayOf("one", "three", "four", "five")
-        val position = 1
-        val element = "two"
-        val newArray = insertArrayElementUsingMap(array, position, element)
-
-        assertArrayEquals(arrayOf("one", "two", "three","four", "five"), newArray)
-    }
 }
 fun insertArrayElementUsingSliceMethodAndPlusOperator(array: Array<String>, position: Int, element: String): Array<String> {
     return array.sliceArray(0 until position) +
@@ -106,22 +79,4 @@ fun insertArrayElementUsingMutableList(array: Array<String>, position: Int, elem
     val mutableList = array.toMutableList()
     mutableList.add(position, element)
     return mutableList.toTypedArray()
-}
-fun insertArrayElementUsingArrayCopyOfMethod(array: Array<String>, position: Int, element: String): Array<String?> {
-    val newArray = array.copyOf(array.size + 1)
-    for (i in newArray.size - 1 downTo position + 1) {
-        newArray[i] = newArray[i - 1]
-    }
-    newArray[position] = element
-
-    return newArray
-}
-fun insertArrayElementUsingMap(array: Array<String>, position: Int, element: String): Array<String> {
-    return array.mapIndexed { index, currenElement ->
-        if (index == position) {
-            listOf(element, currenElement)
-        } else {
-            listOf(currenElement)
-        }
-    }.flatten().toTypedArray()
 }
