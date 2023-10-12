@@ -8,3 +8,4 @@
 - [Calculate Sum of the First N Natural Numbers in Kotlin](https://www.baeldung.com/kotlin/sum-first-n-natural-numbers)
 - [Compute Quotient and Remainder in Kotlin](https://www.baeldung.com/kotlin/integer-division-modulus)
 - [Reverse a Number in Kotlin](https://www.baeldung.com/kotlin/reverse-number-digits)
+- [Generate Multiplication Table in Kotlin](https://www.baeldung.com/kotlin/multiplication-table)
