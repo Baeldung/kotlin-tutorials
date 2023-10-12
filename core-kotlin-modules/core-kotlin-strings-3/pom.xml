@@ -14,13 +14,6 @@
     </parent>
 
     <dependencies>
-        <dependency>
-            <groupId>io.mockk</groupId>
-            <artifactId>mockk</artifactId>
-            <version>1.12.2</version>
-            <scope>test</scope>
-        </dependency>
-
     </dependencies>
 
 </project>
