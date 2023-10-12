@@ -94,7 +94,7 @@ fun frequencyMapUsingBinarySearchMethod(list: List<Int>): MutableMap<Int, Int>{
 
     val map = mutableMapOf<Int, Int>()
 
-    sortedList.forEach { element ->
+    sortedList.distinct().forEach { element ->
         val firstIndex = sortedList.indexOfFirst { it == element }
         val lastIndex = sortedList.indexOfLast { it == element }
 
