@@ -1,14 +1,10 @@
 package com.baeldung.backwardIteration
 
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.verify
-import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
+import org.junit.Assert.assertEquals
+import org.junit.Test
 
 class IterationTest {
-    fun iterateStringWithForLoop(): String {
-        val text = "Hello, Kotlin"
+    fun iterateStringWithForLoop(text: String): String {
         val reversedText = StringBuilder()
         for (i in text.length - 1 downTo 0) {
             val char = text[i]
@@ -19,11 +15,10 @@ class IterationTest {
 
     @Test
     fun testIterateStringWithForLoop() {
-        val mock = mockk<IterationTest>()
-        every { mock.iterateStringWithForLoop() } returns "nittoK ,olleH"
-        val result = mock.iterateStringWithForLoop()
-        verify { mock.iterateStringWithForLoop() }
-        assertEquals("nittoK ,olleH", result)
+        val originalText = "Hello, Kotlin"
+        val expectedReversedText = "niltoK ,olleH"
+        val result = iterateStringWithForLoop(originalText)
+        assertEquals(expectedReversedText, result)
     }
 }
 
