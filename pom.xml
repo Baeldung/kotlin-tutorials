@@ -281,6 +281,16 @@
                         <artifactId>kotlin-custom-pmd</artifactId>
                         <version>${kotlin-custom-pmd.version}</version>
                     </dependency>
+                    <dependency>
+                        <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-stdlib</artifactId>
+                        <version>${kotlin.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-reflect</artifactId>
+                        <version>${kotlin.version}</version>
+                    </dependency>
                 </dependencies>
                 <configuration>
                     <failurePriority>5</failurePriority>
@@ -325,29 +335,6 @@
                                 <artifactId>kotlin-modules</artifactId>
                             </project>
                         </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>${maven-install-plugin.version}</version>
-                <configuration>
-                    <groupId>org.baeldung.pmd</groupId>
-                    <artifactId>kotlin-custom-pmd</artifactId>
-                    <version>${kotlin-custom-pmd.version}</version>
-                    <packaging>jar</packaging>
-                    <file>${kotlintutorials.basedir}/kotlin-custom-pmd-${kotlin-custom-pmd.version}.jar</file>
-                    <generatePom>true</generatePom>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>install-jar-lib</id>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <phase>validate</phase>
                     </execution>
                 </executions>
             </plugin>
@@ -450,10 +437,7 @@
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
-        <kotlin-custom-pmd.version>0.0.1</kotlin-custom-pmd.version>
-        <maven-pmd-plugin.version>3.21.0</maven-pmd-plugin.version>
         <directory-maven-plugin.version>1.0</directory-maven-plugin.version>
-        <maven-install-plugin.version>3.1.1</maven-install-plugin.version>
         <gitflow-incremental-builder.version>3.10.1</gitflow-incremental-builder.version>
         <gib.referenceBranch>refs/remotes/origin/master</gib.referenceBranch>
         <gib.skipTestsForUpstreamModules>true</gib.skipTestsForUpstreamModules>
@@ -461,6 +445,11 @@
         <gib.failOnMissingGitDir>false</gib.failOnMissingGitDir>
         <gib.failOnError>false</gib.failOnError>
         <gib.enabled>false</gib.enabled>
+
+        <!-- pmd checks -->
+        <kotlin-custom-pmd.version>0.0.1</kotlin-custom-pmd.version>
+        <maven-pmd-plugin.version>3.21.0</maven-pmd-plugin.version>
+        <pmd.version>7.0.0-rc4</pmd.version>
 
         <java.version>11</java.version>
 
