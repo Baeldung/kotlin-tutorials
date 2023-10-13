@@ -6,21 +6,18 @@ import org.junit.Test
 class InsertArrayElementUnitTest {
 
     @Test
-    fun `insert array element at specific position using a loop and new array`(){
+    fun `insert array element at specific position using a loop and a new array`(){
         val array = arrayOf("one", "three", "four", "five")
 
         val position = 1
         val element = "two"
         val newArray = Array(array.size + 1) { "" }
+
         for (i in 0 until newArray.size) {
-            if (i < position) {
-                newArray[i] = array[i]
-            } else if (i == position) {
-                newArray[i] = element
-            } else {
-                newArray[i] = array[i - 1]
-            }
+            newArray[i] = array[if(i < position) i else i - 1]
         }
+        newArray[position] = element
+
         assertArrayEquals(arrayOf("one", "two","three", "four", "five"), newArray)
     }
 
@@ -68,8 +65,6 @@ class InsertArrayElementUnitTest {
 
         assertArrayEquals(arrayOf("one", "two", "three","four", "five"), newArray)
     }
-
-
 }
 fun insertArrayElementUsingSliceMethodAndPlusOperator(array: Array<String>, position: Int, element: String): Array<String> {
     return array.sliceArray(0 until position) +
