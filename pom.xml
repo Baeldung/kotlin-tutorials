@@ -312,6 +312,7 @@
         <module>kotlin-libraries-data</module>
         <module>kotlin-libraries-utils</module>
         <module>kotlin-math</module>
+        <module>kotlin-math-2</module>
     </modules>
 
     <profiles>
