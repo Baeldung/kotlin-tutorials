@@ -1,0 +1,11 @@
+query ConferenceByIdQuery($id: Int!) {
+    conferenceById(id: $id) {
+        id
+        name
+        attendees
+        attendeeObjects {
+            id
+            name
+        }
+    }
+}

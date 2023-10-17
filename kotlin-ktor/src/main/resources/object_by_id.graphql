@@ -1,0 +1,17 @@
+query ObjectByIdQuery($id: Int!){
+    objectById(id: $id) {
+        __typename
+        id
+        ... on Conference {
+            name
+            attendees
+            attendeeObjects {
+                id
+                name
+            }
+        }
+        ... on Attendee {
+            name
+        }
+    }
+}

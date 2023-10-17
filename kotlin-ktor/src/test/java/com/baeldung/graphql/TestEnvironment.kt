@@ -1,4 +1,4 @@
-package com.baeldung.graphql.test.api
+package com.baeldung.graphql
 
 import com.baeldung.graphql.server.graphQLModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper

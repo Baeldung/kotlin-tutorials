@@ -1,5 +1,7 @@
-package com.baeldung.graphql.test.api
+package com.baeldung.graphql.server
 
+import com.baeldung.graphql.graphQlTestEnvironment
+import com.baeldung.graphql.serializeQuery
 import com.baeldung.graphql.server.data.Attendee
 import com.baeldung.graphql.server.data.AttendeeRepository
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper

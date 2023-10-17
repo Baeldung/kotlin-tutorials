@@ -1,0 +1,47 @@
+schema {
+    query: Query
+    mutation: Mutation
+    subscription: Subscription
+}
+
+interface ObjectWithId {
+    id: Int
+}
+
+type Attendee implements ObjectWithId {
+    id: Int
+    name: String!
+}
+
+type Conference implements ObjectWithId {
+    attendeeObjects(limit: Int): [Attendee!]!
+    attendees: [Int!]!
+    id: Int
+    name: String!
+}
+
+type Mutation {
+    saveOrCreateAttendee(attendee: AttendeeInput!): Attendee!
+    saveOrCreateConference(conference: ConferenceInput!): Conference!
+}
+
+type Query {
+    conferenceById(id: Int!): Conference
+    objectById(id: Int!): ObjectWithId
+}
+
+type Subscription {
+    "Emits single, newly created conferences"
+    conference: Int!
+}
+
+input AttendeeInput {
+    id: Int
+    name: String!
+}
+
+input ConferenceInput {
+    attendees: [Int!]!
+    id: Int
+    name: String!
+}

@@ -1,0 +1,15 @@
+mutation SaveOrCreateConferenceMutation($id: Int, $name: String!, $attendees: [Int!]!){
+    saveOrCreateConference(conference: {
+        id: $id
+        name: $name,
+        attendees: $attendees
+    }) {
+        id
+        name
+        attendees
+        attendeeObjects {
+            id
+            name
+        }
+    }
+}
