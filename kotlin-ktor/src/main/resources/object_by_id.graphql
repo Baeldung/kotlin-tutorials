@@ -1,11 +1,11 @@
-query ObjectByIdQuery($id: Int!){
+query ObjectByIdQuery($id: Int!, $attendeeLimit: Int!){
     objectById(id: $id) {
         __typename
         id
         ... on Conference {
             name
             attendees
-            attendeeObjects {
+            attendeeObjects(limit: $attendeeLimit) {
                 id
                 name
             }

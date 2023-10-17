@@ -7,9 +7,5 @@ mutation SaveOrCreateConferenceMutation($id: Int, $name: String!, $attendees: [I
         id
         name
         attendees
-        attendeeObjects {
-            id
-            name
-        }
     }
 }

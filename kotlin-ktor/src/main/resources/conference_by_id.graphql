@@ -1,9 +1,9 @@
-query ConferenceByIdQuery($id: Int!) {
+query ConferenceByIdQuery($id: Int!, $attendeeLimit: Int!) {
     conferenceById(id: $id) {
         id
         name
         attendees
-        attendeeObjects {
+        attendeeObjects(limit: $attendeeLimit) {
             id
             name
         }
