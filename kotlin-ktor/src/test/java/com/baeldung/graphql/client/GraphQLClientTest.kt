@@ -129,4 +129,14 @@ class GraphQLClientTest {
         val fetchedConference = graphQLService.findConferenceById(0, 1)
         assertEquals(1, fetchedConference?.attendeeObjects?.size)
     }
+
+    @Test
+    fun `given conference batch when fetching two conferences then should return both`() = runBlocking {
+        createDummyConference()
+        createDummyConference()
+        val conferences = graphQLService.getConferenceBatch(0, 1)
+        assertEquals(2, conferences.size)
+        assertTrue { conferences.any { it.id == 0 } }
+        assertTrue { conferences.any { it.id == 1 } }
+    }
 }

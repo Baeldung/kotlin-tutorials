@@ -47,4 +47,15 @@ class GraphQLService(url: String) {
         return resp.data?.objectById
     }
 
+    suspend fun getConferenceBatch(firstId: Int, secondId: Int, attendeeLimit: Int = 0): List<Conference> {
+        return client.execute(
+            listOf(
+                ConferenceByIdQuery(ConferenceByIdQuery.Variables(firstId, attendeeLimit)),
+                ConferenceByIdQuery(ConferenceByIdQuery.Variables(secondId, attendeeLimit))
+            )
+        ).mapNotNull { it.data }
+         .map { it as ConferenceByIdQuery.Result }
+         .mapNotNull { it.conferenceById }
+    }
+
 }
