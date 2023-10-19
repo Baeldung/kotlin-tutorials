@@ -14,7 +14,7 @@ fun insertionSortByAge(people: Array<Person>) {
         val key = people[i]
         var j = i - 1
 
-        while (j >= 0 && people[j].age > key.age) {
+        while (j >= 0 && people[j] > people[i]) {
             people[j + 1] = people[j]
             j--
         }
