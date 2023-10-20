@@ -12,3 +12,4 @@ This module contains articles about advanced topics in Kotlin.
 - [Kotlin Generic Inline Classes](https://www.baeldung.com/kotlin/generic-inline-classes)
 - [Callback Functions in Kotlin](https://www.baeldung.com/kotlin/callback-functions)
 - [Resolving Kotlin Error: ‘public’ function exposes its ‘public/*package*/’ return type](https://www.baeldung.com/kotlin/public-function-exposes-its-public-package-return-type)
+- [Functional Error Handling in Kotlin](https://www.baeldung.com/kotlin/functional-error-handling)
