@@ -8,3 +8,4 @@ This module contains articles about core Kotlin collections.
 - [Converting a Custom Object List to Simple List in Kotlin](https://www.baeldung.com/kotlin/list-custom-object-simple-conversion)
 - [Convert Map to List in Kotlin](https://www.baeldung.com/kotlin/map-list-transformation)
 - [Swap Elements in MutableList in Kotlin](https://www.baeldung.com/kotlin/mutablelist-swap-items)
+- [Removing the First Element From an ArrayList in Kotlin](https://www.baeldung.com/kotlin/arraylist-delete-first-element)
