@@ -43,6 +43,6 @@ fun reverseSentenceRecursively(sentence: String): String {
     return if (sentence.isEmpty()) {
         ""
     } else {
-        reverseSentence(sentence.substring(1)) + sentence[0]
+        reverseSentenceRecursively(sentence.substring(1)) + sentence[0]
     }
 }
