@@ -9,14 +9,14 @@ class FrequencyMapUnitTest {
 
     @Test
     fun `test frequency map using mutable map method`() {
-        val list = listOf(1, 2, 1, 3, 2, 4, 4, 7,9,7,3,2,1)
+        val list = listOf(1, 2, 1, 3, 2, 4, 4, 7, 9, 7, 3, 2, 1)
         val expectedMap = mapOf(1 to 3, 2 to 3, 3 to 2, 4 to 2, 7 to 2, 9 to 1)
         assertEquals(expectedMap, frequencyMapUsingMutableMap(list))
     }
 
     @Test
     fun `test frequency map using groupingBy() method`() {
-        val list = listOf(1, 2, 1, 3, 2, 4, 4, 7,9,7,3,2,1)
+        val list = listOf(1, 2, 1, 3, 2, 4, 4, 7, 9, 7, 3, 2, 1)
         val expectedMap = mapOf(1 to 3, 2 to 3, 3 to 2, 4 to 2, 7 to 2, 9 to 1)
         val actualMap = list.groupingBy { it }.eachCount()
         assertEquals(expectedMap, actualMap)
@@ -24,7 +24,7 @@ class FrequencyMapUnitTest {
 
     @Test
     fun `test frequency map using frequency() method`() {
-        val list = listOf(1, 2, 1, 3, 2, 4, 4, 7,9,7,3,2,1)
+        val list = listOf(1, 2, 1, 3, 2, 4, 4, 7, 9, 7, 3, 2, 1)
         val expectedMap = mapOf(1 to 3, 2 to 3, 3 to 2, 4 to 2, 7 to 2, 9 to 1)
         val actualMap = mutableMapOf<Int, Int>()
         for(value in list.distinct()){
@@ -35,7 +35,7 @@ class FrequencyMapUnitTest {
 
     @Test
     fun `test frequency map using treemap method`() {
-        val list = listOf(1, 2, 1, 3, 2, 4, 4, 7,9,7,3,2,1)
+        val list = listOf(1, 2, 1, 3, 2, 4, 4, 7, 9, 7, 3, 2, 1)
         val expectedMap = mapOf(1 to 3, 2 to 3, 3 to 2, 4 to 2, 7 to 2, 9 to 1)
         val actualMap = frequencyMapUsingTreeMapMethod(list)
         val sortedList = list.sorted().distinct()
@@ -46,7 +46,7 @@ class FrequencyMapUnitTest {
 
     @Test
     fun `test frequency map using binary search method`() {
-        val list = listOf(1, 2, 1, 3, 2, 4, 4, 7,9,7,3,2,1)
+        val list = listOf(1, 2, 1, 3, 2, 4, 4, 7, 9, 7, 3, 2, 1)
         val expectedMap = mapOf(1 to 3, 2 to 3, 3 to 2, 4 to 2, 7 to 2, 9 to 1)
         val actualMap = frequencyMapUsingBinarySearchMethod(list)
 
@@ -55,7 +55,7 @@ class FrequencyMapUnitTest {
 
     @Test
     fun `test frequency map using hashset method`() {
-        val list = listOf(1, 2, 1, 3, 2, 4, 4, 7,9,7,3,2,1)
+        val list = listOf(1, 2, 1, 3, 2, 4, 4, 7, 9, 7, 3, 2, 1)
         val expectedMap = mapOf(1 to 3, 2 to 3, 3 to 2, 4 to 2, 7 to 2, 9 to 1)
         val actualMap = FrequencyMapUsingHashSetMethod(list)
 
@@ -64,7 +64,7 @@ class FrequencyMapUnitTest {
 
     @Test
     fun `test frequency map using merge() method`() {
-        val list = listOf(1, 2, 1, 3, 2, 4, 4, 7,9,7,3,2,1)
+        val list = listOf(1, 2, 1, 3, 2, 4, 4, 7, 9, 7, 3, 2, 1)
         val expectedMap = mapOf(1 to 3, 2 to 3, 3 to 2, 4 to 2, 7 to 2, 9 to 1)
         val actualMap = FrequencyMapUsingMergeMethod(list)
 
