@@ -1,0 +1,4 @@
+management.endpoints.web.exposure.include: health,metrics
+logging:
+  level:
+    com.baeldung: DEBUG
