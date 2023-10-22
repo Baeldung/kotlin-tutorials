@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project
-        xmlns="http://maven.apache.org/POM/4.0.0"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>parent-boot-2</artifactId>
+    <artifactId>parent-boot-3</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>parent-boot-2</name>
+    <name>parent-boot-3</name>
     <packaging>pom</packaging>
-    <description>Parent for all Spring Boot 2 modules</description>
+    <description>Parent for all Spring Boot 3 modules</description>
 
     <parent>
         <groupId>com.baeldung</groupId>
@@ -79,11 +79,18 @@
     </profiles>
 
     <properties>
+
+        <aspectjweaver.version>1.9.1</aspectjweaver.version>
         <rest-assured.version>3.3.0</rest-assured.version>
+        <logback.version>1.4.4</logback.version>
+        <org.slf4j.version>2.0.3</org.slf4j.version>
+        <!-- for spring-boot 3 we need java 17 minimum -->
+        <java.version>17</java.version>
+        <spring-boot.version>3.1.4</spring-boot.version>
+
         <!-- plugins -->
         <thin.version>1.0.22.RELEASE</thin.version>
-        <spring-boot.version>2.7.13</spring-boot.version>
-        <aspectjweaver.version>1.9.1</aspectjweaver.version>
+
     </properties>
 
 </project>
