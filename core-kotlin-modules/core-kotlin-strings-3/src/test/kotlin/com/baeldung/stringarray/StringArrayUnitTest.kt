@@ -20,40 +20,27 @@ class StringArrayUnitTest {
     }
 
     @Test
-    fun `convert using map() method`() {
-        val str = "Kotlin"
-        val sentence = "this is a sentence"
-
-        val expectedArr = arrayOf("K", "o", "t", "l", "i", "n")
-        val expectedArr2 = arrayOf("t", "h", "i", "s",  " ", "i", "s",  " ", "a",  " ", "s", "e", "n", "t", "e", "n", "c", "e")
-
-        val actualArr = str.map { it.toString() }.toTypedArray()
-        val actualArr2 = sentence.map { it.toString() }.toTypedArray()
-
-        assertArrayEquals(expectedArr, actualArr)
-        assertArrayEquals(expectedArr2, actualArr2)
-    }
-
-    @Test
     fun `convert using StringTokenizer`() {
-        val sentence = "this is a sentence"
+        val sentence = "this is an example\n" +
+                "of a multiline sentence\n" +
+                "in Kotlin programming"
 
-        val expectedArr = arrayOf("this", "is", "a", "sentence")
+        val expectedArr = arrayOf("this", "is", "an", "example", "of", "a", "multiline", "sentence", "in", "Kotlin", "programming")
 
         val st = StringTokenizer(sentence)
-        val actualArr = Array(st.countTokens()) { "" }
-        var i = 0
-        while (st.hasMoreTokens()) {
-            actualArr[i++] = st.nextToken()
-        }
+
+        val actualArr = Array(st.countTokens()) { st.nextToken() }
 
         assertArrayEquals(expectedArr, actualArr)
     }
 
     @Test
     fun `convert using Regex`() {
-        val sentence = "this is a sentence"
-        val expectedArr = arrayOf("this", "is", "a", "sentence")
+        val sentence = "this is an example\n" +
+                "of a multiline sentence\n" +
+                "in Kotlin programming"
+
+        val expectedArr = arrayOf("this", "is", "an", "example", "of", "a", "multiline", "sentence", "in", "Kotlin", "programming")
         val pattern = "\\s+".toRegex()
         val actualArr = sentence.split(pattern).toTypedArray()
 
@@ -62,16 +49,14 @@ class StringArrayUnitTest {
 
     @Test
     fun `convert using StringReader and BufferedReader`() {
-        val sentence = "this is a sentence"
-        val expectedArr = arrayOf("this", "is", "a", "sentence")
+        val sentence = "this is an example\n" +
+                "of a multiline sentence\n" +
+                "in Kotlin programming"
+        val expectedArr = arrayOf("this", "is", "an", "example", "of", "a", "multiline", "sentence", "in", "Kotlin", "programming")
 
         val reader = BufferedReader(StringReader(sentence))
-        val actualArr = mutableListOf<String>()
-        var line: String?
 
-        while (reader.readLine().also { line = it } != null) {
-            actualArr.addAll(line!!.split(" "))
-        }
-        assertArrayEquals(expectedArr, actualArr.toTypedArray())
+        val actualArr = reader.readLines().flatMap { it.split(" ") }.toTypedArray()
+        assertArrayEquals(expectedArr, actualArr)
     }
 }
