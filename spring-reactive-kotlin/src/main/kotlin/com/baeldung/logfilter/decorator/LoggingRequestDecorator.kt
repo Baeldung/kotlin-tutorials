@@ -21,10 +21,10 @@ class LoggingRequestDecorator internal constructor(log: Logger, delegate: Server
     }
 
     init {
-        if (log.isDebugEnabled) {
+        //if (log.isDebugEnabled) {
             val path = delegate.uri.path
             val query = delegate.uri.query
-            val method = Optional.ofNullable(delegate.method).orElse(HttpMethod.GET).name
+            val method = Optional.ofNullable(delegate.method).orElse(HttpMethod.GET).name()
             val headers = delegate.headers.asString()
             log.debug(
                 "{} {}\n {}", method, path + (if (StringUtils.hasText(query)) "?$query" else ""), headers
@@ -34,8 +34,6 @@ class LoggingRequestDecorator internal constructor(log: Logger, delegate: Server
                 Channels.newChannel(bodyStream).write(buffer.asByteBuffer().asReadOnlyBuffer())
                 log.debug("{}: {}", "request", String(bodyStream.toByteArray()))
             }
-        } else {
-            body = super.getBody()
-        }
+
     }
 }

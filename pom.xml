@@ -21,14 +21,14 @@
         </repository>
         <repository>
             <id>kotlin-eap</id>
-            <url>http://dl.bintray.com/kotlin/kotlin-eap</url>
+            <url>https://dl.bintray.com/kotlin/kotlin-eap/</url>
         </repository>
     </repositories>
 
     <pluginRepositories>
         <pluginRepository>
             <id>kotlin-eap</id>
-            <url>http://dl.bintray.com/kotlin/kotlin-eap</url>
+            <url>https://dl.bintray.com/kotlin/kotlin-eap/</url>
         </pluginRepository>
     </pluginRepositories>
 
@@ -283,6 +283,7 @@
 
     <modules>
         <module>parent-boot-2</module>
+        <module>parent-boot-3</module>
 
         <module>core-kotlin-modules</module>
         <module>core-kotlin-companion</module>
@@ -312,6 +313,7 @@
         <module>kotlin-libraries-data</module>
         <module>kotlin-libraries-utils</module>
         <module>kotlin-math</module>
+        <module>kotlin-math-2</module>
     </modules>
 
     <profiles>

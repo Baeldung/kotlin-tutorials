@@ -9,3 +9,4 @@ This module contains modules about JSON.
 - [Moshi JSON Library for Kotlin Applications](https://www.baeldung.com/kotlin/moshi-json-library)
 - [How to Parse JSON Without Data Class in Kotlin](https://www.baeldung.com/kotlin/parse-json-without-data-class)
 - [Handling Multiple Names for JSON Field in Kotlin](https://www.baeldung.com/kotlin/json-field-several-names)
+- [JSON String to Map](https://www.baeldung.com/kotlin/json-convert-map)

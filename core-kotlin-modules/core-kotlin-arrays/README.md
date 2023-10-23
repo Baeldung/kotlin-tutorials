@@ -9,3 +9,4 @@
 - [Check if an Array Contains a Given Value in Kotlin](https://www.baeldung.com/kotlin/check-if-array-contains-value)
 - [Creating a Byte Array in Kotlin](https://www.baeldung.com/kotlin/byte-array)
 - [Multidimentional Arrays in Kotlin](https://www.baeldung.com/kotlin/multidimentional-arrays)
+- [Find the Index of an Element in a Kotlin Array](https://www.baeldung.com/kotlin/array-item-position)
