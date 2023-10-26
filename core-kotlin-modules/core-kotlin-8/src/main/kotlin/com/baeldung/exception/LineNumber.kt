@@ -26,3 +26,26 @@ fun myFunction() {
     }
 
 }
+
+fun basicTryCatch() {
+        try {
+            // Code that might throw an exception
+        } catch (e: Throwable) {
+            // Handle exception here
+            val stackTrace = e.stackTrace
+            // do something with the stackTrace
+        }
+
+        val result: Result<*> = runCatching {
+            // Code that might throw an exception
+        }
+
+        result.fold(
+            onSuccess = { value ->
+                // Handle the successful execution
+            },
+            onFailure = { exception ->
+                // Handle exception here
+            }
+        )
+    }
