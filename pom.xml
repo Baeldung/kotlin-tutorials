@@ -23,6 +23,10 @@
             <id>kotlin-eap</id>
             <url>https://dl.bintray.com/kotlin/kotlin-eap/</url>
         </repository>
+        <repository>
+            <id>maven-central</id>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
     </repositories>
 
     <pluginRepositories>
@@ -124,6 +128,25 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>com.github.z3d1k</groupId>
+                <artifactId>ktlint-maven-plugin</artifactId>
+                <version>0.10.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>lint</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.baeldung</groupId>
+                        <artifactId>ktlint-custom</artifactId>
+                        <version>1.0.0-SNAPSHOT</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
@@ -273,6 +296,8 @@
     <modules>
         <module>parent-boot-2</module>
         <module>parent-boot-3</module>
+
+        <module>ktlint-custom</module>
 
         <module>core-kotlin-modules</module>
         <module>core-kotlin-companion</module>
