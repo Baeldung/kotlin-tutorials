@@ -5,12 +5,10 @@ import org.junit.Test
 import kotlin.test.assertFailsWith
 
 class NullabilityTests {
-    @Test
-    fun testLengthIsNullWhenNameIsNull() {
-        val name: String? = null
+    @Test fun testStringLength() {
+        val name: String? = "Hello, World!"
         val length = name?.length
-        assertEquals(null, length)
-    }
+        assertEquals(13, length) }
 
     @Test
     fun testNullPointerException() {
