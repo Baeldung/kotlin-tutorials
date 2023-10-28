@@ -1,14 +1,17 @@
 package com.baeldung.pair
 
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNull
 import org.junit.Test
 import kotlin.test.assertFailsWith
 
 class NullabilityTests {
-    @Test fun testStringLength() {
-        val name: String? = "Hello, World!"
+    @Test
+    fun testStringLength() {
+        val name: String? = null
         val length = name?.length
-        assertEquals(13, length) }
+        assertNull(length)
+    }
 
     @Test
     fun testNullPointerException() {
