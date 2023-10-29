@@ -13,3 +13,4 @@ This module contains articles about core Kotlin strings.
 - [Check if a String Is a Palindrome in Kotlin](https://www.baeldung.com/kotlin/palindrome)
 - [Iterate Over a String Backward in Kotlin](https://www.baeldung.com/kotlin/iterate-string-reverse)
 - [Remove First Character in String in Kotlin](https://www.baeldung.com/kotlin/string-delete-first-character)
+- [How to Reverse a Sentence in Kotlin](https://www.baeldung.com/kotlin/reverse-sentence)
