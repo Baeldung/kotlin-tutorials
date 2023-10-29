@@ -25,17 +25,22 @@ class CallbackExample {
     }
 
     fun main() {
+        // Creating the callback object
+        val callback = createCallback()
+
         // Calling the fetchData function with a callback
-        fetchData(object : Callback {
-            override fun onSuccess(result: String) {
-                // Handle successful result
-            }
+        fetchData(callback)
 
-            override fun onFailure(error: Throwable) {
-                // Handle error
-            }
-        })
+    }
 
+    fun createCallback() = object : Callback {
+        override fun onSuccess(result: String) {
+            // Handle successful result
+        }
+
+        override fun onFailure(error: Throwable) {
+            // Handle error
+        }
     }
 
 

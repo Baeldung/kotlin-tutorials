@@ -1,5 +1,6 @@
 package com.baeldung.callbacktocoroutine
 
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlin.coroutines.resume
@@ -26,17 +27,24 @@ class CallbackToCoroutineExample {
     }
 
     suspend fun fetchDataWithCoroutine(): String = suspendCoroutine { continuation ->
-        fetchDataWithCallback(object : Callback {
-            override fun onSuccess(result: String) {
-                continuation.resume(result) // Resume the coroutine with the result
-            }
+        val callback = createCallbackWithContinuation(
+            onSuccess = continuation::resume,
+            onFailure = continuation::resumeWithException
+        )
 
-            override fun onFailure(error: Throwable) {
-                continuation.resumeWithException(error) // Resume the coroutine with an exception
-            }
-        })
+        fetchDataWithCallback(callback)
     }
 
+    fun createCallbackWithContinuation(
+        onSuccess: (String) -> Unit,
+        onFailure: (Throwable) -> Unit
+    ) = object : Callback {
+        // Resume the coroutine with the result
+        override fun onSuccess(result: String) = onSuccess(result)
+
+        // Resume the coroutine with an exception
+        override fun onFailure(error: Throwable) = onFailure(error)
+    }
 
     fun processData(): String {
         Thread.sleep(1000)
@@ -44,16 +52,15 @@ class CallbackToCoroutineExample {
     }
 
     fun main() {
-        // Calling the fetchData function within a coroutine scope
-        GlobalScope.launch {
-            try {
-                val result = fetchDataWithCoroutine()
-                // Handle successful result
-            } catch (error: Throwable) {
-                // Handle error
-            }
+        val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+            // Handle exception
         }
 
+        // Calling the fetchData function within a coroutine scope with an exception handler
+        GlobalScope.launch(exceptionHandler) {
+            val result = fetchDataWithCoroutine()
+            // Handle successful result
+        }
     }
 
 
