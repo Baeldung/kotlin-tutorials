@@ -11,3 +11,4 @@ This module contains articles about core Kotlin strings.
 - [How to Encode a String in UTF-8 in Kotlin](https://www.baeldung.com/kotlin/encode-utf8-string)
 - [Password Validation in Kotlin](https://www.baeldung.com/kotlin/password-validation)
 - [Check if a String Is a Palindrome in Kotlin](https://www.baeldung.com/kotlin/palindrome)
+- [Iterate Over a String Backward in Kotlin](https://www.baeldung.com/kotlin/iterate-string-reverse)
