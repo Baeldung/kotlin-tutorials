@@ -42,7 +42,7 @@ class StringArrayUnitTest {
 
         val expectedArr = arrayOf("this", "is", "an", "example", "of", "a", "multiline", "sentence", "in", "Kotlin", "programming")
         val pattern = "\\s+".toRegex()
-        val actualArr = sentence.split(pattern).toTypedArray()
+        val actualArr = pattern.split(sentence).toTypedArray()
 
         assertArrayEquals(expectedArr, actualArr)
     }
