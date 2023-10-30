@@ -9,7 +9,7 @@ This module contains articles about Kotlin Libraries.
 - [Kotlin Immutable Collections](https://www.baeldung.com/kotlin/immutable-collections)
 - [Dependency Injection for Kotlin with Injekt](https://www.baeldung.com/kotlin/dependency-injection-with-injekt)
 - [Introduction to Kovenant Library for Kotlin](https://www.baeldung.com/kotlin/kovenant)
-- [Convert a Kotlin data class object to a Map](https://www.baeldung.com/kotlin/data-class-to-map)
+- [Convert a Kotlin Data Class Object to a Map](https://www.baeldung.com/kotlin/data-class-to-map)
 - [Read and Write CSV Files With Kotlin](https://www.baeldung.com/kotlin/csv-files)
 - [Kotlin Coroutines and RxKotlin Comparison](https://www.baeldung.com/kotlin/coroutines-vs-rxkotlin)
 - [Introduction to Kotlin Documentation with Dokka](https://www.baeldung.com/kotlin/dokka-documentation-introduction)

@@ -5,3 +5,4 @@
 - [Mapstruct With Kotlin’s Data Classes](https://www.baeldung.com/kotlin/mapstruct-data-classes)
 - [Spring Dependency Injection With Kotlin](https://www.baeldung.com/kotlin/spring-dependency-injection)
 - [RestTemplate Examples in Kotlin](https://www.baeldung.com/kotlin/spring-resttemplate-examples)
+- [Creating Spring Boot Console Application With Kotlin](https://www.baeldung.com/kotlin/spring-boot-console-application)
