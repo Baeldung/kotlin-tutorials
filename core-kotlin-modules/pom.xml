@@ -53,7 +53,6 @@
         <module>core-kotlin-files</module>
         <module>core-kotlin-operators</module>
         <module>core-kotlin-arrays-2</module>
-        <module>core-kotlin-arrays-2</module>
         <module>core-kotlin-string-conversions</module>
     </modules>
 
