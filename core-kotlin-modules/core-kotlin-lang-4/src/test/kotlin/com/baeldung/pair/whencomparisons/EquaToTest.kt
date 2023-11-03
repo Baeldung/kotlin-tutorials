@@ -1,4 +1,4 @@
-package com.baeldung.pair.`when`
+package com.baeldung.pair.whencomparisons
 
 import org.junit.Assert.assertEquals
 import org.junit.jupiter.api.Test
