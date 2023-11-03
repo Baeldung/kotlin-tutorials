@@ -1,0 +1,6 @@
+# https://editorconfig.org
+root = true
+
+[*]
+ktlint_standard = disabled
+ktlint_experimental = disabled
