@@ -17,7 +17,7 @@ class FunctionalErrorHandlingWithEitherUnitTest {
 
         assertTrue(computeWithEither.isLeft())
         when(computeWithEither){
-            is Either.Left -> when(computeWithEither.a){
+            is Either.Left -> when(computeWithEither.value){
                 NotANumber -> "Ok."
                 else -> fail()
             }
@@ -31,7 +31,7 @@ class FunctionalErrorHandlingWithEitherUnitTest {
 
         assertTrue(computeWithEither.isLeft())
         when(computeWithEither){
-            is Either.Left -> when(computeWithEither.a){
+            is Either.Left -> when(computeWithEither.value){
                 OddNumber -> "Ok."
                 else -> fail()
             }
@@ -45,7 +45,7 @@ class FunctionalErrorHandlingWithEitherUnitTest {
 
         assertTrue(computeWithEither.isRight())
         when(computeWithEither){
-            is Either.Right -> when(computeWithEither.b){
+            is Either.Right -> when(computeWithEither.value){
                 false -> "Ok."
                 else -> fail()
             }
@@ -59,7 +59,7 @@ class FunctionalErrorHandlingWithEitherUnitTest {
 
         assertTrue(computeWithEither.isRight())
         when(computeWithEither){
-            is Either.Right -> when(computeWithEither.b){
+            is Either.Right -> when(computeWithEither.value){
                 true -> "Ok."
                 else -> fail()
             }
