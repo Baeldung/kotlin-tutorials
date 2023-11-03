@@ -3,7 +3,7 @@ package com.baeldung.pair.whencomparisons
 import org.junit.Assert.assertEquals
 import org.junit.jupiter.api.Test
 
-class EquaToTest {
+class EqualToTest {
     fun evaluateFruit(fruit: String): String {
         return when (fruit) {
             "apple" -> "It's an apple"
