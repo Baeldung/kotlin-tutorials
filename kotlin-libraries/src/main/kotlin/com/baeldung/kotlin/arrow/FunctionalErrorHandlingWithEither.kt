@@ -2,6 +2,7 @@ package com.baeldung.kotlin.arrow
 
 import arrow.core.Either
 import arrow.core.filterOrElse
+import arrow.core.right
 import kotlin.math.sqrt
 
 class FunctionalErrorHandlingWithEither {
@@ -11,7 +12,7 @@ class FunctionalErrorHandlingWithEither {
         object NotANumber : ComputeProblem()
     }
 
-    fun parseInput(s : String) : Either<ComputeProblem, Int> = Either.cond(s.toIntOrNull() != null, {-> s.toInt()}, {->ComputeProblem.NotANumber} )
+    fun parseInput(s : String) : Either<ComputeProblem, Int> = if(s.toIntOrNull() != null) Either.Right(s.toInt()) else Either.Left(ComputeProblem.NotANumber)
 
     fun isEven(x : Int) : Boolean = x % 2 == 0
 
@@ -43,8 +44,8 @@ class FunctionalErrorHandlingWithEither {
         val computeWithEither = computeWithEither(input)
 
         when(computeWithEither){
-            is Either.Right -> "The greatest divisor is square number: ${computeWithEither.b}"
-            is Either.Left -> when(computeWithEither.a){
+            is Either.Right -> "The greatest divisor is square number: ${computeWithEither.value}"
+            is Either.Left -> when(computeWithEither.value){
                 is ComputeProblem.NotANumber -> "Wrong input! Not a number!"
                 is ComputeProblem.OddNumber -> "It is an odd number!"
             }

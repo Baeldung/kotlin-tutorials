@@ -10,49 +10,10 @@ import kotlin.test.fail
 class FunctionalDataTypesUnitTest {
 
     @Test
-    fun whenIdCreated_thanValueIsPresent(){
-        val id = Id("foo")
-        val justId = Id.just("foo")
-
-        assertEquals("foo", id.extract())
-        assertEquals(justId, id)
-    }
-
-    fun length(s : String) : Int = s.length
-
-    fun isBigEnough(i : Int) : Boolean = i > 10
-
-    @Test
-    fun whenIdCreated_thanMapIsAssociative(){
-        val foo = Id("foo")
-
-        val map1 = foo.map(::length)
-                .map(::isBigEnough)
-        val map2 = foo.map { s -> isBigEnough(length(s)) }
-
-        assertEquals(map1, map2)
-    }
-
-    fun lengthId(s : String) : Id<Int> = Id.just(length(s))
-
-    fun isBigEnoughId(i : Int) : Id<Boolean> = Id.just(isBigEnough(i))
-
-    @Test
-    fun whenIdCreated_thanFlatMapIsAssociative(){
-        val bar = Id("bar")
-
-        val flatMap = bar.flatMap(::lengthId)
-            .flatMap(::isBigEnoughId)
-        val flatMap1 = bar.flatMap { s -> lengthId(s).flatMap(::isBigEnoughId) }
-
-        assertEquals(flatMap, flatMap1)
-    }
-
-    @Test
     fun whenOptionCreated_thanValueIsPresent(){
-        val factory = Option.just(42)
+        val factory = Some(42)
         val constructor = Option(42)
-        val emptyOptional = Option.empty<Int>()
+        val emptyOptional: Option<Int> = none()
         val fromNullable = Option.fromNullable(null)
 
         assertEquals(42, factory.getOrElse { -1 })
@@ -74,7 +35,7 @@ class FunctionalDataTypesUnitTest {
         assertNotEquals(constructor, fromNullable)
     }
 
-    fun wrapper(x : Int?) : Option<Int> = if (x == null) Option.just(-1) else Option.just(x.toInt())
+    fun wrapper(x : Int?) : Option<Int> = if (x == null) Some(-1) else Some(x.toInt())
 
     @Test
     fun whenOptionFromNullableCreated_thanItBreaksLeftIdentity(){
@@ -85,8 +46,8 @@ class FunctionalDataTypesUnitTest {
 
     @Test
     fun whenEitherCreated_thanOneValueIsPresent(){
-        val rightOnly : Either<String,Int> = Either.right(42)
-        val leftOnly : Either<String,Int> = Either.left("foo")
+        val rightOnly : Either<String,Int> = Either.Right(42)
+        val leftOnly : Either<String,Int> = Either.Left("foo")
 
         assertTrue(rightOnly.isRight())
         assertTrue(leftOnly.isLeft())
