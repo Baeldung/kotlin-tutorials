@@ -333,7 +333,7 @@
     </profiles>
 
     <properties>
-        <kotlin.version>1.9.10</kotlin.version>
+        <kotlin.version>1.7.10</kotlin.version>
         <kotlinx.version>1.7.1</kotlinx.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
