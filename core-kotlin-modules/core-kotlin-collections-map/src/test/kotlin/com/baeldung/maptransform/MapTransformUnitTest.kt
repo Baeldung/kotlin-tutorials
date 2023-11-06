@@ -36,10 +36,9 @@ class MapTransformUnitTest {
     @Test
     fun `transform map using associate() method`() {
         val originalList = listOf("one", "two", "three", "four", "five")
-        var i = 1
-        val transformedMap = originalList.associate { it to i++ }
+        val transformedMap = originalList.associate { it to it.length }
 
-        assertEquals(mapOf("one" to 1, "two" to 2, "three" to 3, "four" to 4, "five" to 5), transformedMap)
+        assertEquals(mapOf("one" to 3, "two" to 3, "three" to 5, "four" to 4, "five" to 4ti), transformedMap)
     }
 
     @Test
@@ -52,9 +51,12 @@ class MapTransformUnitTest {
 
     @Test
     fun `transform map using flatMap() method`() {
-        val map = mapOf("one" to listOf(1, 2), "two" to listOf(3, 4), "three" to listOf(5, 6))
-        val transformedMap = map.flatMap { it.value }
+        val map = mapOf("one" to listOf(1, 2), "two" to listOf(3, 4, 5), "three" to listOf(6, 7, 8, 9))
 
-        assertEquals(listOf(1, 2, 3, 4, 5, 6), transformedMap)
+        val flattenedList = map.flatMap { (key, value) -> value.map { key to it } }
+        val grouped = flattenedList.groupBy({ it.first }, { it.second })
+        val transformedMap = grouped.mapValues { it.value.size }
+
+        assertEquals(mapOf("one" to 2, "two" to 3, "three" to 4), transformedMap)
     }
 }
