@@ -2,8 +2,7 @@ package com.baeldung.logfilter
 
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.verify
+import org.mockito.Mockito.*
 import org.slf4j.Logger
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest
@@ -14,6 +13,7 @@ import org.springframework.test.web.reactive.server.WebTestClient
 
 @WebFluxTest(controllers = [Controller::class])
 open class LogFilterUnitTest {
+
     @MockBean
     lateinit var log: Logger
 
@@ -31,7 +31,7 @@ open class LogFilterUnitTest {
             .uri("/get")
             .exchange()
             .expectStatus().isOk
-        verify(log).debug("{}: {}", "response", "[1,2,3]")
+        verify(log).debug("{}: {} - {} : {}", "response", "[1,2,3]", "header", " Content-Type: [application/json]")
     }
 
     @Test
@@ -43,6 +43,6 @@ open class LogFilterUnitTest {
             .exchange()
             .expectStatus().isOk
         verify(log).debug("{}: {}", "request", "{\"input\":1}")
-        verify(log).debug("{}: {}", "response", "[1,2,3]")
+        verify(log).debug("{}: {} - {} : {}", "response", "[1,2,3]", "header", " Content-Type: [application/json]")
     }
 }

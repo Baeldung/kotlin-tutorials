@@ -21,14 +21,14 @@
         </repository>
         <repository>
             <id>kotlin-eap</id>
-            <url>http://dl.bintray.com/kotlin/kotlin-eap</url>
+            <url>https://dl.bintray.com/kotlin/kotlin-eap/</url>
         </repository>
     </repositories>
 
     <pluginRepositories>
         <pluginRepository>
             <id>kotlin-eap</id>
-            <url>http://dl.bintray.com/kotlin/kotlin-eap</url>
+            <url>https://dl.bintray.com/kotlin/kotlin-eap/</url>
         </pluginRepository>
     </pluginRepositories>
 
@@ -118,13 +118,7 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20230227</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jetbrains.kotlinx</groupId>
-            <artifactId>kotlinx-serialization-json</artifactId>
-            <version>${serialization.version}</version>
+            <version>20231013</version>
         </dependency>
     </dependencies>
 
@@ -257,11 +251,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <compilerPlugins>
-                        <plugin>kotlinx-serialization</plugin>
-                    </compilerPlugins>
-                </configuration>
                 <dependencies>
                     <dependency>
                         <groupId>org.jetbrains.kotlin</groupId>
@@ -283,6 +272,7 @@
 
     <modules>
         <module>parent-boot-2</module>
+        <module>parent-boot-3</module>
 
         <module>core-kotlin-modules</module>
         <module>core-kotlin-companion</module>
@@ -290,6 +280,7 @@
         <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
         <module>kotlin-json</module>
         <module>kotlin-lambda</module>
+        <!-- <module>kotlin-multiplatform-mobile</module> not included becasue written in gradle-->
         <!-- <module>kotlin-tornadofx</module> --> <!-- not compatible with Java 9+ -->
         <module>kotlin-libraries</module>
         <module>kotlin-libraries-2</module>
@@ -311,6 +302,7 @@
         <module>kotlin-libraries-data</module>
         <module>kotlin-libraries-utils</module>
         <module>kotlin-math</module>
+        <module>kotlin-math-2</module>
     </modules>
 
     <profiles>
@@ -341,7 +333,7 @@
     </profiles>
 
     <properties>
-        <kotlin.version>1.8.22</kotlin.version>
+        <kotlin.version>1.9.10</kotlin.version>
         <kotlinx.version>1.7.1</kotlinx.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

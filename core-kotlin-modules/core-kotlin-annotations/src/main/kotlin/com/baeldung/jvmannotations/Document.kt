@@ -1,10 +1,9 @@
 package com.baeldung.jvmannotations
 
-import java.util.*
 
 interface Document {
 
-    @JvmDefault
+    // @JvmDefault deprecation level ERROR. Switched to new -Xjvm-default modes: all or all-compatibility
     fun getTypeDefault() = "document"
 
     fun getType() = "document"

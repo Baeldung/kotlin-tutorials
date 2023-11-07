@@ -3,4 +3,4 @@
 This module contains articles about Java EE with Kotlin. 
 
 ### Relevant Articles:
-- [Jakarta EE Application with Kotlin](https://www.baeldung.com/kotlin/java-ee-kotlin-app)
+- [Java EE Application with Kotlin](https://www.baeldung.com/kotlin/java-ee-kotlin-app)
