@@ -40,7 +40,7 @@ class FunctionalErrorHandlingWithOption {
 
         return when(computeOption){
             is None -> "Not an even number!"
-            is Some -> "The greatest divisor is square number: ${computeOption.t}"
+            is Some -> "The greatest divisor is square number: ${computeOption.value}"
         }
     }
 }
