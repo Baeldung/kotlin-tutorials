@@ -38,7 +38,7 @@ class MapTransformUnitTest {
         val originalList = listOf("one", "two", "three", "four", "five")
         val transformedMap = originalList.associate { it to it.length }
 
-        assertEquals(mapOf("one" to 3, "two" to 3, "three" to 5, "four" to 4, "five" to 4ti), transformedMap)
+        assertEquals(mapOf("one" to 3, "two" to 3, "three" to 5, "four" to 4, "five" to 4), transformedMap)
     }
 
     @Test
