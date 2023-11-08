@@ -2,7 +2,6 @@ package com.baeldung.listToIntArray
 
 import org.junit.Assert.assertArrayEquals
 import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
 
 class listToIntArrayUnitTest {
 
@@ -10,59 +9,56 @@ class listToIntArrayUnitTest {
     fun `convert integer list to integer array using for loop`() {
         val list = listOf(1, 2, 3, 4, 5)
         val expected = intArrayOf(1, 2, 3, 4, 5)
-        val array = IntArray(list.size)
+        val result = IntArray(list.size)
         for (i in list.indices) {
-            array[i] = list[i]
+            result[i] = list[i]
         }
-        val actual = array
 
-        assertArrayEquals(expected, actual)
+        assertArrayEquals(expected, result)
     }
 
     @Test
     fun `convert integer list to integer array using for loop with index operator`() {
         val list = listOf(1, 2, 3, 4, 5)
         val expected = intArrayOf(1, 2, 3, 4, 5)
-        val array = IntArray(list.size) { i -> list[i] }
-        val actual = array
+        val result = IntArray(list.size) { i -> list[i] }
 
-        assertArrayEquals(expected, actual)
+        assertArrayEquals(expected, result)
     }
 
     @Test
     fun `convert integer list to integer array using intArray() method`() {
         val list = listOf(1, 2, 3, 4, 5)
         val expected = intArrayOf(1, 2, 3, 4, 5)
-        val actual = list.toIntArray()
+        val result = list.toIntArray()
 
-        assertArrayEquals(expected, actual)
+        assertArrayEquals(expected, result)
     }
 
     @Test
     fun `convert integer list to integer array using map() method`() {
         val list = listOf(1, 2, 3, 4, 5)
         val expected = intArrayOf(1, 2, 3, 4, 5)
-        val actual = list.map { it }.toIntArray()
+        val result = list.map { it }.toIntArray()
 
-        assertArrayEquals(expected, actual)
+        assertArrayEquals(expected, result)
     }
 
     @Test
     fun `convert integer list to integer array using stream() method`() {
         val list = listOf(1, 2, 3, 4, 5)
         val expected = intArrayOf(1, 2, 3, 4, 5)
-        val actual = list.stream().mapToInt { it }.toArray()
+        val result = list.stream().mapToInt { it }.toArray()
 
-        assertArrayEquals(expected, actual)
+        assertArrayEquals(expected, result)
     }
 
     @Test
     fun `convert integer list to integer array using toTypedArray() method`() {
         val list = listOf(1, 2, 3, 4, 5)
         val expected = intArrayOf(1, 2, 3, 4, 5)
-        val array = list.toTypedArray().toIntArray()
-        val actual = array
+        val result = list.toTypedArray().toIntArray()
 
-        assertArrayEquals(expected, actual)
+        assertArrayEquals(expected, result)
     }
 }
