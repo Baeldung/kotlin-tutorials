@@ -55,8 +55,7 @@ class MapTransformUnitTest {
 
         val flattenedList = map.flatMap { (key, value) -> value.map { key to it } }
         val grouped = flattenedList.groupBy({ it.first }, { it.second })
-        val transformedMap = grouped.mapValues { it.value.size }
 
-        assertEquals(mapOf("one" to 2, "two" to 3, "three" to 4), transformedMap)
+        assertEquals("{one=[1, 2], two=[3, 4, 5], three=[6, 7, 8, 9]}", grouped.toString())
     }
 }
