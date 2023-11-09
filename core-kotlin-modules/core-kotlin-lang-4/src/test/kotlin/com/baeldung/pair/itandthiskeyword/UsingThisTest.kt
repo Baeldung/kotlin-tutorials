@@ -5,7 +5,7 @@ import org.junit.Test
 
 class UsingThisTest {
 
-    class Person(val name: String) {
+    data class Person(val name: String) {
         // An instance variable
         var age: Int = 0
         fun printDetails() {
