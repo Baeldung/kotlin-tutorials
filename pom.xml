@@ -359,6 +359,7 @@
         <module>kotlin-libraries-utils</module>
         <module>kotlin-math</module>
         <module>kotlin-math-2</module>
+        <module>kotlin-spark</module>
     </modules>
 
     <profiles>
