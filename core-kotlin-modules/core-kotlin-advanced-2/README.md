@@ -13,3 +13,4 @@ This module contains articles about advanced topics in Kotlin.
 - [Callback Functions in Kotlin](https://www.baeldung.com/kotlin/callback-functions)
 - [Resolving Kotlin Error: ‘public’ function exposes its ‘public/*package*/’ return type](https://www.baeldung.com/kotlin/public-function-exposes-its-public-package-return-type)
 - [Functional Error Handling in Kotlin](https://www.baeldung.com/kotlin/functional-error-handling)
+- [Converting Callback Methods to Coroutines in Kotlin](https://www.baeldung.com/kotlin/callbacks-coroutines-conversion)
