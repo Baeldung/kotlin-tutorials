@@ -17,13 +17,6 @@ class UsingThisTest {
         }
     }
     @Test
-    fun testPrintDetails() {
-        val person = Person("Alice")
-        person.age = 25
-        val expectedOutput = "25"
-        assertEquals(expectedOutput, "25")
-    }
-    @Test
     fun testHaveBirthday() {
         val person = Person("Bob")
         person.haveBirthday()

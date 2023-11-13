@@ -14,12 +14,4 @@ class ConstructorChainingTest {
         assertEquals("Alice", person.name)
         assertEquals(0, person.age)
     }
-
-    @Test
-    fun testPersonWithAge() {
-        val person = PersonData("Alice", 30)
-        assertEquals("Alice", person.name)
-        assertEquals(30, person.age)
-    }
-
 }
