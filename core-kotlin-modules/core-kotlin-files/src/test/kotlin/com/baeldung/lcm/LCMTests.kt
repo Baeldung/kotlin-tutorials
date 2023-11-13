@@ -5,15 +5,19 @@ import org.junit.Test
 
 class LCMTests {
     fun findLCM(a: Int, b: Int): Int {
-        val max = if (a > b) a else b
-        var lcm = max
-        while (true) {
+        val larger = if (a > b) a else b
+        val maxLcm = a * b
+        var lcm = larger
+        while (lcm <= maxLcm) {
             if (lcm % a == 0 && lcm % b == 0) {
                 return lcm
             }
-            lcm += max
+            lcm += larger
         }
+        return maxLcm
     }
+
+
 
     fun findLCMOfMultipleNumbers(numbers: List<Int>): Int {
         var result = numbers[0]
