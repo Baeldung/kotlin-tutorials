@@ -3,7 +3,7 @@ package com.baeldung.regex
 import org.junit.jupiter.api.Test
 import kotlin.test.*
 
-class RegexUnixTest {
+class RegexUnitTest {
 
     @Test
     fun whenRegexIsInstantiated_thenIsEqualToToRegexMethod() {

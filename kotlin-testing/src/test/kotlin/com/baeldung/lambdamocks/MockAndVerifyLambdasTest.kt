@@ -9,7 +9,7 @@ import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
 import kotlin.test.assertEquals
 
-class CalculatorTest {
+class CalculatorUnitTest {
 
   class Calculator(private val operation: (Int, Int) -> Int) {
       fun calculate(a: Int, b: Int): Int {
