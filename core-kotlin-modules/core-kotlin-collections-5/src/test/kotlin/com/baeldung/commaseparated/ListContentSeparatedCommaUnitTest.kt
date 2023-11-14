@@ -3,7 +3,7 @@ package com.baeldung.commaseparated
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class ListContentSeparatedCommaTest {
+class ListContentSeparatedCommaUnitTest {
 
     @Test
     fun `when using for loop the content is printed separated by comma`() {

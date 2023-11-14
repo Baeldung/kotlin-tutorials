@@ -8,7 +8,7 @@ import kotlin.jvm.optionals.getOrElse
 import kotlin.jvm.optionals.getOrNull
 import kotlin.test.assertEquals
 
-class OptionalTest {
+class OptionalUnitTest {
 
     @Test
     fun `Get or Null`() {

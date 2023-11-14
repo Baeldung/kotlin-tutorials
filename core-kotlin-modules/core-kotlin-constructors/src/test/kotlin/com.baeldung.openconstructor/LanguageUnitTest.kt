@@ -4,7 +4,7 @@ import org.junit.Ignore
 import org.junit.Test
 import org.junit.jupiter.api.Assertions.*
 
-class LanguageTest {
+class LanguageUnitTest {
 
   @Test
   @Ignore

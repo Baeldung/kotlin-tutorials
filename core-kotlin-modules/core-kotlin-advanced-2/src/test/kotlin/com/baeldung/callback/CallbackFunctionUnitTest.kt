@@ -7,7 +7,7 @@ import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 
 data class User(var firstName: String, var lastName: String)
-class CallbackFunctionTest {
+class CallbackFunctionUnitTest {
 
     @Test
     fun `callback function to perform LCM`(){

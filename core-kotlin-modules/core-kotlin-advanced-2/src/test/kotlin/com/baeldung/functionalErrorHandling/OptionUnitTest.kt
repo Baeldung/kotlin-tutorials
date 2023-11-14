@@ -6,7 +6,7 @@ import arrow.core.Some
 import org.junit.jupiter.api.Test
 import kotlin.test.assertIs
 
-class OptionTest {
+class OptionUnitTest {
 
     private fun findOrder(id: Int): Option<Order> = Option.catch {
         if (id > 0) Order(id, 1) else throw Exception("Order Id must a positive number")

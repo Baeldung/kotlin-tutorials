@@ -3,7 +3,7 @@ package com.baeldung.evenodd
 import org.junit.jupiter.api.Test
 import kotlin.test.assertContentEquals
 
-class FirstNElementsTest {
+class FirstNElementsUnitTest {
 
   @Test
   fun `Given an array take first n elements`() {

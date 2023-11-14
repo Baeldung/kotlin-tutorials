@@ -17,7 +17,7 @@ data class MetaData(val location: String, val day: String)
 @Serializable
 data class PostWithMetaData(val author: String, val title: String, val id: String, val metaData: MetaData)
 
-class ArraySerializationTest {
+class ArraySerializationUnitTest {
 
     @Test
     fun `normal serialization of list of data class to JSON`() {

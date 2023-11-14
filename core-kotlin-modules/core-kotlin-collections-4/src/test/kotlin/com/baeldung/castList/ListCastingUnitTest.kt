@@ -5,7 +5,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-class ListCastingTest {
+class ListCastingUnitTest {
 
     @Test
     fun `when casting exception is thrown`() {

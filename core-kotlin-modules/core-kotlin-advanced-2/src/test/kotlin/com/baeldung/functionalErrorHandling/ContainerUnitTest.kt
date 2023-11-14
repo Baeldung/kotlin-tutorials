@@ -5,7 +5,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertIs
 import kotlin.test.assertNotNull
 
-class ContainerTest {
+class ContainerUnitTest {
 
     private fun findOrder(id: Int): Container<Throwable, Order> = Container.catch {
         if (id > 0) Order(id, 1) else throw Exception("Order Id must be a positive number")

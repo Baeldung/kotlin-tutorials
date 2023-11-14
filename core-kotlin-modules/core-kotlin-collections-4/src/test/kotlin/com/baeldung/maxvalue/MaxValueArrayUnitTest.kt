@@ -6,7 +6,7 @@ import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Test
 import kotlin.test.assertNotNull
 
-class MaxValueArrayTest {
+class MaxValueArrayUnitTest {
     @Test
     fun givenNonEmptyArray_whenGetMaxOrNull_thenMaxValueIsReturned() {
         val array = listOf(5, 6, 7, 8, 9, 4, 3, 2, 1)

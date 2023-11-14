@@ -5,7 +5,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import kotlin.test.assertFailsWith
 
-class TimeoutsDemoTest {
+class TimeoutsDemoUnitTest {
 
     @Test
     fun when_coroutine_withTimeout_launched_then_it_finishes_with_exception() {

@@ -10,7 +10,7 @@ import kotlin.test.assertFalse
 
 data class Book(val id: Int, val title: String, val author: String)
 
-class GsonWithTypeTokenTest {
+class GsonWithTypeTokenUnitTest {
     val jsonStr: String = """
         [
           {"id": 1,"title": "First title","author": "Micheal L"},

@@ -3,7 +3,7 @@ package com.baeldung.createByteArray
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
-class CreateByteArrayTest {
+class CreateByteArrayUnitTest {
 
     @Test
     fun `create a byte array using signed byte`() {

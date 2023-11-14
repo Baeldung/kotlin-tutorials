@@ -3,7 +3,7 @@ package com.baeldung.singleton
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
-class Singleton5Test {
+class Singleton5UnitTest {
 
     @Test
     fun `When retrieving instance of singleton, Then same instance is retrieved`() {

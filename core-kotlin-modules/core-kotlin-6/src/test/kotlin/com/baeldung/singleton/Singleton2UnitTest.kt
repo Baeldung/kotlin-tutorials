@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertSame
 import org.junit.jupiter.api.Test
 
-class Singleton2Test {
+class Singleton2UnitTest {
 
     @Test
     fun `When retrieving instance of singleton, Then same instance is retrieved`() {

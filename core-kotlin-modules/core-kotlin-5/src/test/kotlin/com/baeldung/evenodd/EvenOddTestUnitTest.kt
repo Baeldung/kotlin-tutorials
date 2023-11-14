@@ -3,7 +3,7 @@ package com.baeldung.evenodd
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
-class EvenOddTest {
+class EvenOddTestUnitTest {
 
   @Test
   fun `Given odd or even numbers should get the right response from rem`() {

@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 import kotlin.system.measureTimeMillis
 import kotlin.test.assertEquals
 
-class ConcurrentCoroutinesExamplesTest {
+class ConcurrentCoroutinesExamplesUnitTest {
     @RepeatedTest(5)
     fun `executeTwoCoroutinesInParallelUsingLaunch - should be executable without exceptions`() {
         Assertions.assertDoesNotThrow {

@@ -7,7 +7,7 @@ import dataclassvsobject.PersonManager
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class DataClassVsObjectTest {
+class DataClassVsObjectUnitTest {
     @Test
     fun checkDataClassFunction() {
         val person1 = Person("Ada", "31")

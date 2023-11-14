@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 import kotlin.test.assertNull
 
-class NullableTest {
+class NullableUnitTest {
 
     private fun findOrder(id: Int): Order? = nullable {
         if(id > 0) Order(id, 1) else throw Exception("Order Id must a positive number")

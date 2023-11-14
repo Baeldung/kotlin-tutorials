@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 import java.net.URI
 import java.net.URL
 
-class ParseUrlTest {
+class ParseUrlUnitTest {
 
     companion object {
         private const val urlToParse = "https://www.baeldung.com/?reqNo=3&user=Bob&age=12"

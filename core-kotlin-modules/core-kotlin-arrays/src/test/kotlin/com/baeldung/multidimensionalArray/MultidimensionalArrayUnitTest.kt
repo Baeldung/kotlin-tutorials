@@ -11,7 +11,7 @@ import org.junit.Test
 import org.jetbrains.kotlinx.multik.ndarray.operations.plus
 import org.jetbrains.kotlinx.multik.ndarray.operations.times
 
-class MultidimensionalArrayTest {
+class MultidimensionalArrayUnitTest {
 
     data class Pixel(val red: Int, val green: Int, val blue: Int)
 

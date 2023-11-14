@@ -4,7 +4,7 @@ import com.baeldung.functionalErrorHandling.ResultMonad.catch
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
-class ResultMonadTest {
+class ResultMonadUnitTest {
 
     private fun findOrder(id: Int): Result<Order> = Result.catch {
         if (id > 0) Order(id, 1) else throw Exception("Order Id must be a positive number")

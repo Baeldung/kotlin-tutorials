@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-class PrivateSetterExamplesTest {
+class PrivateSetterExamplesUnitTest {
 
     @Test
     fun `bankAccountExampleSuccess - should be executable without exceptions`() {

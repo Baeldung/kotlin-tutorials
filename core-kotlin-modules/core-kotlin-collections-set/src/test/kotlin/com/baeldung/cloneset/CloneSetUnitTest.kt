@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions.assertInstanceOf
 import org.junit.jupiter.api.Assertions.assertNotSame
 import org.junit.jupiter.api.Test
 
-class CloneSetTest {
+class CloneSetUnitTest {
 
     @Test
     fun `Clone set using toSet`() {

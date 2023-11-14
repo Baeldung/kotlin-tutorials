@@ -3,7 +3,7 @@ package com.baeldung.removeFirstElement
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class RemoveFirstElementTest {
+class RemoveFirstElementUnitTest {
 
     @Test
     fun `Remove first element using removeAt`() {

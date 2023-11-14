@@ -1,15 +1,11 @@
 package com.baeldung.preconditions
 
-import com.fasterxml.jackson.databind.JsonNode
-import com.fasterxml.jackson.databind.node.ArrayNode
-import com.fasterxml.jackson.databind.node.ObjectNode
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
-class PreconditionsTest {
+class PreconditionsUnitTest {
 
     @Test
     fun `printPositiveNumber throws exception for negative number`() {
