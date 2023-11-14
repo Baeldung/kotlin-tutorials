@@ -8,10 +8,6 @@ class UsingThisTest {
     data class Person(val name: String) {
         // An instance variable
         var age: Int = 0
-        fun printDetails() {
-            println("Name: $name")
-            println("Age: $age")
-        }
         fun haveBirthday() {
             this.age++
         }
