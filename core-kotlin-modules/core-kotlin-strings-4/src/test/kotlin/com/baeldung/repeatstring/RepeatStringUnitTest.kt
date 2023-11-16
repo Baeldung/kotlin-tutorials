@@ -6,7 +6,7 @@ import kotlin.test.assertEquals
 class RepeatStringUnitTest {
 
     @Test
-    fun testRepeatString() {
+    fun `repeat string n times using for loop`() {
         val string = "Hello World"
         val n = 3
         assertEquals("Hello WorldHello WorldHello World", repeatString(string, n))
@@ -33,7 +33,7 @@ class RepeatStringUnitTest {
     @Test
     fun `repeat string n times using CharArray and String constructor method`() {
         val str = "Hello World"
-        val repeated = String(CharArray(33) { str[it % str.length] })
+        val repeated = String(CharArray(str.length * 3) { str[it % str.length] })
         assertEquals("Hello WorldHello WorldHello World", repeated)
     }
 
