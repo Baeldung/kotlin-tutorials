@@ -8,6 +8,6 @@ import kotlinx.coroutines.flow.map
 class ConferenceSubscription : Subscription {
 
     @GraphQLDescription("Emits single, newly created conferences")
-    fun conference(): Flow<Int> = ConferencePublisher.conferenceFlow.map { it.id!! }
+    fun conferenceId(): Flow<Int> = ConferencePublisher.conferenceFlow.map { it.id!! }
 
 }

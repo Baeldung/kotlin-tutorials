@@ -4,14 +4,9 @@ import com.baeldung.graphql.server.api.AttendeeMutation
 import com.baeldung.graphql.server.api.ConferenceMutation
 import com.baeldung.graphql.server.api.ConferenceQuery
 import com.baeldung.graphql.server.api.ConferenceSubscription
-import com.expediagroup.graphql.generator.SchemaGeneratorConfig
-import com.expediagroup.graphql.generator.TopLevelObject
-import com.expediagroup.graphql.generator.hooks.FlowSubscriptionSchemaGeneratorHooks
-import com.expediagroup.graphql.generator.toSchema
 import com.expediagroup.graphql.server.ktor.GraphQL
 import com.expediagroup.graphql.server.ktor.graphQLPostRoute
 import com.expediagroup.graphql.server.ktor.graphQLSubscriptionsRoute
-import graphql.schema.idl.SchemaPrinter
 import io.ktor.serialization.jackson.*
 import io.ktor.server.application.*
 import io.ktor.server.engine.*

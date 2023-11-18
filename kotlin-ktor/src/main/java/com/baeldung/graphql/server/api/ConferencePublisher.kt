@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 
 object ConferencePublisher {
 
+    // Replay here emits to new subscribers the last `n`
     private val mutableConferenceFlow: MutableSharedFlow<Conference> = MutableSharedFlow(replay = 1)
 
     // Readonly

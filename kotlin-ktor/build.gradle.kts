@@ -2,7 +2,7 @@ import com.expediagroup.graphql.plugin.gradle.config.GraphQLSerializer
 
 description = "Example usage of Gradle plugin to generate GraphQL Kotlin Client"
 
-val expediaGroupVersion = "7.0.1"
+val graphQLKotlinVersion = "7.0.1"
 val ktorVersion = "2.3.5"
 
 repositories {
@@ -10,9 +10,9 @@ repositories {
 }
 
 dependencies {
-    implementation("com.expediagroup", "graphql-kotlin-ktor-client", expediaGroupVersion)
-    implementation("com.expediagroup", "graphql-kotlin-ktor-server", expediaGroupVersion)
-    implementation("com.expediagroup", "graphql-kotlin-client-jackson", expediaGroupVersion)
+    implementation("com.expediagroup", "graphql-kotlin-ktor-client", graphQLKotlinVersion)
+    implementation("com.expediagroup", "graphql-kotlin-ktor-server", graphQLKotlinVersion)
+    implementation("com.expediagroup", "graphql-kotlin-client-jackson", graphQLKotlinVersion)
 
     implementation("io.ktor", "ktor-server-core", ktorVersion)
     implementation("io.ktor", "ktor-server-netty", ktorVersion)

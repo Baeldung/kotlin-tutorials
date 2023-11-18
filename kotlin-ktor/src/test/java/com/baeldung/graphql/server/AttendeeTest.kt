@@ -1,5 +1,6 @@
 package com.baeldung.graphql.server
 
+import com.baeldung.graphql.OBJECT_BY_ID_TEST_QUERY
 import com.baeldung.graphql.graphQlTestEnvironment
 import com.baeldung.graphql.serializeQuery
 import com.baeldung.graphql.server.data.Attendee
@@ -70,6 +71,23 @@ class AttendeeTest {
             val response = jacksonObjectMapper().readValue(bodyAsText(), Map::class.java)
             assertNotNull((response["data"] as Map<*, *>)["saveOrCreateAttendee"])
             TestCase.assertEquals("Jake Jakeson", AttendeeRepository.findById(0)?.name)
+        }
+    }
+
+    @Test
+    fun `given one attendee when fetching object by id then return it`(): Unit = graphQlTestEnvironment { client ->
+        AttendeeRepository.save(Attendee(null, "John Johnson"))
+        val mockBody = serializeQuery(
+            OBJECT_BY_ID_TEST_QUERY
+        )
+        val call = client.post("graphql") {
+            header(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+            setBody(mockBody)
+        }
+        with(call) {
+            TestCase.assertEquals(HttpStatusCode.OK, status)
+            val response = jacksonObjectMapper().readValue(bodyAsText(), Map::class.java)
+            assertNotNull((response["data"] as Map<*, *>)["objectById"])
         }
     }
 

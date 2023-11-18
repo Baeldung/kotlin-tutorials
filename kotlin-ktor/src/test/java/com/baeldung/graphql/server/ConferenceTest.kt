@@ -1,5 +1,6 @@
 package com.baeldung.graphql.server
 
+import com.baeldung.graphql.OBJECT_BY_ID_TEST_QUERY
 import com.baeldung.graphql.graphQlTestEnvironment
 import com.baeldung.graphql.readResponseAsMap
 import com.baeldung.graphql.serializeQuery
@@ -84,6 +85,23 @@ class ConferenceTest {
     }
 
     @Test
+    fun `given one conference when fetching object by id then return it`(): Unit = graphQlTestEnvironment { client ->
+        ConferenceRepository.save(Conference(id = null, name = "Conference", attendees = listOf()))
+        val mockBody = serializeQuery(
+            OBJECT_BY_ID_TEST_QUERY
+        )
+        val call = client.post("graphql") {
+            header(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+            setBody(mockBody)
+        }
+        with(call) {
+            assertEquals(HttpStatusCode.OK, status)
+            val response = jacksonObjectMapper().readValue(bodyAsText(), Map::class.java)
+            assertNotNull((response["data"] as Map<*, *>)["objectById"])
+        }
+    }
+
+    @Test
     fun `when creating a conference via mutations then should succeed`(): Unit = graphQlTestEnvironment { client ->
         val mockBody = serializeQuery(
             CREATE_CONFERENCE_QUERY
@@ -119,7 +137,7 @@ class ConferenceTest {
     }
 
     @Test
-    fun `when creating a conference then should trigger subscription`(): Unit = graphQlTestEnvironment { client ->
+    fun `when creating a conference then should trigger websocket subscription`(): Unit = graphQlTestEnvironment { client ->
         val mockBody = serializeQuery(
             CREATE_CONFERENCE_QUERY
         )
@@ -133,8 +151,8 @@ class ConferenceTest {
         }) {
             outgoing.send(Frame.Text("""{"type": "connection_init"}"""))
             assertEquals("""{"type":"connection_ack"}""", (incoming.receive() as Frame.Text).readText())
-            outgoing.send(Frame.Text("""{"type": "subscribe", "id": "unique-id", "payload": { "query": "subscription { conference }" }}"""))
-            assertEquals("""{"id":"unique-id","payload":{"data":{"conference":0}},"type":"next"}""", (incoming.receive() as? Frame.Text)?.readText())
+            outgoing.send(Frame.Text("""{"type": "subscribe", "id": "unique-id", "payload": { "query": "subscription { conferenceId }" }}"""))
+            assertEquals("""{"id":"unique-id","payload":{"data":{"conferenceId":0}},"type":"next"}""", (incoming.receive() as? Frame.Text)?.readText())
         }
     }
 

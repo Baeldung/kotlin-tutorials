@@ -32,7 +32,7 @@ type Query {
 
 type Subscription {
     "Emits single, newly created conferences"
-    conference: Int!
+    conferenceId: Int!
 }
 
 input AttendeeInput {

@@ -11,7 +11,7 @@ import com.expediagroup.graphql.client.jackson.GraphQLClientJacksonSerializer
 import com.expediagroup.graphql.client.ktor.GraphQLKtorClient
 import java.net.URI
 
-class GraphQLService(url: String) {
+class GraphQLClient(url: String) {
 
     private var client: GraphQLKtorClient
 
