@@ -12,7 +12,6 @@ repositories {
 dependencies {
     implementation("com.expediagroup", "graphql-kotlin-ktor-client", expediaGroupVersion)
     implementation("com.expediagroup", "graphql-kotlin-ktor-server", expediaGroupVersion)
-    implementation("com.expediagroup", "graphql-kotlin-schema-generator", expediaGroupVersion)
     implementation("com.expediagroup", "graphql-kotlin-client-jackson", expediaGroupVersion)
 
     implementation("io.ktor", "ktor-server-core", ktorVersion)
@@ -42,7 +41,7 @@ kotlin {
 graphql {
     client {
         packageName = "com.baeldung.graphql.client.generated"
-        schemaFile = file("src/main/resources/schema.graphql")
+        schemaFile = file("src/main/resources/client/schema.graphql")
         serializer = GraphQLSerializer.JACKSON
     }
 }
