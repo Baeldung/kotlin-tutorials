@@ -1,4 +1,4 @@
-package com.baeldung.cuttingstring
+package com.baeldung.chunkingstring
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
