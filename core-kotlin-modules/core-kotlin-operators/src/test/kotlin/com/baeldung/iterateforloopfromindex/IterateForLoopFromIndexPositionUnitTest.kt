@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 class IterateForLoopFromIndexPositionUnitTest {
 
     @Test
-    fun `start for loop from given index drop method`() {
+    fun `start for loop from given index usign the drop method`() {
         val numbers = listOf(1, 2, 3, 4, 5)
         val startIndex = 2
 
