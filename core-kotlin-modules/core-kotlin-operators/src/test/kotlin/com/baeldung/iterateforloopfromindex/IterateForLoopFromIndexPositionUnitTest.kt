@@ -5,16 +5,13 @@ import org.junit.jupiter.api.Test
 class IterateForLoopFromIndexPositionUnitTest {
 
     @Test
-    fun `start for loop from given index with manual index counter`() {
+    fun `start for loop from given index drop method`() {
         val numbers = listOf(1, 2, 3, 4, 5)
         val startIndex = 2
-        val result = mutableListOf<Int>()
-        var index = startIndex
 
-        while (index <= numbers.lastIndex) {
-            result.add(numbers[index])
-            index++
-        }
+        val result = numbers.drop(startIndex)
+
+        assertEquals(listOf(3, 4, 5), result)
 
         assertEquals(listOf(3, 4, 5), result)
     }
