@@ -7,11 +7,7 @@ class TimeoutAndResourceDemoUnitTest {
 
     @Test
     fun when_resource_created_inside_timeout_block_then_acquired_value_is_not_always_0() {
-        var leak = 0
-        for(i in 1..10) {
-            leak += acquireAndReleaseWithLeak()
-        }
-        assertThat(leak).isNotEqualTo(0)
+        assertThat(acquireAndReleaseWithLeak()).isNotEqualTo(0)
     }
 
     @Test

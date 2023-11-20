@@ -26,7 +26,7 @@ fun acquireAndReleaseWithLeak(): Int {
                 // Acquire a resource right before timeout happens
                 Resource()
                     .apply { acquire() }
-                    .also { delay(59) }
+                    .also { delay(60) }
             }
             resource.release() // Release the resource
         }
