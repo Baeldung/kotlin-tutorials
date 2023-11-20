@@ -3,7 +3,7 @@ package com.baeldung.removeElementWithIterator
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
-class RemoveElementTest {
+class RemoveElementUnitTest {
 
     @Test
     fun `when removing element with Iterator then it works`() {
