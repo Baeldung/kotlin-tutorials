@@ -34,6 +34,13 @@ application {
     mainClass.set("com.baeldung.graphql.server.KtorApplicationKt")
 }
 
+//There seems to be a bug here with the graphqlGenerateSDL task where if the Subscription uses the Flow class, it will throw an error
+//graphql {
+//    schema {
+//        packages = listOf("com.baeldung.graphql.server")
+//    }
+//}
+
 kotlin {
     jvmToolchain(20)
 }

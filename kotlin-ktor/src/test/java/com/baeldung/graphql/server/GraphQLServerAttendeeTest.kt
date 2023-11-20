@@ -32,7 +32,7 @@ private const val UPDATE_ATTENDEE_QUERY = """
     }
     """
 
-class AttendeeTest {
+class GraphQLServerAttendeeTest {
 
     @BeforeTest
     fun cleanUp() {
