@@ -9,7 +9,7 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
-import junit.framework.TestCase
+import junit.framework.TestCase.assertEquals
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertNotNull
@@ -49,10 +49,10 @@ class GraphQLServerAttendeeTest {
             setBody(mockBody)
         }
         with(call) {
-            TestCase.assertEquals(HttpStatusCode.OK, status)
+            assertEquals(HttpStatusCode.OK, status)
             val response = jacksonObjectMapper().readValue(bodyAsText(), Map::class.java)
             assertNotNull((response["data"] as Map<*, *>)["saveOrCreateAttendee"])
-            TestCase.assertEquals("John Johnson", AttendeeRepository.findById(0)?.name)
+            assertEquals("John Johnson", AttendeeRepository.findById(0)?.name)
         }
     }
 
@@ -67,10 +67,10 @@ class GraphQLServerAttendeeTest {
             setBody(mockBody)
         }
         with(call) {
-            TestCase.assertEquals(HttpStatusCode.OK, status)
+            assertEquals(HttpStatusCode.OK, status)
             val response = jacksonObjectMapper().readValue(bodyAsText(), Map::class.java)
             assertNotNull((response["data"] as Map<*, *>)["saveOrCreateAttendee"])
-            TestCase.assertEquals("Jake Jakeson", AttendeeRepository.findById(0)?.name)
+            assertEquals("Jake Jakeson", AttendeeRepository.findById(0)?.name)
         }
     }
 
@@ -85,7 +85,7 @@ class GraphQLServerAttendeeTest {
             setBody(mockBody)
         }
         with(call) {
-            TestCase.assertEquals(HttpStatusCode.OK, status)
+            assertEquals(HttpStatusCode.OK, status)
             val response = jacksonObjectMapper().readValue(bodyAsText(), Map::class.java)
             assertNotNull((response["data"] as Map<*, *>)["objectById"])
         }
