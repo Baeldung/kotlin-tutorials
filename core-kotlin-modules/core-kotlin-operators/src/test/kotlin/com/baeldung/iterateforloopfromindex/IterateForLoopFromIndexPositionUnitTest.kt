@@ -12,8 +12,6 @@ class IterateForLoopFromIndexPositionUnitTest {
         val result = numbers.drop(startIndex)
 
         assertEquals(listOf(3, 4, 5), result)
-
-        assertEquals(listOf(3, 4, 5), result)
     }
 
     @Test
