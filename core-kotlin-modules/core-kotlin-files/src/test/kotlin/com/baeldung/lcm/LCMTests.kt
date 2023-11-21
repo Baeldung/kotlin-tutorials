@@ -38,7 +38,7 @@ class LCMTests {
     }
 
     @Test
-    fun findLCMOfMultipleNumbers() {
+    fun testFindLCMOfListOfNumbers() {
         assertEquals(12, findLCMOfMultipleNumbers(listOf(3, 4)))
         assertEquals(15, findLCMOfMultipleNumbers(listOf(5, 3)))
         assertEquals(35, findLCMOfMultipleNumbers(listOf(7, 5, 5)))
