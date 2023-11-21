@@ -38,10 +38,10 @@ class GCDTests {
 
     @Test
     fun testGCD() {
-        assertEquals(6, calculateGCD(48, 18))
+        assertEquals(6, calculateGCD(18, 48))
         assertEquals(1, calculateGCD(17, 5))
         assertEquals(9, calculateGCD(27, 18))
-        assertEquals(15, calculateGCD(45, 75))
+        assertEquals(15, calculateGCD(75, 45))
     }
 
     @Test
