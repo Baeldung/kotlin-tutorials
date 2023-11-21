@@ -51,8 +51,8 @@ class GCDTests {
     }
     @Test
     fun testCalculateGCD2() {
-        val result = calculateGCDForListOfNumbers(listOf(21, 42, 63))
-        assertEquals(21, result)
+        val result = calculateGCDForListOfNumbers(listOf(21, 36))
+        assertEquals(3, result)
     }
     @Test
     fun testCalculateGCD3() {
