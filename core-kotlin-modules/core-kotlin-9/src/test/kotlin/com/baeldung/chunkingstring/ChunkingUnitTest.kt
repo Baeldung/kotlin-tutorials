@@ -3,7 +3,7 @@ package com.baeldung.chunkingstring
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class ChunkingTest {
+class ChunkingUnitTest {
 
     private val inputString = "HelloWorld"
 
