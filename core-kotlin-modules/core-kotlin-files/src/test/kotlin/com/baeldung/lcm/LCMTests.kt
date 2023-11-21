@@ -19,7 +19,7 @@ class LCMTests {
 
 
 
-    fun findLCMOfMultipleNumbers(numbers: List<Int>): Int {
+    fun findLCMOfListOfNumbers(numbers: List<Int>): Int {
         var result = numbers[0]
         for (i in 1 until numbers.size) {
             result = findLCM(result, numbers[i])
