@@ -18,7 +18,7 @@ class listToIntArrayUnitTest {
     }
 
     @Test
-    fun `convert integer list to integer array using for loop with index operator`() {
+    fun `convert integer list to integer array using the intarray instructor`() {
         val list = listOf(1, 2, 3, 4, 5)
         val expected = intArrayOf(1, 2, 3, 4, 5)
         val result = IntArray(list.size) { i -> list[i] }
