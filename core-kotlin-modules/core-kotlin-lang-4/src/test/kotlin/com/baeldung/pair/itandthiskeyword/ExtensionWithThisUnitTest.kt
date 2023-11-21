@@ -3,7 +3,7 @@ package com.baeldung.pair.itandthiskeyword
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class ExtensionWithThis {
+class ExtensionWithThisUnitTest {
     fun String.customLength(): Int {
         return this.length
     }

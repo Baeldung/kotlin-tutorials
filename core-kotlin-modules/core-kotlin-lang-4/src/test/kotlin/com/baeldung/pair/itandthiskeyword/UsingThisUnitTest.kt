@@ -3,7 +3,7 @@ package com.baeldung.pair.itandthiskeyword
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class UsingThisTest {
+class UsingThisUnitTest {
 
     data class Person(val name: String) {
         // An instance variable

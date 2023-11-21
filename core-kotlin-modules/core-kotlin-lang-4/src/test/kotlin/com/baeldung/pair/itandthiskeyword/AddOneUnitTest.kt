@@ -3,7 +3,7 @@ package com.baeldung.pair.itandthiskeyword
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class AddOneTest {
+class AddOneUnitTest {
     fun addOne(numbers: List<Int>): List<Int> {
         return numbers.map{ it + 1 }
     }
