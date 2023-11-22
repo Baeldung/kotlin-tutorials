@@ -349,6 +349,7 @@
         <module>machine-learning</module>
         <module>spring-boot-kotlin</module>
         <module>spring-boot-kotlin-2</module>
+        <module>spring-boot-crud-kotlin</module>
         <module>spring-boot-test-kotlin</module>
         <module>spring-mvc-kotlin</module>
         <module>spring-reactive-kotlin</module>
