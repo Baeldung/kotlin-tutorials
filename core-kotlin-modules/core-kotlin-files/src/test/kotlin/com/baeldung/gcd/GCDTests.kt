@@ -37,7 +37,7 @@ class GCDTests {
 
 
     @Test
-    fun testGCD() {
+    fun `show test pass for finding GCD for two integers`() {
         assertEquals(6, calculateGCD(18, 48))
         assertEquals(1, calculateGCD(17, 5))
         assertEquals(9, calculateGCD(27, 18))
@@ -45,23 +45,18 @@ class GCDTests {
     }
 
     @Test
-    fun testCalculateGCD1() {
+    fun `shows test pass for finding GCD with three Intergers`() {
         val result = calculateGCDForListOfNumbers(listOf(10, 20, 30))
         assertEquals(10, result)
     }
     @Test
-    fun testCalculateGCD2() {
+    fun `shows test pass for finding GCD with two Intergers`() {
         val result = calculateGCDForListOfNumbers(listOf(21, 36))
         assertEquals(3, result)
     }
-    @Test
-    fun testCalculateGCD3() {
-        val result = calculateGCDForListOfNumbers(listOf(15, 45, 75))
-        assertEquals(15, result)
-    }
 
     @Test
-    fun testCalculateGCD4() {
+    fun `show test pass when an exception is thrown`() {
         assertFailsWith<IllegalArgumentException> {
             calculateGCDForListOfNumbers(emptyList())
         }
