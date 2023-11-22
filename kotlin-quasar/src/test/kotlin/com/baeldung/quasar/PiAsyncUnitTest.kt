@@ -4,7 +4,6 @@ import co.paralleluniverse.fibers.Fiber
 import co.paralleluniverse.fibers.FiberAsync
 import co.paralleluniverse.fibers.Suspendable
 import co.paralleluniverse.kotlin.fiber
-import co.paralleluniverse.strands.Strand
 import org.junit.Assert
 import org.junit.Test
 import java.math.BigDecimal
@@ -36,7 +35,7 @@ class PiAsync : PiCallback, FiberAsync<BigDecimal, Exception>() {
     }
 }
 
-class PiAsyncTest {
+class PiAsyncUnitTest {
     @Test
     fun testPi() {
         val result = fiber @Suspendable {

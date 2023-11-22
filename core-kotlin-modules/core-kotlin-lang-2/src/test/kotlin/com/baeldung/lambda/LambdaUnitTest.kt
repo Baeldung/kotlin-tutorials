@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class LambdaTest {
+class LambdaUnitTest {
 
     @Test
     fun whenCallingALambda_thenPerformTheAction() {
