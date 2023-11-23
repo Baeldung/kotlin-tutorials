@@ -44,7 +44,7 @@ private const val FIND_BY_ID_QUERY = """
     }
     """
 
-class GraphQLServerConferenceTest {
+class GraphQLServerConferenceIntegrationTest {
 
     @BeforeTest
     fun cleanUp() {

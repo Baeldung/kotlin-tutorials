@@ -10,7 +10,7 @@ import org.junit.AfterClass
 import org.junit.BeforeClass
 import kotlin.test.*
 
-class GraphQLClientTest {
+class GraphQLClientIntegrationTest {
 
     private val graphQLClient = GraphQLClient("http://0.0.0.0:8080/graphql")
 
