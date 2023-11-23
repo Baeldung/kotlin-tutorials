@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test
 import java.text.NumberFormat
 import java.util.*
 import kotlin.test.assertEquals
+import kotlin.test.assertNull
 
 class ConvertStringToFloatUnitTest {
 
@@ -18,7 +19,7 @@ class ConvertStringToFloatUnitTest {
     fun `convert string to float using the toFloatOrNull method`() {
         val myString = "Invalid"
 
-        assertEquals(null, myString.toFloatOrNull())
+        assertNull(myString.toFloatOrNull())
     }
 
     @Test
