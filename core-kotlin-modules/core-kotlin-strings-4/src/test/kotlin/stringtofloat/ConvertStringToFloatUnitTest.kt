@@ -10,10 +10,15 @@ class ConvertStringToFloatUnitTest {
     @Test
     fun `convert string to float using the toFloat method`() {
         val myString = "8.73"
-        val myString2 = "Invalid"
 
         assertEquals(8.73F, myString.toFloat())
-        assertEquals(null, myString2.toFloatOrNull())
+    }
+
+    @Test
+    fun `convert string to float using the toFloatOrNull method`() {
+        val myString = "Invalid"
+
+        assertEquals(null, myString.toFloatOrNull())
     }
 
     @Test
@@ -33,7 +38,7 @@ class ConvertStringToFloatUnitTest {
     }
 
     fun stringToFloatUsingRegex(input: String): Float {
-        val regex = Regex("[+-]?([0-9]*[.])?[0-9]+")
+        val regex = Regex("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)")
         val match = regex.find(input)
         return match?.value?.toFloatOrNull() ?: 0f
     }
