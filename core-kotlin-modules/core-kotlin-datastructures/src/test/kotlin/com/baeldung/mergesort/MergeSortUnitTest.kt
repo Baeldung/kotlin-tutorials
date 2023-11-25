@@ -28,9 +28,9 @@ class MergeSortUnitTest {
 
     @Test
     fun testMergeSortWithLargeArray() {
-        val unsortedArray = IntArray(10000000) { it }
+        val unsortedArray = IntArray(100000) { it }.apply { shuffle() }
         mergeSortInPlace(unsortedArray)
-        val expectedArray = IntArray(10000000) { it }
+        val expectedArray = IntArray(100000) { it }
         assertContentEquals(unsortedArray, expectedArray)
     }
 }
