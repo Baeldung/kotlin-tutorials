@@ -13,5 +13,3 @@ This module contains articles about data structures in Kotlin
 - [Insertion Sort in Kotlin](https://www.baeldung.com/kotlin/insertion-sort)
 - [Merge Sort in Kotlin](https://www.baeldung.com/kotlin/merge-sort)
 - [How to Sort Elements in Lexicographical Order in Kotlin](https://www.baeldung.com/kotlin/lexicographical-sort)
-- [Matrix Addition and Multiplication in Kotlin](https://www.baeldung.com/kotlin/matrix-addition-multiplication)
-- [Insert an Element at a Given Position Into an Array in Kotlin](https://www.baeldung.com/kotlin/array-insert-item-chosen-index)
