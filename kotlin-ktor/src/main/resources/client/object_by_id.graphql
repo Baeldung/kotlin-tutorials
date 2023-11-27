@@ -1,0 +1,17 @@
+query ObjectByIdQuery($id: Int!, $attendeeLimit: Int!){
+    objectById(id: $id) {
+        __typename
+        id
+        ... on Conference {
+            name
+            attendees
+            attendeeObjects(limit: $attendeeLimit) {
+                id
+                name
+            }
+        }
+        ... on Attendee {
+            name
+        }
+    }
+}
