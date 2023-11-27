@@ -35,6 +35,7 @@
         <module>core-kotlin-collections-3</module>
         <module>core-kotlin-collections-4</module>
         <module>core-kotlin-collections-list</module>
+        <module>core-kotlin-collections-list-2</module>
         <module>core-kotlin-collections-map</module>
         <module>core-kotlin-collections-set</module>
         <module>core-kotlin-concurrency</module>
