@@ -46,19 +46,14 @@ class ReverseSentenceUnitTest {
     }
 
     fun reverseWordsInSentenceCustomMethod(sentence: String): String {
-        val sb = StringBuilder()
-        var word = ""
-        for (i in sentence.length - 1 downTo 0) {
-            val ch = sentence[i]
-            if (ch == ' ') {
-                sb.append("$word ")
-                word = ""
-            } else {
-                word = "$ch$word"
-            }
+        val words = sentence.split(" ")
+
+        var reversedStr = ""
+        for (word in words.reversed()) {
+            reversedStr += "$word "
         }
-        sb.append(word)
-        return sb.toString()
+
+        return reversedStr.trim()
     }
 
     fun reverseWordsInSentenceUsingStack(sentence: String): String {
