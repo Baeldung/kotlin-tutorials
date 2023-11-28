@@ -313,6 +313,52 @@
                     </dependency>
                 </dependencies>
             </plugin>
+
+            <plugin>
+                <groupId>org.commonjava.maven.plugins</groupId>
+                <artifactId>directory-maven-plugin</artifactId>
+                <version>${directory-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>directories</id>
+                        <goals>
+                            <goal>directory-of</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <property>rootproject.basedir</property>
+                            <project>
+                                <groupId>com.baeldung</groupId>
+                                <artifactId>kotlin-modules</artifactId>
+                            </project>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>${maven-install-plugin.version}</version>
+                <configuration>
+                    <groupId>com.baeldung</groupId>
+                    <artifactId>ktlint-custom</artifactId>
+                    <version>${ktlint-custom.version}</version>
+                    <packaging>jar</packaging>
+                    <file>${rootproject.basedir}/ktlint-custom-${ktlint-custom.version}.jar</file>
+                    <generatePom>true</generatePom>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>install-jar-lib</id>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <phase>validate</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
 
         <extensions>
@@ -322,6 +368,60 @@
                 <version>${gitflow-incremental-builder.version}</version>
             </extension>
         </extensions>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>
+                                            org.commonjava.maven.plugins
+                                        </groupId>
+                                        <artifactId>
+                                            directory-maven-plugin
+                                        </artifactId>
+                                        <versionRange>
+                                            [0.3.1,)
+                                        </versionRange>
+                                        <goals>
+                                            <goal>directory-of</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore/>
+                                    </action>
+                                </pluginExecution>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>
+                                            org.apache.maven.plugins
+                                        </groupId>
+                                        <artifactId>
+                                            maven-install-plugin
+                                        </artifactId>
+                                        <versionRange>
+                                            [2.5.1,)
+                                        </versionRange>
+                                        <goals>
+                                            <goal>install-file</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore/>
+                                    </action>
+                                </pluginExecution>
+                            </pluginExecutions>
+                        </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
     <modules>
@@ -415,6 +515,9 @@
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
+        <maven-install-plugin.version>3.1.1</maven-install-plugin.version>
+        <ktlint-custom.version>1.0.0-SNAPSHOT</ktlint-custom.version>
+        <directory-maven-plugin.version>1.0</directory-maven-plugin.version>
 
         <gitflow-incremental-builder.version>3.10.1</gitflow-incremental-builder.version>
         <gib.referenceBranch>refs/remotes/origin/master</gib.referenceBranch>
