@@ -138,7 +138,7 @@
                         <phase>compile</phase>
                         <configuration>
                             <target name="ktlint">
-                                <java taskname="ktlint" dir="${basedir}" fork="true" failonerror="false"
+                                <java taskname="ktlint" dir="${basedir}" fork="true" failonerror="true"
                                       classpathref="maven.plugin.classpath" classname="com.pinterest.ktlint.Main">
                                     <arg value="**/*.kt"/>
                                 </java>
@@ -349,6 +349,7 @@
         <module>machine-learning</module>
         <module>spring-boot-kotlin</module>
         <module>spring-boot-kotlin-2</module>
+        <module>spring-boot-crud-kotlin</module>
         <module>spring-boot-test-kotlin</module>
         <module>spring-mvc-kotlin</module>
         <module>spring-reactive-kotlin</module>
@@ -359,6 +360,7 @@
         <module>kotlin-libraries-utils</module>
         <module>kotlin-math</module>
         <module>kotlin-math-2</module>
+        <module>kotlin-spark</module>
     </modules>
 
     <profiles>
@@ -389,7 +391,7 @@
     </profiles>
 
     <properties>
-        <kotlin.version>1.9.10</kotlin.version>
+        <kotlin.version>1.9.20</kotlin.version>
         <kotlinx.version>1.7.1</kotlinx.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

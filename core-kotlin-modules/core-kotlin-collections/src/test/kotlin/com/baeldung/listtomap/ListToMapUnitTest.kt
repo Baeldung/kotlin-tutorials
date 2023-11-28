@@ -3,12 +3,12 @@ package com.baeldung.listtomap
 import org.junit.jupiter.api.Test
 import kotlin.test.assertTrue
 
-class ListToMapTest {
+class ListToMapUnitTest {
 
-    val user1 = User("John", 18, listOf("Hiking, Swimming"))
-    val user2 = User("Sara", 25, listOf("Chess, Board Games"))
-    val user3 = User("Dave", 34, listOf("Games, Racing sports"))
-    val user4 = User("John", 30, listOf("Reading, Poker"))
+    private val user1 = User("John", 18, listOf("Hiking, Swimming"))
+    private val user2 = User("Sara", 25, listOf("Chess, Board Games"))
+    private val user3 = User("Dave", 34, listOf("Games, Racing sports"))
+    private val user4 = User("John", 30, listOf("Reading, Poker"))
 
     @Test
     fun givenList_whenConvertToMap_thenResult() {

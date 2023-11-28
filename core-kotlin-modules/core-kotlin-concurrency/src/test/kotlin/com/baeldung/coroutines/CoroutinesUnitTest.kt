@@ -9,7 +9,7 @@ import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
 
-class CoroutinesTest {
+class CoroutinesUnitTest {
 
     @Test
     fun givenBuildSequence_whenTakeNElements_thenShouldReturnItInALazyWay() {

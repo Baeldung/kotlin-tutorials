@@ -17,13 +17,13 @@ class FlatMapVariationsUnitTest {
     fun whenFlatMapMerge_thenUpStreamNotWaitForDownStream() = runBlocking {
         val result = flow { // flow builder
             for (i in 1..upStreamCount) {
-                delay(1) // pretend we are doing something useful here
+                delay(10) // pretend we are doing something useful here
                 emit(i) // emit next value
             }
         }.flatMapMerge { it ->
             flow {
                 emit(it * 2)
-                delay(2)
+                delay(20)
                 emit(it * 2 + 1)
             }
         }.toList()
@@ -36,13 +36,13 @@ class FlatMapVariationsUnitTest {
     fun whenFlatMapConcat_thenUpStreamWaitForDownStream() = runBlocking {
         val result = flow { // flow builder
             for (i in 1..upStreamCount) {
-                delay(1) // pretend we are doing something useful here
+                delay(10) // pretend we are doing something useful here
                 emit(i) // emit next value
             }
         }.flatMapConcat { it ->
             flow {
                 emit(it * 2)
-                delay(2)
+                delay(20)
                 emit(it * 2 + 1)
             }
         }.toList()
@@ -55,13 +55,13 @@ class FlatMapVariationsUnitTest {
     fun whenFlattenConcat_thenUpStreamWaitForDownStream() = runBlocking {
         val result = flow { // flow builder
             for (i in 1..upStreamCount) {
-                delay(1) // pretend we are doing something useful here
+                delay(10) // pretend we are doing something useful here
                 emit(i) // emit next value
             }
         }.map { it ->
             flow {
                 emit(it * 2)
-                delay(2)
+                delay(20)
                 emit(it * 2 + 1)
             }
         }.flattenConcat()
@@ -75,13 +75,13 @@ class FlatMapVariationsUnitTest {
     fun whenFlatMapLatest_thenUpStreamEmitCancelDownStream() = runBlocking {
         val result = flow { // flow builder
             for (i in 1..upStreamCount) {
-                delay(1) // pretend we are doing something useful here
+                delay(10) // pretend we are doing something useful here
                 emit(i) // emit next value
             }
         }.flatMapLatest { it ->
             flow {
                 emit(it * 2)
-                delay(2)
+                delay(20)
                 emit(it * 2 + 1)
             }
         }.toList()
