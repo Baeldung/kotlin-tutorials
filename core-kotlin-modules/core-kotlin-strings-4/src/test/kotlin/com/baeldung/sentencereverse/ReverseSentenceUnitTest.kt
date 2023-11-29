@@ -15,7 +15,7 @@ class ReverseSentenceUnitTest {
     @Test
     fun `reverse sentence using split and joinToString methods`() {
         val sentence = "this is a complete sentence"
-        assertEquals("sentence complete a is this", reverseSentenceUsingSplitAndJointToStringMethod(sentence))
+        assertEquals("sentence complete a is this", reverseSentenceUsingReverseAndJoinToStringMethods(sentence))
     }
 
     @Test
@@ -35,7 +35,7 @@ class ReverseSentenceUnitTest {
         assertEquals("this is a complete sentence", reverseWordsInSentence("sentence complete a is this"))
     }
 
-    fun reverseSentenceUsingSplitAndJointToStringMethod(sentence: String): String {
+    fun reverseSentenceUsingReverseAndJoinToStringMethods(sentence: String): String {
         val words = sentence.split(" ")
         return words.reversed().joinToString(" ")
     }
@@ -48,12 +48,13 @@ class ReverseSentenceUnitTest {
     fun reverseWordsInSentenceCustomMethod(sentence: String): String {
         val words = sentence.split(" ")
 
-        var reversedStr = ""
-        for (word in words.reversed()) {
-            reversedStr += "$word "
+        val reversedStringBuilder = StringBuilder()
+
+        for (word in words) {
+            reversedStringBuilder.insert(0, "$word ")
         }
 
-        return reversedStr.trim()
+        return reversedStringBuilder.toString().trim()
     }
 
     fun reverseWordsInSentenceUsingStack(sentence: String): String {
