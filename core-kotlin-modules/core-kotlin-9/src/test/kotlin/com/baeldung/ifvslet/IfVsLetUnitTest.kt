@@ -12,7 +12,7 @@ class IfVsLetUnitTest {
         val name = fetchNullNameFromDatabase()
         val uppercased = name?.let { it.uppercase() }
 
-            assertNull(uppercased)
+        assertNull(uppercased)
     }
 
     @Test
@@ -20,7 +20,7 @@ class IfVsLetUnitTest {
         val name = fetchNameFromDatabase()
         val uppercased = name?.let { it.uppercase() }
 
-            assertEquals("NAME", uppercased)
+        assertEquals("NAME", uppercased)
     }
 
     @Test
@@ -28,7 +28,7 @@ class IfVsLetUnitTest {
         val name = fetchNullNameFromDatabase()
         val uppercased = if(name != null) name.uppercase() else null
 
-            assertNull(uppercased)
+        assertNull(uppercased)
     }
 
     @Test
@@ -36,7 +36,7 @@ class IfVsLetUnitTest {
         val name = fetchNameFromDatabase()
         val uppercased = if(name != null) name.uppercase() else null
 
-            assertEquals("NAME", uppercased)
+        assertEquals("NAME", uppercased)
     }
 
     fun fetchNameFromDatabase(): String? = "name"
