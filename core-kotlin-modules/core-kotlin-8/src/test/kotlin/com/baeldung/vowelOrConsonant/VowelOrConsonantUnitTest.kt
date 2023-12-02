@@ -1,12 +1,13 @@
 package com.baeldung.vowelOrConsonant
 
 import org.junit.jupiter.api.Test
-import kotlin.test.assertTrue
 import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 class VowelOrConsonantUnitTest {
-    val isLetterRegex = "[a-zA-Z]".toRegex()
-    val isVowelLetterRegex = "[AEIOUaeiou]".toRegex()
+    private val isLetterRegex = "[a-zA-Z]".toRegex()
+    private val isVowelLetterRegex = "[AEIOUaeiou]".toRegex()
+
     @Test
     fun `using when expression`() {
         assertTrue(isVowel('e'))
@@ -20,15 +21,15 @@ class VowelOrConsonantUnitTest {
     }
 
     @Test
-    fun `using Map method`() {
-        assertTrue(isVowelUsingMap('e'))
-        assertTrue(isVowelUsingMap('I'))
-        assertTrue(isVowelUsingMap('o'))
-        assertFalse(isConsonantUsingMap('o'))
-        assertFalse(isVowelUsingMap('H'))
-        assertTrue(isConsonantUsingMap('H'))
-        assertFalse(isVowelUsingMap('@'))
-        assertFalse(isConsonantUsingMap('@'))
+    fun `using Set method`() {
+        assertTrue(isVowelUsingSet('e'))
+        assertTrue(isVowelUsingSet('I'))
+        assertTrue(isVowelUsingSet('o'))
+        assertFalse(isConsonantUsingSet('o'))
+        assertFalse(isVowelUsingSet('H'))
+        assertTrue(isConsonantUsingSet('H'))
+        assertFalse(isVowelUsingSet('@'))
+        assertFalse(isConsonantUsingSet('@'))
     }
 
     @Test
@@ -42,21 +43,22 @@ class VowelOrConsonantUnitTest {
         assertFalse(isVowelUsingRegexMethod('@'))
         assertFalse(isConsonantUsingRegex('@'))
     }
+
     @Test
     fun `using ASCII values method`() {
-        assertTrue(isVowelUsingAsciiValues('E'))
-        assertTrue(isVowelUsingAsciiValues('I'))
-        assertTrue(isVowelUsingAsciiValues('o'))
-        assertFalse(isConsonantUsingAscii('o'))
-        assertFalse(isVowelUsingAsciiValues('H'))
-        assertTrue(isConsonantUsingAscii('H'))
-        assertFalse(isVowelUsingAsciiValues('@'))
-        assertFalse(isConsonantUsingAscii('@'))
+        assertTrue(isVowelUsingAsciiValues('E'.code))
+        assertTrue(isVowelUsingAsciiValues('I'.code))
+        assertTrue(isVowelUsingAsciiValues('o'.code))
+        assertFalse(isConsonantUsingAscii('o'.code))
+        assertFalse(isVowelUsingAsciiValues('H'.code))
+        assertTrue(isConsonantUsingAscii('H'.code))
+        assertFalse(isVowelUsingAsciiValues('@'.code))
+        assertFalse(isConsonantUsingAscii('@'.code))
     }
 
     fun isVowel(c: Char): Boolean {
-        return when (c) {
-            'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' -> true
+        return when (c.lowercaseChar()) {
+            'a', 'e', 'i', 'o', 'u' -> true
             else -> false
         }
     }
@@ -65,18 +67,12 @@ class VowelOrConsonantUnitTest {
         return !isVowel(c) && c.isLetter()
     }
 
-    fun isVowelUsingMap(c: Char): Boolean {
-        val vowels = mapOf(
-            'a' to true,
-            'e' to true,
-            'i' to true,
-            'o' to true,
-            'u' to true )
-        return vowels.containsKey(c.lowercaseChar())
+    fun isVowelUsingSet(c: Char): Boolean {
+        return c.lowercaseChar() in setOf('a', 'e', 'i', 'o', 'u')
     }
 
-    fun isConsonantUsingMap(c: Char): Boolean {
-        return !isVowelUsingMap(c) && c.isLetter()
+    fun isConsonantUsingSet(c: Char): Boolean {
+        return !isVowelUsingSet(c) && c.isLetter()
     }
 
     fun isVowelUsingRegexMethod(c: Char): Boolean {
@@ -87,13 +83,11 @@ class VowelOrConsonantUnitTest {
         return !isVowelUsingRegexMethod(c) && c.toString().matches(isLetterRegex)
     }
 
-    fun isVowelUsingAsciiValues(c: Char): Boolean {
-        val ascii = c.code
-        return ascii == 65 || ascii == 69 || ascii == 73 || ascii == 79 || ascii == 85 || ascii == 97 || ascii == 101 || ascii == 105 || ascii == 111 || ascii == 117
+    fun isVowelUsingAsciiValues(asciiCode: Int): Boolean {
+        return asciiCode in setOf(65, 69, 73, 79, 85, 97, 101, 105, 111, 117)
     }
 
-    fun isConsonantUsingAscii(c: Char): Boolean {
-        val ascii = c.code
-        return (ascii in 65..90 || ascii in 97..122) && !isVowelUsingAsciiValues(c)
+    fun isConsonantUsingAscii(asciiCode: Int): Boolean {
+        return (asciiCode in 65..90 || asciiCode in 97..122) && !isVowelUsingAsciiValues(asciiCode)
     }
 }
