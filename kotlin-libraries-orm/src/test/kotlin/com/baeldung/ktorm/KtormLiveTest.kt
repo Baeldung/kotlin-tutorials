@@ -38,7 +38,7 @@ class KtormLiveTest {
         .withCopyToContainer(MountableFile.forClasspathResource("/com/baeldung/ktorm/ktorm_domain.sql"), "/docker-entrypoint-initdb.d/1.sql")
 
     @Test
-    fun testBasicSelection() {
+    fun `Uses SQL DSL to create a basic selection query`() {
         val database = connect()
         database.prepareTablesData()
 
@@ -50,7 +50,7 @@ class KtormLiveTest {
     }
 
     @Test
-    fun testConditionalSelection() {
+    fun `Uses SQL DSL to create a conditional selection query`() {
         val database = connect()
         database.prepareTablesData()
 
@@ -63,7 +63,7 @@ class KtormLiveTest {
     }
 
     @Test
-    fun testConditionalSelectionWithMultipleCriteria() {
+    fun `Uses SQL DSL to create a conditional selection query using multiple filtering criteria`() {
         val database = connect()
         database.prepareTablesData()
 
@@ -72,14 +72,14 @@ class KtormLiveTest {
             .select(ordersTable.id, ordersTable.card, ordersTable.amount)
             .whereWithConditions {
                 it += (ordersTable.itemId eq 1)
-                it += (ordersTable.customerId eq 2)
+                it += (ordersTable.customerId eq 1)
             }
 
-        assertEquals(0, query.totalRecordsInAllPages)
+        assertEquals(1, query.totalRecordsInAllPages)
     }
 
     @Test
-    fun testJoin() {
+    fun `Uses SQL DSL to join multiple tables`() {
         val database = connect()
         database.prepareTablesData()
 
@@ -89,11 +89,11 @@ class KtormLiveTest {
             .innerJoin(itemsTable, on = ordersTable.itemId eq itemsTable.id )
             .select(ordersTable.id, customersTable.email, itemsTable.description)
 
-        assertEquals(10, query.totalRecordsInAllPages)
+        assertEquals(1, query.totalRecordsInAllPages)
     }
 
     @Test
-    fun testAggregation() {
+    fun `Uses SQL DSL to create a query for data aggregation`() {
         val database = connect()
         database.prepareTablesData()
 
@@ -103,13 +103,13 @@ class KtormLiveTest {
             .innerJoin(itemsTable, on = ordersTable.itemId eq itemsTable.id )
             .select(customersTable.id, itemsTable.id, sum(ordersTable.amount).aliased("item_sales"))
             .groupBy(customersTable.id, itemsTable.id)
-            .having(itemsTable.id gt 1)
+            .having(itemsTable.id eq 1)
 
-        assertEquals(9, query.totalRecordsInAllPages)
+        assertEquals(1, query.totalRecordsInAllPages)
     }
 
     @Test
-    fun testEntitiesRetrieval() {
+    fun `Uses Entity API to retrieve the list of Orders`() {
         val database = connect()
         database.prepareEntities()
 
@@ -121,7 +121,7 @@ class KtormLiveTest {
     }
 
     @Test
-    fun testFilteredEntitiesRetrieval() {
+    fun `Uses Entity API to filter Order entities`() {
         val database = connect()
         database.prepareEntities()
 
@@ -134,7 +134,7 @@ class KtormLiveTest {
     }
 
     @Test
-    fun testMultiFilteredEntitiesRetrieval() {
+    fun `Uses Entity API to filter Order entities using multiple criteria`() {
         val database = connect()
         database.prepareEntities()
 
@@ -167,9 +167,9 @@ class KtormLiveTest {
         }
 
         bulkInsertOrUpdate(customersTable) {
-            (1..10).forEach { idx ->
+            (1..10).forEach { _ ->
                 item {
-                    set(it.email, "testuser$idx@example.com")
+                    set(it.email, "testuser@example.com")
                 }
 
                 onDuplicateKey { set(it.email, it.email) }
@@ -198,9 +198,14 @@ class KtormLiveTest {
             items.add(item)
         }
 
-        (1..10).forEach { idx ->
-            val customer = Customer {
-                email = "testuser$idx@example.com"
+        var customer = customers.find {
+            it.email eq "testuser@example.com"
+        }
+
+        if (customer == null) {
+
+            customer = Customer {
+                email = "testuser@example.com"
             }
 
             customers.add(customer)
@@ -209,7 +214,6 @@ class KtormLiveTest {
         (1..10).forEach { idx ->
             val order = Order()
             val item = items.find { it.id eq idx } ?: items.first()
-            val customer = customers.find { it.id eq idx } ?: customers.first()
             order.item = item
             order.customer = customer
             order.amount = 100.20.toBigDecimal()
