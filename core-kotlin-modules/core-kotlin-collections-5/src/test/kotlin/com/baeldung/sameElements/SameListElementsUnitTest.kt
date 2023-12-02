@@ -8,53 +8,53 @@ import kotlin.test.assertFalse
 class SameListElementsUnitTest {
     @Test
     fun `test all elements are same using all method`() {
-        val list = listOf(3, 3, 3)
+        val list1 = listOf(3, 3, 3)
         val list2 = listOf(2,3,4)
         val list3 = emptyList<Int>()
-        assertTrue(areAllElementsSameUsingAllMethod(list))
+        assertTrue(areAllElementsSameUsingAllMethod(list1))
         assertFalse(areAllElementsSameUsingAllMethod(list2))
         assertTrue(areAllElementsSameUsingAllMethod(list3))
     }
 
     @Test
     fun `test all elements are same using for loop`() {
-        val list = listOf(3, 3, 3)
+        val list1 = listOf(3, 3, 3)
         val list2 = listOf(2,3,4)
         val list3 = emptyList<Int>()
-        assertTrue(areAllElementsSameUsingForLoop(list))
+        assertTrue(areAllElementsSameUsingForLoop(list1))
         assertFalse(areAllElementsSameUsingForLoop(list2))
         assertTrue(areAllElementsSameUsingForLoop(list3))
     }
 
     @Test
     fun `test all elements are same using distinct method`() {
-        val list = listOf(3, 3, 3)
+        val list1 = listOf(3, 3, 3)
         val list2 = listOf(2,3,4)
         val list3 = emptyList<Int>()
 
-        assertTrue(areAllElementsSameUsingDistinctMethod(list))
+        assertTrue(areAllElementsSameUsingDistinctMethod(list1))
         assertFalse(areAllElementsSameUsingDistinctMethod(list2))
         assertTrue(areAllElementsSameUsingDistinctMethod(list3))
     }
 
     @Test
     fun `test all elements are same using set method`() {
-        val list = listOf(3, 3, 3)
+        val list1 = listOf(3, 3, 3)
         val list2 = listOf(2,3,4)
         val list3 = emptyList<Int>()
 
-        assertTrue(areAllElementsSameUsingSetMethod(list))
+        assertTrue(areAllElementsSameUsingSetMethod(list1))
         assertFalse(areAllElementsSameUsingSetMethod(list2))
         assertTrue(areAllElementsSameUsingSetMethod(list3))
     }
 
     @Test
     fun `test all elements are same using count method`() {
-        val list = listOf(3, 3, 3)
+        val list1 = listOf(3, 3, 3)
         val list2 = listOf(2,3,4)
         val list3 = emptyList<Int>()
 
-        assertTrue(areAllElementsSameUsingCountMethod(list))
+        assertTrue(areAllElementsSameUsingCountMethod(list1))
         assertFalse(areAllElementsSameUsingCountMethod(list2))
         assertTrue(areAllElementsSameUsingCountMethod(list3))
     }
@@ -73,10 +73,10 @@ class SameListElementsUnitTest {
     }
 
     fun areAllElementsSameUsingDistinctMethod(list: List<Int>) =
-        ( list.distinct().size == 1 || list.distinct().isEmpty())
+         list.distinct().size <= 1
 
     fun areAllElementsSameUsingSetMethod(list: List<Any>): Boolean {
-        return list.toSet().size == 1 || list.toSet().isEmpty()
+        return list.toSet().size <= 1
     }
 
     fun areAllElementsSameUsingCountMethod(list: List<Any>): Boolean {
