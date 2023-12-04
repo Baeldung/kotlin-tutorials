@@ -22,13 +22,13 @@
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-datetime-jvm</artifactId>
-            <version>${kotlinx.datetime.jvm.version}</version>
+            <version>${kotlinx-datetime.version}</version>
         </dependency>
     </dependencies>
 
     <properties>
         <joda-time.version>2.12.1</joda-time.version>
-        <kotlinx.datetime.jvm.version>0.3.2</kotlinx.datetime.jvm.version>
+        <kotlinx-datetime.version>0.4.0</kotlinx-datetime.version>
     </properties>
 
 </project>
