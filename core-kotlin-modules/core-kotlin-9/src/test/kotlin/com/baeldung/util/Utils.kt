@@ -41,7 +41,3 @@ class  UtilTests{
         assertTrue("A man a plan a canal Panama".isPalindrome())
     }
 }
-
-
-
-
