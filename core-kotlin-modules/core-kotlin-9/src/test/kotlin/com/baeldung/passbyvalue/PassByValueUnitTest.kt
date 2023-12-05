@@ -19,9 +19,10 @@ class PassByValueUnitTest {
     fun `test using pass by reference`() {
         val obj = SomeObj()
         obj.x = 10
-        assertEquals(obj.x, 10) // before modify
+        assertEquals(10, obj.x) // before modify
+
         modifyObject(obj)
-        assertEquals(obj.x, 3) // after modify
+        assertEquals(3, obj.x) // after modify
     }
 
     @Test
