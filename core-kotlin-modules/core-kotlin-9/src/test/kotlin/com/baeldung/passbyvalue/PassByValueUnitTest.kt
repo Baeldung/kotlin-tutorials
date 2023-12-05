@@ -7,11 +7,11 @@ class PassByValueUnitTest {
 
     data class SomeObj(var x: Int = 0)
 
-    fun modifyObject(o: SomeObj) {
+    private fun modifyObject(o: SomeObj) {
         o.x = 3
     }
 
-    fun modifyValue(value: Int): Int {
+    private fun modifyValue(value: Int): Int {
         return value + 10
     }
 
@@ -26,7 +26,7 @@ class PassByValueUnitTest {
 
     @Test
     fun `test using pass-by-value`(){
-        var num = 5
+        val num = 5
         val modifiedNum = modifyValue(num)
         assertEquals(5, num)
         assertEquals(15, modifiedNum)
