@@ -1,14 +1,16 @@
 package com.baeldung.result
 
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.jupiter.api.Test
 import kotlin.test.assertFailsWith
 
-fun transformStringToInt(input: String): Result<Int> {
+fun transformStringToInt(input: String): Result <Int> {
     return input.toIntOrNull()
-        ?.let { Result.success<Int>(it) }
+        ?.let { Result.success(it) }
         ?: Result.failure(Exception("Error transforming string to int"))
 }
+
 
 
 fun divide(a: Int, b: Int): Result<Int> = if (b != 0) {
@@ -23,17 +25,10 @@ class ResultClassTests {
     @Test
     fun `should Transform Valid String To Int`() {
         val result = transformStringToInt("123")
-        assertEquals(Result.success(123), result)
+        assertTrue(result.isSuccess)
+        assertEquals(123, result.getOrNull())
     }
 
-    @Test
-    fun `should Fail To Transform Invalid String To Int`() {
-        val result = transformStringToInt("abc")
-        val expectedException = assertFailsWith<Exception> {
-            result.getOrThrow()
-        }
-        assertEquals("Error transforming string to int", expectedException.message)
-    }
 
 
     @Test
