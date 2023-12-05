@@ -19,9 +19,9 @@ class PassByValueTest {
     fun `test using pass by reference`() {
         val obj = SomeObj()
         obj.x = 10
-        Assertions.assertEquals(obj.x, 10)
+        Assertions.assertEquals(obj.x, 10) // before modify
         modifyObject(obj)
-        Assertions.assertEquals(obj.x, 3)
+        Assertions.assertEquals(obj.x, 3) // after modify
     }
 
     @Test
