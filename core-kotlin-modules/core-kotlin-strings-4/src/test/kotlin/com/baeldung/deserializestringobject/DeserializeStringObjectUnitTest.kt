@@ -35,7 +35,6 @@ class DeserializeStringObjectUnitTest {
         val name = jsonObject["name"]?.jsonPrimitive?.content
         val city = jsonObject["city"]?.jsonPrimitive?.content
         val age = jsonObject["age"]?.jsonPrimitive?.content
-        val mine = jsonObject["mine"]?.jsonPrimitive?.content
 
 
         assertEquals("John", name)
