@@ -29,12 +29,13 @@ class DeserializeStringObjectUnitTest {
 
     @Test
     fun `deserialize Json object to string using Kotlinx serialization`(){
-        val json = Json { }
+        val json = Json { ignoreUnknownKeys = true }
         val jsonString = "{\"name\":\"John\", \"age\":30, \"city\":\"New York\"}"
         val jsonObject = json.parseToJsonElement(jsonString).jsonObject
         val name = jsonObject["name"]?.jsonPrimitive?.content
         val city = jsonObject["city"]?.jsonPrimitive?.content
         val age = jsonObject["age"]?.jsonPrimitive?.content
+        val mine = jsonObject["mine"]?.jsonPrimitive?.content
 
 
         assertEquals("John", name)
