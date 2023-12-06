@@ -16,6 +16,10 @@ class CheckAlphabetUnitTest {
         assertFalse('4'.isLetter())
         assertFalse('.'.isLetter())
         assertFalse('*'.isLetter())
+
+        assertTrue('\u03B2'.isLetter()) // <-- Unicode char: β
+        assertFalse('\u2167'.isLetter()) // <-- Unicode Roman number: Ⅷ (Nl category)
+
     }
 
     @Test
@@ -28,6 +32,9 @@ class CheckAlphabetUnitTest {
         assertFalse(usingRangeMethod('4'))
         assertFalse(usingRangeMethod('.'))
         assertFalse(usingRangeMethod('*'))
+
+        assertFalse(usingRangeMethod('\u03B2')) //  β
+        assertFalse(usingRangeMethod('\u2167')) // Ⅷ
     }
 
     @Test
@@ -40,6 +47,9 @@ class CheckAlphabetUnitTest {
         assertFalse(usingRegexMethod('4'))
         assertFalse(usingRegexMethod('.'))
         assertFalse(usingRegexMethod('*'))
+
+        assertFalse(usingRegexMethod('\u03B2')) //  β
+        assertFalse(usingRegexMethod('\u2167')) // Ⅷ
     }
 
     @Test
@@ -52,6 +62,9 @@ class CheckAlphabetUnitTest {
         assertFalse(Character.isAlphabetic('4'.code))
         assertFalse(Character.isAlphabetic('.'.code))
         assertFalse(Character.isAlphabetic('*'.code))
+
+        assertTrue(Character.isAlphabetic('\u03B2'.code)) //  β
+        assertTrue(Character.isAlphabetic('\u2167'.code)) // Ⅷ
     }
 
     @Test
@@ -64,6 +77,9 @@ class CheckAlphabetUnitTest {
         assertFalse(usingAsciiValues('4'))
         assertFalse(usingAsciiValues('.'))
         assertFalse(usingAsciiValues('*'))
+
+        assertFalse(usingAsciiValues('\u03B2')) //  β
+        assertFalse (usingAsciiValues('\u2167')) // Ⅷ
     }
 
     fun usingRangeMethod(ch: Char): Boolean {
