@@ -16,7 +16,7 @@ class PassByValueUnitTest {
     }
 
     @Test
-    fun `test using pass by reference`() {
+    fun `Test using pass by reference`() {
         val obj = SomeObj()
         obj.x = 10
         assertEquals(10, obj.x) // before modify
@@ -26,7 +26,7 @@ class PassByValueUnitTest {
     }
 
     @Test
-    fun `test using pass-by-value`(){
+    fun `Test using pass-by-value`(){
         val num = 5
         val modifiedNum = modifyValue(num)
         assertEquals(5, num)
