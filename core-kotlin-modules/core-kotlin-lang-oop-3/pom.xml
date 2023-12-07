@@ -31,4 +31,8 @@
             </plugin>
         </plugins>
     </build>
+
+    <properties>
+        <kotlin.version>1.9.0</kotlin.version>
+    </properties>
 </project>

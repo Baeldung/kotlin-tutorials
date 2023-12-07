@@ -3,7 +3,7 @@ package com.baeldung.kotlin;
 import org.junit.Test
 import org.mockito.Mockito
 
-class LibraryManagementTest {
+class LibraryManagementUnitTest {
     @Test(expected = IllegalStateException::class)
     fun whenBookIsNotAvailable_thenAnExceptionIsThrown() {
         val mockBookService = Mockito.mock(BookService::class.java)

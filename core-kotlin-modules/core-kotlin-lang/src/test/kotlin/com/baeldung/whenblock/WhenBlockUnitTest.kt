@@ -1,11 +1,29 @@
 package com.baeldung.whenblock
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
+import com.baeldung.whenblock.WhenBlockMultipleStatements.isPositiveInt
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestInstance
+import java.io.ByteArrayOutputStream
+import java.io.PrintStream
 import kotlin.test.assertFailsWith
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class WhenBlockUnitTest {
+
+    private val outputStream = ByteArrayOutputStream()
+
+    @BeforeAll
+    fun setUp() {
+        System.setOut(PrintStream(outputStream))
+    }
+
+    @AfterEach
+    fun tearDown() {
+        outputStream.reset()
+    }
 
     @Test
     fun testWhenExpression() {
@@ -34,7 +52,7 @@ class WhenBlockUnitTest {
 
     @Test
     fun testWhenExpressionWithThrowException() {
-		assertFailsWith(IllegalArgumentException::class) {
+        assertFailsWith(IllegalArgumentException::class) {
             val fileType = UnixFileType.L
 
             val result: Boolean = when (fileType) {
@@ -135,6 +153,33 @@ class WhenBlockUnitTest {
         }
 
         assertEquals("Test Content", result)
+    }
+
+    @Test
+    fun testPositiveIntWithZero() {
+        val givenNumber = 0
+        val expectedOutput = "number is zero.\nIt's neither positive nor negative."
+        val isPositive = isPositiveInt(givenNumber)
+        assertFalse(isPositive)
+        assertEquals(expectedOutput, outputStream.toString())
+    }
+
+    @Test
+    fun testPositiveIntWithNegativeValue() {
+        val givenNumber = -5
+        val expectedOutput = "number is negative"
+        val isPositive = isPositiveInt(givenNumber)
+        assertFalse(isPositive)
+        assertEquals(expectedOutput, outputStream.toString())
+    }
+
+    @Test
+    fun testPositiveIntWithPositiveValue() {
+        val givenNumber = 10
+        val expectedOutput = "number is positive"
+        val isPositive = isPositiveInt(givenNumber)
+        assertTrue(isPositive)
+        assertEquals(expectedOutput, outputStream.toString())
     }
 
 }

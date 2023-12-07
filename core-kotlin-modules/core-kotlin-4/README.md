@@ -10,3 +10,4 @@
 - [Idiomatic Way to Treat Nullable Values](https://www.baeldung.com/kotlin/idiomatic-nullable-values)
 - [Use of Boolean? in Kotlin if Statement](https://www.baeldung.com/kotlin/boolean-in-if-statement)
 - [Convert Long to Int](https://www.baeldung.com/kotlin/long-to-int)
+- More articles: [[<-- prev]](../core-kotlin-3) [[next -->]](../core-kotlin-5)

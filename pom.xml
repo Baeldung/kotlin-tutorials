@@ -21,14 +21,18 @@
         </repository>
         <repository>
             <id>kotlin-eap</id>
-            <url>http://dl.bintray.com/kotlin/kotlin-eap</url>
+            <url>https://dl.bintray.com/kotlin/kotlin-eap/</url>
+        </repository>
+        <repository>
+            <id>maven-central</id>
+            <url>https://repo1.maven.org/maven2</url>
         </repository>
     </repositories>
 
     <pluginRepositories>
         <pluginRepository>
             <id>kotlin-eap</id>
-            <url>http://dl.bintray.com/kotlin/kotlin-eap</url>
+            <url>https://dl.bintray.com/kotlin/kotlin-eap/</url>
         </pluginRepository>
     </pluginRepositories>
 
@@ -118,18 +122,62 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20230227</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jetbrains.kotlinx</groupId>
-            <artifactId>kotlinx-serialization-json</artifactId>
-            <version>${serialization.version}</version>
+            <version>20231013</version>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>ktlint</id>
+                        <phase>compile</phase>
+                        <configuration>
+                            <target name="ktlint">
+                                <java taskname="ktlint" dir="${basedir}" fork="true" failonerror="true"
+                                      classpathref="maven.plugin.classpath" classname="com.pinterest.ktlint.Main">
+                                    <arg value="**/*.kt"/>
+                                </java>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>ktlint-format</id>
+                        <configuration>
+                            <target name="ktlint">
+                                <java taskname="ktlint" dir="${basedir}" fork="true" failonerror="false"
+                                      classpathref="maven.plugin.classpath" classname="com.pinterest.ktlint.Main">
+                                    <arg value="-F"/>
+                                    <arg value="**/*.kt"/>
+                                </java>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.pinterest.ktlint</groupId>
+                        <artifactId>ktlint-cli</artifactId>
+                        <version>1.0.1</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.baeldung</groupId>
+                        <artifactId>ktlint-custom</artifactId>
+                        <version>1.0.0-SNAPSHOT</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
@@ -257,11 +305,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <compilerPlugins>
-                        <plugin>kotlinx-serialization</plugin>
-                    </compilerPlugins>
-                </configuration>
                 <dependencies>
                     <dependency>
                         <groupId>org.jetbrains.kotlin</groupId>
@@ -270,6 +313,52 @@
                     </dependency>
                 </dependencies>
             </plugin>
+
+            <plugin>
+                <groupId>org.commonjava.maven.plugins</groupId>
+                <artifactId>directory-maven-plugin</artifactId>
+                <version>${directory-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>directories</id>
+                        <goals>
+                            <goal>directory-of</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <property>rootproject.basedir</property>
+                            <project>
+                                <groupId>com.baeldung</groupId>
+                                <artifactId>kotlin-modules</artifactId>
+                            </project>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>${maven-install-plugin.version}</version>
+                <configuration>
+                    <groupId>com.baeldung</groupId>
+                    <artifactId>ktlint-custom</artifactId>
+                    <version>${ktlint-custom.version}</version>
+                    <packaging>jar</packaging>
+                    <file>${rootproject.basedir}/ktlint-custom-${ktlint-custom.version}.jar</file>
+                    <generatePom>true</generatePom>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>install-jar-lib</id>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <phase>validate</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
 
         <extensions>
@@ -279,10 +368,14 @@
                 <version>${gitflow-incremental-builder.version}</version>
             </extension>
         </extensions>
+
     </build>
 
     <modules>
         <module>parent-boot-2</module>
+        <module>parent-boot-3</module>
+
+        <module>ktlint-custom</module>
 
         <module>core-kotlin-modules</module>
         <module>core-kotlin-companion</module>
@@ -290,23 +383,31 @@
         <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
         <module>kotlin-json</module>
         <module>kotlin-lambda</module>
+        <!-- <module>kotlin-multiplatform-mobile</module> not included becasue written in gradle-->
         <!-- <module>kotlin-tornadofx</module> --> <!-- not compatible with Java 9+ -->
         <module>kotlin-libraries</module>
         <module>kotlin-libraries-2</module>
         <module>kotlin-libraries-http</module>
         <module>kotlin-patterns</module>
         <module>kotlin-quasar</module>
+        <module>kotlin-reflection</module>
         <module>kotlin-testing</module>
         <module>kotlin-testing-2</module>
         <module>machine-learning</module>
         <module>spring-boot-kotlin</module>
         <module>spring-boot-kotlin-2</module>
+        <module>spring-boot-crud-kotlin</module>
         <module>spring-boot-test-kotlin</module>
         <module>spring-mvc-kotlin</module>
         <module>spring-reactive-kotlin</module>
         <module>spring-security-kotlin-dsl</module>
         <module>kotlin-immutable-collections</module>
         <module>kotlin-logging</module>
+        <module>kotlin-libraries-data</module>
+        <module>kotlin-libraries-utils</module>
+        <module>kotlin-math</module>
+        <module>kotlin-math-2</module>
+        <module>kotlin-spark</module>
     </modules>
 
     <profiles>
@@ -337,8 +438,8 @@
     </profiles>
 
     <properties>
-        <kotlin.version>1.8.20</kotlin.version>
-        <kotlinx.version>1.6.4</kotlinx.version>
+        <kotlin.version>1.9.20</kotlin.version>
+        <kotlinx.version>1.7.1</kotlinx.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -361,6 +462,9 @@
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
+        <maven-install-plugin.version>3.1.1</maven-install-plugin.version>
+        <ktlint-custom.version>1.0.0-SNAPSHOT</ktlint-custom.version>
+        <directory-maven-plugin.version>1.0</directory-maven-plugin.version>
 
         <gitflow-incremental-builder.version>3.10.1</gitflow-incremental-builder.version>
         <gib.referenceBranch>refs/remotes/origin/master</gib.referenceBranch>

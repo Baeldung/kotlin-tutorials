@@ -10,3 +10,7 @@ This module contains articles about advanced topics in Kotlin.
 - [How to Serialize Arrays in Kotlin With Kotlinx.serialization](https://www.baeldung.com/kotlin/kotlinx-serialization)
 - [Using the Gson TypeToken in Kotlin](https://www.baeldung.com/kotlin/gson-typetoken)
 - [Kotlin Generic Inline Classes](https://www.baeldung.com/kotlin/generic-inline-classes)
+- [Callback Functions in Kotlin](https://www.baeldung.com/kotlin/callback-functions)
+- [Resolving Kotlin Error: ‘public’ function exposes its ‘public/*package*/’ return type](https://www.baeldung.com/kotlin/public-function-exposes-its-public-package-return-type)
+- [Functional Error Handling in Kotlin](https://www.baeldung.com/kotlin/functional-error-handling)
+- [Converting Callback Methods to Coroutines in Kotlin](https://www.baeldung.com/kotlin/callbacks-coroutines-conversion)

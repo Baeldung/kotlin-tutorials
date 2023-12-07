@@ -8,7 +8,7 @@ repositories {
     mavenCentral()
 }
 
-val testcontainersVersion = "1.17.6"
+val testcontainersVersion = "1.19.3"
 val kafkaApiVersion = "3.3.1"
 dependencies {
     implementation("org.apache.kafka:kafka-clients:$kafkaApiVersion")

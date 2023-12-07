@@ -1,0 +1,11 @@
+query ConferenceByIdQuery($id: Int!, $attendeeLimit: Int!) {
+    conferenceById(id: $id) {
+        id
+        name
+        attendees
+        attendeeObjects(limit: $attendeeLimit) {
+            id
+            name
+        }
+    }
+}

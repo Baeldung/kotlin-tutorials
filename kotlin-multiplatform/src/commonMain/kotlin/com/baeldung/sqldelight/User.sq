@@ -1,0 +1,18 @@
+
+
+CREATE TABLE IF NOT EXISTS user (
+    id INTEGER PRIMARY KEY,
+    first_name TEXT NOT NULL,
+    last_name TEXT UNIQUE,
+    email_address TEXT
+);
+
+SelectAll:
+SELECT * FROM user;
+SelectUserById:
+SELECT * FROM user WHERE id = ?;
+InsertUser:
+INSERT INTO user(first_name, last_name, email_address)
+VALUES (?, ?, ?);
+DeleteUser:
+DELETE FROM contact WHERE id = ?;

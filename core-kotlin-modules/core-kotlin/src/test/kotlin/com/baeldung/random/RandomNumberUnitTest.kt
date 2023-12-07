@@ -1,6 +1,7 @@
 
 import org.junit.jupiter.api.Test
 import java.util.concurrent.ThreadLocalRandom
+import kotlin.random.Random
 import kotlin.test.assertTrue
 
 class RandomNumberUnitTest {
@@ -50,6 +51,18 @@ class RandomNumberUnitTest {
         assertTrue { randomInteger <= 10 }
         assertTrue { randomLong >= 1 }
         assertTrue { randomLong <= 10 }
+    }
+
+    @Test
+    fun whenRandomNonRepeatingNumbersWithShuffle_thenResultsAreUnique() {
+        val randomNumbers = (1..10).shuffled().take(5)
+        assertTrue { randomNumbers.distinct().size == randomNumbers.size }
+    }
+
+    @Test
+    fun whenRandomNonRepeatingNumbersWithSequence_thenResultsAreUnique() {
+        val randomNumbers = generateSequence { Random.nextInt(1, 11) }.distinct().take(5).toList()
+        assertTrue { randomNumbers.distinct().size == randomNumbers.size }
     }
 
 }

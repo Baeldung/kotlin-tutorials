@@ -1,0 +1,9 @@
+mutation SaveOrCreateAttendeeMutation($id: Int, $name: String!){
+    saveOrCreateAttendee(attendee: {
+        id: $id
+        name: $name
+    }) {
+        id
+        name
+    }
+}
