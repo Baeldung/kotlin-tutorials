@@ -8,3 +8,4 @@ This module contains articles about core Kotlin strings.
 - [Remove First Character in String in Kotlin](https://www.baeldung.com/kotlin/string-delete-first-character)
 - [How to Reverse a String in Kotlin](https://www.baeldung.com/kotlin/reverse-string)
 - [How to Repeat a String N Times in Kotlin](https://www.baeldung.com/kotlin/repeating-strings)
+- [How to Convert a String to a Float in Kotlin](https://www.baeldung.com/kotlin/string-float-conversion)
