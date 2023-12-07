@@ -3,7 +3,7 @@ package com.baeldung.passbyvalue
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class PassByValueUnitTest {
+class PassByValueOrReferenceUnitTest {
 
     data class SomeObj(var x: Int = 0)
 
