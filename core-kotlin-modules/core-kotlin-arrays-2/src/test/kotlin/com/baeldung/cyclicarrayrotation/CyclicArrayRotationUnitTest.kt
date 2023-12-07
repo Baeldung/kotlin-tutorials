@@ -36,12 +36,12 @@ class CyclicArrayRotationUnitTest {
     @Test
     fun `cyclically rotate an array by one position using recursion`() {
         val arr = intArrayOf(1, 2, 3, 4, 5)
-        rotateArrayByOneUsingRecursion(arr, 0)
+        rotateArrayByOneUsingRecursion(arr)
         assertArrayEquals(intArrayOf(5, 1, 2, 3, 4), arr)
     }
 
     fun rotateArrayByOneProgramaticApproach(arr: IntArray) {
-        val temp = arr[arr.size - 1]
+        val temp = arr.last()
         for (i in arr.size - 1 downTo 1) {
             arr[i] = arr[i - 1]
         }
@@ -65,7 +65,7 @@ class CyclicArrayRotationUnitTest {
         list.toIntArray().copyInto(arr)
     }
 
-    fun rotateArrayByOneUsingRecursion(arr: IntArray, position: Int) {
+    fun rotateArrayByOneUsingRecursion(arr: IntArray, position: Int = 0) {
         if (position == arr.size - 1) return
         val temp = arr[position]
         arr[position] = arr[arr.size - 1]
