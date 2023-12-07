@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
 
-class DiscountCalculatorTest {
+class DiscountCalculatorUnitTest {
     @Test
     fun `calculate discount for regular customer`() {
         val book = Book("Effective Java", 100.0)
