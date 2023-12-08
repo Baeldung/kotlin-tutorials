@@ -62,7 +62,7 @@ class SameListElementsUnitTest {
     fun areAllElementsSameUsingAllMethod(list: List<Int>) = list.all { it == list[0] }
 
     fun areAllElementsSameUsingForLoop(list: List<Int>): Boolean {
-        if (list.isEmpty()) return true
+        if (list.isEmpty() || list.size == 1) return true
         val firstElement = list[0]
         for (element in list) {
             if (element != firstElement) {
