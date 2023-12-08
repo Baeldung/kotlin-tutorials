@@ -24,7 +24,6 @@
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-serialization-json-jvm</artifactId>
             <version>1.6.2</version>
-            <scope>runtime</scope>
         </dependency>
 
         <dependency>
