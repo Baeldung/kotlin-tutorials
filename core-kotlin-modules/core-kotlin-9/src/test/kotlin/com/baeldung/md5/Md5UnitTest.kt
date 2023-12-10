@@ -2,6 +2,7 @@ package com.baeldung.md5
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import java.io.File
 import java.security.MessageDigest
 
 class Md5UnitTest {
@@ -13,10 +14,25 @@ class Md5UnitTest {
 
         assertEquals(expectedHash, calculatedHash)
     }
+
+    @Test
+    fun `Calling extension md5 on a file should return a md5 hash`() {
+        val fileToBeHashed = File("src/test/resources/test_md5.txt")
+        val expectedHash = "ef948f943cdba8514ed5aab7592a904d"
+        val calculatedHash = fileToBeHashed.md5()
+
+        assertEquals(expectedHash, calculatedHash)
+    }
 }
 
 fun String.md5(): String {
     val md = MessageDigest.getInstance("MD5")
     val digest = md.digest(this.toByteArray())
+    return digest.joinToString("") { "%02x".format(it) }
+}
+
+fun File.md5(): String {
+    val md = MessageDigest.getInstance("MD5")
+    val digest = md.digest(this.readBytes())
     return digest.joinToString("") { "%02x".format(it) }
 }
