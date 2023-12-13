@@ -7,7 +7,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 
-object MathUtils{
+object MathUtils {
     fun square(number: Int): Int {
         return number * number
     }
