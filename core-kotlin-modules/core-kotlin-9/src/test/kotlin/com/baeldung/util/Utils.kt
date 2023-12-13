@@ -13,7 +13,7 @@ object MathUtils{
     }
 }
 
-object ExtensionUtil{
+object ExtensionUtil {
     fun String.isPalindrome(): Boolean {
         val cleanString = this.replace("\\s".toRegex(), "").toLowerCase()
         return cleanString == cleanString.reversed()
