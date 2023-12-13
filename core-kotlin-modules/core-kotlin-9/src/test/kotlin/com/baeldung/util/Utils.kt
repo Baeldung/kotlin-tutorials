@@ -28,7 +28,7 @@ object Utils {
 }
 
 
-class  UtilTests{
+class UtilTests {
     @Test
     fun `Should Calculate Square`() {
         assertEquals(25, square(5))
