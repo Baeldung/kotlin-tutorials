@@ -22,8 +22,8 @@ class CyclicArrayRotationUnitTest {
     @Test
     fun `cyclically rotate an array by one position using dropLast and takeLast methods`() {
         val arr = intArrayOf(1, 2, 3, 4, 5)
-        val result = rotateArrayByOneUsingdropLastAndTakeLastMethods(arr)
-        assertArrayEquals(intArrayOf(5, 1, 2, 3, 4), result.toIntArray())
+        rotateArrayByOneUsingDropLastAndTakeLastMethods(arr)
+        assertArrayEquals(intArrayOf(5, 1, 2, 3, 4), arr)
     }
 
     @Test
@@ -55,8 +55,9 @@ class CyclicArrayRotationUnitTest {
         newArr.copyInto(arr)
     }
 
-    fun rotateArrayByOneUsingdropLastAndTakeLastMethods(arr: IntArray): Array<Int> {
-        return (arr.takeLast(1) + arr.dropLast(1)).toTypedArray()
+    fun rotateArrayByOneUsingDropLastAndTakeLastMethods(arr: IntArray){
+         val newArray = (arr.takeLast(1) + arr.dropLast(1)).toIntArray()
+         newArray.copyInto(arr)
     }
 
     fun rotateArrayByOneUsingCollectionsRotateMethod(arr: IntArray) {
