@@ -25,14 +25,16 @@ class Md5UnitTest {
     }
 }
 
+@OptIn(ExperimentalStdlibApi::class)
 fun String.md5(): String {
     val md = MessageDigest.getInstance("MD5")
     val digest = md.digest(this.toByteArray())
-    return digest.joinToString("") { "%02x".format(it) }
+    return digest.toHexString()
 }
 
+@OptIn(ExperimentalStdlibApi::class)
 fun File.md5(): String {
     val md = MessageDigest.getInstance("MD5")
     val digest = md.digest(this.readBytes())
-    return digest.joinToString("") { "%02x".format(it) }
+    return digest.toHexString()
 }
