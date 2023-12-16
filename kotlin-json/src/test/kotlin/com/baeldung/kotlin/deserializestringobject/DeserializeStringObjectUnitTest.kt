@@ -1,4 +1,4 @@
-package com.baeldung.deserializestringobject
+package com.baeldung.kotlin.deserializestringobject
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
