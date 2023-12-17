@@ -7,8 +7,8 @@ class PassByValueOrReferenceUnitTest {
 
     data class SomeObj(var x: Int = 0)
 
-    private fun modifyObject(o: SomeObj) {
-        o.x = 3
+    private fun modifyObject(someObj: SomeObj) {
+        someObj.x = 3
     }
 
     private fun modifyValue(value: Int): Int {
@@ -19,7 +19,7 @@ class PassByValueOrReferenceUnitTest {
     fun `Test using pass-by-reference`() {
         val obj = SomeObj()
 
-        assertEquals(0, obj.x) // before modify
+        assertEquals( 0, obj.x) // before modify
 
         modifyObject(obj)
 
