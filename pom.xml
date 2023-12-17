@@ -388,6 +388,7 @@
         <module>kotlin-libraries</module>
         <module>kotlin-libraries-2</module>
         <module>kotlin-libraries-http</module>
+        <module>kotlin-libraries-orm</module>
         <module>kotlin-patterns</module>
         <module>kotlin-quasar</module>
         <module>kotlin-reflection</module>
