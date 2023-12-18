@@ -19,5 +19,3 @@ class ResultWithStates {
         result.onFailure { println(it.message) }
     }
 }
-
-
