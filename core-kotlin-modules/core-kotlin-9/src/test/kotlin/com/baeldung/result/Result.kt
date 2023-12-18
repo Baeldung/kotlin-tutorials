@@ -37,7 +37,7 @@ class ResultClassTests {
         assertEquals(Result.success(5), firstResult)
     }
     @Test
-    fun ` should handle division by zero`(){
+    fun ` should handle division by zero`() {
         val result = divide(10, 0)
         val expectedException = assertFailsWith<Exception> {
             result.getOrThrow()
