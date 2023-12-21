@@ -409,6 +409,7 @@
         <module>kotlin-math</module>
         <module>kotlin-math-2</module>
         <module>kotlin-spark</module>
+        <module>kotlin-prim</module>
     </modules>
 
     <profiles>
