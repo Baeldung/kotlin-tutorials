@@ -41,19 +41,7 @@ class typeErasedListToArrayUnitTest {
         assertArrayEquals(arrayOf("one", "two", "three", "four", "five"), array2)
     }
 
-    @Test
-    fun `convert type-erased list to array using a map`() {
-        val intList: List<Any> = listOf(1, 2, 3, 4, 5)
-        val stringList: List<Any> = listOf("one", "two", "three", "four", "five")
-
-        var array1 = intList.map { it as Int }.toTypedArray()
-        val array2 = stringList.map { it as String }.toTypedArray()
-
-        assertArrayEquals(arrayOf(1, 2, 3, 4, 5), array1)
-        assertArrayEquals(arrayOf("one", "two", "three", "four", "five"), array2)
-    }
-
     inline fun <reified T> mapToArray(list: List<*>): Array<T> {
-        return (list as List<T>).toTypedArray()
+        return list.mapNotNull{ it as? T }.toTypedArray()
     }
 }
