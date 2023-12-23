@@ -1,6 +1,5 @@
 package com.baeldung.mediator
 
-
 // Mediator interface
 interface ChatMediator {
     fun sendMessage(message: String, user: User)
@@ -16,7 +15,6 @@ class ChatMediatorImpl : ChatMediator {
         users.add(user)
     }
 }
-
 
 // Colleague interface
 interface User {
