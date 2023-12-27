@@ -86,7 +86,7 @@
         <org.slf4j.version>2.0.3</org.slf4j.version>
         <!-- for spring-boot 3 we need java 17 minimum -->
         <java.version>17</java.version>
-        <spring-boot.version>3.1.4</spring-boot.version>
+        <spring-boot.version>3.2.1</spring-boot.version>
 
         <!-- plugins -->
         <thin.version>1.0.22.RELEASE</thin.version>
