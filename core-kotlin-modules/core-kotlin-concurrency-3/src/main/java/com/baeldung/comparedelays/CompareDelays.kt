@@ -2,27 +2,32 @@ package com.baeldung.comparedelays
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
-
-
 import kotlinx.coroutines.*
 
+
 val lock = Object()
+
 fun main() {
     runBlocking(Dispatchers.Default) {
         launch(Dispatchers.IO) {
+            testWaitThread1()
+        }
+        launch(Dispatchers.IO) {
             testWaitThread2()
         }
-        testWaitThread1()
     }
 }
+
 fun testWaitThread1() = synchronized(lock) {
-    lock.wait()
-    println("Print second")
-}
-fun testWaitThread2() = synchronized(lock) {
     println("Print first")
+    lock.wait()
+}
+
+fun testWaitThread2() = synchronized(lock) {
+    println("Print second")
     lock.notify()
 }
+
 
 
 
