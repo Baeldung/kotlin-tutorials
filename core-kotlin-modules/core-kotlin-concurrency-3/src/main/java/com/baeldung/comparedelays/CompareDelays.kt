@@ -7,27 +7,23 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.*
 
 val lock = Object()
-
 fun main() {
-    println("We're testing .wait()!")
-
     runBlocking(Dispatchers.Default) {
         launch(Dispatchers.IO) {
-            testWaitThread1()
+            testWaitThread2()
         }
-        testWaitThread2()
+        testWaitThread1()
     }
 }
-
 fun testWaitThread1() = synchronized(lock) {
     lock.wait()
     println("Print second")
 }
-
 fun testWaitThread2() = synchronized(lock) {
     println("Print first")
     lock.notify()
 }
+
 
 
 fun sleepMethod() {
