@@ -1,4 +1,4 @@
-package com.baeldung.delays
+package com.baeldung.comparedelays
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
@@ -13,9 +13,9 @@ fun main() {
 
     runBlocking(Dispatchers.Default) {
         launch(Dispatchers.IO) {
-            testWaitThread2()
+            testWaitThread1()
         }
-        testWaitThread1()
+        testWaitThread2()
     }
 }
 
