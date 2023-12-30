@@ -19,8 +19,8 @@ fun main() {
 }
 
 fun testWaitThread1() = synchronized(lock) {
-    println("Print first")
-    lock.wait()
+        lock.wait()
+        println("Print first")
 }
 
 fun testWaitThread2() = synchronized(lock) {
