@@ -4,6 +4,9 @@ description = "Example usage of Gradle plugin to generate GraphQL Kotlin Client"
 
 val graphQLKotlinVersion = "7.0.1"
 val ktorVersion = "2.3.5"
+val logbackVersion = "1.4.14"
+val kotlinTestUnit = "1.9.10"
+val seleniumVersion = "4.16.1"
 
 repositories {
     mavenCentral()
@@ -18,10 +21,15 @@ dependencies {
     implementation("io.ktor", "ktor-server-netty", ktorVersion)
     implementation("io.ktor", "ktor-server-websockets", ktorVersion)
 
+    implementation("io.ktor", "ktor-server-thymeleaf-jvm", ktorVersion)
+    implementation("ch.qos.logback","logback-classic", logbackVersion)
+
     testImplementation("io.ktor", "ktor-server-tests", ktorVersion)
     testImplementation("io.ktor", "ktor-client-content-negotiation", ktorVersion)
     testImplementation("io.ktor", "ktor-serialization-kotlinx-json", ktorVersion)
-    testImplementation("org.jetbrains.kotlin", "kotlin-test-junit", "1.9.10")
+    testImplementation("org.jetbrains.kotlin", "kotlin-test-junit", kotlinTestUnit)
+    testImplementation("org.seleniumhq.selenium", "selenium-java", seleniumVersion)
+
 }
 
 plugins {
