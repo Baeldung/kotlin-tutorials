@@ -27,7 +27,3 @@ fun main() {
     printElementInfo<_>(42)
     printElementInfo<_>("Hello")
 }
-
-
-
-
