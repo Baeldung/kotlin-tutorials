@@ -14,7 +14,7 @@ import kotlin.test.assertEquals
 
 class DeserializeStringObjectUnitTest {
     @Test
-    fun `deserialize Json object to string using Gson`(){
+    fun `extract values from JSON string using Gson`(){
         val gson = Gson()
         val jsonString = "{\"name\":\"John\", \"age\":30, \"city\":\"New York\"}"
         val jsonObject = gson.fromJson(jsonString, JsonObject::class.java)
@@ -30,7 +30,7 @@ class DeserializeStringObjectUnitTest {
     }
 
     @Test
-    fun `deserialize Json object to string using Kotlinx serialization`(){
+    fun `extract values from JSON string using Kotlinx serialization`(){
         val json = Json { ignoreUnknownKeys = true }
         val jsonString = "{\"name\":\"John\", \"age\":30, \"city\":\"New York\"}"
         val jsonObject = json.parseToJsonElement(jsonString).jsonObject
@@ -46,7 +46,7 @@ class DeserializeStringObjectUnitTest {
     }
 
     @Test
-    fun `deserialize Json object to string using Jackson library`(){
+    fun `extract values from JSON string using Jackson library`(){
         val objectMapper = jacksonObjectMapper()
         val jsonString = "{\"name\":\"John\", \"age\":30, \"city\":\"New York\"}"
         val jsonObject = objectMapper.readValue<JsonNode>(jsonString)
