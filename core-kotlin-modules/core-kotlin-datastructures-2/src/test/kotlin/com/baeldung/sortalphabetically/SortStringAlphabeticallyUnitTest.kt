@@ -5,7 +5,7 @@ import kotlin.test.assertEquals
 
 class SortStringAlphabeticallyUnitTest {
 
-    val inputString = "bcade"
+    private val inputString = "bcade"
 
     @Test
     fun `using toList and sorted`() {
