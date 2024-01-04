@@ -20,6 +20,7 @@ dependencies {
     implementation("io.ktor", "ktor-server-core", ktorVersion)
     implementation("io.ktor", "ktor-server-netty", ktorVersion)
     implementation("io.ktor", "ktor-server-websockets", ktorVersion)
+    implementation("io.ktor","ktor-server-status-pages", ktorVersion)
 
     implementation("io.ktor", "ktor-server-thymeleaf-jvm", ktorVersion)
     implementation("ch.qos.logback","logback-classic", logbackVersion)

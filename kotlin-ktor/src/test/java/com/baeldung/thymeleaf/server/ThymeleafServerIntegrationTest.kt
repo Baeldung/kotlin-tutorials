@@ -1,7 +1,7 @@
 package com.baeldung.thymeleaf.server
 
-import com.baeldung.graphql.client.GraphQLClient
 import com.baeldung.thymeleaf.server.plugins.configureRouting
+import com.baeldung.thymeleaf.server.plugins.configureStatusPages
 import com.baeldung.thymeleaf.server.plugins.configureTemplating
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
@@ -27,6 +27,7 @@ class ThymeleafServerIntegrationTest {
                 module {
                     configureRouting()
                     configureTemplating()
+                    configureStatusPages()
                 }
                 connector {
                     host = "0.0.0.0"
@@ -73,6 +74,17 @@ class ThymeleafServerIntegrationTest {
         val submit = driver.findElement(By.className("btn-primary"))
         submit.submit()
 
+        driver.close()
+    }
+
+    @Test
+    fun `when get an invalid route then should return a default error page`() {
+        val options = ChromeOptions()
+        options.addArguments("--headless=new");
+        val driver = ChromeDriver(options)
+        driver.get("http://0.0.0.0:8080/other-page")
+        val header2 = driver.findElements(By.tagName("h2"))
+        assertEquals("Error", header2.first().text)
         driver.close()
     }
 
