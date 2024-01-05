@@ -42,7 +42,7 @@ class SortStringAlphabeticallyUnitTest {
         assertEquals("bcdfghjklaei", sortedString)
     }
 
-    private fun String.sortAsc() = toCharArray().sorted().joinToString("")
+    private inline fun String.sortAsc() = toCharArray().sorted().joinToString("")
 
     @Test
     fun `simplify with inline function`() {
