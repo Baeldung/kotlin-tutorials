@@ -5,47 +5,59 @@ import kotlin.test.assertEquals
 
 class SortStringAlphabeticallyUnitTest {
 
+    private fun sortStringWithCharArrayAndSorted(input : String) : String{
+        return input.toCharArray().sorted().joinToString("")
+    }
+    
+    private fun sortStringWithCharArrayAnddistinct(input : String) : String {
+        return input.toCharArray().sorted().distinct().joinToString("")
+    }
+
+    private fun sortStringWithtoCharArrayAndCompareBy(input: String) : String {
+        val vocal = setOf('a', 'e', 'i', 'o', 'u')
+        return input.toCharArray().sortedWith(compareBy<Char> { it in vocal }
+                .thenBy {it.isLetter() && it !in vocal}
+                .thenBy { it }
+            ).joinToString("")
+    }
 
     @Test
     fun `using toCharArray and then sorted`() {
         val inputString = "laibkcedfgjh"
-        val sortedString = inputString.toCharArray().sorted().joinToString("")
-        println(sortedString)
-        assertEquals("abcdefghijkl", sortedString)
-    }
-
-    @Test
-    fun `using toCharArray and filter`() {
-        val inputString = "laibkcedfgjh"
-        val sortedString = inputString.toCharArray().filter { it > 'b' }.sorted().joinToString("")
-        println(sortedString)
-        assertEquals("cdefghijkl", sortedString)
+        assertEquals("abcdefghijkl", sortStringWithCharArrayAndSorted(inputString))
     }
 
     @Test
     fun `using sorted and distinct`() {
         val inputString = "lakibkcekdghfgjhh"
-        val sortedString = inputString.toCharArray().sorted().distinct().joinToString("")
-        println(sortedString)
-        assertEquals("abcdefghijkl", sortedString)
+        assertEquals("abcdefghijkl", sortStringWithCharArrayAnddistinct(inputString))
     }
 
     @Test
     fun `using compareBy`() {
         val inputString = "laibkcedfgjh"
+        assertEquals("bcdfghjklaei", sortStringWithtoCharArrayAndCompareBy(inputString))
+    }
+
+    // If we use extension function
+    private fun String.sortStringWithCompareBy() : String {
         val vocal = setOf('a', 'e', 'i', 'o', 'u')
-        val sortedString = inputString.toCharArray().sortedWith(compareBy<Char> { it in vocal }
+        return toCharArray().sortedWith(compareBy<Char> { it in vocal }
                 .thenBy {it.isLetter() && it !in vocal}
                 .thenBy { it }
             ).joinToString("")
-        println(sortedString)
-        assertEquals("bcdfghjklaei", sortedString)
     }
 
-    private inline fun String.sortAsc() = toCharArray().sorted().joinToString("")
+    private fun String.sortAsc() = toCharArray().sorted().joinToString("")
 
     @Test
-    fun `simplify with inline function`() {
+    fun `simplify compareBy with extension`() {
+        val inputString = "laibkcedfgjh"
+        assertEquals("bcdfghjklaei", inputString.sortStringWithCompareBy())
+    }
+
+    @Test
+    fun `simplify toCharArray and sorted with extension`() {
         assertEquals("abcde", "cdbae".sortAsc())
     }
 }
