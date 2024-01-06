@@ -1,41 +1,46 @@
 package com.baeldung.mediator
 
-// Step 1: Introduce Mediator Interface
-interface Mediator {
-    fun pressButton()
+interface AirTrafficController {
+    fun registerAirplane(airplane: Airplane)
+    fun unregisterAirplane(airplane: Airplane)
+    fun requestTakeOff(airplane: Airplane)
+    fun requestLanding(airplane: Airplane)
 }
-// Light module
-class Light(private val mediator: Mediator) {
-    private var isOn: Boolean = false
-    fun turnOn() {
-        println("Light turned on")
-        isOn = true
-        mediator.pressButton()
+class Airplane(private val registrationNumber: String, private val controller: AirTrafficController) {
+    fun takeOff() {
+        println("$registrationNumber is requesting takeoff.")
+        controller.requestTakeOff(this)
     }
-    fun turnOff() {
-        println("Light turned off")
-        isOn = false
-        mediator.pressButton()
+    fun land() {
+        println("$registrationNumber is requesting landing.")
+        controller.requestLanding(this)
     }
+    fun notifyTakeOff() {
+        println("$registrationNumber has taken off.")
+        controller.unregisterAirplane(this)
+    }
+    fun notifyLanding() {
+        println("$registrationNumber has landed.")
+        controller.registerAirplane(this)
+    }
+}
 
-    fun isOn(): Boolean {
-        return isOn
+class AirTrafficControlTower : AirTrafficController {
+    private val registeredAirplanes: MutableSet<Airplane> = mutableSetOf()
+    override fun registerAirplane(airplane: Airplane) {
+        registeredAirplanes.add(airplane)
     }
-}
-class Button(private val mediator: Mediator) {
-    fun press() {
-        mediator.pressButton()
+    override fun unregisterAirplane(airplane: Airplane) {
+        registeredAirplanes.remove(airplane)
     }
-}
-// Concrete Mediator
-class ConcreteMediator : Mediator {
-    private val light: Light = Light(this)
-    private val button: Button = Button(this)
-    override fun pressButton() {
-        if (light.isOn()) {
-            light.turnOff()
-        } else {
-            light.turnOn()
+    override fun requestTakeOff(airplane: Airplane) {
+        if (registeredAirplanes.contains(airplane)) {
+            airplane.notifyTakeOff()
+        }
+    }
+    override fun requestLanding(airplane: Airplane) {
+        if (!registeredAirplanes.contains(airplane)) {
+            airplane.notifyLanding()
         }
     }
 }
