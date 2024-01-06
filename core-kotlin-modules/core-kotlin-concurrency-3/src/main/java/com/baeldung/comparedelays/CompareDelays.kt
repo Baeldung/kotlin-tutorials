@@ -19,16 +19,14 @@ fun main() {
 }
 
 fun testWaitThread1() = synchronized(lock) {
-        lock.wait()
-        println("Print first")
+    lock.wait()
+    println("Print first")
 }
 
 fun testWaitThread2() = synchronized(lock) {
     println("Print second")
     lock.notify()
 }
-
-
 
 
 fun sleepMethod() {
