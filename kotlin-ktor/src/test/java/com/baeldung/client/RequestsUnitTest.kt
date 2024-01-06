@@ -18,7 +18,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.AfterClass
 import kotlin.test.*
 
-class RequestsTest {
+class RequestsUnitTest {
 
     companion object {
 
