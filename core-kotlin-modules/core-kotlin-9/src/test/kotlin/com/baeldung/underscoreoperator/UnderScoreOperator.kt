@@ -4,26 +4,31 @@ package com.baeldung.underscoreoperator
 class Box<T>(value: T) {
     // Some class implementation
 }
-fun main1() {
+fun main() {
     val intBox: Box<Int> = Box(42)
-    val stringBox: Box<Unit> = Box(Unit) // Using Unit as a placeholder
+    val anyBox: Box<Any> = Box("Some value")
 }
 
 
-fun main(args: Array<String>) {
-    val list = listOf("hi")
-    val list2 = list.mapIndexed { _, item -> item }
-    println(list2)
+fun main1(args: Array<String>) {
     val (_, second) = "ignored" to "hello"
     println(second)
 }
 
-// Higher-order function with a generic parameter
-inline fun <reified T> printElementInfo(element: T) {
-    println("Type: ${T::class.simpleName}, Value: $element")
+fun mainTwo(args: Array<String>) {
+    val list = listOf("hi")
+    val list2 = list.mapIndexed { _, item -> item }
+    println(list2)
 }
 
-fun main() {
+
+inline fun <T> printElementInfo(element: T) {
+}
+fun mainForHOF() {
     printElementInfo<_>(42)
     printElementInfo<_>("Hello")
 }
+
+
+
+
