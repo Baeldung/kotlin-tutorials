@@ -14,12 +14,18 @@ dependencies {
     implementation("com.expediagroup", "graphql-kotlin-ktor-server", graphQLKotlinVersion)
     implementation("com.expediagroup", "graphql-kotlin-client-jackson", graphQLKotlinVersion)
 
+    implementation("io.ktor", "ktor-client-core", ktorVersion)
     implementation("io.ktor", "ktor-server-core", ktorVersion)
     implementation("io.ktor", "ktor-server-netty", ktorVersion)
     implementation("io.ktor", "ktor-server-websockets", ktorVersion)
+    implementation("io.ktor", "ktor-client-auth", ktorVersion)
+    implementation("io.ktor", "ktor-client-websockets", ktorVersion)
+    implementation("io.ktor", "ktor-serialization-jackson", ktorVersion)
+    implementation("io.ktor", "ktor-client-content-negotiation", ktorVersion)
 
+
+    testImplementation("io.ktor", "ktor-client-mock", ktorVersion)
     testImplementation("io.ktor", "ktor-server-tests", ktorVersion)
-    testImplementation("io.ktor", "ktor-client-content-negotiation", ktorVersion)
     testImplementation("io.ktor", "ktor-serialization-kotlinx-json", ktorVersion)
     testImplementation("org.jetbrains.kotlin", "kotlin-test-junit", "1.9.10")
 }
