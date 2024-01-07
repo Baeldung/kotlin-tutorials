@@ -34,8 +34,6 @@ fun sleepMethod() {
     Thread.sleep(2000) // Sleep for 2 seconds
     println("Thread 1 woke up!")
 }
-
-
 fun delayMethod() = runBlocking {
     println("Coroutine 1 is delaying...")
     delay(2000) // Delay for 2 seconds
