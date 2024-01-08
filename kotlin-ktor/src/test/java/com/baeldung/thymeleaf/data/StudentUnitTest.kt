@@ -26,8 +26,8 @@ class StudentUnitTest {
             firstName = "John",
             lastName = "Doe",
             gradeList = listOf(
-                Grade(id = "1", subject = "Reading", value = "A"),
-                Grade(id = "2", subject = "Writing", value = "A"),
+                Grade(id = "1", subject = "Reading", gradeValue = GradeValue.A),
+                Grade(id = "2", subject = "Writing", gradeValue = GradeValue.A),
             )
         )
 
@@ -41,7 +41,7 @@ class StudentUnitTest {
             firstName = "John",
             lastName = "Doe",
             gradeList = listOf(
-                Grade(id = "1", subject = "Reading", value = "A"),
+                Grade(id = "1", subject = "Reading", gradeValue = GradeValue.A),
                 Grade(id = "2", subject = "Writing"),
             )
         )

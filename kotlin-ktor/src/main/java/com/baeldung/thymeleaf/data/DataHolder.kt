@@ -12,7 +12,7 @@ object DataHolder {
         findStudentById(studentId)
             .gradeList.forEach { grade ->
                 grade.apply {
-                    value = parameters[grade.id] ?: "F"
+                    gradeValue = parameters[grade.id]?.let { GradeValue.valueOf(it) }
                 }
             }
     }

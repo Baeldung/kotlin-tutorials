@@ -39,10 +39,10 @@ class DataHolderUnitTest {
 
         val student = DataHolder.findStudentById("1")
         assertNotNull(student.gradeList)
-        assertEquals("A", student.gradeList.first { it.id == "1" }.value)
-        assertEquals("B", student.gradeList.first { it.id == "2" }.value)
-        assertEquals("C", student.gradeList.first { it.id == "3" }.value)
-        assertEquals("D", student.gradeList.first { it.id == "4" }.value)
+        assertEquals(GradeValue.A, student.gradeList.first { it.id == "1" }.gradeValue)
+        assertEquals(GradeValue.B, student.gradeList.first { it.id == "2" }.gradeValue)
+        assertEquals(GradeValue.C, student.gradeList.first { it.id == "3" }.gradeValue)
+        assertEquals(GradeValue.D, student.gradeList.first { it.id == "4" }.gradeValue)
     }
 
 }

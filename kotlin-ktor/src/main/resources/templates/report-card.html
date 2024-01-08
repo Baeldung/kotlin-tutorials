@@ -22,7 +22,14 @@
             <tbody>
             <tr th:each="grade : ${student.gradeList}">
                 <td th:text="${grade.subject}"></td>
-                <td><input type="text" th:attr="value = ${grade.value}" th:name="${grade.id}"></td>
+                <td>
+                    <select th:name="${grade.id}">
+                        <option th:each="gradeOption : ${gradeOptionList}"
+                                th:value="${gradeOption}"
+                                th:text="${gradeOption.displayValue}"
+                                th:selected="${grade.gradeValue == gradeOption}"/>
+                    </select>
+                </td>
             </tr>
             </tbody>
         </table>

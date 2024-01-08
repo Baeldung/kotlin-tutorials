@@ -10,5 +10,5 @@ data class Student(
         get() = "$firstName $lastName"
 
     val hasAllGrades: Boolean
-        get() = gradeList.firstOrNull { grade -> grade.value.isBlank() } == null
+        get() = gradeList.firstOrNull { grade -> grade.gradeValue == GradeValue.EMPTY} == null
 }
