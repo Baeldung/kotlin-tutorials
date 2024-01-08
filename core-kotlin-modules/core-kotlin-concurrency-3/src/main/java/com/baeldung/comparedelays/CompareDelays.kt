@@ -4,7 +4,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.*
 
-
 val lock = Object()
 
 fun main() {
@@ -27,8 +26,6 @@ fun testWaitThread2() = synchronized(lock) {
     println("Print second")
     lock.notify()
 }
-
-
 fun sleepMethod() {
     println("Thread 1 is sleeping...")
     Thread.sleep(2000) // Sleep for 2 seconds
