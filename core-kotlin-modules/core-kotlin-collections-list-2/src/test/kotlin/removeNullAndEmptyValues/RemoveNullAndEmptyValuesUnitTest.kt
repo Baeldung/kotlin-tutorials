@@ -13,7 +13,7 @@ class RemoveNullAndEmptyValuesUnitTest {
     }
 
     @Test
-    fun `remove null and empty values from list using filterNotNull and filterNot methods`(){
+    fun `remove null and empty values from list using filterNotNull and filterNot methods`() {
         val listWithNullsAndEmpty: List<String?> = listOf("A", null, "", "C", null, "E")
         val listWithoutNulls: List<String> = listWithNullsAndEmpty.filterNotNull()
 
@@ -24,14 +24,14 @@ class RemoveNullAndEmptyValuesUnitTest {
     }
 
     @Test
-    fun `remove null and empty values from list using removeIf method`(){
+    fun `remove null and empty values from list using removeIf method`() {
         val listWithNullsAndEmpty: MutableList<String?> = mutableListOf("A", null, "", "C", null, "E")
         listWithNullsAndEmpty.removeIf { it == null || it.isEmpty() }
 
         assertEquals(listOf("A", "C", "E"), listWithNullsAndEmpty)
     }
 
-    fun removeValuesViaIteration(listWithNullsAndEmpty: MutableList<String?>): List<String?>{
+    fun removeValuesViaIteration(listWithNullsAndEmpty: MutableList<String?>): List<String> {
         val iterator = listWithNullsAndEmpty.iterator()
         while (iterator.hasNext()) {
             val element = iterator.next()
@@ -39,6 +39,6 @@ class RemoveNullAndEmptyValuesUnitTest {
                 iterator.remove()
             }
         }
-        return listWithNullsAndEmpty
+        return listWithNullsAndEmpty as List<String>
     }
 }
