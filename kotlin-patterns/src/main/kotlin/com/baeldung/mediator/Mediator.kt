@@ -2,7 +2,7 @@ package com.baeldung.mediator
 
 interface AirTrafficController {
     fun registerAirplane(airplane: Airplane)
-    fun deregisteredAirplane(airplane: Airplane)
+    fun deregisterAirplane(airplane: Airplane)
     fun requestTakeOff(airplane: Airplane)
     fun requestLanding(airplane: Airplane)
 }
@@ -17,7 +17,7 @@ class Airplane(private val registrationNumber: String, private val controller: A
     }
     fun notifyTakeOff() {
         println("$registrationNumber has taken off.")
-        controller.deregisteredAirplane(this)
+        controller.deregisterAirplane(this)
     }
     fun notifyLanding() {
         println("$registrationNumber has landed.")
@@ -30,7 +30,7 @@ class AirTrafficControlTower : AirTrafficController {
     override fun registerAirplane(airplane: Airplane) {
         registeredAirplanes.add(airplane)
     }
-    override fun deregisteredAirplane(airplane: Airplane) {
+    override fun deregisterAirplane(airplane: Airplane) {
         registeredAirplanes.remove(airplane)
     }
     override fun requestTakeOff(airplane: Airplane) {
