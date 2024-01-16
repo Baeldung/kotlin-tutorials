@@ -2,8 +2,6 @@ package com.baeldung.privateFunction
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import java.io.ByteArrayOutputStream
-import java.io.PrintStream
 
 class PrivateFunctionUnitTest {
 
@@ -12,10 +10,8 @@ class PrivateFunctionUnitTest {
         val obj = MyClass()
         val privateMethod = MyClass::class.java.getDeclaredMethod("privateMethod")
         privateMethod.isAccessible = true
-        val outputStreamCaptor = ByteArrayOutputStream()
-        System.setOut(PrintStream(outputStreamCaptor))
-        privateMethod.invoke(obj)
-        val output = outputStreamCaptor.toString().trim()
+
+        val output = privateMethod.invoke(obj)
 
         assertEquals("This is a private method", output)
     }
@@ -24,52 +20,43 @@ class PrivateFunctionUnitTest {
     fun `Makes call to private method Using Inner Class`() {
         val obj = MyClassWithInnerClass()
         val innerObj = obj.MyInnerClass()
-        val outputStreamCaptor = ByteArrayOutputStream()
-        System.setOut(PrintStream(outputStreamCaptor))
-        innerObj.callPrivateMethod()
-        val output = outputStreamCaptor.toString().trim()
+        val output = innerObj.callPrivateMethod()
 
         assertEquals("This is a private method", output)
     }
 
     @Test
-    fun `Makes call to private method Using Inheritance`() {
-        val obj = MySubClass()
-        val outputStreamCaptor = ByteArrayOutputStream()
-        System.setOut(PrintStream(outputStreamCaptor))
-        obj.callPrivateMethod()
-        val output = outputStreamCaptor.toString().trim()
+    fun `Makes call to private method Using public method`() {
+        val obj = MyPublicClass()
 
-        assertEquals("This is a private method", output)
+        assertEquals("This is a private method", obj.callPrivateMethod())
     }
 }
 
 class MyClass {
-    private fun privateMethod() {
-        println("This is a private method")
+    private fun privateMethod(): String {
+        return "This is a private method"
     }
 }
 
 class MyClassWithInnerClass {
-    private fun privateMethod() {
-        println("This is a private method")
+    private fun privateMethod(): String {
+        return "This is a private method"
     }
 
     inner class MyInnerClass {
-        fun callPrivateMethod() {
-            privateMethod()
+        fun callPrivateMethod(): String {
+           return privateMethod()
         }
     }
 }
 
-open class MySuperClass {
-    private fun privateMethod() {
-        println("This is a private method")
+class MyPublicClass {
+    private fun privateMethod(): String {
+        return "This is a private method"
     }
 
-    fun callPrivateMethod() {
-        privateMethod()
+    fun callPrivateMethod(): String {
+        return privateMethod()
     }
 }
-
-class MySubClass : MySuperClass()
