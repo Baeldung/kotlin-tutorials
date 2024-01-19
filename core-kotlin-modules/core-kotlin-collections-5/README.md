@@ -8,3 +8,4 @@ This module contains articles about core Kotlin collections.
 - [How to Start a for Loop From a Given Index in Kotlin](https://www.baeldung.com/kotlin/for-loop-from-index)
 - [Determine if All Elements Are the Same in a Kotlin List](https://www.baeldung.com/kotlin/list-all-elements-equal-check)
 - [Convert an Array to a String](https://www.baeldung.com/kotlin/array-string-conversion)
+- [Convert Any to Int in Kotlin](https://www.baeldung.com/kotlin/type-any-int-conversion)
