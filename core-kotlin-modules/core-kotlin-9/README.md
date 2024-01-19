@@ -5,3 +5,4 @@
 - [Kotlin ?.let() vs if not null](https://www.baeldung.com/kotlin/let-vs-if-not-null)
 - [Generate an MD5 Hash in Kotlin](https://www.baeldung.com/kotlin/md5-hash)
 - [Is Kotlin Pass-By-Value or Pass-By-Reference?](https://www.baeldung.com/kotlin/parameters-pass-value-reference)
+- [Util Classes in Kotlin](https://www.baeldung.com/kotlin/utility-class)
