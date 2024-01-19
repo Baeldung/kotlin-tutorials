@@ -42,10 +42,10 @@ class SkipNullListToMapUnitTest {
         val pairs = listOf<Pair<String, Int?>>(Pair("a", 1), Pair("b", null), Pair("c", 3))
         val expected = mapOf("a" to 1, "c" to 3)
         val map = pairs.fold(mutableMapOf<String, Int>()) { acc, pair ->
-            if (pair.second != null) {
-                acc.apply { put(pair.first, pair.second!!) }
-            } else {
-                acc
+            acc.apply {
+                if (pair.second != null) {
+                    put(pair.first, pair.second!!)
+                }
             }
         }
         assertEquals(expected, map)
