@@ -20,7 +20,7 @@ class ChangeMutableListValueUnitTest {
     }
 
     @Test
-    fun `changes mutable list value using the map method`() {
+    fun `creates new list with updated value using the map method`() {
         val mutableList = mutableListOf("kotlin", "java", "android")
         val updatedList = mutableList.map { element ->
             if (element == "java") {
