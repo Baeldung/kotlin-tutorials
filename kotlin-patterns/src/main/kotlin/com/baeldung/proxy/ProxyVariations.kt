@@ -64,11 +64,8 @@ class RealObjectImpl : RealObject {
     }
 }
 class VirtualProxy : RealObject {
-    private var realObject: RealObjectImpl? = null
+    private val realObject by lazy { RealObjectImpl() }
     override fun performOperation() {
-        if (realObject == null) {
-            realObject = RealObjectImpl()
-        }
-        realObject?.performOperation()
+        realObject.performOperation()
     }
 }
