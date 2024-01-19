@@ -10,3 +10,4 @@ This module contains modules about JSON.
 - [How to Parse JSON Without Data Class in Kotlin](https://www.baeldung.com/kotlin/parse-json-without-data-class)
 - [Handling Multiple Names for JSON Field in Kotlin](https://www.baeldung.com/kotlin/json-field-several-names)
 - [JSON String to Map](https://www.baeldung.com/kotlin/json-convert-map)
+- [How to Extract Individual Values From a JSON String](https://www.baeldung.com/kotlin/json-extract-individual-values)
