@@ -61,6 +61,7 @@
         <module>core-kotlin-string-conversions</module>
         <module>core-kotlin-files</module>
         <module>core-kotlin-operators</module>
+        <module>core-kotlin-concurrency-3</module>
     </modules>
 
 </project>
