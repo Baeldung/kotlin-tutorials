@@ -1,2 +1,4 @@
 ## Relevant Articles
 - [How to Convert Integer List to IntArray in Kotlin](https://www.baeldung.com/kotlin/convert-integer-list-intarray)
+- [Iterate Through a List and Add Items in Kotlin](https://www.baeldung.com/kotlin/list-iterate-add-items-dynamically)
+- [How to Convert a Type-Erased List to an Array in Kotlin](https://www.baeldung.com/kotlin/type-erased-list-array-conversion)

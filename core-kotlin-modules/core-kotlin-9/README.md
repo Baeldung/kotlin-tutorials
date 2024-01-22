@@ -3,4 +3,6 @@
 - [Find Least Common Multiple of Two Numbers in Kotlin](https://www.baeldung.com/kotlin/lcm)
 - [Calculate Greatest Common Divisor in Kotlin](https://www.baeldung.com/kotlin/gcd)
 - [Kotlin ?.let() vs if not null](https://www.baeldung.com/kotlin/let-vs-if-not-null)
+- [Generate an MD5 Hash in Kotlin](https://www.baeldung.com/kotlin/md5-hash)
+- [Is Kotlin Pass-By-Value or Pass-By-Reference?](https://www.baeldung.com/kotlin/parameters-pass-value-reference)
 - [Util Classes in Kotlin](https://www.baeldung.com/kotlin/utility-class)
