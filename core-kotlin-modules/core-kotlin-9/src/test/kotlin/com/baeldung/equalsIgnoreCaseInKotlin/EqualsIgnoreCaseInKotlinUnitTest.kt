@@ -3,7 +3,6 @@ package com.baeldung.equalsIgnoreCaseInKotlin
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import java.util.*
 
 class EqualsIgnoreCaseInKotlinUnitTest {
 
@@ -23,7 +22,7 @@ class EqualsIgnoreCaseInKotlinUnitTest {
     fun `test string case insensitive comparison using compareTo method`() {
         assertTrue(equalsIgnoreCaseUsingCompareToMethod("Hello", "hello"))
         assertFalse(equalsIgnoreCaseUsingCompareToMethod("Hello", "world"))
-
+    }
 }
 
 fun equalsIgnoreCaseUsingLowerCaseMethod(str1: String, str2: String): Boolean {
