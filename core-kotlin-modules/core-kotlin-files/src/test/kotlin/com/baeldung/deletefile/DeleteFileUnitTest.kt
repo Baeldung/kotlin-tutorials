@@ -29,5 +29,31 @@ class DeleteFileUnitTest {
         assertFalse(tempFileInDir.exists())
     }
 
+    @Test
+    fun `given an inexistent file should not throw`() {
+        val file = File("imaginary-file.txt")
+
+        assertDoesNotThrow {
+            safeDeleteDirectory(file)
+        }
+    }
+
+    @Test
+    fun `given directory when deleteDirectory called then directory and its contents are deleted recursively`() {
+        val tempDir = createTempDir()
+        val innerTempDir = File(tempDir, "innerTempDir").apply { mkdir() }
+        val tempFileInDir = File(innerTempDir, "tempFile.txt").apply { createNewFile() }
+
+        assertTrue(tempDir.exists())
+        assertTrue(innerTempDir.exists())
+        assertTrue(tempFileInDir.exists())
+
+        tempDir.deleteContentsRecursively()
+
+        assertFalse(tempDir.exists())
+        assertFalse(innerTempDir.exists())
+        assertFalse(tempFileInDir.exists())
+    }
+
 
 }
