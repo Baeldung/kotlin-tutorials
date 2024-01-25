@@ -26,7 +26,7 @@ class EqualsIgnoreCaseInKotlinUnitTest {
 }
 
 fun equalsIgnoreCaseUsingLowerCaseMethod(str1: String, str2: String): Boolean {
-    return str1.lowercase().equals(str2.lowercase())
+    return str1.lowercase() == str2.lowercase()
 }
 
 fun equalsIgnoreCaseUsingCompareToMethod(str1: String, str2: String): Boolean {
