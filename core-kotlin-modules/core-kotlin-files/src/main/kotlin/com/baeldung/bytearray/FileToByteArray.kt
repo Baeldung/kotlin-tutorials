@@ -11,7 +11,7 @@ fun fileToByteArray(filePath: String): ByteArray {
 }
 
 
-fun readFileUsingReader(filePath: String): String {
+fun readFileUsingReader(filePath: String): ByteArray {
     val file = File(filePath)
     val contentBuilder = StringBuilder()
 
@@ -21,16 +21,14 @@ fun readFileUsingReader(filePath: String): String {
         }
     }
 
-    return contentBuilder.toString()
+    return contentBuilder.toString().toByteArray()
 }
 
 fun largeFileToByteArray(filePath: String, outputFilePath: String) {
     File(filePath).bufferedReader().use { reader ->
         BufferedOutputStream(FileOutputStream(outputFilePath)).use { bufferOut ->
-            var line: String?
-            while (reader.readLine().also { line = it } != null) {
-                bufferOut.write(line!!.toByteArray())
-            }
+            reader.lineSequence()
+                .forEach { line -> bufferOut.write(line.toByteArray()) }
         }
     }
 }
