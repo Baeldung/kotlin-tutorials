@@ -7,3 +7,4 @@
 - [Is Kotlin Pass-By-Value or Pass-By-Reference?](https://www.baeldung.com/kotlin/parameters-pass-value-reference)
 - [Util Classes in Kotlin](https://www.baeldung.com/kotlin/utility-class)
 - [Result Class in Kotlin](https://www.baeldung.com/kotlin/result-class)
+- [Underscore Operator for Type Arguments in Kotlin](https://www.baeldung.com/kotlin/underscore-type-arguments)
