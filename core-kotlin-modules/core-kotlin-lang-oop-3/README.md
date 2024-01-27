@@ -9,4 +9,5 @@ This module contains articles about Object-Oriented Programming in Kotlin
 - [Comparing Objects in Kotlin](https://www.baeldung.com/kotlin/compare-objects)
 - [Extend Data Class in Kotlin](https://www.baeldung.com/kotlin/extend-data-class)
 - [Get Names of All Enum Entries by Generic Functions in Kotlin](https://www.baeldung.com/kotlin/enum-get-entry-names)
+- [Create a Function That Works for All Enum Classes in Kotlin](https://www.baeldung.com/kotlin/function-enum-classes)
 - More articles: [[<-- prev]](/core-kotlin-modules/core-kotlin-lang-oop-2)
