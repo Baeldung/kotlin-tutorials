@@ -30,7 +30,7 @@ class DeleteFileUnitTest {
     }
 
     @Test
-    fun `given an inexistent file should not throw`() {
+    fun `given a non-existent file should not throw`() {
         val file = File("imaginary-file.txt")
 
         assertDoesNotThrow {
