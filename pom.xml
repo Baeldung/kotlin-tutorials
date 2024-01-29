@@ -388,6 +388,7 @@
         <module>kotlin-libraries</module>
         <module>kotlin-libraries-2</module>
         <module>kotlin-libraries-http</module>
+        <module>kotlin-libraries-orm</module>
         <module>kotlin-patterns</module>
         <module>kotlin-quasar</module>
         <module>kotlin-reflection</module>
@@ -408,6 +409,8 @@
         <module>kotlin-math</module>
         <module>kotlin-math-2</module>
         <module>kotlin-spark</module>
+        <module>kotlin-prim</module>
+        <module>kotlin-rsocket</module>
     </modules>
 
     <profiles>
@@ -438,7 +441,7 @@
     </profiles>
 
     <properties>
-        <kotlin.version>1.8.22</kotlin.version>
+        <kotlin.version>1.9.22</kotlin.version>
         <kotlinx.version>1.7.1</kotlinx.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -452,7 +455,7 @@
 
         <!-- logging -->
         <org.slf4j.version>1.7.30</org.slf4j.version>
-        <logback.version>1.2.3</logback.version>
+        <logback.version>1.2.13</logback.version>
         <log4j.version>1.2.17</log4j.version>
 
         <!-- utilities -->
