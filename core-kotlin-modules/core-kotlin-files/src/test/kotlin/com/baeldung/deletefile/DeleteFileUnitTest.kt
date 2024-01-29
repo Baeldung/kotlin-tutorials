@@ -54,6 +54,4 @@ class DeleteFileUnitTest {
         assertFalse(innerTempDir.exists())
         assertFalse(tempFileInDir.exists())
     }
-
-
 }
