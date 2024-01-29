@@ -8,31 +8,28 @@ class EqualsIgnoreCaseInKotlinUnitTest {
 
     @Test
     fun `test string case insensitive comparison using equals and lowercase methods`() {
-        assertTrue(equalsIgnoreCaseUsingLowerCaseMethod("Hello", "hello"))
-        assertFalse(equalsIgnoreCaseUsingLowerCaseMethod("Hello", "world"))
+         val result1 = "Hello".lowercase() == "hello".lowercase()
+         val result2 = "Hello".lowercase() == "world".lowercase()
+
+        assertTrue(result1)
+        assertFalse(result2)
     }
 
     @Test
     fun `test string case insensitive comparison using equals methods`() {
-        assertTrue(equalsIgnoreCase("Hello", "hello"))
-        assertFalse(equalsIgnoreCase("Hello", "world"))
+        val result1 = "Hello".equals("hello", true)
+        val result2 = "Hello".equals("world", true)
+
+        assertTrue(result1)
+        assertFalse(result2)
     }
 
     @Test
     fun `test string case insensitive comparison using compareTo method`() {
-        assertTrue(equalsIgnoreCaseUsingCompareToMethod("Hello", "hello"))
-        assertFalse(equalsIgnoreCaseUsingCompareToMethod("Hello", "world"))
+        val result1 = "Hello".compareTo("hello", true) == 0
+        val result2 = "Hello".compareTo("world", true) == 0
+
+        assertTrue(result1)
+        assertFalse(result2)
     }
-}
-
-fun equalsIgnoreCaseUsingLowerCaseMethod(str1: String, str2: String): Boolean {
-    return str1.lowercase() == str2.lowercase()
-}
-
-fun equalsIgnoreCaseUsingCompareToMethod(str1: String, str2: String): Boolean {
-    return str1.compareTo(str2, true) == 0
-}
-
-fun equalsIgnoreCase(str1: String, str2: String): Boolean {
-    return str1.equals(str2, true)
 }
