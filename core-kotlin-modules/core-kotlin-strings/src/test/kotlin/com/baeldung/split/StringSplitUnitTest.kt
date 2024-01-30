@@ -58,6 +58,18 @@ class StringSplitUnitTest {
     }
 
     @Test
+    fun `when split by regex, should use regex object instead of string regex`() {
+        val info = "a b    c      d"
+
+        //split by literal regex string won't work in Kotlin:
+        assertThat(info.split("\\s+")).containsExactly(info)
+
+        // a Regex object is required:
+        assertThat(info.split(Regex("\\s+"))).containsExactly("a", "b", "c", "d")
+        assertThat(info.split("\\s+".toRegex())).containsExactly("a", "b", "c", "d")
+    }
+
+    @Test
     fun `splitToSequence works lazily`() {
         val info = "random_text,".repeat(1000)
         assertThat(info.splitToSequence(",").first()).isEqualTo("random_text")
