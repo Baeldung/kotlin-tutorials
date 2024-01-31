@@ -1,4 +1,4 @@
-package com.baeldung.proxy
+package com.baeldung.proxypattern
 
 interface RemoteObject {
     fun performRemoteOperation()
