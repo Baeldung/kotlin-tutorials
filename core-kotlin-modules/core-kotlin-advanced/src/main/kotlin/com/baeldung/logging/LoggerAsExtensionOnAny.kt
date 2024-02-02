@@ -15,7 +15,7 @@ class ExtensionSubclass : LoggerAsExtensionOnAny()
 
 fun <T : Any> T.logger(): Logger = getLogger(getClassForLogging(javaClass))
 
-fun main(args: Array<String>) {
+fun main() {
     LoggerAsExtensionOnAny().log("test")
     ExtensionSubclass().log("sub")
     "foo".logger().info("foo")

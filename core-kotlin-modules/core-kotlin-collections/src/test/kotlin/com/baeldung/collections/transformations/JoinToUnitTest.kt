@@ -27,7 +27,7 @@ class JoinToUnitTest {
     fun testJoinToStringTransform() {
         val inputs = listOf("Jan", "Feb", "Mar", "Apr", "May")
 
-        val simpleString = inputs.joinToString(transform = String::toUpperCase)
+        val simpleString = inputs.joinToString(transform = String::uppercase)
         assertEquals("JAN, FEB, MAR, APR, MAY", simpleString)
     }
 

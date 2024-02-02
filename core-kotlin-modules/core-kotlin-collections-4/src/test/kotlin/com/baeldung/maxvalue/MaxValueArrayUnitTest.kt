@@ -76,6 +76,7 @@ class MaxValueArrayUnitTest {
         assertThatExceptionOfType(NoSuchElementException::class.java).isThrownBy {
             val array = emptyArray<Int>()
             val max = array.max()
+            println("Max value is: $max")
         }
     }
 
@@ -84,7 +85,7 @@ class MaxValueArrayUnitTest {
         assertThatExceptionOfType(NoSuchElementException::class.java).isThrownBy {
             val array = emptyArray<Person>()
             val max = array.maxBy { p -> p.age }
+            println("Max value is: $max")
         }
     }
 }
-

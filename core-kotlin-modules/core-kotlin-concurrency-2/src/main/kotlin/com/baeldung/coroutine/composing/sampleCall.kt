@@ -12,6 +12,7 @@ import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import java.net.URI
 import java.net.URL
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.Executors
@@ -77,6 +78,7 @@ class DataProcessUseCase(dispatcher: CoroutineDispatcher) : CoroutineScope by Co
     }
 
     private fun storeToDatabase(userInput: UserInput, result: String): Int {
+        println("Input params: $userInput, $result")
         // Do nothing
         return 1 // Supposed number of changed rows
     }
@@ -85,9 +87,9 @@ class DataProcessUseCase(dispatcher: CoroutineDispatcher) : CoroutineScope by Co
       asyncDbWriter.submit(userInput to result)
 
     companion object {
-        val urlA = URL("https://service-a.domain.dom")
-        val urlB = URL("https://service-b.domain.dom")
-        val logger: Logger = LoggerFactory.getLogger(DataProcessUseCase.javaClass)
+        val urlA = URI("https://service-a.domain.dom").toURL()
+        val urlB = URI("https://service-b.domain.dom").toURL()
+        val logger: Logger = LoggerFactory.getLogger(Companion::class.java)
     }
 }
 

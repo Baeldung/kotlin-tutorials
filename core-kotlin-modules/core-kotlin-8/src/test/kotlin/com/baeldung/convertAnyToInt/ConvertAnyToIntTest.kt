@@ -18,7 +18,7 @@ class ConvertAnyToIntTest {
     fun `when casting to Int then exception is thrown`() {
         val anyValue: Any = "Not a number"
         assertThrows<ClassCastException> {
-            val intValue: Int = anyValue as Int
+            anyValue as Int
         }
     }
 
@@ -27,7 +27,6 @@ class ConvertAnyToIntTest {
         val anyValue: Any = "Not a number"
         assertThrows<NumberFormatException> {
             if (anyValue is Int) {
-                val intValue: Int = anyValue
             } else {
                 throw NumberFormatException("Provided value is not a number")
             }

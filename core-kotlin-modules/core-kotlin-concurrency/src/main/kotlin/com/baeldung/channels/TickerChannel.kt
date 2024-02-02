@@ -1,5 +1,6 @@
 package com.baeldung.channels
 
+import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.channels.ticker
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
@@ -11,6 +12,7 @@ fun stockPrice(stock: String): Double {
     return Random.nextDouble(2.0, 3.0)
 }
 
+@OptIn(ObsoleteCoroutinesApi::class)
 fun main() = runBlocking {
     val tickerChannel = ticker(Duration.ofSeconds(5).toMillis())
 

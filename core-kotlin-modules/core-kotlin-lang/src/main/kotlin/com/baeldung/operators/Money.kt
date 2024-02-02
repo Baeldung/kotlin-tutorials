@@ -1,5 +1,6 @@
 package com.baeldung.operators
 
+import kotlinx.coroutines.newFixedThreadPoolContext
 import java.math.BigDecimal
 
 enum class Currency {
@@ -11,7 +12,10 @@ class Money(val amount: BigDecimal, val currency: Currency) : Comparable<Money> 
     override fun compareTo(other: Money): Int =
             convert(Currency.DOLLARS).compareTo(other.convert(Currency.DOLLARS))
 
-    fun convert(currency: Currency): BigDecimal = TODO()
+    fun convert(currency: Currency): BigDecimal {
+        println("input Currency: $currency")
+        return BigDecimal(1)
+    }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

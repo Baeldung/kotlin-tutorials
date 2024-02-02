@@ -1,6 +1,6 @@
 package com.baeldung.range
 
-fun main(args: Array<String>) {
+fun main() {
 
     println((1..9).first)
     println((1..9 step 2).step)

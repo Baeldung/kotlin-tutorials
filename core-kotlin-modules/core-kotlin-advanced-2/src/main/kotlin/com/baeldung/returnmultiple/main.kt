@@ -20,8 +20,8 @@ fun main() {
     val (name, age) = twoPair()
     println("$name is $age years old")
 
-    val (name2, age2, bornOn) = threeValues()
-    val (v1, v2, v3, v4, v5) = fiveValues()
-    val (podName, ip, assignedNode) = getUniquePod()
-    val (publicKey, privateKey) = getRsaKeyPair()
+    val (_, _, _) = threeValues()
+    val (_, _, _, _, _) = fiveValues()
+    val (_, _, _) = getUniquePod()
+    val (_, _) = getRsaKeyPair()
 }

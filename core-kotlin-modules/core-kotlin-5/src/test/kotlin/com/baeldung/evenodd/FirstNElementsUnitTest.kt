@@ -2,6 +2,7 @@ package com.baeldung.evenodd
 
 import org.junit.jupiter.api.Test
 import kotlin.test.assertContentEquals
+import kotlin.test.assertEquals
 
 class FirstNElementsUnitTest {
 
@@ -45,6 +46,8 @@ class FirstNElementsUnitTest {
   fun `Convert a list to an array`() {
     val list: List<Int> = listOf(1, 2, 3, 4)
     val array: Array<Int> = list.toTypedArray()
+      assertEquals(1, array[0])
+      assertEquals(2, array[1])
   }
 
   @Test

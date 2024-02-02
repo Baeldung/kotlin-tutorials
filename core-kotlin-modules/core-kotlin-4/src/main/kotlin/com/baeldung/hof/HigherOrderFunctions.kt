@@ -60,7 +60,7 @@ fun unrefactoredFunction(imageUrl: URL, objectId: String) {
 
     val imageData = imageResponse.receive()
 
-    val cdnResponse = try {
+    try {
         clientExecutor.submit(Callable { client.put("$CDN_URL/$objectId", imageData) })
             .get(10L, TimeUnit.SECONDS)
     } catch (ex: Exception) {

@@ -34,6 +34,7 @@ fun basicTryCatch() {
             // Handle exception here
             val stackTrace = e.stackTrace
             // do something with the stackTrace
+            println("Stack trace: $stackTrace")
         }
 
         val result: Result<*> = runCatching {
@@ -41,10 +42,10 @@ fun basicTryCatch() {
         }
 
         result.fold(
-            onSuccess = { value ->
+            onSuccess = { _ ->
                 // Handle the successful execution
             },
-            onFailure = { exception ->
+            onFailure = { _ ->
                 // Handle exception here
             }
         )
