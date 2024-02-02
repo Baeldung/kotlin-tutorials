@@ -1,5 +1,5 @@
 package com.baeldung.introduction
 
-fun main(args: Array<String>){
+fun main(){
     println("hello word")
 }

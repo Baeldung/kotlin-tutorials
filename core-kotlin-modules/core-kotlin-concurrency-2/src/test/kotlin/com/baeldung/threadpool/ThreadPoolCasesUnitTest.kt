@@ -123,7 +123,6 @@ class ThreadPoolCasesUnitTest {
 
     @Test
     fun `when the thread pool is shut down NOW then it doesn't wait`() {
-        val workerQueue = LinkedBlockingQueue<Runnable>(/*unbounded*/)
         val worker = Executors.newFixedThreadPool(2)
         buildList {
             repeat(50) { add(Task(System.currentTimeMillis())) }

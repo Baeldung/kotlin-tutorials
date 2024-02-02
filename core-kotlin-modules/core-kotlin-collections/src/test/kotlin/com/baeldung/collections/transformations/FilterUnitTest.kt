@@ -28,7 +28,7 @@ class FilterUnitTest {
     @Test
     fun testFilterIndexed() {
         val input = listOf(5, 4, 3, 2, 1)
-        val filtered = input.filterIndexed { index, element -> index < 3 }
+        val filtered = input.filterIndexed { index, _ -> index < 3 }
         assertEquals(listOf(5, 4, 3), filtered)
     }
 

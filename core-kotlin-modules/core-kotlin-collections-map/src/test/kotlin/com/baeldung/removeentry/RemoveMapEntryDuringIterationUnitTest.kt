@@ -27,7 +27,7 @@ class RemoveMapEntryDuringIterationUnitTest {
     fun `test removing entry from map while iterating with for loop should fail with ConcurrentModificationException`() {
         val map = mutableMapOf(1 to 3, 2 to 3, 3 to 2, 4 to 2, 7 to 2, 9 to 1)
         assertFailsWith<ConcurrentModificationException> {
-            for ((key, value) in map) {
+            for ((key, _) in map) {
                 if (key % 2 == 0) {
                     map.remove(key)
                 }
@@ -48,7 +48,7 @@ class RemoveMapEntryDuringIterationUnitTest {
 
         val candidates = HashSet<Int>()
         // mark phase
-        for ((key, value) in map) {
+        for ((key, _) in map) {
             if (key % 2 == 0) {
                 candidates.add(key)
             }

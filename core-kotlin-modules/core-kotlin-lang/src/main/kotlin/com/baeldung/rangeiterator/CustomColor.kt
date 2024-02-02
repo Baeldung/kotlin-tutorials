@@ -45,9 +45,10 @@ class ColorIterator(val start: CustomColor, val endInclusive: CustomColor) : Ite
     }
 }
 
-fun main(args: Array<String>) {
+fun main() {
     val a = CustomColor(0xABCDEF)
     val b = CustomColor(-1)
+    println("Custom color is: $b")
     val c = CustomColor(0xABCDFF)
 
     for(color in a..c){

@@ -1,6 +1,6 @@
 package com.baeldung.unusedParamter
 
-fun paramInFunction(num: Int, magic: String) {
+fun paramInFunction(num: Int) {
     println("We only use the Int parameter: $num")
 }
 
@@ -16,7 +16,7 @@ fun paramInFunction3(num3: Int, magic3: String) {
 
 
 fun paramInLambda() {
-    listOf("Kotlin", "Java", "Python").forEachIndexed { idx, value -> println("We only print the of index the element: $idx") }
+    listOf("Kotlin", "Java", "Python").forEachIndexed { idx, _ -> println("We only print the of index the element: $idx") }
 }
 
 fun paramInLambda2() {

@@ -23,7 +23,7 @@ open class LoggerAsExtensionOnMarkerInterface : Logging {
 
 class MarkerExtensionSubclass : LoggerAsExtensionOnMarkerInterface()
 
-fun main(args: Array<String>) {
+fun main() {
     LoggerAsExtensionOnMarkerInterface().log("test")
     MarkerExtensionSubclass().log("sub")
     "foo".logger().info("foo")

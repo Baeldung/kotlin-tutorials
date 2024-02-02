@@ -20,7 +20,7 @@ class ParseUrlUnitTest {
 
     @Test
     fun `given url when parsed with URL class returns user parameter`() {
-        val url = URL(urlToParse)
+        val url = URI(urlToParse).toURL()
         val userNameFromUrl = url.findParameterValue("user")
         assertThat(userNameFromUrl).isEqualTo("Bob")
         assertThat(url.protocol).isEqualTo("https")

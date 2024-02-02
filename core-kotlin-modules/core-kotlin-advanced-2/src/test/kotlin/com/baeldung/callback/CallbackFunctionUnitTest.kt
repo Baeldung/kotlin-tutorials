@@ -92,7 +92,7 @@ class CallbackFunctionUnitTest {
         }
 
         fun openPDF(bookId: Int){
-            downloadBook { id ->
+            downloadBook { _ ->
                 saveBook(bookId){bookId ->
                     openBook(bookId)
                 }

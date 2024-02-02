@@ -79,7 +79,7 @@ class CustomObjectTransformationKtUnitTest {
 
     @Test
     fun givenListOfObjectsWithNulls_whenTransformedUsingMapIndexed_filterNullsAndReturnListOfStrings() {
-        val empNameList = empList.mapIndexed { index, item ->
+        val empNameList = empList.mapIndexed { _, item ->
             item.name()
         }
         assertTrue(empNameList.isNotEmpty())
@@ -118,7 +118,7 @@ class CustomObjectTransformationKtUnitTest {
 
         // Alternative index based solution
         val anotherEmpNameList = mutableListOf<String>()
-        for ((i, emp) in empList.withIndex()) {
+        for ((i, _) in empList.withIndex()) {
             anotherEmpNameList.add(empList[i].name())
             // Or
             // anotherEmpNameList.add(emp.name())

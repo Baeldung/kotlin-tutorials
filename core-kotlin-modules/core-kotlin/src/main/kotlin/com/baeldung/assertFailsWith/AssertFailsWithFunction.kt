@@ -7,10 +7,10 @@ class AssertFailsWithFunction {
     }
 
     fun assertFailsWithExceptionClass(){
-        val message = "Kotlin Tutorials in Baeldung".toInt()
+        "Kotlin Tutorials in Baeldung".toInt()
     }
 
     fun assertFailsWithMessageAndExceptionClass(){
-        val result = 50 * 12 / 0
+        50 * 12 / 0
     }
 }

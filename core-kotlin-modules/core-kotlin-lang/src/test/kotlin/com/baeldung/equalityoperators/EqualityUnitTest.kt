@@ -1,27 +1,26 @@
 package com.baeldung.equalityoperators
 
 import org.junit.jupiter.api.Test
-import kotlin.test.assertFalse
-import kotlin.test.assertTrue
+import kotlin.test.*
 
 class EqualityUnitTest {
 
     // Checks referential equality
     @Test
     fun givenTwoIntegers_whenCheckReference_thenEqualReference() {
-        val a = Integer(10)
-        val b = Integer(10)
+        val a = Integer.valueOf(10)
+        val b = Integer.valueOf(10)
 
-        assertFalse(a === b)
+        assertSame(a, b)
     }
 
     // Checks structural equality
     @Test
     fun givenTwoIntegers_whenCheckValue_thenStructurallyEqual() {
-        val a = Integer(10)
-        val b = Integer(10)
+        val a = Integer.valueOf(10)
+        val b = Integer.valueOf(10)
 
-        assertTrue(a == b)
+        assertEquals(a, b)
     }
 
     @Test
@@ -29,7 +28,7 @@ class EqualityUnitTest {
         val user = User("John", 30, listOf("Hiking, Chess"))
         val user2 = User("Sarah", 28, listOf("Shopping, Gymnastics"))
 
-        assertFalse(user === user2)
+        assertNotSame(user, user2)
     }
 
     @Test

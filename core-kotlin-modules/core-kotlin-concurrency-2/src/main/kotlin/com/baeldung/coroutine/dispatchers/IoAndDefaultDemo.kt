@@ -35,6 +35,7 @@ class IoAndDefaultDemo {
         }
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     fun unspecifiedDispatcher() {
         GlobalScope.launch {
             // this coroutine will run on Dispatchers.Default

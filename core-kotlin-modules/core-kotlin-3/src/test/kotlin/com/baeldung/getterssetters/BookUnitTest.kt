@@ -18,7 +18,7 @@ class BookUnitTest {
     fun `Given a Book instance, When title property is read, Then custom getter is called`() {
         val book = Book()
 
-        assertEquals(DEFAULT_TITLE.toUpperCase(), book.title)
+        assertEquals(DEFAULT_TITLE.uppercase(), book.title)
     }
 
 

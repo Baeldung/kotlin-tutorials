@@ -3,21 +3,22 @@ package com.baeldung.whenblock
 object WhenBlockMultipleStatements {
 
     fun isPositiveInt(number: Int): Boolean {
-        val result = when (number) {
+        return when (number) {
             0 -> {
                 println("number is zero.")
                 print("It's neither positive nor negative.")
-                return false
+                false
             }
+
             in -1 downTo Int.MIN_VALUE -> {
                 print("number is negative")
-                return false
+                false
             }
+
             else -> {
                 print("number is positive")
-                return true
+                true
             }
         }
-        return result
     }
 }
