@@ -9,3 +9,4 @@ This module contains articles about core Kotlin collections.
 - [Determine if All Elements Are the Same in a Kotlin List](https://www.baeldung.com/kotlin/list-all-elements-equal-check)
 - [Convert an Array to a String](https://www.baeldung.com/kotlin/array-string-conversion)
 - [Convert Any to Int in Kotlin](https://www.baeldung.com/kotlin/type-any-int-conversion)
+- [Convert String Array to Int Array in Kotlin](https://www.baeldung.com/kotlin/array-string-integer-conversion)
