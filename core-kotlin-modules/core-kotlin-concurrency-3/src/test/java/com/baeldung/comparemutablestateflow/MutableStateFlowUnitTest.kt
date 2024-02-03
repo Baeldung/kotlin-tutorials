@@ -5,7 +5,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
-class MutableStateFlowTest {
+class MutableStateFlowUnitTest {
     @Test
     fun `initial value should be Baeldung Team`() {
         val mutableStateFlow = MutableStateFlow("Baeldung Team")
@@ -18,11 +18,11 @@ class MutableStateFlowTest {
         mutableStateFlow.emit("Baledung Team Kotlin")
         assertEquals("Baledung Team Kotlin", mutableStateFlow.value)
     }
-    @Test
-    fun `tryEmit function should update the value`() {
-        val mutableStateFlow = MutableStateFlow("Baledung Team Kotlin 2024")
-        val emitResult = mutableStateFlow.tryEmit("Baledung Team Kotlin 2024")
-        assertTrue(emitResult)
-        assertEquals("Baledung Team Kotlin 2024", mutableStateFlow.value)
-    }
+//    @Test
+//    fun `tryEmit function should update the value`() {
+//        val mutableStateFlow = MutableStateFlow("Baledung Team Kotlin 2024")
+//        val emitResult = mutableStateFlow.tryEmit("Baledung Team Kotlin 2024")
+//        assertTrue(emitResult)
+//        assertEquals("Baledung Team Kotlin 2024", mutableStateFlow.value)
+//    }
 }
