@@ -18,11 +18,11 @@ class MutableStateFlowUnitTest {
         mutableStateFlow.emit("Baledung Team Kotlin")
         assertEquals("Baledung Team Kotlin", mutableStateFlow.value)
     }
-//    @Test
-//    fun `tryEmit function should update the value`() {
-//        val mutableStateFlow = MutableStateFlow("Baledung Team Kotlin 2024")
-//        val emitResult = mutableStateFlow.tryEmit("Baledung Team Kotlin 2024")
-//        assertTrue(emitResult)
-//        assertEquals("Baledung Team Kotlin 2024", mutableStateFlow.value)
-//    }
+    @Test
+    fun `tryEmit function should update the value`() {
+        val mutableStateFlow = MutableStateFlow("Baledung Team Kotlin 2024")
+        val emitResult = mutableStateFlow.tryEmit("Baledung Team Kotlin 2024")
+        assertTrue(emitResult)
+        assertEquals("Baledung Team Kotlin 2024", mutableStateFlow.value)
+    }
 }
