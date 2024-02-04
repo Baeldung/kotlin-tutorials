@@ -30,7 +30,7 @@ class MapFromTwoArraysUnitTest {
     }
 
     @Test
-    fun `creates a map from two arrays using the associate() method`() {
+    fun `creates a map from two arrays using the associateWith() method`() {
         val keys = arrayOf("a", "b", "c")
         val values = arrayOf(1, 2, 3)
 
