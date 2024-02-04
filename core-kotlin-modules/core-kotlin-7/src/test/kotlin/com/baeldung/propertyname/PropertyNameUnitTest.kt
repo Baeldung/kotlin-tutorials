@@ -1,9 +1,9 @@
-package com.baeldung.kproperty
+package com.baeldung.propertyname
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
-class KPropertyTest {
+class PropertyNameUnitTest {
     
     @Test
     fun `can get property name of a class's property statically`() {
