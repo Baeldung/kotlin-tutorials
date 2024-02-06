@@ -1,7 +1,5 @@
 package com.baeldung.comparison;
 
-
-
 public class SwitchExample {
     public static void main(String[] args) {
         int dayOfWeek = 3;

@@ -1,5 +1,4 @@
 package com.baeldung.comparison
-
 fun main(number: Int): String {
     return when (number) {
         0 -> "Zero"
@@ -8,7 +7,6 @@ fun main(number: Int): String {
         else -> "Other"
     }
 }
-
 
 fun main() {
     val dayOfWeek = 3
