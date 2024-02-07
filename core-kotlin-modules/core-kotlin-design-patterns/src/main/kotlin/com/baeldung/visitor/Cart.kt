@@ -1,6 +1,6 @@
 package com.baeldung.visitor
 
-class Cart {
+class Cart: Visitable {
     val listings = mutableListOf<Listing>()
 
     fun addListing(listing: Listing) {
@@ -11,7 +11,7 @@ class Cart {
         listings.remove(listing)
     }
 
-    fun accept(visitor: ShoppingCartVisitor): Double {
+    override fun accept(visitor: ShoppingCartVisitor): Double {
         return visitor.visit(this)
     }
 }
