@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.slf4j.LoggerFactory
 
-class ObtainTheOSNameUnitTest {
-    private val log = LoggerFactory.getLogger(ObtainTheOSNameUnitTest::class.java)
+class ObtainTheOsNameUnitTest {
+    private val log = LoggerFactory.getLogger(ObtainTheOsNameUnitTest::class.java)
 
     @Test
     fun `when read system env properties then get the OS name and version`() {
@@ -26,6 +26,20 @@ class ObtainTheOSNameUnitTest {
     }
 
     @Test
+    fun `when using when block then the OS gets determined`() {
+        val osName = System.getProperty("os.name").lowercase()
+        assertTrue { osName.isNotBlank() }
+
+        val result = when {
+            "windows" in osName -> "Windows"
+            listOf("mac", "nix", "sunos", "solaris", "bsd").any { it in osName } -> "*nix"
+            else -> "Other"
+        }
+
+        log.info(">>> $osName -> $result")
+    }
+
+    @Test
     fun `when using SystemUtils from commons-lang then get the OS name and version`() {
         val osName = SystemUtils.OS_NAME
         val osVersion = SystemUtils.OS_VERSION
@@ -42,4 +56,5 @@ class ObtainTheOSNameUnitTest {
             |""".trimMargin()
         )
     }
+
 }
