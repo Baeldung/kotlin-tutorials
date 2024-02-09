@@ -1,4 +1,4 @@
-package com.baeldung.obtainTheOSName
+package com.baeldung.obtainTheOsName
 
 import org.apache.commons.lang3.SystemUtils
 import org.junit.jupiter.api.Assertions.assertTrue
