@@ -8,49 +8,35 @@ class ListOfMapsToMaps {
     @Test
     fun `converts list of maps to maps grouped by key using for loop`() {
         val listOfMaps = listOf(
-            mapOf("name" to "Albert", "age" to 18),
-            mapOf("name" to "Naomi", "age" to 26),
-            mapOf("name" to "Dru", "age" to 18),
-            mapOf("name" to "Steve", "age" to 30)
+            mapOf("name" to "Albert", "age" to "18"),
+            mapOf("name" to "Naomi", "age" to "26"),
+            mapOf("name" to "Dru", "age" to "18"),
+            mapOf("name" to "Steve", "age" to "30")
         )
         val expectedMap = mapOf(
-            18 to listOf(
-                mapOf("name" to "Albert", "age" to 18),
-                mapOf("name" to "Dru", "age" to 18)
-            ),
-            26 to listOf(
-                mapOf("name" to "Naomi", "age" to 26),
-            ),
-            30 to listOf(
-                mapOf("name" to "Steve", "age" to 30),
-            )
+            "name" to listOf("Albert", "Naomi", "Dru", "Steve"),
+            "age" to listOf("18", "26", "18", "30")
         )
 
-        assertEquals(expectedMap, groupByUsingForLoop(listOfMaps, "age"))
+        assertEquals(expectedMap, groupByUsingForLoop(listOfMaps))
     }
 
     @Test
     fun `converts list of maps to maps grouped by key using groupBy method`() {
         val listOfMaps = listOf(
-            mapOf("name" to "Albert", "age" to 18),
-            mapOf("name" to "Naomi", "age" to 26),
-            mapOf("name" to "Dru", "age" to 18),
-            mapOf("name" to "Steve", "age" to 30)
+            mapOf("name" to "Albert", "age" to "18"),
+            mapOf("name" to "Naomi", "age" to "26"),
+            mapOf("name" to "Dru", "age" to "18"),
+            mapOf("name" to "Steve", "age" to "30")
         )
         val expectedMap = mapOf(
-            18 to listOf(
-                mapOf("name" to "Albert", "age" to 18),
-                mapOf("name" to "Dru", "age" to 18)
-            ),
-            26 to listOf(
-                mapOf("name" to "Naomi", "age" to 26),
-            ),
-            30 to listOf(
-                mapOf("name" to "Steve", "age" to 30),
-            )
+            "name" to listOf("Albert", "Naomi", "Dru", "Steve"),
+            "age" to listOf("18", "26", "18", "30")
         )
 
-        val result = listOfMaps.groupBy { it["age"] }
+        val result = listOfMaps
+            .flatMap { map -> map.entries }
+            .groupBy({ it.key }, { it.value })
 
         assertEquals(expectedMap, result)
     }
@@ -58,45 +44,35 @@ class ListOfMapsToMaps {
     @Test
     fun `converts list of maps to maps grouped by key using fold method`() {
         val listOfMaps = listOf(
-            mapOf("name" to "Albert", "age" to 18),
-            mapOf("name" to "Naomi", "age" to 26),
-            mapOf("name" to "Dru", "age" to 18),
-            mapOf("name" to "Steve", "age" to 30)
+            mapOf("name" to "Albert", "age" to "18"),
+            mapOf("name" to "Naomi", "age" to "26"),
+            mapOf("name" to "Dru", "age" to "18"),
+            mapOf("name" to "Steve", "age" to "30")
         )
         val expectedMap = mapOf(
-            18 to listOf(
-                mapOf("name" to "Albert", "age" to 18),
-                mapOf("name" to "Dru", "age" to 18)
-            ),
-            26 to listOf(
-                mapOf("name" to "Naomi", "age" to 26),
-            ),
-            30 to listOf(
-                mapOf("name" to "Steve", "age" to 30),
-            )
+            "name" to listOf("Albert", "Naomi", "Dru", "Steve"),
+            "age" to listOf("18", "26", "18", "30")
         )
 
 
-        assertEquals(expectedMap, groupByUsingFoldMethod(listOfMaps, "age"))
+        assertEquals(expectedMap, groupByUsingFoldMethod(listOfMaps))
     }
 }
-fun groupByUsingForLoop(listOfMaps: List<Map<String, Any>>, key: String): Map<Any, List<Map<String, Any>>> {
-    val resultMap = mutableMapOf<Any, MutableList<Map<String, Any>>>()
-    for (map in listOfMaps) {
-        val value = map[key]
-        if (resultMap.containsKey(value)) {
-            resultMap[value]?.add(map)
-        } else {
-            resultMap[value as Any] = mutableListOf(map)
+
+fun groupByUsingForLoop(input: List<Map<String, String>>): Map<String, List<String>> {
+    val result = mutableMapOf<String, MutableList<String>>()
+    for (map in input) {
+        for ((key, value) in map) {
+            result.getOrPut(key) { mutableListOf() }.add(value)
         }
     }
-    return resultMap
+    return result
 }
-fun groupByUsingFoldMethod(maps: List<Map<String, Any>>, key: String): Map<Any, List<Map<String, Any>>> {
-    return maps.fold(mutableMapOf<Any, MutableList<Map<String, Any>>>()) { acc, map ->
-        val value = map[key] ?: return@fold acc
-        acc.getOrPut(value) { mutableListOf() }.add(map)
-        acc
+fun groupByUsingFoldMethod(input: List<Map<String, String>>): Map<String, List<String>> {
+    return input.fold(emptyMap()) { acc, map ->
+        acc.keys.union(map.keys).associateWith { key ->
+            acc.getOrDefault(key, emptyList()) + map.getOrDefault(key, "")
+        }
     }
 }
 
