@@ -9,4 +9,5 @@ This module contains articles about core features in the Kotlin language.
 - [Difference Between “it” and “this” Keywords in Kotlin](https://www.baeldung.com/kotlin/it-vs-this-keywords)
 - [Data Objects in Kotlin](https://www.baeldung.com/kotlin/data-object-basics)
 - [Working With Triple in Kotlin](https://www.baeldung.com/kotlin/triple-type)
+- [equals() and hashCode() Generator in Kotlin](https://www.baeldung.com/kotlin/equals-hashcode-generator)
 - [[<-- prev]](/core-kotlin-modules/core-kotlin-lang-3)
