@@ -25,6 +25,6 @@ tailrec fun fibonacciUsingTailRecursion(num: Int, a: Int = 0, b: Int = 1): Int {
 }
 
 fun fibonacciUsingSequence(num: Int): Int {
-    val fibonacciSequence = generateSequence(Pair(1, 1)) { Pair(it.second, it.first + it.second) }.map { it.first }
+    val fibonacciSequence = generateSequence(Pair(1, 1), { Pair(it.second, it.first + it.second) }).map { it.first }
     return fibonacciSequence.take(num).last()
 }
