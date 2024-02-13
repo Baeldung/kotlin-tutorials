@@ -1,7 +1,11 @@
 package com.baeldung.equalityoperators
 
 import org.junit.jupiter.api.Test
-import kotlin.test.*
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
+import kotlin.test.assertNotSame
+import kotlin.test.assertSame
+import kotlin.test.assertEquals
 
 class EqualityUnitTest {
 

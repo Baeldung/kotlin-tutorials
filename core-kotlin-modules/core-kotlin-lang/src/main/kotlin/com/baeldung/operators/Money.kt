@@ -1,6 +1,5 @@
 package com.baeldung.operators
 
-import kotlinx.coroutines.newFixedThreadPoolContext
 import java.math.BigDecimal
 
 enum class Currency {
