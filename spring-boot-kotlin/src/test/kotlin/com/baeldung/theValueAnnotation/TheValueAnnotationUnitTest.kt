@@ -10,11 +10,11 @@ import kotlin.test.assertTrue
 
 @SpringBootTest
 @TestConstructor(autowireMode = AutowireMode.ALL)
-class TheValueAnnotationUnitTest(val myMagicBean: MyMagicBean) {
+class TheValueAnnotationUnitTest(val valueBean: ValueBean) {
 
     @Test
     fun `when using value annotations, then expected values should be injected`() {
-        with(myMagicBean) {
+        with(valueBean) {
             assertEquals(42, magicNumber)
             assertEquals("It's a magic string", magicString)
             assertTrue(magicFlag)
@@ -23,7 +23,7 @@ class TheValueAnnotationUnitTest(val myMagicBean: MyMagicBean) {
 
     @Test
     fun `when using value annotations with default values, then expected values should be injected`() {
-        with(myMagicBean) {
+        with(valueBean) {
             assertEquals(1024, magicNumberWithDefault)
             assertEquals("It's another magic string", magicStringWithDefault)
         }
@@ -31,7 +31,7 @@ class TheValueAnnotationUnitTest(val myMagicBean: MyMagicBean) {
 
     @Test
     fun `when using value annotations with null as default values, then expected values should be injected`() {
-        with(myMagicBean) {
+        with(valueBean) {
             assertEquals("null", stringDefaultLiteralNull)
             assertNull(stringDefaultNull)
         }
