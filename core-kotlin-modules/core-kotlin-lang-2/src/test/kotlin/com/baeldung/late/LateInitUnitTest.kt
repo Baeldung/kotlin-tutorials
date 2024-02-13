@@ -1,7 +1,10 @@
 package com.baeldung.late
 
 import org.junit.jupiter.api.Test
-import kotlin.test.*
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
+import kotlin.test.assertFailsWith
+import kotlin.test.assertNotNull
 
 class LateInitUnitTest {
 

@@ -185,7 +185,7 @@
                 <executions>
                     <execution>
                         <id>compile</id>
-						<phase>compile</phase>
+                        <phase>compile</phase>
                         <goals>
                             <goal>compile</goal>
                         </goals>
@@ -225,7 +225,7 @@
                         <artifactId>kotlin-maven-allopen</artifactId>
                         <version>${kotlin.version}</version>
                     </dependency>
-					<dependency>
+                    <dependency>
                         <groupId>org.jetbrains.kotlin</groupId>
                         <artifactId>kotlin-maven-serialization</artifactId>
                         <version>${kotlin.version}</version>
