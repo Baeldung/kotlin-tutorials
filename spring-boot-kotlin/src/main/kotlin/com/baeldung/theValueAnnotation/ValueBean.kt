@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 
 @Component
-class MyMagicBean(
+class ValueBean(
     // without default values
     @Value("\${my-app.magic-number}")
     val magicNumber: Int,
