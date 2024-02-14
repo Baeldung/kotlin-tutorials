@@ -5,34 +5,24 @@ import org.junit.jupiter.api.Test
 
 class ListOfMapsToMaps {
 
+    val listOfMaps = listOf(
+        mapOf("name" to "Albert", "age" to "18"),
+        mapOf("name" to "Naomi", "age" to "26"),
+        mapOf("name" to "Dru", "age" to "18"),
+        mapOf("name" to "Steve", "age" to "30")
+    )
+    val expectedMap = mapOf(
+        "name" to listOf("Albert", "Naomi", "Dru", "Steve"),
+        "age" to listOf("18", "26", "18", "30")
+    )
+
     @Test
     fun `converts list of maps to maps grouped by key using for loop`() {
-        val listOfMaps = listOf(
-            mapOf("name" to "Albert", "age" to "18"),
-            mapOf("name" to "Naomi", "age" to "26"),
-            mapOf("name" to "Dru", "age" to "18"),
-            mapOf("name" to "Steve", "age" to "30")
-        )
-        val expectedMap = mapOf(
-            "name" to listOf("Albert", "Naomi", "Dru", "Steve"),
-            "age" to listOf("18", "26", "18", "30")
-        )
-
         assertEquals(expectedMap, groupByUsingForLoop(listOfMaps))
     }
 
     @Test
     fun `converts list of maps to maps grouped by key using groupBy method`() {
-        val listOfMaps = listOf(
-            mapOf("name" to "Albert", "age" to "18"),
-            mapOf("name" to "Naomi", "age" to "26"),
-            mapOf("name" to "Dru", "age" to "18"),
-            mapOf("name" to "Steve", "age" to "30")
-        )
-        val expectedMap = mapOf(
-            "name" to listOf("Albert", "Naomi", "Dru", "Steve"),
-            "age" to listOf("18", "26", "18", "30")
-        )
 
         val result = listOfMaps
             .flatMap { map -> map.entries }
@@ -43,17 +33,6 @@ class ListOfMapsToMaps {
 
     @Test
     fun `converts list of maps to maps grouped by key using fold method`() {
-        val listOfMaps = listOf(
-            mapOf("name" to "Albert", "age" to "18"),
-            mapOf("name" to "Naomi", "age" to "26"),
-            mapOf("name" to "Dru", "age" to "18"),
-            mapOf("name" to "Steve", "age" to "30")
-        )
-        val expectedMap = mapOf(
-            "name" to listOf("Albert", "Naomi", "Dru", "Steve"),
-            "age" to listOf("18", "26", "18", "30")
-        )
-
 
         assertEquals(expectedMap, groupByUsingFoldMethod(listOfMaps))
     }
