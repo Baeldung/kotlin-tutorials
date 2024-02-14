@@ -18,4 +18,18 @@ class SetToArrayUnitTest {
         val arr = Array(set.size) { set.elementAt(it) }
         Assertions.assertArrayEquals(arrayOf(1, 2, 3, 4), arr)
     }
+
+    @Test
+    fun `convert set to array using loop`() {
+        val set = setOf(1, 2, 3, 4)
+        val arr = arrayOfNulls<Int>(set.size)
+        //val arr = Array(set.size) { 0 }
+
+        var index = 0
+        for (element in set) {
+            arr[index++] = element
+        }
+
+        Assertions.assertArrayEquals(arrayOf(1, 2, 3, 4), arr)
+    }
 }

@@ -21,7 +21,8 @@ class ArrayToSetUnitTest {
     @Test
     fun `convert array to set using HashSet`() {
         val arr = arrayOf(1, 5, 2, 4, 1)
-        val set = HashSet(arr.toList())
+        val set = LinkedHashSet(arr.toList())
+
         assertEquals(setOf(1, 5, 2, 4), set)
     }
 
