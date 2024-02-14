@@ -24,5 +24,5 @@ class Person(val firstName: String, val lastName: String) {
 }
 
 fun main() {
-    val p = Person("dehghani")
+    Person("dehghani")
 }

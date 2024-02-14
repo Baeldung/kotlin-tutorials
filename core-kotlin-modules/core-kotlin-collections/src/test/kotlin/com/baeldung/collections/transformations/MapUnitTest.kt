@@ -39,7 +39,7 @@ class MapUnitTest {
     fun mapMapKeys() {
         val inputs = mapOf("one" to 1, "two" to 2, "three" to 3)
 
-        val uppercases = inputs.mapKeys { it.key.toUpperCase() }
+        val uppercases = inputs.mapKeys { it.key.uppercase() }
         assertEquals(mapOf("ONE" to 1, "TWO" to 2, "THREE" to 3), uppercases)
     }
 

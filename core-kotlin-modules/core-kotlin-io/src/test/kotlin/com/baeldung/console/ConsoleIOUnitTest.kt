@@ -14,6 +14,7 @@ import java.io.InputStreamReader
 import java.io.PrintStream
 import java.util.*
 import java.lang.RuntimeException
+import kotlin.test.assertNull
 
 
 class ConsoleIOUnitTest {
@@ -72,7 +73,10 @@ class ConsoleIOUnitTest {
 
     @Test
     fun givenEofReachedInput_whenReadln_thenThrowsRunTimeException() {
-        assertThrows<RuntimeException> {  var readText = readln()}
+        assertThrows<RuntimeException> {
+            val readText = readln()
+            assertNull(readText)
+        }
     }
 
     @Test

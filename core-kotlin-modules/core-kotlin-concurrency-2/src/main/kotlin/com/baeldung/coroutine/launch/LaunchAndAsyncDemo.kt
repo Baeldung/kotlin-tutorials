@@ -26,11 +26,11 @@ class LaunchAndAsyncDemo(
     @OptIn(DelicateCoroutinesApi::class)
     fun launchSeveralCoroutinesInDifferentScopes() {
 
-        val custom = launch {
+        launch {
             println("${Thread.currentThread().name}: I am launched in a class scope")
         }
 
-        val global = GlobalScope.launch {
+        GlobalScope.launch {
             println("${Thread.currentThread().name}: I am launched in a global scope")
         }
     }

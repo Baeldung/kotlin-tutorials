@@ -6,8 +6,10 @@ value class Wrapper<T>(val value: T)
 fun main() {
     val wrapper = Wrapper<Int>(42)
     val value: Int = wrapper.value // No runtime overhead
+    println("Value is: $value")
     val list = listOf(42)
     val item: Int = list[0] // Boxing and unboxing overhead
+    println("Item is: $item")
 }
 
 @JvmInline

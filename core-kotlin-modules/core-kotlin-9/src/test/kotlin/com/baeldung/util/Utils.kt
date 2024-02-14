@@ -15,7 +15,7 @@ object MathUtils {
 
 object ExtensionUtil {
     fun String.isPalindrome(): Boolean {
-        val cleanString = this.replace("\\s".toRegex(), "").toLowerCase()
+        val cleanString = this.replace("\\s".toRegex(), "").lowercase()
         return cleanString == cleanString.reversed()
     }
 }

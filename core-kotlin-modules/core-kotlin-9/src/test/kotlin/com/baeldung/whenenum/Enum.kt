@@ -24,7 +24,7 @@ fun getDailyRoutine(day: Day): String {
     }
 }
 
-fun main(args: Array<String>) {
+fun main() {
     val shape: Shape = Shape.Triangle
     when (shape) {
         Shape.Square -> println("I'm a square")
