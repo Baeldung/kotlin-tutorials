@@ -23,7 +23,6 @@ class ListOfMapsToMaps {
 
     @Test
     fun `converts list of maps to maps grouped by key using groupBy method`() {
-
         val result = listOfMaps
             .flatMap { map -> map.entries }
             .groupBy({ it.key }, { it.value })
@@ -33,7 +32,6 @@ class ListOfMapsToMaps {
 
     @Test
     fun `converts list of maps to maps grouped by key using fold method`() {
-
         assertEquals(expectedMap, groupByUsingFoldMethod(listOfMaps))
     }
 }
