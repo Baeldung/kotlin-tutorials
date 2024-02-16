@@ -32,7 +32,7 @@ class VarargSpread {
         val listOfStrings = listOf("ab", "cd")
         assertTrue { concat(*strings) == "abcd" }
         assertTrue { concat2(*strings) == "01abcd" }
-        assertTrue { concat3(strings = *strings, initialValue = "01") == "01abcd" }
+        assertTrue { concat3(strings = strings, initialValue = "01") == "01abcd" }
         assertTrue { concat(*strings, "ef", *moreStrings) == "abcdefghij" }
         assertTrue { concat(*listOfStrings.toTypedArray()) == "abcd" }
     }

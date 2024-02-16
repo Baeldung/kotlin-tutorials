@@ -34,5 +34,5 @@ fun main() {
     println(epoch.monthNumber())
     println(epoch.month())
 
-    Date.now()
+    LocalDateTime.now()
 }

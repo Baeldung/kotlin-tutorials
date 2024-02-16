@@ -9,9 +9,12 @@ val clientExecutor: ExecutorService = Executors.newSingleThreadExecutor()
 val image = "CDBmleEGw\"V.\t_1᪉-nm@FiUsQuGҘ*-*bQӘ4?`q;?7y1Z~ᡷ}V=BX!%S>TtecHkmdXhi3".encodeToByteArray()
 
 class HTTPClientStub {
-    fun get(imageUrl: URL): Response = Response(200) { image }
+    fun get(imageUrl: URL): Response = Response(200) {
+        println("Image URL is: $imageUrl")
+        image
+    }
     fun put(url: String, body: ByteArray) {
-
+        println("Input params. URL: $url, body: $body")
     }
 }
 

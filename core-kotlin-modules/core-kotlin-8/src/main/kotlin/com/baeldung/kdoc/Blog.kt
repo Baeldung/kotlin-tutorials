@@ -36,5 +36,6 @@ data class TitledArticle(private val title: String)
 private fun blogSample() {
     val blog = Blog<TitledArticle>("Baeldung on Kotlin")
     val blogCount = blog.add(TitledArticle("An Introduction to KDoc"))
+    println("Blog count is: $blogCount")
 }
 

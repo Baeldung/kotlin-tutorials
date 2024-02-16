@@ -1,6 +1,6 @@
 package com.baeldung.range
 
-fun main(args: Array<String>) {
+fun main() {
 
     for (ch in 'a'..'f') {
         print(ch)

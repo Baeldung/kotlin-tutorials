@@ -23,6 +23,7 @@ object MessageBroker {
     @JvmOverloads
     @Throws(Exception::class)
     fun findMessages(sender : String, type : String = "text", maxResults : Int = 10) : List<Message> {
+        println("Input params. Type: $type, maxResults: $maxResults")
         if(sender.isEmpty()) {
             throw Exception()
         }
@@ -58,9 +59,11 @@ class Message {
     var isEncrypted = true
 
     fun setReceivers(receiverNames : List<String>) {
+        println("Set receiverNames, value: $receiverNames")
     }
 
     @JvmName("setReceiverIds")
     fun setReceivers(receiverNames : List<Int>) {
+        println("Set receiverIds, value: $receiverNames")
     }
 }

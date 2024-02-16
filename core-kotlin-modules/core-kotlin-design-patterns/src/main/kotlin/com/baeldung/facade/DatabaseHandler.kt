@@ -8,5 +8,6 @@ class DatabaseHandler {
     }
 
     fun executeQuery(query: String) {
+        println("Query value: $query")
     }
 }

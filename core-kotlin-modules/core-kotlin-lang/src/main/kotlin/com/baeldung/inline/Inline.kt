@@ -43,10 +43,3 @@ inline fun <T> List<T>.eachIndexed(f: (Int, T) -> Unit) {
     }
 }
 
-fun <T> List<T>.indexOf(x: T): Int {
-    eachIndexed { index, value ->
-        if (value == x) return index
-    }
-
-    return -1
-}

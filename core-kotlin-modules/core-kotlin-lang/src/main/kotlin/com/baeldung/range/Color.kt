@@ -8,7 +8,7 @@ enum class Color(val rgb: Int) {
     YELLOW(0xFFFF00);
 }
 
-fun main(args: Array<String>) {
+fun main() {
 
     println(Color.values().toList());
     val red = Color.RED

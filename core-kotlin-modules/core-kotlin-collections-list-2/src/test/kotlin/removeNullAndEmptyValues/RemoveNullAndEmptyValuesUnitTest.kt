@@ -35,7 +35,7 @@ class RemoveNullAndEmptyValuesUnitTest {
         val iterator = listWithNullsAndEmpty.iterator()
         while (iterator.hasNext()) {
             val element = iterator.next()
-            if (element == null || element.isEmpty()) {
+            if (element.isNullOrEmpty()) {
                 iterator.remove()
             }
         }

@@ -14,12 +14,14 @@ class CoroutineExample {
         return@withContext "processed-data"
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     fun main() {
         // Calling the fetchData function within a coroutine scope
         GlobalScope.launch {
             try {
                 val result = fetchData()
                 // Handle successful result
+                println("Result is: $result")
             } catch (error: Throwable) {
                 // Handle error
             }

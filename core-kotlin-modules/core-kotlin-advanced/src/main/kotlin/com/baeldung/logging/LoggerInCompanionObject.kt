@@ -37,7 +37,7 @@ open class LoggerInCompanionObject {
 
 class CompanionSubclass : LoggerInCompanionObject()
 
-fun main(args: Array<String>) {
+fun main() {
     LoggerInCompanionObject().log("test")
     LoggerInCompanionObject.Inner().log("test")
     CompanionSubclass().log("sub")

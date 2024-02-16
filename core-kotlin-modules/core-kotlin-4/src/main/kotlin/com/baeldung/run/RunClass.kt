@@ -14,7 +14,7 @@ class RunClass {
     }
 }
 
-fun main(args: Array<String>) {
+fun main() {
     println("Running the main function")
     RunClass().printInsideClass()
 }

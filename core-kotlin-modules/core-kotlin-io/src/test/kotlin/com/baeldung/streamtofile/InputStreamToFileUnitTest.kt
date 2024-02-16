@@ -13,7 +13,7 @@ class InputStreamToFileUnitTest {
 
     @Test
     fun `copyTo should copy the input stream to any output stream`() {
-        val file: File = createTempFile()
+        val file: File = kotlin.io.path.createTempFile().toFile()
         val inputStream = ByteArrayInputStream(content.toByteArray())
 
         inputStream.use { input ->
@@ -27,7 +27,7 @@ class InputStreamToFileUnitTest {
 
     @Test
     fun `copyTo should copy the input stream to any output stream (customize buffering)`() {
-        val file: File = createTempFile()
+        val file: File = kotlin.io.path.createTempFile().toFile()
         val inputStream = ByteArrayInputStream(content.toByteArray())
 
         inputStream.use { input ->
@@ -54,11 +54,11 @@ class InputStreamToFileUnitTest {
 
     @Test
     fun `transferTo should copy any input stream to output stream`() {
-        val file = createTempFile()
+        val file = kotlin.io.path.createTempFile().toFile()
         val inputStream = ByteArrayInputStream(content.toByteArray())
 
-        inputStream.use { input ->
-            file.outputStream().use { output ->
+        inputStream.use { _ ->
+            file.outputStream().use { _ ->
                 // uncomment on Java 9
                 // input.transferTo(output)
             }

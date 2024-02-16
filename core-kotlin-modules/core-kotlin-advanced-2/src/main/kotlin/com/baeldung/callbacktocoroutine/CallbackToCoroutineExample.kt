@@ -1,6 +1,7 @@
 package com.baeldung.callbacktocoroutine
 
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlin.coroutines.resume
@@ -51,8 +52,9 @@ class CallbackToCoroutineExample {
         return "processed-data"
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     fun main() {
-        val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+        val exceptionHandler = CoroutineExceptionHandler { _, _ ->
             // Handle exception
         }
 
@@ -60,8 +62,7 @@ class CallbackToCoroutineExample {
         GlobalScope.launch(exceptionHandler) {
             val result = fetchDataWithCoroutine()
             // Handle successful result
+            print("Result is: $result")
         }
     }
-
-
 }

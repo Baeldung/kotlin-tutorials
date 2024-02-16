@@ -11,7 +11,7 @@ open class LoggerAsProperty {
 
 class PropertySubclass : LoggerAsProperty()
 
-fun main(args: Array<String>) {
+fun main() {
     LoggerAsProperty().log("test")
     PropertySubclass().log("sub")
 }
