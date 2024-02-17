@@ -6,8 +6,6 @@ import kotlin.test.assertEquals
 class MethodAccessInCompanionObjectUnitTest {
     @Test
     fun `calls outer method using reference to outer class`() {
-        val myClass = OuterClass()
-        OuterClass.outerClass = myClass
         val result = OuterClass.companionMethod()
 
         assertEquals("This is a method outside the companion object", result)
@@ -46,9 +44,9 @@ class MethodAccessInCompanionObjectUnitTest {
 
 class OuterClass {
     companion object {
-        var outerClass: OuterClass? = null
-        fun companionMethod(): String? {
-            return outerClass?.outerClassMethod()
+        var outerClass: OuterClass = OuterClass()
+        fun companionMethod(): String {
+            return outerClass.outerClassMethod()
         }
     }
 
