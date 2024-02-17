@@ -1,0 +1,6 @@
+my-app:
+  magic-number: 42
+  magic-string: "It's a magic string"
+  magic-flag: true
+
+  magic-string-with-default: "It's another magic string"
