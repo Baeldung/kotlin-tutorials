@@ -5,3 +5,5 @@
 - [Idiomatic Ways to Transform Maps in Kotlin](https://www.baeldung.com/kotlin/map-operations)
 - [Implement a MultiMap in Kotlin](https://www.baeldung.com/kotlin/multimap)
 - [Skip Null Values When Converting a List to a Map in Kotlin](https://www.baeldung.com/kotlin/list-map-conversion-ignore-nulls)
+- [Creating a Map from Two Arrays in Kotlin](https://www.baeldung.com/kotlin/map-from-two-arrays)
+- [Converting a List of Maps to a Map Grouped by Key in Kotlin](https://www.baeldung.com/kotlin/map-grouping)
