@@ -12,13 +12,6 @@ class MethodAccessInCompanionObjectUnitTest {
     }
 
     @Test
-    fun `calls outer method using reflection`() {
-        val result = ReflectionClass.companionMethod()
-
-        assertEquals("This is a method outside the companion object", result)
-    }
-
-    @Test
     fun `calls outer method using interface`() {
         val myClass = OuterClassWIthInterface()
         val result = OuterClassWIthInterface.companionMethod(myClass)
@@ -54,20 +47,6 @@ class OuterClass {
         return "This is a method outside the companion object"
     }
 }
-
-class ReflectionClass {
-    companion object {
-        fun companionMethod(): String {
-            val outerClass = ReflectionClass()
-            val outerClassMethod = ReflectionClass::class.java.getDeclaredMethod("outerClassMethod")
-            return outerClassMethod.invoke(outerClass) as String
-        }
-    }
-
-    fun outerClassMethod(): String {
-        return "This is a method outside the companion object"
-    }
-}
 interface OuterClassInterface {
     fun outerClassMethod(): String
 }
@@ -86,11 +65,11 @@ class OuterClassWIthInterface : OuterClassInterface {
 class ClassWithObject {
     companion object {
         fun companionMethod(): String {
-            return OuterClass.outerClassMethod()
+            return ObjectClass.outerClassMethod()
         }
     }
 
-    object OuterClass {
+    object ObjectClass {
         fun outerClassMethod(): String {
             return "This is a method outside the companion object"
         }
