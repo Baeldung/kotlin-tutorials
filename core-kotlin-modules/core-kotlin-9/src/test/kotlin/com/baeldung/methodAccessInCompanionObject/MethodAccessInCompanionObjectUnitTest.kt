@@ -37,7 +37,7 @@ class MethodAccessInCompanionObjectUnitTest {
 
 class OuterClass {
     companion object {
-        var outerClass: OuterClass = OuterClass()
+        val outerClass: OuterClass = OuterClass()
         fun companionMethod(): String {
             return outerClass.outerClassMethod()
         }
