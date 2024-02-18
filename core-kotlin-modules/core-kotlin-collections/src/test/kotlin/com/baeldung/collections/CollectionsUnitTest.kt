@@ -131,7 +131,7 @@ class CollectionsUnitTest {
     @Test
     fun whenApplyMultiOutputFunctionToAllItems_thenSuccess() {
         val theList = listOf("John", "Tom")
-        val resultList = theList.flatMap { it.toLowerCase().toList() }
+        val resultList = theList.flatMap { it.lowercase().toList() }
         print(resultList)
         assertEquals(7, resultList.size)
         assertTrue(resultList.contains('j'))

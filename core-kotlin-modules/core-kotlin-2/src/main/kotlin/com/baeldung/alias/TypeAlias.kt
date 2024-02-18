@@ -5,12 +5,14 @@ import java.util.concurrent.CompletableFuture
 typealias CreditCard = String
 fun linkCard(card: CreditCard) {
     // omitted
+    println(card)
 }
 
 fun main() {
     val cc: CreditCard = "1234****"
     linkCard(cc)
-    val other = cc.toUpperCase()
+    val other = cc.uppercase()
+    println("CreditCard uppercase: $other")
     linkCard("1234****")
 }
 

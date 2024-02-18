@@ -36,7 +36,7 @@ fun lazyLogger(forClass: Class<*>): Lazy<Logger> =
 
 fun <T : Any> T.lazyLogger(): Lazy<Logger> = lazyLogger(javaClass)
 
-fun main(args: Array<String>) {
+fun main() {
     LoggerAsPropertyDelegate().log("test")
     DelegateSubclass().log("sub")
 }

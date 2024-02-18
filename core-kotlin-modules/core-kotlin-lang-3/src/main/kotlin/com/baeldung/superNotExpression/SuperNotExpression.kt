@@ -1,7 +1,9 @@
 package com.baeldung.superNotExpression
 
 open class Vehicle() {
-    constructor(name: String) : this() {}
+    constructor(name: String) : this() {
+        println("Constructor parameter: $name")
+    }
 
     open fun start() {}
 }

@@ -1,7 +1,7 @@
 package com.baeldung.runCatchingTryFinally
 
 fun tryToDoSomething(): Int {
-    var result = 0
+    var result: Int
     val resource = acquireResource()
     try {
         // Code that can throw an exception
@@ -24,5 +24,10 @@ fun doSomethingRunCatching(): Int {
 
 
 fun acquireResource() = Any()
-fun releaseResource(any: Any) = Any()
-fun performAction(any: Any) = 1
+fun releaseResource(any: Any) {
+    println("Any is: $any")
+}
+fun performAction(any: Any): Int {
+    println("Any is: $any")
+    return 1
+}

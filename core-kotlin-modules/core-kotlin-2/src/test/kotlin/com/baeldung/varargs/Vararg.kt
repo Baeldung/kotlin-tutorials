@@ -10,7 +10,9 @@ fun printStrings(vararg vs: String) {
     vs.forEach { println(it) } // Array<String>
 }
 
-fun createUser(vararg roles: String, username: String, age: Int) {}
+fun createUser(vararg roles: String, username: String, age: Int) {
+    println("Input params. roles: $roles, username: $username, age: $age")
+}
 
 fun main() {
     createUser("admin", "user", username = "me", age = 42)

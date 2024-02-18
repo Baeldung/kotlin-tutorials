@@ -1,6 +1,6 @@
 package com.baeldung.range
 
-fun main(args: Array<String>) {
+fun main() {
 
     (1..9).reversed().forEach {
         print(it)

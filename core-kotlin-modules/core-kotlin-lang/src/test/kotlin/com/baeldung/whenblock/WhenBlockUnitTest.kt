@@ -55,7 +55,7 @@ class WhenBlockUnitTest {
         assertFailsWith(IllegalArgumentException::class) {
             val fileType = UnixFileType.L
 
-            val result: Boolean = when (fileType) {
+            when (fileType) {
                 UnixFileType.HYPHEN_MINUS -> true
                 else -> throw IllegalArgumentException("Wrong type of file")
             }

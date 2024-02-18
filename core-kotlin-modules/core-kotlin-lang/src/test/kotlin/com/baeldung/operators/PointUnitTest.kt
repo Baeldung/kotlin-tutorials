@@ -15,12 +15,12 @@ class PointUnitTest {
     }
 
     @Test
-    fun `We shoud be able to subtract one point from another using -`() {
+    fun `We shoud be able to subtract one point from another using dash`() {
         assertEquals(p1 - p2, Point(-1, -1))
     }
 
     @Test
-    fun `We should be able to multiply two points together with *`() {
+    fun `We should be able to multiply two points together with asterisk`() {
         assertEquals(p1 * p2, Point(2, 6))
     }
 

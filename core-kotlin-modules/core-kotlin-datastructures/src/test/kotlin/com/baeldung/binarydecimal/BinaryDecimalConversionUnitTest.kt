@@ -59,8 +59,6 @@ class BinaryDecimalConversionUnitTest {
     fun decimalToBinary( n: Int): String {
         val intList = mutableListOf<Int>()
         var decimalNumber = n
-        var result = ""
-        var i = 0
 
         while (decimalNumber > 0) {
             intList.add(decimalNumber % 2)

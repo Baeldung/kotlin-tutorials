@@ -42,7 +42,6 @@
                         <configuration>
                             <sourceDirs>
                                 <sourceDir>${project.basedir}/src/main/kotlin</sourceDir>
-                                <sourceDir>${project.basedir}/src/main/java</sourceDir>
                             </sourceDirs>
                             <jvmTarget>${java.version}</jvmTarget>
                             <args>
@@ -58,7 +57,6 @@
                         <configuration>
                             <sourceDirs>
                                 <sourceDir>${project.basedir}/src/test/kotlin</sourceDir>
-                                <sourceDir>${project.basedir}/src/test/java</sourceDir>
                             </sourceDirs>
                             <jvmTarget>${java.version}</jvmTarget>
                         </configuration>
@@ -91,5 +89,7 @@
     <properties>
         <kotlin.version>1.9.10</kotlin.version>
         <java.version>11</java.version>
+        <compiler.plugin.version>3.8.0</compiler.plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 </project>

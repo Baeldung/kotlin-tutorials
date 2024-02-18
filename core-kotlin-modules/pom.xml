@@ -24,6 +24,7 @@
         <module>core-kotlin-7</module>
         <module>core-kotlin-8</module>
         <module>core-kotlin-9</module>
+        <module>core-kotlin-10</module>
         <module>core-kotlin-advanced</module>
         <module>core-kotlin-advanced-2</module>
         <module>core-kotlin-annotations</module>
@@ -54,6 +55,7 @@
         <module>core-kotlin-lang-oop</module>
         <module>core-kotlin-lang-oop-2</module>
         <module>core-kotlin-lang-oop-3</module>
+        <module>core-kotlin-numbers</module>
         <module>core-kotlin-strings</module>
         <module>core-kotlin-strings-2</module>
         <module>core-kotlin-strings-3</module>

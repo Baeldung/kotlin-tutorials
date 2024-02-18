@@ -1,6 +1,6 @@
 package com.baeldung.destructuringdeclarations
 
-fun main(args: Array<String>) {
+fun main() {
 
         //2.1. Objects
     val person = Person(1, "Jon Snow", 20)
@@ -12,7 +12,7 @@ fun main(args: Array<String>) {
 
     //2.2. Functions
     fun getPersonInfo() = Person(2, "Ned Stark", 45)
-    val(idf, namef, agef) = getPersonInfo()
+    val(_, _, _) = getPersonInfo()
 
     fun twoValuesReturn(): Pair<Int, String> {
 
@@ -22,7 +22,7 @@ fun main(args: Array<String>) {
     }
 
     // Now, to use this function:
-    val (result, status) = twoValuesReturn()
+    val (_, _) = twoValuesReturn()
 
     //2.3. Collections and For-loops
     var map: HashMap<Int, Person> = HashMap()
@@ -33,10 +33,10 @@ fun main(args: Array<String>) {
     }
 
     //2.4. Underscore and Destructuring in Lambdas
-    val (_, name2, age2) = person
-    val (id3, name3) = person
+    val (_, _, _) = person
+    val (_, _) = person
 
     map.mapValues { entry -> "${entry.value}!" }
-    map.mapValues { (key, value) -> "$value!" }
+    map.mapValues { (_, value) -> "$value!" }
 
 }

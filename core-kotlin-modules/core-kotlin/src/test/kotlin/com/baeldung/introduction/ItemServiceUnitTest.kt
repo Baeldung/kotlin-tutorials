@@ -8,14 +8,13 @@ class ItemServiceUnitTest {
     @Test
     fun givenItemId_whenGetForOptionalItem_shouldMakeActionOnNonNullValue() {
         //given
-        val id = "item_id"
         val itemService = ItemService()
 
         //when
-        val result = itemService.findItemNameForId(id)
+        val result = itemService.findItemNameForId()
 
         //then
-        assertNotNull(result?.let { it -> it.id })
+        assertNotNull(result?.let { it.id })
         assertNotNull(result!!.id)
     }
 }

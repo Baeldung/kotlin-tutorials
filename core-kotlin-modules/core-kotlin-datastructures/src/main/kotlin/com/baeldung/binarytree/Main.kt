@@ -4,7 +4,7 @@ package com.baeldung.binarytree
  * Example of how to use the {@link Node} class.
  *
  */
-fun main(args: Array<String>) {
+fun main() {
     val tree = Node(4)
     val keys = arrayOf(8, 15, 21, 3, 7, 2, 5, 10, 2, 3, 4, 6, 11)
     for (key in keys) {

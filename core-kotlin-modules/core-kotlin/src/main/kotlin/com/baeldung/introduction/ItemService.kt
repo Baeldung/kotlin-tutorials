@@ -3,7 +3,7 @@ package com.baeldung.introduction
 import java.util.*
 
 class ItemService {
-    fun findItemNameForId(id: String): Item? {
+    fun findItemNameForId(): Item? {
         val itemId = UUID.randomUUID().toString()
         return Item(itemId, "name-$itemId")
     }
@@ -37,7 +37,7 @@ class ItemManager(val categoryId: String, val dbConnection: String) {
 
 }
 
-fun main(args: Array<String>) {
+fun main() {
     val numbers = arrayOf("first", "second", "third", "fourth")
 
     for (n in numbers) {
@@ -56,6 +56,7 @@ fun main(args: Array<String>) {
     val concatOfNames = "$firstName + $secondName"
     println("Names: $concatOfNames")
     val sum = "four: ${2 + 2}"
+    println("Sum is: $sum")
 
     val itemManager = ItemManager("cat_id", "db://connection")
     ItemManager(categoryId = "catId", dbConnection = "db://Connection")
@@ -77,7 +78,7 @@ fun main(args: Array<String>) {
 
     val items = listOf(1, 2, 3, 4)
 
-
+    println("List of items: $items")
     val rwList = mutableListOf(1, 2, 3)
     rwList.add(5)
 }
