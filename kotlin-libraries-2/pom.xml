@@ -230,7 +230,7 @@
                 </executions>
                 <configuration>
                     <args>
-                        <arg>-Xopt-in=kotlin.RequiresOptIn</arg>
+                        <arg>-opt-in=kotlin.RequiresOptIn</arg>
                     </args>
                     <compilerPlugins>
                         <plugin>kotlinx-serialization</plugin>

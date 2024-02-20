@@ -4,7 +4,7 @@ import java.io.Serializable
 import java.nio.channels.Channel
 
 fun main() {
-    val channel = object : Channel {
+    object : Channel {
         override fun isOpen() = false
 
         override fun close() {
@@ -12,18 +12,18 @@ fun main() {
     }
 
     val maxEntries = 10
-    val lruCache = object : LinkedHashMap<String, Int>(10, 0.75f) {
+    object : LinkedHashMap<String, Int>(10, 0.75f) {
 
         override fun removeEldestEntry(eldest: MutableMap.MutableEntry<String, Int>?): Boolean {
             return size > maxEntries
         }
     }
 
-    val map = object : LinkedHashMap<String, Int>() {
+    object : LinkedHashMap<String, Int>() {
         // omitted
     }
 
-    val serializableChannel = object : Channel, Serializable {
+    object : Channel, Serializable {
         override fun isOpen(): Boolean {
             TODO("Not yet implemented")
         }

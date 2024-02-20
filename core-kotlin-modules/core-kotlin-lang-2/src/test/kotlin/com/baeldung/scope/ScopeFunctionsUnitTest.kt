@@ -10,6 +10,7 @@ class ScopeFunctionsUnitTest {
         var called : Boolean = false
 
         fun info(message: String) {
+            println("Message is: $message")
             called = true
         }
 

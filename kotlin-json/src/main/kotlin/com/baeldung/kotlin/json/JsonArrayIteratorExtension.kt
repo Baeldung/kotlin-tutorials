@@ -29,7 +29,7 @@ class JsonArrayIteratorExtension {
     fun main() {
         val booksJSONArray = JSONArray(BOOKS_STRING)
         for (book in booksJSONArray) {
-            println("${(book as JSONObject).get("book_name")} by ${(book as JSONObject).get("author")}")
+            println("${(book as JSONObject).get("book_name")} by ${book.get("author")}")
         }
     }
 }

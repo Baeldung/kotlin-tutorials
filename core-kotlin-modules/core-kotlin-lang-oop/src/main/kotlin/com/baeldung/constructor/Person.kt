@@ -4,7 +4,7 @@ open class Person(
         val name: String,
         val age: Int? = null
 ) {
-    val upperCaseName: String = name.toUpperCase()
+    val upperCaseName: String = name.uppercase()
 
     init {
         println("Hello, I'm $name")
@@ -20,7 +20,9 @@ open class Person(
 
 }
 
-fun main(args: Array<String>) {
+fun main() {
     val person = Person("John")
+    println("Person is: $person")
     val personWithAge = Person("John", 22)
+    println("Person with age is: $personWithAge")
 }

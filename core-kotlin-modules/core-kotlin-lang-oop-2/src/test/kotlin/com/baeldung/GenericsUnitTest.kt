@@ -15,6 +15,7 @@ class GenericsUnitTest {
         val res = parameterizedClass.getValue()
 
         //then
+        @Suppress("USELESS_IS_CHECK")
         assertTrue(res is String)
     }
 
@@ -27,6 +28,7 @@ class GenericsUnitTest {
         val res = parameterizedClass.getValue()
 
         //then
+        @Suppress("USELESS_IS_CHECK")
         assertTrue(res is String)
     }
 
@@ -39,6 +41,7 @@ class GenericsUnitTest {
         val ref: ParameterizedProducer<Any> = parameterizedProducer
 
         //then
+        @Suppress("USELESS_IS_CHECK")
         assertTrue(ref is ParameterizedProducer<Any>)
     }
 
@@ -51,6 +54,7 @@ class GenericsUnitTest {
         val ref: ParameterizedConsumer<Double> = parameterizedConsumer
 
         //then
+        @Suppress("USELESS_IS_CHECK")
         assertTrue(ref is ParameterizedConsumer<Double>)
     }
 

@@ -11,7 +11,7 @@ fun printArray(array: Array<Int>) {
     println()
 }
 
-fun main(args: Array<String>) {
+fun main() {
     var numbers = initArray()
     printArray(numbers)
 

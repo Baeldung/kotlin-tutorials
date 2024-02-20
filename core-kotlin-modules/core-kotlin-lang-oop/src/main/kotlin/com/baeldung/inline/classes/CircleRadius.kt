@@ -18,11 +18,17 @@ value class CircleRadius(private val circleRadius : Double) : Drawable {
     }
 }
 
-fun useAsDrawable(drawableInline: Drawable) { }
-fun useAsNullableDrawable(drawableInline: Drawable?) { }
-fun <T> useAsGeneric(genericInline: T) { }
+fun useAsDrawable(drawableInline: Drawable) {
+    println("Drawable in line: $drawableInline")
+}
+fun useAsNullableDrawable(drawableInline: Drawable?) {
+    println("Drawable in line: $drawableInline")
+}
+fun <T> useAsGeneric(genericInline: T) {
+    println("Generic in line: $genericInline")
+}
 
-fun main(args: Array<String>) {
+fun main() {
     useAsDrawable(CircleRadius(5.0))
     useAsNullableDrawable(CircleRadius(5.0))
     useAsGeneric(CircleRadius(5.0))

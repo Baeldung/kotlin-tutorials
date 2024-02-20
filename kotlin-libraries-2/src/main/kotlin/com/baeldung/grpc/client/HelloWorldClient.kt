@@ -13,6 +13,6 @@ fun helloClient() {
     println(response.message)
 }
 
-fun main(args: Array<String>) {
+fun main() {
     helloClient()
 }

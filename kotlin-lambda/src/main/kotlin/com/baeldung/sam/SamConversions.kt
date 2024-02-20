@@ -5,27 +5,27 @@ import java.util.concurrent.Executors
 
 @Suppress("ObjectLiteralToLambda", "MoveLambdaOutsideParentheses")
 fun main() {
-    val objectExpressionThread = Thread(object : Runnable {
+    Thread(object : Runnable {
         override fun run() {
             // the logic
         }
     })
 
-    val lambdaThread = Thread({
+    Thread({
         // the logic
     })
 
-    val samThread = Thread {
+    Thread {
         // the logic
     }
 
     var answer = 42
-    val threadWithClosure = Thread { println(answer) }
+    Thread { println(answer) }
 
     val executor = Executors.newFixedThreadPool(2)
-    val submit = executor.submit(Callable { return@Callable 42 })
+    executor.submit(Callable { return@Callable 42 })
 
-    val isAnswer = Predicate<Int> { i -> i == 42 }
+    Predicate<Int> { i -> i == 42 }
 }
 
 fun doSomething(): Runnable = Runnable {

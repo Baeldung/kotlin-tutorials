@@ -16,6 +16,7 @@ class FunctionalErrorHandlingWithEitherUnitTest {
         val computeWithEither = operator.computeWithEither("bar")
 
         assertTrue(computeWithEither.isLeft())
+        @Suppress("UNUSED_EXPRESSION")
         when(computeWithEither){
             is Either.Left -> when(computeWithEither.value){
                 NotANumber -> "Ok."
@@ -30,6 +31,7 @@ class FunctionalErrorHandlingWithEitherUnitTest {
         val computeWithEither = operator.computeWithEither("121")
 
         assertTrue(computeWithEither.isLeft())
+        @Suppress("UNUSED_EXPRESSION")
         when(computeWithEither){
             is Either.Left -> when(computeWithEither.value){
                 OddNumber -> "Ok."
@@ -44,6 +46,7 @@ class FunctionalErrorHandlingWithEitherUnitTest {
         val computeWithEither = operator.computeWithEither("100")
 
         assertTrue(computeWithEither.isRight())
+        @Suppress("UNUSED_EXPRESSION")
         when(computeWithEither){
             is Either.Right -> when(computeWithEither.value){
                 false -> "Ok."
@@ -58,6 +61,7 @@ class FunctionalErrorHandlingWithEitherUnitTest {
         val computeWithEither = operator.computeWithEither("98")
 
         assertTrue(computeWithEither.isRight())
+        @Suppress("UNUSED_EXPRESSION")
         when(computeWithEither){
             is Either.Right -> when(computeWithEither.value){
                 true -> "Ok."

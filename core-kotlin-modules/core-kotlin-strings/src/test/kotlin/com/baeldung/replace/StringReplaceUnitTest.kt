@@ -46,7 +46,7 @@ class StringReplaceUnitTest {
         val txt = "<div>This is a div tag</div>"
         val regex = "</?.*?>".toRegex()
         val replaced = txt.replace(regex) {
-            it.value.toUpperCase()
+            it.value.uppercase()
         }
         assertEquals("<DIV>This is a div tag</DIV>", replaced)
     }

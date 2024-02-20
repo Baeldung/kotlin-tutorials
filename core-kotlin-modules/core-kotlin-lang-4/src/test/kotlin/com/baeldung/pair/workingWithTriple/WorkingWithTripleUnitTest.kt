@@ -35,12 +35,15 @@ class WorkingWithTripleUnitTest {
     @Test
     fun `when assignment with deconstruction, then get the expected result`() {
         val (a, b, c) = Triple(42, "Kotlin", Long.MAX_VALUE)
+        @Suppress("USELESS_IS_CHECK")
         assertTrue { a is Int }
         assertEquals(42, a)
 
+        @Suppress("USELESS_IS_CHECK")
         assertTrue { b is String }
         assertEquals("Kotlin", b)
 
+        @Suppress("USELESS_IS_CHECK")
         assertTrue { c is Long }
         assertEquals(Long.MAX_VALUE, c)
     }

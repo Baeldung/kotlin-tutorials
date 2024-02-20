@@ -30,7 +30,7 @@ open class ApplicationWebConfig : WebMvcConfigurer, ApplicationContextAware {
                 .apply { prefix = "classpath:/templates/" }
                 .apply { suffix = ".html"}
                 .apply { templateMode = TemplateMode.HTML }
-                .apply { setApplicationContext(applicationContext) }
+                .apply { applicationContext?.let { setApplicationContext(it) } }
     }
 
     @Bean

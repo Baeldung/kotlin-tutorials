@@ -124,7 +124,7 @@ class ChannelsUnitTest {
             println("Stopped receiving messages")
         }
 
-        val transformOnSend = Channels.mapSend(channel, Function<String, String> { msg: String? -> msg?.toUpperCase() })
+        val transformOnSend = Channels.mapSend(channel, Function<String, String> { msg: String? -> msg?.uppercase() })
 
         transformOnSend.send("Hello")
         transformOnSend.send("World")

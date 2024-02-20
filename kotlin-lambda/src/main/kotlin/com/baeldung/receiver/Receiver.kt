@@ -1,8 +1,8 @@
 package com.baeldung.receiver
 
 fun main() {
-    "Baeldung".applyThenReturn { n -> println(n.toUpperCase()) }
-    "Baeldung".apply { println(toUpperCase()) }
+    "Baeldung".applyThenReturn { n -> println(n.uppercase()) }
+    "Baeldung".apply { println(uppercase()) }
 }
 
 fun <T> T.applyThenReturn(f: (T) -> Unit): T {

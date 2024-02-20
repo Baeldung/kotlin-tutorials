@@ -70,6 +70,7 @@ class KMethodUnitTest {
         assertEquals("mutableProperty", mProperty.name)
         assertTrue(mProperty.isLateinit)
         assertFalse(mProperty.isConst)
+        @Suppress("USELESS_IS_CHECK")
         assertTrue(mProperty is KMutableProperty<*>)
     }
 

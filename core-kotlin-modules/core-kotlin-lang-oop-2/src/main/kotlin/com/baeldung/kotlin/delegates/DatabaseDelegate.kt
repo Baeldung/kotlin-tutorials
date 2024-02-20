@@ -4,6 +4,7 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 class DatabaseDelegate<in R, T>(private val field: String, private val id: Int) : ReadWriteProperty<R, T> {
+    @Suppress("UNCHECKED_CAST")
     override fun getValue(thisRef: R, property: KProperty<*>): T =
             queryForValue(field, id) as T
 

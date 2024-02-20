@@ -113,7 +113,7 @@ class JsonStringToMapUnitTest {
     @Test
     fun testInvalidJsonStringToMapWithJackson() {
         val json = """{"name":"Alice","age":30,"city"}"""
-        val exception = assertThrows<com.fasterxml.jackson.core.JsonParseException> {
+        assertThrows<com.fasterxml.jackson.core.JsonParseException> {
             jsonStringToMapWithJackson(json)
         }
     }

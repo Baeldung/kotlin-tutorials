@@ -26,7 +26,7 @@ class ExceptionHandlingApplicationIntegrationTest {
                 uriBuilder
                     .path("/articles")
                     .build()
-            }.body(BodyInserters.fromObject("Exception Handling in Kotlin"))
+            }.body(BodyInserters.fromValue("Exception Handling in Kotlin"))
             .exchange()
             .expectStatus()
             .isBadRequest

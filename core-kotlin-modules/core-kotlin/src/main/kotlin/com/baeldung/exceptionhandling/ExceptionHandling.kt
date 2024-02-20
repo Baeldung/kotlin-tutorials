@@ -27,6 +27,7 @@ class ExceptionHandling {
 
     fun multipleCatchBlock(): Int? {
         return try {
+            @Suppress("DIVISION_BY_ZERO")
             val result = 25 / 0
             result
         } catch (exception: NumberFormatException) {
@@ -45,6 +46,7 @@ class ExceptionHandling {
         return try {
             val firstNumber = 50 / 2 * 0
             try {
+                @Suppress("DIVISION_BY_ZERO")
                 val secondNumber = 100 / firstNumber
                 secondNumber
             } catch (exception: ArithmeticException) {

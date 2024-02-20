@@ -39,7 +39,7 @@ fun sumUsingRangeAndReduce(n: Int): Int {
 }
 
 fun sumUsingRangeAndSumBy(n: Int): Int {
-    return (1..n).sumBy { it }
+    return (1..n).sumOf { it }
 }
 
 fun sumUsingRangeAndFold(n: Int): Int {
