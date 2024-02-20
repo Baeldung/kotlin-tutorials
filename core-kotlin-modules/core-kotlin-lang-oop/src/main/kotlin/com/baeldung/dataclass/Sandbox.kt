@@ -1,6 +1,6 @@
 package com.baeldung.dataclass
 
-fun main(args: Array<String>) {
+fun main() {
 
     val task = Task(1001, "Replace Fuel Tank Filler Caps", 5)
 
@@ -19,8 +19,8 @@ fun main(args: Array<String>) {
     task.component2()
     task.component3()
 
-    val(id, description, priority) = task
+    val(_, _, _) = task
 
     fun getTask() = task
-    val (idf, descriptionf, priorityf) = getTask()
+    val (_, _, _) = getTask()
 }

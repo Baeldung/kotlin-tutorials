@@ -286,7 +286,7 @@ class ActorsUnitTest {
             }
         }
 
-        val watcherRef = watcher.spawn()
+        watcher.spawn()
         TimeUnit.MILLISECONDS.sleep(200)
 
         val watchedRef = watched.spawn()

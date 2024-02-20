@@ -71,7 +71,7 @@ class KotlinBuiltInUnitTest {
         println(mutableList.joinToString())
 
         // Wrap - no copy!
-        val immutableList = ImmutableList(mutableList)
+        ImmutableList(mutableList)
 
         // Error - Immutable List does not have addition methods
         // immutableList[0] = "World"

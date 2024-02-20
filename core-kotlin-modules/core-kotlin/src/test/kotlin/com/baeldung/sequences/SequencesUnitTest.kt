@@ -53,12 +53,16 @@ class SequencesUnitTest {
     @Test
     fun shouldNotCreateIntermediateCollections() {
         val sequence = (0..10).asSequence()
+        @Suppress("USELESS_IS_CHECK")
         assert(sequence is Sequence)
         val filtered = sequence.filter { it % 2 == 1 }
+        @Suppress("USELESS_IS_CHECK")
         assert(filtered is Sequence)
         val mapped = filtered.map { it * 2 }
+        @Suppress("USELESS_IS_CHECK")
         assert(mapped is Sequence)
         val list = mapped.toList()
+        @Suppress("USELESS_IS_CHECK")
         assert(list is List<Int>)
         assert(list.size == 5)
     }
@@ -66,10 +70,13 @@ class SequencesUnitTest {
     @Test
     fun shouldCreateIntermediateCollections() {
         val list = (0..10)
+        @Suppress("USELESS_IS_CHECK")
         assert(list is IntRange)
         val filtered = list.filter { it % 2 == 1 }
+        @Suppress("USELESS_IS_CHECK")
         assert(filtered is List<Int>)
         val mapped = filtered.map { it * 2 }
+        @Suppress("USELESS_IS_CHECK")
         assert(mapped is List<Int>)
         assert(mapped.size == 5)
     }

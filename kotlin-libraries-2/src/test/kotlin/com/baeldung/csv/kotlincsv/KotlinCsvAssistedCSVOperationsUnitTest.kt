@@ -12,7 +12,7 @@ internal class KotlinCsvAssistedCSVOperationsUnitTest {
 
     @Test
     fun when_relaxed_file_is_read_then_everything_fails(): Unit = assertThrows<CSVFieldNumDifferentException>{
-        val goods = readRelaxedCsv(javaClass.getResourceAsStream("../apache/taxables.csv")!!)
+        readRelaxedCsv(javaClass.getResourceAsStream("../apache/taxables.csv")!!)
     }.let { }
 
     @Test

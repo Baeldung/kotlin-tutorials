@@ -11,7 +11,9 @@ class Car {
 
 }
 
-fun main(args: Array<String>) {
+fun main() {
     val car = Car("1", "sport")
-    val s= Car("2", "suv")
+    println("Car is: $car")
+    val car1 = Car("2", "suv")
+    println("Second car is: $car1")
 }

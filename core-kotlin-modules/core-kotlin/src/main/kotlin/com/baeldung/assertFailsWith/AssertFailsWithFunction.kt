@@ -11,6 +11,7 @@ class AssertFailsWithFunction {
     }
 
     fun assertFailsWithMessageAndExceptionClass(){
+        @Suppress("DIVISION_BY_ZERO")
         50 * 12 / 0
     }
 }

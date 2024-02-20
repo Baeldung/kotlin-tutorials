@@ -17,7 +17,7 @@ class NullabilityTests {
     fun testNullPointerException() {
         val name: String? = null
         assertFailsWith<NullPointerException> {
-            val length = name!!.length
+            name!!
         }
     }
 }

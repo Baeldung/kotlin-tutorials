@@ -84,6 +84,6 @@ internal class StringExtensionFunctionClassUnitTest {
     @Test
     fun `using capitalize() method`(){
         var str = "kotlin functions"
-        assertEquals("Kotlin functions",str.capitalize())
+        assertEquals("Kotlin functions", str.replaceFirstChar(Char::titlecase))
     }
 }

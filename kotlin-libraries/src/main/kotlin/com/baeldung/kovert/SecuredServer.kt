@@ -38,7 +38,7 @@ class SecuredServer {
     }
 
     fun start() {
-        Kodein.global.addImport(Kodein.Module {
+        Kodein {
             importConfig(loadConfig(ClassResourceConfig("/kovert.conf", SecuredServer::class.java), ReferenceConfig())) {
                 import("kovert.vertx", KodeinKovertVertx.configModule)
                 import("kovert.server", KovertVerticleModule.configModule)
@@ -49,7 +49,7 @@ class SecuredServer {
             // Kovert boot
             import(KodeinKovertVertx.module)
             import(KovertVerticleModule.module)
-        })
+        }
 
         val initControllers = fun Router.() {
             bindController(SecuredController(), "api")
@@ -58,7 +58,7 @@ class SecuredServer {
         // startup asynchronously...
         KovertVertx.start() bind { vertx ->
             KovertVerticle.deploy(vertx, routerInit = initControllers)
-        } success { deploymentId ->
+        } success { _ ->
             LOG.warn("Deployment complete.")
         } fail { error ->
             LOG.error("Deployment failed!", error)

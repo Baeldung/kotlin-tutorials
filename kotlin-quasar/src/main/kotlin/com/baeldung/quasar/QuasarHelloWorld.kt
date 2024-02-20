@@ -7,7 +7,7 @@ import co.paralleluniverse.strands.SuspendableRunnable
 /**
  * Entrypoint into the application
  */
-fun main(args: Array<String>) {
+fun main() {
     class Runnable : SuspendableRunnable {
         override fun run() {
             println("Hello")

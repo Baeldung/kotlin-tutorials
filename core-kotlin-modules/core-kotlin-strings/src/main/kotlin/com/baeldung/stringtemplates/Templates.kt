@@ -99,7 +99,7 @@ fun showTripleQuotedCorrectEscape(): String {
 	return receipt
 }
 
-fun main(args: Array<String>) {
+fun main() {
 	println(padExample())
 	println(simpleTemplate(10))
 	println(templateWithExpression(5))

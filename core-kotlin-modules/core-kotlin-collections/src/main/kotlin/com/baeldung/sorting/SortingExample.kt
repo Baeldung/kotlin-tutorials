@@ -25,6 +25,7 @@ fun <T : kotlin.Comparable<T>> getSimpleComparator() : Comparator<T> {
 
 fun getComplexComparator() {
     val complexComparator = compareBy<Pair<Int, String>>({it.first}, {it.second})
+    print("Complex comparator result: $complexComparator" )
 }
 
 fun nullHandlingUsage() {

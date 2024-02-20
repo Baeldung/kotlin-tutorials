@@ -16,7 +16,6 @@ class ObjectComparison {
             if (other == null) return false
             if (this === other) return true
             if (other !is StorageOverriddenEqualsAndHashCode) return false
-            other as StorageOverriddenEqualsAndHashCode
             if (name != other.name || capacity != other.capacity) return false
             return true
         }

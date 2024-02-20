@@ -8,6 +8,7 @@ import java.time.Year
 fun readCsv(inputStream: InputStream): List<Movie> {
     val reader = inputStream.bufferedReader()
     val header = reader.readLine()
+    println("Header is: $header")
     return reader.lineSequence()
         .filter { it.isNotBlank() }
         .map {

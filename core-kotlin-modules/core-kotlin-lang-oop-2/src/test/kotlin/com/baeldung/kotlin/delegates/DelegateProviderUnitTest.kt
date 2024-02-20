@@ -8,9 +8,9 @@ import kotlin.test.assertFailsWith
 
 class DelegateProvider<in T, D>(private val field: String, private val id: Int)
     : PropertyDelegateProvider<T, DatabaseDelegate<T, D>> {
-    override operator fun provideDelegate(thisRef: T, prop: KProperty<*>): DatabaseDelegate<T, D> {
+    override operator fun provideDelegate(thisRef: T, property: KProperty<*>): DatabaseDelegate<T, D> {
         println("Providing delegate for field $field and ID $id")
-        prop.returnType.isMarkedNullable
+        property.returnType.isMarkedNullable
         return DatabaseDelegate(field, id)
     }
 }

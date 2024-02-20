@@ -61,7 +61,7 @@ fun main() {
         res.status(204)
     }
 
-    Spark.patch("/posts/:id", { req, res ->
+    Spark.patch("/posts/:id", { req, _ ->
         val id = req.params("id")
 
         val body = objectMapper.readValue<PatchPostRequest>(req.bodyAsBytes())
