@@ -24,31 +24,40 @@ class EnumValueContainsStringUnitTest {
 
     @Test
     fun `checks if enum value contains a specific string correctly using any method`() {
-        assertFalse(DaysOfWeek.values().any { it.name == "RED" })
-        assertTrue(DaysOfWeek.values().any { it.name == "WEDNESDAY" })
-        assertFalse(DaysOfWeek.values().any { it.name == "AUGUST" })
-        assertTrue(DaysOfWeek.values().any { it.name == "SATURDAY" })
+        val names = DaysOfWeek.values()
+
+        assertFalse(names.any { it.name == "RED" })
+        assertTrue(names.any { it.name == "WEDNESDAY" })
+        assertFalse(names.any { it.name == "AUGUST" })
+        assertTrue(names.any { it.name == "SATURDAY" })
     }
 
     @Test
     fun `checks if enum value contains a specific string correctly using map method`() {
-        assertFalse(DaysOfWeek.values().map { it.name}.contains("RED"))
-        assertTrue(DaysOfWeek.values().map { it.name}.contains("WEDNESDAY"))
-        assertFalse(DaysOfWeek.values().map { it.name}.contains("AUGUST"))
-        assertTrue(DaysOfWeek.values().map { it.name}.contains("SATURDAY"))
+        val names = DaysOfWeek.values().map { it.name}
+
+        assertFalse(names.contains("RED"))
+        assertTrue(names.contains("WEDNESDAY"))
+        assertFalse(names.contains("AUGUST"))
+        assertTrue(names.contains("SATURDAY"))
     }
 
     @Test
-    fun `checks if enum value contains a specific string correctly using a map`() {
-        assertFalse(containsValueUsingMap("RED"))
-        assertTrue(containsValueUsingMap("WEDNESDAY"))
-        assertFalse(containsValueUsingMap("AUGUST"))
-        assertTrue(containsValueUsingMap("SATURDAY"))
+    fun `checks if enum value contains a specific string correctly using a hashset`() {
+        assertFalse(containsValueUsingHashSet("RED"))
+        assertTrue(containsValueUsingHashSet("WEDNESDAY"))
+        assertFalse(containsValueUsingHashSet("AUGUST"))
+        assertTrue(containsValueUsingHashSet("SATURDAY"))
     }
 
 }
 enum class DaysOfWeek {
-    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY;
+
+    companion object {
+        // generate names once.
+        val names by lazy { DaysOfWeek.values().map{ it.name } }
+    }
 }
 
 
@@ -63,12 +72,13 @@ fun containsValueUsingForLoop(value: String): Boolean {
 
 fun containsValueUsingWhenExpression(value: String): Boolean {
     return when (value) {
-        DaysOfWeek.MONDAY.name, DaysOfWeek.TUESDAY.name, DaysOfWeek.WEDNESDAY.name,
-        DaysOfWeek.THURSDAY.name, DaysOfWeek.FRIDAY.name, DaysOfWeek.SATURDAY.name, DaysOfWeek.SUNDAY.name-> true
+        in DaysOfWeek.names -> true
         else -> false
     }
 }
-fun containsValueUsingMap(value: String): Boolean {
-    val map = DaysOfWeek.values().associateBy(DaysOfWeek::name)
-    return map.contains(value)
+
+fun containsValueUsingHashSet(value: String): Boolean {
+    val set = HashSet<String>()
+    DaysOfWeek.values().forEach { set.add(it.name) }
+    return set.contains(value)
 }
