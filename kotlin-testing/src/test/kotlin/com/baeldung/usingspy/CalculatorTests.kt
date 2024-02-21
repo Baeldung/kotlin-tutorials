@@ -7,13 +7,13 @@ import io.mockk.verify
 import junit.framework.Assert.assertEquals
 import org.junit.jupiter.api.Test
 
-class Calculator{
+class Calculator {
     fun add(a: Int, b: Int): Int {
-        return a+b
+        return a + b
     }
     fun findAverage(a: Int, b: Int): Int {
-        val total = add(a,b)
-        return total/2;
+        val total = add(a, b)
+        return total / 2;
     }
 }
 
