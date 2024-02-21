@@ -24,7 +24,7 @@ internal class FuelHttpLiveTest {
         val latch = CountDownLatch(1)
 
         "http://httpbin.org/get".httpGet().response{
-                _, response, result ->
+            _, response, result ->
 
             val (data, error) = result
 
@@ -71,7 +71,7 @@ internal class FuelHttpLiveTest {
         val latch = CountDownLatch(1)
 
         Fuel.post("http://httpbin.org/post").response{
-                _, response, result ->
+            _, response, result ->
 
             val (data, error) = result
 
@@ -151,8 +151,7 @@ internal class FuelHttpLiveTest {
 
         Fuel.download("http://httpbin.org/bytes/32768").fileDestination  { _, _ ->
             File.createTempFile("temp", ".tmp")
-        }.response{
-                _, response, result ->
+        }.response{ _, response, result ->
 
             val (data, error) = result
             Assertions.assertNull(error)
@@ -254,7 +253,7 @@ internal class FuelHttpLiveTest {
 
         Fuel.request(PostRoutingAPI.Post("1",null))
           .responseObject(Post.Deserializer()) {
-                  _, _, result ->
+              _, _, result ->
               Assertions.assertEquals(1, result.component1()?.get(0)?.userId)
               latch.countDown()
           }
