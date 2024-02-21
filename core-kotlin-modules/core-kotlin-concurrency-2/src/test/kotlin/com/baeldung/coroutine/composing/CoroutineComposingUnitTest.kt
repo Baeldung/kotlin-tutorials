@@ -4,7 +4,7 @@ import kotlinx.coroutines.future.await
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
-import java.net.URL
+import java.net.URI
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
@@ -52,7 +52,7 @@ class CoroutineComposingUnitTest {
     @Test
     fun given_urls_that_partly_fails_when_called_at_once_then_partly_succeeds() = runBlocking {
         val input = UserInput(query = "I feel lucky")
-        val results = listOf(DataProcessUseCase.urlA, DataProcessUseCase.urlB, URL("https://fail.com"))
+        val results = listOf(DataProcessUseCase.urlA, DataProcessUseCase.urlB, URI("https://fail.com").toURL())
           .let { DataProcessUseCase(dispatcher).callManyHttpUrlsAtOnceIgnoreErrors(input, it) }
         assertEquals(2, results.size)
         val (one, two) = results.map { it.body }

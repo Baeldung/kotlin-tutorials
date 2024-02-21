@@ -2,6 +2,7 @@ package com.baeldung.serialization.defaultValueParameters
 
 import kotlinx.serialization.EncodeDefault
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.decodeFromString
@@ -17,7 +18,7 @@ data class Car1(val type: String, val color: String)
 data class Car2(val type: String, val color: String = "Blue")
 
 @Serializable
-data class Car3(val type: String, @EncodeDefault val color: String = "Blue")
+data class Car3 @OptIn(ExperimentalSerializationApi::class) constructor(val type: String, @EncodeDefault val color: String = "Blue")
 
 class DefaultValueSerializationUnitTest {
 

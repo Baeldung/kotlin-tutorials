@@ -28,7 +28,7 @@ class AssociateUnitTest {
     @Test
     fun testAssociate() {
         val inputs = listOf("Hi", "there")
-        val map = inputs.associate { e -> Pair(e.toUpperCase(), e.reversed()) }
+        val map = inputs.associate { e -> Pair(e.uppercase(), e.reversed()) }
         assertEquals(mapOf("HI" to "iH", "THERE" to "ereht"), map)
     }
 

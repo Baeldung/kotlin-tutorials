@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 import kotlin.test.assertFailsWith
+import kotlin.test.assertNotNull
 
 class LateInitUnitTest {
 
@@ -42,6 +43,7 @@ class LateInitUnitTest {
         val class2 = Class2()
         val class3 = Class3()
 
+        assertNotNull(class1)
         assertFalse(class2.isInitialized())
         assertFalse(class3.isInitialized())
     }

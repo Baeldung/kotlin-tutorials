@@ -26,7 +26,7 @@ class Yield {
     }
 
     fun numberPrinter() = runBlocking {
-        val evenNumberPrinter = launch {
+        launch {
             while (current.get() < threshold) {
                 if (current.get() % 2 == 0) {
                     println("$current is even")
@@ -36,7 +36,7 @@ class Yield {
             }
         }
 
-        val oddNumberPrinter = launch {
+        launch {
             while (current.get() < threshold) {
                 if (current.get() % 2 != 0) {
                     println("$current is odd")

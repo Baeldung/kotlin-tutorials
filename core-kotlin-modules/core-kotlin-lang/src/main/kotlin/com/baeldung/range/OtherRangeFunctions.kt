@@ -1,6 +1,6 @@
 package com.baeldung.range
 
-fun main(args: Array<String>) {
+fun main() {
 
     val r = 1..20
     println(r.minOrNull())

@@ -18,8 +18,14 @@ data class RestClient(val url: String) {
 }
 
 data class BankAccount(val id: Int) {
-    fun checkAuthorization(username: String) = Unit
-    fun addPayee(payee: String) = Unit
-    fun makePayment(paymentDetails: String) = Unit
+    fun checkAuthorization(username: String): Unit {
+        println("Input value: $username")
+    }
+    fun addPayee(payee: String): Unit {
+        println("Input value: $payee")
+    }
+    fun makePayment(paymentDetails: String): Unit {
+        println("Input value: $paymentDetails")
+    }
 
 }

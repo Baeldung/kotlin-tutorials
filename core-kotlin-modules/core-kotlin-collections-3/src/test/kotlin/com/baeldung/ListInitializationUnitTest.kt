@@ -25,6 +25,7 @@ class ListInitializationUnitTest {
 
         //using another list and spread operator
         val secondList = listOf<String>(*readOnlyList.toTypedArray())
+        println("secondList is: $secondList")
 
         //from arraylist
         val arrayList = ArrayList<String>()
@@ -92,11 +93,12 @@ class ListInitializationUnitTest {
     @OptIn(ExperimentalStdlibApi::class)
     @Test
     fun build(){
-        val students = listOf<String>("Hertz","Jane")
-        val myList = buildList<String>(students.size + 1) {
+        val students = listOf("Hertz","Jane")
+        val myList = buildList(students.size + 1) {
             add("Jitendra")
             addAll(students)
         }
+        println("myList is: $myList")
     }
 
 }

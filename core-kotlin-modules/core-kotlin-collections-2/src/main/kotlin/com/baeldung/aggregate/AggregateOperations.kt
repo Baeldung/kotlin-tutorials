@@ -42,11 +42,11 @@ class AggregateOperations {
     }
 
     fun sumByList(): Int {
-        return numbers.sumBy { it * 5 }
+        return numbers.sumOf { it * 5 }
     }
 
     fun sumByDoubleList(): Double {
-        return numbers.sumByDouble { it.toDouble() / 8 }
+        return numbers.sumOf { it.toDouble() / 8 }
     }
 
     fun foldList(): Int {

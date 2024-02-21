@@ -185,6 +185,7 @@
                 <executions>
                     <execution>
                         <id>compile</id>
+                        <phase>compile</phase>
                         <goals>
                             <goal>compile</goal>
                         </goals>
@@ -222,6 +223,11 @@
                     <dependency>
                         <groupId>org.jetbrains.kotlin</groupId>
                         <artifactId>kotlin-maven-allopen</artifactId>
+                        <version>${kotlin.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-maven-serialization</artifactId>
                         <version>${kotlin.version}</version>
                     </dependency>
                 </dependencies>
@@ -290,28 +296,6 @@
                 <configuration>
                     <executable>maven</executable>
                 </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-maven-plugin</artifactId>
-                <version>${kotlin.version}</version>
-                <executions>
-                    <execution>
-                        <id>compile</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.jetbrains.kotlin</groupId>
-                        <artifactId>kotlin-maven-serialization</artifactId>
-                        <version>${kotlin.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
 
             <plugin>
@@ -410,6 +394,7 @@
         <module>kotlin-math-2</module>
         <module>kotlin-spark</module>
         <module>kotlin-prim</module>
+        <module>kotlin-rsocket</module>
     </modules>
 
     <profiles>
@@ -440,7 +425,7 @@
     </profiles>
 
     <properties>
-        <kotlin.version>1.9.20</kotlin.version>
+        <kotlin.version>1.9.22</kotlin.version>
         <kotlinx.version>1.7.1</kotlinx.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

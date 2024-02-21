@@ -32,7 +32,7 @@ class RegexUnitTest {
         val matchResult = regex.matchEntire("abbccbbd")
 
         assertNotNull(matchResult)
-        assertEquals(matchResult!!.value, matchResult.groupValues[0])
+        assertEquals(matchResult.value, matchResult.groupValues[0])
         assertEquals(matchResult.destructured.toList(), matchResult.groupValues.drop(1))
         assertEquals("bbccbb", matchResult.destructured.component1())
         assertNull(matchResult.next())
@@ -44,7 +44,7 @@ class RegexUnitTest {
         var matchResult = regex.find("abcb abbd")
 
         assertNotNull(matchResult)
-        assertEquals(matchResult!!.value, matchResult.groupValues[0])
+        assertEquals(matchResult.value, matchResult.groupValues[0])
         assertEquals("abcb", matchResult.value)
         assertEquals(IntRange(0, 3), matchResult.range)
         assertEquals(listOf("abcb", "bcb"), matchResult.groupValues)
@@ -53,7 +53,7 @@ class RegexUnitTest {
         matchResult = matchResult.next()
 
         assertNotNull(matchResult)
-        assertEquals("abbd", matchResult!!.value)
+        assertEquals("abbd", matchResult.value)
         assertEquals("bb", matchResult.groupValues[1])
 
         matchResult = matchResult.next()
@@ -116,7 +116,7 @@ class RegexUnitTest {
         val regex = """(red|green|blue)""".toRegex()
         val beautiful = "Roses are red, Violets are blue"
         val reallyBeautiful = regex.replace(beautiful) {
-            matchResult ->  matchResult.value.toUpperCase() + "!"
+            matchResult ->  matchResult.value.uppercase() + "!"
         }
 
         assertEquals("Roses are RED!, Violets are BLUE!", reallyBeautiful)

@@ -1,6 +1,6 @@
 package com.baeldung.builder
 
-fun main(args: Array<String>) {
+fun main() {
     FoodOrder.Builder()
       .bread("bread")
       .condiments("condiments")

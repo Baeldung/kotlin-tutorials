@@ -21,6 +21,7 @@ class ComparableContravarianceUnitTest {
     fun whenAssigningFromBaseClass_thenCorrect() {
         val a: Comparable<Animal> = animalComparable
         var p: Comparable<Pet> = petComparable
+        println("Result for petComparable: $p")
         assertDoesNotThrow { p = a }
     }
 

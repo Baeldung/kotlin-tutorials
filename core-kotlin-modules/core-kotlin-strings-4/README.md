@@ -10,3 +10,5 @@ This module contains articles about core Kotlin strings.
 - [How to Repeat a String N Times in Kotlin](https://www.baeldung.com/kotlin/repeating-strings)
 - [How to Convert a String to a Float in Kotlin](https://www.baeldung.com/kotlin/string-float-conversion)
 - [How to Reverse the Order of Words in a Sentence in Kotlin](https://www.baeldung.com/kotlin/reverse-sentence)
+- [Sorting a String Alphabetically in Kotlin](https://www.baeldung.com/kotlin/string-sort)
+- [Kotlin Equivalent of Java’s equalsIgnoreCase()](https://www.baeldung.com/kotlin/java-equalsignorecase-equivalent)

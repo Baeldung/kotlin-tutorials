@@ -9,7 +9,7 @@ class Book {
 
     val title: String = DEFAULT_TITLE
         get() {
-            return field.toUpperCase()
+            return field.uppercase()
         }
 
     var rating: Int = 5

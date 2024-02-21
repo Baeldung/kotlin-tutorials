@@ -1,7 +1,7 @@
 package com.baeldung.assertFailsWith
 
 import org.hamcrest.CoreMatchers
-import org.junit.Assert
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import kotlin.test.assertFailsWith
@@ -46,6 +46,6 @@ class AssertFailsWithFunctionUnitTest {
         val exception = assertFailsWith<NumberFormatException>(
                 block = { Integer.parseInt("abcdefgh") }
         )
-        Assert.assertThat(exception.message, CoreMatchers.equalTo("For input string: \"abcdefgh\""))
+        assertThat(exception.message, CoreMatchers.equalTo("For input string: \"abcdefgh\""))
     }
 }
