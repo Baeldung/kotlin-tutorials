@@ -3,7 +3,11 @@ package com.baeldung.nonblockingcoroutines.handlers
 import com.baeldung.nonblockingcoroutines.controller.ProductStockView
 import com.baeldung.nonblockingcoroutines.model.Product
 import com.baeldung.nonblockingcoroutines.repository.ProductRepositoryCoroutines
-import kotlinx.coroutines.*
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.Deferred
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
 import org.springframework.stereotype.Component
