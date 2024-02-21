@@ -86,6 +86,7 @@ class KotlinWithUnitTest {
             totalPlayed = 100
             numOfWin = 77
         }
+        @Suppress("USELESS_IS_CHECK")
         assertTrue { result is Unit }
     }
 
@@ -99,6 +100,5 @@ class KotlinWithUnitTest {
             if (this != null) "$firstname $lastname's win-rate is ${numOfWin * 100 / totalPlayed}%" else null
         }
         assertEquals(expectedDescription, withResult)
-
     }
 }

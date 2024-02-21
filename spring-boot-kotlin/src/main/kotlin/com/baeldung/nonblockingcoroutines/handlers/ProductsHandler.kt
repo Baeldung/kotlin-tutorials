@@ -3,10 +3,11 @@ package com.baeldung.nonblockingcoroutines.handlers
 import com.baeldung.nonblockingcoroutines.controller.ProductStockView
 import com.baeldung.nonblockingcoroutines.model.Product
 import com.baeldung.nonblockingcoroutines.repository.ProductRepositoryCoroutines
-import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
+import kotlinx.coroutines.Deferred
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
 import org.springframework.stereotype.Component
@@ -28,6 +29,7 @@ class ProductsHandler(
     suspend fun findAll(request: ServerRequest): ServerResponse =
       ServerResponse.ok().json().bodyAndAwait(productRepository.getAllProducts())
 
+    @OptIn(DelicateCoroutinesApi::class)
     suspend fun findOneInStock(request: ServerRequest): ServerResponse {
         val id = request.pathVariable("id").toInt()
 

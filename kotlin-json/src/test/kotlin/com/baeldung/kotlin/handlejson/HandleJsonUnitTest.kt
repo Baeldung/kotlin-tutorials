@@ -1,6 +1,7 @@
 package com.baeldung.kotlin.handlejson
 
 
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
@@ -10,7 +11,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 
 @Serializable
-data class User(@JsonNames("uid") val id: String)
+data class User @OptIn(ExperimentalSerializationApi::class) constructor(@JsonNames("uid") val id: String)
 
 @Serializable
 data class Car(@SerialName("which_model") val model: String)

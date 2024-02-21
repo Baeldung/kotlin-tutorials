@@ -42,11 +42,11 @@ class JsonServer {
                 name = "Tony Stark",
                 job = "Iron Man"
         )
-        fun RoutingContext.putPersonById(id: String, person: Person) = person
+        fun RoutingContext.putPersonById(person: Person) = person
     }
 
     fun start() {
-        Kodein.global.addImport(Kodein.Module {
+        Kodein {
             importConfig(loadConfig(ClassResourceConfig("/kovert.conf", JsonServer::class.java), ReferenceConfig())) {
                 import("kovert.vertx", KodeinKovertVertx.configModule)
                 import("kovert.server", KovertVerticleModule.configModule)
@@ -57,7 +57,7 @@ class JsonServer {
             // Kovert boot
             import(KodeinKovertVertx.module)
             import(KovertVerticleModule.module)
-        })
+        }
 
         val initControllers = fun Router.() {
             bindController(JsonController(), "api")
@@ -66,7 +66,7 @@ class JsonServer {
         // startup asynchronously...
         KovertVertx.start() bind { vertx ->
             KovertVerticle.deploy(vertx, routerInit = initControllers)
-        } success { deploymentId ->
+        } success { _ ->
             LOG.warn("Deployment complete.")
         } fail { error ->
             LOG.error("Deployment failed!", error)

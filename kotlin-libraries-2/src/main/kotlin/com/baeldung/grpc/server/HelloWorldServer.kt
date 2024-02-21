@@ -29,6 +29,6 @@ fun helloServer() {
     server.awaitTermination()
 }
 
-fun main(args: Array<String>) {
+fun main() {
     helloServer()
 }

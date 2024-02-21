@@ -30,7 +30,7 @@ fun averageUsingReduce(numbers: List<Int>): Double {
 
 
 fun averageUsingSumByDouble(numbers: List<Int>): Double {
-    val sum = numbers.sumByDouble { it.toDouble() }
+    val sum = numbers.sumOf { it.toDouble() }
     val average = sum / numbers.size
     return average
 }

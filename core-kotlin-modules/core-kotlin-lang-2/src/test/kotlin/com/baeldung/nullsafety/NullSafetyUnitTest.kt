@@ -11,7 +11,7 @@ class NullSafetyUnitTest {
     @Test
     fun givenNonNullableField_whenAssignValueToIt_thenNotNeedToCheckAgainstNull() {
         //given
-        var a: String = "value"
+        val a: String = "value"
         //a = null compilation error
 
         //then
@@ -21,15 +21,11 @@ class NullSafetyUnitTest {
     @Test
     fun givenNullableField_whenReadValue_thenNeedToCheckAgainstNull() {
         //given
-        var b: String? = "value"
+        val b: String?
         b = null
 
         //when
-        if (b != null) {
-
-        } else {
-            assertNull(b)
-        }
+        assertNull(b)
     }
 
     @Test
@@ -122,7 +118,7 @@ class NullSafetyUnitTest {
     @Test
     fun givenNullableField_whenUsingDoubleExclamationMarkOperatorOnNull_thenThrowNPE() {
         //given
-        var b: String? = "value"
+        val b: String?
         b = null
 
         //when

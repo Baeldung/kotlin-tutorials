@@ -27,6 +27,6 @@ fun asyncHelloClient() {
     )
 }
 
-fun main(args: Array<String>) {
+fun main() {
     asyncHelloClient()
 }

@@ -16,7 +16,7 @@ enum class CardType(val color: String) : ICardLimit {
 
     companion object {
         fun getCardTypeByColor(color: String) = values().firstOrNull { it.color == color }
-        fun getCardTypeByName(name: String) = valueOf(name.toUpperCase())
+        fun getCardTypeByName(name: String) = valueOf(name.uppercase())
     }
 
     abstract fun calculateCashbackPercent(): Float

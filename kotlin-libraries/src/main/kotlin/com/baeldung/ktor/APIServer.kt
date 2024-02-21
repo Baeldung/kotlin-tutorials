@@ -18,7 +18,7 @@ import org.slf4j.event.Level
 data class Author(val name: String, val website: String)
 data class ToDo(var id: Int, val name: String, val description: String, val completed: Boolean)
 
-fun main(args: Array<String>) {
+fun main() {
 
     val toDoList = ArrayList<ToDo>();
     val jsonResponse = """{
@@ -26,6 +26,7 @@ fun main(args: Array<String>) {
             "task": "Pay waterbill",
             "description": "Pay water bill today",
         }"""
+    println("JSon Response is: $jsonResponse")
 
 
     embeddedServer(Netty, 8080) {

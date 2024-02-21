@@ -45,7 +45,7 @@ class ErrorServer {
     }
 
     fun start() {
-        Kodein.global.addImport(Kodein.Module {
+        Kodein {
             importConfig(loadConfig(ClassResourceConfig("/kovert.conf", ErrorServer::class.java), ReferenceConfig())) {
                 import("kovert.vertx", KodeinKovertVertx.configModule)
                 import("kovert.server", KovertVerticleModule.configModule)
@@ -56,7 +56,7 @@ class ErrorServer {
             // Kovert boot
             import(KodeinKovertVertx.module)
             import(KovertVerticleModule.module)
-        })
+        }
 
         val initControllers = fun Router.() {
             bindController(ErrorController(), "api")
@@ -65,7 +65,7 @@ class ErrorServer {
         // startup asynchronously...
         KovertVertx.start() bind { vertx ->
             KovertVerticle.deploy(vertx, routerInit = initControllers)
-        } success { deploymentId ->
+        } success { _ ->
             LOG.warn("Deployment complete.")
         } fail { error ->
             LOG.error("Deployment failed!", error)

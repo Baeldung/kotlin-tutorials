@@ -2,7 +2,7 @@ package com.baeldung.array
 
 val dice = arrayOf(1, 2, 3, 4, 5, 6)
 
-fun main(args: Array<String>) {
+fun main() {
     // Traversal using for loop
     for (faceValue in dice) {
         println(faceValue)

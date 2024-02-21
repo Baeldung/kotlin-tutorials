@@ -17,6 +17,7 @@ data class Employee(
 
     companion object {
         fun loadFromDb(id: UUID): Employee {
+            println("Provided id is: $id")
             TODO("Go to DB and create an Employee object")
         }
     }
@@ -31,11 +32,14 @@ data class PureEmployee(
 )
 
 class EmployeeRepository(dataSource: DataSource) {
+    val dt = dataSource
     fun upsert(employee: PureEmployee) {
+        println("Upsert Pure employee: $employee")
         TODO("Save Employee to the database")
     }
 
     fun findById(id: UUID): PureEmployee {
+        println("The given id is: $id")
         TODO("Go to DB and create an Employee object")
     }
 

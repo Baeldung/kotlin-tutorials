@@ -42,7 +42,7 @@ class ActorsBehaviorUnitTest {
             @Suspendable
             override fun handleCall(from: ActorRef<*>?, id: Any?, m: Int?): String {
                 LOG.info("Called with message: {} from {} with ID {}", m, from, id)
-                return m.toString() ?: "None"
+                return m.toString()
             }
 
             @Suspendable

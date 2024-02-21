@@ -13,7 +13,7 @@ class DataDrivenTest5 : Spek({
         ).forEach { input, expected ->
             describe("Capitalising $input") {
                 it("Correctly returns $expected") {
-                    Assertions.assertEquals(expected, input.toUpperCase())
+                    Assertions.assertEquals(expected, input.uppercase())
                 }
             }
         }

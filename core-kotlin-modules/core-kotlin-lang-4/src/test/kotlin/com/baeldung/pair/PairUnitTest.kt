@@ -20,6 +20,7 @@ class PairUnitTest{
     fun `when using infix function then should create a Pair instance`(){
         val pairInfixFunction = 1 to "value"
 
+        @Suppress("USELESS_IS_CHECK")
         assertTrue(pairInfixFunction is Pair)
     }
 
@@ -51,6 +52,7 @@ class PairUnitTest{
         val pair = Pair(first = "Hello", second = "World")
         val listFromPair = pair.toList()
 
+        @Suppress("USELESS_IS_CHECK")
         assertTrue(listFromPair is List<String>)
         assertEquals(2, listFromPair.size)
         assertEquals("World", listFromPair.sortedDescending().first())

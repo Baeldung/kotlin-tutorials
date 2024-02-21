@@ -16,7 +16,7 @@ class SimpleLinearRegression(private val xs: List<Int>, private val ys: List<Int
     fun predict(independentVariable: Double) = slope * independentVariable + yIntercept
 
     fun calculateRSquared(): Double {
-        val sst = ys.sumByDouble { y -> (y - ys.average()).pow(2) }
+        val sst = ys.sumOf { y -> (y - ys.average()).pow(2) }
         val ssr = xs.zip(ys) { x, y -> (y - predict(x.toDouble())).pow(2) }.sum()
         return (sst - ssr) / sst
     }
@@ -27,5 +27,5 @@ class SimpleLinearRegression(private val xs: List<Int>, private val ys: List<Int
 
     private fun calculateCovariance(xs: List<Int>, ys: List<Int>) = xs.zip(ys) { x, y -> (x - xs.average()) * (y - ys.average()) }.sum()
 
-    private fun calculateVariance(xs: List<Int>) = xs.sumByDouble { x -> (x - xs.average()).pow(2) }
+    private fun calculateVariance(xs: List<Int>) = xs.sumOf { x -> (x - xs.average()).pow(2) }
 }

@@ -1,6 +1,6 @@
 package com.baeldung.array
 
-fun main(args: Array<String>) {
+fun main() {
     val fruits = arrayOf("Pear", "Apple", "Papaya", "Banana")
     println(fruits.associate { Pair(it, it.length) })
     println(fruits.associateBy { it.length })

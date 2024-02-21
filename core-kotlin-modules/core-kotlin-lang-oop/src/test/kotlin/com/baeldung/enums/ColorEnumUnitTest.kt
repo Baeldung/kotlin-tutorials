@@ -21,10 +21,10 @@ class ColorEnumUnitTest {
     fun givenAnyColorEnum_whenCallPaint_thenPaintRespectiveColor() {
         val colors = listOf(PrimaryColor.RED, SecondaryColor.GREEN)
         for(color in colors) {
+            @Suppress("USELESS_IS_CHECK")
             Assertions.assertTrue(color is IColor)
             val myColor = color.paint()
             Assertions.assertNotNull(myColor)
         }
     }
-
 }

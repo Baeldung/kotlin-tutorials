@@ -39,6 +39,7 @@ class RemoveNullAndEmptyValuesUnitTest {
                 iterator.remove()
             }
         }
+        @Suppress("UNCHECKED_CAST")
         return listWithNullsAndEmpty as List<String>
     }
 }

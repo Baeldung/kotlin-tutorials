@@ -2,6 +2,7 @@ package com.baeldung.kotlin.arrow
 
 import arrow.core.Either
 import arrow.core.filterOrElse
+import arrow.core.flatMap
 import arrow.core.right
 import kotlin.math.sqrt
 
@@ -41,9 +42,9 @@ class FunctionalErrorHandlingWithEither {
     }
 
     fun computeWithEitherClient(input : String) {
-        val computeWithEither = computeWithEither(input)
 
-        when(computeWithEither){
+        @Suppress("UNUSED_EXPRESSION")
+        when(val computeWithEither = computeWithEither(input)){
             is Either.Right -> "The greatest divisor is square number: ${computeWithEither.value}"
             is Either.Left -> when(computeWithEither.value){
                 is ComputeProblem.NotANumber -> "Wrong input! Not a number!"

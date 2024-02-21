@@ -2,10 +2,9 @@ package com.baeldung.kotlin.immutable
 
 import com.google.common.collect.ImmutableList
 import com.google.common.collect.ImmutableSet
-import junit.framework.Assert.assertEquals
-import org.junit.Rule
+import org.junit.Assert.assertEquals
 import org.junit.Test
-import org.junit.rules.ExpectedException
+import org.junit.jupiter.api.assertThrows
 
 class ReadOnlyUnitTest{
 
@@ -20,17 +19,14 @@ class ReadOnlyUnitTest{
 
     }
 
-    @Rule
-    @JvmField
-    var ee : ExpectedException = ExpectedException.none()
-
     @Test
     fun givenImmutableList_whenAddTried_checkExceptionThrown(){
 
-        val list: List<String> = ImmutableList.of("I", "am", "actually", "immutable")
+        assertThrows<UnsupportedOperationException> {
+            ImmutableList.of("I", "am", "actually", "immutable")
+        }
 
-        ee.expect(UnsupportedOperationException::class.java)
-
+        val list: List<String> = listOf("I", "am", "actually", "immutable")
         (list as MutableList<String>).add("Oops")
 
     }
@@ -44,10 +40,11 @@ class ReadOnlyUnitTest{
 
         assertEquals(listOf("I", "Am", "100% Not", "Immutable"), mutableList)
 
-        val list: List<String> = ImmutableList.copyOf(mutableList)
+        assertThrows<UnsupportedOperationException>{
+            ImmutableList.copyOf(mutableList)
+        }
 
-        ee.expect(UnsupportedOperationException::class.java)
-
+        val list: List<String> = listOf("I", "Am", "Definitely", "Mutable")
         (list as MutableList<String>)[2] = "Really?"
 
     }
@@ -63,11 +60,13 @@ class ReadOnlyUnitTest{
 
         assertEquals(setOf("Hello", "Baeldung", "I", "am", "immutable"), set)
 
-        ee.expect(UnsupportedOperationException::class.java)
-
         (set as MutableSet<String>).add("Oops")
 
+        assertThrows<UnsupportedOperationException> {
+            ImmutableSet.builder<String>()
+                .add("I","am","immutable")
+                .addAll(mutableList)
+                .build()
+        }
     }
-
-
 }

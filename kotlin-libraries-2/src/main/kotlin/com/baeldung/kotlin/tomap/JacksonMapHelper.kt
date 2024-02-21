@@ -9,9 +9,9 @@ import com.fasterxml.jackson.module.kotlin.KotlinModule
 
 object JacksonMapHelper {
 
-    val DEFAULT_JACKSON_MAPPER = ObjectMapper().registerModule(KotlinModule())
+    val DEFAULT_JACKSON_MAPPER = ObjectMapper().registerModule(KotlinModule.Builder().build())
 
-    val JACKSON_MAPPER_WITH_DATE_FORMAT = ObjectMapper().registerModule(KotlinModule()).apply {
+    val JACKSON_MAPPER_WITH_DATE_FORMAT = ObjectMapper().registerModule(KotlinModule.Builder().build()).apply {
         disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
         dateFormat = DATE_FORMAT
     }

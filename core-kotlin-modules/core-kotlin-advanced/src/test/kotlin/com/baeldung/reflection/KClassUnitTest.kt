@@ -43,6 +43,7 @@ class KClassUnitTest {
         val listClass = ArrayList::class
 
         val list = listClass.createInstance()
+        @Suppress("USELESS_IS_CHECK")
         assertTrue(list is ArrayList)
     }
 
