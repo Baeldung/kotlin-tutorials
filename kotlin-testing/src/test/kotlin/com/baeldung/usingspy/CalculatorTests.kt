@@ -21,7 +21,7 @@ class CalculatorTest {
     @Test
     fun testSpy() {
         val spy = spyk<Calculator>()
-        val result = spy.findAverage(5,5)
+        val result = spy.findAverage(5, 5)
         assertEquals(5, result)
     }
 
