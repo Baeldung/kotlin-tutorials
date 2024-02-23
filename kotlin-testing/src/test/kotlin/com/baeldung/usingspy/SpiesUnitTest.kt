@@ -17,7 +17,7 @@ class Calculator {
     }
 }
 
-class CalculatorTest {
+class SpiesUnitTest {
     @Test
     fun testSpy() {
         val spy = spyk<Calculator>()
