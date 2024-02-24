@@ -24,7 +24,7 @@ data class StudentData private constructor(val name: String, val age: Int) {
 class PrivateConstructorUnitTest {
     @Test
     fun `when using private constructor then instance can only be created via companion function`() {
-        // val kai = Student("Kai" to 18)
+        // val kai = Student("Kai", 18)
         // Kotlin: Cannot access '<init>': it is private in 'Student'
 
         val kai = Student.createInstance("Kai" to 18)
@@ -35,7 +35,7 @@ class PrivateConstructorUnitTest {
 
     @Test
     fun `when using private constructor in data class then copy() exposes the private constructor`() {
-        // val kaiData = StudentData("Kai" to 18)
+        // val kaiData = StudentData("Kai", 18)
         // Kotlin: Cannot access '<init>': it is private in 'StudentData'
 
         val kaiData = StudentData.createInstance("Kai" to 18)
