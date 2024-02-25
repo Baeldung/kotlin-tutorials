@@ -33,9 +33,6 @@ dependencies {
     testImplementation("io.ktor", "ktor-client-mock", ktorVersion)
     testImplementation("io.ktor", "ktor-server-tests", ktorVersion)
 
-    testImplementation("io.ktor:ktor-client-core:$ktorVersion")
-    testImplementation("io.ktor:ktor-client-cio:$ktorVersion")
-
     testImplementation("io.ktor", "ktor-serialization-kotlinx-json", ktorVersion)
     testImplementation("org.jetbrains.kotlin", "kotlin-test-junit", kotlinTestUnit)
     testImplementation("org.seleniumhq.selenium", "selenium-java", seleniumVersion)
