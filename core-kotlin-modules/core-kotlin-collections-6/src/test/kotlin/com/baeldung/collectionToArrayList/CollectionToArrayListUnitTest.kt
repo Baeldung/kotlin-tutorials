@@ -19,7 +19,7 @@ class CollectionToArrayListUnitTest {
 
     @Test
     fun `converts a Collection to ArrayList using the ArrayList constructor`() {
-        val collection: Collection<String>  = listOf("Kotlin", "Java", "Scala")
+        val collection: Collection<String> = listOf("Kotlin", "Java", "Scala")
         val arrayList = ArrayList(collection)
 
         assertEquals(arrayListOf("Kotlin", "Java", "Scala"), arrayList)
@@ -27,7 +27,7 @@ class CollectionToArrayListUnitTest {
 
     @Test
     fun `converts a Collection to ArrayList using the toCollection method`() {
-        val collection: Collection<String>  = listOf("Kotlin", "Java", "Scala")
+        val collection: Collection<String> = listOf("Kotlin", "Java", "Scala")
         val arrayList = collection.toCollection(ArrayList())
 
         assertEquals(arrayListOf("Kotlin", "Java", "Scala"), arrayList)
@@ -35,7 +35,7 @@ class CollectionToArrayListUnitTest {
 
     @Test
     fun `converts a Collection to ArrayList using the addAll method`() {
-        val collection: Collection<String>  = listOf("Kotlin", "Java", "Scala")
+        val collection: Collection<String> = listOf("Kotlin", "Java", "Scala")
         val arrayList = ArrayList<String>()
         arrayList.addAll(collection)
 
@@ -44,7 +44,7 @@ class CollectionToArrayListUnitTest {
 
     @Test
     fun `converts a Collection to ArrayList using the mapTo method`() {
-        val collection: Collection<String>  = listOf("Kotlin", "Java", "Scala")
+        val collection: Collection<String> = listOf("Kotlin", "Java", "Scala")
         val arrayList = ArrayList<String>()
         collection.mapTo(arrayList) { it }
 
