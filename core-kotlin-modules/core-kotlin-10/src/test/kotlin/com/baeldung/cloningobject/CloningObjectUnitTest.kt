@@ -1,13 +1,16 @@
 package com.baeldung.cloningobject
 
-
-import org.junit.jupiter.api.Assertions.*
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-data class Address(val street: String, val city: String)
+data class Address(var street: String, var city: String)
 
-data class Person(val name: String, val address: Address): Cloneable {
+data class Person(var name: String, var address: Address) : Cloneable {
     public override fun clone(): Person {
+        return Person(name, address)
+    }
+
+    fun deepCopy(name: String = this.name, address: Address = this.address.copy()): Person {
         return Person(name, address)
     }
 
@@ -16,7 +19,7 @@ data class Person(val name: String, val address: Address): Cloneable {
 
 class CloningObjectUnitTest {
 
-    private val address = Address("Jalan Kemasan", "Yogyakarta")
+    private val address = Address("Jln. Kemasan", "Yogyakarta")
     private val person = Person("Hangga", address)
 
     private fun serializePerson(person: Person): String {
@@ -32,56 +35,67 @@ class CloningObjectUnitTest {
     }
 
     @Test
-    fun `when using secondary constructor then proves that shallow copy`(){
+    fun `when using secondary constructor then proves that shallow copy`() {
         val clonedPerson = Person(person)
-
-        // original object and cloned object should have the same values
-        assertEquals(person.name, clonedPerson.name)
-        assertEquals(person.address, clonedPerson.address)
-
-        // But they should not refer to the same object
-        assertNotSame(person, clonedPerson)
-        assertSame(person.address, clonedPerson.address)
+        clonedPerson.address.city = "Surabaya"
+        clonedPerson.address.street = "Jln. Ahmad Yani"
+        println("clonedPerson.address.city -> " + clonedPerson.address.city)
+        println("person.address.city -> " + person.address.city)
+        assertThat(clonedPerson).isNotSameAs(person)
+        assertThat(clonedPerson.address.city).isEqualTo(person.address.city)
+        assertThat(clonedPerson.address.street).isEqualTo(person.address.street)
     }
 
     @Test
     fun `when using copy then proves that shallow copy`() {
         val clonedPerson = person.copy()
-
-        // original object and cloned object should have the same values
-        assertEquals(person.name, clonedPerson.name)
-        assertEquals(person.address, clonedPerson.address)
-
-        // But they should not refer to the same object
-        assertNotSame(person, clonedPerson)
-        assertSame(person.address, clonedPerson.address)
+        clonedPerson.address.city = "Palembang"
+        clonedPerson.address.street = "Jln. Abi Hasan"
+        println("clonedPerson.address.city -> " + clonedPerson.address.city)
+        println("person.address.city -> " + person.address.city)
+        assertThat(clonedPerson).isNotSameAs(person)
+        assertThat(clonedPerson.address.city).isEqualTo(person.address.city)
+        assertThat(clonedPerson.address.street).isEqualTo(person.address.street)
     }
 
     @Test
-    fun `with using clone then proves that shallow copy`(){
+    fun `with using clone then proves that shallow copy`() {
         val clonedPerson = person.clone()
-
-        // original object and cloned object should have the same values
-        assertEquals(person.name, clonedPerson.name)
-        assertEquals(person.address, clonedPerson.address)
-
-        // But they should not refer to the same object
-        assertNotSame(person, clonedPerson)
-        assertSame(person.address, clonedPerson.address)
+        clonedPerson.address.city = "Palembang"
+        clonedPerson.address.street = "Jln. Abi Hasan"
+        println("clonedPerson.address.street -> " + clonedPerson.address.street)
+        println("person.address.street -> " + person.address.street)
+        assertThat(clonedPerson).isNotSameAs(person)
+        assertThat(clonedPerson.address.city).isEqualTo(person.address.city)
+        assertThat(clonedPerson.address.street).isEqualTo(person.address.street)
     }
 
     @Test
-    fun `when using serialize then proves that deep copy`() {
+    fun `with own function then proves that deep copy`() {
+        val clonedPerson = person.deepCopy()
+        clonedPerson.address.city = "Bandung"
+        clonedPerson.address.street = "Jln. Siliwangi"
+        println("clonedPerson.address.city -> " + clonedPerson.address.city)
+        println("clonedPerson.address.street -> " + clonedPerson.address.street)
+        println("person.address.city -> " + person.address.city)
+        println("person.address.street -> " + person.address.street)
+        assertThat(clonedPerson).isNotSameAs(person)
+        assertThat(clonedPerson.address.city).isNotEqualTo(person.address.city)
+        assertThat(clonedPerson.address.street).isNotEqualTo(person.address.street)
+    }
+
+    @Test
+    fun `when using serialize then proves that shallow copy`() {
         val serializedPerson = serializePerson(person)
         val clonedPerson = deserializePerson(serializedPerson)
-
-        // original object and cloned object should have the same values
-        assertEquals(person.name, clonedPerson.name)
-        assertEquals(person.address.street, clonedPerson.address.street)
-        assertEquals(person.address.city, clonedPerson.address.city)
-
-        // But they should not refer to the same objects
-        assertNotSame(person, clonedPerson)
-        assertNotSame(person.address, clonedPerson.address)
+        clonedPerson.address.city = "Palembang"
+        clonedPerson.address.street = "Jln. Abi Hasan"
+        println("clonedPerson -> " + clonedPerson.address.city)
+        println("person -> " + person.address.city)
+        assertThat(clonedPerson).isNotSameAs(person)
+        assertThat(clonedPerson.address.city).isNotEqualTo(person.address.city)
+        assertThat(clonedPerson.address.city).isNotSameAs(person.address.city)
+        assertThat(clonedPerson.address.street).isNotEqualTo(person.address.street)
     }
+
 }
