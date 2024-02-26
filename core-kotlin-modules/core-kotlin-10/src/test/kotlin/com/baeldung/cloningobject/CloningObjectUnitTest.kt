@@ -22,18 +22,6 @@ class CloningObjectUnitTest {
     private val address = Address("Jln. Kemasan", "Yogyakarta")
     private val person = Person("Hangga", address)
 
-    private fun serializePerson(person: Person): String {
-        return "${person.name},${person.address.street},${person.address.city}"
-    }
-
-    private fun deserializePerson(data: String): Person {
-        val parts = data.split(",")
-        val name = parts[0]
-        val street = parts[1]
-        val city = parts[2]
-        return Person(name, Address(street, city))
-    }
-
     @Test
     fun `when using secondary constructor then proves that shallow copy`() {
         val clonedPerson = Person(person)
@@ -83,19 +71,4 @@ class CloningObjectUnitTest {
         assertThat(clonedPerson.address.city).isNotEqualTo(person.address.city)
         assertThat(clonedPerson.address.street).isNotEqualTo(person.address.street)
     }
-
-    @Test
-    fun `when using serialize then proves that shallow copy`() {
-        val serializedPerson = serializePerson(person)
-        val clonedPerson = deserializePerson(serializedPerson)
-        clonedPerson.address.city = "Palembang"
-        clonedPerson.address.street = "Jln. Abi Hasan"
-        println("clonedPerson -> " + clonedPerson.address.city)
-        println("person -> " + person.address.city)
-        assertThat(clonedPerson).isNotSameAs(person)
-        assertThat(clonedPerson.address.city).isNotEqualTo(person.address.city)
-        assertThat(clonedPerson.address.city).isNotSameAs(person.address.city)
-        assertThat(clonedPerson.address.street).isNotEqualTo(person.address.street)
-    }
-
 }
