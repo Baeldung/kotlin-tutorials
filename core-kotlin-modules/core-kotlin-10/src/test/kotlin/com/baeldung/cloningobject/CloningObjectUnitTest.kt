@@ -47,7 +47,7 @@ class CloningObjectUnitTest {
     }
 
     @Test
-    fun `with using clone then proves that shallow copy`() {
+    fun `when using clone then proves that shallow copy`() {
         val clonedPerson = person.clone()
         clonedPerson.address.city = "Palembang"
         clonedPerson.address.street = "Jln. Abi Hasan"
@@ -59,7 +59,7 @@ class CloningObjectUnitTest {
     }
 
     @Test
-    fun `with own function then proves that deep copy`() {
+    fun `when own function then proves that deep copy`() {
         val clonedPerson = person.deepCopy()
         clonedPerson.address.city = "Bandung"
         clonedPerson.address.street = "Jln. Siliwangi"
