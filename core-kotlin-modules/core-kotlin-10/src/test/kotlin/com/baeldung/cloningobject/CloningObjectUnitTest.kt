@@ -25,11 +25,11 @@ class CloningObjectUnitTest {
     @Test
     fun `when using secondary constructor then proves that shallow copy`() {
         val clonedPerson = Person(person)
+        assertThat(clonedPerson).isNotSameAs(person)
 
         person.address.city = "Surabaya"
         person.address.street = "Jln. Ahmad Yani"
 
-        assertThat(clonedPerson).isNotSameAs(person)
         assertThat(clonedPerson.address.city).isEqualTo("Surabaya")
         assertThat(clonedPerson.address.street).isEqualTo("Jln. Ahmad Yani")
     }
@@ -37,11 +37,11 @@ class CloningObjectUnitTest {
     @Test
     fun `when using copy then proves that shallow copy`() {
         val clonedPerson = person.copy()
+        assertThat(clonedPerson).isNotSameAs(person)
 
         person.address.city = "Jakarta"
         person.address.street = "Jln. Abdul Muis"
 
-        assertThat(clonedPerson).isNotSameAs(person)
         assertThat(clonedPerson.address.city).isEqualTo("Jakarta")
         assertThat(clonedPerson.address.street).isEqualTo("Jln. Abdul Muis")
     }
@@ -49,11 +49,11 @@ class CloningObjectUnitTest {
     @Test
     fun `when using clone then proves that shallow copy`() {
         val clonedPerson = person.clone()
+        assertThat(clonedPerson).isNotSameAs(person)
 
         person.address.city = "Palembang"
         person.address.street = "Jln. Abi Hasan"
 
-        assertThat(clonedPerson).isNotSameAs(person)
         assertThat(clonedPerson.address.city).isEqualTo("Palembang")
         assertThat(clonedPerson.address.street).isEqualTo("Jln. Abi Hasan")
     }
@@ -61,11 +61,11 @@ class CloningObjectUnitTest {
     @Test
     fun `when own function then proves that deep copy`() {
         val clonedPerson = person.deepCopy()
+        assertThat(clonedPerson).isNotSameAs(person)
 
         person.address.city = "Bandung"
         person.address.street = "Jln. Siliwangi"
 
-        assertThat(clonedPerson).isNotSameAs(person)
         assertThat(clonedPerson.address.city).isNotEqualTo("Bandung")
         assertThat(clonedPerson.address.street).isNotEqualTo("Jln. Siliwangi")
     }
