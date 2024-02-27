@@ -13,8 +13,8 @@ class MethodAccessInCompanionObjectUnitTest {
 
     @Test
     fun `calls outer method using interface`() {
-        val myClass = OuterClassWIthInterface()
-        val result = OuterClassWIthInterface.companionMethod(myClass)
+        val myClass = OuterClassWithInterface()
+        val result = OuterClassWithInterface.companionMethod(myClass)
 
         assertEquals("This is a method outside the companion object", result)
     }
@@ -51,7 +51,7 @@ interface OuterClassInterface {
     fun outerClassMethod(): String
 }
 
-class OuterClassWIthInterface : OuterClassInterface {
+class OuterClassWithInterface : OuterClassInterface {
     companion object {
         fun companionMethod(outerClassInterface: OuterClassInterface): String {
             return outerClassInterface.outerClassMethod()
