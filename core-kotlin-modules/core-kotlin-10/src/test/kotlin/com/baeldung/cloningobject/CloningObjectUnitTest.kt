@@ -3,12 +3,12 @@ package com.baeldung.cloningobject
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-data class Address(var street: String, var city: String)
+data class Address(var street: String, var city: String) : Cloneable {
+    public override fun clone(): Address = super.clone() as Address
+}
 
 data class Person(var name: String, var address: Address) : Cloneable {
-    public override fun clone(): Person {
-        return Person(name, address)
-    }
+    public override fun clone() = Person(name, this.address.clone())
 
     fun deepCopy(name: String = this.name, address: Address = this.address.copy()): Person {
         return Person(name, address)
@@ -73,10 +73,10 @@ class CloningObjectUnitTest {
         person.address.street = "Jln. Abi Hasan"
 
         assertThat(clonedPerson.address.city)
-            .isEqualTo("Palembang")
+            .isNotEqualTo("Palembang")
 
         assertThat(clonedPerson.address.street)
-            .isEqualTo("Jln. Abi Hasan")
+            .isNotEqualTo("Jln. Abi Hasan")
     }
 
     @Test
