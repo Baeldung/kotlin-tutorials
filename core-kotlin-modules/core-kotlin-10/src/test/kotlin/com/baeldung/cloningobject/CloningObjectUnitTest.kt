@@ -42,9 +42,6 @@ class CloningObjectUnitTest {
         val clonedPerson = person.copy()
         assertThat(clonedPerson).isNotSameAs(person)
 
-        val deepClonedPerson = person.copy(address = address.copy())
-        assertThat(deepClonedPerson).isNotSameAs(person)
-
         person.address.city = "Jakarta"
         person.address.street = "Jln. Abdul Muis"
 
@@ -54,11 +51,17 @@ class CloningObjectUnitTest {
         assertThat(clonedPerson.address.street)
             .isEqualTo("Jln. Abdul Muis")
 
+        val deepClonedPerson = person.copy(address = address.copy())
+        assertThat(deepClonedPerson).isNotSameAs(person)
+
+        person.address.city = "Banda Aceh"
+        person.address.street = "Jln. Cut Nyak Dhien"
+
         assertThat(deepClonedPerson.address.city)
-            .isNotEqualTo("Jakarta")
+            .isNotEqualTo("Banda Aceh")
 
         assertThat(deepClonedPerson.address.street)
-            .isNotEqualTo("Jln. Abdul Muis")
+            .isNotEqualTo("Jln. Cut Nyak Dhien")
     }
 
     @Test
