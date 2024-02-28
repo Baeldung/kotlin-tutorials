@@ -30,20 +30,35 @@ class CloningObjectUnitTest {
         person.address.city = "Surabaya"
         person.address.street = "Jln. Ahmad Yani"
 
-        assertThat(clonedPerson.address.city).isEqualTo("Surabaya")
-        assertThat(clonedPerson.address.street).isEqualTo("Jln. Ahmad Yani")
+        assertThat(clonedPerson.address.city)
+            .isEqualTo("Surabaya")
+
+        assertThat(clonedPerson.address.street)
+            .isEqualTo("Jln. Ahmad Yani")
     }
 
     @Test
-    fun `when using copy then proves that shallow copy`() {
+    fun `when using copy then proves that shallow copy or deep copy`() {
         val clonedPerson = person.copy()
         assertThat(clonedPerson).isNotSameAs(person)
+
+        val deepClonedPerson = person.copy(address = address.copy())
+        assertThat(deepClonedPerson).isNotSameAs(person)
 
         person.address.city = "Jakarta"
         person.address.street = "Jln. Abdul Muis"
 
-        assertThat(clonedPerson.address.city).isEqualTo("Jakarta")
-        assertThat(clonedPerson.address.street).isEqualTo("Jln. Abdul Muis")
+        assertThat(clonedPerson.address.city)
+            .isEqualTo("Jakarta")
+
+        assertThat(clonedPerson.address.street)
+            .isEqualTo("Jln. Abdul Muis")
+
+        assertThat(deepClonedPerson.address.city)
+            .isNotEqualTo("Jakarta")
+
+        assertThat(deepClonedPerson.address.street)
+            .isNotEqualTo("Jln. Abdul Muis")
     }
 
     @Test
@@ -54,8 +69,11 @@ class CloningObjectUnitTest {
         person.address.city = "Palembang"
         person.address.street = "Jln. Abi Hasan"
 
-        assertThat(clonedPerson.address.city).isEqualTo("Palembang")
-        assertThat(clonedPerson.address.street).isEqualTo("Jln. Abi Hasan")
+        assertThat(clonedPerson.address.city)
+            .isEqualTo("Palembang")
+
+        assertThat(clonedPerson.address.street)
+            .isEqualTo("Jln. Abi Hasan")
     }
 
     @Test
@@ -66,7 +84,10 @@ class CloningObjectUnitTest {
         person.address.city = "Bandung"
         person.address.street = "Jln. Siliwangi"
 
-        assertThat(clonedPerson.address.city).isNotEqualTo("Bandung")
-        assertThat(clonedPerson.address.street).isNotEqualTo("Jln. Siliwangi")
+        assertThat(clonedPerson.address.city)
+            .isNotEqualTo("Bandung")
+
+        assertThat(clonedPerson.address.street)
+            .isNotEqualTo("Jln. Siliwangi")
     }
 }
