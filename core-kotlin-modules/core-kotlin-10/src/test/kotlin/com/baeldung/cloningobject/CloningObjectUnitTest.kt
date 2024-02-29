@@ -14,7 +14,7 @@ data class Person(var name: String, var address: Address) : Cloneable {
         return Person(name, address)
     }
 
-    constructor(person: Person) : this(person.name, person.address)
+    constructor(person: Person) : this(person.name, person.address.copy())
 }
 
 class CloningObjectUnitTest {
@@ -31,10 +31,10 @@ class CloningObjectUnitTest {
         person.address.street = "Jln. Ahmad Yani"
 
         assertThat(clonedPerson.address.city)
-            .isEqualTo("Surabaya")
+            .isNotEqualTo("Surabaya")
 
         assertThat(clonedPerson.address.street)
-            .isEqualTo("Jln. Ahmad Yani")
+            .isNotEqualTo("Jln. Ahmad Yani")
     }
 
     @Test
