@@ -7,7 +7,5 @@ fun main(args: Array<String>) {
 
     File(fileName).printWriter().use { out -> out.println(fileContent) }
 
-    //append text
     File(fileName).appendText(appendText)
-
 }

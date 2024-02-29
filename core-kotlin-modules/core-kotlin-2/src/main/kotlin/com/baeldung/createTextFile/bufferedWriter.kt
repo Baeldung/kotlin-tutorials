@@ -7,7 +7,5 @@ fun main(args: Array<String>) {
 
     File(fileName).bufferedWriter().use { out -> out.write(fileContent) }
 
-    //append text
     File(fileName).appendBytes(appendText.toByteArray())
-
 }
