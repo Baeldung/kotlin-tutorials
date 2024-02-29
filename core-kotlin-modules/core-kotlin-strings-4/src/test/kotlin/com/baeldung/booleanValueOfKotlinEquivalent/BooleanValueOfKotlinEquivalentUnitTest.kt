@@ -1,6 +1,7 @@
 package com.baeldung.booleanValueOfKotlinEquivalent
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
 
 class BooleanValueOfKotlinEquivalentUnitTest {
@@ -21,9 +22,19 @@ class BooleanValueOfKotlinEquivalentUnitTest {
 
     @Test
     fun `obtain equivalent in Kotlin using toBooleanStrictOrNull method`() {
+        var str: String? = "fjdfj"
         assertEquals(true, "true".toBooleanStrictOrNull())
-        assertEquals(null, "TRUE".toBooleanStrictOrNull())
+        assertEquals(null, str?.toBooleanStrictOrNull())
         assertEquals(false, "false".toBooleanStrictOrNull())
+    }
+
+    @Test
+    fun `obtain equivalent in Kotlin using toBooleanStrict method`() {
+        assertEquals(true, "true".toBooleanStrict())
+        assertEquals(false, "false".toBooleanStrict())
+        assertThrows(IllegalArgumentException::class.java) {
+            "TRUE".toBooleanStrict()
+        }
     }
 
     @Test
@@ -31,6 +42,13 @@ class BooleanValueOfKotlinEquivalentUnitTest {
         assertEquals(true, java.lang.Boolean.parseBoolean("true"))
         assertEquals(true, java.lang.Boolean.parseBoolean("TRUE"))
         assertEquals(false, java.lang.Boolean.parseBoolean("false"))
+    }
+
+    @Test
+    fun `obtain equivalent in Kotlin using valueOf method`() {
+        assertEquals(true, java.lang.Boolean.valueOf("true"))
+        assertEquals(true, java.lang.Boolean.valueOf("TRUE"))
+        assertEquals(false, java.lang.Boolean.valueOf("false"))
     }
 
     @Test
