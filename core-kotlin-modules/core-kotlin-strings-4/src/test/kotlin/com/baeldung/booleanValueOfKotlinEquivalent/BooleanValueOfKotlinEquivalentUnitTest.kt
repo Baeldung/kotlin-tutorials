@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 class BooleanValueOfKotlinEquivalentUnitTest {
 
     @Test
-    fun `obtain equivalent in Kotlin using if statement`() {
+    fun `obtain equivalent in Kotlin by string comparison using equals method`() {
         assertEquals(true, convertStringToBoolean("true"))
         assertEquals(true, convertStringToBoolean("TRUE"))
         assertEquals(false, convertStringToBoolean("false"))
@@ -72,12 +72,11 @@ fun convertStringToBoolean(input: String): Boolean {
 }
 
 fun convertStringToBooleanUsingRegex(input: String): Boolean {
-    return input.matches("^\\s*(?i:true)\\s*$".toRegex())
+    return input.trim().matches("^\\s*(?i:true)\\s*$".toRegex())
 }
 
-fun String.toBooleanValue(): Boolean? =
+fun String.toBooleanValue(): Boolean =
     when (this.toLowerCase()) {
         "true" -> true
-        "false" -> false
-        else -> null
+        else -> false
     }
