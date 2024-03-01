@@ -13,7 +13,7 @@ class ModifyMapEntryInPlaceUnitTest {
     }
 
     @Test
-    fun `modifies mutable map entry using assign operator`() {
+    fun `modifies mutable map entry using set operator`() {
         val map = mutableMapOf("key1" to "value1", "key2" to "value2")
         map["key1"] = "new value"
         assertEquals("new value", map["key1"])
