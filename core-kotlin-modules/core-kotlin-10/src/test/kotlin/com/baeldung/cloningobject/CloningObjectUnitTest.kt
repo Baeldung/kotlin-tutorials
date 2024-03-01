@@ -17,6 +17,18 @@ data class Person(var name: String, var address: Address) : Cloneable {
     constructor(person: Person) : this(person.name, person.address.copy())
 }
 
+data class Company(var name: String, var industry: String, val ceo: Person, val employees: List<Person>) : Cloneable {
+    public override fun clone(): Company {
+        return Company(name, industry, ceo.clone(), employees.map { it.clone() })
+    }
+}
+
+data class Organization(var name: String, val headquarters: Address, val companies: List<Company>) : Cloneable {
+    public override fun clone(): Organization {
+        return Organization(name, headquarters.clone(), companies.map { it.clone() })
+    }
+}
+
 class CloningObjectUnitTest {
 
     private val address = Address("Jln. Kemasan", "Yogyakarta")
@@ -92,5 +104,57 @@ class CloningObjectUnitTest {
 
         assertThat(clonedPerson.address.street)
             .isNotEqualTo("Jln. Siliwangi")
+    }
+
+    @Test
+    fun `deep copy with copy`(){
+        val address = Address("Jln. Kemasan No 53", "Yogyakarta")
+        val person = Person("Hangga Aji Sayekti",  address)
+        val company = Company("Basen Software", "Tech", person, listOf(person))
+        val organization = Organization("Bekraf", address, listOf(company))
+
+        val copiedOrganization = organization.copy(
+            headquarters = organization.headquarters.copy(),
+            companies = organization.companies.map { company ->
+                company.copy(
+                    ceo = company.ceo.copy(),
+                    employees = company.employees.map { it.copy() }
+                )
+            }
+        )
+
+        val clonedOrganization = organization.clone()
+
+        // Modify the copied organization to verify deep copy
+        organization.name = "New Org Name"
+        organization.headquarters.city = "New City"
+        organization.companies.first().name = "New Company Name"
+        organization.companies.first().ceo.name = "New CEO Name"
+        organization.companies.first().employees.first().name = "New Employee Name"
+
+        assertThat(copiedOrganization.headquarters.city)
+            .isNotEqualTo("New City")
+
+        assertThat(copiedOrganization.companies.first().name)
+            .isNotEqualTo("New Company Name")
+
+        assertThat(copiedOrganization.companies.first().ceo.name)
+            .isNotEqualTo("New CEO Name")
+
+        assertThat(copiedOrganization.companies.first().employees.first().name)
+            .isNotEqualTo("New Employee Name")
+
+
+        assertThat(clonedOrganization.headquarters.city)
+            .isNotEqualTo("New City")
+
+        assertThat(clonedOrganization.companies.first().name)
+            .isNotEqualTo("New Company Name")
+
+        assertThat(clonedOrganization.companies.first().ceo.name)
+            .isNotEqualTo("New CEO Name")
+
+        assertThat(clonedOrganization.companies.first().employees.first().name)
+            .isNotEqualTo("New Employee Name")
     }
 }
