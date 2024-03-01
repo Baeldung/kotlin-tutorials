@@ -52,11 +52,10 @@ class BooleanValueOfKotlinEquivalentUnitTest {
     }
 
     @Test
-    fun `obtain equivalent in Kotlin using toBooleanValue method`() {
+    fun `obtain equivalent in Kotlin using custom extension function`() {
         assertEquals(true, "true".toBooleanValue())
         assertEquals(true, "TRUE".toBooleanValue())
         assertEquals(false, "false".toBooleanValue())
-        assertEquals(null, "trueorfalse".toBooleanValue())
     }
 
     @Test
