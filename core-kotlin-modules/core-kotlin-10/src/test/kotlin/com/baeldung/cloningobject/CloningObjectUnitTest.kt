@@ -3,11 +3,48 @@ package com.baeldung.cloningobject
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
+/***
+Class Scheme
+============================
+
+Address
+├── street: String
+└── city: String
+
+Person
+├── name: String
+└── address: Address
+
+Organization
+├── name: String
+├── headquarters: Address
+└── companies: List<Company>
+    └── Company
+        ├── name: String
+        ├── industry: String
+        ├── ceo: Person
+        │    ├── name: String
+        │    └── address: Address
+        └── employees: List<Person>
+            └── Person
+                ├── name: String
+                └── address: Address
+
+data class Address(var street: String, var city: String)
+data class Person(var name: String, var address: Address)
+data class Company(var name: String, var industry: String, val ceo: Person, val employees: List<Person>)
+data class Organization(var name: String, val headquarters: Address, val companies: List<Company>)
+ */
+
 data class Address(var street: String, var city: String) : Cloneable {
+
     public override fun clone(): Address = super.clone() as Address
+
+//    constructor(address: Address) : this(address.street, address.city)
 }
 
 data class Person(var name: String, var address: Address) : Cloneable {
+
     public override fun clone() = Person(name, this.address.clone())
 
     fun deepCopy(name: String = this.name, address: Address = this.address.copy()): Person {
@@ -18,101 +55,47 @@ data class Person(var name: String, var address: Address) : Cloneable {
 }
 
 data class Company(var name: String, var industry: String, val ceo: Person, val employees: List<Person>) : Cloneable {
+
+    fun deepCopy(name: String = this.name, industry: String = this.industry, ceo: Person = this.ceo.deepCopy(),
+                 employees: List<Person> = this.employees.map { it.deepCopy() }): Company{
+        return Company(name, industry, ceo, employees)
+    }
+
     public override fun clone(): Company {
         return Company(name, industry, ceo.clone(), employees.map { it.clone() })
     }
+
+    constructor(company: Company) : this(company.name, company.industry, Person(company.ceo),
+        company.employees.map { Person(it) })
 }
 
 data class Organization(var name: String, val headquarters: Address, val companies: List<Company>) : Cloneable {
+
+    fun deepCopy(name: String = this.name, headquarters: Address = this.headquarters.copy(),
+                 companies: List<Company> = this.companies.map { it.deepCopy() }) : Organization{
+        return Organization(name, headquarters, companies)
+    }
+
     public override fun clone(): Organization {
         return Organization(name, headquarters.clone(), companies.map { it.clone() })
     }
+
+    constructor(organization: Organization) : this(organization.name, organization.headquarters.copy(),
+        organization.companies.map { Company(it) })
 }
 
 class CloningObjectUnitTest {
 
-    private val address = Address("Jln. Kemasan", "Yogyakarta")
-    private val person = Person("Hangga Aji Sayekti", address)
-
     @Test
-    fun `when using secondary constructor then proves that shallow copy`() {
-        val clonedPerson = Person(person)
-        assertThat(clonedPerson).isNotSameAs(person)
-
-        person.address.city = "Surabaya"
-        person.address.street = "Jln. Ahmad Yani"
-
-        assertThat(clonedPerson.address.city)
-            .isNotEqualTo("Surabaya")
-
-        assertThat(clonedPerson.address.street)
-            .isNotEqualTo("Jln. Ahmad Yani")
-    }
-
-    @Test
-    fun `when using copy then proves that shallow copy or deep copy`() {
-        val clonedPerson = person.copy()
-        assertThat(clonedPerson).isNotSameAs(person)
-
-        person.address.city = "Jakarta"
-        person.address.street = "Jln. Abdul Muis"
-
-        assertThat(clonedPerson.address.city)
-            .isEqualTo("Jakarta")
-
-        assertThat(clonedPerson.address.street)
-            .isEqualTo("Jln. Abdul Muis")
-
-        val deepClonedPerson = person.copy(address = address.copy())
-        assertThat(deepClonedPerson).isNotSameAs(person)
-
-        person.address.city = "Banda Aceh"
-        person.address.street = "Jln. Cut Nyak Dhien"
-
-        assertThat(deepClonedPerson.address.city)
-            .isNotEqualTo("Banda Aceh")
-
-        assertThat(deepClonedPerson.address.street)
-            .isNotEqualTo("Jln. Cut Nyak Dhien")
-    }
-
-    @Test
-    fun `when using clone then proves that shallow copy`() {
-        val clonedPerson = person.clone()
-        assertThat(clonedPerson).isNotSameAs(person)
-
-        person.address.city = "Palembang"
-        person.address.street = "Jln. Abi Hasan"
-
-        assertThat(clonedPerson.address.city)
-            .isNotEqualTo("Palembang")
-
-        assertThat(clonedPerson.address.street)
-            .isNotEqualTo("Jln. Abi Hasan")
-    }
-
-    @Test
-    fun `when own function then proves that deep copy`() {
-        val clonedPerson = person.deepCopy()
-        assertThat(clonedPerson).isNotSameAs(person)
-
-        person.address.city = "Bandung"
-        person.address.street = "Jln. Siliwangi"
-
-        assertThat(clonedPerson.address.city)
-            .isNotEqualTo("Bandung")
-
-        assertThat(clonedPerson.address.street)
-            .isNotEqualTo("Jln. Siliwangi")
-    }
-
-    @Test
-    fun `deep copy with copy`(){
+    fun `when cloned object then proves that deep copy`(){
         val address = Address("Jln. Kemasan No 53", "Yogyakarta")
-        val person = Person("Hangga Aji Sayekti",  address)
-        val company = Company("Basen Software", "Tech", person, listOf(person))
-        val organization = Organization("Bekraf", address, listOf(company))
 
+        val ceo = Person("Hangga Aji Sayekti",  address)
+        val john = Person("John Doe",  address)
+        val layla = Person("Layla Hinchcliffe",  address)
+
+        val company = Company("Basen Software", "Tech", ceo, listOf(john, layla))
+        val organization = Organization("Bekraf", address, listOf(company))
         val copiedOrganization = organization.copy(
             headquarters = organization.headquarters.copy(),
             companies = organization.companies.map { company ->
@@ -125,13 +108,18 @@ class CloningObjectUnitTest {
 
         val clonedOrganization = organization.clone()
 
-        // Modify the copied organization to verify deep copy
+        val clonedSecondaryOrganization = Organization(organization)
+
+        val coustomDeepCopyOrganization = organization.deepCopy()
+
+        // Modify the original object to verify deep copy
         organization.name = "New Org Name"
         organization.headquarters.city = "New City"
         organization.companies.first().name = "New Company Name"
         organization.companies.first().ceo.name = "New CEO Name"
         organization.companies.first().employees.first().name = "New Employee Name"
 
+        // verify deep copy with copy()
         assertThat(copiedOrganization.headquarters.city)
             .isNotEqualTo("New City")
 
@@ -144,7 +132,7 @@ class CloningObjectUnitTest {
         assertThat(copiedOrganization.companies.first().employees.first().name)
             .isNotEqualTo("New Employee Name")
 
-
+        // verify deep copy with clone()
         assertThat(clonedOrganization.headquarters.city)
             .isNotEqualTo("New City")
 
@@ -155,6 +143,33 @@ class CloningObjectUnitTest {
             .isNotEqualTo("New CEO Name")
 
         assertThat(clonedOrganization.companies.first().employees.first().name)
+            .isNotEqualTo("New Employee Name")
+
+
+        // verify deep copy with secondary()
+        assertThat(clonedSecondaryOrganization.headquarters.city)
+            .isNotEqualTo("New City")
+
+        assertThat(clonedSecondaryOrganization.companies.first().name)
+            .isNotEqualTo("New Company Name")
+
+        assertThat(clonedSecondaryOrganization.companies.first().ceo.name)
+            .isNotEqualTo("New CEO Name")
+
+        assertThat(clonedSecondaryOrganization.companies.first().employees.first().name)
+            .isNotEqualTo("New Employee Name")
+
+        // deep copy
+        assertThat(coustomDeepCopyOrganization.headquarters.city)
+            .isNotEqualTo("New City")
+
+        assertThat(coustomDeepCopyOrganization.companies.first().name)
+            .isNotEqualTo("New Company Name")
+
+        assertThat(coustomDeepCopyOrganization.companies.first().ceo.name)
+            .isNotEqualTo("New CEO Name")
+
+        assertThat(coustomDeepCopyOrganization.companies.first().employees.first().name)
             .isNotEqualTo("New Employee Name")
     }
 }
