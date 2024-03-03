@@ -71,7 +71,7 @@ fun convertStringToBoolean(input: String): Boolean {
 }
 
 fun convertStringToBooleanUsingRegex(input: String): Boolean {
-    return input.trim().matches("^\\s*(?i:true)\\s*$".toRegex())
+    return input.trim().matches("^(?i:true)$".toRegex())
 }
 
 fun String.toBooleanValue(): Boolean =
