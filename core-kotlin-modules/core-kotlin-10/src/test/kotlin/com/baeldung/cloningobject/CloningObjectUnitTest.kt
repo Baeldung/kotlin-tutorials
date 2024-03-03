@@ -3,39 +3,6 @@ package com.baeldung.cloningobject
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-/***
-Class Scheme
-============================
-
-Address
-├── street: String
-└── city: String
-
-Person
-├── name: String
-└── address: Address
-
-Organization
-├── name: String
-├── headquarters: Address
-└── companies: List<Company>
-    └── Company
-        ├── name: String
-        ├── industry: String
-        ├── ceo: Person
-        │    ├── name: String
-        │    └── address: Address
-        └── employees: List<Person>
-            └── Person
-                ├── name: String
-                └── address: Address
-
-data class Address(var street: String, var city: String)
-data class Person(var name: String, var address: Address)
-data class Company(var name: String, var industry: String, val ceo: Person, val employees: List<Person>)
-data class Organization(var name: String, val headquarters: Address, val companies: List<Company>)
- */
-
 data class Address(var street: String, var city: String) : Cloneable {
 
     public override fun clone(): Address = super.clone() as Address
@@ -88,14 +55,22 @@ class CloningObjectUnitTest {
 
     @Test
     fun `when cloned object then proves that deep copy`(){
-        val address = Address("Jln. Kemasan No 53", "Yogyakarta")
 
-        val ceo = Person("Hangga Aji Sayekti",  address)
-        val john = Person("John Doe",  address)
-        val layla = Person("Layla Hinchcliffe",  address)
+        val personHangga = Person("Hangga Aji Sayekti", Address("Jln. Kemasan No 53", "Yogyakarta"))
+        val personRaihan = Person("Raihan Kusumo", Address("Jln. Cikapayang No. 508", "Medan"))
+        val personLayla = Person("Layla Hinchcliffe", Address("Collins Street", "Melbourne"))
 
-        val company = Company("Basen Software", "Tech", ceo, listOf(john, layla))
-        val organization = Organization("Bekraf", address, listOf(company))
+        val companyBasen = Company("Basen Software", "Tech", personHangga, listOf(personRaihan, personLayla))
+
+        val personBima = Person("Bima Arya", Address("Jl. Colombo No. 7", "Yogyakarta"))
+        val personDina = Person("Dina Fitriani", Address("Jl. Kaliurang No. 12", "Yogyakarta"))
+        val personCindy = Person("Cindy Claudia", Address("Jl. Atmosukarto No. 1", "Yogyakarta"))
+
+        val companyKotagede = Company("Kotagede Software", "Tech", personBima, listOf(personCindy, personDina))
+
+        val organization = Organization("Bekraf", Address("Jalan Medan Merdeka Selatan", "Jakarta"), listOf(companyBasen, companyKotagede))
+
+
         val copiedOrganization = organization.copy(
             headquarters = organization.headquarters.copy(),
             companies = organization.companies.map { company ->
