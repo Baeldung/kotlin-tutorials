@@ -59,13 +59,11 @@ class CloningObjectUnitTest {
         val personHangga = Person("Hangga Aji Sayekti", Address("Jln. Kemasan No 53", "Yogyakarta"))
         val personRaihan = Person("Raihan Kusumo", Address("Jln. Cikapayang No. 508", "Medan"))
         val personLayla = Person("Layla Hinchcliffe", Address("Collins Street", "Melbourne"))
-
         val companyBasen = Company("Basen Software", "Tech", personHangga, listOf(personRaihan, personLayla))
 
         val personBima = Person("Bima Arya", Address("Jl. Colombo No. 7", "Yogyakarta"))
         val personDina = Person("Dina Fitriani", Address("Jl. Kaliurang No. 12", "Yogyakarta"))
         val personCindy = Person("Cindy Claudia", Address("Jl. Atmosukarto No. 1", "Yogyakarta"))
-
         val companyKotagede = Company("Kotagede Software", "Tech", personBima, listOf(personCindy, personDina))
 
         val organization = Organization("Bekraf", Address("Jalan Medan Merdeka Selatan", "Jakarta"), listOf(companyBasen, companyKotagede))
