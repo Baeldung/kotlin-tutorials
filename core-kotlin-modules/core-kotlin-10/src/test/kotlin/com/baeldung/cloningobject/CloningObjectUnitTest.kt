@@ -55,7 +55,6 @@ class CloningObjectUnitTest {
 
     @Test
     fun `when cloned object then proves that deep copy`(){
-
         val personHangga = Person("Hangga Aji Sayekti", Address("Jln. Kemasan No 53", "Yogyakarta"))
         val personRaihan = Person("Raihan Kusumo", Address("Jln. Cikapayang No. 508", "Medan"))
         val personLayla = Person("Layla Hinchcliffe", Address("Collins Street", "Melbourne"))
@@ -67,7 +66,6 @@ class CloningObjectUnitTest {
         val companyKotagede = Company("Kotagede Software", "Tech", personBima, listOf(personCindy, personDina))
 
         val organization = Organization("Bekraf", Address("Jalan Medan Merdeka Selatan", "Jakarta"), listOf(companyBasen, companyKotagede))
-
 
         val copiedOrganization = organization.copy(
             headquarters = organization.headquarters.copy(),
