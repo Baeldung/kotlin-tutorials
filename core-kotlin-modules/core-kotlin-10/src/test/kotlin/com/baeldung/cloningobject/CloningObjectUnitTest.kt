@@ -51,6 +51,13 @@ data class Organization(var name: String, val headquarters: Address, val compani
         organization.companies.map { Company(it) })
 }
 
+enum class Approaches {
+    COPY,
+    CLONE,
+    SECONDARY_CONSTRUCTOR,
+    CUSTOM_DEEP_COPY
+}
+
 class CloningObjectUnitTest {
 
     @Test
