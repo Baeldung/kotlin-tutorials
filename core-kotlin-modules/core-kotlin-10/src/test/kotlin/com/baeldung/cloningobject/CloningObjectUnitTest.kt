@@ -19,22 +19,15 @@ data class Person(var name: String, var address: Address) : Cloneable {
 
     public override fun clone() = Person(name, this.address.clone())
 
+    constructor(person: Person) : this(person.name, Address(person.address))
+
     fun deepCopy(
         name: String = this.name,
         address: Address = this.address.deepCopy()
     ) = Person(name, address)
-
-    constructor(person: Person) : this(person.name, Address(person.address))
 }
 
 data class Company(var name: String, var industry: String, val ceo: Person, val employees: List<Person>) : Cloneable {
-
-    fun deepCopy(
-        name: String = this.name,
-        industry: String = this.industry,
-        ceo: Person = this.ceo.deepCopy(),
-        employees: List<Person> = this.employees.map { it.deepCopy() },
-    ) = Company(name, industry, ceo, employees)
 
     public override fun clone() = Company(name, industry, ceo.clone(), employees.map { it.clone() })
 
@@ -43,15 +36,16 @@ data class Company(var name: String, var industry: String, val ceo: Person, val 
         company.industry,
         Person(company.ceo),
         company.employees.map { Person(it) })
-}
-
-data class Organization(var name: String, val headquarters: Address, val companies: List<Company>) : Cloneable {
 
     fun deepCopy(
         name: String = this.name,
-        headquarters: Address = this.headquarters.deepCopy(),
-        companies: List<Company> = this.companies.map { it.deepCopy() },
-    ) = Organization(name, headquarters, companies)
+        industry: String = this.industry,
+        ceo: Person = this.ceo.deepCopy(),
+        employees: List<Person> = this.employees.map { it.deepCopy() },
+    ) = Company(name, industry, ceo, employees)
+}
+
+data class Organization(var name: String, val headquarters: Address, val companies: List<Company>) : Cloneable {
 
     public override fun clone()  = Organization(name, headquarters.clone(), companies.map { it.clone() })
 
@@ -59,6 +53,12 @@ data class Organization(var name: String, val headquarters: Address, val compani
         organization.name,
         Address(organization.headquarters),
         organization.companies.map { Company(it) })
+
+    fun deepCopy(
+        name: String = this.name,
+        headquarters: Address = this.headquarters.deepCopy(),
+        companies: List<Company> = this.companies.map { it.deepCopy() },
+    ) = Organization(name, headquarters, companies)
 }
 
 class CloningObjectUnitTest {
