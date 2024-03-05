@@ -16,6 +16,7 @@ class ModifyMapEntryInPlaceUnitTest {
     fun `modifies mutable map entry using bracket operator`() {
         val map = mutableMapOf("key1" to "value1", "key2" to "value2")
         map["key1"] = "new value"
+
         assertEquals("new value", map["key1"])
     }
 
