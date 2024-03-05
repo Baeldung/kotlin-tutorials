@@ -11,7 +11,7 @@ import kotlin.test.assertTrue
 
 class JacksonUnitTest {
     // val mapper = jacksonObjectMapper()
-    private val mapper = ObjectMapper().registerModule(KotlinModule())
+    private val mapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
 
     @Test
     fun whenSerializeMovie_thenSuccess() {               

@@ -31,6 +31,7 @@ typealias DateFormat = String
 
 fun main() {
     val epoch = Date(0)
+    @Suppress("DEPRECATION")
     println(epoch.monthNumber())
     println(epoch.month())
 

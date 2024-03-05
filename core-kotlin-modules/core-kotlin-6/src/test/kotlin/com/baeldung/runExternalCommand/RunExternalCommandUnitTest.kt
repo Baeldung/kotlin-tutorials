@@ -2,6 +2,8 @@ package com.baeldung.runExternalCommand
 
 import org.junit.jupiter.api.Test
 import org.assertj.core.api.Assertions.assertThat
+import java.io.BufferedReader
+import java.nio.Buffer
 
 class RunExternalCommandUnitTest {
 

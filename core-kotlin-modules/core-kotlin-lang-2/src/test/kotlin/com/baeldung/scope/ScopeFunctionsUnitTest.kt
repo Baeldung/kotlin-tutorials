@@ -44,7 +44,7 @@ class ScopeFunctionsUnitTest {
         }
 
         val aNullMessage = null
-        val thisIsNull = aNullMessage?.let {
+        val thisIsNull = aNullMessage?.let {@Suppress("UNREACHABLE_CODE")
             "At this point it would be safe to reference the variable. But it will not really happen because it is null. Let's reference: $it"
         } ?: "default value"
 

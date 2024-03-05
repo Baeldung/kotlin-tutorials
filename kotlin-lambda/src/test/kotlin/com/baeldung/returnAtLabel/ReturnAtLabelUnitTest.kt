@@ -92,7 +92,7 @@ class ReturnAtLabelUnitTest {
                     "T" -> True
                     "F" -> False
                     "O" -> Empty
-                    else -> return@forEach
+                    else -> @Suppress("LABEL_NAME_CLASH") return@forEach
                 }
             }
             resultList += answerList

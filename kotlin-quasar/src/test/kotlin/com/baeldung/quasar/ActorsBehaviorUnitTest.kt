@@ -74,11 +74,14 @@ class ActorsBehaviorUnitTest {
             }
         })
 
+        @Suppress("INACCESSIBLE_TYPE")
         val summerActor = actor.spawn()
 
+        @Suppress("INACCESSIBLE_TYPE")
         val result = (summerActor as Summer).sum(1, 2)
         LOG.info("Result: {}", result)
 
+        @Suppress("INACCESSIBLE_TYPE")
         summerActor.shutdown()
     }
 
