@@ -150,6 +150,28 @@ class CloningObjectUnitTest {
     }
 
     @Test
+    fun `when cloned object with copy() then proves that shallow copy`() {
+        val clonedOrganization = organization.copy()
+
+        modifyOrganization()
+
+        assertThat(clonedOrganization)
+            .isNotSameAs(organization)
+        assertThat(clonedOrganization.headquarters.city)
+            .isEqualTo("New City")
+        assertThat(clonedOrganization.companies.first().name)
+            .isEqualTo("New Company Name")
+        assertThat(clonedOrganization.companies.first().ceo.name)
+            .isEqualTo("New CEO Name")
+        assertThat(clonedOrganization.companies.first().ceo.address.city)
+            .isEqualTo("New CEO Address City Name")
+        assertThat(clonedOrganization.companies.first().employees.first().name)
+            .isEqualTo("New Employee Name")
+        assertThat(clonedOrganization.companies.first().employees.first().address.city)
+            .isEqualTo("New Employee Address City Name")
+    }
+
+    @Test
     fun `when cloned object with copy() then proves that deep copy`() {
 
         val clonedOrganization = organization.copy(
