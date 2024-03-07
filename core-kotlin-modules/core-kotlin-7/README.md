@@ -6,7 +6,5 @@
 - [Preconditions with Kotlin](https://www.baeldung.com/kotlin/preconditions)
 - [Mapping java.util.Optional to T in Kotlin](https://www.baeldung.com/kotlin/java-optional)
 - [Difference Between Object and Data Class in Kotlin](https://www.baeldung.com/kotlin/object-vs-data-class)
-- [Convert Between Int and Char in Kotlin](https://www.baeldung.com/kotlin/convert-between-int-and-char)
 - [Swap Function in Kotlin](https://www.baeldung.com/kotlin/swap-utility)
-- [Converting an Int? to an Int in Kotlin](https://www.baeldung.com/kotlin/nullable-int-extract-value)
 - More articles: [[<-- prev]](../core-kotlin-6)
