@@ -146,6 +146,7 @@ class RxKotlinUnitTest {
 
     @Test
     fun whenHelper_thenMoreIdiomaticKotlin() {
+        @Suppress("COMPATIBILITY_WARNING")
         val zipWith = Observable.just(1).zipWith(Observable.just(2)) { a, b -> a + b }
         zipWith.subscribeBy(onNext = { println(it) })
         val zip = Observables.zip(Observable.just(1), Observable.just(2)) { a, b -> a + b }
