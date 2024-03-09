@@ -123,7 +123,7 @@ class NullSafetyUnitTest {
 
         //when
         assertFailsWith<NullPointerException> {
-            b!!
+            @Suppress("ALWAYS_NULL")b!!
         }
     }
 

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test
 import kotlin.enums.EnumEntries
 import kotlin.test.assertEquals
 
-enum class CountryCode(countryName: String) {
+enum class CountryCode(@Suppress("UNUSED_PARAMETER")countryName: String) {
     USA("United States of America"),
     UKR("Ukraine"),
     CAN("Canada"),

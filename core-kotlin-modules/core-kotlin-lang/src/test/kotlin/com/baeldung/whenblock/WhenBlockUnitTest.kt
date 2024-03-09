@@ -56,7 +56,7 @@ class WhenBlockUnitTest {
             val fileType = UnixFileType.L
 
             when (fileType) {
-                UnixFileType.HYPHEN_MINUS -> true
+                UnixFileType.HYPHEN_MINUS -> @Suppress("UNUSED_EXPRESSION")true
                 else -> throw IllegalArgumentException("Wrong type of file")
             }
         }

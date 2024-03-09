@@ -49,9 +49,8 @@ class Message {
     @set:JvmName("setContent")
     var text = ""
 
-    // generates a warning
     @get:JvmName("getId")
-    private val id = 0
+    val id = 0
 
     @get:JvmName("hasAttachment")
     var hasAttachment = true

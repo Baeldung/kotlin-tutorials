@@ -10,6 +10,7 @@ class IntArrayToStringArrayUnitTest {
     fun `when using toInt then it converts array`() {
         val stringArray = arrayOf("1", "2", "3", "4", "5")
         val intArray = stringArray.map { it.toInt() }.toIntArray()
+        @Suppress("USELESS_IS_CHECK")
         assertThat(intArray.all { it is Int }).isTrue()
         assertThat(intArray).isEqualTo(arrayOf(1,2,3,4,5))
     }
@@ -40,6 +41,7 @@ class IntArrayToStringArrayUnitTest {
     fun `when using toIntOrNull then it converts array`() {
         val stringArray = arrayOf("1", "2", "3", "four", "5")
         val intArray = stringArray.mapNotNull { it.toIntOrNull() }.toIntArray()
+        @Suppress("USELESS_IS_CHECK")
         assertThat(intArray.all { it is Int }).isTrue()
         assertThat(intArray).isEqualTo(arrayOf(1,2,3,5))
     }

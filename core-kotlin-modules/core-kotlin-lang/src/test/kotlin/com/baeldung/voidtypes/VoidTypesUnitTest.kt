@@ -38,11 +38,13 @@ class VoidTypesUnitTest {
     fun invokeANothingOnlyFunction() {
         alwaysThrowException()
 
+        @Suppress("UNREACHABLE_CODE")
         var name = "Tom"
     }
 
     @Test
     fun givenJavaVoidFunction_thenMappedToKotlinUnit() {
+        @Suppress("USELESS_IS_CHECK")
         assertTrue(System.out.println() is Unit)
     }
 
@@ -53,11 +55,13 @@ class VoidTypesUnitTest {
 
     @Test
     fun givenUnitReturnTypeDeclared_thenReturnsOfTypeUnit() {
+        @Suppress("USELESS_IS_CHECK")
         assertTrue(unitReturnTypeForNonMeaningfulReturns() is Unit)
     }
 
     @Test
     fun givenUnitReturnTypeNotDeclared_thenReturnsOfTypeUnit() {
+        @Suppress("USELESS_IS_CHECK")
         assertTrue(unitReturnTypeIsImplicit() is Unit)
     }
 }

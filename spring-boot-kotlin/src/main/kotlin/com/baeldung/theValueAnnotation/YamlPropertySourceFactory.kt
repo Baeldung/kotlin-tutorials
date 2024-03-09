@@ -9,6 +9,7 @@ import org.springframework.lang.Nullable
 
 class YamlPropertySourceFactory : PropertySourceFactory {
     override fun createPropertySource(@Nullable name: String?, encodedResource: EncodedResource): PropertySource<*> =
+        @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
         PropertiesPropertySource(
             encodedResource.resource.filename,
             (YamlPropertiesFactoryBean().also { it.setResources(encodedResource.resource) }.getObject())

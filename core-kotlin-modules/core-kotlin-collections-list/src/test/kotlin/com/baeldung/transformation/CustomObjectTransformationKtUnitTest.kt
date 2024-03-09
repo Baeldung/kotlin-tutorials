@@ -40,6 +40,7 @@ class CustomObjectTransformationKtUnitTest {
         assertTrue(empNameList == expectedEmpNames)
         empNameList.forEach {
             assertNotNull(it)
+            @Suppress("USELESS_IS_CHECK")
             assert(it is String)
         }
     }
@@ -49,6 +50,7 @@ class CustomObjectTransformationKtUnitTest {
         val countries = listOf("US", "India", "Australia", null, "Ethiopia", "Brazil", null, "Romania")
         val nonNullCountries = countries.mapNotNull { it?.uppercase() }
         assertNotNull(countries)
+        @Suppress("SENSELESS_COMPARISON")
         val nullList = nonNullCountries.filter { it == null }
         assertEquals(0, nullList.size)
     }
@@ -61,6 +63,7 @@ class CustomObjectTransformationKtUnitTest {
         assertTrue(empNameList == expectedEmpNames)
         empNameList.forEach {
             assertNotNull(it)
+            @Suppress("USELESS_IS_CHECK")
             assert(it is String)
         }
     }
@@ -73,6 +76,7 @@ class CustomObjectTransformationKtUnitTest {
         assertTrue(empNameList == expectedEmpNames)
         empNameList.forEach {
             assertNotNull(it)
+            @Suppress("USELESS_IS_CHECK")
             assert(it is String)
         }
     }
@@ -99,6 +103,7 @@ class CustomObjectTransformationKtUnitTest {
         assertTrue(empNameList == expectedEmpNames)
         empNameList.forEach {
             assertNotNull(it)
+            @Suppress("USELESS_IS_CHECK")
             assert(it is String)
         }
     }
@@ -113,6 +118,7 @@ class CustomObjectTransformationKtUnitTest {
         assertTrue(empNameList == expectedEmpNames)
         empNameList.forEach {
             assertNotNull(it)
+            @Suppress("USELESS_IS_CHECK")
             assert(it is String)
         }
 
@@ -127,6 +133,7 @@ class CustomObjectTransformationKtUnitTest {
         assertTrue(anotherEmpNameList == expectedEmpNames)
         anotherEmpNameList.forEach {
             assertNotNull(it)
+            @Suppress("USELESS_IS_CHECK")
             assert(it is String)
         }
     }
@@ -141,6 +148,7 @@ class CustomObjectTransformationKtUnitTest {
         assertTrue(empNameList == expectedEmpNames)
         empNameList.forEach {
             assertNotNull(it)
+            @Suppress("USELESS_IS_CHECK")
             assert(it is String)
         }
     }
@@ -155,6 +163,7 @@ class CustomObjectTransformationKtUnitTest {
         assertTrue(empNameList == expectedEmpNames)
         empNameList.forEach {
             assertNotNull(it)
+            @Suppress("USELESS_IS_CHECK")
             assert(it is String)
         }
     }
@@ -168,6 +177,7 @@ class CustomObjectTransformationKtUnitTest {
         assertTrue(empNameList == expectedEmpNames)
         empNameList.forEach {
             assertNotNull(it)
+            @Suppress("USELESS_IS_CHECK")
             assert(it is String)
         }
     }

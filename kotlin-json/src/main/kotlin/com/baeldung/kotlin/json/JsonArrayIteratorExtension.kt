@@ -3,7 +3,9 @@ package com.baeldung.kotlin.json
 import org.json.JSONArray
 import org.json.JSONObject
 
+@Suppress("EXTENSION_SHADOWED_BY_MEMBER")
 operator fun <T> JSONArray.iterator(): Iterator<T> =
+    @Suppress("UNCHECKED_CAST")
     (0 until this.length()).asSequence().map { this.get(it) as T }.iterator()
 
 class JsonArrayIteratorExtension {

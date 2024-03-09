@@ -168,6 +168,7 @@ class KodeinUnitTest {
         }
         val daos: Set<Dao> = kodein.instance()
 
+        @Suppress("USELESS_CAST")
         assertThat(daos.map { it.javaClass as Class<*> }).containsOnly(MongoDao::class.java, JdbcDao::class.java)
     }
 

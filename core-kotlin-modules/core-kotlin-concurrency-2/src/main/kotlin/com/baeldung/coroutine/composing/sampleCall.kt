@@ -96,7 +96,7 @@ class DataProcessUseCase(dispatcher: CoroutineDispatcher) : CoroutineScope by Co
 data class UserInput(val query: String)
 
 class HTTPClientMock(private val mockAnswering: (URL) -> String) {
-    suspend fun get(url: URL, params: String): Response = Response(200, mockAnswering(url))
+    suspend fun get(url: URL, params: String): Response = Response(200, mockAnswering(url), params)
 }
 
-class Response(val status: Int, val body: String)
+class Response(val status: Int, val body: String, val params: String)
