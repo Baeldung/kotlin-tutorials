@@ -8,7 +8,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 import kotlin.test.assertFailsWith
 
-class SecondFunctionUnitTest {
+class SingleFunctionUnitTest {
 
     suspend fun getSingleValue(flow: Flow<Int>): Int? {
         return try {
@@ -23,6 +23,17 @@ class SecondFunctionUnitTest {
         val multipleValuesFlow = flowOf(42)
         val singleValue = getSingleValue(multipleValuesFlow)
         assertEquals(42, singleValue)
+    }
+
+    @Test
+    fun testExceptionForMultipleValues() = runBlocking {
+        val multipleValues = flowOf(42,43,44)
+        val exception = assertFailsWith<IllegalArgumentException> {
+            runBlocking {
+                multipleValues.single()
+            }
+        }
+        assertEquals("Flow has more than one element", exception.message)
     }
 
     @Test
