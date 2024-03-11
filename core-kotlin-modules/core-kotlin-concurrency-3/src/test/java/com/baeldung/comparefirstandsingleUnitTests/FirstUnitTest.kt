@@ -9,16 +9,13 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 import kotlin.test.assertFailsWith
 
-class FirstUnitTest {
 
-    suspend fun getFirstValue(flow: Flow<Int>): Int {
-        return flow.first()
-    }
+class FirstUnitTest {
 
     @Test
     fun testFirstValue() = runBlocking {
         val multipleValuesFlow = flowOf(1, 2, 3)
-        val firstValue = getFirstValue(multipleValuesFlow)
+        val firstValue = multipleValuesFlow.first()
         assertEquals(1, firstValue)
     }
 
@@ -27,7 +24,7 @@ class FirstUnitTest {
         val emptyFlow = emptyFlow<Int>()
         val exception = assertFailsWith<NoSuchElementException> {
             runBlocking {
-                getFirstValue(emptyFlow)
+                emptyFlow.first()
             }
         }
         assertEquals("Expected at least one element", exception.message)
