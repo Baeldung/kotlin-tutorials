@@ -8,3 +8,4 @@
 - [Creating a Map from Two Arrays in Kotlin](https://www.baeldung.com/kotlin/map-from-two-arrays)
 - [Converting a List of Maps to a Map Grouped by Key in Kotlin](https://www.baeldung.com/kotlin/map-grouping)
 - [Guide to Merging Two Maps in Kotlin](https://www.baeldung.com/kotlin/maps-merge-entries)
+- [In Place Modification of Map Entry in Kotlin](https://www.baeldung.com/kotlin/map-modify-in-place)
