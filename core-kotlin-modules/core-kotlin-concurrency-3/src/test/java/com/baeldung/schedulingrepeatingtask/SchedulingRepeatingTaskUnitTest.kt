@@ -18,7 +18,7 @@ class SchedulingRepeatingTaskUnitTest {
         repeat(10) {
             count++
             println("Timer ticked! $count")
-            delay(500)
+            delay(1000)
         }
 
         assertEquals(10, count)
