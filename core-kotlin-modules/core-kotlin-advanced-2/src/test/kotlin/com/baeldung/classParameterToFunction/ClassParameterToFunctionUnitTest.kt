@@ -1,6 +1,8 @@
 package com.baeldung.classParameterToFunction
 
 import org.junit.jupiter.api.Test
+import kotlin.reflect.KClass
+import kotlin.reflect.full.createInstance
 import kotlin.test.assertEquals
 
 class ClassParameterToFunctionUnitTest {
@@ -8,6 +10,12 @@ class ClassParameterToFunctionUnitTest {
     @Test
     fun `passes class as function parameter using class reference`(){
         val result = functionAcceptingClassReference(ParameterClass::class.java)
+
+        assertEquals("This is a method called on our class", result)
+    }
+    @Test
+    fun `passes class as function parameter using kclass reference`(){
+        val result = functionAcceptingKClassReference(ParameterClass::class)
 
         assertEquals("This is a method called on our class", result)
     }
@@ -32,7 +40,11 @@ fun <T> functionAcceptingClassReference(clazz: Class<T>): String {
 
     return instance.paramterClassMethod()
 }
+fun <T: ParameterClass> functionAcceptingKClassReference(clazz: KClass<T>): String {
+    val instance = clazz.createInstance()
 
+    return instance.paramterClassMethod()
+}
 fun <T : Any> functionAcceptingClassNameUsingReflection(className: String): String {
     val clazz = Class.forName(className) as Class<T>
     val instance = clazz.newInstance() as ParameterClass
