@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 class SchedulingRepeatingTaskUnitTest {
 
@@ -18,7 +19,7 @@ class SchedulingRepeatingTaskUnitTest {
         repeat(10) {
             count++
             println("Timer ticked! $count")
-            delay(1000)
+            delay(1000.milliseconds)
         }
 
         assertEquals(10, count)
@@ -27,7 +28,7 @@ class SchedulingRepeatingTaskUnitTest {
     @Test
     fun `using withTimeout`(): Unit = runBlocking {
         assertThrows<TimeoutCancellationException> {
-            withTimeout(5000) {
+            withTimeout(5000.milliseconds) {
                 while (true) {
                     println("Waiting for timeout")
                     delay(1000.milliseconds)
