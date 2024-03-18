@@ -5,7 +5,7 @@ import kotlin.concurrent.schedule
 
 fun main(){
     val timer = Timer()
-    timer.schedule(0L, 1000L) {
+    timer.schedule(0, 1000) {
         println("Timer ticked!")
     }
 }
