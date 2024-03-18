@@ -37,7 +37,6 @@ class SchedulingRepeatingTaskUnitTest {
         }
     }
 
-    // Using flow & collect
     @Test
     fun `using flow collect take`() = runBlocking {
 
