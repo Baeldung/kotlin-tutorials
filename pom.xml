@@ -359,14 +359,14 @@
 
         <module>core-kotlin-companion</module>
         <module>core-kotlin-modules</module>
-        <!-- <module>gradle-kotlin-dsl</module> not included because written in gradle-->
+        <!-- <module>gradle-kotlin-dsl</module> --> <!-- not a Maven module -->
         <!-- <module>jee-kotlin</module> fixing in https://jira.baeldung.com/browse/KTLN-426 -->
-        <!-- <module>koin-guide</module> not included because written in gradle-->
-        <!-- <module>kotest</module> not included because written in gradle-->
-        <!-- <module>kotlin-apache-kafka</module> not included because written in gradle-->
-        <!-- <module>kotlin-api</module> not included because written in gradle-->
-        <!-- <module>kotlin-gradle-build-plugins</module> not included because written in gradle-->
-        <!-- <module>kotlin-gradle-openapi</module> not included because written in gradle-->
+        <!-- <module>koin-guide</module> --> <!-- not a Maven module -->
+        <!-- <module>kotest</module> --> <!-- not a Maven module -->
+        <!-- <module>kotlin-apache-kafka</module> --> <!-- not a Maven module -->
+        <!-- <module>kotlin-api</module> --> <!-- not a Maven module -->
+        <!-- <module>kotlin-gradle-build-plugins</module> --> <!-- not a Maven module -->
+        <!-- <module>kotlin-gradle-openapi</module> --> <!-- not a Maven module -->
         <module>kotlin-immutable-collections</module>
         <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
         <module>kotlin-json</module>
@@ -377,26 +377,26 @@
         <module>kotlin-libraries-data</module>
         <module>kotlin-libraries-http</module>
         <module>kotlin-libraries-orm</module>
-        <!-- <module>kotlin-libraries-rdbms</module> not included because written in gradle-->
+        <!-- <module>kotlin-libraries-rdbms</module> --> <!-- not a Maven module -->
         <module>kotlin-libraries-utils</module>
         <module>kotlin-logging</module>
         <module>kotlin-math</module>
         <module>kotlin-math-2</module>
-        <!-- <module>kotlin-multiplatform</module> not included because written in gradle-->
-        <!-- <module>kotlin-multiplatform-mobile</module> not included because written in gradle-->
-        <!-- <module>kotlin-native</module> not included because written in gradle-->
+        <!-- <module>kotlin-multiplatform</module> --> <!-- not a Maven module -->
+        <!-- <module>kotlin-multiplatform-mobile</module> --> <!-- not a Maven module -->
+        <!-- <module>kotlin-native</module> --> <!-- not a Maven module -->
         <module>kotlin-patterns</module>
-        <!-- <module>kotlin-performance-vs-java</module> not included because written in gradle-->
+        <!-- <module>kotlin-performance-vs-java</module> --> <!-- not a Maven module -->
         <module>kotlin-prim</module>
         <module>kotlin-quasar</module>
         <module>kotlin-reflection</module>
         <module>kotlin-rsocket</module>
-        <!-- <module>kotlin-self-executable-jar</module> not included because written in gradle-->
+        <!-- <module>kotlin-self-executable-jar</module> --> <!-- not a Maven module -->
         <module>kotlin-spark</module>
         <module>kotlin-testing</module>
         <module>kotlin-testing-2</module>
         <!-- <module>kotlin-tornadofx</module> --> <!-- not compatible with Java 9+ -->
-        <!-- <module>kover</module> not included because written in gradle-->
+        <!-- <module>kover</module> --> <!-- not a Maven module -->
         <module>ktlint-custom</module>
         <module>machine-learning</module>
         <module>spring-boot-crud-kotlin</module>
