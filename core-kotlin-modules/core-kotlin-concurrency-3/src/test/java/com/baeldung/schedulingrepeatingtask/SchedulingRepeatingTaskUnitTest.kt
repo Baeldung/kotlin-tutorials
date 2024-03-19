@@ -27,14 +27,17 @@ class SchedulingRepeatingTaskUnitTest {
 
     @Test
     fun `using withTimeout`(): Unit = runBlocking {
+        var count = 0
         assertThrows<TimeoutCancellationException> {
             withTimeout(5000.milliseconds) {
                 while (true) {
+                    count++
                     println("Waiting for timeout")
                     delay(1000.milliseconds)
                 }
             }
         }
+        assertEquals(5, count)
     }
 
     @Test
