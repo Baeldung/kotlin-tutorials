@@ -6,7 +6,7 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import kotlin.test.assertNotNull
 
-class SortingListOfStringDatesTest {
+class SortingListOfStringDatesUnitTest {
 
     @Test
     fun `given a list of string dates when sorting with sortedDescending then a sorted list is generated`() {
