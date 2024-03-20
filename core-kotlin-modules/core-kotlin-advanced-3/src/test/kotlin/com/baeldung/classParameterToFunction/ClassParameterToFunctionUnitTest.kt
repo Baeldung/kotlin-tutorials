@@ -22,7 +22,7 @@ class ClassParameterToFunctionUnitTest {
 
     @Test
     fun `passes class as function parameter using reflection`(){
-        val result = functionAcceptingClassNameUsingReflection<String>("com.baeldung.classParameterToFunction.ParameterClass")
+        val result = functionAcceptingClassNameUsingReflection<ParameterClass>("com.baeldung.classParameterToFunction.ParameterClass")
 
         assertEquals("This is a method called on our class", result)
     }
@@ -35,32 +35,32 @@ class ClassParameterToFunctionUnitTest {
     }
 }
 
-fun <T> functionAcceptingClassReference(clazz: Class<T>): String {
-    val instance = clazz.newInstance() as ParameterClass
-
-    return instance.paramterClassMethod()
+fun <T: ParameterClass> functionAcceptingClassReference(clazz: Class<T>): String {
+    val instance = clazz.newInstance()
+    return instance.parameterClassMethod()
 }
+
 fun <T: ParameterClass> functionAcceptingKClassReference(clazz: KClass<T>): String {
     val instance = clazz.createInstance()
 
-    return instance.paramterClassMethod()
+    return instance.parameterClassMethod()
 }
-fun <T : Any> functionAcceptingClassNameUsingReflection(className: String): String {
+fun <T : ParameterClass> functionAcceptingClassNameUsingReflection(className: String): String {
     val clazz = Class.forName(className) as Class<T>
-    val instance = clazz.newInstance() as ParameterClass
+    val instance = clazz.newInstance()
 
-    return instance.paramterClassMethod()
+    return instance.parameterClassMethod()
 }
 
-inline fun <reified T> functionAcceptingClassNameUsingReifiedParameters(): String {
-    val instance = T::class.java.newInstance() as ParameterClass
+inline fun <reified T: ParameterClass> functionAcceptingClassNameUsingReifiedParameters(): String {
+    val instance = T::class.java.newInstance()
 
-    return instance.paramterClassMethod()
+    return instance.parameterClassMethod()
 }
 
 class ParameterClass{
 
-    fun paramterClassMethod(): String{
+    fun parameterClassMethod(): String{
         return "This is a method called on our class"
     }
 }
