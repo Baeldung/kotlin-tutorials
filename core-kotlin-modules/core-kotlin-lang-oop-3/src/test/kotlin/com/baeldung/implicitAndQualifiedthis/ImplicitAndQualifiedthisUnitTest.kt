@@ -11,15 +11,16 @@ class ImplicitAndQualifiedthisUnitTest {
 
         fun printLine() = "Top-level function"
         class Outer { // implicit label @Outer
-            inner class Inner { // implicit label @Inner
-                fun Int.foo() { // implicit label @foo
 
-                    assertEquals(Outer::class.java.name, this@Outer::class.java.name)
-                    assertEquals(Inner::class.java.name, this@Inner::class.java.name)
+            inner class Inner { // implicit label @Inner
+
+                fun Int.foo() { // implicit label @foo
 
                     assertEquals(42, this)
                     assertEquals(42, this@foo)
                     assertEquals(this, this@foo)
+                    assertEquals(Outer::class.java.name, this@Outer::class.java.name)
+                    assertEquals(Inner::class.java.name, this@Inner::class.java.name)
 
                     val funLit = lambda@ fun String.() {
                         assertEquals("test.funLit()", this) // funLit's receiver, a String
@@ -35,6 +36,17 @@ class ImplicitAndQualifiedthisUnitTest {
                     }
 
                     funLit2("test funLit2")
+
+                    class Person(val name: String) {
+                        fun printName() : String {
+                            assertEquals("Hangga Aji Sayekti", this.name)
+                            assertEquals(Person::class.java.name, this::class.java.name)
+                            return this.name
+                        }
+                    }
+
+                    val person = Person("Hangga Aji Sayekti")
+                    person.printName()
                 }
             }
 
