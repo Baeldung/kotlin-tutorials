@@ -38,6 +38,7 @@ class ImplicitAndQualifiedthisUnitTest {
                         // doesn't have any receiver
                         val d1 = this
 
+                        assertEquals("test funLit2", s)
                         assertEquals(42, d1)
                     }
 
