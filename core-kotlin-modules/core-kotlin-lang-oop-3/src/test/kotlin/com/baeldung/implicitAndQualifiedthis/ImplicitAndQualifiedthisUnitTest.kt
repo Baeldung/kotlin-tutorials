@@ -13,22 +13,16 @@ class ImplicitAndQualifiedthisUnitTest {
         class Outer { // implicit label @Outer
             inner class Inner { // implicit label @Inner
                 fun Int.foo() { // implicit label @foo
-                    val a = this@Outer // Outer's this
-                    val b = this@Inner // Inner's this
 
-                    assertEquals(Outer::class.java.name, a.javaClass.name)
-                    assertEquals(Inner::class.java.name, b.javaClass.name)
+                    assertEquals(Outer::class.java.name, this@Outer::class.java.name)
+                    assertEquals(Inner::class.java.name, this@Inner::class.java.name)
 
-                    val c = this // foo()'s receiver, an Int
-                    val c1 = this@foo // foo()'s receiver, an Int
-
-                    assertEquals(42, c)
-                    assertEquals(42, c1)
+                    assertEquals(42, this)
+                    assertEquals(42, this@foo)
+                    assertEquals(this, this@foo)
 
                     val funLit = lambda@ fun String.() {
-                        val d = this // funLit's receiver, a String
-
-                        assertEquals("test.funLit()", d)
+                        assertEquals("test.funLit()", this) // funLit's receiver, a String
                     }
 
                     "test.funLit()".funLit()
@@ -36,14 +30,11 @@ class ImplicitAndQualifiedthisUnitTest {
                     val funLit2 = { s: String ->
                         // foo()'s receiver, since enclosing lambda expression
                         // doesn't have any receiver
-                        val d1 = this
-
                         assertEquals("test funLit2", s)
-                        assertEquals(42, d1)
+                        assertEquals(42, this)
                     }
 
                     funLit2("test funLit2")
-
                 }
             }
 
