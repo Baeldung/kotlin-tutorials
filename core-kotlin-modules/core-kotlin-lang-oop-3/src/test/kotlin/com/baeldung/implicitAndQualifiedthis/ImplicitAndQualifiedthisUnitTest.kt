@@ -13,7 +13,7 @@ class ImplicitAndQualifiedthisUnitTest {
 
         class Outer {
 
-            fun cekThis() {
+            fun checkThis() {
                 val b = this
                 assertEquals(Outer::class.java.name, b::class.java.name)
             }
@@ -53,7 +53,7 @@ class ImplicitAndQualifiedthisUnitTest {
         val inner = Outer().Inner()
         inner.run { 42.foo() }
 
-        Outer().cekThis()
+        Outer().checkThis()
 
         assertEquals("Member function", Outer().invokePrintLine())
         assertEquals("Top-level function", Outer().invokePrintLine(omitThis = true))
