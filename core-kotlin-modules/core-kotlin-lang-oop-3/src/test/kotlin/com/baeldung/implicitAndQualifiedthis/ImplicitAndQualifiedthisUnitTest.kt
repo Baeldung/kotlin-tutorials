@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 class ImplicitAndQualifiedthisUnitTest {
 
     @Test
-    fun testInvokePrintLineWithThis() {
+    fun `Qualified this and implicit this Test`() {
 
         fun printLine() = "Top-level function"
 
