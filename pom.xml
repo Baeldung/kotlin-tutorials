@@ -365,8 +365,8 @@
         <!-- <module>kotest</module> --> <!-- not a Maven module -->
         <!-- <module>kotlin-apache-kafka</module> --> <!-- not a Maven module -->
         <!-- <module>kotlin-api</module> --> <!-- not a Maven module -->
-        <!-- <module>kotlin-gradle-build-plugins</module> --> <!-- not a Maven module -->
-        <!-- <module>kotlin-gradle-openapi</module> --> <!-- not a Maven module -->
+        <!-- <module>kotlin-build-plugins</module> --> <!-- not a Maven module -->
+        <!-- <module>kotlin-openapi</module> --> <!-- not a Maven module -->
         <module>kotlin-immutable-collections</module>
         <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
         <module>kotlin-json</module>
@@ -385,9 +385,10 @@
         <!-- <module>kotlin-multiplatform</module> --> <!-- not a Maven module -->
         <!-- <module>kotlin-multiplatform-mobile</module> --> <!-- not a Maven module -->
         <!-- <module>kotlin-native</module> --> <!-- not a Maven module -->
+        <!-- <module>kotlin-openapi</module> --> <!-- not a Maven module -->
         <module>kotlin-patterns</module>
         <!-- <module>kotlin-performance-vs-java</module> --> <!-- not a Maven module -->
-        <module>kotlin-prim</module>
+        <module>kotlin-algorithms</module>
         <module>kotlin-quasar</module>
         <module>kotlin-reflection</module>
         <module>kotlin-rsocket</module>
@@ -396,7 +397,7 @@
         <module>kotlin-testing</module>
         <module>kotlin-testing-2</module>
         <!-- <module>kotlin-tornadofx</module> --> <!-- not compatible with Java 9+ -->
-        <!-- <module>kover</module> --> <!-- not a Maven module -->
+        <!-- <module>kotlin-kover</module> --> <!-- not a Maven module -->
         <module>ktlint-custom</module>
         <module>machine-learning</module>
         <module>spring-boot-crud-kotlin</module>

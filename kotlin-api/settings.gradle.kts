@@ -1,4 +1,2 @@
-
-
 rootProject.name = "kotlin-api"
 
