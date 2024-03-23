@@ -3,7 +3,6 @@ package com.baeldung.implicitAndQualifiedthis
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import java.awt.Point
 
 class ImplicitAndQualifiedthisUnitTest {
 
@@ -14,7 +13,7 @@ class ImplicitAndQualifiedthisUnitTest {
 
         class Outer {
 
-            fun cekThis(){
+            fun cekThis() {
                 val b = this
                 assertEquals(Outer::class.java.name, b::class.java.name)
             }
