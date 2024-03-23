@@ -366,7 +366,6 @@
         <!-- <module>kotlin-apache-kafka</module> --> <!-- not a Maven module -->
         <!-- <module>kotlin-api</module> --> <!-- not a Maven module -->
         <!-- <module>kotlin-build-plugins</module> --> <!-- not a Maven module -->
-        <!-- <module>kotlin-openapi</module> --> <!-- not a Maven module -->
         <module>kotlin-immutable-collections</module>
         <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
         <module>kotlin-json</module>
