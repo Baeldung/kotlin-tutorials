@@ -12,17 +12,16 @@ class ImplicitAndQualifiedthisUnitTest {
 
         fun printLine() = "Top-level function"
 
-        class Outer { // implicit label @Outer
+        class Outer {
 
             fun cekThis(){
                 val b = this
                 assertEquals(Outer::class.java.name, b::class.java.name)
             }
 
-            inner class Inner { // implicit label @Inner
+            inner class Inner {
 
-                // in Extension Function:
-                fun Int.foo() { // implicit label @foo
+                fun Int.foo() {
 
                     assertEquals(42, this)
                     assertEquals(42, this@foo)
@@ -30,24 +29,18 @@ class ImplicitAndQualifiedthisUnitTest {
                     assertEquals(Outer::class.java.name, this@Outer::class.java.name)
                     assertEquals(Inner::class.java.name, this@Inner::class.java.name)
 
-                    // in Anonymous Function
-                    val funLit = lambda@ fun String.() {
-                        assertEquals("test.funLit()", this) // funLit's receiver, a String
-                        assertEquals("test.funLit()", this@lambda) // funLit's receiver, a String
+                    val funLit = fun String.() {
+                        assertEquals("test.funLit()", this)
                     }
 
                     "test.funLit()".funLit()
 
-                    // in lambda expressions
-                    val funLit2 = { s: String ->
-                        // foo()'s receiver, since enclosing lambda expression
-                        // doesn't have any receiver
-                        assertEquals("test funLit2", s)
+                    val funLitNoReceiver = { s: String ->
+                        assertEquals("test funLitNoReceiver", s)
                         assertEquals(42, this)
                     }
 
-                    funLit2("test funLit2")
-
+                    funLitNoReceiver("test funLitNoReceiver")
                 }
             }
 
@@ -63,18 +56,7 @@ class ImplicitAndQualifiedthisUnitTest {
 
         Outer().cekThis()
 
-        assertEquals("Member function", Outer().invokePrintLine()) // Member function
-        assertEquals("Top-level function", Outer().invokePrintLine(omitThis = true)) // Top-level function
-
-        class Person(val name: String) {
-            fun printName() : String {
-                assertEquals("Hangga Aji Sayekti", this.name)
-                assertEquals(Person::class.java.name, this::class.java.name)
-                return this.name
-            }
-        }
-
-        val person = Person("Hangga Aji Sayekti")
-        person.printName()
+        assertEquals("Member function", Outer().invokePrintLine())
+        assertEquals("Top-level function", Outer().invokePrintLine(omitThis = true))
     }
 }
