@@ -1,1 +1,1 @@
-rootProject.name = "kotlin-gradle-openapi"
+rootProject.name = "kotlin-openapi"
