@@ -2,6 +2,7 @@ package com.baeldung.listofdates
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import kotlin.test.assertNotNull
@@ -9,13 +10,12 @@ import kotlin.test.assertNotNull
 class SortingListOfStringDatesUnitTest {
 
     @Test
-    fun `given a list of string dates when sorting with sortedDescending then a sorted list is generated`() {
+    fun `given a list of string dates when sorting with DateTimeFormatter then a sorted list is generated`() {
         val dates = listOf("31-12-2023", "01-01-2023", "15-06-2023")
 
-        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
-        val sortedDates = dates.map { LocalDate.parse(it, formatter) }
-                .sortedDescending()
-                .map { it.format(formatter) }
+        val dateFormat = SimpleDateFormat("dd-MM-yyyy")
+
+        val sortedDates = dates.sortedByDescending { dateFormat.parse(it) }
 
         val expectedSortedDates = listOf("31-12-2023", "15-06-2023", "01-01-2023")
 
@@ -24,14 +24,11 @@ class SortingListOfStringDatesUnitTest {
     }
 
     @Test
-    fun `given a list of string dates when sorting with sortedByDescending then a sorted list is generated`() {
+    fun `given a list of string dates when sorting with LocalDate then a sorted list is generated`() {
         val dates = listOf("31-12-2023", "01-01-2023", "15-06-2023")
 
-        val dateTimeFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
-
-        val sortedDates = dates.sortedByDescending {
-            LocalDate.parse(it, dateTimeFormatter)
-        }
+        val dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+        val sortedDates = dates.sortedByDescending { LocalDate.parse(it, dateFormatter) }
 
         val expectedSortedDates = listOf("31-12-2023", "15-06-2023", "01-01-2023")
 
