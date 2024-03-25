@@ -8,7 +8,7 @@ class KamlUnitTest {
     @Test
     fun test1() {
         val deployment = getDeployment()
-        println(deployment.apiVersion)
-        assertEquals("apps/v1", deployment.apiVersion)
+        // println(deployment.age)
+        assertEquals(30, deployment.users.get(0).age)
     }
 }

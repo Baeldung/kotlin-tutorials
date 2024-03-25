@@ -1,19 +1,21 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: webapp-deployment
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: webapp
-  template:
-    metadata:
-      labels:
-        app: webapp
-    spec:
-      containers:
-        - name: webapp
-          image: nginx:latest
-          ports:
-            - containerPort: 80
+users:
+  - name: Alice
+    age: 30
+    address:
+      city: New York
+      country: USA
+      nested1:
+        - nested2:
+            landmarks:
+              - name: l1
+                random: l1
+  - name: Bob
+    age: 35
+    address:
+      city: London
+      country: UK
+      nested1:
+        - nested2:
+            landmarks:
+              - name: l3
+                random: l3
