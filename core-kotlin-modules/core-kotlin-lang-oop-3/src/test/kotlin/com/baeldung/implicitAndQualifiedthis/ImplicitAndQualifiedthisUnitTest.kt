@@ -13,9 +13,9 @@ class ImplicitAndQualifiedthisUnitTest {
         val x = 5
 
         class Outer {
+            fun foo() : Int = 30
             val x = 0
             val b = this
-            fun foo() : Int = 30
 
             fun printLine() = "Member function"
 
@@ -35,6 +35,7 @@ class ImplicitAndQualifiedthisUnitTest {
                 val x = 1
 
                 fun checkInner(){
+
                     val funLit = fun String.() {
                         assertEquals("test.funLit()", this) // Implicit: receiver of the function literal (the String itself)
                     }
@@ -51,6 +52,9 @@ class ImplicitAndQualifiedthisUnitTest {
 
                 fun Int.foo() {
                     val x = 2
+                    val y = this
+                    assertEquals("Int", y::class.simpleName)
+
                     assertEquals(2, x)
                     assertEquals(1, this@Inner.x) // Qualified: specifies x of the Inner class
                     assertEquals(42, this) // Implicit: receiver of the extension function (the Int value 42)
@@ -58,8 +62,9 @@ class ImplicitAndQualifiedthisUnitTest {
 
                     assertEquals(this, this@foo)  // Both this keywords refer to the same receiver (42)
 
-                    assertEquals(Outer::class.java.name, this@Outer::class.java.name) // Qualified: Outer class
                     assertEquals(Inner::class.java.name, this@Inner::class.java.name) // Qualified: Inner class
+                    assertEquals(Outer::class.java.name, this@Outer::class.java.name) // Qualified: Outer class
+
 
                     assertEquals(0, this@Outer.x) // Qualified: Outer's x property
                     assertEquals(30, this@Outer.foo()) // Qualified: Outer's foo() function
@@ -76,6 +81,11 @@ class ImplicitAndQualifiedthisUnitTest {
                     }
 
                     funExtLambda("test funExtLambda")
+
+                    val increase = fun(x: Int): Int {
+                        return this + x
+                    }
+                    assertEquals(43, increase(1))
                 }
             }
         }
@@ -89,6 +99,7 @@ class ImplicitAndQualifiedthisUnitTest {
         inner.run {
             42.foo() // Calls the extension function defined inside Inner
         }
+
     }
 }
 
