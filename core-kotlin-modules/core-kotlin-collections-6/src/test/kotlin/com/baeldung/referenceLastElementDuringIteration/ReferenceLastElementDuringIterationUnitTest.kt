@@ -8,7 +8,7 @@ class ReferenceLastElementDuringIterationUnitTest {
     @Test
     fun `creates new list by adding elements from original list using loop`() {
         val list = listOf(1, 2, 3, 4, 5)
-        val expectedList = listOf(1, 3, 6, 10, 15)
+        val expectedList = listOf("1","12", "23", "34", "45")
 
         assertEquals(expectedList, iterateListUsingLoop(list))
     }
@@ -16,13 +16,13 @@ class ReferenceLastElementDuringIterationUnitTest {
     @Test
     fun `creates new list by adding elements from original list using fold method`() {
         val list = listOf(1, 2, 3, 4, 5)
-        val expectedList = listOf(1, 3, 6, 10, 15)
+        val expectedList = listOf("1", "12", "23", "34", "45")
 
-        assertEquals(expectedList, iterateListUsingFold(list))
+        assertEquals(expectedList, iterateListUsingFoldIndexed(list))
     }
 
     @Test
-    fun `creates new list by adding elements from original list using reduce method`() {
+    fun `creates new list by adding elements from original list using sequence method`() {
         val list = listOf(1, 2, 3, 4, 5)
         val expectedList = listOf(1, 3, 6, 10, 15)
 
@@ -30,10 +30,13 @@ class ReferenceLastElementDuringIterationUnitTest {
     }
 
     @Test
-    fun `creates new list by adding elements from original list using runningReduce method`() {
+    fun `creates new list by adding elements from original list using zipWitNnext method`() {
         val list = listOf(1, 2, 3, 4, 5)
-        val expectedList = listOf(1, 3, 6, 10, 15)
-        val result =  list.runningReduce { acc, current -> acc + current }
+        val expectedList = listOf("1", "12", "23", "34", "45")
+
+        val result = mutableListOf<String>()
+        result.add(list[0].toString())
+        result.addAll(list.zipWithNext { a, b -> "$a$b" })
 
         assertEquals(expectedList, result)
     }
@@ -41,35 +44,35 @@ class ReferenceLastElementDuringIterationUnitTest {
     @Test
     fun `creates new list by adding elements from original list using scan method`() {
         val list = listOf(1, 2, 3, 4, 5)
-        val expectedList = listOf(1, 3, 6, 10, 15)
-        val result =  list.scan(0) { acc, current -> acc + current }.drop(1)
+        val expectedList = listOf("1", "12", "23", "34", "45")
+        val result = list.drop(1).scan(list.first().toString(), { acc, i -> acc.takeLast(1) + i })
 
         assertEquals(expectedList, result)
     }
 }
-fun iterateListUsingLoop(list: List<Int>): List<Int> {
-    val newList = mutableListOf<Int>()
-    newList.add(list[0])
+fun iterateListUsingLoop(list: List<Int>): List<String> {
+    val newList = mutableListOf<String>()
+    newList.add(list[0].toString())
     for (i in 1 until list.size) {
-        newList.add(list[i] + newList[i - 1])
+        newList.add("${list[i - 1]}${list[i]}")
     }
     return newList
 }
-fun iterateListUsingFold(list: List<Int>): List<Int> {
-    return list.fold(listOf()) { acc, next ->
-        if (acc.isEmpty()) {
-            acc + next
-        } else {
-            acc + (acc.last() + next)
+
+fun iterateListUsingFoldIndexed(list: List<Int>): List<String> {
+    return list.foldIndexed(mutableListOf()) { i, acc, element ->
+        if(i==0)
+            acc.add(list[0].toString())
+        if (i > 0) {
+            acc.add("${list[i - 1]}$element")
         }
+        acc
     }
 }
-fun iterateListUsingSequence(list: List<Int>): List<Int> {
+fun iterateListUsingSequence(list: List<Int>): List<String> {
     return sequence {
-        var sum = 0
-        for (element in list) {
-            sum += element
-            yield(sum)
+        for (i in 1 until list.size) {
+            yield("${list[i - 1]}${list[i]}")
         }
     }.toList()
 }
