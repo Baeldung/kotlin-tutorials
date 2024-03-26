@@ -47,6 +47,9 @@ class MatchVarargsUnitTest {
         }.also { exception ->
             assertTrue(exception.message!!.startsWith("no answer found"))
         }
+
+        val result2 = mockkObj.joinBySpace("a", "b", "c", "z")
+        assertEquals("Wow, Kotlin rocks!", result2)
     }
 
     @Test
@@ -58,6 +61,13 @@ class MatchVarargsUnitTest {
 
         val result2 = mockkObj.joinBySpace("a", "b", "c", "d1", "Baeldung", "z")
         assertEquals("Wow, Kotlin rocks!", result2)
+
+        assertThrows<MockKException> {
+            mockkObj.joinBySpace("a", "b", "c", "z")
+        }.also { exception ->
+            assertTrue(exception.message!!.startsWith("no answer found"))
+        }
+
     }
 
 
