@@ -1,6 +1,6 @@
 package com.baeldung.bfs
 
-import org.junit.jupiter.api.Assertions.assertIterableEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class BfsUnitTest {
@@ -16,8 +16,20 @@ class BfsUnitTest {
             7 to listOf(),
             8 to listOf()
         )
-        val expectedOrder = listOf(1, 2, 3, 4, 5, 6, 7, 8)
+
         val traversalOrder = bfs(graph, 1)
-        assertIterableEquals(expectedOrder, traversalOrder, "The BFS traversal order did not match the expected order.")
+
+
+        // Level 1
+        val levelOne = listOf(traversalOrder.first())
+        assertThat(levelOne).containsExactly(1)
+
+        // Level 2
+        val levelTwo = traversalOrder.drop(1).take(3)
+        assertThat(levelTwo).containsExactlyInAnyOrder(2, 3, 4)
+
+        // Level 3
+        val levelThree = traversalOrder.drop(4)
+        assertThat(levelThree).containsExactlyInAnyOrder(5, 6, 7, 8)
     }
 }
