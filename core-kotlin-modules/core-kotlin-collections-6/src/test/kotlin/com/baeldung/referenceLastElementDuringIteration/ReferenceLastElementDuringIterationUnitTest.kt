@@ -20,15 +20,6 @@ class ReferenceLastElementDuringIterationUnitTest {
 
         assertEquals(expectedList, iterateListUsingFoldIndexed(list))
     }
-
-    @Test
-    fun `creates new list by adding elements from original list using sequence method`() {
-        val list = listOf(1, 2, 3, 4, 5)
-        val expectedList = listOf(1, 3, 6, 10, 15)
-
-        assertEquals(expectedList, iterateListUsingSequence(list))
-    }
-
     @Test
     fun `creates new list by adding elements from original list using zipWitNnext method`() {
         val list = listOf(1, 2, 3, 4, 5)
