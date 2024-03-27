@@ -15,7 +15,7 @@ class ImplicitAndQualifiedthisUnitTest {
         class Outer {
             fun foo() : Int = 30
             val x = 0
-            val b = this
+            val a = this
 
             fun printLine() = "Member function"
 
@@ -28,6 +28,10 @@ class ImplicitAndQualifiedthisUnitTest {
 
                 assertEquals("Member function", this.printLine())
                 assertEquals("Top-level function", printLine())
+
+                fun checkThisToo(){
+                    val c = this
+                }
             }
 
             inner class Inner {
@@ -48,6 +52,14 @@ class ImplicitAndQualifiedthisUnitTest {
                     }
 
                     funInnerLambda("test inner lambda")
+
+                    val numbers = listOf(0, 1, 2, 3, 4)
+                    numbers.forEach { number ->
+                        number.run {
+                            assertEquals(number, this)
+                        }
+                    }
+
                 }
 
                 fun Int.foo() {
@@ -56,16 +68,28 @@ class ImplicitAndQualifiedthisUnitTest {
                     assertEquals("Int", y::class.simpleName)
 
                     assertEquals(2, x)
-                    assertEquals(1, this@Inner.x) // Qualified: specifies x of the Inner class
+
                     assertEquals(42, this) // Implicit: receiver of the extension function (the Int value 42)
                     assertEquals(42, this@foo) // Qualified: specifies the receiver of the extension function (42)
 
                     assertEquals(this, this@foo)  // Both this keywords refer to the same receiver (42)
 
+                    fun Int.bar() {
+                        assertEquals(32, this) // Implicit: receiver of the extension function (the Int value 32)
+                        assertEquals(42, this@foo) // Qualified: specifies the receiver of the extension function (42)
+
+                        fun Int.baz(){
+                            assertEquals(20, this) // Implicit: receiver of the extension function (the Int value 20)
+                            assertEquals(42, this@foo) // Qualified: specifies the receiver of the extension function (42)
+                        }
+                        20.baz()
+                    }
+                    32.bar()
+
                     assertEquals(Inner::class.java.name, this@Inner::class.java.name) // Qualified: Inner class
                     assertEquals(Outer::class.java.name, this@Outer::class.java.name) // Qualified: Outer class
 
-
+                    assertEquals(1, this@Inner.x) // Qualified: specifies x of the Inner class
                     assertEquals(0, this@Outer.x) // Qualified: Outer's x property
                     assertEquals(30, this@Outer.foo()) // Qualified: Outer's foo() function
 
