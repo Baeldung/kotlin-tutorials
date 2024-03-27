@@ -14,7 +14,15 @@ class MovieApplicationUnitTest {
     }
 
     @Test
-    fun `should play playlist`() {
+    fun `should stop movie`() {
+        val movie = Movie("Die Hard")
+        val result = movie.stop()
+
+        assertEquals("Stopping movie: Die Hard\n", result)
+    }
+
+    @Test
+    fun `should play and stop playlist`() {
         val actionMoviesPlayList = Playlist("Action Movies")
         actionMoviesPlayList.add(Movie("The Matrix"))
         actionMoviesPlayList.add(Movie("Die Hard"))
@@ -27,7 +35,8 @@ class MovieApplicationUnitTest {
         allPlaylists.add(actionMoviesPlayList)
         allPlaylists.add(comicMoviesPlayList)
 
-        val result = allPlaylists.play()
+        val playResult = allPlaylists.play()
+        val stopResult = allPlaylists.stop()
 
         assertEquals("Playing playlist: All Playlists\n" +
                 "Playing playlist: Action Movies\n" +
@@ -35,6 +44,14 @@ class MovieApplicationUnitTest {
                 "Playing movie: Die Hard\n" +
                 "Playing playlist: Comic Movies\n" +
                 "Playing movie: The Hangover\n" +
-                "Playing movie: Bridesmaids\n", result)
+                "Playing movie: Bridesmaids\n", playResult)
+
+        assertEquals("Stopping playlist: All Playlists\n" +
+                "Stopping playlist: Action Movies\n" +
+                "Stopping movie: The Matrix\n" +
+                "Stopping movie: Die Hard\n" +
+                "Stopping playlist: Comic Movies\n" +
+                "Stopping movie: The Hangover\n" +
+                "Stopping movie: Bridesmaids\n", stopResult)
     }
 }

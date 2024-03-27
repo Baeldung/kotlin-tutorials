@@ -19,4 +19,13 @@ class Playlist(private val name: String) : MovieComponent {
         }
         return result.toString()
     }
+
+    override fun stop(): String {
+        val result = StringBuilder()
+        result.append("Stopping playlist: $name\n")
+        for (movieComponent in movieComponents) {
+            result.append(movieComponent.stop())
+        }
+        return result.toString()
+    }
 }
