@@ -25,9 +25,7 @@ class ReferenceLastElementDuringIterationUnitTest {
         val list = listOf(1, 2, 3, 4, 5)
         val expectedList = listOf("1", "12", "23", "34", "45")
 
-        val result = mutableListOf<String>()
-        result.add(list[0].toString())
-        result.addAll(list.zipWithNext { a, b -> "$a$b" })
+        val result = (list.take(1) + list.zipWithNext { a, b -> "$a$b" }).map { it.toString() }
 
         assertEquals(expectedList, result)
     }
@@ -53,17 +51,10 @@ fun iterateListUsingLoop(list: List<Int>): List<String> {
 fun iterateListUsingFoldIndexed(list: List<Int>): List<String> {
     return list.foldIndexed(mutableListOf()) { i, acc, element ->
         if(i==0)
-            acc.add(list[0].toString())
+            acc.add(element.toString())
         if (i > 0) {
             acc.add("${list[i - 1]}$element")
         }
         acc
     }
-}
-fun iterateListUsingSequence(list: List<Int>): List<String> {
-    return sequence {
-        for (i in 1 until list.size) {
-            yield("${list[i - 1]}${list[i]}")
-        }
-    }.toList()
 }
