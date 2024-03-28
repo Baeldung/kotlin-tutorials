@@ -1,0 +1,21 @@
+users:
+  - name: Alice
+    age: 30
+    address:
+      city: New York
+      country: USA
+      nested1:
+        - nested2:
+            landmarks:
+              - name: l1
+                random: l1
+  - name: Bob
+    age: 35
+    address:
+      city: London
+      country: UK
+      nested1:
+        - nested2:
+            landmarks:
+              - name: l3
+                random: l3
