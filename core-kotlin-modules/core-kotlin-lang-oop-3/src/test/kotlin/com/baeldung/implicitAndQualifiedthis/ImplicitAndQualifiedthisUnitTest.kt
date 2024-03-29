@@ -9,6 +9,7 @@ class ImplicitAndQualifiedthisUnitTest {
     @Test
     fun `Qualified this and implicit this Test`() {
 
+
         fun printLine() = "Top-level function"
         val x = 5
 
@@ -23,8 +24,8 @@ class ImplicitAndQualifiedthisUnitTest {
                 val b = this // Implicit: refers to the current instance of Outer
                 assertEquals(Outer::class.java.name, b::class.java.name)
 
-                assertEquals(1, this.x + 1) // Implicit: refers to the x property of the current Outer instance
-                assertEquals(6, x + 1) // Implicit: refers to the x property of the current Outer instance
+                assertEquals(0, this.x) // Implicit: refers to the x property of the current Outer instance
+                assertEquals(5, x) // Implicit: refers to the x property of the current Outer instance
 
                 assertEquals("Member function", this.printLine())
                 assertEquals("Top-level function", printLine())
