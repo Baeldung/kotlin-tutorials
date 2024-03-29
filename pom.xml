@@ -360,7 +360,7 @@
         <module>core-kotlin-companion</module>
         <module>core-kotlin-modules</module>
         <!-- <module>gradle-kotlin-dsl</module> --> <!-- not a Maven module -->
-        <!-- <module>jee-kotlin</module> fixing in https://jira.baeldung.com/browse/KTLN-426 -->
+        <module>jee-kotlin</module>
         <!-- <module>koin-guide</module> --> <!-- not a Maven module -->
         <!-- <module>kotest</module> --> <!-- not a Maven module -->
         <!-- <module>kotlin-apache-kafka</module> --> <!-- not a Maven module -->
