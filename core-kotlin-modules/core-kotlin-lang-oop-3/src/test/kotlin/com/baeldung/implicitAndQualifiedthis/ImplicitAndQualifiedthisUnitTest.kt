@@ -61,11 +61,11 @@ class ImplicitAndQualifiedthisUnitTest {
                         }
                     }
 
-                    val number = 10
+                    val someNumber = 10
 
-                    number.run {
+                    someNumber.run {
                         val numberLambda = { _: String ->
-                            assertEquals(number, this)
+                            assertEquals(someNumber, this)
                         }
                         numberLambda("numberLambda")
                     }
