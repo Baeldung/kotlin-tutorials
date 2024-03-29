@@ -61,6 +61,31 @@ class ImplicitAndQualifiedthisUnitTest {
                         }
                     }
 
+                    val number = 10
+
+                    number.run {
+                        val numberLambda = { _: String ->
+                            assertEquals(number, this)
+                        }
+                        numberLambda("numberLambda")
+                    }
+
+                    val someObject = object {
+                        val name = "John"
+                        val age = 30
+                    }
+
+                    someObject.run {
+                        assertEquals(someObject, this)
+
+                        val someLambda = { _: String ->
+                            assertEquals(someObject, this)
+                            assertEquals(30, this.age)
+                            assertEquals("John", this.name)
+                        }
+
+                        someLambda("someLambda")
+                    }
                 }
 
                 fun Int.foo() {
