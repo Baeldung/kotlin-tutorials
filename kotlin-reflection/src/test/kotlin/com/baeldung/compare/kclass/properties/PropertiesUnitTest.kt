@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test
 class PropertiesUnitTest {
     @Test
     fun givenTwoWeapons_whenCompareKotlinClassWithJavaClass_thenTheyAreEqual() {
-        assertEquals("class ro.daniel.Weapon", Weapon::class.toString())
-        assertEquals("class ro.daniel.Weapon", Weapon::class.java.toString())
+        assertEquals("class com.baeldung.compare.kclass.Weapon", Weapon::class.toString())
+        assertEquals("class com.baeldung.compare.kclass.Weapon", Weapon::class.java.toString())
 
         assertNotEquals(Weapon::class, Weapon::class.java)
     }
@@ -19,8 +19,8 @@ class PropertiesUnitTest {
         val sword = Weapon()
         val bow = Weapon()
 
-        assertEquals("class ro.daniel.Weapon", sword.javaClass.toString())
-        assertEquals("class ro.daniel.Weapon", bow.javaClass.kotlin.toString())
+        assertEquals("class com.baeldung.compare.kclass.Weapon", sword.javaClass.toString())
+        assertEquals("class com.baeldung.compare.kclass.Weapon", bow.javaClass.kotlin.toString())
 
         assertEquals(sword.javaClass, bow.javaClass)
         assertEquals(sword.javaClass.kotlin, bow.javaClass.kotlin)
