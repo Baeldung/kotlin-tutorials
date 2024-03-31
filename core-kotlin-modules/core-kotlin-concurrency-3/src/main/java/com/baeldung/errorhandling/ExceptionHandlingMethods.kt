@@ -2,17 +2,17 @@ package com.baeldung.errorhandling
 
 import kotlinx.coroutines.*
 
-//fun main() = runBlocking {
-//    launch {
-//        try {
-//            val result = 10 / 0
-//            println("Result: $result")
-//        } catch (e: ArithmeticException) {
-//            println("Caught an ArithmeticException: $e")
-//        }
-//    }
-//    delay(1000)
-//}
+fun main() = runBlocking {
+    launch {
+        try {
+            val result = 10 / 0
+            println("Result: $result")
+        } catch (e: ArithmeticException) {
+            println("Caught an ArithmeticException: $e")
+        }
+    }
+    delay(1000)
+}
 
 fun main1() {
     runBlocking {
