@@ -22,10 +22,10 @@ class ReferenceLastElementDuringIterationUnitTest {
     }
     @Test
     fun `creates new list by adding elements from original list using zipWitNnext method`() {
-        val list = listOf(1, 2, 3, 4, 5)
+        val list = listOf("1", "2", "3", "4", "5")
         val expectedList = listOf("1", "12", "23", "34", "45")
 
-        val result = (list.take(1) + list.zipWithNext { a, b -> "$a$b" }).map { it.toString() }
+        val result = (list.take(1) + list.zipWithNext { a, b -> "$a$b" })
 
         assertEquals(expectedList, result)
     }
@@ -34,7 +34,7 @@ class ReferenceLastElementDuringIterationUnitTest {
     fun `creates new list by adding elements from original list using scan method`() {
         val list = listOf(1, 2, 3, 4, 5)
         val expectedList = listOf("1", "12", "23", "34", "45")
-        val result = list.drop(1).scan(list.first().toString(), { acc, i -> acc.takeLast(1) + i })
+        val result = list.drop(1).scan(list.first().toString()) { acc, i -> acc.takeLast(1) + i }
 
         assertEquals(expectedList, result)
     }
