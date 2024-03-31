@@ -2,17 +2,17 @@ package com.baeldung.errorhandling
 
 import kotlinx.coroutines.*
 
-fun main() = runBlocking {
-    launch {
-        try {
-            val result = 10 / 0
-            println("Result: $result")
-        } catch (e: ArithmeticException) {
-            println("Caught an ArithmeticException: $e")
-        }
-    }
-    delay(1000)
-}
+//fun main() = runBlocking {
+//    launch {
+//        try {
+//            val result = 10 / 0
+//            println("Result: $result")
+//        } catch (e: ArithmeticException) {
+//            println("Caught an ArithmeticException: $e")
+//        }
+//    }
+//    delay(1000)
+//}
 
 fun main1() {
     runBlocking {
@@ -37,19 +37,21 @@ class CustomException(message: String) : Exception(message)
 
 fun main2() = runBlocking {
     val exceptionHandler = CoroutineExceptionHandler { _, exception ->
+        println("Caught an exception: ${exception.message}")
     }
     supervisorScope {
         val job = launch(exceptionHandler) {
             launch {
-                println("Caught an exception !!")
+                delay(900)
+                println("This coroutine completes successfully.")
             }
             launch {
-                delay(100)
-                println("This coroutine completes successfully.")
+                throw CustomException("An exception occurred!")
             }
         }
         job.join()
     }
+    println("Compiled successfully.")
 }
 
 fun main3() = runBlocking {
