@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 
 class LiteralUnitTest {
     @Test
-    fun givenTwoWeapons_whenCheckKotlinClass_thenTheyAreEqual() {
+    fun `A sword and a bow are Weapons`() {
         val sword = Weapon()
         val bow = Weapon()
 

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 
 class IsOperatorUnitTest {
     @Test
-    fun givenDifferentSwords_whenCheckIsOperator_thenAllAreWeapons() {
+    fun `Different swords are Weapons`() {
         val weapon = Weapon()
         val sword = Sword()
         val claymore = Claymore()

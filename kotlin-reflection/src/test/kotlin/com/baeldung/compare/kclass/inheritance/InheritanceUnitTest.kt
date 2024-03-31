@@ -12,7 +12,7 @@ import kotlin.reflect.full.superclasses
 
 class InheritanceUnitTest {
     @Test
-    fun givenListOfWeapons_whenCheckAllSuperclasses_andSubclassOfWeapon_thenAllAreWeapons() {
+    fun `Different weapons indirectly inherit from Weapon class`() {
         val weapons = listOf(Sword(), Claymore(), Bow(), LongBow())
 
         assertThat(weapons).allMatch { it::class.allSuperclasses.contains(Weapon::class) }
@@ -22,7 +22,7 @@ class InheritanceUnitTest {
     }
 
     @Test
-    fun givenListOfWeapons_whenCheckSuperclasses_thenSomeAreWeapons() {
+    fun `Different weapons directly inherit from Weapon class`() {
         val weapons = listOf(Sword(), Claymore(), Bow(), LongBow())
 
         assertThat(weapons).anyMatch { it::class.superclasses.contains(Weapon::class) }
@@ -31,7 +31,7 @@ class InheritanceUnitTest {
     }
 
     @Test
-    fun givenListOfWeapons_whenCheckWeaponIsSuperclass_thenAllAreSubclassOfWeapon() {
+    fun `Weapon class is a superclass of different weapons`() {
         val weapons = listOf(Sword(), Claymore(), Bow(), LongBow())
 
         assertThat(weapons).allMatch { Weapon::class.isSuperclassOf(it::class) }

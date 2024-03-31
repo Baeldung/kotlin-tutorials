@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 
 class PropertiesUnitTest {
     @Test
-    fun givenTwoWeapons_whenCompareKotlinClassWithJavaClass_thenTheyAreEqual() {
+    fun `A Kotlin Weapon class is not a Java Weapon class`() {
         assertEquals("class com.baeldung.compare.kclass.Weapon", Weapon::class.toString())
         assertEquals("class com.baeldung.compare.kclass.Weapon", Weapon::class.java.toString())
 
@@ -15,7 +15,7 @@ class PropertiesUnitTest {
     }
 
     @Test
-    fun givenTwoWeapons_whenCheckJavaClass_andKotlinClass_thenTheyAreEqual(){
+    fun `Using javaClass and kotlin properties for equality comparison`() {
         val sword = Weapon()
         val bow = Weapon()
 
@@ -27,7 +27,7 @@ class PropertiesUnitTest {
     }
 
     @Test
-    fun givenTwoWeapons_whenCompareJavaClassWithKotlinClass_thenTheyAreNotEqual(){
+    fun `Comparing javaClass and kotlin properties for Weapon class`(){
         val sword = Weapon()
         val bow = Weapon()
 
