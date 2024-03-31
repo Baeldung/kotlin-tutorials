@@ -29,7 +29,6 @@ class ConditionalThrowingUnitTest {
         val str = "a b c"
         assertThrows<IllegalArgumentException> {
             require(str.length > 10) { "The string is too short." }
-            null.toString()
         }
 
         val upperStr = str.also {
@@ -74,7 +73,6 @@ class ConditionalThrowingUnitTest {
         }
 
         val nullIsValid: String? = null
-        // we don't expect the exception
         assertThrows<MyException> {
             nullIsValid.takeIf { true } ?: throw MyException("The string is too short.")
         }
