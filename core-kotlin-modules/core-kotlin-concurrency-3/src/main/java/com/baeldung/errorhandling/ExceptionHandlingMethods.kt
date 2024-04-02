@@ -35,6 +35,8 @@ fun main1() {
 
 class CustomException(message: String) : Exception(message)
 
+
+
 fun main2() = runBlocking {
     val exceptionHandler = CoroutineExceptionHandler { _, exception ->
         println("Caught an exception: ${exception.message}")
@@ -42,7 +44,6 @@ fun main2() = runBlocking {
     supervisorScope {
         val job = launch(exceptionHandler) {
             launch {
-                delay(900)
                 println("This coroutine completes successfully.")
             }
             launch {
@@ -51,8 +52,8 @@ fun main2() = runBlocking {
         }
         job.join()
     }
-    println("Compiled successfully.")
 }
+
 
 fun main3() = runBlocking {
     val exceptionHandler = CoroutineExceptionHandler { _, exception ->
