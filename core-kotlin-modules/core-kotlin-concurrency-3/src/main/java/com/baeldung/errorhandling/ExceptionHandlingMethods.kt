@@ -35,26 +35,21 @@ fun main1() {
 
 class CustomException(message: String) : Exception(message)
 
-
-
 fun main2() = runBlocking {
     val exceptionHandler = CoroutineExceptionHandler { _, exception ->
         println("Caught an exception: ${exception.message}")
     }
     supervisorScope {
-        val job = launch(exceptionHandler) {
-            launch {
-                println("This coroutine completes successfully.")
-            }
-            launch {
-                throw CustomException("An exception occurred!")
-            }
+        val job1 = launch(exceptionHandler) {
+            delay(100)
+            println("This coroutine completes successfully.")
         }
-        job.join()
+        val job2 = launch(exceptionHandler) {
+            throw Exception("An exception occurred!")
+        }
+        listOf(job1, job2).joinAll()
     }
 }
-
-
 fun main3() = runBlocking {
     val exceptionHandler = CoroutineExceptionHandler { _, exception ->
         println("Caught global exception: ${exception.message}")
