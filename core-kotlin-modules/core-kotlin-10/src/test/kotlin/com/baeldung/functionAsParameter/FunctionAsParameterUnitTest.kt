@@ -1,24 +1,11 @@
 package com.baeldung.functionAsParameter
 
-import com.baeldung.functionAsParameter.Sender.*
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
 fun joinByOperation(theList: List<String>, operation: (List<String>) -> String): String {
     return operation(theList)
 }
-
-
-data class TheMessage(val sender: Sender, val segments: List<String>) {
-    fun parse(operation: (List<String>) -> String): String {
-        return "Message From $sender is: ${operation(segments)}"
-    }
-}
-
-enum class Sender {
-    User, RemoteAPI, PartnerApp, CsvSender
-}
-
 
 class MessageParser {
     fun joinWithoutPlaceholder(segments: List<String>): String {
@@ -32,7 +19,6 @@ class MessageParser {
     }
 }
 
-
 object ParserInObject {
     fun joinWithoutComma(segments: List<String>): String {
         return segments.joinToString(separator = " ") { it.replace(",", "") }
@@ -43,51 +29,62 @@ fun decrypt(segments: List<String>): String {
     return segments.reversed().joinToString(separator = " ") { it.reversed() }
 }
 
-val messageParser = MessageParser()
-fun parseMessage(message: TheMessage): String {
-    return when (message.sender) {
-        User -> message.parse(MessageParser::simplyJoin)
-        PartnerApp -> message.parse(messageParser::joinWithoutPlaceholder)
-        CsvSender -> message.parse(ParserInObject::joinWithoutComma)
-        RemoteAPI -> message.parse(::decrypt)
-    }
-}
-
 class FunctionAsParameterUnitTest {
 
     @Test
     fun `when passing lambda as parameters then get expected result`() {
-        val input = listOf("a b c", "x y z", "kotlin")
+        val input = listOf("a b c", "d e f", "x y z")
         val result1 = joinByOperation(input) { theList ->
             theList.joinToString(separator = " ") { str -> str.reversed() }.replace(" ", ", ")
         }
-        assertEquals("c, b, a, z, y, x, niltok", result1)
+        assertEquals("c, b, a, f, e, d, z, y, x", result1)
 
         val result2 = joinByOperation(input) { theList ->
             theList.reversed().joinToString(separator = " ") { str -> str }.uppercase()
         }
-        assertEquals("KOTLIN X Y Z A B C", result2)
+        assertEquals("X Y Z D E F A B C", result2)
 
     }
 
     @Test
-    fun `when passing existing fun as parameters then get expected result`() {
+    fun `when passing instance function ref as parameters then get expected result`() {
+        val messageParser = MessageParser()
+        val input = listOf("a [SPACE] b [SPACE] c", "d [SPACE] e [SPACE] f", "x [SPACE] y [SPACE] z")
+        val result = joinByOperation(input, messageParser::joinWithoutPlaceholder)
+        assertEquals("a b c d e f x y z", result)
+    }
 
+    @Test
+    fun `when passing companion object function ref as parameters then get expected result`() {
+        val input = listOf("a b c", "d e f", "x y z")
+        val result = joinByOperation(input, MessageParser::simplyJoin)
+        assertEquals("a b c d e f x y z", result)
+    }
 
-        val msgFromUser = TheMessage(User, listOf("a b c", "d e f", "x y z"))
-        val resultUser = parseMessage(msgFromUser)
-        assertEquals("Message From User is: a b c d e f x y z", resultUser)
+    @Test
+    fun `when passing object function ref as parameters then get expected result`() {
+        val input = listOf("a, b, c", "d, e, f", "x, y, z")
+        val result = joinByOperation(input, ParserInObject::joinWithoutComma)
+        assertEquals("a b c d e f x y z", result)
+    }
 
-        val msgFromPartner = TheMessage(PartnerApp, listOf("a [SPACE] b [SPACE] c", "d [SPACE] e [SPACE] f", "x [SPACE] y [SPACE] z"))
-        val resultPartner = parseMessage(msgFromPartner)
-        assertEquals("Message From PartnerApp is: a b c d e f x y z", resultPartner)
+    @Test
+    fun `when passing top-level function ref as parameters then get expected result`() {
+        val input = listOf("z y x", "f e d", "c b a")
+        val result = joinByOperation(input, ::decrypt)
+        assertEquals("a b c d e f x y z", result)
+    }
 
-        val msgFromCsv = TheMessage(CsvSender, listOf("a, b, c", "d, e, f", "x, y, z"))
-        val resultCsv = parseMessage(msgFromCsv)
-        assertEquals("Message From CsvSender is: a b c d e f x y z", resultCsv)
+    @Test
+    fun `when passing variable with function type as parameter then get expected result`() {
+        val input = listOf("a, b, c", "d, e, f", "x, y, z")
 
-        val msgFromAPI = TheMessage(RemoteAPI, listOf("z y x", "f e d", "c b a"))
-        val resultApi = parseMessage(msgFromAPI)
-        assertEquals("Message From RemoteAPI is: a b c d e f x y z", resultApi)
+        val funRef = ParserInObject::joinWithoutComma
+        val resultFunRef = joinByOperation(input, funRef)
+        assertEquals("a b c d e f x y z", resultFunRef)
+
+        val funLambda = { theList: List<String> -> theList.reversed().joinToString(separator = ", ") { str -> str }.uppercase() }
+        val resultFunLambda = joinByOperation(input, funLambda)
+        assertEquals("X, Y, Z, D, E, F, A, B, C", resultFunLambda)
     }
 }
