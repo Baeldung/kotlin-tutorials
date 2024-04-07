@@ -1,4 +1,5 @@
 import com.baeldung.iteratePropertiesOfDataClass.Person
+import com.baeldung.iteratePropertiesOfDataClass.getFields
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -19,5 +20,14 @@ class IteratePropertiesOfDataClassUnitTest {
 
         assertEquals("Robert", fields[0])
         assertEquals(28, fields[1])
+    }
+
+    @Test
+    fun `iterate fields using KClassUnpacker plugin`() {
+        val person = Person("Robert", 28)
+        val list = getFields(person)
+
+        assertEquals("Robert", list[0])
+        assertEquals("28", list[1])
     }
 }

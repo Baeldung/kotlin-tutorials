@@ -1,8 +1,11 @@
 package com.baeldung.iteratePropertiesOfDataClass
 
-fun main(a: Array<String>) {
-    val cls = Person("John", 38)
+fun getFields(person: Person): List<String> {
+    var list = mutableListOf<String>()
+    val cls = person
     for(field in cls) {
-        println(field)
+        list.add(field.toString())
     }
+
+    return list
 }
