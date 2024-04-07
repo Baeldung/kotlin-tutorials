@@ -1,23 +1,21 @@
 package com.baeldung.mergemultipleflows
 
-import junit.framework.Assert
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
 class FlowMergingTests {
 
     @Test
-    fun `should merge using the merge function`() = runBlocking {
+    fun `should merge using the merge function`(): Unit = runBlocking {
         val flow1 = flowOf(1, 2, 3, 4)
         val flow2 = flowOf(5, 6, 7, 8)
         val mergedFlow = merge(flow1, flow2)
-        val result = mutableListOf<Int>()
-        mergedFlow.collect { value ->
-            result.add(value)
-        }
-        assertEquals(setOf(1, 2, 3, 4, 5, 6, 7, 8), result.toSet())
+        val result = mergedFlow.toList()
+
+        assertThat(result).containsExactlyInAnyOrder(1, 2, 3, 4, 5, 6, 7, 8)
     }
 
     @Test
