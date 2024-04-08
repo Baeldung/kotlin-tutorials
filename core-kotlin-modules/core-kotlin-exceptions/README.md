@@ -1,4 +1,4 @@
-## Core Kotlin Strings
+## Core Kotlin Exceptions
 
 This module contains articles about core Kotlin Exceptions.
 
