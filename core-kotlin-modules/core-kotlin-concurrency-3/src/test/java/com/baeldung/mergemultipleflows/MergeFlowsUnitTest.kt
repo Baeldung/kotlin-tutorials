@@ -55,7 +55,7 @@ class FlowMergingTests {
 
 
     @Test
-    fun `should merge using flatmerge`() = runBlocking {
+    fun `should merge using flatmapmerge`() = runBlocking {
         val flow1 = flowOf(1, 2, 3)
         val flow2 = flowOf(4, 5, 6)
         val result = flow1.flatMapMerge { value1 ->
