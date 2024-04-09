@@ -37,7 +37,7 @@ class FlowMergingTests {
         val flow2 = flowOf(1, 2, 3)
         val result = flow1.combine(flow2) { num1, num2 ->
             num1 + num2
-        }.toList() // This operation waits for both flows to complete
+        }.toList()
         assertEquals(listOf(1, 2, 3), result)
     }
 
