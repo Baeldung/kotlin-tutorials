@@ -4,7 +4,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class IteratePropertiesOfDataClassUnitTest {
-
     @Test
     fun `iterate fields using destructuring declaration`() {
         val person = Person("Robert", 28)
