@@ -33,13 +33,14 @@ class FlowMergingTests {
 
     @Test
     fun `should merge using combine`() = runBlocking {
-        val flow1 = MutableStateFlow(0)
+        val flow1 = flowOf(0)
         val flow2 = flowOf(1, 2, 3)
         val result = flow1.combine(flow2) { num1, num2 ->
             num1 + num2
-        }.toList()
-        assertEquals(listOf(1, 2, 3, 4, 5, 6), result)
+        }.toList() // This operation waits for both flows to complete
+        assertEquals(listOf(1, 2, 3), result)
     }
+
 
 
     @Test
