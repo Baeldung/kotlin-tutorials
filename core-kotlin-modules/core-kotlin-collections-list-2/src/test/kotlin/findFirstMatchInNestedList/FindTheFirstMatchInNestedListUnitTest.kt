@@ -62,7 +62,6 @@ class FindTheFirstMatchInNestedListUnitTest {
 
     @Test
     fun `when finding the first match using foreach then get the expected result`() {
-
         fun findTheFirstPlayerHigherThan100(teams: List<Team>): Player {
             teams.forEach { team ->
                 log.info("Checking players of the team: ${team.name}")
