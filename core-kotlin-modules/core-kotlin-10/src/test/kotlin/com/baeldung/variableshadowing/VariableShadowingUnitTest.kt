@@ -5,6 +5,24 @@ import org.junit.jupiter.api.Test
 
 class VariableShadowingUnitTest{
 
+    class Person(private val name: String) {
+        fun printShadowName() {
+            val name = "John Doe" // Shadowing the 'name' property with a local variable 'name'
+            assertEquals("John Doe", name)
+        }
+
+        fun printOriginalName() {
+            assertEquals("Alice", name) // Accessing the original 'name' property
+        }
+    }
+
+    @Test
+    fun `class member variable shadowing`(){
+        val person = Person("Alice")
+        person.printShadowName() // "John Doe"
+        person.printOriginalName() // "Original Name: Alice"
+    }
+
     @Test
     fun `local variable shadowing`() {
         val price = 100
@@ -52,9 +70,24 @@ class VariableShadowingUnitTest{
                 return price - discount // 'price' here refers to the parameter, not the outer variable
             }
             val totalPrice = applyDiscount(price)
-            println("Total price after discount: $$totalPrice")
+            assertEquals(80, totalPrice)
         }
 
         calculateTotalPrice()
+    }
+
+
+    @Test
+    fun `top lebel function variale shadowing`(){
+        val number = 10 // Top-level function variable
+
+        // Shadowing top-level function variable
+        fun printNumber() {
+            val number = 20
+            assertEquals(20, number)
+        }
+
+        printNumber()
+        assertEquals(10, number)
     }
 }
