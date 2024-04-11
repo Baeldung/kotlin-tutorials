@@ -8,3 +8,4 @@ This module contains articles about Kotlin in Spring Boot projects.
 - [Error Handling for REST with Spring in Kotlin](https://www.baeldung.com/kotlin/spring-rest-error-handling)
 - [Spring Integration With Kotlin](https://www.baeldung.com/kotlin/spring-integration)
 - [Kotlin and Spring Boot: Injecting Configuration Properties Using @Value](https://www.baeldung.com/kotlin/spring-boot-inject-properties-value)
+- - More articles: [[next -->]](../spring-boot-kotlin-2)
