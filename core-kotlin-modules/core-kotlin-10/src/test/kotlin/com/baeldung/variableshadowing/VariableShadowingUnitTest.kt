@@ -28,20 +28,22 @@ class VariableShadowingUnitTest{
         val price = 100
         fun applyDiscount(price: Int): Int { // Inner function with parameter named 'price'
             val discount = 20
-            return price - discount // 'price' here refers to the parameter, not the outer variable
+            val result = price - discount // 'price' here refers to the parameter, not the outer variable
+            return result
         }
-        val totalPrice = applyDiscount(200)
-        assertEquals(180, totalPrice)
+
+        val totalPrice1 = applyDiscount(price)
+        assertEquals(80, totalPrice1)
+
+        val totalPrice2 = applyDiscount(200)
+        assertEquals(180, totalPrice2)
     }
 
     @Test
     fun `loop variable shadowing`() {
         val numbers = listOf(1, 2, 3, 4, 5)
         for (number in numbers) {
-            println(number * 2)
-
             val doubledNumber = number * 2
-
             val number = number * 2 // Shadowing the loop variable 'number'
 
             assertEquals(doubledNumber, number)
@@ -52,7 +54,11 @@ class VariableShadowingUnitTest{
     @Test
     fun `parameter shadowing`() {
         fun calculateTotalPrice(discount: Int) {
+            assertEquals(300, discount)
+
             val discount = 10 // Shadowing the parameter 'discount'
+            assertEquals(10, discount)
+
             val price = 100
             val totalPrice = price - discount
             assertEquals(90, totalPrice)
