@@ -2,7 +2,6 @@ package com.baeldung.mapstruct.mapper.custom
 
 import com.baeldung.mapstruct.entity.Address
 import com.baeldung.mapstruct.entity.User
-import com.baeldung.mapstruct.mapper.UserMapper
 import org.junit.jupiter.api.Test
 import org.mapstruct.factory.Mappers
 import java.util.*
