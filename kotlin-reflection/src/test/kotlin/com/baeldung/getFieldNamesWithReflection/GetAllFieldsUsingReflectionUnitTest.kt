@@ -64,7 +64,6 @@ fun getAllFieldNamesUsingJavaReflection(clazz: KClass<*>): List<String> {
 fun getAllFieldNamesUsingMembersProperty(clazz: KClass<*>): List<String> {
     return clazz.members
         .filter { it is KProperty<*> }
-        .filter { it.visibility == KVisibility.PUBLIC }
         .map { it.name }
 }
 fun getAllFieldNamesUsingClassMemberProperties(clazz: KClass<*>): List<String> {
