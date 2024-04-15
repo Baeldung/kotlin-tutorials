@@ -7,7 +7,6 @@ plugins {
 
 repositories {
     mavenCentral()
-    maven { url = uri("https://jitpack.io") }
 }
 
 buildscript {
@@ -18,12 +17,6 @@ buildscript {
 
 dependencies {
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.0")
-    compileOnly("com.github.LunarWatcher:KClassUnpacker:v1.0.1")
     testImplementation(kotlin("test"))
 }
 
-kapt {
-    dependencies {
-        kapt("com.github.LunarWatcher:KClassUnpacker:v1.0.1")
-    }
-}
