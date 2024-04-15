@@ -6,6 +6,6 @@ This module contains articles about core Kotlin numbers.
 - [Getting Binary Representation of Int in Kotlin](https://www.baeldung.com/kotlin/int-binary-representation)
 - [Check if a Number Is Odd or Even in Kotlin](https://www.baeldung.com/kotlin/number-odd-even)
 - [Check if a Number Is Positive or Negative in Kotlin](https://www.baeldung.com/kotlin/number-sign)
-
+- [Calculate Percentage in Kotlin](https://www.baeldung.com/kotlin/percentage-computation)
 
 - More articles: [[<-- prev]](../core-kotlin-numbers)
