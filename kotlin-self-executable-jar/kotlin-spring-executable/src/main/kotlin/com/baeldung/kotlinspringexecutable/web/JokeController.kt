@@ -21,12 +21,12 @@ class JokeController(resource: String) {
 }
 
 @Configuration
-class RouterConfiguration {
+open class RouterConfiguration {
     @Bean
-    fun controller() = JokeController("/list-of-jokes.txt")
+    open fun controller() = JokeController("/list-of-jokes.txt")
 
     @Bean
-    fun mainRoute(controller: JokeController): RouterFunction<ServerResponse> = coRouter {
+    open fun mainRoute(controller: JokeController): RouterFunction<ServerResponse> = coRouter {
         GET("/", controller::handleGet)
     }
 }
