@@ -6,4 +6,5 @@
 - [Assignment in While Expression in Kotlin](https://www.baeldung.com/kotlin/while-variable-assignment)
 - [Breadth-First Search Algorithm in Kotlin](https://www.baeldung.com/kotlin/bfs-graphs)
 - [Calling Private Methods of a Class From Outside the Class](https://www.baeldung.com/kotlin/private-methods-outside-class)
+- [Pass a Function as Parameter to Another in Kotlin](https://www.baeldung.com/kotlin/function-parameter-high-order)
 
