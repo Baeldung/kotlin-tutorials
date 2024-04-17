@@ -1,6 +1,7 @@
 package com.baeldung.thousandsSeparator
 
 import org.junit.jupiter.api.Test
+import java.text.DecimalFormatSymbols
 import java.text.NumberFormat
 import java.util.*
 import kotlin.test.assertEquals
@@ -9,8 +10,8 @@ class ParseStringWithThousandsSeparator {
 
     @Test
     fun `parses string with thousands separator using replace method`(){
-        val result1 = parseStringWithCommaSeparatorUsingReplace("1,000")
-        val result2 = parseStringWithDotSeparatorUsingReplace("25.750")
+        val result1 = parseStringUsingReplace("1,000", Locale.US)
+        val result2 = parseStringUsingReplace("25.750", Locale.GERMAN)
 
         assertEquals(1000, result1.toInt())
         assertEquals(25750, result2.toInt())
@@ -18,8 +19,8 @@ class ParseStringWithThousandsSeparator {
 
     @Test
     fun `parses string with thousands separator using number format class`(){
-        val result1 = parseStringWithSeparatorUsingNumberFormatWithUSLocale("1,000")
-        val result2 = parseStringWithSeparatorUsingNumberFormatWithGermanLocale("25.750")
+        val result1 = parseStringWithSeparatorUsingNumberFormat("1,000", Locale.US)
+        val result2 = parseStringWithSeparatorUsingNumberFormat("25.750", Locale.GERMAN)
 
         assertEquals(1000, result1.toInt())
         assertEquals(25750, result2.toInt())
@@ -27,42 +28,28 @@ class ParseStringWithThousandsSeparator {
 
     @Test
     fun `parses string with thousands separator using string tokenizer`(){
-        val result1 = parseStringWithCommaSeparatorUsingTokenizer("1,000")
-        val result2 = parseStringWithDotSeparatorUsingTokenizer("25.750")
+        val result1 = parseStringUsingTokenizer("1,000", Locale.US)
+        val result2 = parseStringUsingTokenizer("25.750", Locale.GERMAN)
 
         assertEquals(1000, result1.toInt())
         assertEquals(25750, result2.toInt())
     }
 }
-fun parseStringWithCommaSeparatorUsingReplace(input: String): String {
-    return input.replace(Regex("[,]"), "")
+
+fun parseStringUsingReplace(input: String, locale: Locale): String {
+    val separator = DecimalFormatSymbols.getInstance(locale).groupingSeparator
+    return input.replace(Regex("[$separator]"), "")
 }
 
-fun parseStringWithDotSeparatorUsingReplace(input: String): String {
-    return input.replace(Regex("[.]"), "")
-}
-
-fun parseStringWithSeparatorUsingNumberFormatWithUSLocale(input: String): String {
-    val number = NumberFormat.getInstance(Locale.US)
+fun parseStringWithSeparatorUsingNumberFormat(input: String, locale: Locale): String {
+    val number = NumberFormat.getInstance(locale)
     val num = number.parse(input)
     return num.toString()
 }
-fun parseStringWithSeparatorUsingNumberFormatWithGermanLocale(input: String): String {
-    val number = NumberFormat.getInstance(Locale.GERMAN)
-    val num = number.parse(input)
-    return num.toString()
-}
-fun parseStringWithCommaSeparatorUsingTokenizer(input: String): String {
-    val tokenizer = StringTokenizer(input, ",.")
-    val builder = StringBuilder()
-    while (tokenizer.hasMoreTokens()) {
-        builder.append(tokenizer.nextToken())
-    }
-    return builder.toString()
-}
 
-fun parseStringWithDotSeparatorUsingTokenizer(input: String): String {
-    val tokenizer = StringTokenizer(input, ".")
+fun parseStringUsingTokenizer(input: String, locale: Locale): String {
+    val separator = DecimalFormatSymbols.getInstance(locale).groupingSeparator
+    val tokenizer = StringTokenizer(input, separator.toString())
     val builder = StringBuilder()
     while (tokenizer.hasMoreTokens()) {
         builder.append(tokenizer.nextToken())
