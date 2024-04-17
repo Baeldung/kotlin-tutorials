@@ -7,5 +7,5 @@ This module contains articles about core Kotlin numbers.
 - [Check if a Number Is Odd or Even in Kotlin](https://www.baeldung.com/kotlin/number-odd-even)
 - [Check if a Number Is Positive or Negative in Kotlin](https://www.baeldung.com/kotlin/number-sign)
 - [Calculate Percentage in Kotlin](https://www.baeldung.com/kotlin/percentage-computation)
-
+- [Convert Double to String Removing Scientific Notation](https://www.baeldung.com/kotlin/convert-double-string-no-scientific-notation)
 - More articles: [[<-- prev]](../core-kotlin-numbers)
