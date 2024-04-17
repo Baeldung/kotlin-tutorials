@@ -6,3 +6,4 @@
 - [How to Initialize a List of Lists in Kotlin](https://www.baeldung.com/kotlin/list-of-lists)
 - [How to Change a Value in a Mutable List in Kotlin](https://www.baeldung.com/kotlin/list-mutable-change-element)
 - [Counting Occurrences of a Value in a List in Kotlin](https://www.baeldung.com/kotlin/list-count-occurrences-of-value)
+- [Finding First Match in Nested Lists in Kotlin](https://www.baeldung.com/kotlin/nested-list-find-first-match)
