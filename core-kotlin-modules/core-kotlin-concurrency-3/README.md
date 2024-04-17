@@ -8,3 +8,4 @@ This module contains articles about concurrency in Kotlin.
 - [Difference Between Value and Emit in MutableStateFlow Kotlin](https://www.baeldung.com/kotlin/mutablestateflow-value-vs-emit)
 - [Difference Between single() and first() in Kotlin Flows](https://www.baeldung.com/kotlin/flows-single-vs-first)
 - [Scheduling Repeating Task in Kotlin](https://www.baeldung.com/kotlin/schedule-repeating-task)
+- [Async Exception Handling in Kotlin](https://www.baeldung.com/kotlin/coroutine-exception-handling)
