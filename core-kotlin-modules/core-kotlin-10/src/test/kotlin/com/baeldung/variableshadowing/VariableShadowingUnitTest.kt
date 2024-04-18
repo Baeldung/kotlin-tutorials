@@ -5,34 +5,38 @@ import org.junit.jupiter.api.Test
 
 class VariableShadowingUnitTest{
 
-    class Car {
-        val speed: Int = 100
-
-        fun upSpeed() : Int {
-            val speed = speed * 2 // Shadowing the constructor parameter 'speed'
-            return speed
-        }
-    }
-
     @Test
     fun `class member variable shadowing`(){
+        class Car {
+            val speed: Int = 100
+
+            fun upSpeed() : Int {
+                val speed = speed * 2 // Shadowing the constructor parameter 'speed'
+                return speed
+            }
+        }
+
+        assertEquals(100, Car().speed)
         assertEquals(200, Car().upSpeed())
+
     }
 
     @Test
-    fun `local variable shadowing`() {
-        val name = "Budi"
-        fun getNameShadow(): String {
-            val name = "Ani"
-            return name
+    fun `local variable or nested function shadowing`() {
+
+        fun calculateTotalPrice() {
+            val price = 100
+            val discountRate = 0.1  // Inner variable shadows the outer variable
+
+            fun applyDiscount(price: Int): Double { // Nested function with parameter named 'price'
+                val discountRate = 0.2  // Inner variable shadows the outer variable
+                return price * (1 - discountRate) // 'price' here refers to the parameter, not the outer variable
+            }
+
+            assertEquals(80.0, applyDiscount(price))
         }
 
-        fun getName(): String {
-            return name
-        }
-
-        assertEquals("Budi", getName())
-        assertEquals("Ani", getNameShadow())
+        calculateTotalPrice()
     }
 
     @Test
@@ -78,6 +82,35 @@ class VariableShadowingUnitTest{
         }
 
         calculateDiscount(200.0)
+    }
+
+    @Test
+    fun `variable shadowing in lambda`(){
+        var sum = 0
+        var values = listOf(1, 2, 3, 4, 5)
+
+        values.forEach { value ->
+            val value = 0
+            sum += value
+        }
+
+        assertEquals(0, sum)
+    }
+
+    @Test
+    fun `shadowing in extension`(){
+        val numbers = listOf(1, 2, 3, 4, 5)
+
+        assertEquals(15, numbers.sum())
+
+        fun List<Int>.sum(): Int { // Shadowing occur in here
+            var sum = 0 // shadowing built-in function sum()
+            this.forEach { sum += it * 2 }
+            return sum
+        }
+
+
+        assertEquals(30, numbers.sum())
     }
 
 
