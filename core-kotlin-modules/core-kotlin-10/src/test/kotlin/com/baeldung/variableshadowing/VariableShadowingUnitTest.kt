@@ -5,38 +5,34 @@ import org.junit.jupiter.api.Test
 
 class VariableShadowingUnitTest{
 
-    class Person(private val name: String) {
-        fun printShadowName() {
-            val name = "John Doe" // Shadowing the 'name' property with a local variable 'name'
-            assertEquals("John Doe", name)
-        }
+    class Car {
+        val speed: Int = 100
 
-        fun printOriginalName() {
-            assertEquals("Alice", name) // Accessing the original 'name' property
+        fun upSpeed() : Int {
+            val speed = speed * 2 // Shadowing the constructor parameter 'speed'
+            return speed
         }
     }
 
     @Test
     fun `class member variable shadowing`(){
-        val person = Person("Alice")
-        person.printShadowName() // "John Doe"
-        person.printOriginalName() // "Original Name: Alice"
+        assertEquals(200, Car().upSpeed())
     }
 
     @Test
     fun `local variable shadowing`() {
-        val price = 100
-        fun applyDiscount(price: Int): Int { // Inner function with parameter named 'price'
-            val discount = 20
-            val result = price - discount // 'price' here refers to the parameter, not the outer variable
-            return result
+        val name = "Budi"
+        fun getNameShadow(): String {
+            val name = "Ani"
+            return name
         }
 
-        val totalPrice1 = applyDiscount(price)
-        assertEquals(80, totalPrice1)
+        fun getName(): String {
+            return name
+        }
 
-        val totalPrice2 = applyDiscount(200)
-        assertEquals(180, totalPrice2)
+        assertEquals("Budi", getName())
+        assertEquals("Ani", getNameShadow())
     }
 
     @Test
@@ -69,31 +65,33 @@ class VariableShadowingUnitTest{
 
     @Test
     fun `nested function variable shadowing`(){
-        fun calculateTotalPrice() {
-            val price = 100
-            fun applyDiscount(price: Int): Int { // Inner function with parameter named 'price'
-                val discount = 20
-                return price - discount // 'price' here refers to the parameter, not the outer variable
+        fun calculateDiscount(originalPrice: Double) {
+            val discountRate = 0.1  // Outer variable
+
+            fun applyDiscount(price: Double): Double {  // Nested function with parameter 'price'
+                val discountRate = 0.2  // Inner variable shadows the outer variable
+                return price * (1 - discountRate)
             }
-            val totalPrice = applyDiscount(price)
-            assertEquals(80, totalPrice)
+
+            val discountedPrice = applyDiscount(originalPrice)
+            println("Discounted price: $$discountedPrice")
         }
 
-        calculateTotalPrice()
+        calculateDiscount(200.0)
     }
 
 
     @Test
-    fun `top lebel function variale shadowing`(){
+    fun `top level function variale shadowing`(){
         val number = 10 // Top-level function variable
 
         // Shadowing top-level function variable
-        fun printNumber() {
+        fun getNumber() : Int {
             val number = 20
-            assertEquals(20, number)
+            return number
         }
 
-        printNumber()
+        assertEquals(20, getNumber())
         assertEquals(10, number)
     }
 }
