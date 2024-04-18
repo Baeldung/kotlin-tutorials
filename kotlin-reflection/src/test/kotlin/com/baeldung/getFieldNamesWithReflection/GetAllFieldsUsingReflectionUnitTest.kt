@@ -43,7 +43,7 @@ class GetAllFieldsUsingReflectionUnitTest {
         assertEquals(listOf("age","id", "name"), fieldNames)
     }
     @Test
-    fun `Show difference between declaredMemberProperties and memberProperties property`() {
+    fun `show difference between declaredMemberProperties and memberProperties property`() {
         val declaredProperties = getAllFieldNamesUsingDeclaredMemberPropertiesMethod(Person::class)
         val allProperties = getAllFieldNamesUsingClassMemberProperties(Person::class)
 
