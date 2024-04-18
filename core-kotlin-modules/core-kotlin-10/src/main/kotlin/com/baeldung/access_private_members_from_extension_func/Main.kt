@@ -6,12 +6,12 @@ class Main {
       return false
     }
 
-//    val loadedClass = Class.forName("java.lang.String")
-//    val valueField = loadedClass.getDeclaredField("value")
-//    valueField.isAccessible = true
-//    val actualValue = valueField.get(this)
+    val loadedClass = String::class
+    val valueField = loadedClass.java.getDeclaredField("value")
+    valueField?.isAccessible = true
+    val actualValue = valueField?.get(this) as? ByteArray
 
-//    println((actualValue as ByteArray).contentToString())
+    println(actualValue?.contentToString())
 
     return this.lowercase().contains(target.lowercase())
   }
