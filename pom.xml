@@ -397,7 +397,7 @@
         <module>kotlin-testing</module>
         <module>kotlin-testing-2</module>
         <!-- <module>kotlin-tornadofx</module> --> <!-- not compatible with Java 9+ -->
-        <!-- <module>kotlin-kover</module> --> <!-- not a Maven module -->
+        <!-- <module>kotlin-kover</module> --> <!-- not able to update to Maven because there there are no available versions: https://github.com/Kotlin/kotlinx-kover/issues/51-->
         <module>ktlint-custom</module>
         <module>machine-learning</module>
         <module>spring-boot-crud-kotlin</module>
