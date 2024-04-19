@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 class VariableShadowingUnitTest{
 
     @Test
-    fun `class member & top level function variable shadowing`(){
+    fun `test variable shadowing`(){
         val number = 10 // Top-level variable
 
         fun getNumber() : Int { // top level function
