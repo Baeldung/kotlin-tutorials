@@ -12,18 +12,19 @@ class VariableShadowingUnitTest{
         val number = 10 // Top-level variable
 
         fun getNumber() : Int { // top level function
-            val number = 20
+            val number = 20 // shadowing top level variable
             return number
         }
 
         assertEquals(20, getNumber())
         assertEquals(10, number)
 
+        // shadowing class member
         class Car {
             val speed: Int = 100
 
             fun upSpeed() : Int {
-                val speed = speed * 2 // Shadowing the constructor parameter 'speed'
+                val speed = speed * 2 // Shadowing class member -> speed
                 return speed
             }
         }
@@ -49,8 +50,10 @@ class VariableShadowingUnitTest{
 
         calculateTotalPrice(20)
 
-        // in loop
+
         val numbers = listOf(1, 2, 3, 4, 5)
+
+        // shadowing in loop
         for (number in numbers) {
             val doubledNumber = number * 2
             val number = number * 2 // Shadowing the loop variable 'number'
@@ -59,7 +62,7 @@ class VariableShadowingUnitTest{
         }
 
 
-        // extension
+        // shadowing in extension
         assertEquals(15, numbers.sum())
 
         fun List<Int>.sum(): Int { // Shadowing occur in here
@@ -70,12 +73,11 @@ class VariableShadowingUnitTest{
 
         assertEquals(30, numbers.sum())
 
-        // in lambda
+        // shadowing in lambda
         var sum = 0
-        val values = listOf(1, 2, 3, 4, 5)
 
-        values.forEach { value ->
-            val value = 0
+        numbers.forEach { value ->
+            val value = 0 // shadowing value
             sum += value
         }
 
