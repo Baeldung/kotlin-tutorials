@@ -1,4 +1,4 @@
-@file:Suppress("UNUSED_PARAMETER", "UNUSED_VARIABLE", "UNUSED_ANONYMOUS_PARAMETER")
+@file:Suppress("UNUSED_VARIABLE", "UNUSED_ANONYMOUS_PARAMETER")
 
 package com.baeldung.variableshadowing
 
@@ -34,14 +34,14 @@ class VariableShadowingUnitTest{
 
 
         fun calculateTotalPrice(discount: Int) {
-            val discount = 10 // Shadowing the parameter 'discount'
-            assertEquals(10, discount)
+            val discount = discount + 10 // Shadowing the parameter 'discount'
+            assertEquals(30, discount)
 
             val price = 100 // local variable
             val discountRate = 0.1
 
             fun applyDiscount(price: Int): Double { // Nested function with parameter named 'price'
-                val discountRate = 0.2  // Inner variable shadows the outer variable
+                val discountRate = 0.2  // shadowing the outer variable discountRate
                 return price * (1 - discountRate) // 'price' here refers to the parameter, not the outer variable
             }
 
@@ -49,7 +49,6 @@ class VariableShadowingUnitTest{
         }
 
         calculateTotalPrice(20)
-
 
         val numbers = listOf(1, 2, 3, 4, 5)
 
@@ -65,8 +64,8 @@ class VariableShadowingUnitTest{
         // shadowing in extension
         assertEquals(15, numbers.sum())
 
-        fun List<Int>.sum(): Int { // Shadowing occur in here
-            var sum = 0 // shadowing built-in function sum()
+        fun List<Int>.sum(): Int { // shadowing built-in function sum()
+            var sum = 0
             this.forEach { sum += it * 2 }
             return sum
         }
@@ -76,9 +75,9 @@ class VariableShadowingUnitTest{
         // shadowing in lambda
         var sum = 0
 
-        numbers.forEach { value ->
-            val value = 0 // shadowing value
-            sum += value
+        numbers.forEach { number ->
+            val number = 0 // shadowing value
+            sum += number
         }
 
         assertEquals(0, sum)
