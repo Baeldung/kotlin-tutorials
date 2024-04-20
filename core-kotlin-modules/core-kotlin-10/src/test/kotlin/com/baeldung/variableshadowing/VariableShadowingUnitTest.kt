@@ -116,12 +116,24 @@ class VariableShadowingUnitTest{
             val price = 100 // local variable
             val discountRate = 0.1
 
-            fun applyDiscount(price: Int): Double { // Nested function with parameter named 'price'
-                val updatedDiscountRate = 0.2  // Using a new variable name to avoid shadowing
-                return price * (1 - updatedDiscountRate) // 'price' here refers to the parameter, not the outer variable
+            fun applyDiscount(price: Int): Double {
+                val discountRate = 0.2
+                return price * (1 - discountRate)
+            }
+
+            fun applyDiscountFood(price: Int): Double {
+                val discountRate = 0.4
+                return price * (1 - discountRate)
+            }
+
+            fun applyDiscountDrink(price: Int): Double {
+                val discountRate = 0.5
+                return price * (1 - discountRate)
             }
 
             assertEquals(80.0, applyDiscount(price))
+            assertEquals(50.0, applyDiscountDrink(price))
+            assertEquals(60.0, applyDiscountFood(price))
         }
 
         calculateTotalPrice(20)
