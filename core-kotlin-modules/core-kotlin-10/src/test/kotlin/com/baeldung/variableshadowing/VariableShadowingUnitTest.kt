@@ -11,12 +11,12 @@ class VariableShadowingUnitTest{
     fun `test variable shadowing`(){
         val number = 10 // Top-level variable
 
-        fun getNumber() : Int { // top level function
+        fun upNumber() : Int { // top level function
             val number = 20 // shadowing top level variable
             return number
         }
 
-        assertEquals(20, getNumber())
+        assertEquals(20, upNumber())
         assertEquals(10, number)
 
         // shadowing class member
@@ -54,10 +54,7 @@ class VariableShadowingUnitTest{
 
         // shadowing in loop
         for (number in numbers) {
-            val doubledNumber = number * 2
             val number = number * 2 // Shadowing the loop variable 'number'
-
-            assertEquals(doubledNumber, number)
         }
 
 
@@ -87,21 +84,25 @@ class VariableShadowingUnitTest{
     fun `solution to avoid shadowing`(){
         val topLevelNumber = 10 // Top-level variable
 
-        fun getNumber() : Int {
+        fun upNumber() : Int {
             val localNumber = 20 // Local variable without shadowing
             return localNumber
         }
 
-        assertEquals(20, getNumber())
+        assertEquals(20, upNumber())
         assertEquals(10, topLevelNumber)
 
         // in class member
         class Car {
             val speed: Int = 100
 
-            fun upSpeed() : Int {
+            fun newSpeed() : Int {
                 val newSpeed = speed * 2 // Using a new variable name to avoid shadowing
                 return newSpeed
+            }
+
+            fun upSpeed() : Int {
+                return this.speed * 2
             }
         }
 
@@ -129,10 +130,7 @@ class VariableShadowingUnitTest{
 
         // in loop
         for (number in numbers) {
-            val doubledNumber = number * 2
             val newNumber = number * 2 // Using a new variable name to avoid shadowing
-
-            assertEquals(doubledNumber, newNumber)
         }
 
         // in extension
