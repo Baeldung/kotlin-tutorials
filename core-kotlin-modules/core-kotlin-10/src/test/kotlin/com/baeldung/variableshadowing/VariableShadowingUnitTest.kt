@@ -102,7 +102,7 @@ class VariableShadowingUnitTest{
             }
 
             fun upSpeed() : Int {
-                return this.speed * 2
+                return this.speed * 2 // Use the outer speed directly with this keyword
             }
         }
 
