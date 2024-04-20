@@ -108,6 +108,7 @@ class VariableShadowingUnitTest{
 
         assertEquals(100, Car().speed)
         assertEquals(200, Car().upSpeed())
+        assertEquals(200, Car().newSpeed())
 
         fun calculateTotalPrice(discount: Int) {
             val updatedDiscount = discount + 10 // Using a new variable name to avoid shadowing
@@ -116,24 +117,16 @@ class VariableShadowingUnitTest{
             val price = 100 // local variable
             val discountRate = 0.1
 
+//            fun applyDiscount(price: Int): Double {
+//                val innerDiscountRate = 0.2
+//                return price * (1 - discountRate)
+//            }
+
             fun applyDiscount(price: Int): Double {
-                val discountRate = 0.2
-                return price * (1 - discountRate)
+                return price * (1 - discountRate) // Use the outer discountRate directly
             }
 
-            fun applyDiscountFood(price: Int): Double {
-                val discountRate = 0.4
-                return price * (1 - discountRate)
-            }
-
-            fun applyDiscountDrink(price: Int): Double {
-                val discountRate = 0.5
-                return price * (1 - discountRate)
-            }
-
-            assertEquals(80.0, applyDiscount(price))
-            assertEquals(50.0, applyDiscountDrink(price))
-            assertEquals(60.0, applyDiscountFood(price))
+            assertEquals(90.0, applyDiscount(price))
         }
 
         calculateTotalPrice(20)
