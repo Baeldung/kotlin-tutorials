@@ -78,6 +78,10 @@ class VariableShadowingUnitTest{
         }
 
         assertEquals(0, sum)
+
+        val lambda = { number : Int ->
+            val number = 1// Local variable in lambda
+        }
     }
 
     @Test
@@ -161,6 +165,12 @@ class VariableShadowingUnitTest{
         }
 
         assertEquals(0, sum)
+
+        numbers.forEach { number ->
+            sum += number // Directly access the current element in the loop
+        }
+
+        assertEquals(15, sum) // Assuming you want the sum of the original numbers
 
     }
 
