@@ -362,13 +362,13 @@
         <!-- <module>gradle-kotlin-dsl</module> --> <!-- not a Maven module -->
         <module>jee-kotlin</module>
         <!-- <module>koin-guide</module> --> <!-- not a Maven module -->
-        <!-- <module>kotest</module> --> <!-- not a Maven module -->
         <!-- <module>kotlin-apache-kafka</module> --> <!-- not a Maven module -->
         <!-- <module>kotlin-api</module> --> <!-- not a Maven module -->
         <!-- <module>kotlin-build-plugins</module> --> <!-- not a Maven module -->
         <module>kotlin-immutable-collections</module>
         <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
         <module>kotlin-json</module>
+        <module>kotlin-kotest</module>
         <!-- <module>kotlin-ktor</module> --> <!-- not a Maven module -->
         <module>kotlin-lambda</module>
         <module>kotlin-libraries</module>
