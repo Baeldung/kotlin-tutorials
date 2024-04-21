@@ -141,13 +141,16 @@ class VariableShadowingUnitTest{
         // in extension
         assertEquals(15, numbers.sum())
 
-        fun List<Int>.sum(): Int { // shadowing built-in function sum()
+        fun List<Int>.sumByTwo(): Int { // shadowing built-in function sum()
             var sum = 0
             this.forEach { sum += it * 2 }
             return sum
         }
 
-        assertEquals(30, numbers.sum())
+        assertEquals(30, numbers.sumByTwo())
+
+        val doubledSum = numbers.sumOf { it * 2 } // Modify lambda in sum
+        assertEquals(30, doubledSum)
 
         // in lambda
         var sum = 0
