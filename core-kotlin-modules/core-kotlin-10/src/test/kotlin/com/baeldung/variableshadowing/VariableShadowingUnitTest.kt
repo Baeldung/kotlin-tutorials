@@ -24,7 +24,7 @@ class VariableShadowingUnitTest{
             val speed: Int = 100
 
             fun upSpeed() : Int {
-                val speed = speed * 2 // Shadowing class member -> speed
+                val speed = speed * 2 // Shadowing class member named 'speed'
                 return speed
             }
         }
