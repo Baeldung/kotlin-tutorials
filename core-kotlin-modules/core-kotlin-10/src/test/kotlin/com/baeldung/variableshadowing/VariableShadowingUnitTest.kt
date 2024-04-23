@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 class VariableShadowingUnitTest{
 
     @Test
-    fun `test variable shadowing`() {
+    fun `Top-level variable shadowing`(){
         val number = 10 // Top-level variable
 
         fun upNumber() : Int { // top-level function
@@ -18,8 +18,10 @@ class VariableShadowingUnitTest{
 
         assertEquals(20, upNumber())
         assertEquals(10, number)
+    }
 
-        // shadowing class member
+    @Test
+    fun `shadowing class member`(){
         class Car {
             val speed: Int = 100
 
@@ -31,8 +33,10 @@ class VariableShadowingUnitTest{
 
         assertEquals(100, Car().speed)
         assertEquals(200, Car().upSpeed())
+    }
 
-
+    @Test
+    fun `local variable shadowing`(){
         fun calculateTotalPrice(discount: Int) {
             val discount = discount + 10 // Shadowing the parameter 'discount'
             assertEquals(30, discount)
@@ -49,16 +53,23 @@ class VariableShadowingUnitTest{
         }
 
         calculateTotalPrice(20)
+    }
 
+
+    @Test
+    fun `shadowing in loop`(){
         val numbers = listOf(1, 2, 3, 4, 5)
 
         // shadowing in loop
         for (number in numbers) {
             val number = number * 2 // Shadowing the loop variable 'number'
         }
+    }
 
+    @Test
+    fun `shadowing in extension`(){
+        val numbers = listOf(1, 2, 3, 4, 5)
 
-        // shadowing in extension
         assertEquals(15, numbers.sum())
 
         fun List<Int>.sum(): Int { // shadowing built-in function sum()
@@ -68,8 +79,12 @@ class VariableShadowingUnitTest{
         }
 
         assertEquals(30, numbers.sum())
+    }
 
-        // shadowing in lambda
+    @Test
+    fun `shadowing in lambda`(){
+        val numbers = listOf(1, 2, 3, 4, 5)
+
         var sum = 0
 
         numbers.forEach { number ->
@@ -83,6 +98,7 @@ class VariableShadowingUnitTest{
             val number = 1// Local variable in lambda
         }
     }
+
 
     @Test
     fun `solution to avoid shadowing`(){
@@ -120,11 +136,6 @@ class VariableShadowingUnitTest{
 
             val price = 100 // local variable
             val discountRate = 0.1
-
-//            fun applyDiscount(price: Int): Double {
-//                val innerDiscountRate = 0.2
-//                return price * (1 - discountRate)
-//            }
 
             fun applyDiscount(price: Int): Double {
                 return price * (1 - discountRate) // Use the outer discountRate directly
