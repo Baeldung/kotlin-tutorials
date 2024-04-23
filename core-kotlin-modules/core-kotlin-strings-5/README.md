@@ -4,4 +4,4 @@ This module contains articles about core Kotlin strings.
 
 ### Relevant Articles
 
-- [Extract Numbers From a String in Kotlin](https://www.baeldung.com/kotlin/extract-numbers-from-string)
+- [Extract Numbers From a String in Kotlin](https://www.baeldung.com/kotlin/string-extract-numeric-value)
