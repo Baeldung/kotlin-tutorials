@@ -2,6 +2,7 @@ package com.baeldung.hmtlBuilder
 
 import kotlinx.html.*
 import kotlinx.html.stream.appendHTML
+import kotlinx.html.stream.createHTML
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -34,20 +35,18 @@ class HtmlBuilderUnitTest {
     }
 }
 fun buildHTML(): String {
-    return buildString {
-        appendHTML().html {
-            head {
-                title { +"My Kotlin HTML Page" }
-            }
-            body {
-                h1 { +"Welcome to Kotlin HTML Builder" }
-                p { +"This is a demonstration of kotlinx.html." }
-                ul {
-                    repeat(5) {
-                        li { +"Item $it" }
-                    }
+    return createHTML().html {
+        head {
+            title { +"My Kotlin HTML Page" }
+        }
+        body {
+            h1 { +"Welcome to Kotlin HTML Builder" }
+            p { +"This is a demonstration of kotlinx.html." }
+            ul {
+                repeat(5) {
+                    li { +"Item $it" }
                 }
             }
         }
-    }.trim()
+    }.toString().trim()
 }
