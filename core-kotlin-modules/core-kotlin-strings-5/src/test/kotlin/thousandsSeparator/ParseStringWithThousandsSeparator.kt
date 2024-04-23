@@ -1,4 +1,4 @@
-package com.baeldung.thousandsSeparator
+package thousandsSeparator
 
 import org.junit.jupiter.api.Test
 import java.text.DecimalFormatSymbols
