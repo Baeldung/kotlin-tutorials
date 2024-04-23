@@ -11,8 +11,8 @@ class VariableShadowingUnitTest{
     fun `test variable shadowing`() {
         val number = 10 // Top-level variable
 
-        fun upNumber() : Int { // top level function
-            val number = 20 // shadowing top level variable
+        fun upNumber() : Int { // top-level function
+            val number = 20 // shadowing top-level variable
             return number
         }
 
