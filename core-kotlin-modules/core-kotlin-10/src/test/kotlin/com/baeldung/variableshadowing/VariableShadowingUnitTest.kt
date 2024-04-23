@@ -170,7 +170,7 @@ class VariableShadowingUnitTest{
             sum += number // Directly access the current element in the loop
         }
 
-        assertEquals(15, sum) // Assuming you want the sum of the original numbers
+        assertEquals(15, sum) // Assuming we want the sum of the original numbers
 
     }
 
