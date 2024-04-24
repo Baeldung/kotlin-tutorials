@@ -95,7 +95,7 @@ class VariableShadowingUnitTest{
         assertEquals(0, sum)
 
         val lambda = { number : Int ->
-            val number = 1// Local variable in lambda
+            val number = 1 // Local variable in lambda
         }
     }
 
