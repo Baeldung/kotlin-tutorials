@@ -387,7 +387,7 @@
         <module>kotlin-native</module>
         <!-- <module>kotlin-openapi</module> --> <!-- not a Maven module -->
         <module>kotlin-patterns</module>
-        <!-- <module>kotlin-performance-vs-java</module> --> <!-- not a Maven module -->
+        <module>kotlin-performance-vs-java</module>
         <module>kotlin-algorithms</module>
         <module>kotlin-quasar</module>
         <module>kotlin-reflection</module>
