@@ -5,7 +5,7 @@ package com.baeldung.variableshadowing
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class VariableShadowingUnitTest{
+class VariableShadowingUnitTest {
 
     @Test
     fun `Top-level variable shadowing`(){
