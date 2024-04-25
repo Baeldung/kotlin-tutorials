@@ -8,10 +8,10 @@ import org.junit.jupiter.api.Test
 class VariableShadowingUnitTest {
 
     @Test
-    fun `top-level variable shadowing`(){
+    fun `top-level variable shadowing`() {
         val number = 10 // Top-level variable
 
-        fun upNumber() : Int { // top-level function
+        fun upNumber(): Int { // top-level function
             val number = 20 // shadowing top-level variable
             return number
         }
@@ -21,10 +21,10 @@ class VariableShadowingUnitTest {
     }
 
     @Test
-    fun `solution to avoid top-level variable shadowing`(){
+    fun `solution to avoid top-level variable shadowing`() {
         val topLevelNumber = 10 // Top-level variable
 
-        fun upNumber() : Int {
+        fun upNumber(): Int {
             val localNumber = 20 // Local variable without shadowing
             return localNumber
         }
@@ -34,11 +34,11 @@ class VariableShadowingUnitTest {
     }
 
     @Test
-    fun `shadowing class member`(){
+    fun `shadowing class member`() {
         class Car {
             val speed: Int = 100
 
-            fun upSpeed() : Int {
+            fun upSpeed(): Int {
                 val speed = speed * 2 // Shadowing class member named 'speed'
                 return speed
             }
@@ -49,16 +49,16 @@ class VariableShadowingUnitTest {
     }
 
     @Test
-    fun `solution to avoid shadowing class member`(){
+    fun `solution to avoid shadowing class member`() {
         class Car {
             val speed: Int = 100
 
-            fun newSpeed() : Int {
+            fun newSpeed(): Int {
                 val newSpeed = speed * 2 // Using a new variable name to avoid shadowing
                 return newSpeed
             }
 
-            fun upSpeed() : Int {
+            fun upSpeed(): Int {
                 return this.speed * 2 // Use the outer speed directly with this keyword
             }
         }
@@ -69,7 +69,7 @@ class VariableShadowingUnitTest {
     }
 
     @Test
-    fun `local variable shadowing`(){
+    fun `local variable shadowing`() {
         fun calculateTotalPrice(discount: Int) {
             val discount = discount + 10 // Shadowing the parameter 'discount'
             assertEquals(30, discount)
@@ -89,7 +89,7 @@ class VariableShadowingUnitTest {
     }
 
     @Test
-    fun `solution to avoid local variable shadowing`(){
+    fun `solution to avoid local variable shadowing`() {
         fun calculateTotalPrice(discount: Int) {
             val updatedDiscount = discount + 10 // Using a new variable name to avoid shadowing
             assertEquals(30, updatedDiscount)
@@ -109,7 +109,7 @@ class VariableShadowingUnitTest {
 
 
     @Test
-    fun `shadowing in loop`(){
+    fun `shadowing in loop`() {
         val numbers = listOf(1, 2, 3, 4, 5)
 
         // shadowing in loop
@@ -119,7 +119,7 @@ class VariableShadowingUnitTest {
     }
 
     @Test
-    fun `solution to avoiding shadowing in loop`(){
+    fun `solution to avoiding shadowing in loop`() {
         val numbers = listOf(1, 2, 3, 4, 5)
 
         // avoiding shadowing in loop
@@ -130,7 +130,7 @@ class VariableShadowingUnitTest {
 
 
     @Test
-    fun `shadowing in extension`(){
+    fun `shadowing in extension`() {
         val numbers = listOf(1, 2, 3, 4, 5)
 
         assertEquals(15, numbers.sum())
@@ -145,7 +145,7 @@ class VariableShadowingUnitTest {
     }
 
     @Test
-    fun `solution to avoiding shadowing in extension`(){
+    fun `solution to avoiding shadowing in extension`() {
         val numbers = listOf(1, 2, 3, 4, 5)
 
         // in extension
@@ -165,7 +165,7 @@ class VariableShadowingUnitTest {
 
 
     @Test
-    fun `shadowing in lambda`(){
+    fun `shadowing in lambda`() {
         val numbers = listOf(1, 2, 3, 4, 5)
 
         var sum = 0
@@ -177,13 +177,13 @@ class VariableShadowingUnitTest {
 
         assertEquals(0, sum)
 
-        val lambda = { number : Int ->
+        val lambda = { number: Int ->
             val number = 1 // Local variable in lambda
         }
     }
 
     @Test
-    fun `solution to avoiding shadowing in lambda`(){
+    fun `solution to avoiding shadowing in lambda`() {
         val numbers = listOf(1, 2, 3, 4, 5)
 
         // in lambda
