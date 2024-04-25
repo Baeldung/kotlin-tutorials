@@ -21,6 +21,19 @@ class VariableShadowingUnitTest {
     }
 
     @Test
+    fun `solution to avoid top-level variable shadowing`(){
+        val topLevelNumber = 10 // Top-level variable
+
+        fun upNumber() : Int {
+            val localNumber = 20 // Local variable without shadowing
+            return localNumber
+        }
+
+        assertEquals(20, upNumber())
+        assertEquals(10, topLevelNumber)
+    }
+
+    @Test
     fun `shadowing class member`(){
         class Car {
             val speed: Int = 100
@@ -33,6 +46,26 @@ class VariableShadowingUnitTest {
 
         assertEquals(100, Car().speed)
         assertEquals(200, Car().upSpeed())
+    }
+
+    @Test
+    fun `solution to avoid shadowing class member`(){
+        class Car {
+            val speed: Int = 100
+
+            fun newSpeed() : Int {
+                val newSpeed = speed * 2 // Using a new variable name to avoid shadowing
+                return newSpeed
+            }
+
+            fun upSpeed() : Int {
+                return this.speed * 2 // Use the outer speed directly with this keyword
+            }
+        }
+
+        assertEquals(100, Car().speed)
+        assertEquals(200, Car().upSpeed())
+        assertEquals(200, Car().newSpeed())
     }
 
     @Test
@@ -55,6 +88,25 @@ class VariableShadowingUnitTest {
         calculateTotalPrice(20)
     }
 
+    @Test
+    fun `solution to avoid local variable shadowing`(){
+        fun calculateTotalPrice(discount: Int) {
+            val updatedDiscount = discount + 10 // Using a new variable name to avoid shadowing
+            assertEquals(30, updatedDiscount)
+
+            val price = 100 // local variable
+            val discountRate = 0.1
+
+            fun applyDiscount(price: Int): Double {
+                return price * (1 - discountRate) // Use the outer discountRate directly
+            }
+
+            assertEquals(90.0, applyDiscount(price))
+        }
+
+        calculateTotalPrice(20)
+    }
+
 
     @Test
     fun `shadowing in loop`(){
@@ -65,6 +117,17 @@ class VariableShadowingUnitTest {
             val number = number * 2 // Shadowing the loop variable 'number'
         }
     }
+
+    @Test
+    fun `solution to avoiding shadowing in loop`(){
+        val numbers = listOf(1, 2, 3, 4, 5)
+
+        // avoiding shadowing in loop
+        for (number in numbers) {
+            val newNumber = number * 2 // Using a new variable name to avoid shadowing
+        }
+    }
+
 
     @Test
     fun `shadowing in extension`(){
@@ -80,6 +143,26 @@ class VariableShadowingUnitTest {
 
         assertEquals(30, numbers.sum())
     }
+
+    @Test
+    fun `solution to avoiding shadowing in extension`(){
+        val numbers = listOf(1, 2, 3, 4, 5)
+
+        // in extension
+        assertEquals(15, numbers.sum())
+
+        fun List<Int>.sumByTwo(): Int { // using another name to avoid shadowing
+            var sum = 0
+            this.forEach { sum += it * 2 }
+            return sum
+        }
+
+        assertEquals(30, numbers.sumByTwo())
+
+        val doubledSum = numbers.sumOf { it * 2 } // Modify lambda in sum
+        assertEquals(30, doubledSum)
+    }
+
 
     @Test
     fun `shadowing in lambda`(){
@@ -99,73 +182,9 @@ class VariableShadowingUnitTest {
         }
     }
 
-
     @Test
-    fun `solution to avoid shadowing`(){
-        val topLevelNumber = 10 // Top-level variable
-
-        fun upNumber() : Int {
-            val localNumber = 20 // Local variable without shadowing
-            return localNumber
-        }
-
-        assertEquals(20, upNumber())
-        assertEquals(10, topLevelNumber)
-
-        // in class member
-        class Car {
-            val speed: Int = 100
-
-            fun newSpeed() : Int {
-                val newSpeed = speed * 2 // Using a new variable name to avoid shadowing
-                return newSpeed
-            }
-
-            fun upSpeed() : Int {
-                return this.speed * 2 // Use the outer speed directly with this keyword
-            }
-        }
-
-        assertEquals(100, Car().speed)
-        assertEquals(200, Car().upSpeed())
-        assertEquals(200, Car().newSpeed())
-
-        fun calculateTotalPrice(discount: Int) {
-            val updatedDiscount = discount + 10 // Using a new variable name to avoid shadowing
-            assertEquals(30, updatedDiscount)
-
-            val price = 100 // local variable
-            val discountRate = 0.1
-
-            fun applyDiscount(price: Int): Double {
-                return price * (1 - discountRate) // Use the outer discountRate directly
-            }
-
-            assertEquals(90.0, applyDiscount(price))
-        }
-
-        calculateTotalPrice(20)
-
+    fun `solution to avoiding shadowing in lambda`(){
         val numbers = listOf(1, 2, 3, 4, 5)
-
-        // in loop
-        for (number in numbers) {
-            val newNumber = number * 2 // Using a new variable name to avoid shadowing
-        }
-
-        // in extension
-        assertEquals(15, numbers.sum())
-
-        fun List<Int>.sumByTwo(): Int { // shadowing built-in function sum()
-            var sum = 0
-            this.forEach { sum += it * 2 }
-            return sum
-        }
-
-        assertEquals(30, numbers.sumByTwo())
-
-        val doubledSum = numbers.sumOf { it * 2 } // Modify lambda in sum
-        assertEquals(30, doubledSum)
 
         // in lambda
         var sum = 0
