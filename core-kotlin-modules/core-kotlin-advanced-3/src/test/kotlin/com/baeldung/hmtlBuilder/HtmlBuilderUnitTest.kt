@@ -33,6 +33,17 @@ class HtmlBuilderUnitTest {
 
         assertEquals(expectedHtml, actualHtml)
     }
+
+    @Test
+    fun testParagraphAttributes() {
+        val expectedHtml = """
+        <p id="intro-paragraph" class="intro" style="color: red; font-size: 16px;">This is a demonstration of kotlinx.html.</p>
+    """.trimIndent()
+
+        val actualHtml = buildParagraphWithAttributes()
+
+        assertEquals(expectedHtml, actualHtml)
+    }
 }
 fun buildHTML(): String {
     return createHTML().html {
@@ -48,5 +59,14 @@ fun buildHTML(): String {
                 }
             }
         }
+    }.toString().trim()
+}
+
+fun buildParagraphWithAttributes(): String {
+    return createHTML().p {
+        id = "intro-paragraph"
+        classes = setOf("intro")
+        style = "color: red; font-size: 16px;"
+        +"This is a demonstration of kotlinx.html."
     }.toString().trim()
 }
