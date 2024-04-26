@@ -20,11 +20,9 @@ class ParallelOperationCollectionsUnitTest {
     private val inputNumList = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
     private val inputStringList = listOf("apple", "banana", "cherry", "date", "elderberry")
 
-    private inline fun <T, R> Iterable<T>.parallelMap(crossinline transform: (T) -> R): List<R> =
-        runBlocking { map { async { transform(it) } }.map { it.await() } }
+    private inline fun <T, R> Iterable<T>.parallelMap(crossinline transform: (T) -> R): List<R> = runBlocking { map { async { transform(it) } }.map { it.await() } }
 
-    private inline fun <T> Iterable<T>.forEachParallel(crossinline action: suspend (T) -> Unit) =
-        runBlocking { map { async { action(it) } }.forEach { it.await() } }
+    private inline fun <T> Iterable<T>.forEachParallel(crossinline action: suspend (T) -> Unit) = runBlocking { map { async { action(it) } }.forEach { it.await() } }
 
     private fun assertListEquals(expected: List<Any>, actual: List<Any>) {
         assertEquals(expected, actual)
@@ -32,14 +30,8 @@ class ParallelOperationCollectionsUnitTest {
 
     @Test
     fun `using parallelStream`() {
-        val numResults = inputNumList.parallelStream()
-            .filter { it % 2 == 0 }
-            .map { it * it }
-            .collect(Collectors.toList())
-        val fruitResults = inputStringList.parallelStream()
-            .filter { it.contains("a") }
-            .map { "$it-$it" }
-            .collect(Collectors.toList())
+        val numResults = inputNumList.parallelStream().filter { it % 2 == 0 }.map { it * it }.collect(Collectors.toList())
+        val fruitResults = inputStringList.parallelStream().filter { it.contains("a") }.map { "$it-$it" }.collect(Collectors.toList())
 
         println(fruitResults)
 
@@ -49,10 +41,8 @@ class ParallelOperationCollectionsUnitTest {
 
     @Test
     fun `using Coroutines map parallel`() {
-        val numResults = inputNumList.parallelMap { it * it }
-            .filter { it % 2 == 0 }
-        val fruitResults = inputStringList.parallelMap { "$it-$it" }
-            .filter { it.contains("a") }
+        val numResults = inputNumList.parallelMap { it * it }.filter { it % 2 == 0 }
+        val fruitResults = inputStringList.parallelMap { "$it-$it" }.filter { it.contains("a") }
 
         assertListEquals(listOf(4, 16, 36, 64, 100), numResults)
         assertListEquals(listOf("apple-apple", "banana-banana", "date-date"), fruitResults)
@@ -84,12 +74,8 @@ class ParallelOperationCollectionsUnitTest {
     fun `using executorService java`() {
         val executor = Executors.newFixedThreadPool(1)
 
-        val numResults = inputNumList
-            .map { executor.submit<Int> { it * it }.get() }
-            .filter { it % 2 == 0 }
-        val fruitResults = inputStringList
-            .map { executor.submit<String> { "$it-$it" }.get() }
-            .filter { it.contains("a") }
+        val numResults = inputNumList.map { executor.submit<Int> { it * it }.get() }.filter { it % 2 == 0 }
+        val fruitResults = inputStringList.map { executor.submit<String> { "$it-$it" }.get() }.filter { it.contains("a") }
 
         assertListEquals(listOf(4, 16, 36, 64, 100), numResults)
         assertListEquals(listOf("apple-apple", "banana-banana", "date-date"), fruitResults)
@@ -99,14 +85,8 @@ class ParallelOperationCollectionsUnitTest {
 
     @Test
     fun `using rxJava2`() {
-        val numResults = Observable.fromIterable(inputNumList)
-            .concatMap { Observable.just(it * it).subscribeOn(Schedulers.io()) }
-            .toList().blockingGet()
-            .filter { it % 2 == 0 }
-        val fruitResults = Observable.fromIterable(inputStringList)
-            .concatMap { Observable.just("$it-$it").subscribeOn(Schedulers.io()) }
-            .toList().blockingGet()
-            .filter { it.contains("a") }
+        val numResults = Observable.fromIterable(inputNumList).concatMap { Observable.just(it * it).subscribeOn(Schedulers.io()) }.toList().blockingGet().filter { it % 2 == 0 }
+        val fruitResults = Observable.fromIterable(inputStringList).concatMap { Observable.just("$it-$it").subscribeOn(Schedulers.io()) }.toList().blockingGet().filter { it.contains("a") }
 
         assertListEquals(listOf(4, 16, 36, 64, 100), numResults)
         assertListEquals(listOf("apple-apple", "banana-banana", "date-date"), fruitResults)
@@ -115,14 +95,8 @@ class ParallelOperationCollectionsUnitTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `using Kotlin Flow`() = runBlocking {
-        val numResults = inputNumList.asFlow()
-            .flatMapMerge { flow { emit(it * it) } }
-            .toList()
-            .filter { it % 2 == 0 }
-        val fruitResults = inputStringList.asFlow()
-            .flatMapMerge { flow { emit("$it-$it") } }
-            .toList()
-            .filter { it.contains("a") }
+        val numResults = inputNumList.asFlow().flatMapMerge { flow { emit(it * it) } }.toList().filter { it % 2 == 0 }
+        val fruitResults = inputStringList.asFlow().flatMapMerge { flow { emit("$it-$it") } }.toList().filter { it.contains("a") }
 
         assertListEquals(listOf(4, 16, 36, 64, 100), numResults)
         assertListEquals(listOf("apple-apple", "banana-banana", "date-date"), fruitResults)
