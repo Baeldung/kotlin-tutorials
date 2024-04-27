@@ -17,14 +17,14 @@ import java.util.stream.Collectors
 
 class ParallelOperationCollectionsUnitTest {
 
-    private val inputNumList = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-    private val inputStringList = listOf("apple", "banana", "cherry", "date", "elderberry")
+    private val inputNumLists = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+    private val inputFruitLists = listOf("apple", "banana", "cherry", "date", "elderberry")
 
     // using _Collection.kt Not Parallel
     @Test
     fun `using map and filter`() { // serial a.k.a not parallel
-        val numResults = inputNumList.map { it * it }.filter { it % 2 == 0 }
-        val fruitResults = inputStringList.filter { it.contains("a") }.map { "$it-$it" }
+        val numResults = inputNumLists.map { it * it }.filter { it % 2 == 0 }
+        val fruitResults = inputFruitLists.filter { it.contains("a") }.map { "$it-$it" }
 
         assertListEquals(listOf(4, 16, 36, 64, 100), numResults)
         assertListEquals(listOf("apple-apple", "banana-banana", "date-date"), fruitResults)
@@ -32,7 +32,7 @@ class ParallelOperationCollectionsUnitTest {
 
     @Test
     fun `using merge using zip & mapIndex`() { // serial a.k.a not parallel
-        val numResults = inputNumList.zip(inputStringList).mapIndexed { _, (num, str) ->
+        val numResults = inputNumLists.zip(inputFruitLists).mapIndexed { _, (num, str) ->
             "${num * num}. ${str}(${str.length})"
         }.toList()
 
@@ -41,7 +41,7 @@ class ParallelOperationCollectionsUnitTest {
 
     @Test
     fun `using map zip flatmap`() { // serial a.k.a not parallel
-        val results = inputNumList.map { it * it }.filter { it % 2 == 0 }.zip(inputStringList.filter { it.contains("a") }.map { "$it-$it" }).flatMap { (num, str) ->
+        val results = inputNumLists.map { it * it }.filter { it % 2 == 0 }.zip(inputFruitLists.filter { it.contains("a") }.map { "$it-$it" }).flatMap { (num, str) ->
             listOf("$num. ${str.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }}(${str.length})")
         }
         assertListEquals(listOf("4. Apple-apple(11)", "16. Banana-banana(13)", "36. Date-date(9)"), results)
@@ -55,8 +55,8 @@ class ParallelOperationCollectionsUnitTest {
 
     @Test
     fun `using parallel map by creating an extension of Iterable`() { // parallel
-        val numResults = inputNumList.parallelMap { it * it }.filter { it % 2 == 0 }
-        val fruitResults = inputStringList.parallelMap { "$it-$it" }.filter { it.contains("a") }
+        val numResults = inputNumLists.parallelMap { it * it }.filter { it % 2 == 0 }
+        val fruitResults = inputFruitLists.parallelMap { "$it-$it" }.filter { it.contains("a") }
 
         assertListEquals(listOf(4, 16, 36, 64, 100), numResults)
         assertListEquals(listOf("apple-apple", "banana-banana", "date-date"), fruitResults)
@@ -65,7 +65,7 @@ class ParallelOperationCollectionsUnitTest {
     @Test
     fun `using Coroutines map async awaitAll`() { // parallel
         val numResults = runBlocking {
-            inputNumList.map { num ->
+            inputNumLists.map { num ->
                 async {
                     println(num * num)
                     num * num
@@ -74,7 +74,7 @@ class ParallelOperationCollectionsUnitTest {
         }
 
         val fruitResults = runBlocking {
-            inputStringList.map { str ->
+            inputFruitLists.map { str ->
                 async {
                     println("$str-$str")
                     "$str-$str"
@@ -93,14 +93,14 @@ class ParallelOperationCollectionsUnitTest {
         val numResults = mutableListOf<Int>()
         val fruitResults = mutableListOf<String>()
 
-        inputNumList.forEachParallel {
+        inputNumLists.forEachParallel {
             val square = it * it
             if (square % 2 == 0) {
                 numResults.add(square)
             }
         }
 
-        inputStringList.forEachParallel {
+        inputFruitLists.forEachParallel {
             if (it.contains("a")) {
                 fruitResults.add("$it-$it")
             }
@@ -114,8 +114,8 @@ class ParallelOperationCollectionsUnitTest {
     fun `using executorService java`() { // parallel
         val executor = Executors.newFixedThreadPool(1)
 
-        val numResults = inputNumList.map { executor.submit<Int> { it * it }.get() }.filter { it % 2 == 0 }
-        val fruitResults = inputStringList.map { executor.submit<String> { "$it-$it" }.get() }.filter { it.contains("a") }
+        val numResults = inputNumLists.map { executor.submit<Int> { it * it }.get() }.filter { it % 2 == 0 }
+        val fruitResults = inputFruitLists.map { executor.submit<String> { "$it-$it" }.get() }.filter { it.contains("a") }
 
         assertListEquals(listOf(4, 16, 36, 64, 100), numResults)
         assertListEquals(listOf("apple-apple", "banana-banana", "date-date"), fruitResults)
@@ -125,12 +125,12 @@ class ParallelOperationCollectionsUnitTest {
 
     @Test
     fun `using rxJava2`() { // parallel
-        val numResults = Observable.fromIterable(inputNumList).subscribeOn(Schedulers.io()) // Switch to IO scheduler for CPU-bound work
+        val numResults = Observable.fromIterable(inputNumLists).subscribeOn(Schedulers.io()) // Switch to IO scheduler for CPU-bound work
             .map { it * it }.filter { it % 2 == 0 }.observeOn(Schedulers.computation()) // Switch to computation scheduler for filtering
             .toList().toObservable() // Convert Single to Observable
             .subscribeOn(Schedulers.io()) // Back to IO for final list creation
 
-        val fruitResults = Observable.fromIterable(inputStringList).subscribeOn(Schedulers.io()) // Switch to IO scheduler for string operations
+        val fruitResults = Observable.fromIterable(inputFruitLists).subscribeOn(Schedulers.io()) // Switch to IO scheduler for string operations
             .filter { it.contains("a") }.map { "$it-$it" }.observeOn(Schedulers.computation()) // Switch to computation scheduler for list creation
             .toList().toObservable() // Convert Single to Observable
             .subscribeOn(Schedulers.io()) // Back to IO for final list creation
@@ -144,8 +144,8 @@ class ParallelOperationCollectionsUnitTest {
     // using Kotlin Flow
     @Test
     fun `asFlow and map`() = runBlocking { // parallel
-        val numResults = inputNumList.asFlow().map { it * it }.toList().filter { it % 2 == 0 }
-        val fruitResults = inputStringList.asFlow().map { "$it-$it" }.toList().filter { it.contains("a") }
+        val numResults = inputNumLists.asFlow().map { it * it }.toList().filter { it % 2 == 0 }
+        val fruitResults = inputFruitLists.asFlow().map { "$it-$it" }.toList().filter { it.contains("a") }
 
         assertListEquals(listOf(4, 16, 36, 64, 100), numResults)
         assertListEquals(listOf("apple-apple", "banana-banana", "date-date"), fruitResults)
@@ -155,7 +155,7 @@ class ParallelOperationCollectionsUnitTest {
     fun `merge two list with zip and asFlow`() = runBlocking { // parallel
         val results = mutableListOf<Any>()
 
-        inputNumList.zip(inputStringList) { num, str ->
+        inputNumLists.zip(inputFruitLists) { num, str ->
             "${num * num}. ${str.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }}(${str.length})"
         }.asFlow().collect { result ->
             results.add(result)
@@ -167,8 +167,8 @@ class ParallelOperationCollectionsUnitTest {
     // Java Stream API
     @Test
     fun `using parallelStream`() { // parallel
-        val numResults = inputNumList.parallelStream().filter { it % 2 == 0 }.map { it * it }.collect(Collectors.toList())
-        val fruitResults = inputStringList.parallelStream().filter { it.contains("a") }.map { "$it-$it" }.collect(Collectors.toList())
+        val numResults = inputNumLists.parallelStream().filter { it % 2 == 0 }.map { it * it }.collect(Collectors.toList())
+        val fruitResults = inputFruitLists.parallelStream().filter { it.contains("a") }.map { "$it-$it" }.collect(Collectors.toList())
 
         assertListEquals(listOf(4, 16, 36, 64, 100), numResults)
         assertListEquals(listOf("apple-apple", "banana-banana", "date-date"), fruitResults)
