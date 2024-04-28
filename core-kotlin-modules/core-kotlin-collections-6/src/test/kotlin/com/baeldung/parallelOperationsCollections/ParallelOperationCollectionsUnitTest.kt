@@ -79,11 +79,11 @@ class ParallelOperationCollectionsUnitTest {
         val persons = people.parallelStream().filter { it.age > 30 }.sorted { p1, p2 -> p1.age.compareTo(p2.age) }.peek { println(it) } // Optional: for debugging, prints each element
             .collect(Collectors.toList())
 
-        val names = persons.map { it.name }
+        val names = persons.map { it.name }.sorted()
         val totalAge = persons.sumOf { it.age }
 
         assertEquals(82, totalAge)
-        assertThat(names).containsExactly("Charlie", "Ahmad")
+        assertThat(names).containsExactly("Ahmad", "Charlie")
         assertThat(persons).containsExactly(Person("Charlie", 40), Person("Ahmad", 42))
     }
 
