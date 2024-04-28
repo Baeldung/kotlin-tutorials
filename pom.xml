@@ -363,7 +363,7 @@
         <!-- <module>jee-kotlin</module> -->  <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
         <!-- <module>koin-guide</module> --> <!-- not a Maven module -->
         <!-- <module>kotest</module> --> <!-- not a Maven module -->
-        <!-- <module>kotlin-apache-kafka</module> --> <!-- not a Maven module -->
+         <module>kotlin-apache-kafka</module>
         <!-- <module>kotlin-api</module> --> <!-- not a Maven module -->
         <!-- <module>kotlin-build-plugins</module> --> <!-- not a Maven module -->
         <module>kotlin-immutable-collections</module>
