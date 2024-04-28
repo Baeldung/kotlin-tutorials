@@ -29,11 +29,11 @@ class ParallelOperationCollectionsUnitTest {
 
         val filteredPeople = deferred.map { it.await() }.filter { it.age > 30 }.sortedBy { it.age }
 
-        val names = filteredPeople.map { it.name }
+        val names = filteredPeople.map { it.name }.sorted()
         val totalAge = filteredPeople.sumOf { it.age }
 
         assertEquals(82, totalAge)
-        assertThat(names).containsExactlyInAnyOrder("Charlie", "Ahmad")
+        assertThat(names).containsExactly("Ahmad", "Charlie")
         assertThat(filteredPeople).containsExactly(Person("Charlie", 40), Person("Ahmad", 42))
     }
 
@@ -42,11 +42,11 @@ class ParallelOperationCollectionsUnitTest {
         val filteredPeople = people.asFlow().map { async { it } }.buffer().map { it.await() }.filter { it.age > 30 }.toList()  // Convert the Flow to a list
             .sortedBy { it.age }
 
-        val names = filteredPeople.map { it.name }
+        val names = filteredPeople.map { it.name }.sorted()
         val totalAge = filteredPeople.sumOf { it.age }
 
         assertEquals(82, totalAge)
-        assertThat(names).containsExactlyInAnyOrder("Charlie", "Ahmad")
+        assertThat(names).containsExactly("Ahmad", "Charlie")
         assertThat(filteredPeople).containsExactly(Person("Charlie", 40), Person("Ahmad", 42))
     }
 
@@ -54,11 +54,11 @@ class ParallelOperationCollectionsUnitTest {
     fun `using RxJava for parallel operations`() { // Observable.class from io.reactivex;
         val observable = Observable.fromIterable(people).flatMap { Observable.just(it).subscribeOn(Schedulers.computation()) }.filter { it.age > 30 }.toList().blockingGet().sortedBy { it.age }
 
-        val names = observable.map { it.name }
+        val names = observable.map { it.name }.sorted()
         val totalAge = observable.sumOf { it.age }
 
         assertEquals(82, totalAge)
-        assertThat(names).containsExactlyInAnyOrder("Charlie", "Ahmad")
+        assertThat(names).containsExactly("Ahmad", "Charlie")
         assertThat(observable).containsExactly(Person("Charlie", 40), Person("Ahmad", 42))
     }
 
@@ -66,11 +66,11 @@ class ParallelOperationCollectionsUnitTest {
     fun `using RxKotlin for parallel operations`() { // ObservableKt.kt.class from io.reactivex.rxkotlin
         val observable = people.toObservable().flatMap { Observable.just(it).subscribeOn(Schedulers.computation()) }.filter { it.age > 30 }.toList().blockingGet().sortedBy { it.age }
 
-        val names = observable.map { it.name }
+        val names = observable.map { it.name }.sorted()
         val totalAge = observable.sumOf { it.age }
 
         assertEquals(82, totalAge)
-        assertThat(names).containsExactlyInAnyOrder("Charlie", "Ahmad")
+        assertThat(names).containsExactly("Ahmad", "Charlie")
         assertThat(observable).containsExactly(Person("Charlie", 40), Person("Ahmad", 42))
     }
 
@@ -99,11 +99,11 @@ class ParallelOperationCollectionsUnitTest {
 
         val filteredPeople = futures.map { it.get() }.filter { it.age > 30 }.sortedBy { it.age }
 
-        val names = filteredPeople.map { it.name }
+        val names = filteredPeople.map { it.name }.sorted()
         val totalAge = filteredPeople.sumOf { it.age }
 
         assertEquals(82, totalAge)
-        assertThat(names).containsExactlyInAnyOrder("Charlie", "Ahmad")
+        assertThat(names).containsExactly("Ahmad", "Charlie")
         assertThat(filteredPeople).containsExactly(Person("Charlie", 40), Person("Ahmad", 42))
 
         executor.shutdown()
