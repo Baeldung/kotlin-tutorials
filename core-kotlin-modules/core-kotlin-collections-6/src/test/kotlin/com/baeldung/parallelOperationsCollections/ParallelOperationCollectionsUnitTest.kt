@@ -37,6 +37,7 @@ class ParallelOperationCollectionsUnitTest {
             async {
                 launch {
                     person.isAdult = person.age > 18
+                    println("Coroutines: $person on thread: ${Thread.currentThread().name}")
                 }
                 person
             }
@@ -52,6 +53,7 @@ class ParallelOperationCollectionsUnitTest {
             flow {
                 emit(async {
                     person.isAdult = person.age > 18
+                    println("Flow: $person on thread: ${Thread.currentThread().name}")
                     person
                 }.await())
             }
@@ -63,9 +65,10 @@ class ParallelOperationCollectionsUnitTest {
     @Test
     fun `using RxJava for parallel operations`() { // Observable.class from io.reactivex;
         val observable = Observable.fromIterable(people)
-            .subscribeOn(Schedulers.io())
+            .subscribeOn(Schedulers.computation())
             .flatMap { Observable.just(it) }.doOnNext { person ->
                 person.isAdult = person.age > 18
+                println("RxJava: $person on thread: ${Thread.currentThread().name}")
             }.filter { it.age > 15 }.toList().map { it.sortedBy { person -> person.age } }.blockingGet()
 
         assertResults(observable)
@@ -77,6 +80,7 @@ class ParallelOperationCollectionsUnitTest {
             .subscribeOn(Schedulers.io())
             .flatMap { Observable.just(it) }.doOnNext { person ->
                 person.isAdult = person.age > 18
+                println("RxKotlin: $person on thread: ${Thread.currentThread().name}")
             }.filter { it.age > 15 }.toList().map { it.sortedBy { person -> person.age } }.blockingGet()
 
         assertResults(observable)
@@ -86,6 +90,7 @@ class ParallelOperationCollectionsUnitTest {
     fun `using parallelStream()`() {
         val filteredPeople = people.parallelStream().map { person ->
             person.isAdult = person.age > 18
+            println("Stream API: $person on thread: ${Thread.currentThread().name}")
             person
         }.filter { it.age > 15 }.sorted { p1, p2 -> p1.age.compareTo(p2.age) }.collect(Collectors.toList())
 
@@ -98,6 +103,7 @@ class ParallelOperationCollectionsUnitTest {
         val futures = people.map { person ->
             executor.submit(Callable {
                 person.isAdult = person.age > 18
+                println("ScheduledExecutorService: $person on thread: ${Thread.currentThread().name}")
                 person
             })
         }
