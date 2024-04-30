@@ -62,19 +62,20 @@ class ParallelOperationCollectionsUnitTest {
 
     @Test
     fun `using RxJava for parallel operations`() { // Observable.class from io.reactivex;
-        val observable =
-            Observable.fromIterable(people).flatMap { Observable.just(it).subscribeOn(Schedulers.computation()) }
-                .doOnNext {
-                    it.isAdult = it.age > 18
-                }.filter { it.age > 15 }.toList().map { it.sortedBy { person -> person.age } }.blockingGet()
+        val observable = Observable.fromIterable(people)
+            .subscribeOn(Schedulers.io())
+            .flatMap { Observable.just(it) }.doOnNext { person ->
+                person.isAdult = person.age > 18
+            }.filter { it.age > 15 }.toList().map { it.sortedBy { person -> person.age } }.blockingGet()
 
         assertResults(observable)
     }
 
     @Test
     fun `using RxKotlin for parallel operations`() { // ObservableKt.kt.class from io.reactivex.rxkotlin
-        val observable = people.toObservable().flatMap { Observable.just(it).subscribeOn(Schedulers.computation()) }
-            .doOnNext { person ->
+        val observable = people.toObservable()
+            .subscribeOn(Schedulers.io())
+            .flatMap { Observable.just(it) }.doOnNext { person ->
                 person.isAdult = person.age > 18
             }.filter { it.age > 15 }.toList().map { it.sortedBy { person -> person.age } }.blockingGet()
 
