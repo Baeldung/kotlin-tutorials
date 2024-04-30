@@ -27,7 +27,7 @@ class ParallelOperationCollectionsUnitTest {
 
     private fun assertResults(filteredPeople: List<Person>) {
         assertThat(filteredPeople).containsExactly(
-            Person("Bob", 16), Person("Alice", 30, true), Person("Charlie", 40, true), Person("Ahmad", 42, true)
+            Person("Bob", 16, false), Person("Alice", 30, true), Person("Charlie", 40, true), Person("Ahmad", 42, true)
         )
     }
 
@@ -36,7 +36,7 @@ class ParallelOperationCollectionsUnitTest {
         val filteredPeople = people.map { person ->
             async {
                 launch {
-                    if (person.age > 18) person.isAdult = true
+                    person.isAdult = person.age > 18
                 }
                 person
             }
@@ -51,7 +51,7 @@ class ParallelOperationCollectionsUnitTest {
         val filteredPeople = people.asFlow().flatMapMerge { person ->
             flow {
                 emit(async {
-                    if (person.age > 18) person.isAdult = true
+                    person.isAdult = person.age > 18
                     person
                 }.await())
             }
@@ -65,7 +65,7 @@ class ParallelOperationCollectionsUnitTest {
         val observable =
             Observable.fromIterable(people).flatMap { Observable.just(it).subscribeOn(Schedulers.computation()) }
                 .doOnNext {
-                    if (it.age > 18) it.isAdult = true
+                    it.isAdult = it.age > 18
                 }.filter { it.age > 15 }.toList().map { it.sortedBy { person -> person.age } }.blockingGet()
 
         assertResults(observable)
@@ -75,7 +75,7 @@ class ParallelOperationCollectionsUnitTest {
     fun `using RxKotlin for parallel operations`() { // ObservableKt.kt.class from io.reactivex.rxkotlin
         val observable = people.toObservable().flatMap { Observable.just(it).subscribeOn(Schedulers.computation()) }
             .doOnNext { person ->
-                if (person.age > 18) person.isAdult = true
+                person.isAdult = person.age > 18
             }.filter { it.age > 15 }.toList().map { it.sortedBy { person -> person.age } }.blockingGet()
 
         assertResults(observable)
@@ -84,7 +84,7 @@ class ParallelOperationCollectionsUnitTest {
     @Test
     fun `using parallelStream()`() {
         val filteredPeople = people.parallelStream().map { person ->
-            if (person.age > 18) person.isAdult = true
+            person.isAdult = person.age > 18
             person
         }.filter { it.age > 15 }.sorted { p1, p2 -> p1.age.compareTo(p2.age) }.collect(Collectors.toList())
 
@@ -96,7 +96,7 @@ class ParallelOperationCollectionsUnitTest {
         val executor = Executors.newCachedThreadPool()
         val futures = people.map { person ->
             executor.submit(Callable {
-                if (person.age > 18) person.isAdult = true
+                person.isAdult = person.age > 18
                 person
             })
         }
