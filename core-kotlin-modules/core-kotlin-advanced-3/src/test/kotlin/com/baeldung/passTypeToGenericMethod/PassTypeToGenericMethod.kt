@@ -23,6 +23,15 @@ class PassTypeToGenericMethod {
     }
 
     @Test
+    fun `pass type to generic method using higher order functions`() {
+        val intValue = passTypeUsingHigherOrderFunction{42}
+        val stringValue = passTypeUsingHigherOrderFunction{"Generic Method!"}
+
+        assertEquals(42, intValue)
+        assertEquals("Generic Method!", stringValue)
+    }
+
+    @Test
     fun `pass type to generic method using type casting`() {
         val intValue = passTypeUsingTypeCasting(0)
         val stringValue = passTypeUsingTypeCasting("")
@@ -51,4 +60,7 @@ fun <T> passTypeUsingTypeCasting(type: T): T {
         is String -> "Generic Method!" as T
         else -> throw IllegalArgumentException("Unsupported type")
     }
+}
+fun <T> passTypeUsingHigherOrderFunction(action: () -> T): T {
+    return action()
 }
