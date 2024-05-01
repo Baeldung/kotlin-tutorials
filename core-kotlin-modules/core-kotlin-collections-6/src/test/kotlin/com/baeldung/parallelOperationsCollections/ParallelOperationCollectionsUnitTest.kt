@@ -7,6 +7,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import java.text.SimpleDateFormat
 import java.util.concurrent.Callable
 import java.util.concurrent.Executors
 import java.util.stream.Collectors
@@ -37,7 +38,8 @@ class ParallelOperationCollectionsUnitTest {
             async {
                 launch {
                     person.isAdult = person.age > 18
-                    println("Coroutines: $person on thread: ${Thread.currentThread().name}")
+                    println("%-50s %-30s %s".format(person, Thread.currentThread().name, SimpleDateFormat
+                        ("yyyy-MM-dd:HH:mm:ss:SSS").format(System.currentTimeMillis())))
                 }
                 person
             }
@@ -53,7 +55,8 @@ class ParallelOperationCollectionsUnitTest {
             flow {
                 emit(async {
                     person.isAdult = person.age > 18
-                    println("Flow: $person on thread: ${Thread.currentThread().name}")
+                    println("%-50s %-30s %s".format(person, Thread.currentThread().name, SimpleDateFormat
+                        ("yyyy-MM-dd:HH:mm:ss:SSS").format(System.currentTimeMillis())))
                     person
                 }.await())
             }
@@ -64,23 +67,40 @@ class ParallelOperationCollectionsUnitTest {
 
     @Test
     fun `using RxJava for parallel operations`() { // Observable.class from io.reactivex;
-        val observable = Observable.fromIterable(people)
-            .subscribeOn(Schedulers.computation())
-            .flatMap { Observable.just(it) }.doOnNext { person ->
-                person.isAdult = person.age > 18
-                println("RxJava: $person on thread: ${Thread.currentThread().name}")
-            }.filter { it.age > 15 }.toList().map { it.sortedBy { person -> person.age } }.blockingGet()
+        val observable = Observable.fromIterable(people).flatMap({
+            Observable.just(it).subscribeOn(Schedulers.newThread()) // Menjalankan setiap elemen di thread yang baru
+                .doOnNext { person ->
+                    person.isAdult = person.age > 18
+                    println("%-50s %-30s %s".format(person, Thread.currentThread().name, SimpleDateFormat
+                        ("yyyy-MM-dd:HH:mm:ss:SSS").format(System.currentTimeMillis())))
+                }
+        }, people.size) // Uses maxConcurrency for the number of elements
+            .filter { it.age > 15 }.toList().map { it.sortedBy { person -> person.age } }.blockingGet()
 
         assertResults(observable)
     }
 
     @Test
     fun `using RxKotlin for parallel operations`() { // ObservableKt.kt.class from io.reactivex.rxkotlin
-        val observable = people.toObservable()
-            .subscribeOn(Schedulers.io())
-            .flatMap { Observable.just(it) }.doOnNext { person ->
+        val observable = people.toObservable().flatMap({
+            Observable.just(it).subscribeOn(Schedulers.computation()).doOnNext { person ->
                 person.isAdult = person.age > 18
-                println("RxKotlin: $person on thread: ${Thread.currentThread().name}")
+                println("%-50s %-30s %s".format(person, Thread.currentThread().name, SimpleDateFormat
+                        ("yyyy-MM-dd:HH:mm:ss:SSS").format(System.currentTimeMillis())))
+            }
+        }, people.size) // Uses maxConcurrency for the number of elements
+            .filter { it.age > 15 }.toList().map { it.sortedBy { person -> person.age } }.blockingGet()
+
+        assertResults(observable)
+    }
+
+    @Test
+    fun `using RxKotlin but still use 1 thread`() { // ObservableKt.kt.class from io.reactivex.rxkotlin
+        val observable =
+            people.toObservable().subscribeOn(Schedulers.io()).flatMap { Observable.just(it) }.doOnNext { person ->
+                person.isAdult = person.age > 18
+                println("%-50s %-30s %s".format(person, Thread.currentThread().name, SimpleDateFormat
+                        ("yyyy-MM-dd:HH:mm:ss:SSS").format(System.currentTimeMillis())))
             }.filter { it.age > 15 }.toList().map { it.sortedBy { person -> person.age } }.blockingGet()
 
         assertResults(observable)
@@ -90,7 +110,8 @@ class ParallelOperationCollectionsUnitTest {
     fun `using parallelStream()`() {
         val filteredPeople = people.parallelStream().map { person ->
             person.isAdult = person.age > 18
-            println("Stream API: $person on thread: ${Thread.currentThread().name}")
+            println("%-50s %-30s %s".format(person, Thread.currentThread().name, SimpleDateFormat
+                        ("yyyy-MM-dd:HH:mm:ss:SSS").format(System.currentTimeMillis())))
             person
         }.filter { it.age > 15 }.sorted { p1, p2 -> p1.age.compareTo(p2.age) }.collect(Collectors.toList())
 
@@ -103,7 +124,8 @@ class ParallelOperationCollectionsUnitTest {
         val futures = people.map { person ->
             executor.submit(Callable {
                 person.isAdult = person.age > 18
-                println("ScheduledExecutorService: $person on thread: ${Thread.currentThread().name}")
+                println("%-50s %-30s %s".format(person, Thread.currentThread().name, SimpleDateFormat
+                        ("yyyy-MM-dd:HH:mm:ss:SSS").format(System.currentTimeMillis())))
                 person
             })
         }
