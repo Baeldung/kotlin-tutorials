@@ -360,7 +360,7 @@
         <module>core-kotlin-companion</module>
         <module>core-kotlin-modules</module>
         <!-- <module>gradle-kotlin-dsl</module> --> <!-- not a Maven module -->
-        <module>jee-kotlin</module>
+        <!-- <module>jee-kotlin</module> -->  <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
         <module>koin-guide</module>
         <!-- <module>kotest</module> --> <!-- not a Maven module -->
         <!-- <module>kotlin-apache-kafka</module> --> <!-- not a Maven module -->
@@ -384,20 +384,20 @@
         <module>kotlin-yaml</module>
         <!-- <module>kotlin-multiplatform</module> --> <!-- not a Maven module -->
         <!-- <module>kotlin-multiplatform-mobile</module> --> <!-- not a Maven module -->
-        <!-- <module>kotlin-native</module> --> <!-- not a Maven module -->
+        <module>kotlin-native</module>
         <!-- <module>kotlin-openapi</module> --> <!-- not a Maven module -->
         <module>kotlin-patterns</module>
-        <!-- <module>kotlin-performance-vs-java</module> --> <!-- not a Maven module -->
+        <module>kotlin-performance-vs-java</module>
         <module>kotlin-algorithms</module>
         <module>kotlin-quasar</module>
         <module>kotlin-reflection</module>
         <module>kotlin-rsocket</module>
-        <!-- <module>kotlin-self-executable-jar</module> --> <!-- not a Maven module -->
+        <module>kotlin-self-executable-jar</module>
         <module>kotlin-spark</module>
         <module>kotlin-testing</module>
         <module>kotlin-testing-2</module>
         <!-- <module>kotlin-tornadofx</module> --> <!-- not compatible with Java 9+ -->
-        <!-- <module>kotlin-kover</module> --> <!-- not a Maven module -->
+        <!-- <module>kotlin-kover</module> --> <!-- https://github.com/Kotlin/kotlinx-kover/issues/51 -->
         <module>ktlint-custom</module>
         <module>machine-learning</module>
         <module>spring-boot-crud-kotlin</module>

@@ -1,7 +1,7 @@
 package com.baeldung.bfs
 
-fun bfs(graph: Map<Int, List<Int>>, start: Int): List<Int> {
-    val visited = mutableListOf<Int>()
+fun bfs(graph: Map<Int, List<Int>>, start: Int): Set<Int> {
+    val visited = mutableSetOf<Int>()
     val queue = ArrayDeque<Int>()
     queue.add(start)
     while (queue.isNotEmpty()) {
