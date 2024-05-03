@@ -14,6 +14,11 @@
     </parent>
 
     <dependencies>
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-html-jvm</artifactId>
+            <version>0.7.2</version>
+        </dependency>
 
     </dependencies>
 </project>
