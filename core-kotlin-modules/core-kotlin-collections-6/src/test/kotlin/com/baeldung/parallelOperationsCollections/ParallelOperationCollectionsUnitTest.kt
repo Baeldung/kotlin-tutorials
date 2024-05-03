@@ -26,6 +26,8 @@ class ParallelOperationCollectionsUnitTest {
         Person("Charlie", 40)
     )
 
+    private val dateFormat = SimpleDateFormat("yyyy-MM-dd:HH:mm:ss:SSS")
+
     private fun assertResults(filteredPeople: List<Person>) {
         assertThat(filteredPeople).containsExactly(
             Person("Bob", 16, false), Person("Alice", 30, true), Person("Charlie", 40, true), Person("Ahmad", 42, true)
@@ -38,8 +40,13 @@ class ParallelOperationCollectionsUnitTest {
             async {
                 launch {
                     person.isAdult = person.age > 18
-                    println("%-50s %-30s %s".format(person, Thread.currentThread().name, SimpleDateFormat
-                        ("yyyy-MM-dd:HH:mm:ss:SSS").format(System.currentTimeMillis())))
+                    println(
+                        "%-50s %-35s %s".format(
+                            person,
+                            Thread.currentThread().name,
+                            dateFormat.format(System.currentTimeMillis())
+                        )
+                    )
                 }
                 person
             }
@@ -55,8 +62,14 @@ class ParallelOperationCollectionsUnitTest {
             flow {
                 emit(async {
                     person.isAdult = person.age > 18
-                    println("%-50s %-30s %s".format(person, Thread.currentThread().name, SimpleDateFormat
-                        ("yyyy-MM-dd:HH:mm:ss:SSS").format(System.currentTimeMillis())))
+
+                    println(
+                        "%-50s %-35s %s".format(
+                            person,
+                            Thread.currentThread().name,
+                            dateFormat.format(System.currentTimeMillis())
+                        )
+                    )
                     person
                 }.await())
             }
@@ -68,11 +81,15 @@ class ParallelOperationCollectionsUnitTest {
     @Test
     fun `using RxJava for parallel operations`() { // Observable.class from io.reactivex;
         val observable = Observable.fromIterable(people).flatMap({
-            Observable.just(it).subscribeOn(Schedulers.newThread()) // Menjalankan setiap elemen di thread yang baru
-                .doOnNext { person ->
+            Observable.just(it).subscribeOn(Schedulers.computation()).doOnNext { person ->
                     person.isAdult = person.age > 18
-                    println("%-50s %-30s %s".format(person, Thread.currentThread().name, SimpleDateFormat
-                        ("yyyy-MM-dd:HH:mm:ss:SSS").format(System.currentTimeMillis())))
+                    println(
+                        "%-50s %-35s %s".format(
+                            person,
+                            Thread.currentThread().name,
+                            dateFormat.format(System.currentTimeMillis())
+                        )
+                    )
                 }
         }, people.size) // Uses maxConcurrency for the number of elements
             .filter { it.age > 15 }.toList().map { it.sortedBy { person -> person.age } }.blockingGet()
@@ -85,8 +102,13 @@ class ParallelOperationCollectionsUnitTest {
         val observable = people.toObservable().flatMap({
             Observable.just(it).subscribeOn(Schedulers.computation()).doOnNext { person ->
                 person.isAdult = person.age > 18
-                println("%-50s %-30s %s".format(person, Thread.currentThread().name, SimpleDateFormat
-                        ("yyyy-MM-dd:HH:mm:ss:SSS").format(System.currentTimeMillis())))
+                println(
+                    "%-50s %-35s %s".format(
+                        person,
+                        Thread.currentThread().name,
+                        dateFormat.format(System.currentTimeMillis())
+                    )
+                )
             }
         }, people.size) // Uses maxConcurrency for the number of elements
             .filter { it.age > 15 }.toList().map { it.sortedBy { person -> person.age } }.blockingGet()
@@ -99,8 +121,13 @@ class ParallelOperationCollectionsUnitTest {
         val observable =
             people.toObservable().subscribeOn(Schedulers.io()).flatMap { Observable.just(it) }.doOnNext { person ->
                 person.isAdult = person.age > 18
-                println("%-50s %-30s %s".format(person, Thread.currentThread().name, SimpleDateFormat
-                        ("yyyy-MM-dd:HH:mm:ss:SSS").format(System.currentTimeMillis())))
+                println(
+                    "%-50s %-35s %s".format(
+                        person,
+                        Thread.currentThread().name,
+                        dateFormat.format(System.currentTimeMillis())
+                    )
+                )
             }.filter { it.age > 15 }.toList().map { it.sortedBy { person -> person.age } }.blockingGet()
 
         assertResults(observable)
@@ -110,8 +137,13 @@ class ParallelOperationCollectionsUnitTest {
     fun `using parallelStream()`() {
         val filteredPeople = people.parallelStream().map { person ->
             person.isAdult = person.age > 18
-            println("%-50s %-30s %s".format(person, Thread.currentThread().name, SimpleDateFormat
-                        ("yyyy-MM-dd:HH:mm:ss:SSS").format(System.currentTimeMillis())))
+            println(
+                "%-50s %-35s %s".format(
+                    person,
+                    Thread.currentThread().name,
+                    dateFormat.format(System.currentTimeMillis())
+                )
+            )
             person
         }.filter { it.age > 15 }.sorted { p1, p2 -> p1.age.compareTo(p2.age) }.collect(Collectors.toList())
 
@@ -124,8 +156,13 @@ class ParallelOperationCollectionsUnitTest {
         val futures = people.map { person ->
             executor.submit(Callable {
                 person.isAdult = person.age > 18
-                println("%-50s %-30s %s".format(person, Thread.currentThread().name, SimpleDateFormat
-                        ("yyyy-MM-dd:HH:mm:ss:SSS").format(System.currentTimeMillis())))
+                println(
+                    "%-50s %-35s %s".format(
+                        person,
+                        Thread.currentThread().name,
+                        dateFormat.format(System.currentTimeMillis())
+                    )
+                )
                 person
             })
         }
