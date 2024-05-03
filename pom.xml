@@ -364,7 +364,7 @@
         <!-- <module>koin-guide</module> --> <!-- not a Maven module -->
         <!-- <module>kotest</module> --> <!-- not a Maven module -->
         <!-- <module>kotlin-apache-kafka</module> --> <!-- not a Maven module -->
-        <!-- <module>kotlin-api</module> --> <!-- not a Maven module -->
+         <module>kotlin-api</module>
         <!-- <module>kotlin-build-plugins</module> --> <!-- not a Maven module -->
         <module>kotlin-immutable-collections</module>
         <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
