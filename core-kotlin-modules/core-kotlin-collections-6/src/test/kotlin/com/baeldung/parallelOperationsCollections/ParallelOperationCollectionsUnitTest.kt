@@ -41,10 +41,10 @@ class ParallelOperationCollectionsUnitTest {
                 launch {
                     person.isAdult = person.age > 18
                     println(
-                        "%-50s %-35s %s".format(
-                            person,
+                        "%-30s %-40s %s".format(
+                            dateFormat.format(System.currentTimeMillis()),
                             Thread.currentThread().name,
-                            dateFormat.format(System.currentTimeMillis())
+                            person
                         )
                     )
                 }
@@ -64,10 +64,10 @@ class ParallelOperationCollectionsUnitTest {
                     person.isAdult = person.age > 18
 
                     println(
-                        "%-50s %-35s %s".format(
-                            person,
+                        "%-30s %-40s %s".format(
+                            dateFormat.format(System.currentTimeMillis()),
                             Thread.currentThread().name,
-                            dateFormat.format(System.currentTimeMillis())
+                            person
                         )
                     )
                     person
@@ -84,10 +84,10 @@ class ParallelOperationCollectionsUnitTest {
             Observable.just(it).subscribeOn(Schedulers.computation()).doOnNext { person ->
                     person.isAdult = person.age > 18
                     println(
-                        "%-50s %-35s %s".format(
-                            person,
+                        "%-30s %-40s %s".format(
+                            dateFormat.format(System.currentTimeMillis()),
                             Thread.currentThread().name,
-                            dateFormat.format(System.currentTimeMillis())
+                            person
                         )
                     )
                 }
@@ -103,10 +103,10 @@ class ParallelOperationCollectionsUnitTest {
             Observable.just(it).subscribeOn(Schedulers.computation()).doOnNext { person ->
                 person.isAdult = person.age > 18
                 println(
-                    "%-50s %-35s %s".format(
-                        person,
+                    "%-30s %-40s %s".format(
+                        dateFormat.format(System.currentTimeMillis()),
                         Thread.currentThread().name,
-                        dateFormat.format(System.currentTimeMillis())
+                        person
                     )
                 )
             }
@@ -122,10 +122,10 @@ class ParallelOperationCollectionsUnitTest {
             people.toObservable().subscribeOn(Schedulers.io()).flatMap { Observable.just(it) }.doOnNext { person ->
                 person.isAdult = person.age > 18
                 println(
-                    "%-50s %-35s %s".format(
-                        person,
+                    "%-30s %-40s %s".format(
+                        dateFormat.format(System.currentTimeMillis()),
                         Thread.currentThread().name,
-                        dateFormat.format(System.currentTimeMillis())
+                        person
                     )
                 )
             }.filter { it.age > 15 }.toList().map { it.sortedBy { person -> person.age } }.blockingGet()
@@ -138,10 +138,10 @@ class ParallelOperationCollectionsUnitTest {
         val filteredPeople = people.parallelStream().map { person ->
             person.isAdult = person.age > 18
             println(
-                "%-50s %-35s %s".format(
-                    person,
+                "%-30s %-40s %s".format(
+                    dateFormat.format(System.currentTimeMillis()),
                     Thread.currentThread().name,
-                    dateFormat.format(System.currentTimeMillis())
+                    person
                 )
             )
             person
@@ -157,10 +157,10 @@ class ParallelOperationCollectionsUnitTest {
             executor.submit(Callable {
                 person.isAdult = person.age > 18
                 println(
-                    "%-50s %-35s %s".format(
-                        person,
+                    "%-30s %-40s %s".format(
+                        dateFormat.format(System.currentTimeMillis()),
                         Thread.currentThread().name,
-                        dateFormat.format(System.currentTimeMillis())
+                        person
                     )
                 )
                 person
