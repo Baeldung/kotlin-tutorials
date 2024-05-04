@@ -30,7 +30,10 @@ class ParallelOperationCollectionsUnitTest {
 
     private fun assertResults(filteredPeople: List<Person>) {
         assertThat(filteredPeople).containsExactly(
-            Person("Bob", 16, false), Person("Alice", 30, true), Person("Charlie", 40, true), Person("Ahmad", 42, true)
+            Person("Bob", 16, false),
+            Person("Alice", 30, true),
+            Person("Charlie", 40, true),
+            Person("Ahmad", 42, true)
         )
     }
 
@@ -39,7 +42,7 @@ class ParallelOperationCollectionsUnitTest {
         val filteredPeople = people.map { person ->
             async {
                 launch {
-                    person.isAdult = person.age > 18
+                    person.isAdult = person.age >= 18
                     println(
                         "%-30s %-40s %s".format(
                             dateFormat.format(System.currentTimeMillis()),
@@ -61,7 +64,7 @@ class ParallelOperationCollectionsUnitTest {
         val filteredPeople = people.asFlow().flatMapMerge { person ->
             flow {
                 emit(async {
-                    person.isAdult = person.age > 18
+                    person.isAdult = person.age >= 18
 
                     println(
                         "%-30s %-40s %s".format(
@@ -82,7 +85,7 @@ class ParallelOperationCollectionsUnitTest {
     fun `using RxJava for parallel operations`() { // Observable.class from io.reactivex;
         val observable = Observable.fromIterable(people).flatMap({
             Observable.just(it).subscribeOn(Schedulers.computation()).doOnNext { person ->
-                    person.isAdult = person.age > 18
+                    person.isAdult = person.age >= 18
                     println(
                         "%-30s %-40s %s".format(
                             dateFormat.format(System.currentTimeMillis()),
@@ -101,7 +104,7 @@ class ParallelOperationCollectionsUnitTest {
     fun `using RxKotlin for parallel operations`() { // ObservableKt.kt.class from io.reactivex.rxkotlin
         val observable = people.toObservable().flatMap({
             Observable.just(it).subscribeOn(Schedulers.computation()).doOnNext { person ->
-                person.isAdult = person.age > 18
+                person.isAdult = person.age >= 18
                 println(
                     "%-30s %-40s %s".format(
                         dateFormat.format(System.currentTimeMillis()),
@@ -120,7 +123,7 @@ class ParallelOperationCollectionsUnitTest {
     fun `using RxKotlin but still use 1 thread`() { // ObservableKt.kt.class from io.reactivex.rxkotlin
         val observable =
             people.toObservable().subscribeOn(Schedulers.io()).flatMap { Observable.just(it) }.doOnNext { person ->
-                person.isAdult = person.age > 18
+                person.isAdult = person.age >= 18
                 println(
                     "%-30s %-40s %s".format(
                         dateFormat.format(System.currentTimeMillis()),
@@ -136,7 +139,7 @@ class ParallelOperationCollectionsUnitTest {
     @Test
     fun `using parallelStream()`() {
         val filteredPeople = people.parallelStream().map { person ->
-            person.isAdult = person.age > 18
+            person.isAdult = person.age >= 18
             println(
                 "%-30s %-40s %s".format(
                     dateFormat.format(System.currentTimeMillis()),
@@ -155,7 +158,7 @@ class ParallelOperationCollectionsUnitTest {
         val executor = Executors.newCachedThreadPool()
         val futures = people.map { person ->
             executor.submit(Callable {
-                person.isAdult = person.age > 18
+                person.isAdult = person.age >= 18
                 println(
                     "%-30s %-40s %s".format(
                         dateFormat.format(System.currentTimeMillis()),
