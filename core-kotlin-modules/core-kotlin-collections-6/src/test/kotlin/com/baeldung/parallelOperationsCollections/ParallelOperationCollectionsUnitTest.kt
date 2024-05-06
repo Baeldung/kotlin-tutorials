@@ -3,8 +3,11 @@ package com.baeldung.parallelOperationsCollections
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.toObservable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.coroutines.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import java.text.SimpleDateFormat
@@ -31,52 +34,47 @@ class ParallelOperationCollectionsUnitTest {
 
     private fun List<Person>.assertResultsTrue() {
         assertThat(this).containsExactly(
-            Person("Bob", 16, false), Person("Alice", 30, true), Person("Charlie", 40, true), Person("Ahmad", 42, true)
+            Person("Bob", 16, false),
+            Person("Alice", 30, true),
+            Person("Charlie", 40, true),
+            Person("Ahmad", 42, true)
         )
     }
 
-    private val dateFormat = SimpleDateFormat("yyyy-MM-dd:HH:mm:ss:SSS")
+    private val columnScheme = "%-25s %-45s %-40s"
 
     private fun Person.printFormattedInfo() {
         println(
-            "%-30s %-40s %s".format(
-                dateFormat.format(Date.from(Instant.now())), Thread.currentThread().name, this
+            columnScheme.format(
+                SimpleDateFormat("yyyy-MM-dd:HH:mm:ss:SSS").format(Date.from(Instant.now())),
+                this.toString(),
+                Thread.currentThread().name
             )
         )
     }
 
-    private fun printHeader() {
-        println(
-            "%-30s %-40s %s".format(
-                "Time", "Thread name", "Operation"
-            )
-        )
-        println("-".repeat(115))
+    private fun String.printAsHeader() {
+        println("$this ${"-".repeat(100 - this.length)}\n${columnScheme.format("Time", "Operation", "Thread name")}")
     }
 
-    private fun Instant.printFooter() {
-        val endTime = Instant.now()
-        val duration = Duration.between(this, endTime)
-        println("Total time taken: ${duration.toMillis()} ms")
-        println()
+    private fun Instant.printTotalTime() {
+        println("Total time taken: ${Duration.between(this, Instant.now()).toMillis()} ms\n")
     }
 
     @Test
     fun `using coroutines for parallel operations`() = runBlocking {
-        printHeader()
+        "Using Coroutines".printAsHeader()
         val startTime = Instant.now()
 
         val filteredPeople = people.map { person ->
             async {
-                launch {
-                    person.isAdult = person.age >= 18
-                    person.printFormattedInfo()
-                }
+                person.isAdult = person.age >= 18
+                person.printFormattedInfo()
                 person
             }
         }.awaitAll().filter { it.age > 15 }.sortedBy { it.age }
 
-        startTime.printFooter()
+        startTime.printTotalTime()
 
         filteredPeople.assertResultsTrue()
     }
@@ -84,7 +82,7 @@ class ParallelOperationCollectionsUnitTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `using coroutines for parallel operations with Flow`() = runBlocking {
-        printHeader()
+        "Using Kotlin Flow".printAsHeader()
         val startTime = Instant.now()
 
         val filteredPeople = people.asFlow().flatMapMerge { person ->
@@ -97,14 +95,14 @@ class ParallelOperationCollectionsUnitTest {
             }
         }.filter { it.age > 15 }.toList().sortedBy { it.age }
 
-        startTime.printFooter()
+        startTime.printTotalTime()
 
         filteredPeople.assertResultsTrue()
     }
 
     @Test
     fun `using RxJava for parallel operations`() { // Observable.class from io.reactivex;
-        printHeader()
+        "Using RxJava".printAsHeader()
         val startTime = Instant.now()
 
         val observable = Observable.fromIterable(people).flatMap({
@@ -115,14 +113,14 @@ class ParallelOperationCollectionsUnitTest {
         }, people.size) // Uses maxConcurrency for the number of elements
             .filter { it.age > 15 }.toList().map { it.sortedBy { person -> person.age } }.blockingGet()
 
-        startTime.printFooter()
+        startTime.printTotalTime()
 
         observable.assertResultsTrue()
     }
 
     @Test
     fun `using RxKotlin for parallel operations`() { // ObservableKt.kt.class from io.reactivex.rxkotlin
-        printHeader()
+        "Using RxKotlin".printAsHeader()
         val startTime = Instant.now()
 
         val observable = people.toObservable().flatMap({
@@ -133,14 +131,14 @@ class ParallelOperationCollectionsUnitTest {
         }, people.size) // Uses maxConcurrency for the number of elements
             .filter { it.age > 15 }.toList().map { it.sortedBy { person -> person.age } }.blockingGet()
 
-        startTime.printFooter()
+        startTime.printTotalTime()
 
         observable.assertResultsTrue()
     }
 
     @Test
     fun `using RxKotlin but still use 1 thread`() { // ObservableKt.kt.class from io.reactivex.rxkotlin
-        printHeader()
+        "Using RxKotlin 1 thread".printAsHeader()
         val startTime = Instant.now()
 
         val observable =
@@ -149,14 +147,14 @@ class ParallelOperationCollectionsUnitTest {
                 person.printFormattedInfo()
             }.filter { it.age > 15 }.toList().map { it.sortedBy { person -> person.age } }.blockingGet()
 
-        startTime.printFooter()
+        startTime.printTotalTime()
 
         observable.assertResultsTrue()
     }
 
     @Test
     fun `using parallelStream()`() {
-        printHeader()
+        "Using Stream API".printAsHeader()
         val startTime = Instant.now()
 
         val filteredPeople = people.parallelStream().map { person ->
@@ -165,14 +163,14 @@ class ParallelOperationCollectionsUnitTest {
             person
         }.filter { it.age > 15 }.sorted { p1, p2 -> p1.age.compareTo(p2.age) }.collect(Collectors.toList())
 
-        startTime.printFooter()
+        startTime.printTotalTime()
 
         filteredPeople.assertResultsTrue()
     }
 
     @Test
-    fun `using ScheduledExecutorService for parallel operations`() {
-        printHeader()
+    fun `using ExecutorService for parallel operations`() {
+        "Using ExecutorService".printAsHeader()
         val startTime = Instant.now()
 
         val executor = Executors.newFixedThreadPool(people.size)
@@ -186,7 +184,7 @@ class ParallelOperationCollectionsUnitTest {
 
         executor.shutdown()
 
-        startTime.printFooter()
+        startTime.printTotalTime()
 
         futures.assertResultsTrue()
     }
