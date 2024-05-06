@@ -2,6 +2,7 @@ package com.baeldung.kotlin.anonymousObjects
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import kotlin.test.assertFailsWith
 
 abstract class Doc(val title: String, val author: String, var words: Long = 0L) {
     abstract fun summary(): String
@@ -76,9 +77,47 @@ class AnonymousObjectsUnitTest {
         val playerService = PlayerService()
         assertThat(playerService.getTheName()).isEqualTo("Kai")
     }
+
+    @Test
+    fun `when anonymous object with a supertype, the explict casting is not required`() {
+        fun docTitleToUppercase(doc: Doc) = doc.title.uppercase()
+
+        val article = object : Doc(title = "A nice article", author = "Kai", words = 420) {
+            override fun summary() = "Title: <$title> ($words words) By $author"
+        }
+        assertThat(docTitleToUppercase(article)).isEqualTo("A NICE ARTICLE")
+    }
+
+    @Test
+    fun `when anonymous object of Any, the explict casting does not work`() {
+
+        // the class
+        data class Player(
+            val name: String,
+            val gamePlayed: Long,
+            val points: Long
+        ) {
+            fun pointsPerGame() = "$name: AVG points per Game: ${points / gamePlayed}"
+        }
+
+        // the anonymous object
+        val anonymousPlayer = object {
+            val name = "Kai"
+            val gamePlayed = 6L
+            val points = 42L
+            fun pointsPerGame() = "$name: AVG points per Game: ${points / gamePlayed}"
+        }
+
+        assertFailsWith<ClassCastException> { anonymousPlayer as Player }
+
+        val alwaysNull = anonymousPlayer as? Player
+        assertThat(alwaysNull).isNull()
+
+        val realPlayer = Player(name = "Liam", gamePlayed = 7L, points = 77L)
+
+        // Kotlin doesn't support duck typing, the below code doesn't compile:
+        // val stringList = listOf(realPlayer, anonymousPlayer).map{
+        //     it.pointsPerGame()
+        // }
+    }
 }
-
-
-
-
-
