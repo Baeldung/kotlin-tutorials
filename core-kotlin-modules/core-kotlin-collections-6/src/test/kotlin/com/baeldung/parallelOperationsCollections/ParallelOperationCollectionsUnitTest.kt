@@ -40,7 +40,7 @@ class ParallelOperationCollectionsUnitTest {
             Person("Ahmad", 42, true)
         )
     }
-    
+
     private fun Person.setAdultStatus(){
         this.isAdult = this.age >= 18
 
