@@ -42,8 +42,10 @@ class ParallelOperationCollectionsUnitTest {
     }
 
     private val columnScheme = "%-25s %-45s %-40s"
+    
+    private fun Person.setAdultStatus(){
+        this.isAdult = this.age >= 18
 
-    private fun Person.printFormattedInfo() {
         println(
             columnScheme.format(
                 SimpleDateFormat("yyyy-MM-dd:HH:mm:ss:SSS").format(Date.from(Instant.now())),
@@ -68,8 +70,7 @@ class ParallelOperationCollectionsUnitTest {
 
         val filteredPeople = people.map { person ->
             async {
-                person.isAdult = person.age >= 18
-                person.printFormattedInfo()
+                person.setAdultStatus()
                 person
             }
         }.awaitAll().filter { it.age > 15 }.sortedBy { it.age }
@@ -88,8 +89,7 @@ class ParallelOperationCollectionsUnitTest {
         val filteredPeople = people.asFlow().flatMapMerge { person ->
             flow {
                 emit(async {
-                    person.isAdult = person.age >= 18
-                    person.printFormattedInfo()
+                    person.setAdultStatus()
                     person
                 }.await())
             }
@@ -107,8 +107,7 @@ class ParallelOperationCollectionsUnitTest {
 
         val observable = Observable.fromIterable(people).flatMap({
             Observable.just(it).subscribeOn(Schedulers.computation()).doOnNext { person ->
-                person.isAdult = person.age >= 18
-                person.printFormattedInfo()
+                person.setAdultStatus()
             }
         }, people.size) // Uses maxConcurrency for the number of elements
             .filter { it.age > 15 }.toList().map { it.sortedBy { person -> person.age } }.blockingGet()
@@ -125,8 +124,7 @@ class ParallelOperationCollectionsUnitTest {
 
         val observable = people.toObservable().flatMap({
             Observable.just(it).subscribeOn(Schedulers.computation()).doOnNext { person ->
-                person.isAdult = person.age >= 18
-                person.printFormattedInfo()
+                person.setAdultStatus()
             }
         }, people.size) // Uses maxConcurrency for the number of elements
             .filter { it.age > 15 }.toList().map { it.sortedBy { person -> person.age } }.blockingGet()
@@ -143,8 +141,7 @@ class ParallelOperationCollectionsUnitTest {
 
         val observable =
             people.toObservable().subscribeOn(Schedulers.io()).flatMap { Observable.just(it) }.doOnNext { person ->
-                person.isAdult = person.age >= 18
-                person.printFormattedInfo()
+                person.setAdultStatus()
             }.filter { it.age > 15 }.toList().map { it.sortedBy { person -> person.age } }.blockingGet()
 
         startTime.printTotalTime()
@@ -158,8 +155,8 @@ class ParallelOperationCollectionsUnitTest {
         val startTime = Instant.now()
 
         val filteredPeople = people.parallelStream().map { person ->
-            person.isAdult = person.age >= 18
-            person.printFormattedInfo()
+            
+            person.setAdultStatus()
             person
         }.filter { it.age > 15 }.sorted { p1, p2 -> p1.age.compareTo(p2.age) }.collect(Collectors.toList())
 
@@ -176,8 +173,7 @@ class ParallelOperationCollectionsUnitTest {
         val executor = Executors.newFixedThreadPool(people.size)
         val futures = people.map { person ->
             executor.submit(Callable {
-                person.isAdult = person.age >= 18
-                person.printFormattedInfo()
+                person.setAdultStatus()
                 person
             })
         }.map { it.get() }.filter { it.age > 15 }.sortedBy { it.age }
