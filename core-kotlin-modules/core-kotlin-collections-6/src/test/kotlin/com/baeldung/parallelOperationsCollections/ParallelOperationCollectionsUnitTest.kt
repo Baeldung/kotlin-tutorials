@@ -40,14 +40,12 @@ class ParallelOperationCollectionsUnitTest {
             Person("Ahmad", 42, true)
         )
     }
-
-    private val columnScheme = "%-25s %-45s %-40s"
     
     private fun Person.setAdultStatus(){
         this.isAdult = this.age >= 18
 
         println(
-            columnScheme.format(
+            "%-25s %-45s %-40s".format(
                 SimpleDateFormat("yyyy-MM-dd:HH:mm:ss:SSS").format(Date.from(Instant.now())),
                 this.toString(),
                 Thread.currentThread().name
@@ -56,7 +54,7 @@ class ParallelOperationCollectionsUnitTest {
     }
 
     private fun String.printAsHeader() {
-        println("$this ${"-".repeat(100 - this.length)}\n${columnScheme.format("Time", "Operation", "Thread name")}")
+        println("$this ${"-".repeat(100 - this.length)}\n${"%-25s %-45s %-40s".format("Time", "Operation", "Thread name")}")
     }
 
     private fun Instant.printTotalTime() {
