@@ -41,7 +41,7 @@ class ParallelOperationCollectionsUnitTest {
         )
     }
 
-    private fun Person.setAdultStatus(){
+    private fun Person.setAdult(){
         this.isAdult = this.age >= 18
 
         println(
@@ -68,7 +68,7 @@ class ParallelOperationCollectionsUnitTest {
 
         val filteredPeople = people.map { person ->
             async {
-                person.setAdultStatus()
+                person.setAdult()
                 person
             }
         }.awaitAll().filter { it.age > 15 }.sortedBy { it.age }
@@ -87,7 +87,7 @@ class ParallelOperationCollectionsUnitTest {
         val filteredPeople = people.asFlow().flatMapMerge { person ->
             flow {
                 emit(async {
-                    person.setAdultStatus()
+                    person.setAdult()
                     person
                 }.await())
             }
@@ -105,7 +105,7 @@ class ParallelOperationCollectionsUnitTest {
 
         val observable = Observable.fromIterable(people).flatMap({
             Observable.just(it).subscribeOn(Schedulers.computation()).doOnNext { person ->
-                person.setAdultStatus()
+                person.setAdult()
             }
         }, people.size) // Uses maxConcurrency for the number of elements
             .filter { it.age > 15 }.toList().map { it.sortedBy { person -> person.age } }.blockingGet()
@@ -122,7 +122,7 @@ class ParallelOperationCollectionsUnitTest {
 
         val observable = people.toObservable().flatMap({
             Observable.just(it).subscribeOn(Schedulers.computation()).doOnNext { person ->
-                person.setAdultStatus()
+                person.setAdult()
             }
         }, people.size) // Uses maxConcurrency for the number of elements
             .filter { it.age > 15 }.toList().map { it.sortedBy { person -> person.age } }.blockingGet()
@@ -139,7 +139,7 @@ class ParallelOperationCollectionsUnitTest {
 
         val observable =
             people.toObservable().subscribeOn(Schedulers.io()).flatMap { Observable.just(it) }.doOnNext { person ->
-                person.setAdultStatus()
+                person.setAdult()
             }.filter { it.age > 15 }.toList().map { it.sortedBy { person -> person.age } }.blockingGet()
 
         startTime.printTotalTime()
@@ -154,7 +154,7 @@ class ParallelOperationCollectionsUnitTest {
 
         val filteredPeople = people.parallelStream().map { person ->
             
-            person.setAdultStatus()
+            person.setAdult()
             person
         }.filter { it.age > 15 }.sorted { p1, p2 -> p1.age.compareTo(p2.age) }.collect(Collectors.toList())
 
@@ -171,7 +171,7 @@ class ParallelOperationCollectionsUnitTest {
         val executor = Executors.newFixedThreadPool(people.size)
         val futures = people.map { person ->
             executor.submit(Callable {
-                person.setAdultStatus()
+                person.setAdult()
                 person
             })
         }.map { it.get() }.filter { it.age > 15 }.sortedBy { it.age }
