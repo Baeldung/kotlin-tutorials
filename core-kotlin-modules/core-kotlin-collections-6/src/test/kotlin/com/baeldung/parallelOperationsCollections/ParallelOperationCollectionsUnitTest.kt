@@ -48,8 +48,7 @@ class ParallelOperationCollectionsUnitTest {
 
     private fun Person.setAdult() {
         this.isAdult = this.age >= 18
-        val line = " ".repeat(32 - Thread.currentThread().name.length)
-        logger.info("{} {}", line, this)
+        logger.info("{} {}", " ".repeat(32 - Thread.currentThread().name.length), this)
     }
 
     private fun Instant.printTotalTime() {
