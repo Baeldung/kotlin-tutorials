@@ -17,7 +17,7 @@ interface Printable {
  * If we use an anonymous object as the return value of a private method,
  * its members can still be accessed
  */
-class PlayerService() {
+class PlayerService {
     private fun giveMeAPlayer() = object {
         val name = "Kai"
         val gamePlayed = 6L
@@ -79,7 +79,7 @@ class AnonymousObjectsUnitTest {
     }
 
     @Test
-    fun `when anonymous object with a supertype, the explict casting is not required`() {
+    fun `when anonymous object with a supertype, explict casting isn't required`() {
         fun docTitleToUppercase(doc: Doc) = doc.title.uppercase()
 
         val article = object : Doc(title = "A nice article", author = "Kai", words = 420) {
@@ -89,7 +89,7 @@ class AnonymousObjectsUnitTest {
     }
 
     @Test
-    fun `when anonymous object of Any, the explict casting does not work`() {
+    fun `when anonymous object of Any, explict casting doesn't work`() {
 
         // the class
         data class Player(
