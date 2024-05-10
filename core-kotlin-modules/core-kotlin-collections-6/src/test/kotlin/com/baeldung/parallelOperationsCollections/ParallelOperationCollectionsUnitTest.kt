@@ -58,7 +58,7 @@ class ParallelOperationCollectionsUnitTest {
 
     @Test
     fun `using coroutines for parallel operations`() = runBlocking {
-        "Using Coroutines".printAsHeader()
+        logger.info("Using Coroutines")
         val startTime = Instant.now()
 
         val filteredPeople = people
