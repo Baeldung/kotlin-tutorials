@@ -43,19 +43,17 @@ class ParallelOperationCollectionsUnitTest {
     }
 
     private fun String.printAsHeader() {
-        logger.info("{} {}", "-".repeat(32 - Thread.currentThread().name.length), this)
+        logger.info(this)
     }
 
     private fun Person.setAdult() {
         this.isAdult = this.age >= 18
-        logger.info("{} {}", " ".repeat(32 - Thread.currentThread().name.length), this)
+        logger.info(this.toString())
     }
-
+    
     private fun Instant.printTotalTime() {
         val totalTime = Duration.between(this, Instant.now()).toMillis()
-        logger.info(
-            "{} Total time taken: {} ms \n", "-".repeat(32 - Thread.currentThread().name.length), totalTime
-        )
+        logger.info("Total time taken: {} ms", totalTime)
     }
 
     @Test
