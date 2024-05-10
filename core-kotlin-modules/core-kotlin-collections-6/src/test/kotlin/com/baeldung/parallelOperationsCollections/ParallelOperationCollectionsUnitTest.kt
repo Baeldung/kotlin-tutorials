@@ -42,10 +42,6 @@ class ParallelOperationCollectionsUnitTest {
         )
     }
 
-    private fun String.printAsHeader() {
-        logger.info(this)
-    }
-
     private fun Person.setAdult() {
         this.isAdult = this.age >= 18
         logger.info(this.toString())
@@ -79,7 +75,7 @@ class ParallelOperationCollectionsUnitTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `using coroutines for parallel operations with Flow`() = runBlocking {
-        "Using Kotlin Flow".printAsHeader()
+        logger.info("Using Kotlin Flow")
         val startTime = Instant.now()
 
         val filteredPeople = people.asFlow()
@@ -103,7 +99,7 @@ class ParallelOperationCollectionsUnitTest {
 
     @Test
     fun `using RxJava for parallel operations`() { // Observable.class from io.reactivex;
-        "Using RxJava".printAsHeader()
+        logger.info("Using RxJava")
         val startTime = Instant.now()
 
         val observable = Observable.fromIterable(people)
@@ -126,7 +122,7 @@ class ParallelOperationCollectionsUnitTest {
 
     @Test
     fun `using RxKotlin for parallel operations`() { // ObservableKt.kt.class from io.reactivex.rxkotlin
-        "Using RxKotlin".printAsHeader()
+        logger.info("Using RxKotlin")
         val startTime = Instant.now()
 
         val observable = people.toObservable()
@@ -148,12 +144,12 @@ class ParallelOperationCollectionsUnitTest {
 
     @Test
     fun `using RxKotlin but still use 1 thread`() { // ObservableKt.kt.class from io.reactivex.rxkotlin
-        "Using RxKotlin 1 thread".printAsHeader()
+        logger.info("Using RxKotlin 1 thread")
         val startTime = Instant.now()
 
         val observable = people.toObservable()
             .subscribeOn(Schedulers.io())
-            .flatMap { Observable.just(it) }
+            .flatMap { Observable.just(it) } // Without using the maxConcurrency parameter, so it only uses 1 thread.
             .doOnNext { person -> person.setAdult() }
             .filter { it.age > 15 }.toList()
             .map { it.sortedBy { person -> person.age } }.blockingGet()
@@ -165,7 +161,7 @@ class ParallelOperationCollectionsUnitTest {
 
     @Test
     fun `using parallelStream()`() {
-        "Using Stream API".printAsHeader()
+        logger.info("Using Stream API")
         val startTime = Instant.now()
 
         val filteredPeople = people.parallelStream()
@@ -183,7 +179,7 @@ class ParallelOperationCollectionsUnitTest {
 
     @Test
     fun `using ExecutorService for parallel operations`() {
-        "Using ExecutorService".printAsHeader()
+        logger.info("Using ExecutorService")
         val startTime = Instant.now()
 
         val executor = Executors.newFixedThreadPool(people.size)
