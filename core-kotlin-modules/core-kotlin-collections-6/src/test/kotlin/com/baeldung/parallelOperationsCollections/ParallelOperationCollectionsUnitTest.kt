@@ -35,11 +35,11 @@ class ParallelOperationCollectionsUnitTest {
 
     private fun List<Person>.assertResultsTrue() {
         assertThat(this).containsExactly(
-                Person("Bob", 16, false),
-                Person("Alice", 30, true),
-                Person("Charlie", 40, true),
-                Person("Ahmad", 42, true)
-            )
+            Person("Bob", 16, false),
+            Person("Alice", 30, true),
+            Person("Charlie", 40, true),
+            Person("Ahmad", 42, true)
+        )
     }
 
     private fun String.printAsHeader() {
@@ -63,12 +63,15 @@ class ParallelOperationCollectionsUnitTest {
         "Using Coroutines".printAsHeader()
         val startTime = Instant.now()
 
-        val filteredPeople = people.map { person ->
+        val filteredPeople = people
+            .map { person ->
                 async {
                     person.setAdult()
                     person
                 }
-            }.awaitAll().filter { it.age > 15 }.sortedBy { it.age }
+            }.awaitAll()
+            .filter { it.age > 15 }
+            .sortedBy { it.age }
 
         startTime.printTotalTime()
 
@@ -81,7 +84,8 @@ class ParallelOperationCollectionsUnitTest {
         "Using Kotlin Flow".printAsHeader()
         val startTime = Instant.now()
 
-        val filteredPeople = people.asFlow().flatMapMerge { person ->
+        val filteredPeople = people.asFlow()
+            .flatMapMerge { person ->
                 flow {
                     emit(
                         async {
@@ -90,7 +94,9 @@ class ParallelOperationCollectionsUnitTest {
                         }.await()
                     )
                 }
-            }.filter { it.age > 15 }.toList().sortedBy { it.age }
+            }
+            .filter { it.age > 15 }.toList()
+            .sortedBy { it.age }
 
         startTime.printTotalTime()
 
@@ -102,7 +108,8 @@ class ParallelOperationCollectionsUnitTest {
         "Using RxJava".printAsHeader()
         val startTime = Instant.now()
 
-        val observable = Observable.fromIterable(people).flatMap(
+        val observable = Observable.fromIterable(people)
+            .flatMap(
                 {
                     Observable.just(it).subscribeOn(Schedulers.computation()).doOnNext { person ->
                         person.setAdult()
@@ -124,7 +131,8 @@ class ParallelOperationCollectionsUnitTest {
         "Using RxKotlin".printAsHeader()
         val startTime = Instant.now()
 
-        val observable = people.toObservable().flatMap(
+        val observable = people.toObservable()
+            .flatMap(
                 {
                     Observable.just(it).subscribeOn(Schedulers.computation()).doOnNext { person ->
                         person.setAdult()
@@ -162,7 +170,8 @@ class ParallelOperationCollectionsUnitTest {
         "Using Stream API".printAsHeader()
         val startTime = Instant.now()
 
-        val filteredPeople = people.parallelStream().map { person ->
+        val filteredPeople = people.parallelStream()
+            .map { person ->
                 person.setAdult()
                 person
             }.filter { it.age > 15 }
@@ -180,12 +189,15 @@ class ParallelOperationCollectionsUnitTest {
         val startTime = Instant.now()
 
         val executor = Executors.newFixedThreadPool(people.size)
-        val futures = people.map { person ->
+        val futures = people
+            .map { person ->
                 executor.submit(Callable {
                     person.setAdult()
                     person
-                })
-            }.map { it.get() }.filter { it.age > 15 }.sortedBy { it.age }
+                }).get()
+            }
+            .filter { it.age > 15 }
+            .sortedBy { it.age }
 
         executor.shutdown()
 
