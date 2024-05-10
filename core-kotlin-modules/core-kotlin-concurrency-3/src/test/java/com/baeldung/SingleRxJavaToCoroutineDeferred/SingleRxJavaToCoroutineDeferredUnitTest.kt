@@ -9,7 +9,6 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
-import kotlin.test.assertContains
 
 @OptIn(DelicateCoroutinesApi::class)
 class SingleRxJavaToCoroutineDeferredUnitTest {
@@ -27,6 +26,15 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         ).subscribeOn(Schedulers.io())
     }
 
+    private fun List<Product>.assertResultsTrue(){
+        assertThat(this).containsExactly(
+            Product(1, "Samsung", 1200.0),
+            Product(2, "Oppo", 800.0),
+            Product(3, "Nokia", 400.0),
+            Product(4, "Lenovo", 400.0)
+        )
+    }
+
     // using async
     private fun <T> Single<T>.toDeferredAsync(): Deferred<T> = runBlocking {
         return@runBlocking async { this@toDeferredAsync.blockingGet() }
@@ -38,12 +46,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         deferred.forEach { product ->
             assertThat(deferred).contains(product)
         }
-        assertThat(deferred).containsExactly(
-            Product(1, "Samsung", 1200.0),
-            Product(2, "Oppo", 800.0),
-            Product(3, "Nokia", 400.0),
-            Product(4, "Lenovo", 400.0)
-        )
+        deferred.assertResultsTrue()
     }
 
     // using GlobalScope.async
@@ -55,12 +58,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         deferred.forEach { product ->
             assertThat(deferred).contains(product)
         }
-        assertThat(deferred).containsExactly(
-            Product(1, "Samsung", 1200.0),
-            Product(2, "Oppo", 800.0),
-            Product(3, "Nokia", 400.0),
-            Product(4, "Lenovo", 400.0)
-        )
+        deferred.assertResultsTrue()
     }
 
     // using CoroutineScope(context).async
@@ -73,12 +71,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         deferred.forEach { product ->
             assertThat(deferred).contains(product)
         }
-        assertThat(deferred).containsExactly(
-            Product(1, "Samsung", 1200.0),
-            Product(2, "Oppo", 800.0),
-            Product(3, "Nokia", 400.0),
-            Product(4, "Lenovo", 400.0)
-        )
+        deferred.assertResultsTrue()
     }
 
     // using CompletableDeferred
@@ -94,12 +87,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         deferred.forEach { product ->
             assertThat(deferred).contains(product)
         }
-        assertThat(deferred).containsExactly(
-            Product(1, "Samsung", 1200.0),
-            Product(2, "Oppo", 800.0),
-            Product(3, "Nokia", 400.0),
-            Product(4, "Lenovo", 400.0)
-        )
+        deferred.assertResultsTrue()
     }
 
     // using suspend
@@ -113,12 +101,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         deferred.forEach { product ->
             assertThat(deferred).contains(product)
         }
-        assertThat(deferred).containsExactly(
-            Product(1, "Samsung", 1200.0),
-            Product(2, "Oppo", 800.0),
-            Product(3, "Nokia", 400.0),
-            Product(4, "Lenovo", 400.0)
-        )
+        deferred.assertResultsTrue()
     }
 
 }
