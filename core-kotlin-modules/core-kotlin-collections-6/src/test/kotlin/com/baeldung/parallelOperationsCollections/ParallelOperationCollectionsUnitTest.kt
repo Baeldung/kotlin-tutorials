@@ -104,9 +104,10 @@ class ParallelOperationCollectionsUnitTest {
 
         val observable = Observable.fromIterable(people)
             .flatMap(
-                { Observable.just(it)
-                    .subscribeOn(Schedulers.computation())
-                    .doOnNext { person -> person.setAdult()}
+                {
+                    Observable.just(it)
+                        .subscribeOn(Schedulers.computation())
+                        .doOnNext { person -> person.setAdult() }
                 },
                 people.size // Uses maxConcurrency for the number of elements
             )
@@ -127,9 +128,10 @@ class ParallelOperationCollectionsUnitTest {
 
         val observable = people.toObservable()
             .flatMap(
-                { Observable.just(it)
-                    .subscribeOn(Schedulers.computation())
-                    .doOnNext { person -> person.setAdult() }
+                {
+                    Observable.just(it)
+                        .subscribeOn(Schedulers.computation())
+                        .doOnNext { person -> person.setAdult() }
                 },
                 people.size // Uses maxConcurrency for the number of elements
             ).filter { it.age > 15 }
