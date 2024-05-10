@@ -15,6 +15,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <rxkotlin.version>2.3.0</rxkotlin.version>
     </properties>
 
     <dependencies>
@@ -23,6 +24,11 @@
             <artifactId>junit</artifactId>
             <version>3.8.1</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.reactivex.rxjava2</groupId>
+            <artifactId>rxkotlin</artifactId>
+            <version>${rxkotlin.version}</version>
         </dependency>
     </dependencies>
 </project>
