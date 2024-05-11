@@ -1,9 +1,9 @@
 package com.baeldung.singleRxJavaToCoroutineDeferred
 
-import io.reactivex.Single
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.*
-import kotlinx.coroutines.rx2.await
+import kotlinx.coroutines.rx3.await
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import kotlin.coroutines.CoroutineContext
@@ -52,7 +52,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     }
 
     // using async
-    private fun <T> Single<T>.toDeferredAsync(): Deferred<T> =
+    private fun <T : Any> Single<T>.toDeferredAsync(): Deferred<T> =
         runBlocking { async { this@toDeferredAsync.blockingGet() } }
 
 
@@ -66,7 +66,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     }
 
     // using GlobalScope.async
-    private fun <T> Single<T>.toDeferredGlobalAsync(): Deferred<T> =
+    private fun <T : Any> Single<T>.toDeferredGlobalAsync(): Deferred<T> =
         GlobalScope.async { this@toDeferredGlobalAsync.blockingGet() }
 
     @Test
@@ -79,7 +79,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     }
 
     // using CoroutineScope(context).async
-    private fun <T> Single<T>.toDeferredWithContext(context: CoroutineContext): Deferred<T> =
+    private fun <T : Any> Single<T>.toDeferredWithContext(context: CoroutineContext): Deferred<T> =
         CoroutineScope(context).async { this@toDeferredWithContext.blockingGet() }
 
     @Test
@@ -92,7 +92,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     }
 
     // using CompletableDeferred
-    private fun <T> Single<T>.toCompletableDeferred(): CompletableDeferred<T> {
+    private fun <T : Any> Single<T>.toCompletableDeferred(): CompletableDeferred<T> {
         val completableDeferred = CompletableDeferred<T>()
         this.subscribe({ completableDeferred.complete(it) }, { completableDeferred.completeExceptionally(it) })
         return completableDeferred
@@ -108,7 +108,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     }
 
     // using suspendCoroutine
-    private suspend fun <T> Single<T>.toDeferredWithSuspend(): T = suspendCoroutine { continuation ->
+    private suspend fun <T : Any> Single<T>.toDeferredWithSuspend(): T = suspendCoroutine { continuation ->
         this.subscribe({ continuation.resume(it) }, { continuation.resumeWithException(it) })
     }
 
@@ -121,11 +121,11 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         deferred.assertResultsTrue()
     }
 
-    // using rx2
-    private suspend fun <T> Single<T>.toDeferredRx2(): T = this.await()
+    // using rx3
+    private suspend fun <T : Any> Single<T>.toDeferredRx2(): T = this.await()
 
     @Test
-    fun `test using rx2`(): Unit = runBlocking {
+    fun `test using rx3`(): Unit = runBlocking {
         val deferred = getFilteredProducts().toDeferredRx2()
         deferred.forEach {
             assertThat(deferred).contains(it)
@@ -133,12 +133,12 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         deferred.assertResultsTrue()
     }
 
-    // using rx2 with context
-    private fun <T> Single<T>.toDeferredRx2WithContext(context: CoroutineContext): Deferred<T> =
+    // using rx3 with context
+    private fun <T : Any> Single<T>.toDeferredRx2WithContext(context: CoroutineContext): Deferred<T> =
         CoroutineScope(context).async { this@toDeferredRx2WithContext.await() }
 
     @Test
-    fun `test using rx2 with context`(): Unit = runBlocking {
+    fun `test using rx3 with context`(): Unit = runBlocking {
         val deferred = getFilteredProducts().toDeferredRx2WithContext(Dispatchers.IO).await()
         deferred.forEach {
             assertThat(deferred).contains(it)
