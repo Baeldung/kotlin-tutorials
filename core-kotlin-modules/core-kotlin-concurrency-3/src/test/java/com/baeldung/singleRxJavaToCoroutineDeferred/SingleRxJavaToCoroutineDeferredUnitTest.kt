@@ -44,8 +44,11 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         }.subscribeOn(Schedulers.io())
     }
 
-    private fun List<Product>.assertResultsTrue() {
-        assertThat(this).containsExactly(
+    private suspend fun Deferred<*>.assertResultsTrue(){
+        
+        assertTrue(actual = this is kotlinx.coroutines.Deferred<*>)
+
+        assertThat(this.await() as List<*>).containsExactly(
             Product(4, "Lenovo", 550.0),
             Product(2, "Oppo", 800.0),
             Product(1, "Samsung", 1200.0)
@@ -60,8 +63,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     @Test
     fun `test using async`(): Unit = runBlocking {
         val deferred = getFilteredProducts().toDeferredAsync()
-        assertTrue(deferred is Deferred<*>)
-        deferred.await().assertResultsTrue()
+        deferred.assertResultsTrue()
     }
 
     // using GlobalScope.async
@@ -71,8 +73,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     @Test
     fun `test using GlobalScope async`(): Unit = runBlocking {
         val deferred = getFilteredProducts().toDeferredGlobalAsync()
-        assertTrue(deferred is Deferred<*>)
-        deferred.await().assertResultsTrue()
+        deferred.assertResultsTrue()
     }
 
     // using CoroutineScope(context).async
@@ -82,8 +83,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     @Test
     fun `test using CoroutineScope with context and async`(): Unit = runBlocking {
         val deferred = getFilteredProducts().toDeferredWithContext(Dispatchers.IO)
-        assertTrue(deferred is Deferred<*>)
-        deferred.await().assertResultsTrue()
+        deferred.assertResultsTrue()
     }
 
     // using CompletableDeferred
@@ -96,8 +96,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     @Test
     fun `test using CompletableDeferred`(): Unit = runBlocking {
         val deferred = getFilteredProducts().toCompletableDeferred()
-        assertTrue(deferred is Deferred<*>)
-        deferred.await().assertResultsTrue()
+        deferred.assertResultsTrue()
     }
 
     // using suspendCoroutine
@@ -116,8 +115,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     @Test
     fun `test using suspendCoroutine`(): Unit = runBlocking {
         val deferred = getFilteredProducts().toDeferredWithSuspend()
-        assertTrue(deferred is Deferred<*>)
-        deferred.await().assertResultsTrue()
+        deferred.assertResultsTrue()
     }
 
     // using suspendCoroutine with custom scope
@@ -136,8 +134,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     @Test
     fun `test using suspendCoroutine with custom Scope`(): Unit = runBlocking {
         val deferred = getFilteredProducts().toDeferredWithSuspend(this)
-        assertTrue(deferred is Deferred<*>)
-        deferred.await().assertResultsTrue()
+        deferred.assertResultsTrue()
     }
 
     // using rx3
@@ -147,8 +144,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     @Test
     fun `test using rx3`(): Unit = runBlocking {
         val deferred = getFilteredProducts().toDeferredRx2()
-        assertTrue(deferred is Deferred<*>)
-        deferred.await().assertResultsTrue()
+        deferred.assertResultsTrue()
     }
 
     // using rx3 with context
@@ -158,8 +154,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     @Test
     fun `test using rx3 with context`(): Unit = runBlocking {
         val deferred = getFilteredProducts().toDeferredRx2WithContext(Dispatchers.IO)
-        assertTrue(deferred is Deferred<*>)
-        deferred.await().assertResultsTrue()
+        deferred.assertResultsTrue()
     }
 
 }
