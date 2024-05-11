@@ -3,6 +3,8 @@ package com.baeldung.SingleRxJavaToCoroutineDeferred
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.*
+import kotlinx.coroutines.rx2.await
+import kotlinx.coroutines.rx2.awaitSingle
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import kotlin.coroutines.CoroutineContext
@@ -43,33 +45,33 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     @Test
     fun `test using async`(): Unit = runBlocking {
         val deferred = getProducts().toDeferredAsync().await()
-        deferred.forEach { product ->
-            assertThat(deferred).contains(product)
+        deferred.forEach {
+            assertThat(deferred).contains(it)
         }
         deferred.assertResultsTrue()
     }
 
     // using GlobalScope.async
-    private fun <T> Single<T>.toDeferred(): Deferred<T> = GlobalScope.async { this@toDeferred.blockingGet() }
+    private fun <T> Single<T>.toDeferredGlobalAsync(): Deferred<T> = GlobalScope.async { this@toDeferredGlobalAsync.blockingGet() }
 
     @Test
     fun `test using GlobalScope async`(): Unit = runBlocking {
-        val deferred = getProducts().toDeferred().await()
-        deferred.forEach { product ->
-            assertThat(deferred).contains(product)
+        val deferred = getProducts().toDeferredGlobalAsync().await()
+        deferred.forEach {
+            assertThat(deferred).contains(it)
         }
         deferred.assertResultsTrue()
     }
 
     // using CoroutineScope(context).async
-    private fun <T> Single<T>.toDeferred(context: CoroutineContext): Deferred<T> =
-        CoroutineScope(context).async { this@toDeferred.blockingGet() }
+    private fun <T> Single<T>.toDeferredWithContext(context: CoroutineContext): Deferred<T> =
+        CoroutineScope(context).async { this@toDeferredWithContext.blockingGet() }
 
     @Test
     fun `test using CoroutineScope with context and async`(): Unit = runBlocking {
-        val deferred = getProducts().toDeferred(Dispatchers.IO).await()
-        deferred.forEach { product ->
-            assertThat(deferred).contains(product)
+        val deferred = getProducts().toDeferredWithContext(Dispatchers.IO).await()
+        deferred.forEach {
+            assertThat(deferred).contains(it)
         }
         deferred.assertResultsTrue()
     }
@@ -84,22 +86,47 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     @Test
     fun `test using CompletableDeferred`(): Unit = runBlocking {
         val deferred = getProducts().toCompletableDeferred().await()
-        deferred.forEach { product ->
-            assertThat(deferred).contains(product)
+        deferred.forEach {
+            assertThat(deferred).contains(it)
         }
         deferred.assertResultsTrue()
     }
 
-    // using suspend
+    // using suspendCoroutine
     private suspend fun <T> Single<T>.toDeferredWithSuspend(): T = suspendCoroutine { continuation ->
         this.subscribe({ continuation.resume(it) }, { continuation.resumeWithException(it) })
     }
 
     @Test
-    fun `test using suspend`(): Unit = runBlocking {
+    fun `test using suspendCoroutine`(): Unit = runBlocking {
         val deferred = getProducts().toDeferredWithSuspend()
-        deferred.forEach { product ->
-            assertThat(deferred).contains(product)
+        deferred.forEach {
+            assertThat(deferred).contains(it)
+        }
+        deferred.assertResultsTrue()
+    }
+
+    // using rx2
+    private suspend fun <T> Single<T>.toDeferredRx2(): T = this.await()
+
+    @Test
+    fun `test using rx2`(): Unit = runBlocking {
+        val deferred = getProducts().toDeferredRx2()
+        deferred.forEach {
+            assertThat(deferred).contains(it)
+        }
+        deferred.assertResultsTrue()
+    }
+
+    // using rx2 with context
+    private fun <T> Single<T>.toDeferredRx2WithContext(context: CoroutineContext): Deferred<T> =
+        CoroutineScope(context).async { this@toDeferredRx2WithContext.await() }
+
+    @Test
+    fun `test using rx2 with context`(): Unit = runBlocking {
+        val deferred = getProducts().toDeferredRx2WithContext(Dispatchers.IO).await()
+        deferred.forEach {
+            assertThat(deferred).contains(it)
         }
         deferred.assertResultsTrue()
     }

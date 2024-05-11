@@ -30,5 +30,12 @@
             <artifactId>rxkotlin</artifactId>
             <version>${rxkotlin.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-rx2</artifactId>
+            <version>1.6.0</version> <!-- Ganti versi sesuai kebutuhan -->
+        </dependency>
+
     </dependencies>
 </project>
