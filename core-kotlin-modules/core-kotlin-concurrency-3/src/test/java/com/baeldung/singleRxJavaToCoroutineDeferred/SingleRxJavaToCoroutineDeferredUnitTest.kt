@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
+import kotlin.test.assertTrue
 
 /*
     RxJava (Single)                             Kotlin Coroutines (Deferred)
@@ -22,7 +22,6 @@ import kotlin.coroutines.suspendCoroutine
         v                                           v
     (subscribeOn)                               (await)
 */
-
 
 @OptIn(DelicateCoroutinesApi::class)
 class SingleRxJavaToCoroutineDeferredUnitTest {
@@ -47,7 +46,9 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
 
     private fun List<Product>.assertResultsTrue() {
         assertThat(this).containsExactly(
-            Product(4, "Lenovo", 550.0), Product(2, "Oppo", 800.0), Product(1, "Samsung", 1200.0)
+            Product(4, "Lenovo", 550.0),
+            Product(2, "Oppo", 800.0),
+            Product(1, "Samsung", 1200.0)
         )
     }
 
@@ -58,11 +59,9 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
 
     @Test
     fun `test using async`(): Unit = runBlocking {
-        val deferred = getFilteredProducts().toDeferredAsync().await()
-        deferred.forEach {
-            assertThat(deferred).contains(it)
-        }
-        deferred.assertResultsTrue()
+        val deferred = getFilteredProducts().toDeferredAsync()
+        assertTrue(deferred is Deferred<*>)
+        deferred.await().assertResultsTrue()
     }
 
     // using GlobalScope.async
@@ -71,11 +70,9 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
 
     @Test
     fun `test using GlobalScope async`(): Unit = runBlocking {
-        val deferred = getFilteredProducts().toDeferredGlobalAsync().await()
-        deferred.forEach {
-            assertThat(deferred).contains(it)
-        }
-        deferred.assertResultsTrue()
+        val deferred = getFilteredProducts().toDeferredGlobalAsync()
+        assertTrue(deferred is Deferred<*>)
+        deferred.await().assertResultsTrue()
     }
 
     // using CoroutineScope(context).async
@@ -84,11 +81,9 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
 
     @Test
     fun `test using CoroutineScope with context and async`(): Unit = runBlocking {
-        val deferred = getFilteredProducts().toDeferredWithContext(Dispatchers.IO).await()
-        deferred.forEach {
-            assertThat(deferred).contains(it)
-        }
-        deferred.assertResultsTrue()
+        val deferred = getFilteredProducts().toDeferredWithContext(Dispatchers.IO)
+        assertTrue(deferred is Deferred<*>)
+        deferred.await().assertResultsTrue()
     }
 
     // using CompletableDeferred
@@ -100,37 +95,60 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
 
     @Test
     fun `test using CompletableDeferred`(): Unit = runBlocking {
-        val deferred = getFilteredProducts().toCompletableDeferred().await()
-        deferred.forEach {
-            assertThat(deferred).contains(it)
-        }
-        deferred.assertResultsTrue()
+        val deferred = getFilteredProducts().toCompletableDeferred()
+        assertTrue(deferred is Deferred<*>)
+        deferred.await().assertResultsTrue()
     }
 
     // using suspendCoroutine
-    private suspend fun <T : Any> Single<T>.toDeferredWithSuspend(): T = suspendCoroutine { continuation ->
-        this.subscribe({ continuation.resume(it) }, { continuation.resumeWithException(it) })
+    private fun <T : Any> Single<T>.toDeferredWithSuspend(): Deferred<T> {
+        return GlobalScope.async {
+            suspendCancellableCoroutine { continuation ->
+                this@toDeferredWithSuspend.subscribe({ result ->
+                    continuation.resume(result)
+                }, { error ->
+                    continuation.resumeWithException(error)
+                })
+            }
+        }
     }
 
     @Test
     fun `test using suspendCoroutine`(): Unit = runBlocking {
         val deferred = getFilteredProducts().toDeferredWithSuspend()
-        deferred.forEach {
-            assertThat(deferred).contains(it)
+        assertTrue(deferred is Deferred<*>)
+        deferred.await().assertResultsTrue()
+    }
+
+    // using suspendCoroutine with custom scope
+    private suspend fun <T : Any> Single<T>.toDeferredWithSuspend(scope: CoroutineScope): Deferred<T> {
+        return scope.async {
+            suspendCancellableCoroutine { continuation ->
+                this@toDeferredWithSuspend.subscribe({ result ->
+                    continuation.resume(result)
+                }, { error ->
+                    continuation.resumeWithException(error)
+                })
+            }
         }
-        deferred.assertResultsTrue()
+    }
+
+    @Test
+    fun `test using suspendCoroutine with custom Scope`(): Unit = runBlocking {
+        val deferred = getFilteredProducts().toDeferredWithSuspend(this)
+        assertTrue(deferred is Deferred<*>)
+        deferred.await().assertResultsTrue()
     }
 
     // using rx3
-    private suspend fun <T : Any> Single<T>.toDeferredRx2(): T = this.await()
+    private suspend fun <T : Any> Single<T>.toDeferredRx2(): Deferred<T> =
+        CoroutineScope(Dispatchers.IO).async { this@toDeferredRx2.await() }
 
     @Test
     fun `test using rx3`(): Unit = runBlocking {
         val deferred = getFilteredProducts().toDeferredRx2()
-        deferred.forEach {
-            assertThat(deferred).contains(it)
-        }
-        deferred.assertResultsTrue()
+        assertTrue(deferred is Deferred<*>)
+        deferred.await().assertResultsTrue()
     }
 
     // using rx3 with context
@@ -139,11 +157,9 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
 
     @Test
     fun `test using rx3 with context`(): Unit = runBlocking {
-        val deferred = getFilteredProducts().toDeferredRx2WithContext(Dispatchers.IO).await()
-        deferred.forEach {
-            assertThat(deferred).contains(it)
-        }
-        deferred.assertResultsTrue()
+        val deferred = getFilteredProducts().toDeferredRx2WithContext(Dispatchers.IO)
+        assertTrue(deferred is Deferred<*>)
+        deferred.await().assertResultsTrue()
     }
 
 }
