@@ -11,6 +11,19 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
+/*
+    RxJava (Single)                             Kotlin Coroutines (Deferred)
+    -------------                               ------------------------
+    Observable                                  CoroutineScope
+        |                                           |
+        v                                           v
+    Single                                      Deferred
+        |                                           |
+        v                                           v
+    (subscribeOn)                               (await)
+*/
+
+
 @OptIn(DelicateCoroutinesApi::class)
 class SingleRxJavaToCoroutineDeferredUnitTest {
 
