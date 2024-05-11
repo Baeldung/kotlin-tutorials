@@ -6,82 +6,48 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.rx2.await
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
-import kotlin.random.Random
 
 @OptIn(DelicateCoroutinesApi::class)
 class SingleRxJavaToCoroutineDeferredUnitTest {
 
     data class Product(val id: Int, val name: String, val price: Double)
 
-//    private fun getProducts(): Single<List<Product>> {
-//        return Single.just(
-//            listOf(
-//                Product(1, "Samsung", 1200.0),
-//                Product(2, "Oppo", 800.0),
-//                Product(3, "Nokia", 400.0),
-//                Product(4, "Lenovo", 400.0)
-//            )
-//        ).subscribeOn(Schedulers.io())
-//    }
+    private val allProducts = listOf(
+        Product(1, "Samsung", 1200.0),
+        Product(2, "Oppo", 800.0),
+        Product(3, "Nokia", 450.0),
+        Product(4, "Lenovo", 550.0),
+        Product(5, "ASUS", 400.0)
+    )
 
-    private fun getProducts(): Single<List<Product>> {
+    private fun getFilteredProducts(): Single<List<Product>> {
         return Single.just(
-            listOf(
-                Product(1, "Samsung", 1200.0),
-                Product(2, "Oppo", 800.0),
-                Product(3, "Nokia", 400.0),
-                Product(4, "Lenovo", 400.0)
-            )
-        ).flatMap { products ->
-            // Randomly decide whether to throw an exception
-            if (Random.nextBoolean()) {
-                Single.just(products)
-            } else {
-                Single.error(Exception("Failed to retrieve products"))
-            }
+            allProducts
+        ).map { products ->
+            products.sortedBy { it.price }.filter { it.price > 500 }
         }.subscribeOn(Schedulers.io())
     }
 
-
     private fun List<Product>.assertResultsTrue() {
-        try {
-            assertThat(this).containsExactly(
-                Product(1, "Samsung", 1200.0),
-                Product(2, "Oppo", 800.0),
-                Product(3, "Nokia", 400.0),
-                Product(4, "Lenovo", 400.0)
-            )
-        } catch (e : Exception) {
-            assertThrows<Exception> {
-                
-            }
-        }
-
+        assertThat(this).containsExactly(
+            Product(4, "Lenovo", 550.0), Product(2, "Oppo", 800.0), Product(1, "Samsung", 1200.0)
+        )
     }
 
     // using async
-    private fun <T> Single<T>.toDeferredAsync(): Deferred<T> = runBlocking {
-        return@runBlocking async { this@toDeferredAsync.blockingGet() }
-    }
+    private fun <T> Single<T>.toDeferredAsync(): Deferred<T> =
+        runBlocking { async { this@toDeferredAsync.blockingGet() } }
+
 
     @Test
     fun `test using async`(): Unit = runBlocking {
-        val deferred = getProducts().toDeferredAsync().await()
+        val deferred = getFilteredProducts().toDeferredAsync().await()
         deferred.forEach {
-            try {
-                try {
-                assertThat(deferred).contains(it)
-            } catch (_: Exception) {
-                
-            }
-            } catch (_: Exception) {
-                
-            }
+            assertThat(deferred).contains(it)
         }
         deferred.assertResultsTrue()
     }
@@ -92,13 +58,9 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
 
     @Test
     fun `test using GlobalScope async`(): Unit = runBlocking {
-        val deferred = getProducts().toDeferredGlobalAsync().await()
+        val deferred = getFilteredProducts().toDeferredGlobalAsync().await()
         deferred.forEach {
-            try {
-                assertThat(deferred).contains(it)
-            } catch (_: Exception) {
-                
-            }
+            assertThat(deferred).contains(it)
         }
         deferred.assertResultsTrue()
     }
@@ -109,13 +71,9 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
 
     @Test
     fun `test using CoroutineScope with context and async`(): Unit = runBlocking {
-        val deferred = getProducts().toDeferredWithContext(Dispatchers.IO).await()
+        val deferred = getFilteredProducts().toDeferredWithContext(Dispatchers.IO).await()
         deferred.forEach {
-            try {
-                assertThat(deferred).contains(it)
-            } catch (_: Exception) {
-                
-            }
+            assertThat(deferred).contains(it)
         }
         deferred.assertResultsTrue()
     }
@@ -129,13 +87,9 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
 
     @Test
     fun `test using CompletableDeferred`(): Unit = runBlocking {
-        val deferred = getProducts().toCompletableDeferred().await()
+        val deferred = getFilteredProducts().toCompletableDeferred().await()
         deferred.forEach {
-            try {
-                assertThat(deferred).contains(it)
-            } catch (_: Exception) {
-                
-            }
+            assertThat(deferred).contains(it)
         }
         deferred.assertResultsTrue()
     }
@@ -147,13 +101,9 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
 
     @Test
     fun `test using suspendCoroutine`(): Unit = runBlocking {
-        val deferred = getProducts().toDeferredWithSuspend()
+        val deferred = getFilteredProducts().toDeferredWithSuspend()
         deferred.forEach {
-            try {
-                assertThat(deferred).contains(it)
-            } catch (_: Exception) {
-                
-            }
+            assertThat(deferred).contains(it)
         }
         deferred.assertResultsTrue()
     }
@@ -163,13 +113,9 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
 
     @Test
     fun `test using rx2`(): Unit = runBlocking {
-        val deferred = getProducts().toDeferredRx2()
+        val deferred = getFilteredProducts().toDeferredRx2()
         deferred.forEach {
-            try {
-                assertThat(deferred).contains(it)
-            } catch (_: Exception) {
-                
-            }
+            assertThat(deferred).contains(it)
         }
         deferred.assertResultsTrue()
     }
@@ -180,13 +126,9 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
 
     @Test
     fun `test using rx2 with context`(): Unit = runBlocking {
-        val deferred = getProducts().toDeferredRx2WithContext(Dispatchers.IO).await()
+        val deferred = getFilteredProducts().toDeferredRx2WithContext(Dispatchers.IO).await()
         deferred.forEach {
-            try {
-                assertThat(deferred).contains(it)
-            } catch (_: Exception) {
-                
-            }
+            assertThat(deferred).contains(it)
         }
         deferred.assertResultsTrue()
     }
