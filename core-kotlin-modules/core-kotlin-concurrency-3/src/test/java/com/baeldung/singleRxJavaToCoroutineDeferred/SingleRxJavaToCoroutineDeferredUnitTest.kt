@@ -45,7 +45,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     }
 
     private suspend fun Deferred<*>.assertResultsTrue(){
-        
+
         assertTrue(actual = this is kotlinx.coroutines.Deferred<*>)
 
         assertThat(this.await() as List<*>).containsExactly(
