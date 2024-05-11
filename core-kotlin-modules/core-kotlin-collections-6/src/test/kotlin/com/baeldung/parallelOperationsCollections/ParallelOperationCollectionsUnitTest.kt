@@ -154,7 +154,8 @@ class ParallelOperationCollectionsUnitTest {
             .flatMap { Observable.just(it) } // Without using the maxConcurrency parameter, so it only uses 1 thread.
             .doOnNext { person -> person.setAdult() }
             .filter { it.age > 15 }.toList()
-            .map { it.sortedBy { person -> person.age } }.blockingGet()
+            .map { it.sortedBy { person -> person.age } }
+            .blockingGet()
 
         startTime.printTotalTime()
 
