@@ -1,8 +1,8 @@
 package com.baeldung.parallelOperationsCollections
 
-import io.reactivex.Observable
-import io.reactivex.rxkotlin.toObservable
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.kotlin.toObservable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
