@@ -1,10 +1,9 @@
-package com.baeldung.SingleRxJavaToCoroutineDeferred
+package com.baeldung.singleRxJavaToCoroutineDeferred
 
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.*
 import kotlinx.coroutines.rx2.await
-import kotlinx.coroutines.rx2.awaitSingle
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import kotlin.coroutines.CoroutineContext
@@ -28,7 +27,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         ).subscribeOn(Schedulers.io())
     }
 
-    private fun List<Product>.assertResultsTrue(){
+    private fun List<Product>.assertResultsTrue() {
         assertThat(this).containsExactly(
             Product(1, "Samsung", 1200.0),
             Product(2, "Oppo", 800.0),
@@ -52,7 +51,8 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     }
 
     // using GlobalScope.async
-    private fun <T> Single<T>.toDeferredGlobalAsync(): Deferred<T> = GlobalScope.async { this@toDeferredGlobalAsync.blockingGet() }
+    private fun <T> Single<T>.toDeferredGlobalAsync(): Deferred<T> =
+        GlobalScope.async { this@toDeferredGlobalAsync.blockingGet() }
 
     @Test
     fun `test using GlobalScope async`(): Unit = runBlocking {

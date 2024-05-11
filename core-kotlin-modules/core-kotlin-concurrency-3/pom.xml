@@ -34,8 +34,15 @@
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-rx2</artifactId>
-            <version>1.6.0</version> <!-- Ganti versi sesuai kebutuhan -->
+            <version>1.8.1-Beta</version> <!-- choose version our need -->
         </dependency>
 
     </dependencies>
+    <repositories>
+        <repository>
+            <id>maven_central</id>
+            <name>Maven Central</name>
+            <url>https://repo.maven.apache.org/maven2/</url>
+        </repository>
+    </repositories>
 </project>
