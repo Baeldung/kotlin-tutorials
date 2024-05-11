@@ -1,8 +1,8 @@
 package com.baeldung.parallelOperationsCollections
 
-import io.reactivex.Observable
-import io.reactivex.rxkotlin.toObservable
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.kotlin.toObservable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -105,11 +105,10 @@ class ParallelOperationCollectionsUnitTest {
         val observable = Observable.fromIterable(people)
             .flatMap(
                 {
-                    Observable.just(it)
-                        .subscribeOn(Schedulers.computation())
-                        .doOnNext { person -> person.setAdult() }
-                },
-                people.size // Uses maxConcurrency for the number of elements
+                    Observable.just(it).subscribeOn(Schedulers.computation()).doOnNext { person ->
+                        person.setAdult()
+                    }
+                }, people.size // Uses maxConcurrency for the number of elements
             )
             .filter { it.age > 15 }
             .toList()
@@ -129,11 +128,10 @@ class ParallelOperationCollectionsUnitTest {
         val observable = people.toObservable()
             .flatMap(
                 {
-                    Observable.just(it)
-                        .subscribeOn(Schedulers.computation())
-                        .doOnNext { person -> person.setAdult() }
-                },
-                people.size // Uses maxConcurrency for the number of elements
+                    Observable.just(it).subscribeOn(Schedulers.computation()).doOnNext { person ->
+                        person.setAdult()
+                    }
+                }, people.size // Uses maxConcurrency for the number of elements
             ).filter { it.age > 15 }
             .toList()
             .map { it.sortedBy { person -> person.age } }
@@ -154,8 +152,7 @@ class ParallelOperationCollectionsUnitTest {
             .flatMap { Observable.just(it) } // Without using the maxConcurrency parameter, so it only uses 1 thread.
             .doOnNext { person -> person.setAdult() }
             .filter { it.age > 15 }.toList()
-            .map { it.sortedBy { person -> person.age } }
-            .blockingGet()
+            .map { it.sortedBy { person -> person.age } }.blockingGet()
 
         startTime.printTotalTime()
 

@@ -15,10 +15,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.reactivex.rxjava2</groupId>
+            <groupId>io.reactivex.rxjava3</groupId>
             <artifactId>rxkotlin</artifactId>
-            <version>${rxkotlin.version}</version>
+            <version>3.0.1</version>
+            <scope>runtime</scope>
         </dependency>
+
     </dependencies>
 
     <properties>
