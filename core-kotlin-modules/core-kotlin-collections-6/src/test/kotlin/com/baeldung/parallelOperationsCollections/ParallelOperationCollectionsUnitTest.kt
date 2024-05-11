@@ -143,6 +143,23 @@ class ParallelOperationCollectionsUnitTest {
     }
 
     @Test
+    fun `using RxKotlin but still use 1 thread`() { // ObservableKt.kt.class from io.reactivex.rxkotlin
+        logger.info("Using RxKotlin 1 thread")
+        val startTime = Instant.now()
+
+        val observable = people.toObservable()
+            .subscribeOn(Schedulers.io())
+            .flatMap { Observable.just(it) } // Without using the maxConcurrency parameter, so it only uses 1 thread.
+            .doOnNext { person -> person.setAdult() }
+            .filter { it.age > 15 }.toList()
+            .map { it.sortedBy { person -> person.age } }.blockingGet()
+
+        startTime.printTotalTime()
+
+        observable.assertResultsTrue()
+    }
+
+    @Test
     fun `using parallelStream()`() {
         logger.info("Using Stream API")
         val startTime = Instant.now()
