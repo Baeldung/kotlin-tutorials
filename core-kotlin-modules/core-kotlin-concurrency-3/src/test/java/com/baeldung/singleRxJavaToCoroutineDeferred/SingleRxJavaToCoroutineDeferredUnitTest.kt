@@ -10,11 +10,23 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
+import kotlin.random.Random
 
 @OptIn(DelicateCoroutinesApi::class)
 class SingleRxJavaToCoroutineDeferredUnitTest {
 
     data class Product(val id: Int, val name: String, val price: Double)
+
+//    private fun getProducts(): Single<List<Product>> {
+//        return Single.just(
+//            listOf(
+//                Product(1, "Samsung", 1200.0),
+//                Product(2, "Oppo", 800.0),
+//                Product(3, "Nokia", 400.0),
+//                Product(4, "Lenovo", 400.0)
+//            )
+//        ).subscribeOn(Schedulers.io())
+//    }
 
     private fun getProducts(): Single<List<Product>> {
         return Single.just(
@@ -24,8 +36,16 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
                 Product(3, "Nokia", 400.0),
                 Product(4, "Lenovo", 400.0)
             )
-        ).subscribeOn(Schedulers.io())
+        ).flatMap { products ->
+            // Randomly decide whether to throw an exception
+            if (Random.nextBoolean()) {
+                Single.just(products)
+            } else {
+                Single.error(Exception("Failed to retrieve products"))
+            }
+        }.subscribeOn(Schedulers.io())
     }
+
 
     private fun List<Product>.assertResultsTrue() {
         assertThat(this).containsExactly(
