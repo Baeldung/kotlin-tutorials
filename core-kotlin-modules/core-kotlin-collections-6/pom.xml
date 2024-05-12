@@ -17,14 +17,14 @@
         <dependency>
             <groupId>io.reactivex.rxjava3</groupId>
             <artifactId>rxkotlin</artifactId>
-            <version>3.0.1</version>
+            <version>${rxkotlin.version}</version>
             <scope>runtime</scope>
         </dependency>
 
     </dependencies>
 
     <properties>
-        <rxkotlin.version>2.3.0</rxkotlin.version>
+        <rxkotlin.version>3.0.1</rxkotlin.version>
     </properties>
 
 </project>
