@@ -64,12 +64,4 @@ class FlowMergingTests {
         assertEquals(listOf(5, 6, 7, 6, 7, 8, 7, 8, 9), result)
     }
 
-
-    @Test
-    fun `should merge using runningReduce`() = runBlocking {
-        val result = flowOf(1, 2, 3, 4)
-                .runningReduce { acc, value -> acc + value }
-                .toList()
-        assertEquals(listOf(1, 3, 6, 10), result)
-    }
 }

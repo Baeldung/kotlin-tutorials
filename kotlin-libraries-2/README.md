@@ -14,4 +14,5 @@ This module contains articles about Kotlin Libraries.
 - [Kotlin Coroutines and RxKotlin Comparison](https://www.baeldung.com/kotlin/coroutines-vs-rxkotlin)
 - [Introduction to Kotlin Documentation with Dokka](https://www.baeldung.com/kotlin/dokka-documentation-introduction)
 - [Read and Write to Excel With Kotlin](https://www.baeldung.com/kotlin/excel-read-write)
+- [Introduction to KotlinPoet](https://www.baeldung.com/kotlin/kotlinpoet)
 - More articles: [[<-- prev]](/kotlin-libraries)
