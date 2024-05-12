@@ -20,5 +20,11 @@
             <version>0.7.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.github.classgraph</groupId>
+            <artifactId>classgraph</artifactId>
+            <version>4.8.105</version>
+        </dependency>
+
     </dependencies>
 </project>
