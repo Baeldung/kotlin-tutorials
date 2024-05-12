@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 import kotlin.test.assertTrue
 
 /*
@@ -44,14 +45,12 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         }.subscribeOn(Schedulers.io())
     }
 
-    private suspend fun Deferred<*>.assertResultsTrue(){
+    private suspend fun Deferred<*>.assertResultsTrue() {
 
-        assertTrue(actual = this is kotlinx.coroutines.Deferred<*>)
+        assertTrue(actual = this is Deferred<*>)
 
         assertThat(this.await() as List<*>).containsExactly(
-            Product(4, "Lenovo", 550.0),
-            Product(2, "Oppo", 800.0),
-            Product(1, "Samsung", 1200.0)
+            Product(4, "Lenovo", 550.0), Product(2, "Oppo", 800.0), Product(1, "Samsung", 1200.0)
         )
     }
 
@@ -93,21 +92,43 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         return completableDeferred
     }
 
+    // using CompletableDeferred with callback interface
+    private fun <T : Any> Single<T>.toCompletableDeferred(
+        onSuccess: (CompletableDeferred<T>) -> Unit, onError: (Throwable) -> Unit
+    ): CompletableDeferred<T> {
+        val completableDeferred = CompletableDeferred<T>()
+        this.subscribe({ result ->
+            onSuccess(completableDeferred)
+            completableDeferred.complete(result)
+        }, { error ->
+            onError(error)
+            completableDeferred.completeExceptionally(error)
+        })
+        return completableDeferred
+    }
+
     @Test
     fun `test using CompletableDeferred`(): Unit = runBlocking {
         val deferred = getFilteredProducts().toCompletableDeferred()
         deferred.assertResultsTrue()
+
+        getFilteredProducts().toCompletableDeferred(
+            onSuccess = { result ->
+            runBlocking {
+                result.assertResultsTrue()
+            }
+        }, onError = { error ->
+            println("Error: ${error.message}")
+        }).await()
     }
 
-    // using suspendCoroutine
+    // using suspendCoroutines
     private fun <T : Any> Single<T>.toDeferredWithSuspend(): Deferred<T> {
         return GlobalScope.async {
-            suspendCancellableCoroutine { continuation ->
-                this@toDeferredWithSuspend.subscribe({ result ->
+            suspendCoroutine { continuation ->
+                this@toDeferredWithSuspend.subscribe { result ->
                     continuation.resume(result)
-                }, { error ->
-                    continuation.resumeWithException(error)
-                })
+                }
             }
         }
     }
@@ -118,23 +139,37 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         deferred.assertResultsTrue()
     }
 
-    // using suspendCoroutine with custom scope
-    private suspend fun <T : Any> Single<T>.toDeferredWithSuspend(scope: CoroutineScope): Deferred<T> {
-        return scope.async {
+    // using suspendCancellableCoroutine
+    private fun <T : Any> Single<T>.toDeferredWithsuspendCancellableCoroutine(
+        onSuccess: (Deferred<T>) -> Unit, onError: (Throwable) -> Unit
+    ): Deferred<T> {
+        return GlobalScope.async {
             suspendCancellableCoroutine { continuation ->
-                this@toDeferredWithSuspend.subscribe({ result ->
-                    continuation.resume(result)
+                this@toDeferredWithsuspendCancellableCoroutine.subscribe({ result ->
+                    val deferredResult = CompletableDeferred<T>().apply {
+                        complete(result)
+                        continuation.resume(result)
+                    }
+                    onSuccess(deferredResult)
                 }, { error ->
                     continuation.resumeWithException(error)
+                    onError(error)
                 })
             }
         }
     }
 
+
     @Test
-    fun `test using suspendCoroutine with custom Scope`(): Unit = runBlocking {
-        val deferred = getFilteredProducts().toDeferredWithSuspend(this)
-        deferred.assertResultsTrue()
+    fun `test using suspendCancellableCoroutine with custom callback`(): Unit = runBlocking {
+        getFilteredProducts().toDeferredWithsuspendCancellableCoroutine(
+            onSuccess = { deferredResult ->
+                runBlocking { deferredResult.assertResultsTrue() }
+            },
+            onError = { error ->
+                println("Error: ${error.message}")
+            }
+        ).await()
     }
 
     // using rx3
