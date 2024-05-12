@@ -5,4 +5,5 @@
 - [Spring Dependency Injection With Kotlin](https://www.baeldung.com/kotlin/spring-dependency-injection)
 - [RestTemplate Examples in Kotlin](https://www.baeldung.com/kotlin/spring-resttemplate-examples)
 - [Creating a Spring Boot Console Application With Kotlin](https://www.baeldung.com/kotlin/spring-boot-console-application)
+- [Using the @Value Annotation in Kotlin](https://www.baeldung.com/kotlin/spring-value-annotation)
 - More articles: [[<-- prev]](../spring-boot-kotlin)
