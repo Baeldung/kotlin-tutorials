@@ -12,7 +12,7 @@ import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 import kotlin.test.assertTrue
 
-@OptIn(DelicateCoroutinesApi::class)
+
 class SingleRxJavaToCoroutineDeferredUnitTest {
 
     data class Product(val id: Int, val name: String, val price: Double)
@@ -37,9 +37,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         assertTrue(actual = this is Deferred<*>)
 
         assertThat(this.await() as List<*>).containsExactly(
-            Product(4, "Lenovo", 550.0),
-            Product(2, "Oppo", 800.0),
-            Product(1, "Samsung", 1200.0)
+            Product(4, "Lenovo", 550.0), Product(2, "Oppo", 800.0), Product(1, "Samsung", 1200.0)
         )
     }
 
@@ -53,24 +51,14 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     }
 
     // using async with extension
-    private fun <T : Any> Single<T>.toDeferredAsync(): Deferred<T> =
-        runBlocking { async { this@toDeferredAsync.blockingGet() } }
+    private suspend fun <T : Any> Single<T>.toDeferredAsync(): Deferred<T> =
+        coroutineScope { async { this@toDeferredAsync.await() } }
 
 
     @Test
     fun `test using async with extension`() = runBlocking {
         val deferredExt = getFilteredProducts().toDeferredAsync()
         deferredExt.assertResultsTrue()
-    }
-
-    // using GlobalScope.async
-    private fun <T : Any> Single<T>.toDeferredGlobalAsync(): Deferred<T> =
-        GlobalScope.async { this@toDeferredGlobalAsync.blockingGet() }
-
-    @Test
-    fun `test using GlobalScope async`() = runBlocking {
-        val deferred = getFilteredProducts().toDeferredGlobalAsync()
-        deferred.assertResultsTrue()
     }
 
     // using CoroutineScope(context).async
@@ -92,8 +80,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
 
     // using CompletableDeferred with callback
     private fun <T : Any> Single<T>.toCompletableDeferred(
-        onSuccess: (CompletableDeferred<T>, T) -> Unit,
-        onError: (CompletableDeferred<T>, Throwable) -> Unit
+        onSuccess: (CompletableDeferred<T>, T) -> Unit, onError: (CompletableDeferred<T>, Throwable) -> Unit
     ): CompletableDeferred<T> {
         val completableDeferred = CompletableDeferred<T>()
         this.subscribe({ result ->
@@ -106,7 +93,6 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         return completableDeferred
     }
 
-
     @Test
     fun `test using CompletableDeferred`() = runBlocking {
         val deferred = getFilteredProducts().toCompletableDeferred()
@@ -115,19 +101,16 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
 
     @Test
     fun `test using CompletableDeferred with callback`(): Unit = runBlocking {
-        getFilteredProducts().toCompletableDeferred(
-            onSuccess = { deferredResult, _ ->
-                runBlocking { deferredResult.assertResultsTrue() }
-            },
-            onError = { _, error ->
-                println("Error: ${error.message}")
-            }
-        ).await()
+        getFilteredProducts().toCompletableDeferred(onSuccess = { deferredResult, _ ->
+            launch { deferredResult.assertResultsTrue() }
+        }, onError = { _, error ->
+            println("Error: ${error.message}")
+        }).await()
     }
 
     // using suspendCoroutines directly
     @Test
-    fun `using suspendCoroutines directly`(): Unit = runBlocking{
+    fun `using suspendCoroutines directly`(): Unit = runBlocking {
         val deffered = async {
             suspendCoroutine { continuation ->
                 getFilteredProducts().subscribe { result ->
@@ -139,11 +122,13 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     }
 
     // using suspendCoroutines with extension
-    private fun <T : Any> Single<T>.toDeferredWithSuspend(): Deferred<T> {
-        return GlobalScope.async {
-            suspendCoroutine { continuation ->
-                this@toDeferredWithSuspend.subscribe { result ->
-                    continuation.resume(result)
+    private suspend fun <T : Any> Single<T>.toDeferredWithSuspend(): Deferred<T> {
+        return coroutineScope {
+            async {
+                suspendCoroutine { continuation ->
+                    this@toDeferredWithSuspend.subscribe { result ->
+                        continuation.resume(result)
+                    }
                 }
             }
         }
@@ -156,21 +141,23 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     }
 
     // using suspendCancellableCoroutine
-    private fun <T : Any> Single<T>.toDeferredWithsuspendCancellableCoroutine(
+    private suspend fun <T : Any> Single<T>.toDeferredWithsuspendCancellableCoroutine(
         onSuccess: (Deferred<T>) -> Unit, onError: (Throwable) -> Unit
     ): Deferred<T> {
-        return GlobalScope.async {
-            suspendCancellableCoroutine { continuation ->
-                this@toDeferredWithsuspendCancellableCoroutine.subscribe({ result ->
-                    val deferredResult = CompletableDeferred<T>().apply {
-                        complete(result)
-                        continuation.resume(result)
-                    }
-                    onSuccess(deferredResult)
-                }, { error ->
-                    continuation.resumeWithException(error)
-                    onError(error)
-                })
+        return coroutineScope {
+            async {
+                suspendCancellableCoroutine { continuation ->
+                    this@toDeferredWithsuspendCancellableCoroutine.subscribe({ result ->
+                        val deferredResult = CompletableDeferred<T>().apply {
+                            complete(result)
+                            continuation.resume(result)
+                        }
+                        onSuccess(deferredResult)
+                    }, { error ->
+                        continuation.resumeWithException(error)
+                        onError(error)
+                    })
+                }
             }
         }
     }
@@ -178,19 +165,16 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
 
     @Test
     fun `test using suspendCancellableCoroutine with custom callback`(): Unit = runBlocking {
-        getFilteredProducts().toDeferredWithsuspendCancellableCoroutine(
-            onSuccess = { deferredResult ->
-                runBlocking { deferredResult.assertResultsTrue() }
-            },
-            onError = { error ->
-                println("Error: ${error.message}")
-            }
-        ).await()
+        getFilteredProducts().toDeferredWithsuspendCancellableCoroutine(onSuccess = { deferredResult ->
+            launch { deferredResult.assertResultsTrue() }
+        }, onError = { error ->
+            println("Error: ${error.message}")
+        }).await()
     }
 
     // using rx3 directly
     @Test
-    fun `using rx3 directly`() = runBlocking{
+    fun `using rx3 directly`() = runBlocking {
         val deferred = async {
             getFilteredProducts().await()
         }
@@ -199,7 +183,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
 
     // using rx3 ext
     private suspend fun <T : Any> Single<T>.toDeferredRx3(): Deferred<T> =
-        CoroutineScope(Dispatchers.IO).async { this@toDeferredRx3.await() }
+        coroutineScope { async { this@toDeferredRx3.await() } }
 
     @Test
     fun `test using rx3 ext`() = runBlocking {
