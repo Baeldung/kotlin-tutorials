@@ -92,20 +92,21 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         return completableDeferred
     }
 
-    // using CompletableDeferred with callback interface
     private fun <T : Any> Single<T>.toCompletableDeferred(
-        onSuccess: (CompletableDeferred<T>) -> Unit, onError: (Throwable) -> Unit
+        onSuccess: (CompletableDeferred<T>, T) -> Unit,
+        onError: (CompletableDeferred<T>, Throwable) -> Unit
     ): CompletableDeferred<T> {
         val completableDeferred = CompletableDeferred<T>()
         this.subscribe({ result ->
-            onSuccess(completableDeferred)
             completableDeferred.complete(result)
+            onSuccess(completableDeferred, result)
         }, { error ->
-            onError(error)
             completableDeferred.completeExceptionally(error)
+            onError(completableDeferred, error)
         })
         return completableDeferred
     }
+
 
     @Test
     fun `test using CompletableDeferred`(): Unit = runBlocking {
@@ -113,13 +114,13 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         deferred.assertResultsTrue()
 
         getFilteredProducts().toCompletableDeferred(
-            onSuccess = { result ->
-            runBlocking {
-                result.assertResultsTrue()
+            onSuccess = { deferredResult, _ ->
+                runBlocking { deferredResult.assertResultsTrue() }
+            },
+            onError = { _, error ->
+                println("Error: ${error.message}")
             }
-        }, onError = { error ->
-            println("Error: ${error.message}")
-        }).await()
+        ).await()
     }
 
     // using suspendCoroutines
@@ -172,23 +173,32 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         ).await()
     }
 
+    //using rxx3 directly
+    @Test
+    fun `using rx3 directly`(): Unit = runBlocking{
+        val deferred = getFilteredProducts().await()
+
+//        println(deferred.javaClass.name)
+//        deferred.assertResultsTrue()
+
+    }
     // using rx3
-    private suspend fun <T : Any> Single<T>.toDeferredRx2(): Deferred<T> =
-        CoroutineScope(Dispatchers.IO).async { this@toDeferredRx2.await() }
+    private suspend fun <T : Any> Single<T>.toDeferredRx3(): Deferred<T> =
+        CoroutineScope(Dispatchers.IO).async { this@toDeferredRx3.await() }
 
     @Test
-    fun `test using rx3`(): Unit = runBlocking {
-        val deferred = getFilteredProducts().toDeferredRx2()
+    fun `test using rx3`() = runBlocking {
+        val deferred = getFilteredProducts().toDeferredRx3()
         deferred.assertResultsTrue()
     }
 
     // using rx3 with context
-    private fun <T : Any> Single<T>.toDeferredRx2WithContext(context: CoroutineContext): Deferred<T> =
-        CoroutineScope(context).async { this@toDeferredRx2WithContext.await() }
+    private fun <T : Any> Single<T>.toDeferredRx3WithContext(context: CoroutineContext): Deferred<T> =
+        CoroutineScope(context).async { this@toDeferredRx3WithContext.await() }
 
     @Test
     fun `test using rx3 with context`(): Unit = runBlocking {
-        val deferred = getFilteredProducts().toDeferredRx2WithContext(Dispatchers.IO)
+        val deferred = getFilteredProducts().toDeferredRx3WithContext(Dispatchers.IO)
         deferred.assertResultsTrue()
     }
 
