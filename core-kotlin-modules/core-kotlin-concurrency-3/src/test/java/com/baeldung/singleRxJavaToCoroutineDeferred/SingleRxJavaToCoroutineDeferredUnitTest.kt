@@ -12,18 +12,6 @@ import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 import kotlin.test.assertTrue
 
-/*
-    RxJava (Single)                             Kotlin Coroutines (Deferred)
-    -------------                               ------------------------
-    Observable                                  CoroutineScope
-        |                                           |
-        v                                           v
-    Single                                      Deferred
-        |                                           |
-        v                                           v
-    (subscribeOn)                               (await)
-*/
-
 @OptIn(DelicateCoroutinesApi::class)
 class SingleRxJavaToCoroutineDeferredUnitTest {
 
