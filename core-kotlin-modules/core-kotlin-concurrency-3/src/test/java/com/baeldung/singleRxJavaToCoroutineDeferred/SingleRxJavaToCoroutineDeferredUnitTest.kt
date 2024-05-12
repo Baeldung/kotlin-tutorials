@@ -46,11 +46,12 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     }
 
     private suspend fun Deferred<*>.assertResultsTrue() {
-
         assertTrue(actual = this is Deferred<*>)
 
         assertThat(this.await() as List<*>).containsExactly(
-            Product(4, "Lenovo", 550.0), Product(2, "Oppo", 800.0), Product(1, "Samsung", 1200.0)
+            Product(4, "Lenovo", 550.0),
+            Product(2, "Oppo", 800.0),
+            Product(1, "Samsung", 1200.0)
         )
     }
 
@@ -69,7 +70,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
 
 
     @Test
-    fun `test using async with extension`(): Unit = runBlocking {
+    fun `test using async with extension`() = runBlocking {
         val deferredExt = getFilteredProducts().toDeferredAsync()
         deferredExt.assertResultsTrue()
     }
@@ -79,7 +80,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         GlobalScope.async { this@toDeferredGlobalAsync.blockingGet() }
 
     @Test
-    fun `test using GlobalScope async`(): Unit = runBlocking {
+    fun `test using GlobalScope async`() = runBlocking {
         val deferred = getFilteredProducts().toDeferredGlobalAsync()
         deferred.assertResultsTrue()
     }
@@ -101,6 +102,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         return completableDeferred
     }
 
+    // using CompletableDeferred with callback
     private fun <T : Any> Single<T>.toCompletableDeferred(
         onSuccess: (CompletableDeferred<T>, T) -> Unit,
         onError: (CompletableDeferred<T>, Throwable) -> Unit
@@ -118,10 +120,13 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
 
 
     @Test
-    fun `test using CompletableDeferred`(): Unit = runBlocking {
+    fun `test using CompletableDeferred`() = runBlocking {
         val deferred = getFilteredProducts().toCompletableDeferred()
         deferred.assertResultsTrue()
+    }
 
+    @Test
+    fun `test using CompletableDeferred with callback`(): Unit = runBlocking {
         getFilteredProducts().toCompletableDeferred(
             onSuccess = { deferredResult, _ ->
                 runBlocking { deferredResult.assertResultsTrue() }
@@ -132,7 +137,20 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         ).await()
     }
 
-    // using suspendCoroutines
+    // using suspendCoroutines directly
+    @Test
+    fun `using suspendCoroutines directly`(): Unit = runBlocking{
+        val deffered = async {
+            suspendCoroutine { continuation ->
+                getFilteredProducts().subscribe { result ->
+                    continuation.resume(result)
+                }
+            }
+        }
+        deffered.assertResultsTrue()
+    }
+
+    // using suspendCoroutines with extension
     private fun <T : Any> Single<T>.toDeferredWithSuspend(): Deferred<T> {
         return GlobalScope.async {
             suspendCoroutine { continuation ->
