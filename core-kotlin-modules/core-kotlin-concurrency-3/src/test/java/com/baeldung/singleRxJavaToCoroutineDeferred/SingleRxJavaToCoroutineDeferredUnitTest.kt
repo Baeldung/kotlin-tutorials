@@ -54,15 +54,24 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         )
     }
 
-    // using async
+    // using async directly
+    @Test
+    fun `using async direcly`() = runBlocking {
+        val deferred = async {
+            getFilteredProducts().blockingGet()
+        }
+        deferred.assertResultsTrue()
+    }
+
+    // using async with extension
     private fun <T : Any> Single<T>.toDeferredAsync(): Deferred<T> =
         runBlocking { async { this@toDeferredAsync.blockingGet() } }
 
 
     @Test
-    fun `test using async`(): Unit = runBlocking {
-        val deferred = getFilteredProducts().toDeferredAsync()
-        deferred.assertResultsTrue()
+    fun `test using async with extension`(): Unit = runBlocking {
+        val deferredExt = getFilteredProducts().toDeferredAsync()
+        deferredExt.assertResultsTrue()
     }
 
     // using GlobalScope.async
@@ -135,7 +144,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     }
 
     @Test
-    fun `test using suspendCoroutine`(): Unit = runBlocking {
+    fun `test using suspendCoroutine`() = runBlocking {
         val deferred = getFilteredProducts().toDeferredWithSuspend()
         deferred.assertResultsTrue()
     }
@@ -173,21 +182,21 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         ).await()
     }
 
-    //using rxx3 directly
+    // using rx3 directly
     @Test
-    fun `using rx3 directly`(): Unit = runBlocking{
-        val deferred = getFilteredProducts().await()
-
-//        println(deferred.javaClass.name)
-//        deferred.assertResultsTrue()
-
+    fun `using rx3 directly`() = runBlocking{
+        val deferred = async {
+            getFilteredProducts().await()
+        }
+        deferred.assertResultsTrue()
     }
-    // using rx3
+
+    // using rx3 ext
     private suspend fun <T : Any> Single<T>.toDeferredRx3(): Deferred<T> =
         CoroutineScope(Dispatchers.IO).async { this@toDeferredRx3.await() }
 
     @Test
-    fun `test using rx3`() = runBlocking {
+    fun `test using rx3 ext`() = runBlocking {
         val deferred = getFilteredProducts().toDeferredRx3()
         deferred.assertResultsTrue()
     }
