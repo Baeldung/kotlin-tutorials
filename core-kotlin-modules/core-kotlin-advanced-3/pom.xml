@@ -17,8 +17,12 @@
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-html-jvm</artifactId>
-            <version>0.7.2</version>
+            <version>${kotlinx-html-jvm.version}</version>
         </dependency>
-
     </dependencies>
+
+    <properties>
+        <kotlinx-html-jvm.version>0.7.2</kotlinx-html-jvm.version>
+    </properties>
+
 </project>

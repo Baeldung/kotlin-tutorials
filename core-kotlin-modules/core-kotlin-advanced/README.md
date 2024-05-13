@@ -13,3 +13,4 @@ This module contains articles about advanced topics in Kotlin.
 - [Creating a New Instance from a KClass in Kotlin](https://www.baeldung.com/kotlin/kclass-new-instance)
 - [Difference Between crossinline and noinline in Kotlin](https://www.baeldung.com/kotlin/crossinline-vs-noinline)
 - [A Guide to @Throws in Kotlin](https://www.baeldung.com/kotlin/throws-annotation)
+- More articles: [[next -->]](../core-kotlin-advanced-2)
