@@ -79,6 +79,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -87,6 +91,7 @@
         <kotlin.version>1.9.10</kotlin.version>
         <pinterest.ktlint.version>1.0.1</pinterest.ktlint.version>
         <java.version>11</java.version>
+        <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 </project>
