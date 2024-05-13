@@ -6,20 +6,16 @@ import org.junit.jupiter.api.Test
 class PassTypeToGenericMethod {
     @Test
     fun `pass type to generic method using reified parameters`() {
-        val intValue: Int = passTypeUsingReifiedParameter()
-        val stringValue: String = passTypeUsingReifiedParameter()
 
-        assertEquals(42, intValue)
-        assertEquals("Generic Method!", stringValue)
+        assertEquals("String", passTypeUsingReifiedParameter<String>())
+        assertEquals("Int", passTypeUsingReifiedParameter<Int>())
     }
 
     @Test
     fun `pass type to generic method using class parameters`() {
-        val intValue = passTypeUsingClassParameter(Int::class.java)
-        val stringValue = passTypeUsingClassParameter(String::class.java)
 
-        assertEquals(42, intValue)
-        assertEquals("Generic Method!", stringValue)
+        assertEquals("String", passTypeUsingClassParameter(String::class.java))
+        assertEquals("int", passTypeUsingClassParameter(Int::class.java))
     }
 
     @Test
@@ -40,19 +36,11 @@ class PassTypeToGenericMethod {
         assertEquals("Generic Method!", stringValue)
     }
 }
-inline fun <reified T> passTypeUsingReifiedParameter(): T {
-    return when (T::class) {
-        Int::class -> 42 as T
-        String::class -> "Generic Method!" as T
-        else -> throw IllegalArgumentException("Unsupported type")
-    }
+inline fun <reified T> passTypeUsingReifiedParameter(): String? {
+    return T::class.simpleName
 }
-fun <T> passTypeUsingClassParameter(clazz: Class<T>): T {
-    return when (clazz) {
-        Int::class.java -> 42 as T
-        String::class.java -> "Generic Method!" as T
-        else -> throw IllegalArgumentException("Unsupported type")
-    }
+fun <T> passTypeUsingClassParameter(clazz: Class<T>): String {
+    return clazz.simpleName
 }
 fun <T> passTypeUsingTypeCasting(type: T): T {
     return when (type) {
