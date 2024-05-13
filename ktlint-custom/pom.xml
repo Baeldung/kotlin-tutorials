@@ -4,27 +4,27 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <version>1.0.0-SNAPSHOT</version>
-    <groupId>com.baeldung</groupId>
     <artifactId>ktlint-custom</artifactId>
-
     <packaging>jar</packaging>
 
-    <dependencies>
+    <parent>
+        <groupId>com.baeldung</groupId>
+        <artifactId>kotlin-modules</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
 
+    <dependencies>
         <dependency>
             <groupId>com.pinterest.ktlint</groupId>
             <artifactId>ktlint-rule-engine-core</artifactId>
-            <version>1.0.1</version>
+            <version>${pinterest.ktlint.version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.pinterest.ktlint</groupId>
             <artifactId>ktlint-cli-ruleset-core</artifactId>
-            <version>1.0.1</version>
+            <version>${pinterest.ktlint.version}</version>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -78,18 +78,15 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
+                <version>${maven-compiler-plugin.version}</version>
             </plugin>
         </plugins>
     </build>
 
     <properties>
         <kotlin.version>1.9.10</kotlin.version>
+        <pinterest.ktlint.version>1.0.1</pinterest.ktlint.version>
         <java.version>11</java.version>
-        <compiler.plugin.version>3.8.0</compiler.plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 </project>
