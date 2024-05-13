@@ -37,22 +37,24 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         assertTrue(actual = this is Deferred<*>)
 
         assertThat(this.await() as List<*>).containsExactly(
-            Product(4, "Lenovo", 550.0), Product(2, "Oppo", 800.0), Product(1, "Samsung", 1200.0)
+            Product(4, "Lenovo", 550.0),
+            Product(2, "Oppo", 800.0),
+            Product(1, "Samsung", 1200.0)
         )
     }
 
     // using async directly
     @Test
-    fun `using async direcly`() = runBlocking {
+    fun `using async direcly & blockingGet`() = runBlocking {
         val deferred = async {
-            getFilteredProducts().blockingGet()
+            getFilteredProducts().blockingGet() // simple, but must be careful because blocking main thread
         }
-        deferred.assertResultsTrue()
+        deferred.assertResultsTrue() // assertion test
     }
 
     // using async with extension
     private suspend fun <T : Any> Single<T>.toDeferredAsync(): Deferred<T> =
-        coroutineScope { async { this@toDeferredAsync.await() } }
+        coroutineScope { async { this@toDeferredAsync.blockingGet() } }
 
 
     @Test
@@ -71,14 +73,28 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         deferred.assertResultsTrue()
     }
 
-    // using CompletableDeferred
+    // using CompletableDeferred & subscribe
+    @Test
+    fun `using CompletableDeferred & subscribe`() = runBlocking {
+        val deferred = CompletableDeferred<List<Product>>()
+        getFilteredProducts()
+            .subscribe({ products ->
+                    deferred.complete(products)
+                },{ error ->
+                    deferred.completeExceptionally(error)
+                }
+            )
+        deferred.assertResultsTrue()
+    }
+
+    // using CompletableDeferred extension
     private fun <T : Any> Single<T>.toCompletableDeferred(): CompletableDeferred<T> {
         val completableDeferred = CompletableDeferred<T>()
         this.subscribe({ completableDeferred.complete(it) }, { completableDeferred.completeExceptionally(it) })
         return completableDeferred
     }
 
-    // using CompletableDeferred with callback
+    // using CompletableDeferred with custom callback
     private fun <T : Any> Single<T>.toCompletableDeferred(
         onSuccess: (CompletableDeferred<T>, T) -> Unit, onError: (CompletableDeferred<T>, Throwable) -> Unit
     ): CompletableDeferred<T> {
@@ -94,7 +110,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     }
 
     @Test
-    fun `test using CompletableDeferred`() = runBlocking {
+    fun `test using CompletableDeferred extension`() = runBlocking {
         val deferred = getFilteredProducts().toCompletableDeferred()
         deferred.assertResultsTrue()
     }
