@@ -14,3 +14,4 @@ This module contains articles about core Kotlin strings.
 - [Count Number of Digits With Kotlin](https://www.baeldung.com/kotlin/count-digits)
 - [Convert a String to a Byte Array in Kotlin](https://www.baeldung.com/kotlin/convert-string-byte-array)
 - [How to Turn String Templates Into Literal Strings](https://www.baeldung.com/kotlin/string-template-literal)
+- More articles: [[<-- prev]](../core-kotlin-strings) [[next -->]](../core-kotlin-strings-3)

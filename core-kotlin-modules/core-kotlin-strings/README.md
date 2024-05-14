@@ -14,3 +14,4 @@ This module contains articles about core Kotlin strings.
 - [Functions for Replacing Part of a String in Kotlin](https://www.baeldung.com/kotlin/string-replace-substring)
 - [Removing All Non-Alphanumeric Characters in Kotlin](https://www.baeldung.com/kotlin/remove-non-alphanumeric-characters)
 - [Guide to Base64 Encoding and Decoding Strings in Kotlin](https://www.baeldung.com/kotlin/strings-base64-encode-decode-guide)
+- - More articles: [[next -->]](../core-kotlin-strings-2)
