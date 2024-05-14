@@ -6,6 +6,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.rx3.await
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.slf4j.LoggerFactory
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -14,6 +15,8 @@ import kotlin.test.assertTrue
 
 
 class SingleRxJavaToCoroutineDeferredUnitTest {
+
+    private val logger = LoggerFactory.getLogger("")
 
     data class Product(val id: Int, val name: String, val price: Double)
 
@@ -33,7 +36,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         }.subscribeOn(Schedulers.io())
     }
 
-    private suspend fun Deferred<*>.assertResultsTrue() {
+    private suspend fun Deferred<*>.assertOver500AndSorted() {
         assertTrue(actual = this is Deferred<*>)
 
         assertThat(this.await() as List<*>).containsExactly(
@@ -46,7 +49,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     @Test
     fun `using async direcly and blockingGet`() = runBlocking {
         val deferred = async { getFilteredProducts().blockingGet() } // simple, but must be careful because blocking main thread
-        deferred.assertResultsTrue() // assertion test
+        deferred.assertOver500AndSorted() // assertion test
     }
 
     // using async with extension
@@ -57,7 +60,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     @Test
     fun `test using async with extension`() = runBlocking {
         val deferredExt = getFilteredProducts().toDeferredAsync()
-        deferredExt.assertResultsTrue()
+        deferredExt.assertOver500AndSorted()
     }
 
     // using CoroutineScope(context).async
@@ -67,7 +70,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     @Test
     fun `test using CoroutineScope with context and async`(): Unit = runBlocking {
         val deferred = getFilteredProducts().toDeferredWithContext(Dispatchers.IO)
-        deferred.assertResultsTrue()
+        deferred.assertOver500AndSorted()
     }
 
     // using CompletableDeferred & subscribe
@@ -79,7 +82,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         }, { error ->
             deferred.completeExceptionally(error)
         })
-        deferred.assertResultsTrue()
+        deferred.assertOver500AndSorted()
     }
 
     // using CompletableDeferred extension
@@ -107,15 +110,15 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     @Test
     fun `test using CompletableDeferred extension`() = runBlocking {
         val deferred = getFilteredProducts().toCompletableDeferred()
-        deferred.assertResultsTrue()
+        deferred.assertOver500AndSorted()
     }
 
     @Test
     fun `test using CompletableDeferred with callback`(): Unit = runBlocking {
         getFilteredProducts().toCompletableDeferred(onSuccess = { deferredResult, _ ->
-            launch { deferredResult.assertResultsTrue() }
+            launch { deferredResult.assertOver500AndSorted() }
         }, onError = { _, error ->
-            println("Error: ${error.message}")
+            logger.debug("Error: ${error.message}")
         }).await()
     }
 
@@ -129,7 +132,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
                 }
             }
         }
-        defered.assertResultsTrue()
+        defered.assertOver500AndSorted()
     }
 
     // using suspendCoroutines with extension
@@ -148,7 +151,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     @Test
     fun `test using suspendCoroutine extension`() = runBlocking {
         val deferred = getFilteredProducts().toDeferredWithSuspend()
-        deferred.assertResultsTrue()
+        deferred.assertOver500AndSorted()
     }
 
     // using suspendCancellableCoroutine
@@ -175,9 +178,9 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     @Test
     fun `test using suspendCancellableCoroutine with custom callback`(): Unit = runBlocking {
         getFilteredProducts().toDeferredWithSuspendCancellableCoroutine(onSuccess = { deferredResult ->
-            launch { deferredResult.assertResultsTrue() }
+            launch { deferredResult.assertOver500AndSorted() }
         }, onError = { error ->
-            println("Error: ${error.message}")
+            logger.debug("Error: ${error.message}")
         }).await()
     }
 
@@ -185,7 +188,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     @Test
     fun `using rx3 directly`() = runBlocking {
         val deferred = async { getFilteredProducts().await() }
-        deferred.assertResultsTrue()
+        deferred.assertOver500AndSorted()
     }
 
     // using rx3 ext
@@ -195,7 +198,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     @Test
     fun `test using rx3 ext`() = runBlocking {
         val deferred = getFilteredProducts().toDeferredRx3()
-        deferred.assertResultsTrue()
+        deferred.assertOver500AndSorted()
     }
 
     // using rx3 with context
@@ -205,7 +208,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     @Test
     fun `test using rx3 with context`(): Unit = runBlocking {
         val deferred = getFilteredProducts().toDeferredRx3WithContext(Dispatchers.IO)
-        deferred.assertResultsTrue()
+        deferred.assertOver500AndSorted()
     }
 
 }
