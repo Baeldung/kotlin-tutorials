@@ -1,4 +1,4 @@
-package com.baeldung.singleRxJavaToCoroutineDeferred
+package com.baeldung.singlerxjavatocoroutinedeferred
 
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
