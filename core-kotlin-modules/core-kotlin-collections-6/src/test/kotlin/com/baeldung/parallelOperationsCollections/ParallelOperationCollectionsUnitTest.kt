@@ -33,7 +33,7 @@ class ParallelOperationCollectionsUnitTest {
         Person("Charlie", 40)
     )
 
-    private fun List<Person>.assertResultsTrue() {
+    private fun List<Person>.assertOver15AndSortedByAge() {
         assertThat(this).containsExactly(
             Person("Bob", 16, false),
             Person("Alice", 30, true),
@@ -69,7 +69,7 @@ class ParallelOperationCollectionsUnitTest {
 
         startTime.printTotalTime()
 
-        filteredPeople.assertResultsTrue()
+        filteredPeople.assertOver15AndSortedByAge()
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -94,7 +94,7 @@ class ParallelOperationCollectionsUnitTest {
 
         startTime.printTotalTime()
 
-        filteredPeople.assertResultsTrue()
+        filteredPeople.assertOver15AndSortedByAge()
     }
 
     @Test
@@ -117,7 +117,7 @@ class ParallelOperationCollectionsUnitTest {
 
         startTime.printTotalTime()
 
-        observable.assertResultsTrue()
+        observable.assertOver15AndSortedByAge()
     }
 
     @Test
@@ -139,7 +139,7 @@ class ParallelOperationCollectionsUnitTest {
 
         startTime.printTotalTime()
 
-        observable.assertResultsTrue()
+        observable.assertOver15AndSortedByAge()
     }
 
     @Test
@@ -157,7 +157,7 @@ class ParallelOperationCollectionsUnitTest {
 
         startTime.printTotalTime()
 
-        filteredPeople.assertResultsTrue()
+        filteredPeople.assertOver15AndSortedByAge()
     }
 
     @Test
@@ -180,7 +180,7 @@ class ParallelOperationCollectionsUnitTest {
 
         startTime.printTotalTime()
 
-        futures.assertResultsTrue()
+        futures.assertOver15AndSortedByAge()
     }
 }
 
