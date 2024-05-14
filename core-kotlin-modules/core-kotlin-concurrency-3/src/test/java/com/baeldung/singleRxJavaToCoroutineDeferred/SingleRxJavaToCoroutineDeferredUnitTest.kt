@@ -43,7 +43,6 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         )
     }
 
-    // using async directly
     @Test
     fun `using async direcly & blockingGet`() = runBlocking {
         val deferred = async { getFilteredProducts().blockingGet() } // simple, but must be careful because blocking main thread
