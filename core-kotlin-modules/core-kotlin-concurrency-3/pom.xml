@@ -39,10 +39,6 @@
             <version>1.8.1</version>
             <scope>runtime</scope>
         </dependency>
-
-
-
-
     </dependencies>
     <repositories>
         <repository>

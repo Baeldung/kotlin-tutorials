@@ -158,7 +158,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
         return coroutineScope {
             async {
                 suspendCancellableCoroutine { continuation ->
-                    this@toDeferredWithsuspendCancellableCoroutine.subscribe({ result ->
+                    this@toDeferredWithSuspendCancellableCoroutine.subscribe({ result ->
                         val deferredResult = CompletableDeferred<T>().apply {
                             complete(result)
                             continuation.resume(result)
