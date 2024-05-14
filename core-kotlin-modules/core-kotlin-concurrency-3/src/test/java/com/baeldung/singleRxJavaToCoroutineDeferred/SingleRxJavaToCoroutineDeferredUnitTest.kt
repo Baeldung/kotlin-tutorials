@@ -72,7 +72,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
 
     // using CompletableDeferred & subscribe
     @Test
-    fun `using CompletableDeferred & subscribe`() = runBlocking {
+    fun `using CompletableDeferred and subscribe`() = runBlocking {
         val deferred = CompletableDeferred<List<Product>>()
         getFilteredProducts().subscribe({ products ->
             deferred.complete(products)

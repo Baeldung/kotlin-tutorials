@@ -30,14 +30,12 @@
             <groupId>io.reactivex.rxjava3</groupId>
             <artifactId>rxkotlin</artifactId>
             <version>3.0.1</version>
-            <scope>runtime</scope>
         </dependency>
 
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-rx3</artifactId>
             <version>1.8.1</version>
-            <scope>runtime</scope>
         </dependency>
     </dependencies>
 </project>
