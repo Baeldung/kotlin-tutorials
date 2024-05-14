@@ -148,7 +148,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     }
 
     @Test
-    fun `test using suspendCoroutine`() = runBlocking {
+    fun `test using suspendCoroutine extension`() = runBlocking {
         val deferred = getFilteredProducts().toDeferredWithSuspend()
         deferred.assertResultsTrue()
     }
