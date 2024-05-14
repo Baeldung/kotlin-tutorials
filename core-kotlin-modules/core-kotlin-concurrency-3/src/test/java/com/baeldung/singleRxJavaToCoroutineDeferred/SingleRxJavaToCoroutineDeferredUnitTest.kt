@@ -122,7 +122,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     // using suspendCoroutines directly
     @Test
     fun `using suspendCoroutines directly`(): Unit = runBlocking {
-        val deffered = async {
+        val defered = async {
             suspendCoroutine { continuation ->
                 getFilteredProducts().subscribe { result ->
                     continuation.resume(result)
