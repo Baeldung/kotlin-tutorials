@@ -174,8 +174,6 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
             }
         }
     }
-
-
     @Test
     fun `test using suspendCancellableCoroutine with custom callback`(): Unit = runBlocking {
         getFilteredProducts().toDeferredWithsuspendCancellableCoroutine(onSuccess = { deferredResult ->
