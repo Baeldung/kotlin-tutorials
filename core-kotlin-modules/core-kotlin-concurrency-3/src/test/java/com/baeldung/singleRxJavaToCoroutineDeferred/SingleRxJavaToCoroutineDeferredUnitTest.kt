@@ -129,7 +129,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
                 }
             }
         }
-        deffered.assertResultsTrue()
+        defered.assertResultsTrue()
     }
 
     // using suspendCoroutines with extension
@@ -174,7 +174,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     }
     @Test
     fun `test using suspendCancellableCoroutine with custom callback`(): Unit = runBlocking {
-        getFilteredProducts().toDeferredWithsuspendCancellableCoroutine(onSuccess = { deferredResult ->
+        getFilteredProducts().toDeferredWithSuspendCancellableCoroutine(onSuccess = { deferredResult ->
             launch { deferredResult.assertResultsTrue() }
         }, onError = { error ->
             println("Error: ${error.message}")
