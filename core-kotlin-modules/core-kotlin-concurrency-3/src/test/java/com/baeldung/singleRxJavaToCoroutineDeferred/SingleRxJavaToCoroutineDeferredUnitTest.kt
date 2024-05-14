@@ -152,7 +152,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     }
 
     // using suspendCancellableCoroutine
-    private suspend fun <T : Any> Single<T>.toDeferredWithsuspendCancellableCoroutine(
+    private suspend fun <T : Any> Single<T>.toDeferredWithSuspendCancellableCoroutine(
         onSuccess: (Deferred<T>) -> Unit, onError: (Throwable) -> Unit
     ): Deferred<T> {
         return coroutineScope {
