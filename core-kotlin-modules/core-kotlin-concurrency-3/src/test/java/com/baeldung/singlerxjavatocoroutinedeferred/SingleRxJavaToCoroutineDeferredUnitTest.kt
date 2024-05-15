@@ -56,9 +56,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     fun `using suspendCoroutines`(): Unit = runBlocking {
         val deferred = async {
             suspendCoroutine { continuation ->
-                getFilteredProducts().subscribe { result ->
-                    continuation.resume(result)
-                }
+                getFilteredProducts().subscribe(continuation::resume)
             }
         }
         deferred.assertOver500AndSorted()
