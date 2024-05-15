@@ -17,7 +17,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <rxkotlin.version>3.0.1</rxkotlin.version>
         <rxcoroutines.version>1.8.1</rxcoroutines.version>
-        <junit.version>3.8.1</junit.version>
+        <junit.version>4.13.2</junit.version>
     </properties>
 
     <dependencies>
@@ -39,6 +39,5 @@
             <version>${rxcoroutines.version}</version>
         </dependency>
     </dependencies>
-
 
 </project>
