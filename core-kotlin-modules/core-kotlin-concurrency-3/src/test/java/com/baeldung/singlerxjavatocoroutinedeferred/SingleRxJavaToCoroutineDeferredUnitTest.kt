@@ -9,8 +9,6 @@ import org.junit.jupiter.api.Test
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
-import kotlin.test.assertTrue
-
 
 class SingleRxJavaToCoroutineDeferredUnitTest {
 
@@ -33,8 +31,6 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     }
 
     private suspend fun Deferred<*>.assertOver500AndSorted() {
-        assertTrue(actual = this is Deferred<*>)
-
         assertThat(this.await() as List<*>).containsExactly(
             Product(4, "Lenovo", 550.0),
             Product(2, "Oppo", 800.0),
