@@ -48,11 +48,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     @Test
     fun `using subscribe and CompletableDeferred`() = runBlocking {
         val deferred = CompletableDeferred<List<Product>>()
-        getFilteredProducts().subscribe({ products ->
-            deferred.complete(products)
-        }, { error ->
-            deferred.completeExceptionally(error)
-        })
+        getFilteredProducts().subscribe(deferred::complete, deferred::completeExceptionally)
         deferred.assertOver500AndSorted()
     }
 
