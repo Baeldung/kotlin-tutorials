@@ -42,7 +42,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     fun `using async and blockingGet`() = runBlocking {
         val deferred =
             async { getFilteredProducts().blockingGet() } // potentially blocking main thread while not careful
-        deferred.assertOver500AndSorted() // assertion test
+        deferred.assertOver500AndSorted()
     }
 
     @Test
