@@ -32,7 +32,9 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
 
     private suspend fun Deferred<*>.assertOver500AndSorted() {
         assertThat(this.await() as List<*>).containsExactly(
-            Product(4, "Lenovo", 550.0), Product(2, "Oppo", 800.0), Product(1, "Samsung", 1200.0)
+            Product(4, "Lenovo", 550.0),
+            Product(2, "Oppo", 800.0),
+            Product(1, "Samsung", 1200.0)
         )
     }
 
@@ -44,20 +46,13 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     }
 
     @Test
-    fun `using subscribe and CompletableDeferred`(): Unit = runBlocking {
-//        val deferred = CompletableDeferred<List<Product>>()
-//        getFilteredProducts().subscribe({ products ->
-//            deferred.complete(products)
-//        }, { error ->
-//            deferred.completeExceptionally(error)
-//        })
-//        deferred.assertOver500AndSorted()
+    fun `using subscribe and CompletableDeferred`() = runBlocking {
         val deferred = CompletableDeferred<List<Product>>()
-//        async {
-            getFilteredProducts().subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe { products ->
-                deferred.complete(products)
-            }
-//        }
+        getFilteredProducts().subscribe({ products ->
+            deferred.complete(products)
+        }, { error ->
+            deferred.completeExceptionally(error)
+        })
         deferred.assertOver500AndSorted()
     }
 
