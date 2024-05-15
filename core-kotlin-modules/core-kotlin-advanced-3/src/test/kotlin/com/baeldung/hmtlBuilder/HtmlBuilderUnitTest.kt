@@ -1,7 +1,6 @@
 package com.baeldung.hmtlBuilder
 
 import kotlinx.html.*
-import kotlinx.html.stream.appendHTML
 import kotlinx.html.stream.createHTML
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -45,6 +44,7 @@ class HtmlBuilderUnitTest {
         assertEquals(expectedHtml, actualHtml)
     }
 }
+
 fun buildHTML(): String {
     return createHTML().html {
         head {

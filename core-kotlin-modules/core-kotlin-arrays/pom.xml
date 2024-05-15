@@ -17,23 +17,27 @@
         <dependency>
             <artifactId>multik-core</artifactId>
             <groupId>org.jetbrains.kotlinx</groupId>
-            <version>0.2.2</version>
+            <version>${multik.version}</version>
         </dependency>
         <dependency>
             <artifactId>multik-core-jvm</artifactId>
             <groupId>org.jetbrains.kotlinx</groupId>
-            <version>0.2.2</version>
+            <version>${multik.version}</version>
         </dependency>
         <dependency>
             <artifactId>multik-default</artifactId>
             <groupId>org.jetbrains.kotlinx</groupId>
-            <version>0.2.2</version>
+            <version>${multik.version}</version>
         </dependency>
         <dependency>
             <artifactId>multik-default-jvm</artifactId>
             <groupId>org.jetbrains.kotlinx</groupId>
-            <version>0.2.2</version>
+            <version>${multik.version}</version>
         </dependency>
     </dependencies>
+
+    <properties>
+        <multik.version>0.2.2</multik.version>
+    </properties>
 
 </project>

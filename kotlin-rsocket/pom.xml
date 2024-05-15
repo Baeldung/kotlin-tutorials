@@ -4,19 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.baeldung</groupId>
-    <version>1.0.0-SNAPSHOT</version>
     <artifactId>kotlin-rsocket</artifactId>
+    <name>kotlin-rsocket</name>
+    <version>1.0.0-SNAPSHOT</version>
+
     <parent>
         <groupId>com.baeldung</groupId>
         <artifactId>kotlin-modules</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-
-    <properties>
-        <ktor.version>2.3.7</ktor.version>
-        <rsocket.version>0.15.4</rsocket.version>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -40,7 +36,6 @@
             <artifactId>rsocket-ktor-server-jvm</artifactId>
             <version>${rsocket.version}</version>
         </dependency>
-
         <dependency>
             <groupId>io.ktor</groupId>
             <artifactId>ktor-client-cio-jvm</artifactId>
@@ -51,6 +46,11 @@
             <artifactId>rsocket-ktor-client-jvm</artifactId>
             <version>${rsocket.version}</version>
         </dependency>
-
     </dependencies>
+
+    <properties>
+        <ktor.version>2.3.7</ktor.version>
+        <rsocket.version>0.15.4</rsocket.version>
+    </properties>
+
 </project>

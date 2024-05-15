@@ -2,9 +2,9 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.baeldung</groupId>
     <artifactId>kotlin-performance-vs-java</artifactId>
+    <name>kotlin-performance-vs-java</name>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -17,12 +17,12 @@
         <dependency>
             <groupId>org.openjdk.jmh</groupId>
             <artifactId>jmh-core</artifactId>
-            <version>${jmh-core.version}</version>
+            <version>${jmh.version}</version>
         </dependency>
         <dependency>
             <groupId>org.openjdk.jmh</groupId>
             <artifactId>jmh-generator-annprocess</artifactId>
-            <version>${jmh-generator.version}</version>
+            <version>${jmh.version}</version>
         </dependency>
         <dependency>
             <groupId>org.openjdk.jol</groupId>
@@ -76,8 +76,7 @@
         <kotlin.version>1.6.10</kotlin.version>
         <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
         <maven-assembly-plugin.version>3.5.0</maven-assembly-plugin.version>
-        <jmh-core.version>1.37</jmh-core.version>
-        <jmh-generator.version>1.37</jmh-generator.version>
+        <jmh.version>1.37</jmh.version>
         <jol-core.version>0.17</jol-core.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>

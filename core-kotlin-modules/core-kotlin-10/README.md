@@ -10,4 +10,4 @@
 - [Accessing Methods Outside Companion Object in Kotlin](https://www.baeldung.com/kotlin/companion-object-external-methods)
 - [Accessing Private Java Fields via Kotlin Extension Functions](https://www.baeldung.com/kotlin/extension-functions-private-fields)
 - [Variable Shadowing in Kotlin](https://www.baeldung.com/kotlin/variable-shadowing)
-
+- More articles: [[<-- prev]](../core-kotlin-9)
