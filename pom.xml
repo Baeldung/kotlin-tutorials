@@ -385,7 +385,7 @@
                 <module>core-kotlin-modules</module>
                 <!-- <module>gradle-kotlin-dsl</module> --> <!-- not a Maven module -->
                 <!-- <module>jee-kotlin</module> -->  <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
-                <!-- <module>koin-guide</module> --> <!-- not a Maven module -->
+                <module>koin-guide</module>
                 <!-- <module>kotest</module> --> <!-- not a Maven module -->
                 <module>kotlin-apache-kafka</module>
                 <module>kotlin-api</module>
@@ -464,7 +464,7 @@
                 <module>core-kotlin-modules</module>
                 <!-- <module>gradle-kotlin-dsl</module> --> <!-- not a Maven module -->
                 <!-- <module>jee-kotlin</module> -->  <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
-                <!-- <module>koin-guide</module> --> <!-- not a Maven module -->
+                <module>koin-guide</module>
                 <!-- <module>kotest</module> --> <!-- not a Maven module -->
                 <module>kotlin-apache-kafka</module>
                 <module>kotlin-api</module>
