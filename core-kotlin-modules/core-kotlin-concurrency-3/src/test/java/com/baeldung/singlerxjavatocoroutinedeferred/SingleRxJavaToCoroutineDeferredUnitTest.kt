@@ -40,19 +40,14 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
 
     @Test
     fun `using async and blockingGet`() = runBlocking {
-        val deferred =
-            async { getFilteredProducts().blockingGet() } // potentially blocking main thread while not careful
-        deferred.assertOver500AndSorted() // assertion test
+        val deferred = async { getFilteredProducts().blockingGet() }
+        deferred.assertOver500AndSorted()
     }
 
     @Test
     fun `using subscribe and CompletableDeferred`() = runBlocking {
         val deferred = CompletableDeferred<List<Product>>()
-        getFilteredProducts().subscribe({ products ->
-            deferred.complete(products)
-        }, { error ->
-            deferred.completeExceptionally(error)
-        })
+        getFilteredProducts().subscribe(deferred::complete, deferred::completeExceptionally)
         deferred.assertOver500AndSorted()
     }
 
@@ -60,9 +55,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     fun `using suspendCoroutines`(): Unit = runBlocking {
         val deferred = async {
             suspendCoroutine { continuation ->
-                getFilteredProducts().subscribe { result ->
-                    continuation.resume(result)
-                }
+                getFilteredProducts().subscribe(continuation::resume, continuation::resumeWithException)
             }
         }
         deferred.assertOver500AndSorted()
@@ -72,11 +65,7 @@ class SingleRxJavaToCoroutineDeferredUnitTest {
     fun `using suspendCancellableCoroutine`(): Unit = runBlocking {
         val deferred = async {
             suspendCancellableCoroutine { continuation ->
-                getFilteredProducts().subscribe({ result ->
-                    continuation.resume(result)
-                }, { error ->
-                    continuation.resumeWithException(error)
-                })
+                getFilteredProducts().subscribe(continuation::resume, continuation::resumeWithException)
             }
         }
         deferred.assertOver500AndSorted()
