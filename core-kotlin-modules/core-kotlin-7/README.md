@@ -7,4 +7,4 @@
 - [Mapping java.util.Optional to T in Kotlin](https://www.baeldung.com/kotlin/java-optional)
 - [Difference Between Object and Data Class in Kotlin](https://www.baeldung.com/kotlin/object-vs-data-class)
 - [Swap Function in Kotlin](https://www.baeldung.com/kotlin/swap-utility)
-- More articles: [[<-- prev]](../core-kotlin-6)
+- More articles: [[<-- prev]](../core-kotlin-6) [[next -->]](../core-kotlin-8)

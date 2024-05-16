@@ -8,3 +8,5 @@ spring:
     username: sa
     password:
     driver-class-name: org.hsqldb.jdbcDriver
+
+some.property: "abc"

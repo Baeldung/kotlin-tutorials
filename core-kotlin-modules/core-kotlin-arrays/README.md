@@ -1,5 +1,4 @@
 ## Relevant Articles:
-
 - [Initializing Arrays in Kotlin](https://www.baeldung.com/kotlin/initialize-array)
 - [Remove Duplicate Values From an Array in Kotlin](https://www.baeldung.com/kotlin/array-remove-duplicates)
 - [Combining Two Arrays in Kotlin](https://www.baeldung.com/kotlin/combine-arrays)
@@ -10,3 +9,4 @@
 - [Creating a Byte Array in Kotlin](https://www.baeldung.com/kotlin/byte-array)
 - [Multidimentional Arrays in Kotlin](https://www.baeldung.com/kotlin/multidimentional-arrays)
 - [Find the Index of an Element in a Kotlin Array](https://www.baeldung.com/kotlin/array-item-position)
+- More articles: [[next -->]](../core-kotlin-arrays-2)

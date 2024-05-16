@@ -17,7 +17,7 @@
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-serialization-json-jvm</artifactId>
-            <version>1.4.1</version>
+            <version>${kotlinx-serialization-json-jvm.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -28,13 +28,13 @@
         <dependency>
             <groupId>io.arrow-kt</groupId>
             <artifactId>arrow-core</artifactId>
-            <version>${arrow.stack.version}</version>
+            <version>${arrow-core.version}</version>
         </dependency>
     </dependencies>
 
     <properties>
-        <gson.version>2.10.1</gson.version>
-        <arrow.stack.version>1.2.0</arrow.stack.version>
+        <kotlinx-serialization-json-jvm.version>1.4.1</kotlinx-serialization-json-jvm.version>
+        <arrow-core.version>1.2.0</arrow-core.version>
     </properties>
 
 </project>
