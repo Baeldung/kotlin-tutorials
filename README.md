@@ -9,7 +9,7 @@ Building the project
 
 To build the entire repository with only Unit Tests enabled run:
 
-`mvn clean install`
+`mvn clean install -Pdefault`
 
 or if we want to build the entire repository with Integration Tests enabled, we can do:
 

@@ -14,3 +14,4 @@ This module contains articles about core Kotlin strings.
 - [Password Validation in Kotlin](https://www.baeldung.com/kotlin/password-validation)
 - [Check if a String Is a Palindrome in Kotlin](https://www.baeldung.com/kotlin/palindrome)
 - [Iterate Over a String Backward in Kotlin](https://www.baeldung.com/kotlin/iterate-string-reverse)
+- - More articles: [[<-- prev]](../core-kotlin-strings-2) [[next -->]](../core-kotlin-strings-4)
