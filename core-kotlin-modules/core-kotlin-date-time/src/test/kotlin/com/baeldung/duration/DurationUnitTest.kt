@@ -1,21 +1,20 @@
 package com.baeldung.duration
 
 import org.junit.jupiter.api.Test
+import java.time.LocalDateTime
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
-import kotlin.time.Duration
-import kotlin.time.Duration.Companion.days
+import kotlin.time.*
 import kotlin.time.Duration.Companion.hours
-import kotlin.time.Duration.Companion.microseconds
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
-import kotlin.time.Duration.Companion.nanoseconds
 import kotlin.time.Duration.Companion.seconds
-import kotlin.time.DurationUnit
-import kotlin.time.toDuration
-import kotlin.time.toJavaDuration
 import java.time.Duration as JavaDuration
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
+import kotlin.time.Duration
+import kotlin.time.ExperimentalTime
 
 class DurationUnitTest {
     @Test
@@ -100,6 +99,24 @@ class DurationUnitTest {
         val seventyMinutes = 70.minutes
         val asStr = seventyMinutes.toComponents { hrs, min, sec, nanos -> "${hrs}:${min}" }
         assertEquals("1:10", asStr)
+    }
+
+    @Test
+    fun `given a two datetime, calculate the duration between them`() {
+        val datetime1 = LocalDateTime.now()
+        val datetime2 = datetime1.minusDays(1).minusHours(1)
+        val duration = java.time.Duration.between(datetime2, datetime1).toKotlinDuration()
+        val expectedDuration = 25.hours
+        assertEquals(expectedDuration, duration)
+    }
+
+    @OptIn(ExperimentalTime::class)
+    @Test
+    fun `use duration api to measure execution time`() {
+        val operationDuration = kotlin.time.measureTime {
+            Thread.sleep(510)
+        }
+        assertTrue(operationDuration > 500.milliseconds)
     }
 
 }
