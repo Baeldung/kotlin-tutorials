@@ -12,6 +12,8 @@ fun createTempFileWithKotlinExtensions(): Path {
 
     tempFile.writeText("Kotlin Path Data")
 
+    tempFile.toFile().deleteOnExit()
+
     return tempFile
 }
 
