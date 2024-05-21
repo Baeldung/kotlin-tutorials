@@ -39,9 +39,11 @@ class PassTypeToGenericMethod {
 inline fun <reified T> passTypeUsingReifiedParameter(): String? {
     return T::class.simpleName
 }
+
 fun <T> passTypeUsingClassParameter(clazz: Class<T>): String {
     return clazz.simpleName
 }
+
 fun <T> passTypeUsingTypeCasting(type: T): T {
     return when (type) {
         is Int -> 42 as T
@@ -49,6 +51,7 @@ fun <T> passTypeUsingTypeCasting(type: T): T {
         else -> throw IllegalArgumentException("Unsupported type")
     }
 }
+
 fun <T> passTypeUsingHigherOrderFunction(action: () -> T): T {
     return action()
 }
