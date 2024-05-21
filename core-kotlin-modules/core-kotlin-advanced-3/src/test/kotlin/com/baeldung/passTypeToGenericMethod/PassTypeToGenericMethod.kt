@@ -36,6 +36,7 @@ class PassTypeToGenericMethod {
         assertEquals("Generic Method!", stringValue)
     }
 }
+
 inline fun <reified T> passTypeUsingReifiedParameter(): String? {
     return T::class.simpleName
 }
