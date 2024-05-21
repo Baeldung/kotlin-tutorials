@@ -52,6 +52,14 @@ class GetKclassUnitTest {
     }
 
     @Test
+    fun `obtain the Kclass from Package Class name using class path`() {
+        val className = "com.baeldung.obtainKclassFromPackageClassName.ClassExample"
+        val kClass = getClassUsingClassGraph(className)
+
+        assertEquals(ClassExample::class, kClass)
+    }
+
+    @Test
     fun `obtain the Kclass from Package Class name using class path and non-existing class`() {
         val notClass = "com.baeldung.obtainKclassFromPackageClassName.NotAClass"
 
@@ -60,14 +68,6 @@ class GetKclassUnitTest {
         }
 
         assertEquals("Cannot invoke \"io.github.classgraph.ClassInfo.loadClass()\" because the return value of \"io.github.classgraph.ScanResult.getClassInfo(String)\" is null", exception.message)
-    }
-
-    @Test
-    fun `obtain the Kclass from Package Class name using class path`() {
-        val className = "com.baeldung.obtainKclassFromPackageClassName.ClassExample"
-        val kClass = getClassUsingClassGraph(className)
-
-        assertEquals(ClassExample::class, kClass)
     }
 }
 

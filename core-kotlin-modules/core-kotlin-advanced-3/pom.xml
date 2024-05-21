@@ -20,6 +20,7 @@
             <version>0.7.2</version>
         </dependency>
 
+
         <dependency>
             <groupId>io.github.classgraph</groupId>
             <artifactId>classgraph</artifactId>
