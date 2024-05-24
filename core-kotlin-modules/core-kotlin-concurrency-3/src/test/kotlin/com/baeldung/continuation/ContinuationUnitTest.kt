@@ -10,6 +10,7 @@ import kotlin.coroutines.Continuation
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
+import kotlin.random.Random
 import kotlin.test.assertEquals
 
 class ContinuationUnitTest {
@@ -136,6 +137,64 @@ class ContinuationUnitTest {
                 logger.info("1. $response")
             } catch (e: Exception) {
                 logger.error("1. ${e.message}")
+            }
+        }
+    }
+
+    private suspend fun simulateRandomDivisionResumeWith(): Double {
+        return suspendCoroutine { continuation ->
+            CoroutineScope(Dispatchers.Default).launch {
+                delay(1000)
+                val result: Result<Double> = try {
+                    val numerator = Random.nextInt(0, 100)
+                    val denominator = Random.nextInt(0, 10)
+
+                    if (denominator == 0) throw ArithmeticException("Division by zero")
+
+                    Result.success(numerator.toDouble() / denominator)
+                } catch (e: ArithmeticException) {
+                    Result.failure(e)
+                } catch (e: Exception) {
+                    Result.failure(e)
+                }
+
+                continuation.resumeWith(result)
+            }
+        }
+    }
+
+    private suspend fun simulateRandomDivisionResume(): Double {
+        return suspendCoroutine { continuation ->
+            CoroutineScope(Dispatchers.Default).launch {
+                delay(1000)
+                try {
+                    val numerator = Random.nextInt(0, 100)
+                    val denominator = Random.nextInt(0, 10)
+
+                    if (denominator == 0) throw ArithmeticException("Division by zero")
+                    continuation.resume(numerator.toDouble() / denominator)
+                } catch (e: ArithmeticException) {
+                    continuation.resumeWithException(e)
+                } catch (e: Exception) {
+                    continuation.resumeWithException(e)
+                }
+            }
+        }
+    }
+
+    @Test
+    fun `test using suspend function simulate random division`(): Unit = runBlocking{
+        for (x in (0..20)) {
+            try {
+                logger.info(" ${simulateRandomDivisionResume()} ")
+            }catch (e : Exception){
+                logger.error(e.message)
+            }
+
+            try {
+                logger.info(" ${simulateRandomDivisionResumeWith()} ")
+            }catch (e : Exception){
+                logger.error(e.message)
             }
         }
     }
