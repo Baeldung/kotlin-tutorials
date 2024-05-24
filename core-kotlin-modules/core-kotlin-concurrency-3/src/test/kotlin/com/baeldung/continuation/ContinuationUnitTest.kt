@@ -51,7 +51,7 @@ class ContinuationUnitTest {
     }
 
     @Test
-    fun `test continuation using async`() = runBlocking{
+    fun `test continuation using async`() = runBlocking {
         val deferred = async {
             suspendCoroutine { continuation ->
                 continuation.resume("Baeldung")
@@ -60,10 +60,11 @@ class ContinuationUnitTest {
         assertEquals("Baeldung", deferred)
     }
 
+    // using resumeWith()
     private suspend fun simulateNetworkRequestResume(url: String): String {
         return suspendCoroutine { continuation ->
             CoroutineScope(Dispatchers.IO).launch {
-                try {
+                val result = try {
                     val connection = (URL(url).openConnection() as HttpURLConnection).apply {
                         requestMethod = "GET"
                         connectTimeout = 5000
@@ -72,17 +73,20 @@ class ContinuationUnitTest {
 
                     val responseCode = connection.responseCode
                     if (responseCode == HttpURLConnection.HTTP_OK) {
-                        continuation.resumeWith(Result.success("$url : HTTP response code $responseCode - Ok"))
+                        Result.success("$url : HTTP response code $responseCode - Ok")
                     } else {
-                        continuation.resumeWith(Result.failure(Exception("$url: HTTP response code $responseCode - Failed")))
+                        Result.failure(Exception("$url: HTTP response code $responseCode - Failed"))
                     }
                 } catch (e: Exception) {
-                    continuation.resumeWithException(Exception("$url: ${e.message} - Failed"))
+                    Result.failure(Exception("$url: ${e.message} - Failed"))
                 }
+
+                continuation.resumeWith(result)
             }
         }
     }
 
+    // using resume() and resumeWithException()
     private suspend fun simulateNetworkRequest(url: String): String {
         return suspendCoroutine { continuation ->
             CoroutineScope(Dispatchers.IO).launch {
