@@ -12,6 +12,18 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.kotest</groupId>
+                <artifactId>kotest-bom</artifactId>
+                <version>${kotest.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>mysql</groupId>
@@ -19,15 +31,27 @@
             <version>${mysql-connector-java.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-kotlin</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.kotest</groupId>
+            <artifactId>kotest-assertions-core-jvm</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.kotest</groupId>
+            <artifactId>kotest-assertions-core</artifactId>
+        </dependency>
+        <dependency>
             <groupId>io.kotest</groupId>
             <artifactId>kotest-runner-junit5</artifactId>
-            <version>${kotest.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.kotest</groupId>
             <artifactId>kotest-framework-datatest</artifactId>
-            <version>${kotest.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -100,9 +124,10 @@
     </build>
 
     <properties>
-        <kotlin.version>1.8.22</kotlin.version>
-        <kotest.version>5.8.1</kotest.version>
+        <kotlin.version>1.9.24</kotlin.version>
+        <kotest.version>5.9.0</kotest.version>
         <kotest-extensions-testcontainers.version>2.0.1</kotest-extensions-testcontainers.version>
+        <jackson.version>2.15.4</jackson.version>
         <mockk.version>1.9.3</mockk.version>
         <mysql-connector-java.version>8.0.33</mysql-connector-java.version>
         <testcontainers.version>1.18.3</testcontainers.version>
