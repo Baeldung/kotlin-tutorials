@@ -1,7 +1,7 @@
-package com.baeldung.kotlingradleopenapi
+package com.baeldung.openapi
 
 import com.baeldung.car.model.CarBody
-import com.baeldung.kotlingradleopenapi.service.CarService
+import com.baeldung.openapi.service.CarService
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
