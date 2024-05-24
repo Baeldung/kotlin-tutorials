@@ -54,9 +54,7 @@ class ContinuationUnitTest {
         return suspendCoroutine { continuation ->
             CoroutineScope(Dispatchers.IO).launch {
                 try {
-                    val urlObj = URL(url)
-                    val connection = urlObj.openConnection() as HttpURLConnection
-                    connection.apply {
+                    val connection = (URL(url).openConnection() as HttpURLConnection).apply {
                         requestMethod = "GET"
                         connectTimeout = 5000
                         readTimeout = 5000
