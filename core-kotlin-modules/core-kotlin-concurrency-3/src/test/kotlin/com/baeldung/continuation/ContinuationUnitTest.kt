@@ -2,8 +2,10 @@ package com.baeldung.continuation
 
 import kotlinx.coroutines.*
 import org.junit.jupiter.api.Test
+import org.slf4j.LoggerFactory
 import java.net.HttpURLConnection
 import java.net.URL
+import kotlin.concurrent.thread
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -11,6 +13,8 @@ import kotlin.coroutines.suspendCoroutine
 import kotlin.test.assertEquals
 
 class ContinuationUnitTest {
+
+    private val logger = LoggerFactory.getLogger("")
 
     @Test
     fun `test create continuation manually`() {
@@ -23,14 +27,20 @@ class ContinuationUnitTest {
     @Test
     fun `test continuation using suspendCoroutine`() = runBlocking {
         val result = suspendCoroutine { continuation ->
-            continuation.resume("Baeldung")
+            thread {
+                Thread.sleep(1000) //  is just for demo purposes
+                continuation.resume("Baeldung")
+            }
         }
         assertEquals("Baeldung", result)
     }
 
     private suspend fun simpleSuspendFunction(): String {
         return suspendCoroutine { continuation ->
-            continuation.resume("Baeldung")
+            thread {
+                Thread.sleep(1000) //  is just for demo purposes
+                continuation.resume("Baeldung")
+            }
         }
     }
 
@@ -50,6 +60,29 @@ class ContinuationUnitTest {
         assertEquals("Baeldung", deferred)
     }
 
+    private suspend fun simulateNetworkRequestResume(url: String): String {
+        return suspendCoroutine { continuation ->
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    val connection = (URL(url).openConnection() as HttpURLConnection).apply {
+                        requestMethod = "GET"
+                        connectTimeout = 5000
+                        readTimeout = 5000
+                    }
+
+                    val responseCode = connection.responseCode
+                    if (responseCode == HttpURLConnection.HTTP_OK) {
+                        continuation.resumeWith(Result.success("$url : HTTP response code $responseCode - Ok"))
+                    } else {
+                        continuation.resumeWith(Result.failure(Exception("$url: HTTP response code $responseCode - Failed")))
+                    }
+                } catch (e: Exception) {
+                    continuation.resumeWithException(Exception("$url: ${e.message} - Failed"))
+                }
+            }
+        }
+    }
+
     private suspend fun simulateNetworkRequest(url: String): String {
         return suspendCoroutine { continuation ->
             CoroutineScope(Dispatchers.IO).launch {
@@ -62,12 +95,12 @@ class ContinuationUnitTest {
 
                     val responseCode = connection.responseCode
                     if (responseCode == HttpURLConnection.HTTP_OK) {
-                        continuation.resume("Successful request to $url : HTTP response code $responseCode")
+                        continuation.resume("$url : HTTP response code $responseCode - OK")
                     } else {
-                        continuation.resumeWithException(Exception("Failed to fetch data from $url: HTTP response code $responseCode"))
+                        continuation.resumeWithException(Exception("$url: HTTP response code $responseCode - Failed"))
                     }
                 } catch (e: Exception) {
-                    continuation.resumeWithException(Exception("Failed to fetch data from $url: ${e.message}"))
+                    continuation.resumeWithException(Exception("$url: ${e.message} - Failed"))
                 }
             }
         }
@@ -78,7 +111,7 @@ class ContinuationUnitTest {
         val urls = listOf(
             "https://example.com",
             "https://example.com/fail",
-            "https://example.com/fail2",
+            "https://example.com/fail1",
             "https://baeldung.com",
             "https://www.baeldung.com/linux/",
             "https://www.baeldung.com/kotlin/",
@@ -88,11 +121,19 @@ class ContinuationUnitTest {
 
         for (url in urls) {
             try {
-                val response = simulateNetworkRequest(url)
-                println(response)
+                val response = simulateNetworkRequestResume(url)
+                logger.info("0. $response")
             } catch (e: Exception) {
-                println("Error: ${e.message}")
+                logger.error("0. ${e.message}")
+            }
+
+            try {
+                val response = simulateNetworkRequest(url)
+                logger.info("1. $response")
+            } catch (e: Exception) {
+                logger.error("1. ${e.message}")
             }
         }
     }
+
 }
