@@ -80,6 +80,9 @@ class ContinuationUnitTest {
             "https://example.com/fail",
             "https://example.com/fail2",
             "https://baeldung.com",
+            "https://www.baeldung.com/linux/",
+            "https://www.baeldung.com/kotlin/",
+            "https://www.baeldung.com/scala/",
             "https://hangga.github.io"
         )
 
