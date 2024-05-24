@@ -10,3 +10,5 @@ This module contains articles about concurrency in Kotlin.
 - [Scheduling Repeating Task in Kotlin](https://www.baeldung.com/kotlin/schedule-repeating-task)
 - [Async Exception Handling in Kotlin](https://www.baeldung.com/kotlin/coroutine-exception-handling)
 - [Combining Multiple Kotlin Flows](https://www.baeldung.com/kotlin/combining-multiple-flows)
+- [Merging Kotlin Flows](https://www.baeldung.com/kotlin/flow-merging)
+- More articles: [[<-- prev]](../core-kotlin-concurrency-2)

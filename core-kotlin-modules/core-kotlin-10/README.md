@@ -7,4 +7,7 @@
 - [Breadth-First Search Algorithm in Kotlin](https://www.baeldung.com/kotlin/bfs-graphs)
 - [Calling Private Methods of a Class From Outside the Class](https://www.baeldung.com/kotlin/private-methods-outside-class)
 - [Pass a Function as Parameter to Another in Kotlin](https://www.baeldung.com/kotlin/function-parameter-high-order)
-
+- [Accessing Methods Outside Companion Object in Kotlin](https://www.baeldung.com/kotlin/companion-object-external-methods)
+- [Accessing Private Java Fields via Kotlin Extension Functions](https://www.baeldung.com/kotlin/extension-functions-private-fields)
+- [Variable Shadowing in Kotlin](https://www.baeldung.com/kotlin/variable-shadowing)
+- More articles: [[<-- prev]](../core-kotlin-9)

@@ -6,4 +6,4 @@
 - [Comparator in Kotlin](https://www.baeldung.com/kotlin/comparator)
 - [Get the Line Number Where an Exception Was Thrown in Kotlin](https://www.baeldung.com/kotlin/exception-metadata)
 - [How to Get the Name of a Variable in Kotlin](https://www.baeldung.com/kotlin/reflection-variable-name)
-- More articles: [[<-- prev]](../core-kotlin-7)
+- More articles: [[<-- prev]](../core-kotlin-7) [[next -->]](../core-kotlin-9)

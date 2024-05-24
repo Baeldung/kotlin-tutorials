@@ -13,3 +13,4 @@ This module contains articles about concurrency in Kotlin.
 - [Introduction to the Kotlin Flow Class](https://www.baeldung.com/kotlin/flow-intro)
 - [Difference Between Coroutine Scope and Coroutine Context](https://www.baeldung.com/kotlin/coroutines-scope-vs-context)
 - [Difference Between Flows and Channels in Kotlin](https://www.baeldung.com/kotlin/flows-vs-channels)
+- More articles: [[next -->]](../core-kotlin-concurrency-2)

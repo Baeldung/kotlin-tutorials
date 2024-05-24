@@ -3,3 +3,4 @@
 - [Mediator Pattern in Kotlin](https://www.baeldung.com/kotlin/mediator)
 - [Strategy Design Pattern in Kotlin](https://www.baeldung.com/kotlin/strategy-design-pattern)
 - [The Proxy Pattern in Kotlin](https://www.baeldung.com/kotlin/proxy-pattern)
+- [Railway Oriented Programming in Kotlin](https://www.baeldung.com/kotlin/rop-functional-programming)

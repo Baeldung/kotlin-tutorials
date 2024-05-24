@@ -14,3 +14,4 @@ This module contains articles about core Kotlin strings.
 - [Kotlin Equivalent of Java’s equalsIgnoreCase()](https://www.baeldung.com/kotlin/java-equalsignorecase-equivalent)
 - [Convert String to Char in Kotlin](https://www.baeldung.com/kotlin/string-char-conversion)
 - [Java Boolean.valueOf() Equivalent in Kotlin](https://www.baeldung.com/kotlin/boolean-valueof-equivalent)
+- More articles: [[<-- prev]](../core-kotlin-strings-3) [[next -->]](../core-kotlin-strings-5)
