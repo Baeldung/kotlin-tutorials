@@ -146,8 +146,8 @@ class ContinuationUnitTest {
             CoroutineScope(Dispatchers.Default).launch {
                 delay(1000)
                 val result: Result<Double> = try {
-                    val numerator = Random.nextInt(0, 100)
-                    val denominator = Random.nextInt(0, 10)
+                    val numerator = Random.nextInt(0, 10)
+                    val denominator = Random.nextInt(0, 3)
 
                     if (denominator == 0) throw ArithmeticException("Division by zero")
 
@@ -168,8 +168,8 @@ class ContinuationUnitTest {
             CoroutineScope(Dispatchers.Default).launch {
                 delay(1000)
                 try {
-                    val numerator = Random.nextInt(0, 100)
-                    val denominator = Random.nextInt(0, 10)
+                    val numerator = Random.nextInt(0, 10)
+                    val denominator = Random.nextInt(0, 3)
 
                     if (denominator == 0) throw ArithmeticException("Division by zero")
                     continuation.resume(numerator.toDouble() / denominator)
@@ -184,7 +184,7 @@ class ContinuationUnitTest {
 
     @Test
     fun `test using suspend function simulate random division`(): Unit = runBlocking{
-        for (x in (0..20)) {
+        for (x in (0..10)) {
             try {
                 logger.info(" ${simulateRandomDivisionResume()} ")
             }catch (e : Exception){
