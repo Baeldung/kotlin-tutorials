@@ -13,11 +13,21 @@ import kotlin.test.assertEquals
 class ContinuationUnitTest {
 
     @Test
-    fun `test create simple continuation`() {
+    fun `test create continuation manually`() {
         val simpleContinuation = Continuation<Int>(Dispatchers.IO) { result ->
             assertEquals(45, result.getOrNull())
         }
         simpleContinuation.resume(45)
+    }
+
+    @Test
+    fun `test continuation using suspendCoroutine`() = runBlocking {
+        val deferred = async {
+            suspendCoroutine { continuation ->
+                continuation.resume("Baeldung")
+            }
+        }.await()
+        assertEquals("Baeldung", deferred)
     }
 
     private suspend fun simpleSuspendFunction(): String {
@@ -27,7 +37,7 @@ class ContinuationUnitTest {
     }
 
     @Test
-    fun `test using simple suspend function`() = runBlocking {
+    fun `test continuation using simple suspend function`() = runBlocking {
         val deferred = async { simpleSuspendFunction() }.await()
         assertEquals("Baeldung", deferred)
     }
@@ -58,7 +68,7 @@ class ContinuationUnitTest {
     }
 
     @Test
-    fun `test network call`() = runBlocking {
+    fun `test continuation using suspendFunction network call`() = runBlocking {
         val urls = listOf(
             "https://example.com",
             "https://example.com/fail",
