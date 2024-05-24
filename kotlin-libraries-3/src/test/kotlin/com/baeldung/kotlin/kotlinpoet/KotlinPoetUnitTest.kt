@@ -12,7 +12,6 @@ class KotlinPoetUnitTest {
             .addModifiers(KModifier.PROTECTED)
             .build()
 
-
         assertEquals("protected class Test\n", code.toString())
     }
 }

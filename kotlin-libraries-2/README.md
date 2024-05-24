@@ -16,3 +16,4 @@ This module contains articles about Kotlin Libraries.
 - [Read and Write to Excel With Kotlin](https://www.baeldung.com/kotlin/excel-read-write)
 - [Introduction to KotlinPoet](https://www.baeldung.com/kotlin/kotlinpoet)
 - More articles: [[<-- prev]](/kotlin-libraries)
+- More articles: [[next -->]](../kotlin-libraries-2)
