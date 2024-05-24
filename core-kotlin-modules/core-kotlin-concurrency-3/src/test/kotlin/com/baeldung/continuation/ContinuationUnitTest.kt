@@ -22,12 +22,10 @@ class ContinuationUnitTest {
 
     @Test
     fun `test continuation using suspendCoroutine`() = runBlocking {
-        val deferred = async {
-            suspendCoroutine { continuation ->
-                continuation.resume("Baeldung")
-            }
-        }.await()
-        assertEquals("Baeldung", deferred)
+        val result = suspendCoroutine { continuation ->
+            continuation.resume("Baeldung")
+        }
+        assertEquals("Baeldung", result)
     }
 
     private suspend fun simpleSuspendFunction(): String {
@@ -38,7 +36,17 @@ class ContinuationUnitTest {
 
     @Test
     fun `test continuation using simple suspend function`() = runBlocking {
-        val deferred = async { simpleSuspendFunction() }.await()
+        val result = simpleSuspendFunction()
+        assertEquals("Baeldung", result)
+    }
+
+    @Test
+    fun `test continuation using async`() = runBlocking{
+        val deferred = async {
+            suspendCoroutine { continuation ->
+                continuation.resume("Baeldung")
+            }
+        }.await()
         assertEquals("Baeldung", deferred)
     }
 
