@@ -77,4 +77,8 @@
         </dependency>
     </dependencies>
 
+    <properties>
+        <kotlin.version>2.0.0</kotlin.version>
+    </properties>
+
 </project>
