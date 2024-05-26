@@ -4,10 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>kotlin-js</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <parent>
-        <groupId>com.baeldung</groupId>
         <artifactId>kotlin-modules</artifactId>
+        <groupId>com.baeldung</groupId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
@@ -18,10 +19,6 @@
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
                 <version>${kotlin.version}</version>
-                <configuration>
-                    <useIrBackend>true</useIrBackend>
-                    <jvmTarget>1.8</jvmTarget>
-                </configuration>
                 <executions>
                     <execution>
                         <id>compile</id>
@@ -30,21 +27,16 @@
                             <goal>js</goal>
                         </goals>
                         <configuration>
+                            <args>
+                                <arg>-ir-output-dir=${project.basedir}/node</arg>
+                                <arg>-ir-output-name=${project.basedir}/node/crypto</arg>
+                            </args>
                             <useIrBackend>true</useIrBackend>
                             <sourceDirs>
                                 <sourceDir>${project.basedir}/src/main/kotlin</sourceDir>
                             </sourceDirs>
-                            <outputFile>crypto.js</outputFile>
                             <moduleKind>commonjs</moduleKind>
                         </configuration>
-                    </execution>
-                    <execution>
-                        <id>test-compile</id>
-                        <phase>test-compile</phase>
-                        <goals>
-                            <goal>test-js</goal>
-                            <goal>test-compile</goal>
-                        </goals>
                     </execution>
                 </executions>
             </plugin>
@@ -76,9 +68,5 @@
             <version>${kotlin.version}</version>
         </dependency>
     </dependencies>
-
-    <properties>
-        <kotlin.version>2.0.0</kotlin.version>
-    </properties>
 
 </project>
