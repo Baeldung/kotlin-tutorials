@@ -58,6 +58,7 @@
         <module>core-kotlin-lang-oop</module>
         <module>core-kotlin-lang-oop-2</module>
         <module>core-kotlin-lang-oop-3</module>
+        <module>core-kotlin-lang-oop-4</module>
         <module>core-kotlin-numbers</module>
         <module>core-kotlin-numbers-2</module>
         <module>core-kotlin-strings</module>
