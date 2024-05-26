@@ -391,7 +391,7 @@
                 <module>kotlin-api</module>
                 <!-- <module>kotlin-build-plugins</module> --> <!-- not a Maven module -->
                 <module>kotlin-immutable-collections</module>
-                <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
+                <module>kotlin-js</module>
                 <module>kotlin-json</module>
                 <!-- <module>kotlin-ktor</module> --> <!-- not a Maven module -->
                 <module>kotlin-lambda</module>
@@ -470,7 +470,7 @@
                 <module>kotlin-api</module>
                 <!-- <module>kotlin-build-plugins</module> --> <!-- not a Maven module -->
                 <module>kotlin-immutable-collections</module>
-                <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
+                <module>kotlin-js</module>
                 <module>kotlin-json</module>
                 <!-- <module>kotlin-ktor</module> --> <!-- not a Maven module -->
                 <module>kotlin-lambda</module>
