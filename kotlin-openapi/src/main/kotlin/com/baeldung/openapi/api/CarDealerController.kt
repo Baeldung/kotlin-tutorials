@@ -1,6 +1,6 @@
-package com.baeldung.kotlingradleopenapi.api
+package com.baeldung.openapi.api
 
-import com.baeldung.kotlingradleopenapi.service.CarService
+import com.baeldung.openapi.service.CarService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema

@@ -1,7 +1,7 @@
-package com.baeldung.kotlingradleopenapi
+package com.baeldung.openapi
 
 import com.baeldung.car.client.api.CarsApi
-import com.baeldung.kotlingradleopenapi.service.CarService
+import com.baeldung.openapi.service.CarService
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test

@@ -1,4 +1,4 @@
-package com.baeldung.kotlingradleopenapi.service
+package com.baeldung.openapi.service
 
 import java.math.BigDecimal
 import java.time.Year

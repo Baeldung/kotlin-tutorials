@@ -1,12 +1,12 @@
-package com.baeldung.kotlingradleopenapi.api
+package com.baeldung.openapi.api
 
-import com.baeldung.car.api.CarsApi
-import com.baeldung.car.model.Car
-import com.baeldung.car.model.CarBody
-import com.baeldung.kotlingradleopenapi.service.CarService
+import com.baeldung.openapi.car.apis.CarsApi
+import com.baeldung.car.models.Car
+import com.baeldung.car.models.CarBody
+import com.baeldung.openapi.service.CarService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController
-import com.baeldung.kotlingradleopenapi.service.Car as CarModel
+import com.baeldung.openapi.service.Car as CarModel
 import java.time.Year
 
 @RestController
