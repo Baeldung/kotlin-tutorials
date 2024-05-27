@@ -406,7 +406,7 @@
                 <module>kotlin-math</module>
                 <module>kotlin-math-2</module>
                 <module>kotlin-yaml</module>
-                <!-- <module>kotlin-multiplatform</module> --> <!-- not a Maven module -->
+                <module>kotlin-multiplatform</module>
                 <!-- <module>kotlin-multiplatform-mobile</module> --> <!-- not a Maven module -->
                 <module>kotlin-native</module>
                 <module>kotlin-openapi</module>
