@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import kotlin.reflect.KClass
 import kotlin.test.assertEquals
+import kotlin.test.assertNull
 
 class GetKclassUnitTest {
 
@@ -61,11 +62,8 @@ class GetKclassUnitTest {
     fun `obtain the Kclass from Package Class name using class path and non-existing class`() {
         val notClass = "com.baeldung.obtainKclassFromPackageClassName.NotAClass"
 
-        val exception = assertThrows<NullPointerException> {
-            getClassUsingClassGraph(notClass)
-        }
-
-        assertEquals("Cannot invoke \"io.github.classgraph.ClassInfo.loadClass()\" because the return value of \"io.github.classgraph.ScanResult.getClassInfo(String)\" is null", exception.message)
+        val kClass = getClassUsingClassGraph(notClass)
+        assertNull(kClass)
     }
 }
 
@@ -78,11 +76,15 @@ fun getClassFromLoader(className: String): KClass<*>? {
 }
 
 fun getClassUsingClassGraph(className: String): KClass<*>? {
-    return ClassGraph()
+    val classInfo = ClassGraph()
         .addClassLoader(ClassLoader.getSystemClassLoader())
         .enableClassInfo()
         .scan()
         .getClassInfo(className)
-        .loadClass()
-        ?.kotlin
+
+    if(classInfo != null){
+        return classInfo.loadClass().kotlin
+    }
+
+    return null
 }
