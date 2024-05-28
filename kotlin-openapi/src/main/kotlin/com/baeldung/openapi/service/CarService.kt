@@ -1,4 +1,4 @@
-package com.baeldung.kotlingradleopenapi.service
+package com.baeldung.openapi.service
 
 import org.springframework.stereotype.Component
 import java.math.BigDecimal

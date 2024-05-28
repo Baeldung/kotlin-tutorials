@@ -1,4 +1,4 @@
-package com.baeldung.kotlingradleopenapi.api
+package com.baeldung.openapi.api
 
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ControllerAdvice

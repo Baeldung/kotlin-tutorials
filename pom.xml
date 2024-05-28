@@ -409,7 +409,7 @@
                 <!-- <module>kotlin-multiplatform</module> --> <!-- not a Maven module -->
                 <!-- <module>kotlin-multiplatform-mobile</module> --> <!-- not a Maven module -->
                 <module>kotlin-native</module>
-                <!-- <module>kotlin-openapi</module> --> <!-- not a Maven module -->
+                <module>kotlin-openapi</module>
                 <module>kotlin-patterns</module>
                 <module>kotlin-performance-vs-java</module>
                 <module>kotlin-algorithms</module>
@@ -488,7 +488,7 @@
                 <!-- <module>kotlin-multiplatform</module> --> <!-- not a Maven module -->
                 <!-- <module>kotlin-multiplatform-mobile</module> --> <!-- not a Maven module -->
                 <module>kotlin-native</module>
-                <!-- <module>kotlin-openapi</module> --> <!-- not a Maven module -->
+                <module>kotlin-openapi</module>
                 <module>kotlin-patterns</module>
                 <module>kotlin-performance-vs-java</module>
                 <module>kotlin-algorithms</module>

@@ -1,4 +1,4 @@
-package com.baeldung.kotlingradleopenapi
+package com.baeldung.openapi
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

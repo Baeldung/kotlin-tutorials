@@ -1,6 +1,6 @@
 import com.baeldung.iteratePropertiesOfDataClass.Person
 import com.baeldung.iteratePropertiesOfDataClass.getFields
-import kotlin.test.Test
+import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
 class IteratePropertiesOfDataClassUnitTest {
