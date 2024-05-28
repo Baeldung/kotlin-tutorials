@@ -17,6 +17,16 @@ class ContinuationUnitTest {
 
     private val logger = LoggerFactory.getLogger("")
 
+    private suspend fun doSomethingUsefulOne(): Int {
+        delay(1000L)
+        return 13
+    }
+
+    @Test
+    fun `test create suspend function`() = runBlocking{
+        assertEquals(13, doSomethingUsefulOne())
+    }
+
     @Test
     fun `test create continuation manually`() {
         val simpleContinuation = Continuation<Int>(Dispatchers.IO) { result ->
@@ -183,17 +193,17 @@ class ContinuationUnitTest {
     }
 
     @Test
-    fun `test using suspend function simulate random division`(): Unit = runBlocking{
+    fun `test using suspend function simulate random division`(): Unit = runBlocking {
         for (x in (0..10)) {
             try {
                 logger.info(" ${simulateRandomDivisionResume()} ")
-            }catch (e : Exception){
+            } catch (e: Exception) {
                 logger.error(e.message)
             }
 
             try {
                 logger.info(" ${simulateRandomDivisionResumeWith()} ")
-            }catch (e : Exception){
+            } catch (e: Exception) {
                 logger.error(e.message)
             }
         }
