@@ -1,0 +1,89 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Project Information -->
+    <groupId>com.baeldung.mobile_multiplatform</groupId>
+    <artifactId>kotlin-multiplatform-mobile</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <!-- Properties -->
+    <properties>
+        <kotlin.version>1.8.21</kotlin.version>
+        <android.plugin.version>8.0.2</android.plugin.version>
+        <compile.sdk.version>android-31</compile.sdk.version>
+        <min.sdk.version>26</min.sdk.version>
+    </properties>
+
+    <!-- Plugins -->
+    <build>
+        <plugins>
+            <!-- Kotlin Multiplatform Plugin -->
+            <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <version>1.9.23</version>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>test-compile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>test-compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- Android Configuration -->
+    <profiles>
+        <profile>
+            <id>android</id>
+            <build>
+                <plugins>
+                    <!-- Android Configuration -->
+                    <plugin>
+                        <groupId>com.android.tools.build</groupId>
+                        <artifactId>gradle</artifactId>
+                        <version>${android.plugin.version}</version>
+                        <extensions>true</extensions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <!-- Repositories -->
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+        <repository>
+            <id>jcenter</id>
+            <url>https://jcenter.bintray.com/</url>
+        </repository>
+        <repository>
+            <id>google</id>
+            <url>https://maven.google.com/</url>
+        </repository>
+        <repository>
+            <id>kotlinx</id>
+            <url>https://dl.bintray.com/kotlin/kotlinx</url>
+        </repository>
+        <repository>
+            <id>kotlin-js-wrappers</id>
+            <url>https://dl.bintray.com/kotlin/kotlin-js-wrappers</url>
+        </repository>
+    </repositories>
+</project>
