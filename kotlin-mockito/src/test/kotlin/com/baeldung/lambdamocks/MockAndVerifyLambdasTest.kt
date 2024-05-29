@@ -11,11 +11,11 @@ import kotlin.test.assertEquals
 
 class CalculatorUnitTest {
 
-  class Calculator(private val operation: (Int, Int) -> Int) {
-      fun calculate(a: Int, b: Int): Int {
-          return operation(a, b)
-      }
-  }
+    class Calculator(private val operation: (Int, Int) -> Int) {
+        fun calculate(a: Int, b: Int): Int {
+            return operation(a, b)
+        }
+    }
     @Test
     fun testLambda_WithMockito() {
         val operationMock: (Int, Int) -> Int = mock()
@@ -43,5 +43,3 @@ class CalculatorUnitTest {
         assertEquals(50, result)
         verify { operationMock(10, 5) } }
 }
-
-
