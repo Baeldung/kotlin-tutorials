@@ -9,3 +9,4 @@
 - [Compute Quotient and Remainder in Kotlin](https://www.baeldung.com/kotlin/integer-division-modulus)
 - [Reverse a Number in Kotlin](https://www.baeldung.com/kotlin/reverse-number-digits)
 - [Generate Multiplication Table in Kotlin](https://www.baeldung.com/kotlin/multiplication-table)
+- More articles: [[next -->]](../kotlin-math-2)

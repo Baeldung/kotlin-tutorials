@@ -11,3 +11,4 @@ This module contains articles about core Kotlin collections.
 - [Sort LinkedHashMap by Values in Kotlin](https://www.baeldung.com/kotlin/linkedhashmap-sort-by-values)
 - [Kotlin Comparable Interface](https://www.baeldung.com/kotlin/comparable)
 - [Prepending an Element to a List in Kotlin](https://www.baeldung.com/kotlin/list-prepend-item)
+- More articles: [[<-- prev]](../core-kotlin-collections-3) [[next -->]](../core-kotlin-collections-5)

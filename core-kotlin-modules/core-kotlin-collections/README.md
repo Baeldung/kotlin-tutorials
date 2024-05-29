@@ -14,3 +14,4 @@ This module contains articles about core Kotlin collections.
 - [Guide to Sorting in Kotlin](https://www.baeldung.com/kotlin/sort)
 - [Working With Lists in Kotlin](https://www.baeldung.com/kotlin/lists)
 - [Iterating Collections by Index in Kotlin](https://www.baeldung.com/kotlin/iterating-collections-by-index)
+- - More articles: [[next -->]](../core-kotlin-collections-2)

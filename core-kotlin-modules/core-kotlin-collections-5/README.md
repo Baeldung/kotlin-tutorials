@@ -11,3 +11,4 @@ This module contains articles about core Kotlin collections.
 - [Convert Any to Int in Kotlin](https://www.baeldung.com/kotlin/type-any-int-conversion)
 - [Convert String Array to Int Array in Kotlin](https://www.baeldung.com/kotlin/array-string-integer-conversion)
 - [any() vs. none() vs. all() in Kotlin](https://www.baeldung.com/kotlin/any-none-all-differences)
+- More articles: [[<-- prev]](../core-kotlin-collections-4) [[next -->]](../core-kotlin-collections-6)

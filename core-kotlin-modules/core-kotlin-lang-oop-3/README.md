@@ -10,4 +10,5 @@ This module contains articles about Object-Oriented Programming in Kotlin
 - [Extend Data Class in Kotlin](https://www.baeldung.com/kotlin/extend-data-class)
 - [Get Names of All Enum Entries by Generic Functions in Kotlin](https://www.baeldung.com/kotlin/enum-get-entry-names)
 - [Create a Function That Works for All Enum Classes in Kotlin](https://www.baeldung.com/kotlin/function-enum-classes)
+- [Qualified this and Implicit this in Kotlin](https://www.baeldung.com/kotlin/this-keyword-qualified-vs-implicit)
 - More articles: [[<-- prev]](/core-kotlin-modules/core-kotlin-lang-oop-2)
