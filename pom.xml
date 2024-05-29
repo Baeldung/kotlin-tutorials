@@ -389,7 +389,7 @@
                 <!-- <module>kotest</module> --> <!-- not a Maven module -->
                 <module>kotlin-apache-kafka</module>
                 <module>kotlin-api</module>
-                <!-- <module>kotlin-build-plugins</module> --> <!-- not a Maven module -->
+                <module>kotlin-build-plugins</module>
                 <module>kotlin-immutable-collections</module>
                 <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
                 <module>kotlin-json</module>
@@ -468,7 +468,7 @@
                 <!-- <module>kotest</module> --> <!-- not a Maven module -->
                 <module>kotlin-apache-kafka</module>
                 <module>kotlin-api</module>
-                <!-- <module>kotlin-build-plugins</module> --> <!-- not a Maven module -->
+                <module>kotlin-build-plugins</module>
                 <module>kotlin-immutable-collections</module>
                 <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
                 <module>kotlin-json</module>
