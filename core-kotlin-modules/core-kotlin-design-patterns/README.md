@@ -10,3 +10,4 @@ This module contains articles about design patterns in Kotlin
 - [The Adapter Pattern in Kotlin](https://www.baeldung.com/kotlin/adapter-pattern)
 - [The Facade Pattern in Kotlin](https://www.baeldung.com/kotlin/facade-pattern)
 - [The Visitor Pattern in Kotlin](https://www.baeldung.com/kotlin/visitor-pattern)
+- [The Composite Pattern in Kotlin](https://www.baeldung.com/kotlin/composite-design-pattern)

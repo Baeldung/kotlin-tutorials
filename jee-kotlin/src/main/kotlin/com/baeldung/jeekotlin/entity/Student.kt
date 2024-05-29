@@ -1,7 +1,6 @@
 package com.baeldung.jeekotlin.entity
 
-import com.fasterxml.jackson.annotation.JsonProperty
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 data class Student constructor (

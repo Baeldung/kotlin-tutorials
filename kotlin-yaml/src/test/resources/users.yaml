@@ -1,0 +1,11 @@
+users:
+  - name: Alice
+    age: 30
+    address:
+      city: New York
+      country: USA
+  - name: Bob
+    age: 35
+    address:
+      city: London
+      country: UK
