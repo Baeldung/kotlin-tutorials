@@ -11,4 +11,31 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.reactivex.rxjava3</groupId>
+            <artifactId>rxkotlin</artifactId>
+            <version>${rxkotlin.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-rx3</artifactId>
+            <version>${rxcoroutines.version}</version>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <rxkotlin.version>3.0.1</rxkotlin.version>
+        <rxcoroutines.version>1.8.1</rxcoroutines.version>
+        <junit.version>4.13.2</junit.version>
+    </properties>
+    
 </project>
