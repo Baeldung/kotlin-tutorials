@@ -11,3 +11,4 @@ This module contains articles about Kotlin core date/time features.
 - [How to Convert a Date Time String to Instant in Kotlin](https://www.baeldung.com/kotlin/date-time-string-to-instant)
 - [How to Convert Milliseconds to Minutes and Seconds in Kotlin](https://www.baeldung.com/kotlin/convert-millis-minutes-seconds)
 - [How to Calculate the Difference Between Two Time Periods in Kotlin](https://www.baeldung.com/kotlin/time-period-calculate-difference)
+- [Guide to Duration in Kotlin](https://www.baeldung.com/kotlin/duration-class-tutorial)
