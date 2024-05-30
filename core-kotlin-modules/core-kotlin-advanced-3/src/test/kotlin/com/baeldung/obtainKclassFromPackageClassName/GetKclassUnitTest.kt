@@ -1,6 +1,7 @@
 package com.baeldung.obtainKclassFromPackageClassName
 
 import io.github.classgraph.ClassGraph
+import io.github.classgraph.ClassInfo
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import kotlin.reflect.KClass
@@ -76,15 +77,10 @@ fun getClassFromLoader(className: String): KClass<*>? {
 }
 
 fun getClassUsingClassGraph(className: String): KClass<*>? {
-    val classInfo = ClassGraph()
+    val classInfo: ClassInfo? = ClassGraph()
         .addClassLoader(ClassLoader.getSystemClassLoader())
         .enableClassInfo()
         .scan()
         .getClassInfo(className)
-
-    if(classInfo != null){
-        return classInfo.loadClass().kotlin
-    }
-
-    return null
+    return classInfo?.loadClass()?.kotlin
 }
