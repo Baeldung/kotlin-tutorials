@@ -15,18 +15,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.nhaarman</groupId>
-            <artifactId>mockito-kotlin</artifactId>
-            <version>${nhaarman-mockito-kotlin.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito.kotlin</groupId>
-            <artifactId>mockito-kotlin</artifactId>
-            <version>${mockito-kotlin.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.jetbrains.spek</groupId>
             <artifactId>spek-api</artifactId>
             <version>${spek.version}</version>
@@ -44,19 +32,9 @@
             <version>${spek.version}</version>
             <scope>test</scope>
         </dependency>
-         <!-- MockK dependencies-->
-        <dependency>
-            <groupId>io.mockk</groupId>
-            <artifactId>mockk</artifactId>
-            <version>${mockk.version}</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <properties>
-        <nhaarman-mockito-kotlin.version>1.5.0</nhaarman-mockito-kotlin.version>
-        <mockito-kotlin.version>5.1.0</mockito-kotlin.version>
         <spek.version>1.1.5</spek.version>
-        <mockk.version>1.9.3</mockk.version>
     </properties>
 </project>

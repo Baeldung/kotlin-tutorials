@@ -419,7 +419,7 @@
                 <module>kotlin-self-executable-jar</module>
                 <module>kotlin-spark</module>
                 <module>kotlin-testing</module>
-                <module>kotlin-testing-2</module>
+                <module>kotlin-mockito</module>
                 <!-- <module>kotlin-tornadofx</module> --> <!-- not compatible with Java 9+ -->
                 <!-- <module>kotlin-kover</module> --> <!-- https://github.com/Kotlin/kotlinx-kover/issues/51 -->
                 <module>ktlint-custom</module>
