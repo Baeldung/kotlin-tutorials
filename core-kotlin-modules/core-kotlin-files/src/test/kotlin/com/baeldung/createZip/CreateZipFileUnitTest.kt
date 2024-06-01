@@ -6,6 +6,7 @@ import net.lingala.zip4j.model.enums.CompressionLevel
 import net.lingala.zip4j.model.enums.CompressionMethod
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry
 import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream
+import org.apache.commons.compress.utils.IOUtils
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import java.io.File
@@ -27,7 +28,6 @@ class CreateZipFileUnitTest {
         assertTrue(outputZipFile.exists())
         assertTrue(outputZipFile.length() > 0)
 
-        // Clean up
         filesToZip.forEach { it.delete() }
         outputZipFile.delete()
     }
@@ -72,15 +72,26 @@ fun createZipFile(files: List<File>, outputZipFile: File) {
     }
 }
 
+//fun createZipFileWithApache(files: List<File>, outputZipFile: File) {
+//    ZipArchiveOutputStream(outputZipFile).use { zipOut ->
+//        files.forEach { file ->
+//            FileInputStream(file).use { fis ->
+//                val zipEntry = ZipArchiveEntry(file.name)
+//                zipOut.putArchiveEntry(zipEntry)
+//                fis.copyTo(zipOut)
+//                zipOut.closeArchiveEntry()
+//            }
+//        }
+//    }
+//}
 fun createZipFileWithApache(files: List<File>, outputZipFile: File) {
-    ZipArchiveOutputStream(outputZipFile).use { zipOut ->
+    ZipArchiveOutputStream(FileOutputStream(outputZipFile)).use { zipOut ->
         files.forEach { file ->
+            zipOut.putArchiveEntry(ZipArchiveEntry(file.name))
             FileInputStream(file).use { fis ->
-                val zipEntry = ZipArchiveEntry(file.name)
-                zipOut.putArchiveEntry(zipEntry)
-                fis.copyTo(zipOut)
-                zipOut.closeArchiveEntry()
+                IOUtils.copy(fis, zipOut)
             }
+            zipOut.closeArchiveEntry()
         }
     }
 }
