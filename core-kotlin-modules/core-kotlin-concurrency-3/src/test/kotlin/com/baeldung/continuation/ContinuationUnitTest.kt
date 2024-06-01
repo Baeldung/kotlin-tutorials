@@ -36,7 +36,16 @@ class ContinuationUnitTest {
         assertEquals("Baeldung", result)
     }
 
-    private suspend fun simpleSuspendFunction(): String {
+    suspend fun doSomethingUsefulOne(): Int {
+        delay(1000L) // pretend we are doing something useful here
+        return 13
+    }
+
+    private suspend fun simpleSuspendFunction(): String{
+        return "Baeldung"
+    }
+
+    private suspend fun simpleSuspendFunctionContinuation(): String {
         return suspendCoroutine { continuation ->
             thread {
                 Thread.sleep(1000) //  is just for demo purposes
@@ -47,7 +56,7 @@ class ContinuationUnitTest {
 
     @Test
     fun `test continuation using simple suspend function`() = runBlocking {
-        val result = simpleSuspendFunction()
+        val result = simpleSuspendFunctionContinuation()
         assertEquals("Baeldung", result)
     }
 
