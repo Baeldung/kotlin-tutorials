@@ -8,6 +8,7 @@ This module contains articles about Kotlin core features.
 - [Kotlin Java Interoperability](https://www.baeldung.com/kotlin/java-interoperability)
 - [Create a Java and Kotlin Project with Maven](https://www.baeldung.com/kotlin/maven-java-project)
 - [Kotlin Ternary Conditional Operator](https://www.baeldung.com/kotlin/ternary-operator)
+- [Cloning an Object in Kotlin](https://www.baeldung.com/kotlin/clone-object)
 - [Sequences in Kotlin](https://www.baeldung.com/kotlin/sequences)
 - [Exception Handling in Kotlin](https://www.baeldung.com/kotlin/exception-handling)
 - [Quick Guide to Kotlin Default and Named Arguments](https://www.baeldung.com/kotlin/default-named-arguments)
