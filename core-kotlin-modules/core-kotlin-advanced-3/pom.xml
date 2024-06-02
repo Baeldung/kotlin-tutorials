@@ -19,6 +19,12 @@
             <artifactId>kotlinx-html-jvm</artifactId>
             <version>${kotlinx-html-jvm.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.github.classgraph</groupId>
+            <artifactId>classgraph</artifactId>
+            <version>4.0.6</version>
+        </dependency>
     </dependencies>
 
     <properties>
