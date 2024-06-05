@@ -30,7 +30,7 @@ dependencies {
 
     implementation("ch.qos.logback", "logback-classic", logbackVersion)
 
-    compile("io.ktor", "ktor-gson" ktorVersion)
+    implementation("io.ktor", "ktor-gson", ktorVersion)
 
     testImplementation("io.ktor", "ktor-client-mock", ktorVersion)
     testImplementation("io.ktor", "ktor-server-tests", ktorVersion)
@@ -61,6 +61,12 @@ kotlin {
     jvmToolchain(20)
 }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
 graphql {
     client {
         packageName = "com.baeldung.graphql.client.generated"
@@ -69,7 +75,7 @@ graphql {
     }
 }
 
-task runServer(type: JavaExec) {
-    main = 'APIServer'
-    classpath = sourceSets.main.runtimeClasspath
+tasks.register<JavaExec>("runServer") {
+    mainClass.set("APIServer")
+    classpath = sourceSets["main"].runtimeClasspath
 }
