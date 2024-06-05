@@ -12,4 +12,5 @@ This module contains articles about concurrency in Kotlin.
 - [Combining Multiple Kotlin Flows](https://www.baeldung.com/kotlin/combining-multiple-flows)
 - [Merging Kotlin Flows](https://www.baeldung.com/kotlin/flow-merging)
 - [Avoiding the ConcurrentModificationException in Kotlin](https://www.baeldung.com/kotlin/concurrent-modification-exception)
+- [Convert RxJava Single to Kotlin Coroutine Deferred](https://www.baeldung.com/kotlin/rxjava-single-coroutine-deferred)
 - More articles: [[<-- prev]](../core-kotlin-concurrency-2)
