@@ -294,6 +294,92 @@
                 <configuration>
                     <executable>maven</executable>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>build-gradle-kotlin-dsl</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.basedir}/gradle-kotlin-dsl</workingDirectory>
+                            <executable>./gradlew</executable>
+                            <arguments>
+                                <argument>build</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test-gradle-kotlin-dsl</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.basedir}/gradle-kotlin-dsl</workingDirectory>
+                            <executable>./gradlew</executable>
+                            <arguments>
+                                <argument>test</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>build-kotlin-build-plugins</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.basedir}/kotlin-build-plugins</workingDirectory>
+                            <executable>./gradlew</executable>
+                            <arguments>
+                                <argument>build</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test-kotlin-build-plugins</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.basedir}/kotlin-build-plugins</workingDirectory>
+                            <executable>./gradlew</executable>
+                            <arguments>
+                                <argument>test</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>build-kotlin-libraries-rdbms</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.basedir}/kotlin-libraries-rdbms</workingDirectory>
+                            <executable>./gradlew</executable>
+                            <arguments>
+                                <argument>build</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test-kotlin-libraries-rdbms</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.basedir}/kotlin-libraries-rdbms</workingDirectory>
+                            <executable>./gradlew</executable>
+                            <arguments>
+                                <argument>test</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>
@@ -555,7 +641,7 @@
         <gib.failOnError>false</gib.failOnError>
         <gib.enabled>false</gib.enabled>
 
-        <java.version>11</java.version>
+        <java.version>17</java.version>
 
         <serialization.version>1.4.1</serialization.version>
         <jackson.version>2.15.0</jackson.version>
