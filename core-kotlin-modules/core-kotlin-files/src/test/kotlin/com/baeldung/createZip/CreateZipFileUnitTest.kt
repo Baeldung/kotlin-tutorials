@@ -72,18 +72,6 @@ fun createZipFile(files: List<File>, outputZipFile: File) {
     }
 }
 
-//fun createZipFileWithApache(files: List<File>, outputZipFile: File) {
-//    ZipArchiveOutputStream(outputZipFile).use { zipOut ->
-//        files.forEach { file ->
-//            FileInputStream(file).use { fis ->
-//                val zipEntry = ZipArchiveEntry(file.name)
-//                zipOut.putArchiveEntry(zipEntry)
-//                fis.copyTo(zipOut)
-//                zipOut.closeArchiveEntry()
-//            }
-//        }
-//    }
-//}
 fun createZipFileWithApache(files: List<File>, outputZipFile: File) {
     ZipArchiveOutputStream(FileOutputStream(outputZipFile)).use { zipOut ->
         files.forEach { file ->
