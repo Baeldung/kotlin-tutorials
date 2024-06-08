@@ -13,5 +13,4 @@ This module contains articles about core Kotlin numbers.
 - [Rounding Numbers in Kotlin](https://www.baeldung.com/kotlin/round-numbers)
 - [Get a Random Number in Kotlin](https://www.baeldung.com/kotlin/random-number)
 - [Unsigned Integers in Kotlin](https://www.baeldung.com/kotlin/unsigned-integers)
-- [Calculate Percentage in Kotlin](https://www.baeldung.com/kotlin/percentage-computation)
 - More articles: [[next -->]](../core-kotlin-numbers-2)

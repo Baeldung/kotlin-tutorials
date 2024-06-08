@@ -17,11 +17,12 @@
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-test</artifactId>
-            <version>1.7.1</version>
+            <version>${kotlinx-coroutines-test.version}</version>
         </dependency>
     </dependencies>
 
     <properties>
+        <kotlinx-coroutines-test.version>1.7.1</kotlinx-coroutines-test.version>
     </properties>
 
 </project>

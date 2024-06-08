@@ -48,6 +48,7 @@
         <module>core-kotlin-datastructures</module>
         <module>core-kotlin-datastructures-2</module>
         <module>core-kotlin-design-patterns</module>
+        <module>core-kotlin-exceptions</module>
         <module>core-kotlin-io</module>
         <module>core-kotlin-lang</module>
         <module>core-kotlin-lang-2</module>
@@ -57,12 +58,14 @@
         <module>core-kotlin-lang-oop</module>
         <module>core-kotlin-lang-oop-2</module>
         <module>core-kotlin-lang-oop-3</module>
+        <module>core-kotlin-lang-oop-4</module>
         <module>core-kotlin-numbers</module>
         <module>core-kotlin-numbers-2</module>
         <module>core-kotlin-strings</module>
         <module>core-kotlin-strings-2</module>
         <module>core-kotlin-strings-3</module>
         <module>core-kotlin-strings-4</module>
+        <module>core-kotlin-strings-5</module>
         <module>core-kotlin-string-conversions</module>
         <module>core-kotlin-files</module>
         <module>core-kotlin-operators</module>

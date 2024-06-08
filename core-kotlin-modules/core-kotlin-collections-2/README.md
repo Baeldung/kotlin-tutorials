@@ -14,3 +14,4 @@ This module contains articles about core Kotlin collections.
 - [Copy a Map in Kotlin](https://www.baeldung.com/kotlin/copy-map)
 - [Copying a List in Kotlin](https://www.baeldung.com/kotlin/copy-list)
 - [Removing Duplicate Elements From Collections in Kotlin](https://www.baeldung.com/kotlin/collections-remove-duplicates)
+- More articles: [[<-- prev]](../core-kotlin-collections) [[next -->]](../core-kotlin-collections-3)

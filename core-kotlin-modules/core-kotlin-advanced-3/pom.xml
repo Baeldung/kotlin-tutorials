@@ -14,6 +14,21 @@
     </parent>
 
     <dependencies>
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-html-jvm</artifactId>
+            <version>${kotlinx-html-jvm.version}</version>
+        </dependency>
 
+        <dependency>
+            <groupId>io.github.classgraph</groupId>
+            <artifactId>classgraph</artifactId>
+            <version>4.0.6</version>
+        </dependency>
     </dependencies>
+
+    <properties>
+        <kotlinx-html-jvm.version>0.7.2</kotlinx-html-jvm.version>
+    </properties>
+
 </project>

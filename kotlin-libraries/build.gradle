@@ -47,7 +47,6 @@ sourceSets {
 dependencies {
     compile "io.ktor:ktor-server-netty:$ktor_version"
     compile "ch.qos.logback:logback-classic:1.2.1"
-    compile "io.ktor:ktor-gson:$ktor_version"
     compile "khttp:khttp:$khttp_version"
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile group: 'org.jetbrains.spek', name: 'spek-api', version: '1.1.5'
@@ -55,9 +54,4 @@ dependencies {
     testCompile group: 'org.jetbrains.spek', name: 'spek-junit-platform-engine', version: '1.1.5'
     implementation 'com.beust:klaxon:3.0.1'
 
-}
-
-task runServer(type: JavaExec) {
-    main = 'APIServer'
-   classpath = sourceSets.main.runtimeClasspath
 }

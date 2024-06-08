@@ -30,13 +30,14 @@ dependencies {
 
     implementation("ch.qos.logback", "logback-classic", logbackVersion)
 
+    compile("io.ktor", "ktor-gson" ktorVersion)
+
     testImplementation("io.ktor", "ktor-client-mock", ktorVersion)
     testImplementation("io.ktor", "ktor-server-tests", ktorVersion)
 
     testImplementation("io.ktor", "ktor-serialization-kotlinx-json", ktorVersion)
     testImplementation("org.jetbrains.kotlin", "kotlin-test-junit", kotlinTestUnit)
     testImplementation("org.seleniumhq.selenium", "selenium-java", seleniumVersion)
-
 }
 
 plugins {
@@ -66,4 +67,9 @@ graphql {
         schemaFile = file("src/main/resources/client/schema.graphql")
         serializer = GraphQLSerializer.JACKSON
     }
+}
+
+task runServer(type: JavaExec) {
+    main = 'APIServer'
+    classpath = sourceSets.main.runtimeClasspath
 }

@@ -122,7 +122,7 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20231013</version>
+            <version>${json.version}</version>
         </dependency>
     </dependencies>
 
@@ -131,7 +131,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>${maven-antrun-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>ktlint</id>
@@ -168,12 +168,12 @@
                     <dependency>
                         <groupId>com.pinterest.ktlint</groupId>
                         <artifactId>ktlint-cli</artifactId>
-                        <version>1.0.1</version>
+                        <version>${ktlint-cli.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>com.baeldung</groupId>
                         <artifactId>ktlint-custom</artifactId>
-                        <version>1.0.0-SNAPSHOT</version>
+                        <version>${ktlint-custom.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -353,63 +353,87 @@
 
     </build>
 
-    <modules>
-        <module>parent-boot-2</module>
-        <module>parent-boot-3</module>
-
-        <module>core-kotlin-companion</module>
-        <module>core-kotlin-modules</module>
-        <!-- <module>gradle-kotlin-dsl</module> --> <!-- not a Maven module -->
-        <module>jee-kotlin</module>
-        <!-- <module>koin-guide</module> --> <!-- not a Maven module -->
-        <!-- <module>kotest</module> --> <!-- not a Maven module -->
-        <!-- <module>kotlin-apache-kafka</module> --> <!-- not a Maven module -->
-        <!-- <module>kotlin-api</module> --> <!-- not a Maven module -->
-        <!-- <module>kotlin-build-plugins</module> --> <!-- not a Maven module -->
-        <module>kotlin-immutable-collections</module>
-        <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
-        <module>kotlin-json</module>
-        <!-- <module>kotlin-ktor</module> --> <!-- not a Maven module -->
-        <module>kotlin-lambda</module>
-        <module>kotlin-libraries</module>
-        <module>kotlin-libraries-2</module>
-        <module>kotlin-libraries-data</module>
-        <module>kotlin-libraries-http</module>
-        <module>kotlin-libraries-orm</module>
-        <!-- <module>kotlin-libraries-rdbms</module> --> <!-- not a Maven module -->
-        <module>kotlin-libraries-utils</module>
-        <module>kotlin-logging</module>
-        <module>kotlin-math</module>
-        <module>kotlin-math-2</module>
-        <module>kotlin-yaml</module>
-        <!-- <module>kotlin-multiplatform</module> --> <!-- not a Maven module -->
-        <!-- <module>kotlin-multiplatform-mobile</module> --> <!-- not a Maven module -->
-        <!-- <module>kotlin-native</module> --> <!-- not a Maven module -->
-        <!-- <module>kotlin-openapi</module> --> <!-- not a Maven module -->
-        <module>kotlin-patterns</module>
-        <!-- <module>kotlin-performance-vs-java</module> --> <!-- not a Maven module -->
-        <module>kotlin-algorithms</module>
-        <module>kotlin-quasar</module>
-        <module>kotlin-reflection</module>
-        <module>kotlin-rsocket</module>
-        <!-- <module>kotlin-self-executable-jar</module> --> <!-- not a Maven module -->
-        <module>kotlin-spark</module>
-        <module>kotlin-testing</module>
-        <module>kotlin-testing-2</module>
-        <!-- <module>kotlin-tornadofx</module> --> <!-- not compatible with Java 9+ -->
-        <!-- <module>kotlin-kover</module> --> <!-- not a Maven module -->
-        <module>ktlint-custom</module>
-        <module>machine-learning</module>
-        <module>spring-boot-crud-kotlin</module>
-        <module>spring-boot-kotlin</module>
-        <module>spring-boot-kotlin-2</module>
-        <module>spring-boot-test-kotlin</module>
-        <module>spring-mvc-kotlin</module>
-        <module>spring-reactive-kotlin</module>
-        <module>spring-security-kotlin-dsl</module>
-    </modules>
-
     <profiles>
+        <profile>
+            <id>default</id>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${maven-surefire-plugin.version}</version>
+                        <configuration>
+                            <includes>
+                                <include>**/*UnitTest</include>
+                            </includes>
+                            <excludes>
+                                <exclude>**/*IntegrationTest</exclude>
+                                <exclude>**/*ManualTest</exclude>
+                                <exclude>**/*LiveTest</exclude>
+                            </excludes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+
+            <modules>
+                <module>parent-boot-2</module>
+                <module>parent-boot-3</module>
+
+                <module>core-kotlin-companion</module>
+                <module>core-kotlin-modules</module>
+                <!-- <module>gradle-kotlin-dsl</module> --> <!-- not a Maven module -->
+                <!-- <module>jee-kotlin</module> -->  <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
+                <module>koin-guide</module>
+                <module>kotlin-kotest</module>
+                <module>kotlin-apache-kafka</module>
+                <module>kotlin-api</module>
+                <!-- <module>kotlin-build-plugins</module> --> <!-- not a Maven module -->
+                <module>kotlin-immutable-collections</module>
+                <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
+                <module>kotlin-json</module>
+                <!-- <module>kotlin-ktor</module> --> <!-- not a Maven module -->
+                <module>kotlin-lambda</module>
+                <module>kotlin-libraries</module>
+                <module>kotlin-libraries-2</module>
+                <module>kotlin-libraries-data</module>
+                <module>kotlin-libraries-http</module>
+                <module>kotlin-libraries-orm</module>
+                <!-- <module>kotlin-libraries-rdbms</module> --> <!-- not a Maven module -->
+                <module>kotlin-libraries-utils</module>
+                <module>kotlin-logging</module>
+                <module>kotlin-math</module>
+                <module>kotlin-math-2</module>
+                <module>kotlin-yaml</module>
+                <!-- <module>kotlin-multiplatform</module> --> <!-- not a Maven module -->
+                <!-- <module>kotlin-multiplatform-mobile</module> --> <!-- not a Maven module -->
+                <module>kotlin-native</module>
+                <module>kotlin-openapi</module>
+                <module>kotlin-patterns</module>
+                <module>kotlin-performance-vs-java</module>
+                <module>kotlin-algorithms</module>
+                <module>kotlin-quasar</module>
+                <module>kotlin-reflection</module>
+                <module>kotlin-rsocket</module>
+                <module>kotlin-self-executable-jar</module>
+                <module>kotlin-spark</module>
+                <module>kotlin-testing</module>
+                <module>kotlin-mockito</module>
+                <!-- <module>kotlin-tornadofx</module> --> <!-- not compatible with Java 9+ -->
+                <!-- <module>kotlin-kover</module> --> <!-- https://github.com/Kotlin/kotlinx-kover/issues/51 -->
+                <module>ktlint-custom</module>
+                <module>machine-learning</module>
+                <module>spring-boot-crud-kotlin</module>
+                <module>spring-boot-kotlin</module>
+                <module>spring-boot-kotlin-2</module>
+                <module>spring-boot-test-kotlin</module>
+                <module>spring-mvc-kotlin</module>
+                <module>spring-reactive-kotlin</module>
+                <module>spring-security-kotlin-dsl</module>
+            </modules>
+        </profile>
+
         <profile>
             <id>integration</id>
             <build>
@@ -432,13 +456,69 @@
                 </plugins>
             </build>
 
-        </profile>
+            <modules>
+                <module>parent-boot-2</module>
+                <module>parent-boot-3</module>
 
+                <module>core-kotlin-companion</module>
+                <module>core-kotlin-modules</module>
+                <!-- <module>gradle-kotlin-dsl</module> --> <!-- not a Maven module -->
+                <!-- <module>jee-kotlin</module> -->  <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
+                <module>koin-guide</module>
+                <module>kotlin-kotest</module>
+                <module>kotlin-apache-kafka</module>
+                <module>kotlin-api</module>
+                <!-- <module>kotlin-build-plugins</module> --> <!-- not a Maven module -->
+                <module>kotlin-immutable-collections</module>
+                <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
+                <module>kotlin-json</module>
+                <!-- <module>kotlin-ktor</module> --> <!-- not a Maven module -->
+                <module>kotlin-lambda</module>
+                <module>kotlin-libraries</module>
+                <module>kotlin-libraries-2</module>
+                <module>kotlin-libraries-data</module>
+                <module>kotlin-libraries-http</module>
+                <module>kotlin-libraries-orm</module>
+                <!-- <module>kotlin-libraries-rdbms</module> --> <!-- not a Maven module -->
+                <module>kotlin-libraries-utils</module>
+                <module>kotlin-logging</module>
+                <module>kotlin-math</module>
+                <module>kotlin-math-2</module>
+                <module>kotlin-yaml</module>
+                <!-- <module>kotlin-multiplatform</module> --> <!-- not a Maven module -->
+                <!-- <module>kotlin-multiplatform-mobile</module> --> <!-- not a Maven module -->
+                <module>kotlin-native</module>
+                <module>kotlin-openapi</module>
+                <module>kotlin-patterns</module>
+                <module>kotlin-performance-vs-java</module>
+                <module>kotlin-algorithms</module>
+                <module>kotlin-quasar</module>
+                <module>kotlin-reflection</module>
+                <module>kotlin-rsocket</module>
+                <module>kotlin-self-executable-jar</module>
+                <module>kotlin-spark</module>
+                <module>kotlin-testing</module>
+                <module>kotlin-testing-2</module>
+                <!-- <module>kotlin-tornadofx</module> --> <!-- not compatible with Java 9+ -->
+                <!-- <module>kotlin-kover</module> --> <!-- https://github.com/Kotlin/kotlinx-kover/issues/51 -->
+                <module>ktlint-custom</module>
+                <module>machine-learning</module>
+                <module>spring-boot-crud-kotlin</module>
+                <module>spring-boot-kotlin</module>
+                <module>spring-boot-kotlin-2</module>
+                <module>spring-boot-test-kotlin</module>
+                <module>spring-mvc-kotlin</module>
+                <module>spring-reactive-kotlin</module>
+                <module>spring-security-kotlin-dsl</module>
+            </modules>
+
+        </profile>
     </profiles>
 
     <properties>
-        <kotlin.version>1.9.23</kotlin.version>
+        <kotlin.version>1.9.24</kotlin.version>
         <kotlinx.version>1.7.1</kotlinx.version>
+        <ktlint-cli.version>1.0.1</ktlint-cli.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -456,8 +536,10 @@
 
         <!-- utilities -->
         <apache-commons.version>3.11</apache-commons.version>
+        <json.version>20231013</json.version>
 
         <!-- plugins -->
+        <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
@@ -476,6 +558,9 @@
         <java.version>11</java.version>
 
         <serialization.version>1.4.1</serialization.version>
+        <jackson.version>2.15.0</jackson.version>
+        <gson.version>2.10.1</gson.version>
+        <commons-math3.version>3.6.1</commons-math3.version>
     </properties>
 
 </project>
