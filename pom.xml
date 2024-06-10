@@ -423,7 +423,7 @@
                 <!-- <module>kotlin-tornadofx</module> --> <!-- not compatible with Java 9+ -->
                 <!-- <module>kotlin-kover</module> --> <!-- https://github.com/Kotlin/kotlinx-kover/issues/51 -->
                 <module>ktlint-custom</module>
-                <module>machine-learning</module>
+                <module>kotlin-machine-learning</module>
                 <module>spring-boot-crud-kotlin</module>
                 <module>spring-boot-kotlin</module>
                 <module>spring-boot-kotlin-2</module>
@@ -498,11 +498,11 @@
                 <module>kotlin-self-executable-jar</module>
                 <module>kotlin-spark</module>
                 <module>kotlin-testing</module>
-                <module>kotlin-testing-2</module>
+                <module>kotlin-mockito</module>
                 <!-- <module>kotlin-tornadofx</module> --> <!-- not compatible with Java 9+ -->
                 <!-- <module>kotlin-kover</module> --> <!-- https://github.com/Kotlin/kotlinx-kover/issues/51 -->
                 <module>ktlint-custom</module>
-                <module>machine-learning</module>
+                <module>kotlin-machine-learning</module>
                 <module>spring-boot-crud-kotlin</module>
                 <module>spring-boot-kotlin</module>
                 <module>spring-boot-kotlin-2</module>
