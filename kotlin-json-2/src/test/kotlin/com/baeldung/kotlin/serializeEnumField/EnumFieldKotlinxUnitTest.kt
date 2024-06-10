@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
 
-class EnumFieldKotlinx1UnitTest {
+class EnumFieldKotlinxUnitTest {
     @Serializable
     enum class Language(val description: String) {
         @SerialName("Kotlin_is_awesome")
