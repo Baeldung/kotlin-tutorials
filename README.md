@@ -37,4 +37,4 @@ For Spring modules this will also run the `SpringContextTest` if present.
 To run the integration tests, use the command:
 
 `mvn clean install -Pintegration` 
-
+_
