@@ -385,6 +385,7 @@
                 <module>core-kotlin-modules</module>
                 <!-- <module>gradle-kotlin-dsl</module> --> <!-- not a Maven module -->
                 <!-- <module>jee-kotlin</module> -->  <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
+                <!-- <module>k2-kotlin</module> -->  <!-- Contains a lot of examples where code intentionally does not compile, by design -->
                 <module>koin-guide</module>
                 <module>kotlin-kotest</module>
                 <module>kotlin-apache-kafka</module>
@@ -464,6 +465,8 @@
                 <module>core-kotlin-modules</module>
                 <!-- <module>gradle-kotlin-dsl</module> --> <!-- not a Maven module -->
                 <!-- <module>jee-kotlin</module> -->  <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
+
+                <!-- <module>k2-kotlin</module> -->  <!-- Contains a lot of examples where code intentionally does not compile, by design -->
                 <module>koin-guide</module>
                 <module>kotlin-kotest</module>
                 <module>kotlin-apache-kafka</module>
