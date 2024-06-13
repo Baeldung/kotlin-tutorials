@@ -352,13 +352,13 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>build-kotlin-libraries-rdbms</id>
+                        <id>build-kotlin-kover</id>
                         <phase>compile</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <workingDirectory>${project.basedir}/kotlin-libraries-rdbms</workingDirectory>
+                            <workingDirectory>${project.basedir}/kotlin-kover</workingDirectory>
                             <executable>./gradlew</executable>
                             <arguments>
                                 <argument>build</argument>
@@ -366,13 +366,13 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>test-kotlin-libraries-rdbms</id>
+                        <id>test-kotlin-kover</id>
                         <phase>test</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <workingDirectory>${project.basedir}/kotlin-libraries-rdbms</workingDirectory>
+                            <workingDirectory>${project.basedir}/kotlin-kover</workingDirectory>
                             <executable>./gradlew</executable>
                             <arguments>
                                 <argument>test</argument>
