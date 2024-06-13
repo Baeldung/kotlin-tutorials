@@ -39,5 +39,6 @@ fun extendedComparatorUsage() {
 
     val ageComparator = compareBy<Pair<Int, String?>> {it.first}
     val ageAndNameComparator = ageComparator.thenByDescending {it.second}
-    println(students.sortedWith(ageAndNameComparator))
+    students.sortWith(ageAndNameComparator)
+    println(students)
 }
