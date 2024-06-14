@@ -11,10 +11,10 @@
     <packaging>pom</packaging>
 
     <repositories>
-        <repository>
-            <id>jcenter</id>
-            <url>https://jcenter.bintray.com</url>
-        </repository>
+<!--        <repository>-->
+<!--            <id>jcenter</id>-->
+<!--            <url>https://jcenter.bintray.com</url>-->
+<!--        </repository>-->
         <repository>
             <id>kotlin-ktor</id>
             <url>https://dl.bintray.com/kotlin/ktor/</url>
