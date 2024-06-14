@@ -1,7 +1,7 @@
 plugins {
     java
     application
-    kotlin("jvm") version "1.8.22"
+    kotlin("jvm") version "2.0.0"
 }
 
 sourceSets {
