@@ -464,8 +464,8 @@
             </build>
 
             <modules>
-                <module>parent-boot-2</module>
-                <module>parent-boot-3</module>
+<!--                <module>parent-boot-2</module>-->
+<!--                <module>parent-boot-3</module>-->
 
                 <module>core-kotlin-companion</module>
                 <module>core-kotlin-modules</module>
@@ -544,8 +544,8 @@
             </build>
 
             <modules>
-                <module>parent-boot-2</module>
-                <module>parent-boot-3</module>
+<!--                <module>parent-boot-2</module>-->
+<!--                <module>parent-boot-3</module>-->
 
                 <module>core-kotlin-companion</module>
                 <module>core-kotlin-modules</module>
