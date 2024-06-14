@@ -44,7 +44,7 @@ android {
 
 repositories {
     mavenCentral()
-    jcenter()
+    //jcenter()
     google()
     maven {
         url = uri("https://dl.bintray.com/kotlin/kotlinx")
