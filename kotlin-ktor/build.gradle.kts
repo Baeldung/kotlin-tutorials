@@ -3,7 +3,7 @@ import com.expediagroup.graphql.plugin.gradle.config.GraphQLSerializer
 description = "Example usage of Gradle plugin to generate GraphQL Kotlin Client"
 
 val graphQLKotlinVersion = "7.0.1"
-val ktorVersion = "2.3.5"
+val ktorVersion = "2.3.11"
 val logbackVersion = "1.4.14"
 val kotlinTestUnit = "1.9.10"
 val seleniumVersion = "4.16.1"
