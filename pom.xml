@@ -394,6 +394,7 @@
                 <module>kotlin-immutable-collections</module>
                 <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
                 <module>kotlin-json</module>
+                <module>kotlin-json-2</module>
                 <!-- <module>kotlin-ktor</module> --> <!-- not a Maven module -->
                 <module>kotlin-lambda</module>
                 <module>kotlin-libraries</module>
@@ -474,6 +475,7 @@
                 <module>kotlin-immutable-collections</module>
                 <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
                 <module>kotlin-json</module>
+                <module>kotlin-json-2</module>
                 <!-- <module>kotlin-ktor</module> --> <!-- not a Maven module -->
                 <module>kotlin-lambda</module>
                 <module>kotlin-libraries</module>
