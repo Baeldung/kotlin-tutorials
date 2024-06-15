@@ -385,6 +385,7 @@
                 <module>core-kotlin-modules</module>
                 <!-- <module>gradle-kotlin-dsl</module> --> <!-- not a Maven module -->
                 <module>kotlin-jee</module>
+                <module>k2-compiler</module>
                 <module>koin-guide</module>
                 <module>kotlin-kotest</module>
                 <module>kotlin-apache-kafka</module>
@@ -393,6 +394,7 @@
                 <module>kotlin-immutable-collections</module>
                 <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
                 <module>kotlin-json</module>
+                <module>kotlin-json-2</module>
                 <!-- <module>kotlin-ktor</module> --> <!-- not a Maven module -->
                 <module>kotlin-lambda</module>
                 <module>kotlin-libraries</module>
@@ -464,6 +466,7 @@
                 <module>core-kotlin-modules</module>
                 <!-- <module>gradle-kotlin-dsl</module> --> <!-- not a Maven module -->
                 <module>kotlin-jee</module>
+                <module>k2-compiler</module>
                 <module>koin-guide</module>
                 <module>kotlin-kotest</module>
                 <module>kotlin-apache-kafka</module>
@@ -472,6 +475,7 @@
                 <module>kotlin-immutable-collections</module>
                 <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
                 <module>kotlin-json</module>
+                <module>kotlin-json-2</module>
                 <!-- <module>kotlin-ktor</module> --> <!-- not a Maven module -->
                 <module>kotlin-lambda</module>
                 <module>kotlin-libraries</module>
@@ -498,7 +502,7 @@
                 <module>kotlin-self-executable-jar</module>
                 <module>kotlin-spark</module>
                 <module>kotlin-testing</module>
-                <module>kotlin-testing-2</module>
+                <module>kotlin-mockito</module>
                 <!-- <module>kotlin-tornadofx</module> --> <!-- not compatible with Java 9+ -->
                 <!-- <module>kotlin-kover</module> --> <!-- https://github.com/Kotlin/kotlinx-kover/issues/51 -->
                 <module>ktlint-custom</module>
