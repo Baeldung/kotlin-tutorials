@@ -32,9 +32,23 @@
             <version>${spek.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>ch.tutteli.atrium</groupId>
+            <artifactId>atrium-fluent-jvm</artifactId>
+            <version>${atrium.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.tutteli.atrium</groupId>
+            <artifactId>atrium-infix-jvm</artifactId>
+            <version>${atrium.version}</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <properties>
         <spek.version>1.1.5</spek.version>
+        <atrium.version>1.2.0</atrium.version>
     </properties>
 </project>
