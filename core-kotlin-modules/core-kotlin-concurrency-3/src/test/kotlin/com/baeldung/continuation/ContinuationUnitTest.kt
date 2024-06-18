@@ -22,13 +22,14 @@ class ContinuationUnitTest {
         return 13
     }
 
+
     @Test
-    fun `test create suspend function`() = runBlocking{
+    fun `test create suspend function`() = runBlocking {
         assertEquals(13, doSomethingUsefulOne())
     }
 
     @Test
-    fun `test create continuation manually`() {
+    fun `test create continuation manually`(): Unit = runBlocking{
         val simpleContinuation = Continuation<Int>(Dispatchers.IO) { result ->
             assertEquals(45, result.getOrNull())
         }
