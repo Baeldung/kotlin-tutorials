@@ -601,6 +601,44 @@
             </modules>
 
         </profile>
+
+        <profile>
+            <id>run-gradle-modules</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>build-gradle-kotlin-dsl</id>
+                                <phase>none</phase>
+                            </execution>
+                            <execution>
+                                <id>test-gradle-kotlin-dsl</id>
+                                <phase>none</phase>
+                            </execution>
+                            <execution>
+                                <id>build-kotlin-build-plugins</id>
+                                <phase>none</phase>
+                            </execution>
+                            <execution>
+                                <id>test-kotlin-build-plugins</id>
+                                <phase>none</phase>
+                            </execution>
+                            <execution>
+                                <id>build-kotlin-kover</id>
+                                <phase>none</phase>
+                            </execution>
+                            <execution>
+                                <id>test-kotlin-kover</id>
+                                <phase>none</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
     <properties>
