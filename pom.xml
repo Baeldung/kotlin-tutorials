@@ -11,10 +11,10 @@
     <packaging>pom</packaging>
 
     <repositories>
-<!--        <repository>-->
-<!--            <id>jcenter</id>-->
-<!--            <url>https://jcenter.bintray.com</url>-->
-<!--        </repository>-->
+        <repository>
+            <id>maven-central</id>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
         <repository>
             <id>kotlin-ktor</id>
             <url>https://dl.bintray.com/kotlin/ktor/</url>
@@ -22,10 +22,6 @@
         <repository>
             <id>kotlin-eap</id>
             <url>https://dl.bintray.com/kotlin/kotlin-eap/</url>
-        </repository>
-        <repository>
-            <id>maven-central</id>
-            <url>https://repo1.maven.org/maven2</url>
         </repository>
     </repositories>
 
@@ -297,7 +293,7 @@
                 <executions>
                     <execution>
                         <id>build-gradle-kotlin-dsl</id>
-                        <phase>compile</phase>
+                        <phase>none</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -311,7 +307,7 @@
                     </execution>
                     <execution>
                         <id>test-gradle-kotlin-dsl</id>
-                        <phase>test</phase>
+                        <phase>none</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -325,7 +321,7 @@
                     </execution>
                     <execution>
                         <id>build-kotlin-build-plugins</id>
-                        <phase>compile</phase>
+                        <phase>none</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -339,7 +335,7 @@
                     </execution>
                     <execution>
                         <id>test-kotlin-build-plugins</id>
-                        <phase>test</phase>
+                        <phase>none</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -353,7 +349,7 @@
                     </execution>
                     <execution>
                         <id>build-kotlin-kover</id>
-                        <phase>compile</phase>
+                        <phase>none</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -367,7 +363,7 @@
                     </execution>
                     <execution>
                         <id>test-kotlin-kover</id>
-                        <phase>test</phase>
+                        <phase>none</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -600,6 +596,44 @@
                 <module>spring-security-kotlin-dsl</module>
             </modules>
 
+        </profile>
+
+        <profile>
+            <id>run-gradle-modules</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>build-gradle-kotlin-dsl</id>
+                                <phase>none</phase>
+                            </execution>
+                            <execution>
+                                <id>test-gradle-kotlin-dsl</id>
+                                <phase>none</phase>
+                            </execution>
+                            <execution>
+                                <id>build-kotlin-build-plugins</id>
+                                <phase>none</phase>
+                            </execution>
+                            <execution>
+                                <id>test-kotlin-build-plugins</id>
+                                <phase>none</phase>
+                            </execution>
+                            <execution>
+                                <id>build-kotlin-kover</id>
+                                <phase>none</phase>
+                            </execution>
+                            <execution>
+                                <id>test-kotlin-kover</id>
+                                <phase>none</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 
