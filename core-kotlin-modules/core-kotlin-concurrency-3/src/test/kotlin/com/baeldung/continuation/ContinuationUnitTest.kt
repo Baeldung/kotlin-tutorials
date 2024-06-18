@@ -17,11 +17,6 @@ class ContinuationUnitTest {
 
     private val logger = LoggerFactory.getLogger("")
 
-    private suspend fun doSomethingUsefulOne(): Int {
-        delay(1000L)
-        return 13
-    }
-
 
     @Test
     fun `test create suspend function`() = runBlocking {
@@ -29,7 +24,7 @@ class ContinuationUnitTest {
     }
 
     @Test
-    fun `test create continuation manually`(): Unit = runBlocking{
+    fun `test create continuation manually`(): Unit = runBlocking {
         val simpleContinuation = Continuation<Int>(Dispatchers.IO) { result ->
             assertEquals(45, result.getOrNull())
         }
@@ -47,7 +42,12 @@ class ContinuationUnitTest {
         assertEquals("Baeldung", result)
     }
 
-    private suspend fun simpleSuspendFunction(): String {
+    private suspend fun doSomethingUsefulOne(): Int {
+        delay(1000L) // pretend we are doing something useful here
+        return 13
+    }
+
+    private suspend fun simpleSuspendFunctionContinuation(): String {
         return suspendCoroutine { continuation ->
             thread {
                 Thread.sleep(1000) //  is just for demo purposes
@@ -58,7 +58,7 @@ class ContinuationUnitTest {
 
     @Test
     fun `test continuation using simple suspend function`() = runBlocking {
-        val result = simpleSuspendFunction()
+        val result = simpleSuspendFunctionContinuation()
         assertEquals("Baeldung", result)
     }
 
