@@ -17,6 +17,16 @@ class ContinuationUnitTest {
 
     private val logger = LoggerFactory.getLogger("")
 
+    private suspend fun doSomethingUsefulOne(): Int {
+        delay(1000L) // pretend we are doing something useful here
+        return 13
+    }
+
+    private suspend fun doSomethingUsefulTwo(): Int {
+        delay(500L)
+        return 15
+    }
+
 
     @Test
     fun `test create suspend function`() = runBlocking {
@@ -41,16 +51,6 @@ class ContinuationUnitTest {
             }
         }
         assertEquals("Baeldung", result)
-    }
-
-    private suspend fun doSomethingUsefulOne(): Int {
-        delay(1000L) // pretend we are doing something useful here
-        return 13
-    }
-
-    private suspend fun doSomethingUsefulTwo(): Int {
-        delay(500L)
-        return 15
     }
 
     private suspend fun simpleSuspendFunctionContinuation(): String {
@@ -157,63 +157,4 @@ class ContinuationUnitTest {
             }
         }
     }
-
-    private suspend fun simulateRandomDivisionResumeWith(): Double {
-        return suspendCoroutine { continuation ->
-            CoroutineScope(Dispatchers.Default).launch {
-                delay(1000)
-                val result: Result<Double> = try {
-                    val numerator = Random.nextInt(0, 10)
-                    val denominator = Random.nextInt(0, 3)
-
-                    if (denominator == 0) throw ArithmeticException("Division by zero")
-
-                    Result.success(numerator.toDouble() / denominator)
-                } catch (e: ArithmeticException) {
-                    Result.failure(e)
-                } catch (e: Exception) {
-                    Result.failure(e)
-                }
-
-                continuation.resumeWith(result)
-            }
-        }
-    }
-
-    private suspend fun simulateRandomDivisionResume(): Double {
-        return suspendCoroutine { continuation ->
-            CoroutineScope(Dispatchers.Default).launch {
-                delay(1000)
-                try {
-                    val numerator = Random.nextInt(0, 10)
-                    val denominator = Random.nextInt(0, 3)
-
-                    if (denominator == 0) throw ArithmeticException("Division by zero")
-                    continuation.resume(numerator.toDouble() / denominator)
-                } catch (e: ArithmeticException) {
-                    continuation.resumeWithException(e)
-                } catch (e: Exception) {
-                    continuation.resumeWithException(e)
-                }
-            }
-        }
-    }
-
-    @Test
-    fun `test using suspend function simulate random division`(): Unit = runBlocking {
-        for (x in (0..10)) {
-            try {
-                logger.info(" ${simulateRandomDivisionResume()} ")
-            } catch (e: Exception) {
-                logger.error(e.message)
-            }
-
-            try {
-                logger.info(" ${simulateRandomDivisionResumeWith()} ")
-            } catch (e: Exception) {
-                logger.error(e.message)
-            }
-        }
-    }
-
 }
