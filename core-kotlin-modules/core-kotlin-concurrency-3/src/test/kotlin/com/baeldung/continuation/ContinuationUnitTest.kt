@@ -21,6 +21,7 @@ class ContinuationUnitTest {
     @Test
     fun `test create suspend function`() = runBlocking {
         assertEquals(13, doSomethingUsefulOne())
+        assertEquals(15, doSomethingUsefulTwo())
     }
 
     @Test
@@ -45,6 +46,11 @@ class ContinuationUnitTest {
     private suspend fun doSomethingUsefulOne(): Int {
         delay(1000L) // pretend we are doing something useful here
         return 13
+    }
+
+    private suspend fun doSomethingUsefulTwo(): Int {
+        delay(500L)
+        return 15
     }
 
     private suspend fun simpleSuspendFunctionContinuation(): String {
