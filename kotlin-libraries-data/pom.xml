@@ -47,7 +47,7 @@
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-serialization-core-jvm</artifactId>
-            <version>1.7.0</version>
+            <version>1.6.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -85,7 +85,7 @@
                                 <annotationProcessorPath>
                                     <groupId>org.jetbrains.kotlinx</groupId>
                                     <artifactId>kotlinx-serialization-compiler-plugin</artifactId>
-                                    <version>1.7.0</version>
+                                    <version>1.6.0</version>
                                 </annotationProcessorPath>
                             </annotationProcessorPaths>
                         </configuration>
@@ -104,7 +104,7 @@
                                 <annotationProcessorPath>
                                     <groupId>org.jetbrains.kotlinx</groupId>
                                     <artifactId>kotlinx-serialization-compiler-plugin</artifactId>
-                                    <version>1.7.0</version>
+                                    <version>1.6.0</version>
                                 </annotationProcessorPath>
                             </annotationProcessorPaths>
                         </configuration>
@@ -115,7 +115,7 @@
     </build>
 
     <properties>
-        <kotlinx-serialization-json-jvm.version>1.7.0</kotlinx-serialization-json-jvm.version>
+        <kotlinx-serialization-json-jvm.version>1.6.0</kotlinx-serialization-json-jvm.version>
         <kotlinx-datetime-jvm.version>0.4.0</kotlinx-datetime-jvm.version>
         <mapstruct.version>1.5.3.Final</mapstruct.version>
     </properties>
