@@ -17,6 +17,36 @@ class ContinuationUnitTest {
 
     private val logger = LoggerFactory.getLogger("")
 
+    private suspend fun doWork(name: String, delay: Long) : String {
+        logger.info("$name started")
+        delay(delay)
+        logger.info("$name resumed")
+        return name
+    }
+
+    @Test
+    fun `prove suspending`() = runBlocking{
+        val dispatcher = Dispatchers.Default  // Use a dispatcher with a thread pool
+
+        val job1 = launch(dispatcher) {
+            doWork("Job 1", 2000)
+        }
+
+        val job2 = launch(dispatcher) {
+            doWork("Job 2", 600)
+        }
+
+        val job3 = launch(dispatcher) {
+            doWork("Job 3",100)
+        }
+
+        job1.join()
+        job2.join()
+        job3.join()
+
+        logger.info("All coroutines finished!")
+    }
+
     private suspend fun doSomethingUsefulOne(): Int {
         delay(1000L) // pretend we are doing something useful here
         return 13
