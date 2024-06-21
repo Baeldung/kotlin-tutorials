@@ -11,10 +11,10 @@
     <packaging>pom</packaging>
 
     <repositories>
-<!--        <repository>-->
-<!--            <id>jcenter</id>-->
-<!--            <url>https://jcenter.bintray.com</url>-->
-<!--        </repository>-->
+        <repository>
+            <id>maven-central</id>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
         <repository>
             <id>kotlin-ktor</id>
             <url>https://dl.bintray.com/kotlin/ktor/</url>
@@ -22,10 +22,6 @@
         <repository>
             <id>kotlin-eap</id>
             <url>https://dl.bintray.com/kotlin/kotlin-eap/</url>
-        </repository>
-        <repository>
-            <id>maven-central</id>
-            <url>https://repo1.maven.org/maven2</url>
         </repository>
     </repositories>
 
