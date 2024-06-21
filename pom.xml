@@ -599,7 +599,7 @@
         </profile>
 
         <profile>
-            <id>run-gradle-modules</id>
+            <id>gradle-modules</id>
             <build>
                 <plugins>
                     <plugin>
@@ -608,27 +608,27 @@
                         <executions>
                             <execution>
                                 <id>build-gradle-kotlin-dsl</id>
-                                <phase>none</phase>
+                                <phase>test</phase>
                             </execution>
                             <execution>
                                 <id>test-gradle-kotlin-dsl</id>
-                                <phase>none</phase>
+                                <phase>test</phase>
                             </execution>
                             <execution>
                                 <id>build-kotlin-build-plugins</id>
-                                <phase>none</phase>
+                                <phase>test</phase>
                             </execution>
                             <execution>
                                 <id>test-kotlin-build-plugins</id>
-                                <phase>none</phase>
+                                <phase>test</phase>
                             </execution>
                             <execution>
                                 <id>build-kotlin-kover</id>
-                                <phase>none</phase>
+                                <phase>test</phase>
                             </execution>
                             <execution>
                                 <id>test-kotlin-kover</id>
-                                <phase>none</phase>
+                                <phase>test</phase>
                             </execution>
                         </executions>
                     </plugin>
