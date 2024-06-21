@@ -399,6 +399,7 @@
                 <module>kotlin-lambda</module>
                 <module>kotlin-libraries</module>
                 <module>kotlin-libraries-2</module>
+                <module>kotlin-libraries-3</module>
                 <module>kotlin-libraries-data</module>
                 <module>kotlin-libraries-http</module>
                 <module>kotlin-libraries-orm</module>
@@ -480,6 +481,7 @@
                 <module>kotlin-lambda</module>
                 <module>kotlin-libraries</module>
                 <module>kotlin-libraries-2</module>
+                <module>kotlin-libraries-3</module>
                 <module>kotlin-libraries-data</module>
                 <module>kotlin-libraries-http</module>
                 <module>kotlin-libraries-orm</module>
