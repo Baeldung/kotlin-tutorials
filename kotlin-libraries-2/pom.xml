@@ -60,7 +60,7 @@
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
-            <artifactId>kotlinx-collections-immutable</artifactId>
+            <artifactId>kotlinx-collections-immutable-jvm</artifactId>
             <version>${kotlinx-collections-immutable.version}</version>
         </dependency>
         <dependency>
