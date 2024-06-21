@@ -24,6 +24,7 @@
                         <id>compile</id>
                         <phase>compile</phase>
                         <goals>
+                            <goal>compile</goal>
                             <goal>js</goal>
                         </goals>
                         <configuration>
@@ -34,8 +35,11 @@
                             <useIrBackend>true</useIrBackend>
                             <sourceDirs>
                                 <sourceDir>${project.basedir}/src/main/kotlin</sourceDir>
+
                             </sourceDirs>
                             <moduleKind>commonjs</moduleKind>
+                            <outputFile>${project.basedir}/node/crypto.js</outputFile>
+                            <useIrBackend>true</useIrBackend>
                         </configuration>
                     </execution>
                 </executions>
@@ -68,5 +72,9 @@
             <version>${kotlin.version}</version>
         </dependency>
     </dependencies>
+
+    <properties>
+<!--        <kotlin.version>2.0.0</kotlin.version>-->
+    </properties>
 
 </project>
