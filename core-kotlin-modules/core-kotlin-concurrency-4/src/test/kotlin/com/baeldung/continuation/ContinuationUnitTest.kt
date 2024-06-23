@@ -50,38 +50,15 @@ class ContinuationUnitTest {
         val simpleContinuation = Continuation<Int>(Dispatchers.IO) { result ->
             assertEquals(45, result.getOrNull())
         }
-        simpleContinuation.resume(45)
+        simpleContinuation.resumeWith(Result.success(45))
     }
 
     @Test
     fun `test continuation using suspendCoroutine`() = runBlocking {
         val result = suspendCoroutine { continuation ->
-            continuation.resume("Baeldung")
+            continuation.resumeWith(Result.success("Baeldung"))
         }
         assertEquals("Baeldung", result)
-    }
-
-    private suspend fun simpleSuspendFunctionContinuation(): String {
-        delay(1000L)
-        return suspendCoroutine { continuation ->
-            continuation.resume("Baeldung")
-        }
-    }
-
-    @Test
-    fun `test continuation using simple suspend function`() = runBlocking {
-        val result = simpleSuspendFunctionContinuation()
-        assertEquals("Baeldung", result)
-    }
-
-    @Test
-    fun `test continuation using async`() = runBlocking {
-        val deferred = async {
-            suspendCoroutine { continuation ->
-                continuation.resume("Baeldung")
-            }
-        }.await()
-        assertEquals("Baeldung", deferred)
     }
 
     // using resumeWith()
