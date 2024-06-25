@@ -3,18 +3,13 @@ package com.baeldung.parallelOperationsCollections
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.kotlin.toObservable
 import io.reactivex.rxjava3.schedulers.Schedulers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.slf4j.LoggerFactory
 import java.time.Duration
 import java.time.Instant
-import java.util.concurrent.Callable
-import java.util.concurrent.Executors
 import java.util.stream.Collectors
 
 
@@ -59,7 +54,8 @@ class ParallelOperationCollectionsUnitTest {
 
         val filteredPeople = people
             .map { person ->
-                async {
+                async(Dispatchers.IO) {
+                    Thread.sleep(1500)
                     person.setAdult()
                     person
                 }
@@ -81,14 +77,12 @@ class ParallelOperationCollectionsUnitTest {
         val filteredPeople = people.asFlow()
             .flatMapMerge { person ->
                 flow {
-                    emit(
-                        async {
-                            person.setAdult()
-                            person
-                        }.await()
-                    )
+                    person.setAdult()
+                    Thread.sleep(1500)
+                    emit(person)
                 }
             }
+            .flowOn(Dispatchers.IO)
             .filter { it.age > 15 }.toList()
             .sortedBy { it.age }
 
@@ -107,6 +101,7 @@ class ParallelOperationCollectionsUnitTest {
                 {
                     Observable.just(it).subscribeOn(Schedulers.computation()).doOnNext { person ->
                         person.setAdult()
+                        Thread.sleep(1500)
                     }
                 }, people.size // Uses maxConcurrency for the number of elements
             )
@@ -130,6 +125,7 @@ class ParallelOperationCollectionsUnitTest {
                 {
                     Observable.just(it).subscribeOn(Schedulers.computation()).doOnNext { person ->
                         person.setAdult()
+                        Thread.sleep(1500)
                     }
                 }, people.size // Uses maxConcurrency for the number of elements
             ).filter { it.age > 15 }
@@ -150,6 +146,7 @@ class ParallelOperationCollectionsUnitTest {
         val filteredPeople = people.parallelStream()
             .map { person ->
                 person.setAdult()
+                Thread.sleep(1500)
                 person
             }.filter { it.age > 15 }
             .sorted { p1, p2 -> p1.age.compareTo(p2.age) }
@@ -158,29 +155,6 @@ class ParallelOperationCollectionsUnitTest {
         startTime.printTotalTime()
 
         filteredPeople.assertOver15AndSortedByAge()
-    }
-
-    @Test
-    fun `using ExecutorService for parallel operations`() {
-        logger.info("Using ExecutorService")
-        val startTime = Instant.now()
-
-        val executor = Executors.newFixedThreadPool(people.size)
-        val futures = people
-            .map { person ->
-                executor.submit(Callable {
-                    person.setAdult()
-                    person
-                }).get()
-            }
-            .filter { it.age > 15 }
-            .sortedBy { it.age }
-
-        executor.shutdown()
-
-        startTime.printTotalTime()
-
-        futures.assertOver15AndSortedByAge()
     }
 }
 
