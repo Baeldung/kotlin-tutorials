@@ -81,12 +81,8 @@ class ParallelOperationCollectionsUnitTest {
         val filteredPeople = people.asFlow()
             .flatMapMerge { person ->
                 flow {
-                    emit(
-                        async {
-                            person.setAdult()
-                            person
-                        }.await()
-                    )
+                    person.setAdult()
+                    emit(person)
                 }
             }
             .filter { it.age > 15 }.toList()
@@ -169,6 +165,7 @@ class ParallelOperationCollectionsUnitTest {
         val futures = people
             .map { person ->
                 executor.submit(Callable {
+                    Thread.sleep(1500)
                     person.setAdult()
                     person
                 }).get()
