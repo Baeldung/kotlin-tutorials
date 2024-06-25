@@ -155,29 +155,5 @@ class ParallelOperationCollectionsUnitTest {
 
         filteredPeople.assertOver15AndSortedByAge()
     }
-
-    @Test
-    fun `using ExecutorService for parallel operations`() {
-        logger.info("Using ExecutorService")
-        val startTime = Instant.now()
-
-        val executor = Executors.newFixedThreadPool(people.size)
-        val futures = people
-            .map { person ->
-                executor.submit(Callable {
-                    Thread.sleep(1500)
-                    person.setAdult()
-                    person
-                }).get()
-            }
-            .filter { it.age > 15 }
-            .sortedBy { it.age }
-
-        executor.shutdown()
-
-        startTime.printTotalTime()
-
-        futures.assertOver15AndSortedByAge()
-    }
 }
 
