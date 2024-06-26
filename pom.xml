@@ -298,7 +298,7 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <workingDirectory>${rootproject.basedir}/gradle-kotlin-dsl</workingDirectory>
+                            <workingDirectory>${project.basedir}/gradle-kotlin-dsl</workingDirectory>
                             <executable>./gradlew</executable>
                             <arguments>
                                 <argument>build</argument>
@@ -641,7 +641,7 @@
                                     <goal>exec</goal>
                                 </goals>
                                 <configuration>
-                                    <workingDirectory>${rootproject.basedir}/gradle-kotlin-dsl</workingDirectory>
+                                    <workingDirectory>${project.basedir}/gradle-kotlin-dsl</workingDirectory>
                                     <executable>./gradlew</executable>
                                     <arguments>
                                         <argument>build</argument>
@@ -655,7 +655,7 @@
                                     <goal>exec</goal>
                                 </goals>
                                 <configuration>
-                                    <workingDirectory>${rootproject.basedir}/gradle-kotlin-dsl</workingDirectory>
+                                    <workingDirectory>${project.basedir}/gradle-kotlin-dsl</workingDirectory>
                                     <executable>./gradlew</executable>
                                     <arguments>
                                         <argument>test</argument>
