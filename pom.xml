@@ -293,7 +293,7 @@
                 <executions>
                     <execution>
                         <id>build-gradle-kotlin-dsl</id>
-                        <phase>compile</phase>
+                        <phase>none</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -307,7 +307,7 @@
                     </execution>
                     <execution>
                         <id>test-gradle-kotlin-dsl</id>
-                        <phase>test</phase>
+                        <phase>none</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -321,7 +321,7 @@
                     </execution>
                     <execution>
                         <id>build-kotlin-build-plugins</id>
-                        <phase>compile</phase>
+                        <phase>none</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -335,7 +335,7 @@
                     </execution>
                     <execution>
                         <id>test-kotlin-build-plugins</id>
-                        <phase>test</phase>
+                        <phase>none</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -349,7 +349,7 @@
                     </execution>
                     <execution>
                         <id>build-kotlin-kover</id>
-                        <phase>compile</phase>
+                        <phase>none</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -363,7 +363,7 @@
                     </execution>
                     <execution>
                         <id>test-kotlin-kover</id>
-                        <phase>test</phase>
+                        <phase>none</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -377,7 +377,7 @@
                     </execution>
                     <execution>
                         <id>build-kotlin-ktor</id>
-                        <phase>compile</phase>
+                        <phase>none</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -391,7 +391,7 @@
                     </execution>
                     <execution>
                         <id>test-kotlin-ktor</id>
-                        <phase>test</phase>
+                        <phase>none</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
