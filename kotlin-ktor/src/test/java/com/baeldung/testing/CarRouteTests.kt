@@ -40,7 +40,7 @@ class CarRouteTests {
         assertEquals(2, responseBody.size)
 
         val bmwCar = responseBody.find { it.id == "1" }
-        assertEquals("BMWW", bmwCar?.brand)
+        assertEquals("BMW", bmwCar?.brand)
         assertEquals(10_000.0, bmwCar?.price)
 
         val audiCar = responseBody.find { it.id == "2" }
