@@ -30,7 +30,10 @@ dependencies {
 
     implementation("ch.qos.logback", "logback-classic", logbackVersion)
 
-    implementation("io.ktor", "ktor-gson", ktorVersion)
+    implementation("io.ktor", "ktor-server-content-negotiation", ktorVersion)
+    implementation("io.ktor", "ktor-serialization-gson", ktorVersion)
+    implementation("io.ktor", "ktor-server-default-headers", ktorVersion)
+    implementation("io.ktor", "ktor-server-call-logging", ktorVersion)
 
     testImplementation("io.ktor", "ktor-client-mock", ktorVersion)
     testImplementation("io.ktor", "ktor-server-tests", ktorVersion)
