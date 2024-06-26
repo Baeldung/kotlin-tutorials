@@ -633,31 +633,118 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
-                        <version>${exec-maven-plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>build-gradle-kotlin-dsl</id>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <workingDirectory>${rootproject.basedir}/gradle-kotlin-dsl</workingDirectory>
+                                    <executable>./gradlew</executable>
+                                    <arguments>
+                                        <argument>build</argument>
+                                    </arguments>
+                                </configuration>
                             </execution>
                             <execution>
                                 <id>test-gradle-kotlin-dsl</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <workingDirectory>${rootproject.basedir}/gradle-kotlin-dsl</workingDirectory>
+                                    <executable>./gradlew</executable>
+                                    <arguments>
+                                        <argument>test</argument>
+                                    </arguments>
+                                </configuration>
                             </execution>
                             <execution>
                                 <id>build-kotlin-build-plugins</id>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <workingDirectory>${rootproject.basedir}/kotlin-build-plugins</workingDirectory>
+                                    <executable>./gradlew</executable>
+                                    <arguments>
+                                        <argument>build</argument>
+                                    </arguments>
+                                </configuration>
                             </execution>
                             <execution>
                                 <id>test-kotlin-build-plugins</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <workingDirectory>${rootproject.basedir}/kotlin-build-plugins</workingDirectory>
+                                    <executable>./gradlew</executable>
+                                    <arguments>
+                                        <argument>test</argument>
+                                    </arguments>
+                                </configuration>
                             </execution>
                             <execution>
                                 <id>build-kotlin-kover</id>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <workingDirectory>${rootproject.basedir}/kotlin-kover</workingDirectory>
+                                    <executable>./gradlew</executable>
+                                    <arguments>
+                                        <argument>build</argument>
+                                    </arguments>
+                                </configuration>
                             </execution>
                             <execution>
                                 <id>test-kotlin-kover</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <workingDirectory>${rootproject.basedir}/kotlin-kover</workingDirectory>
+                                    <executable>./gradlew</executable>
+                                    <arguments>
+                                        <argument>test</argument>
+                                    </arguments>
+                                </configuration>
                             </execution>
                             <execution>
                                 <id>build-kotlin-ktor</id>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <workingDirectory>${rootproject.basedir}/kotlin-ktor</workingDirectory>
+                                    <executable>./gradlew</executable>
+                                    <arguments>
+                                        <argument>build</argument>
+                                    </arguments>
+                                </configuration>
                             </execution>
                             <execution>
                                 <id>test-kotlin-ktor</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <workingDirectory>${rootproject.basedir}/kotlin-ktor</workingDirectory>
+                                    <executable>./gradlew</executable>
+                                    <arguments>
+                                        <argument>test</argument>
+                                    </arguments>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
