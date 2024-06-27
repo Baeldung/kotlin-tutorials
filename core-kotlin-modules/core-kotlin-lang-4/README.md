@@ -12,4 +12,5 @@ This module contains articles about core features in the Kotlin language.
 - [equals() and hashCode() Generator in Kotlin](https://www.baeldung.com/kotlin/equals-hashcode-generator)
 - [The Implicit Name Of the Single Parameter in Lambda Expressions: it](https://www.baeldung.com/kotlin/lambda-expressions-it)
 - [Private Constructors in Kotlin](https://www.baeldung.com/kotlin/private-constructors)
+- [Use of Backticks in Kotlin](https://www.baeldung.com/kotlin/backticks)
 - [[<-- prev]](/core-kotlin-modules/core-kotlin-lang-3)
