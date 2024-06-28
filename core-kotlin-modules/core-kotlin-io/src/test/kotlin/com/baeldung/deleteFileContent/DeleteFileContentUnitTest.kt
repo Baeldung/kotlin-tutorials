@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.io.File
 
-class DeleteFileContentTest {
+class DeleteFileContentUnitTest {
     private val fileName = "src/test/resources/example.txt"
 
     private val deleteFileContent = DeleteFileContent()
