@@ -32,6 +32,7 @@
             <version>${spek.version}</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>ch.tutteli.atrium</groupId>
             <artifactId>atrium-fluent-jvm</artifactId>
@@ -45,10 +46,49 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>net.jqwik</groupId>
+            <artifactId>jqwik</artifactId>
+            <version>${jqwik.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.jqwik</groupId>
+            <artifactId>jqwik-kotlin</artifactId>
+            <version>${jqwik.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>${junit-jupiter-params.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <version>${kotlin.version}</version>
+                <configuration>
+                    <args>
+                        <arg>-java-parameters</arg> <!-- Get correct parameter names in jqwik reporting -->
+                        <arg>-Xjsr305=strict
+                        </arg> <!-- Strict interpretation of nullability annotations in jqwik API -->
+                        <arg>-Xemit-jvm-type-annotations</arg> <!-- Enable annotations on type variables -->
+                    </args>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <properties>
         <spek.version>1.1.5</spek.version>
         <atrium.version>1.2.0</atrium.version>
+        <jqwik.version>1.8.5</jqwik.version>
+        <junit-jupiter-params.version>5.9.1</junit-jupiter-params.version>
     </properties>
 </project>
