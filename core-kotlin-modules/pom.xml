@@ -70,6 +70,7 @@
         <module>core-kotlin-files</module>
         <module>core-kotlin-operators</module>
         <module>core-kotlin-concurrency-3</module>
+        <module>core-kotlin-concurrency-4</module>
     </modules>
 
 </project>
