@@ -22,24 +22,6 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-maven-plugin</artifactId>
-                <version>${kotlin.version}</version>
-
-                <configuration>
-                    <args>
-                        <arg>-java-parameters</arg> <!-- Get correct parameter names in jqwik reporting -->
-                        <arg>-Xjsr305=strict</arg> <!-- Strict interpretation of nullability annotations in jqwik API -->
-                        <arg>-Xemit-jvm-type-annotations</arg> <!-- Enable annotations on type variables -->
-                    </args>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
     <properties>
         <junit-jupiter-params.version>5.10.2</junit-jupiter-params.version>
     </properties>
