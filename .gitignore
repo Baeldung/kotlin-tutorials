@@ -93,3 +93,4 @@ apache-fop/src/test/resources/output_html2fo.pdf
 apache-fop/src/test/resources/output_jtidy.pdf
 
 !ktlint-custom-1.0.0-SNAPSHOT.jar
+!**/gradle-wrapper.jar

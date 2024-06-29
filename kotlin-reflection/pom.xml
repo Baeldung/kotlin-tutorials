@@ -63,30 +63,30 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${surefire.plugin.version}</version>
-                <configuration>
-                    <argLine>-Dco.paralleluniverse.fibers.verifyInstrumentation=true</argLine>
-                    <argLine>-javaagent:${co.paralleluniverse:quasar-core:jar}</argLine>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>${exec.plugin.version}</version>
-                <configuration>
-                    <workingDirectory>target/classes</workingDirectory>
-                    <executable>echo</executable>
-                    <arguments>
-                        <argument>-javaagent:${co.paralleluniverse:quasar-core:jar}</argument>
-                        <argument>-classpath</argument>
-                        <classpath/>
-                        <argument>com.baeldung.quasar.QuasarHelloWorldKt</argument>
-                    </arguments>
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-surefire-plugin</artifactId>-->
+<!--                <version>${surefire.plugin.version}</version>-->
+<!--                <configuration>-->
+<!--                    <argLine>-Dco.paralleluniverse.fibers.verifyInstrumentation=true</argLine>-->
+<!--                    <argLine>-javaagent:${co.paralleluniverse:quasar-core:jar}</argLine>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--            <plugin>-->
+<!--                <groupId>org.codehaus.mojo</groupId>-->
+<!--                <artifactId>exec-maven-plugin</artifactId>-->
+<!--                <version>${exec.plugin.version}</version>-->
+<!--                <configuration>-->
+<!--                    <workingDirectory>target/classes</workingDirectory>-->
+<!--                    <executable>echo</executable>-->
+<!--                    <arguments>-->
+<!--                        <argument>-javaagent:${co.paralleluniverse:quasar-core:jar}</argument>-->
+<!--                        <argument>-classpath</argument>-->
+<!--                        <classpath/>-->
+<!--                        <argument>com.baeldung.quasar.QuasarHelloWorldKt</argument>-->
+<!--                    </arguments>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 
