@@ -35,13 +35,13 @@
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.10.1</version>
+            <version>${gson.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>2.15.4</version>
+            <version>${jackson-kotlin.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -53,7 +53,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-kotlin</artifactId>
-            <version>2.9.8</version>
+            <version>${jackson-kotlin.version}</version>
         </dependency>
     </dependencies>
 
@@ -126,6 +126,7 @@
         <kotlinx-serialization-json-jvm.version>1.6.0</kotlinx-serialization-json-jvm.version>
         <kotlinx-datetime-jvm.version>0.4.0</kotlinx-datetime-jvm.version>
         <mapstruct.version>1.5.3.Final</mapstruct.version>
+        <jackson-kotlin.version>2.9.8</jackson-kotlin.version>
     </properties>
 
 </project>
