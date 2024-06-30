@@ -305,7 +305,7 @@
         <apache.poi.version>5.2.3</apache.poi.version>
         <jackson.version>2.13.3</jackson.version>
         <kotlin.csv.version>1.3.0</kotlin.csv.version>
-        <kotlinx-cli-jvm.version>0.3.5</kotlinx-cli-jvm.version>
+        <kotlinx-cli-jvm.version>0.3.6</kotlinx-cli-jvm.version>
         <moshi.version>1.14.0</moshi.version>
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <dokka-maven-plugin.version>1.7.20</dokka-maven-plugin.version>
