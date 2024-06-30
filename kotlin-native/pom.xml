@@ -69,7 +69,7 @@
     </profiles>
 
     <properties>
-        <kotlin.version>1.8.10</kotlin.version>
+        <kotlin.version>2.0.0</kotlin.version>
     </properties>
 
 </project>
