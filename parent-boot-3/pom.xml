@@ -82,11 +82,11 @@
 
         <aspectjweaver.version>1.9.1</aspectjweaver.version>
         <rest-assured.version>3.3.0</rest-assured.version>
-        <logback.version>1.4.4</logback.version>
+        <logback.version>1.5.6</logback.version>
         <org.slf4j.version>2.0.3</org.slf4j.version>
         <!-- for spring-boot 3 we need java 17 minimum -->
         <java.version>17</java.version>
-        <spring-boot.version>3.2.4</spring-boot.version>
+        <spring-boot.version>3.3.0</spring-boot.version>
 
         <!-- plugins -->
         <thin.version>1.0.22.RELEASE</thin.version>
