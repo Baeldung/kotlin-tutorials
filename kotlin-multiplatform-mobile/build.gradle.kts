@@ -1,5 +1,5 @@
 plugins {
-    kotlin("multiplatform").version("1.8.21").apply(true)
+    kotlin("multiplatform").version("2.0.0").apply(true)
     id("com.android.library").version("8.0.2").apply(true)
 }
 
@@ -44,7 +44,7 @@ android {
 
 repositories {
     mavenCentral()
-    jcenter()
+    //jcenter()
     google()
     maven {
         url = uri("https://dl.bintray.com/kotlin/kotlinx")

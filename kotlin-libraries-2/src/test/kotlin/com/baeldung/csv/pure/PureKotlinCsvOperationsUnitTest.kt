@@ -12,7 +12,7 @@ internal class PureKotlinCsvOperationsUnitTest {
     fun when_file_is_read_then_domain_objects_are_populated() {
         val movies = readCsv(javaClass.getResourceAsStream("deniro.csv")!!)
         assertEquals(87, movies.size)
-        assertEquals("Dear America: Letters Home From Vietnam", movies.maxBy { it.score }.title)
+        assertEquals("Dear America: Letters Home From Vietnam", movies.maxByOrNull { it.score }?.title)
     }
 
     @Test
