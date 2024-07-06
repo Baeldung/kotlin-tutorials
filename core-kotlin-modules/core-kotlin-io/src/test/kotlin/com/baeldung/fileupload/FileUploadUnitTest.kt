@@ -79,15 +79,7 @@ fun uploadFileOkHttp(filePath: String, uploadUrl: String) {
         .post(requestBody)
         .build()
 
-    client.newCall(request).enqueue(object : Callback {
-        override fun onFailure(call: Call, e: IOException) {
-            e.printStackTrace()
-        }
-
-        override fun onResponse(call: Call, response: Response) {
-            println(response.body?.string())
-        }
-    })
+    println(client.newCall(request).execute())
 }
 
 
@@ -114,15 +106,7 @@ fun uploadFileRetrofit(filePath: String, uploadUrl: String) {
 
     val service = createUploadService(uploadUrl)
     val call = service.uploadFile(multipartBody)
-    call.enqueue(object : retrofit2.Callback<ResponseBody> {
-        override fun onFailure(call: retrofit2.Call<ResponseBody>, e: Throwable) {
-            e.printStackTrace()
-        }
-
-        override fun onResponse(call: retrofit2.Call<ResponseBody>, response: retrofit2.Response<ResponseBody>) {
-            println(response.body()?.string())
-        }
-    })
+    println(call.execute().body()?.string())
 }
 
 class FileUploadUnitTest {
@@ -168,7 +152,6 @@ class FileUploadUnitTest {
 
         uploadFileOkHttp("src/test/resources/testfile.txt", "${wireMockRule.baseUrl()}/upload")
 
-        Thread.sleep(100)
         wireMockRule.verify(postRequestedFor(urlEqualTo("/upload")).withHeader("Content-Type", containing("multipart/form-data")).withRequestBody(matching(".*testfile.txt.*")))
     }
 
@@ -178,7 +161,6 @@ class FileUploadUnitTest {
 
         uploadFileRetrofit("src/test/resources/testfile.txt", wireMockRule.baseUrl())
 
-        Thread.sleep(100)
         wireMockRule.verify(postRequestedFor(urlEqualTo("/upload")).withHeader("Content-Type", containing("multipart/form-data")).withRequestBody(matching(".*testfile.txt.*")))
     }
 }
