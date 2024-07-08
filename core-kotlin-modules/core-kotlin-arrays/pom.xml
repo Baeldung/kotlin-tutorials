@@ -37,7 +37,7 @@
     </dependencies>
 
     <properties>
-        <multik.version>0.2.2</multik.version>
+        <multik.version>0.2.3</multik.version>
     </properties>
 
 </project>
