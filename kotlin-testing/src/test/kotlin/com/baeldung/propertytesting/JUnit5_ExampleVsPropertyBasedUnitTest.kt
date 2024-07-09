@@ -5,7 +5,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import kotlin.test.assertEquals
 
-class JUnit5_ExampleVsPeopertyBasedUnitTest {
+class JUnit5_ExampleVsPropertyBasedUnitTest {
 
     val converter = RomanNumeralsConverter()
 

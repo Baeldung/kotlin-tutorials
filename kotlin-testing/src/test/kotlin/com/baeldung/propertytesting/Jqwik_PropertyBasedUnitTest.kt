@@ -37,7 +37,6 @@ class Jqwik_PropertyBasedUnitTest {
         return originalInt == finalInt
     }
 
-
     @Property(tries = 4000)
     fun `should convert integer to roman and back for all valid inputs (exhaustive testing)`(
         @ForAll @IntRange(min = 0, max = 3999) originalInt: Int,

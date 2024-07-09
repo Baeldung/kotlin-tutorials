@@ -1,9 +1,5 @@
 package com.baeldung.propertytesting
 
-import org.assertj.core.api.Assertions
-import org.junit.jupiter.api.Test
-import java.util.*
-
 class RomanNumeralsConverter {
 
     private val romanPairs = mapOf(
@@ -52,7 +48,4 @@ class RomanNumeralsConverter {
         }
         return result
     }
-
-
-
 }
