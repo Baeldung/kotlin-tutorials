@@ -28,7 +28,9 @@ class DeleteFileContent {
     }
 
     fun withRandomAccessFile(file: File) {
-        RandomAccessFile(file, "rw").setLength(0)
+        val randomAccessFile = RandomAccessFile(file, "rw")
+        randomAccessFile.setLength(0)
+        randomAccessFile.close()
     }
 
     fun withFileChannel(file: File) {
