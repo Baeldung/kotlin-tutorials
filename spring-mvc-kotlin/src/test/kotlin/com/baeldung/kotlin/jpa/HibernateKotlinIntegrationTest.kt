@@ -1,9 +1,10 @@
 package com.baeldung.kotlin.jpa
 
 import org.hibernate.Hibernate
+import org.hibernate.Session
+import org.hibernate.Transaction
 import org.hibernate.cfg.Configuration
 import org.hibernate.testing.junit4.BaseCoreFunctionalTestCase
-import org.hibernate.testing.transaction.TransactionUtil.doInHibernate
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.slf4j.LoggerFactory
@@ -32,9 +33,26 @@ class HibernateKotlinIntegrationTest : BaseCoreFunctionalTestCase() {
         configuration.properties = properties
     }
 
+    fun doInHibernate(action: (Session) -> Unit) {
+        val sessionFactory = sessionFactory()
+        val session = sessionFactory.openSession()
+        val transaction: Transaction = session.beginTransaction()
+
+        try {
+            action(session)
+            transaction.commit()
+        } catch (e: Exception) {
+            transaction.rollback()
+            throw e
+        } finally {
+            session.close()
+        }
+    }
+
+
     @Test
     fun givenPersonWithFullData_whenSaved_thenFound() {
-        doInHibernate(({ this.sessionFactory() })) { session ->
+        doInHibernate { session ->
             val personToSave = Person(
                 "John",
                 "jhon@test.com",
@@ -49,7 +67,7 @@ class HibernateKotlinIntegrationTest : BaseCoreFunctionalTestCase() {
 
     @Test
     fun givenPerson_whenSaved_thenFound() {
-        doInHibernate(({ this.sessionFactory() })) { session ->
+        doInHibernate { session ->
             val personToSave = Person( "John")
             session.persist(personToSave)
             val personFound = session.find(Person::class.java, personToSave.id)
@@ -61,7 +79,7 @@ class HibernateKotlinIntegrationTest : BaseCoreFunctionalTestCase() {
 
     @Test
     fun givenPersonWithNullFields_whenSaved_thenFound() {
-        doInHibernate(({ this.sessionFactory() })) { session ->
+        doInHibernate { session ->
             val personToSave = Person("John", null, null)
             session.persist(personToSave)
             val personFound = session.find(Person::class.java, personToSave.id)
@@ -73,7 +91,7 @@ class HibernateKotlinIntegrationTest : BaseCoreFunctionalTestCase() {
 
     @Test
     fun givenAddressWithDefaultEquals_whenAddedToSet_thenNotFound() {
-        doInHibernate({ sessionFactory() }) { session ->
+        doInHibernate{ session ->
             val addresses = mutableSetOf<Address>()
             val address = Address(name = "Berlin", phoneNumbers = listOf(PhoneNumber( "42")))
             addresses.add(address)
@@ -86,7 +104,7 @@ class HibernateKotlinIntegrationTest : BaseCoreFunctionalTestCase() {
 
     @Test
     fun givenAddress_whenLogging_thenFetchesLazyAssociations() {
-        doInHibernate({ this.sessionFactory() }) { session ->
+        doInHibernate{ session ->
             val addressToSave = Address(name = "Berlin", phoneNumbers = listOf(PhoneNumber("42")))
             session.persist(addressToSave)
             session.clear()

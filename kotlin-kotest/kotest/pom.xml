@@ -124,7 +124,7 @@
     </build>
 
     <properties>
-        <kotlin.version>1.9.24</kotlin.version>
+        <kotlin.version>2.0.0</kotlin.version>
         <kotest.version>5.9.0</kotest.version>
         <kotest-extensions-testcontainers.version>2.0.1</kotest-extensions-testcontainers.version>
         <jackson.version>2.15.4</jackson.version>
