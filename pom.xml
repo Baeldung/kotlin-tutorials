@@ -490,7 +490,7 @@
                 <module>core-kotlin-companion</module>
                 <module>core-kotlin-modules</module>
                 <!-- <module>gradle-kotlin-dsl</module> --> <!-- not a Maven module -->
-                <module>kotlin-jee</module>
+                <!-- <module>kotlin-jee</module> --> <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
                 <module>k2-compiler</module>
                 <module>koin-guide</module>
                 <module>kotlin-kotest</module>
@@ -571,7 +571,7 @@
                 <module>core-kotlin-companion</module>
                 <module>core-kotlin-modules</module>
                 <!-- <module>gradle-kotlin-dsl</module> --> <!-- not a Maven module -->
-                <module>kotlin-jee</module>
+                <!-- <module>kotlin-jee</module> --> <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
                 <module>k2-compiler</module>
                 <module>koin-guide</module>
                 <module>kotlin-kotest</module>
