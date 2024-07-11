@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
 
-class MockkStatic {
+class MockkStaticUnitTest {
 
     @AfterEach
     fun `Remove RandomNumberGenerator mockks`() {
@@ -34,5 +34,21 @@ class MockkStatic {
         mockkStatic(RandomNumberGenerator::class)
         every { RandomNumberGenerator.random() } returns 0.1
         assertEquals(coinFlip(), "heads")
+    }
+
+    @Test
+    fun `mock top-level function`() {
+        mockkStatic("com.baeldung.mockk.TopLevelExtensionKt")
+        every { topLevelFunction() } returns "Mocked Response"
+        assertEquals ("Mocked Response", topLevelFunction())
+        unmockkStatic("com.baeldung.mockk.TopLevelExtensionKt")
+    }
+
+    @Test
+    fun `mock extension function`() {
+        mockkStatic("com.baeldung.mockk.TopLevelExtensionKt")
+        every { "World".greet() } returns "Mocked Greeting"
+        assertEquals("Mocked Greeting", "World".greet())
+        unmockkStatic("com.baeldung.mockk.TopLevelExtensionKt")
     }
 }
