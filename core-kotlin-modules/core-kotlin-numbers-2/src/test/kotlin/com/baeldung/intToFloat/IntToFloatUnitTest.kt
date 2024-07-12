@@ -9,7 +9,7 @@ import java.util.*
 class IntToFloatUnitTest {
 
     @Test
-    fun testConvertIntToFloatUsingToFloat() {
+    fun `convert int to float using toFloat() method`() {
         val intValue = 12
         val floatValue = intValue.toFloat()
 
@@ -17,7 +17,7 @@ class IntToFloatUnitTest {
     }
 
     @Test
-    fun testConvertIntToFloatUsingArithmetic() {
+    fun `convert int to float using arithmetic`() {
         val intValue = 12
         val floatValue = intValue + 0.0f
 
@@ -25,14 +25,14 @@ class IntToFloatUnitTest {
     }
 
     @Test
-    fun testConvertIntToFloatUsingNumberFormat() {
+    fun `convert int to float using NumberFormat class`() {
         val intValue = 12
         val floatValue = convertIntToFloatUsingNumberFormat(intValue)
         assertEquals(12.0f, floatValue)
     }
 
     @Test
-    fun testConvertIntToFloatUsingBigDecimal() {
+    fun `convert int to float using BigDecimal`() {
         val intValue = 12
         val floatValue = BigDecimal(intValue).toFloat()
 
