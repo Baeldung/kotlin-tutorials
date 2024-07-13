@@ -96,7 +96,7 @@ class ParallelOperationCollectionsUnitTest {
         logger.info("Using RxJava")
         val startTime = Instant.now()
 
-        val observable = Observable.fromIterable(people)
+        Observable.fromIterable(people)
             .flatMap(
                 {
                     Observable.just(it).subscribeOn(Schedulers.computation()).doOnNext { person ->
@@ -106,13 +106,13 @@ class ParallelOperationCollectionsUnitTest {
                 }, people.size // Uses maxConcurrency for the number of elements
             )
             .filter { it.age > 15 }
-            .toList()
-            .map { it.sortedBy { person -> person.age } }
-            .blockingGet()
-
-        startTime.printTotalTime()
-
-        observable.assertOver15AndSortedByAge()
+            .toSortedList { person1, person2 -> person1.age.compareTo(person2.age) }
+            .subscribe({ sortedList ->
+                startTime.printTotalTime()
+                sortedList.assertOver15AndSortedByAge()
+            }, { error ->
+                logger.error("Error occurred: $error")
+            })
     }
 
     @Test
@@ -120,7 +120,7 @@ class ParallelOperationCollectionsUnitTest {
         logger.info("Using RxKotlin")
         val startTime = Instant.now()
 
-        val observable = people.toObservable()
+        people.toObservable()
             .flatMap(
                 {
                     Observable.just(it).subscribeOn(Schedulers.computation()).doOnNext { person ->
@@ -128,14 +128,15 @@ class ParallelOperationCollectionsUnitTest {
                         Thread.sleep(1500)
                     }
                 }, people.size // Uses maxConcurrency for the number of elements
-            ).filter { it.age > 15 }
-            .toList()
-            .map { it.sortedBy { person -> person.age } }
-            .blockingGet()
-
-        startTime.printTotalTime()
-
-        observable.assertOver15AndSortedByAge()
+            )
+            .filter { it.age > 15 }
+            .toSortedList { person1, person2 -> person1.age.compareTo(person2.age) }
+            .subscribe({ sortedList ->
+                startTime.printTotalTime()
+                sortedList.assertOver15AndSortedByAge()
+            }, { error ->
+                logger.error("Error occurred: $error")
+            })
     }
 
     @Test
