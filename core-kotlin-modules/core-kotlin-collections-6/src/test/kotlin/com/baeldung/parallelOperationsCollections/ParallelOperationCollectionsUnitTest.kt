@@ -96,23 +96,22 @@ class ParallelOperationCollectionsUnitTest {
         logger.info("Using RxJava")
         val startTime = Instant.now()
 
-        Observable.fromIterable(people)
+        val observable = Observable.fromIterable(people)
             .flatMap(
                 {
                     Observable.just(it).subscribeOn(Schedulers.computation()).doOnNext { person ->
                         person.setAdult()
-                        Thread.sleep(1500)
                     }
                 }, people.size // Uses maxConcurrency for the number of elements
             )
             .filter { it.age > 15 }
-            .toSortedList { person1, person2 -> person1.age.compareTo(person2.age) }
-            .subscribe({ sortedList ->
-                startTime.printTotalTime()
-                sortedList.assertOver15AndSortedByAge()
-            }, { error ->
-                logger.error("Error occurred: $error")
-            })
+            .toList()
+            .map { it.sortedBy { person -> person.age } }
+            .blockingGet()
+
+        startTime.printTotalTime()
+
+        observable.assertOver15AndSortedByAge()
     }
 
     @Test
@@ -120,7 +119,7 @@ class ParallelOperationCollectionsUnitTest {
         logger.info("Using RxKotlin")
         val startTime = Instant.now()
 
-        people.toObservable()
+        val observable = people.toObservable()
             .flatMap(
                 {
                     Observable.just(it).subscribeOn(Schedulers.computation()).doOnNext { person ->
@@ -128,15 +127,14 @@ class ParallelOperationCollectionsUnitTest {
                         Thread.sleep(1500)
                     }
                 }, people.size // Uses maxConcurrency for the number of elements
-            )
-            .filter { it.age > 15 }
-            .toSortedList { person1, person2 -> person1.age.compareTo(person2.age) }
-            .subscribe({ sortedList ->
-                startTime.printTotalTime()
-                sortedList.assertOver15AndSortedByAge()
-            }, { error ->
-                logger.error("Error occurred: $error")
-            })
+            ).filter { it.age > 15 }
+            .toList()
+            .map { it.sortedBy { person -> person.age } }
+            .blockingGet()
+
+        startTime.printTotalTime()
+
+        observable.assertOver15AndSortedByAge()
     }
 
     @Test
