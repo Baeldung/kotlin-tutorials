@@ -41,7 +41,7 @@ class ParallelOperationCollectionsUnitTest {
         this.isAdult = this.age >= 18
         logger.info(this.toString())
     }
-    
+
     private fun Instant.printTotalTime() {
         val totalTime = Duration.between(this, Instant.now()).toMillis()
         logger.info("Total time taken: {} ms", totalTime)
@@ -99,10 +99,12 @@ class ParallelOperationCollectionsUnitTest {
         val observable = Observable.fromIterable(people)
             .flatMap(
                 {
-                    Observable.just(it).subscribeOn(Schedulers.computation()).doOnNext { person ->
-                        person.setAdult()
-                        Thread.sleep(1500)
-                    }
+                    Observable.just(it)
+                        .subscribeOn(Schedulers.computation())
+                        .doOnNext { person ->
+                            person.setAdult()
+                            Thread.sleep(1500)
+                        }
                 }, people.size // Uses maxConcurrency for the number of elements
             )
             .filter { it.age > 15 }
@@ -123,10 +125,12 @@ class ParallelOperationCollectionsUnitTest {
         val observable = people.toObservable()
             .flatMap(
                 {
-                    Observable.just(it).subscribeOn(Schedulers.computation()).doOnNext { person ->
-                        person.setAdult()
-                        Thread.sleep(1500)
-                    }
+                    Observable.just(it)
+                        .subscribeOn(Schedulers.computation())
+                        .doOnNext { person ->
+                            person.setAdult()
+                            Thread.sleep(1500)
+                        }
                 }, people.size // Uses maxConcurrency for the number of elements
             ).filter { it.age > 15 }
             .toList()
