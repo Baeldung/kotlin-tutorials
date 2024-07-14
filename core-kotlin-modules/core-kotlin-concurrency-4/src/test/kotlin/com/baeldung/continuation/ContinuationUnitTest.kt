@@ -2,6 +2,7 @@ package com.baeldung.continuation
 
 import kotlinx.coroutines.*
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.slf4j.LoggerFactory
 import java.net.HttpURLConnection
 import java.net.URL
@@ -63,7 +64,7 @@ class ContinuationUnitTest {
 
     // using resumeWith()
     private suspend fun simulateNetworkRequestResume(url: String): String {
-        return withContext(Dispatchers.IO){
+        return withContext(Dispatchers.IO) {
             suspendCoroutine { continuation ->
                 val result = try {
                     val connection = (URL(url).openConnection() as HttpURLConnection).apply {
@@ -74,12 +75,12 @@ class ContinuationUnitTest {
 
                     val responseCode = connection.responseCode
                     if (responseCode == HttpURLConnection.HTTP_OK) {
-                        Result.success("$url : HTTP response code $responseCode - Ok")
+                        Result.success("$responseCode")
                     } else {
-                        Result.failure(Exception("$url: HTTP response code $responseCode - Failed"))
+                        Result.failure(Exception("$responseCode - Failed"))
                     }
                 } catch (e: Exception) {
-                    Result.failure(Exception("$url: ${e.message} - Failed"))
+                    Result.failure(Exception("${e.message} - Failed"))
                 }
 
                 continuation.resumeWith(result)
@@ -89,7 +90,7 @@ class ContinuationUnitTest {
 
     // using resume() and resumeWithException()
     private suspend fun simulateNetworkRequest(url: String): String {
-        return withContext(Dispatchers.IO){
+        return withContext(Dispatchers.IO) {
             suspendCoroutine { continuation ->
                 try {
                     val connection = (URL(url).openConnection() as HttpURLConnection).apply {
@@ -100,44 +101,25 @@ class ContinuationUnitTest {
 
                     val responseCode = connection.responseCode
                     if (responseCode == HttpURLConnection.HTTP_OK) {
-                        continuation.resume("$url : HTTP response code $responseCode - OK")
+                        continuation.resume("$responseCode")
                     } else {
-                        continuation.resumeWithException(Exception("$url: HTTP response code $responseCode - Failed"))
+                        continuation.resumeWithException(Exception("HTTP response code $responseCode - Failed"))
                     }
                 } catch (e: Exception) {
-                    continuation.resumeWithException(Exception("$url: ${e.message} - Failed"))
+                    continuation.resumeWithException(Exception("${e.message} - Failed"))
                 }
             }
         }
     }
 
     @Test
-    fun `test continuation using suspendFunction network call`() = runBlocking {
-        val urls = listOf(
-            "https://example.com",
-            "https://example.com/fail",
-            "https://example.com/fail1",
-            "https://baeldung.com",
-            "https://www.baeldung.com/linux/",
-            "https://www.baeldung.com/kotlin/",
-            "https://www.baeldung.com/scala/",
-            "https://hangga.github.io"
-        )
+    fun `test continuation using suspendFunction network call`(): Unit = runBlocking {
+        assertEquals("200", simulateNetworkRequest("https://hangga.github.io"))
 
-        for (url in urls) {
-            try {
-                val response = simulateNetworkRequestResume(url)
-                logger.info("0. $response")
-            } catch (e: Exception) {
-                logger.error("0. ${e.message}")
-            }
-
-            try {
-                val response = simulateNetworkRequest(url)
-                logger.info("1. $response")
-            } catch (e: Exception) {
-                logger.error("1. ${e.message}")
-            }
+        val throwed = assertThrows<Exception> {
+            simulateNetworkRequestResume("https://hangga.github.io/fail")
         }
+
+        assertEquals("404 - Failed", throwed.message)
     }
 }
