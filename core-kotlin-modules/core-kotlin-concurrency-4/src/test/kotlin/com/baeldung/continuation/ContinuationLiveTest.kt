@@ -2,6 +2,7 @@ package com.baeldung.continuation
 
 import kotlinx.coroutines.*
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.assertThrows
 import org.slf4j.LoggerFactory
 import java.net.HttpURLConnection
@@ -12,7 +13,8 @@ import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 import kotlin.test.assertEquals
 
-class ContinuationUnitTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+class ContinuationLiveTest {
 
     private val logger = LoggerFactory.getLogger("")
 
