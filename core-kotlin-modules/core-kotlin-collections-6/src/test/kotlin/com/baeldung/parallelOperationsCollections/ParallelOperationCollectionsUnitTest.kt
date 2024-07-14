@@ -101,6 +101,7 @@ class ParallelOperationCollectionsUnitTest {
                 {
                     Observable.just(it).subscribeOn(Schedulers.computation()).doOnNext { person ->
                         person.setAdult()
+                        Thread.sleep(1500)
                     }
                 }, people.size // Uses maxConcurrency for the number of elements
             )
