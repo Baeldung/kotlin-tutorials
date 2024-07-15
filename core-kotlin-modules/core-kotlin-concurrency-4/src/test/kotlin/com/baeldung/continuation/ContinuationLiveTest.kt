@@ -118,7 +118,7 @@ class ContinuationLiveTest {
     fun `test continuation using suspendFunction network call`(): Unit = runBlocking {
         assertEquals("200", simulateNetworkRequest("https://hangga.github.io"))
 
-        val throwed = assertThrows<Exception> {
+        val thrown = assertThrows<Exception> {
             simulateNetworkRequestResume("https://hangga.github.io/fail")
         }
 
