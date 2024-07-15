@@ -793,7 +793,7 @@
         <gib.failOnError>false</gib.failOnError>
         <gib.enabled>false</gib.enabled>
 
-        <java.version>17</java.version>
+        <java.version>11</java.version>
 
         <serialization.version>1.4.1</serialization.version>
         <jackson.version>2.15.0</jackson.version>
