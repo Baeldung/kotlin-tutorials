@@ -13,7 +13,6 @@ import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 import kotlin.test.assertEquals
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class ContinuationLiveTest {
 
     private val logger = LoggerFactory.getLogger("")
@@ -64,8 +63,7 @@ class ContinuationLiveTest {
         assertEquals("Baeldung", result)
     }
 
-    // using resumeWith()
-    private suspend fun simulateNetworkRequestResume(url: String): String {
+    private suspend fun usingResumeWith(url: String): String {
         return withContext(Dispatchers.IO) {
             suspendCoroutine { continuation ->
                 val result = try {
@@ -90,8 +88,7 @@ class ContinuationLiveTest {
         }
     }
 
-    // using resume() and resumeWithException()
-    private suspend fun simulateNetworkRequest(url: String): String {
+    private suspend fun usingResumeAndResumeWithException(url: String): String {
         return withContext(Dispatchers.IO) {
             suspendCoroutine { continuation ->
                 try {
@@ -116,12 +113,12 @@ class ContinuationLiveTest {
 
     @Test
     fun `test continuation using suspendFunction network call`(): Unit = runBlocking {
-        assertEquals("200", simulateNetworkRequest("https://hangga.github.io"))
+        assertEquals("200", usingResumeAndResumeWithException("https://hangga.github.io"))
 
         val thrown = assertThrows<Exception> {
-            simulateNetworkRequestResume("https://hangga.github.io/fail")
+            usingResumeWith("https://hangga.github.io/fail")
         }
 
-        assertEquals("404 - Failed", throwed.message)
+        assertEquals("404 - Failed", thrown.message)
     }
 }
