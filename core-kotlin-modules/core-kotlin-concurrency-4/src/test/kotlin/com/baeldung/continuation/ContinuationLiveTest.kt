@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.slf4j.LoggerFactory
 import java.net.HttpURLConnection
-import java.net.MalformedURLException
 import java.net.URL
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.resume
