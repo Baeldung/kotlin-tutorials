@@ -74,7 +74,7 @@
 
     <properties>
         <kotlin.version>1.6.10</kotlin.version>
-        <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
+        <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
         <maven-assembly-plugin.version>3.5.0</maven-assembly-plugin.version>
         <jmh.version>1.37</jmh.version>
         <jol-core.version>0.17</jol-core.version>
