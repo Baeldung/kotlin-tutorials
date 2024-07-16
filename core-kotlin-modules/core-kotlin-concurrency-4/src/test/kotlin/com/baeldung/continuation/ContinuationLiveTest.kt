@@ -2,10 +2,10 @@ package com.baeldung.continuation
 
 import kotlinx.coroutines.*
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.assertThrows
 import org.slf4j.LoggerFactory
 import java.net.HttpURLConnection
+import java.net.MalformedURLException
 import java.net.URL
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.resume
@@ -26,23 +26,23 @@ class ContinuationLiveTest {
 
     @Test
     fun `prove suspending`() = runBlocking {
-        val dispatcher = Dispatchers.Default  // Use a dispatcher with a thread pool
+        val dispatcher = Dispatchers.Default
 
-        val job1 = launch(dispatcher) {
+        val job1 = async(dispatcher) {
             doWork("Job 1", 2000)
         }
 
-        val job2 = launch(dispatcher) {
+        val job2 = async(dispatcher) {
             doWork("Job 2", 600)
         }
 
-        val job3 = launch(dispatcher) {
+        val job3 = async(dispatcher) {
             doWork("Job 3", 100)
         }
 
-        job1.join()
-        job2.join()
-        job3.join()
+        assertEquals("Job 1", job1.await())
+        assertEquals("Job 2", job2.await())
+        assertEquals("Job 3", job3.await())
 
         logger.info("All coroutines finished!")
     }
@@ -112,13 +112,60 @@ class ContinuationLiveTest {
     }
 
     @Test
-    fun `test continuation using suspendFunction network call`(): Unit = runBlocking {
+    fun `test continuation using suspendFunction network call success`() = runBlocking {
         assertEquals("200", usingResumeAndResumeWithException("https://hangga.github.io"))
+    }
 
+    @Test
+    fun `test continuation using suspendFunction network call failure`() = runBlocking {
+        val thrown = assertThrows<Exception> {
+            usingResumeAndResumeWithException("https://hangga.github.io/fail")
+        }
+        assertEquals("HTTP response code 404 - Failed", thrown.message)
+    }
+
+    @Test
+    fun `test invalid URL for usingResumeAndResumeWithException`() = runBlocking {
+        val thrown = assertThrows<Exception> {
+            usingResumeAndResumeWithException("invalid-url")
+        }
+        assertEquals("no protocol: invalid-url - Failed", thrown.message)
+    }
+
+    @Test
+    fun `test timeout for usingResumeAndResumeWithException`() = runBlocking {
+        val thrown = assertThrows<Exception> {
+            usingResumeAndResumeWithException("https://10.255.255.1") // An IP address that will timeout
+        }
+        assertEquals("Connect timed out - Failed", thrown.message)
+    }
+
+    @Test
+    fun `test continuation using suspendFunction network call success for usingResumeWith`() = runBlocking {
+        assertEquals("200", usingResumeWith("https://hangga.github.io"))
+    }
+
+    @Test
+    fun `test continuation using suspendFunction network call failure for usingResumeWith`() = runBlocking {
         val thrown = assertThrows<Exception> {
             usingResumeWith("https://hangga.github.io/fail")
         }
-
         assertEquals("404 - Failed", thrown.message)
+    }
+
+    @Test
+    fun `test invalid URL for usingResumeWith`() = runBlocking {
+        val thrown = assertThrows<Exception> {
+            usingResumeWith("invalid-url")
+        }
+        assertEquals("no protocol: invalid-url - Failed", thrown.message)
+    }
+
+    @Test
+    fun `test timeout for usingResumeWith`() = runBlocking {
+        val thrown = assertThrows<Exception> {
+            usingResumeWith("https://10.255.255.1")
+        }
+        assertEquals("Connect timed out - Failed", thrown.message)
     }
 }
