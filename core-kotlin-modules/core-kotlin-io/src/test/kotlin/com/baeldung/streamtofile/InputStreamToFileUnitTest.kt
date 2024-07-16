@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalPathApi::class)
+
 package com.baeldung.streamtofile
 
 import org.assertj.core.api.Assertions.assertThat
@@ -6,6 +8,7 @@ import java.io.ByteArrayInputStream
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Paths
+import kotlin.io.path.ExperimentalPathApi
 
 class InputStreamToFileUnitTest {
 

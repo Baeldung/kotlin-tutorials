@@ -101,7 +101,7 @@
 
     <properties>
         <kotlin.version>1.7.10</kotlin.version>
-        <testcontainers.version>1.19.3</testcontainers.version>
+        <testcontainers.version>1.19.8</testcontainers.version>
         <kafka.version>3.7.0</kafka.version>
         <slf4j.version>2.0.5</slf4j.version>
         <kotlinx-coroutines.version>1.6.4</kotlinx-coroutines.version>
