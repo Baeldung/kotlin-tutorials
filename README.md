@@ -17,6 +17,9 @@ or if we want to build the entire repository with Integration Tests enabled, we 
 
 This should not be needed often as we are usually concerned with a specific module.
 
+To build the modules that use Gradle, use the command:
+`mvn clean install -Pgradle-modules`
+
 
 Building a single module
 ====================
