@@ -15,7 +15,7 @@
 
     <properties>
         <okhttp.version>4.9.1</okhttp.version>
-        <wiremock.version>2.31.0</wiremock.version>
+        <wiremock.version>2.35.1</wiremock.version>
         <fuel.version>2.3.1</fuel.version>
         <retrofit.version>2.9.0</retrofit.version>
         <ktor.version>1.5.4</ktor.version>
