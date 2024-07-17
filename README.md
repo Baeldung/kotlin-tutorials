@@ -23,7 +23,12 @@ To build the modules that use Gradle, use the command:
 
 Building a single module
 ====================
-To build a specific module run the command: `mvn clean install` in the module directory.
+To build a specific Maven module run the command: `mvn clean install` in the module directory.
+
+To build an  individual gradle sub-modules use the `gradlew` command:
+`./gradlew build` or `./gradlew test`. 
+
+Additionally, you can also use an  IDE such as IntelliJ IDEA to build and test the individual modules.
 
 
 Working with the IDE
