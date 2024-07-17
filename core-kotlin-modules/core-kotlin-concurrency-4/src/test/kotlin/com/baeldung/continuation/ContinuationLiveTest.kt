@@ -87,6 +87,35 @@ class ContinuationLiveTest {
         }
     }
 
+    @Test
+    fun `test continuation using suspendFunction network call success for usingResumeWith`() = runBlocking {
+        assertEquals("200", usingResumeWith("https://hangga.github.io"))
+    }
+
+    @Test
+    fun `test continuation using suspendFunction network call failure for usingResumeWith`() = runBlocking {
+        val thrown = assertThrows<Exception> {
+            usingResumeWith("https://hangga.github.io/fail")
+        }
+        assertEquals("404 - Failed", thrown.message)
+    }
+
+    @Test
+    fun `test invalid URL for usingResumeWith`() = runBlocking {
+        val thrown = assertThrows<Exception> {
+            usingResumeWith("invalid-url")
+        }
+        assertEquals("no protocol: invalid-url", thrown.message)
+    }
+
+    @Test
+    fun `test timeout for usingResumeWith`() = runBlocking {
+        val thrown = assertThrows<Exception> {
+            usingResumeWith("https://10.255.255.1")
+        }
+        assertEquals("Connect timed out", thrown.message)
+    }
+
     private suspend fun usingResumeAndResumeWithException(url: String): String {
         return withContext(Dispatchers.IO) {
             suspendCoroutine { continuation ->
@@ -116,24 +145,11 @@ class ContinuationLiveTest {
     }
 
     @Test
-    fun `test continuation using suspendFunction network call success for usingResumeWith`() = runBlocking {
-        assertEquals("200", usingResumeWith("https://hangga.github.io"))
-    }
-
-    @Test
     fun `test continuation using suspendFunction network call failure for usingResumeAndResumeWithException`() = runBlocking {
         val thrown = assertThrows<Exception> {
             usingResumeAndResumeWithException("https://hangga.github.io/fail")
         }
         assertEquals("HTTP response code 404 - Failed", thrown.message)
-    }
-
-    @Test
-    fun `test continuation using suspendFunction network call failure for usingResumeWith`() = runBlocking {
-        val thrown = assertThrows<Exception> {
-            usingResumeWith("https://hangga.github.io/fail")
-        }
-        assertEquals("404 - Failed", thrown.message)
     }
 
     @Test
@@ -145,25 +161,9 @@ class ContinuationLiveTest {
     }
 
     @Test
-    fun `test invalid URL for usingResumeWith`() = runBlocking {
-        val thrown = assertThrows<Exception> {
-            usingResumeWith("invalid-url")
-        }
-        assertEquals("no protocol: invalid-url", thrown.message)
-    }
-
-    @Test
     fun `test timeout for usingResumeAndResumeWithException`() = runBlocking {
         val thrown = assertThrows<Exception> {
             usingResumeAndResumeWithException("https://10.255.255.1") // An IP address that will timeout
-        }
-        assertEquals("Connect timed out", thrown.message)
-    }
-
-    @Test
-    fun `test timeout for usingResumeWith`() = runBlocking {
-        val thrown = assertThrows<Exception> {
-            usingResumeWith("https://10.255.255.1")
         }
         assertEquals("Connect timed out", thrown.message)
     }
