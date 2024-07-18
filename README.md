@@ -39,3 +39,4 @@ To run the integration tests, use the command:
 `mvn clean install -Pintegration` 
 
 ===="New feature description" 
+"New feature description" 
