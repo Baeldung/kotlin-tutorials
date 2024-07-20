@@ -45,7 +45,6 @@
             <version>${atrium.version}</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>net.jqwik</groupId>
             <artifactId>jqwik</artifactId>
@@ -91,4 +90,5 @@
         <jqwik.version>1.8.5</jqwik.version>
         <junit-jupiter-params.version>5.9.1</junit-jupiter-params.version>
     </properties>
+
 </project>

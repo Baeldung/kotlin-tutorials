@@ -19,14 +19,9 @@
             <version>${kotlinpoet-jvm.version}</version>
         </dependency>
     </dependencies>
-    <build>
-      
-    </build>
 
     <properties>
-       
         <kotlinpoet-jvm.version>1.16.0</kotlinpoet-jvm.version>
-    
     </properties>
 
 </project>

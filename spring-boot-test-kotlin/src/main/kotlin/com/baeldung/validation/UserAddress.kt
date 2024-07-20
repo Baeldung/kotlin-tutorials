@@ -1,8 +1,8 @@
 package com.baeldung.validation
 
-import javax.validation.Valid
-import javax.validation.constraints.Min
-import javax.validation.constraints.NotBlank
+import jakarta.validation.Valid
+import jakarta.validation.constraints.Min
+import jakarta.validation.constraints.NotBlank
 
 data class UserAddress(
     @field:NotBlank(message = "Name must not be blank")
