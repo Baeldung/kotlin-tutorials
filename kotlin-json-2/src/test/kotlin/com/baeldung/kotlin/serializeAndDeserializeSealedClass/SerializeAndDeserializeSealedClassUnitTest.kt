@@ -15,13 +15,13 @@ import org.junit.jupiter.api.Test
 
 @Serializable
 sealed class Animal {
-    @Serializable
-    @SerialName("dog")
-    data class Dog(val name: String, val breed: String) : Animal()
+    abstract val name: String
 
     @Serializable
-    @SerialName("cat")
-    data class Cat(val name: String, val color: String) : Animal()
+    data class Dog(override val name: String, val breed: String) : Animal()
+
+    @Serializable
+    data class Cat(override val name: String, val color: String) : Animal()
 }
 
 class SerializeAndDeserializeSealedClassUnitTest {
