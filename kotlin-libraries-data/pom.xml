@@ -16,6 +16,40 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>retrofit</artifactId>
+            <version>${retrofit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.tomakehurst</groupId>
+            <artifactId>wiremock-jre8</artifactId>
+            <version>${wiremock-jre8.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>converter-gson</artifactId>
+            <version>${retrofit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.moshi</groupId>
+            <artifactId>moshi</artifactId>
+            <version>${moshi.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>converter-moshi</artifactId>
+            <version>${retrofit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>converter-jackson</artifactId>
+            <version>${retrofit.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-serialization-json-jvm</artifactId>
             <version>${kotlinx-serialization-json-jvm.version}</version>
@@ -54,6 +88,12 @@
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-kotlin</artifactId>
             <version>${jackson-kotlin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.moshi</groupId>
+            <artifactId>moshi-kotlin</artifactId>
+            <version>${moshi.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -117,7 +157,10 @@
         <kotlinx-serialization-json-jvm.version>1.6.0</kotlinx-serialization-json-jvm.version>
         <kotlinx-datetime-jvm.version>0.4.0</kotlinx-datetime-jvm.version>
         <mapstruct.version>1.5.3.Final</mapstruct.version>
-        <jackson-kotlin.version>2.9.8</jackson-kotlin.version>
+        <jackson-kotlin.version>2.15.4</jackson-kotlin.version>
+        <retrofit.version>2.9.0</retrofit.version>
+        <wiremock-jre8.version>2.35.1</wiremock-jre8.version>
+        <moshi.version>1.15.0</moshi.version>
     </properties>
 
 </project>
