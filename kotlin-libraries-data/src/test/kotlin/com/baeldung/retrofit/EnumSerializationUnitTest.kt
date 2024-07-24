@@ -34,7 +34,7 @@ interface OrderService {
     suspend fun getOrder(@Path("id") orderId: String): Order
 
     @POST("orders")
-    suspend fun createOrder(@Body order: Order): Response<Order>
+    suspend fun createOrder(@Body order: Order): Order
 }
 
 val gson: Gson = GsonBuilder().create()
@@ -77,7 +77,7 @@ class EnumSerializationUnitTest {
                 .willReturn(WireMock.aResponse().withBody("""{"id":"1","status":"PENDING"}""").withStatus(200))
         )
         val response = service.createOrder(order)
-        assertEquals(order, response.body())
+        assertEquals(order, response)
     }
 
     @Test
@@ -89,7 +89,7 @@ class EnumSerializationUnitTest {
                 .willReturn(WireMock.aResponse().withBody("""{"id":"1","status":"PENDING"}""").withStatus(200))
         )
         val response = service.createOrder(order)
-        assertEquals(order, response.body())
+        assertEquals(order, response)
     }
 
     @Test
@@ -101,6 +101,6 @@ class EnumSerializationUnitTest {
                 .willReturn(WireMock.aResponse().withBody("""{"id":"1","status":"PENDING"}""").withStatus(200))
         )
         val response = service.createOrder(order)
-        assertEquals(order, response.body())
+        assertEquals(order, response)
     }
 }
