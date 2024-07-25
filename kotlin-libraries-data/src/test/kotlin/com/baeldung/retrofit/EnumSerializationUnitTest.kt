@@ -14,7 +14,6 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.jackson.JacksonConverterFactory
@@ -34,7 +33,7 @@ interface OrderService {
     suspend fun getOrder(@Path("id") orderId: String): Order
 
     @POST("orders")
-    suspend fun createOrder(@Body order: Order): Response<Order>
+    suspend fun createOrder(@Body order: Order): Order
 }
 
 val gson: Gson = GsonBuilder().create()
