@@ -77,13 +77,13 @@ class ParallelOperationCollectionsUnitTest {
         val startTime = Instant.now()
 
         val filteredPeople = people.asFlow()
+            .flowOn(Dispatchers.IO)
             .flatMapMerge { person ->
                 flow {
                     person.setAdult()
                     emit(person)
                 }
             }
-            .flowOn(Dispatchers.IO)
             .filter { it.age > 15 }.toList()
             .sortedBy { it.age }
 
@@ -172,7 +172,7 @@ class ParallelOperationCollectionsUnitTest {
                     person
                 })
             }
-        
+
         val results = futures
             .map { it.get() }
             .filter { it.age > 15 }
