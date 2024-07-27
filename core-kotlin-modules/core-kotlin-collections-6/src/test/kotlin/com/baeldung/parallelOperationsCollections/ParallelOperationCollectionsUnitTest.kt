@@ -10,6 +10,9 @@ import org.junit.jupiter.api.Test
 import org.slf4j.LoggerFactory
 import java.time.Duration
 import java.time.Instant
+import java.util.concurrent.Callable
+import java.util.concurrent.Executors
+import java.util.concurrent.Future
 import java.util.stream.Collectors
 
 
@@ -55,7 +58,6 @@ class ParallelOperationCollectionsUnitTest {
         val filteredPeople = people
             .map { person ->
                 async(Dispatchers.IO) {
-                    Thread.sleep(1500)
                     person.setAdult()
                     person
                 }
@@ -78,7 +80,6 @@ class ParallelOperationCollectionsUnitTest {
             .flatMapMerge { person ->
                 flow {
                     person.setAdult()
-                    Thread.sleep(1500)
                     emit(person)
                 }
             }
@@ -103,7 +104,6 @@ class ParallelOperationCollectionsUnitTest {
                         .subscribeOn(Schedulers.computation())
                         .doOnNext { person ->
                             person.setAdult()
-                            Thread.sleep(1500)
                         }
                 }, people.size // Uses maxConcurrency for the number of elements
             )
@@ -129,7 +129,6 @@ class ParallelOperationCollectionsUnitTest {
                         .subscribeOn(Schedulers.computation())
                         .doOnNext { person ->
                             person.setAdult()
-                            Thread.sleep(1500)
                         }
                 }, people.size // Uses maxConcurrency for the number of elements
             ).filter { it.age > 15 }
@@ -150,7 +149,6 @@ class ParallelOperationCollectionsUnitTest {
         val filteredPeople = people.parallelStream()
             .map { person ->
                 person.setAdult()
-                Thread.sleep(1500)
                 person
             }.filter { it.age > 15 }
             .sorted { p1, p2 -> p1.age.compareTo(p2.age) }
@@ -160,5 +158,32 @@ class ParallelOperationCollectionsUnitTest {
 
         filteredPeople.assertOver15AndSortedByAge()
     }
+
+    @Test
+    fun `using ExecutorService for parallel operations`() {
+        logger.info("Using ExecutorService")
+        val startTime = Instant.now()
+
+        val executor = Executors.newFixedThreadPool(people.size)
+        val futures: List<Future<Person>> = people
+            .map { person ->
+                executor.submit(Callable {
+                    person.setAdult()
+                    person
+                })
+            }
+        
+        val results = futures
+            .map { it.get() }
+            .filter { it.age > 15 }
+            .sortedBy { it.age }
+
+        executor.shutdown()
+
+        startTime.printTotalTime()
+
+        results.assertOver15AndSortedByAge()
+    }
+
 }
 
