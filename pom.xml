@@ -527,6 +527,7 @@
                 <module>kotlin-rsocket</module>
                 <module>kotlin-self-executable-jar</module>
                 <module>kotlin-spark</module>
+                <module>kotlin-blockchain</module>
                 <module>kotlin-testing</module>
                 <module>kotlin-mockito</module>
                 <!-- <module>kotlin-tornadofx</module> --> <!-- not compatible with Java 9+ -->
@@ -608,6 +609,7 @@
                 <module>kotlin-rsocket</module>
                 <module>kotlin-self-executable-jar</module>
                 <module>kotlin-spark</module>
+                <module>kotlin-blockchain</module>
                 <module>kotlin-testing</module>
                 <module>kotlin-mockito</module>
                 <!-- <module>kotlin-tornadofx</module> --> <!-- not compatible with Java 9+ -->
