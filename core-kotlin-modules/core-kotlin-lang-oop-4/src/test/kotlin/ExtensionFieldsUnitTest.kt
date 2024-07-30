@@ -10,10 +10,11 @@ class ExtensionFieldsUnitTest {
     @Test
     fun `test using extension properties`() {
         val word = "Baeldung"
+        
         assertEquals("B", word.firstChar.toString())
     }
 
-    class Foo(val id: Int) {
+    class Foo() {
         var name: String = "Foo"
     }
 
@@ -23,9 +24,9 @@ class ExtensionFieldsUnitTest {
 
     @Test
     fun `test using extension function`(){
-        val foo = Foo(0)
-        assertEquals("Foo", foo.getName())
+        val foo = Foo()
 
+        assertEquals("Foo", foo.getName())
         assertEquals("Foo".length, foo.getLength())
     }
 
@@ -41,7 +42,8 @@ class ExtensionFieldsUnitTest {
 
     @Test
     fun `test using custom backing field`() {
-        val foo = Foo(0)
+        val foo = Foo()
+
         foo.someProperty = 20
         assertEquals(20, foo.someProperty)
 
