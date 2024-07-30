@@ -38,6 +38,15 @@ class ExtensionFieldsUnitTest {
         assertEquals("Foo".length, foo.getLength())
     }
 
+    val Foo.someProperty: Any
+        get() =  21
+
+    @Test
+    fun `test extension properties using getter`(){
+        val foo = Foo()
+        assertEquals(21, foo.someProperty)
+    }
+
     val propertyStorage = mutableMapOf<Foo, Any>()
 
     var Foo.someIntProperty: Any
