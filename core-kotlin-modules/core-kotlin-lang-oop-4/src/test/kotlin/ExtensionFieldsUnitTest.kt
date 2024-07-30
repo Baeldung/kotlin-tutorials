@@ -7,6 +7,9 @@ class ExtensionFieldsUnitTest {
     fun String.toTitleCase(): String = this.split(" ").joinToString(" ") { it.capitalize() }
 
     // using extension properties
+
+    // val String.firstChar: Char = this[0] // this not allowed
+
     val String.firstChar: Char
         get() = this[0]
 
@@ -35,12 +38,16 @@ class ExtensionFieldsUnitTest {
         assertEquals("Foo".length, foo.getLength())
     }
 
-    // var Foo.someProperty: Int = 20 // this not allowed
+    val propertyStorage = mutableMapOf<Foo, Any>()
 
-    val propertyStorage = mutableMapOf<Foo, Int>()
-
-    var Foo.someProperty: Int
+    var Foo.someIntProperty: Any
         get() = propertyStorage[this] ?: 0
+        set(value) {
+            propertyStorage[this] = value
+        }
+
+    var Foo.someStringProperty: Any
+        get() = propertyStorage[this] ?: ""
         set(value) {
             propertyStorage[this] = value
         }
@@ -49,10 +56,16 @@ class ExtensionFieldsUnitTest {
     fun `test using custom backing field`() {
         val foo = Foo()
 
-        foo.someProperty = 20
-        assertEquals(20, foo.someProperty)
+        foo.someIntProperty = 20
+        assertEquals(20, foo.someIntProperty)
 
-        foo.someProperty = 11
-        assertEquals(11, foo.someProperty)
+        foo.someIntProperty = 11
+        assertEquals(11, foo.someIntProperty)
+
+        foo.someStringProperty = "Baeldung"
+        assertEquals("Baeldung", foo.someStringProperty)
+
+        foo.someStringProperty = "Kotlin"
+        assertEquals("Kotlin", foo.someStringProperty)
     }
 }
