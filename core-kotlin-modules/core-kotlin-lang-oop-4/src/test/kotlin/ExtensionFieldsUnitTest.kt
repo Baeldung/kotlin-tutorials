@@ -10,11 +10,11 @@ class ExtensionFieldsUnitTest {
     @Test
     fun `test using extension properties`() {
         val word = "Baeldung"
-        
+
         assertEquals("B", word.firstChar.toString())
     }
 
-    class Foo() {
+    class Foo {
         var name: String = "Foo"
     }
 
