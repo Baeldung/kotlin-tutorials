@@ -3,15 +3,20 @@ import kotlin.test.assertEquals
 
 class ExtensionFieldsUnitTest {
 
-    // using Extension Properties
+    // extension function
+    fun String.toTitleCase(): String = this.split(" ").joinToString(" ") { it.capitalize() }
+
+    // using extension properties
     val String.firstChar: Char
         get() = this[0]
 
     @Test
-    fun `test using extension properties`() {
-        val word = "Baeldung"
+    fun `test using extension function and properties`() {
+        val word = "baeldung kotlin"
 
-        assertEquals("B", word.firstChar.toString())
+        assertEquals("b", word.firstChar.toString())
+
+        assertEquals("Baeldung Kotlin", word.toTitleCase())
     }
 
     class Foo {
