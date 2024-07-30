@@ -31,12 +31,12 @@ class ExtensionFieldsUnitTest {
 
     // var Foo.someProperty: Int = 20 // this not allowed
 
-    val propertyStorage = mutableMapOf<Int, Int>()
+    val propertyStorage = mutableMapOf<Foo, Int>()
 
     var Foo.someProperty: Int
-        get() = propertyStorage[this.id] ?: 0
+        get() = propertyStorage[this] ?: 0
         set(value) {
-            propertyStorage[this.id] = value
+            propertyStorage[this] = value
         }
 
     @Test
