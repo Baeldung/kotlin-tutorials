@@ -13,41 +13,30 @@ class ExtensionFieldsUnitTest {
         assertEquals("B", word.firstChar.toString())
     }
 
-    @Target(AnnotationTarget.PROPERTY)
-    annotation class CustomField
-
-    // using anotation
     class Foo(val id: Int) {
-        @CustomField
-        var defaultUserName: String = "Hangga"
-
-        var extraField: String = "Default"
+        var name: String = "Foo"
     }
 
-    @Test
-    fun `test using anotation`() {
-        val foo = Foo(1)
-        assertEquals("Hangga", foo.defaultUserName)
-    }
+    fun Foo.getName() : String = this.name
 
-    fun Foo.someFunction() : String {
-         return "Foo"
-    }
+    fun Foo.getLength() : Int = this.name.length
 
     @Test
     fun `test using extension function`(){
         val foo = Foo(0)
-        assertEquals("Foo", foo.someFunction())
+        assertEquals("Foo", foo.getName())
+
+        assertEquals("Foo".length, foo.getLength())
     }
 
     // var Foo.someProperty: Int = 20 // this not allowed
 
-    val somePropertyStorage = mutableMapOf<Int, Int>()
+    val propertyStorage = mutableMapOf<Int, Int>()
 
     var Foo.someProperty: Int
-        get() = somePropertyStorage[this.id] ?: 0
+        get() = propertyStorage[this.id] ?: 0
         set(value) {
-            somePropertyStorage[this.id] = value
+            propertyStorage[this.id] = value
         }
 
     @Test
@@ -55,17 +44,8 @@ class ExtensionFieldsUnitTest {
         val foo = Foo(0)
         foo.someProperty = 20
         assertEquals(20, foo.someProperty)
-    }
 
-    // Using Data Class Copy Method
-//    data class Bar(val id: Int, var extraField: String = "Default")
-
-    @Test
-    fun `using data class copy method`() {
-        val foo = Foo(0)
-        assertEquals("Default", foo.extraField)
-
-        foo.extraField = "Not default"
-        assertEquals("Not default", foo.extraField)
+        foo.someProperty = 11
+        assertEquals(11, foo.someProperty)
     }
 }
