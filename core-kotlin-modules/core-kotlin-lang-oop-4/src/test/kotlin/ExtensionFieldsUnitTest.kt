@@ -38,12 +38,15 @@ class ExtensionFieldsUnitTest {
         assertEquals("Foo".length, foo.getLength())
     }
 
-    val Foo.someProperty: Any
+    val Foo.someProperty: Int
         get() =  21
 
     @Test
     fun `test extension properties using getter`(){
         val foo = Foo()
+        assertEquals(21, foo.someProperty)
+
+        // foo.someProperty = 22 // not allowed
         assertEquals(21, foo.someProperty)
     }
 
