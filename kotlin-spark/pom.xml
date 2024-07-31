@@ -16,26 +16,29 @@
         <dependency>
             <groupId>com.sparkjava</groupId>
             <artifactId>spark-kotlin</artifactId>
-            <version>1.0.0-alpha</version>
+            <version>${spark-kotlin.version}</version>
         </dependency>
         <dependency>
             <groupId>com.sparkjava</groupId>
             <artifactId>spark-core</artifactId>
-            <version>2.9.4</version>
+            <version>${spark-core.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-kotlin</artifactId>
-            <version>2.15.3</version>
+            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>2.15.3</version>
+            <version>${jackson.version}</version>
         </dependency>
     </dependencies>
 
     <properties>
+        <spark-kotlin.version>1.0.0-alpha</spark-kotlin.version>
+        <spark-core.version>2.9.4</spark-core.version>
+        <jackson.version>2.15.3</jackson.version>
     </properties>
 
 </project>

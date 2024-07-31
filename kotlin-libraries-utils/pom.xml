@@ -23,7 +23,7 @@
     </dependencies>
 
     <properties>
-        <kotlinx-cli-jvm.version>0.3.5</kotlinx-cli-jvm.version>
+        <kotlinx-cli-jvm.version>0.3.6</kotlinx-cli-jvm.version>
     </properties>
 
 </project>

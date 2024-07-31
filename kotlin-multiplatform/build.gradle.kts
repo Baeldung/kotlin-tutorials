@@ -7,7 +7,7 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
-    jcenter()
+    //jcenter()
     maven {
         url = uri("https://dl.bintray.com/kotlin/kotlinx")
     }

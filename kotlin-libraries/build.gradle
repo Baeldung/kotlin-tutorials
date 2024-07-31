@@ -32,7 +32,7 @@ kotlin { experimental { coroutines "enable" } }
 
 repositories {
     mavenCentral()
-    jcenter()
+    //jcenter()
     maven { url "https://dl.bintray.com/kotlin/ktor" }
 }
 sourceSets {

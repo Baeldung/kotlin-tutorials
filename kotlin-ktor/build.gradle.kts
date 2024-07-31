@@ -3,7 +3,7 @@ import com.expediagroup.graphql.plugin.gradle.config.GraphQLSerializer
 description = "Example usage of Gradle plugin to generate GraphQL Kotlin Client"
 
 val graphQLKotlinVersion = "7.0.1"
-val ktorVersion = "2.3.5"
+val ktorVersion = "2.3.11"
 val logbackVersion = "1.4.14"
 val kotlinTestUnit = "1.9.10"
 val seleniumVersion = "4.16.1"
@@ -30,7 +30,10 @@ dependencies {
 
     implementation("ch.qos.logback", "logback-classic", logbackVersion)
 
-    compile("io.ktor", "ktor-gson" ktorVersion)
+    implementation("io.ktor", "ktor-server-content-negotiation", ktorVersion)
+    implementation("io.ktor", "ktor-serialization-gson", ktorVersion)
+    implementation("io.ktor", "ktor-server-default-headers", ktorVersion)
+    implementation("io.ktor", "ktor-server-call-logging", ktorVersion)
 
     testImplementation("io.ktor", "ktor-client-mock", ktorVersion)
     testImplementation("io.ktor", "ktor-server-tests", ktorVersion)
@@ -61,6 +64,12 @@ kotlin {
     jvmToolchain(20)
 }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
 graphql {
     client {
         packageName = "com.baeldung.graphql.client.generated"
@@ -69,7 +78,7 @@ graphql {
     }
 }
 
-task runServer(type: JavaExec) {
-    main = 'APIServer'
-    classpath = sourceSets.main.runtimeClasspath
+tasks.register<JavaExec>("runServer") {
+    mainClass.set("APIServer")
+    classpath = sourceSets["main"].runtimeClasspath
 }

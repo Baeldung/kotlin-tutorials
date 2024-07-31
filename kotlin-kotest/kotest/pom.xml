@@ -124,13 +124,13 @@
     </build>
 
     <properties>
-        <kotlin.version>1.9.24</kotlin.version>
+        <kotlin.version>2.0.0</kotlin.version>
         <kotest.version>5.9.0</kotest.version>
         <kotest-extensions-testcontainers.version>2.0.1</kotest-extensions-testcontainers.version>
         <jackson.version>2.15.4</jackson.version>
         <mockk.version>1.9.3</mockk.version>
         <mysql-connector-java.version>8.0.33</mysql-connector-java.version>
-        <testcontainers.version>1.18.3</testcontainers.version>
+        <testcontainers.version>1.19.8</testcontainers.version>
         <httpclient.version>4.5.14</httpclient.version>
         <kotest-extensions-mockserver.version>1.2.1</kotest-extensions-mockserver.version>
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>

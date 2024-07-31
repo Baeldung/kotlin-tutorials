@@ -2,7 +2,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>kotlin-apache-kafka</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -102,8 +101,8 @@
 
     <properties>
         <kotlin.version>1.7.10</kotlin.version>
-        <testcontainers.version>1.19.3</testcontainers.version>
-        <kafka.version>3.3.1</kafka.version>
+        <testcontainers.version>1.19.8</testcontainers.version>
+        <kafka.version>3.7.0</kafka.version>
         <slf4j.version>2.0.5</slf4j.version>
         <kotlinx-coroutines.version>1.6.4</kotlinx-coroutines.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>

@@ -3,7 +3,6 @@
 This module contains articles about core Kotlin numbers.
 
 ### Relevant Articles
-- [Getting Binary Representation of Int in Kotlin](https://www.baeldung.com/kotlin/int-binary-representation)
 - [Converting an Int? to an Int in Kotlin](https://www.baeldung.com/kotlin/nullable-int-extract-value)
 - [Dividing Two Int Objects and Getting a BigDecimal in Kotlin](https://www.baeldung.com/kotlin/divide-two-int-objects-bigdecimal-result)
 - [Convert Between Int and Char in Kotlin](https://www.baeldung.com/kotlin/convert-between-int-and-char)

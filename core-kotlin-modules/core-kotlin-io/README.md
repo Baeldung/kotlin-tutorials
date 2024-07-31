@@ -9,3 +9,5 @@ This module contains articles about core Kotlin I/O.
 - [Writing to a File in Kotlin](https://www.baeldung.com/kotlin/write-file)
 - [Writing InputStream to File in Kotlin](https://www.baeldung.com/kotlin/inputstream-to-file)
 - [Rename a File in Kotlin](https://www.baeldung.com/kotlin/file-rename)
+- [Delete the Contents of a File in Kotlin](https://www.baeldung.com/kotlin/delete-file-content)
+- [File Upload in Kotlin](https://www.baeldung.com/kotlin/file-upload)

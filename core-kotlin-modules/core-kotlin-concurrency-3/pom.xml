@@ -29,6 +29,19 @@
             <artifactId>kotlinx-coroutines-rx3</artifactId>
             <version>${rxcoroutines.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-reactor</artifactId>
+            <version>1.6.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-core</artifactId>
+            <version>3.4.11</version>
+        </dependency>
+
     </dependencies>
 
     <properties>
