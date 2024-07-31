@@ -1,6 +1,4 @@
 import org.junit.jupiter.api.Test
-import java.util.*
-import kotlin.reflect.KProperty
 import kotlin.test.assertEquals
 
 class ExtensionFieldsUnitTest {
