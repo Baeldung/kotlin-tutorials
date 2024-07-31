@@ -74,39 +74,4 @@ class ExtensionFieldsUnitTest {
         foo.someStringProperty = "Kotlin"
         assertEquals("Kotlin", foo.someStringProperty)
     }
-
-    class FieldProperty<R, T>(
-        private val initializer: (R) -> T
-    ) {
-        private val map = WeakHashMap<R, T>()
-
-        operator fun getValue(thisRef: R, property: KProperty<*>): T {
-            return map[thisRef] ?: setValue(thisRef, property, initializer(thisRef))
-        }
-
-        operator fun setValue(thisRef: R, property: KProperty<*>, value: T): T {
-            map[thisRef] = value
-            return value
-        }
-    }
-
-    var Int.customField: String by FieldProperty { "$it" }
-    var String.customField: Int by FieldProperty { it.length }
-    var Double.customField: Boolean by FieldProperty { it > 0.0 }
-
-    @Test
-    fun `test using field property`() {
-        val x = 0
-        println(x.customField)  // Output: "0"
-        assertEquals("0", x.customField)
-
-        x.customField = "Baeldung"
-        assertEquals("Baeldung", x.customField)
-
-        val str = "Hello"
-        assertEquals(5, str.customField)
-
-        val d = 3.14
-        assertEquals(true, d.customField)
-    }
 }
