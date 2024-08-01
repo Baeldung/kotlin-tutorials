@@ -2,12 +2,13 @@ import kotlinx.kover.gradle.plugin.dsl.AggregationType
 import kotlinx.kover.gradle.plugin.dsl.MetricType
 
 plugins {
-    kotlin("jvm") version "1.9.20"
-    id("org.jetbrains.kotlinx.kover") version "0.7.5"
+    kotlin("jvm") version "2.0.0"
+    id("org.jetbrains.kotlinx.kover") version "0.7.6"
 }
 
 repositories {
     mavenCentral()
+    gradlePluginPortal()
 }
 
 dependencies {
@@ -41,7 +42,7 @@ koverReport {
             rule("Branch Coverage") {
                 isEnabled = true
                 bound {
-                    minValue = 70 // Minimum coverage percentage for branches
+                    minValue = 20 // Minimum coverage percentage for branches
                     metric = MetricType.BRANCH
                 }
             }

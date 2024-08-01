@@ -82,4 +82,16 @@ class ArrayInitializationUnitTest {
         val intArray = intRange.toIntArray()
         assertEquals(0, intArray.size)
     }
+
+    @Test
+    fun `Given a type, When using emptyArrayOf(), then create an empty array`() {
+        val emptyStringArray = emptyArray<String>()
+        assertEquals(0, emptyStringArray.size)
+    }
+
+    @Test
+    fun `When using intArrayOf(), then create an empty int array`() {
+        val emptyIntArray = intArrayOf()
+        assertEquals(0, emptyIntArray.size)
+    }
 }

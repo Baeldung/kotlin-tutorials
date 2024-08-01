@@ -12,8 +12,8 @@
 
     <repositories>
         <repository>
-            <id>jcenter</id>
-            <url>https://jcenter.bintray.com</url>
+            <id>maven-central</id>
+            <url>https://repo1.maven.org/maven2</url>
         </repository>
         <repository>
             <id>kotlin-ktor</id>
@@ -22,10 +22,6 @@
         <repository>
             <id>kotlin-eap</id>
             <url>https://dl.bintray.com/kotlin/kotlin-eap/</url>
-        </repository>
-        <repository>
-            <id>maven-central</id>
-            <url>https://repo1.maven.org/maven2</url>
         </repository>
     </repositories>
 
@@ -288,15 +284,6 @@
             </plugin>
 
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>${exec-maven-plugin.version}</version>
-                <configuration>
-                    <executable>maven</executable>
-                </configuration>
-            </plugin>
-
-            <plugin>
                 <groupId>org.commonjava.maven.plugins</groupId>
                 <artifactId>directory-maven-plugin</artifactId>
                 <version>${directory-maven-plugin.version}</version>
@@ -341,6 +328,126 @@
                 </executions>
             </plugin>
 
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${exec-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>build-gradle-kotlin-dsl</id>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.basedir}/gradle-kotlin-dsl</workingDirectory>
+                            <executable>./gradlew</executable>
+                            <arguments>
+                                <argument>build</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test-gradle-kotlin-dsl</id>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.basedir}/gradle-kotlin-dsl</workingDirectory>
+                            <executable>./gradlew</executable>
+                            <arguments>
+                                <argument>test</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>build-kotlin-build-plugins</id>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.basedir}/kotlin-build-plugins</workingDirectory>
+                            <executable>./gradlew</executable>
+                            <arguments>
+                                <argument>build</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test-kotlin-build-plugins</id>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.basedir}/kotlin-build-plugins</workingDirectory>
+                            <executable>./gradlew</executable>
+                            <arguments>
+                                <argument>test</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>build-kotlin-kover</id>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.basedir}/kotlin-kover</workingDirectory>
+                            <executable>./gradlew</executable>
+                            <arguments>
+                                <argument>build</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test-kotlin-kover</id>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.basedir}/kotlin-kover</workingDirectory>
+                            <executable>./gradlew</executable>
+                            <arguments>
+                                <argument>test</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>build-kotlin-ktor</id>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.basedir}/kotlin-ktor</workingDirectory>
+                            <executable>./gradlew</executable>
+                            <arguments>
+                                <argument>build</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test-kotlin-ktor</id>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.basedir}/kotlin-ktor</workingDirectory>
+                            <executable>./gradlew</executable>
+                            <arguments>
+                                <argument>test</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
 
         <extensions>
@@ -378,14 +485,14 @@
             </build>
 
             <modules>
-                <module>parent-boot-2</module>
                 <module>parent-boot-3</module>
 
                 <module>core-kotlin-companion</module>
                 <module>core-kotlin-modules</module>
                 <!-- <module>gradle-kotlin-dsl</module> --> <!-- not a Maven module -->
-                <!-- <module>jee-kotlin</module> -->  <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
                 <!-- <module>k2-kotlin</module> -->  <!-- Contains a lot of examples where code intentionally does not compile, by design -->
+                <!-- <module>kotlin-jee</module> --> <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
+                <module>k2-compiler</module>
                 <module>koin-guide</module>
                 <module>kotlin-kotest</module>
                 <module>kotlin-apache-kafka</module>
@@ -394,10 +501,12 @@
                 <module>kotlin-immutable-collections</module>
                 <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
                 <module>kotlin-json</module>
+                <module>kotlin-json-2</module>
                 <!-- <module>kotlin-ktor</module> --> <!-- not a Maven module -->
                 <module>kotlin-lambda</module>
                 <module>kotlin-libraries</module>
                 <module>kotlin-libraries-2</module>
+                <module>kotlin-libraries-3</module>
                 <module>kotlin-libraries-data</module>
                 <module>kotlin-libraries-http</module>
                 <module>kotlin-libraries-orm</module>
@@ -458,15 +567,14 @@
             </build>
 
             <modules>
-                <module>parent-boot-2</module>
                 <module>parent-boot-3</module>
 
                 <module>core-kotlin-companion</module>
                 <module>core-kotlin-modules</module>
                 <!-- <module>gradle-kotlin-dsl</module> --> <!-- not a Maven module -->
-                <!-- <module>jee-kotlin</module> -->  <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
-
                 <!-- <module>k2-kotlin</module> -->  <!-- Contains a lot of examples where code intentionally does not compile, by design -->
+                <!-- <module>kotlin-jee</module> --> <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
+                <module>k2-compiler</module>
                 <module>koin-guide</module>
                 <module>kotlin-kotest</module>
                 <module>kotlin-apache-kafka</module>
@@ -475,10 +583,12 @@
                 <module>kotlin-immutable-collections</module>
                 <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
                 <module>kotlin-json</module>
+                <module>kotlin-json-2</module>
                 <!-- <module>kotlin-ktor</module> --> <!-- not a Maven module -->
                 <module>kotlin-lambda</module>
                 <module>kotlin-libraries</module>
                 <module>kotlin-libraries-2</module>
+                <module>kotlin-libraries-3</module>
                 <module>kotlin-libraries-data</module>
                 <module>kotlin-libraries-http</module>
                 <module>kotlin-libraries-orm</module>
@@ -501,7 +611,7 @@
                 <module>kotlin-self-executable-jar</module>
                 <module>kotlin-spark</module>
                 <module>kotlin-testing</module>
-                <module>kotlin-testing-2</module>
+                <module>kotlin-mockito</module>
                 <!-- <module>kotlin-tornadofx</module> --> <!-- not compatible with Java 9+ -->
                 <!-- <module>kotlin-kover</module> --> <!-- https://github.com/Kotlin/kotlinx-kover/issues/51 -->
                 <module>ktlint-custom</module>
@@ -516,10 +626,137 @@
             </modules>
 
         </profile>
+
+        <profile>
+            <id>gradle-modules</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>${exec-maven-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>build-gradle-kotlin-dsl</id>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <workingDirectory>${project.basedir}/gradle-kotlin-dsl</workingDirectory>
+                                    <executable>./gradlew</executable>
+                                    <arguments>
+                                        <argument>build</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>test-gradle-kotlin-dsl</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <workingDirectory>${project.basedir}/gradle-kotlin-dsl</workingDirectory>
+                                    <executable>./gradlew</executable>
+                                    <arguments>
+                                        <argument>test</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>build-kotlin-build-plugins</id>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <workingDirectory>${project.basedir}/kotlin-build-plugins</workingDirectory>
+                                    <executable>./gradlew</executable>
+                                    <arguments>
+                                        <argument>build</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>test-kotlin-build-plugins</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <workingDirectory>${project.basedir}/kotlin-build-plugins</workingDirectory>
+                                    <executable>./gradlew</executable>
+                                    <arguments>
+                                        <argument>test</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>build-kotlin-kover</id>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <workingDirectory>${project.basedir}/kotlin-kover</workingDirectory>
+                                    <executable>./gradlew</executable>
+                                    <arguments>
+                                        <argument>build</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>test-kotlin-kover</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <workingDirectory>${project.basedir}/kotlin-kover</workingDirectory>
+                                    <executable>./gradlew</executable>
+                                    <arguments>
+                                        <argument>test</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>build-kotlin-ktor</id>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <workingDirectory>${project.basedir}/kotlin-ktor</workingDirectory>
+                                    <executable>./gradlew</executable>
+                                    <arguments>
+                                        <argument>build</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>test-kotlin-ktor</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <workingDirectory>${project.basedir}/kotlin-ktor</workingDirectory>
+                                    <executable>./gradlew</executable>
+                                    <arguments>
+                                        <argument>test</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
     <properties>
-        <kotlin.version>1.9.24</kotlin.version>
+        <kotlin.version>2.0.0</kotlin.version>
         <kotlinx.version>1.7.1</kotlinx.version>
         <ktlint-cli.version>1.0.1</ktlint-cli.version>
 

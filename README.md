@@ -17,16 +17,23 @@ or if we want to build the entire repository with Integration Tests enabled, we 
 
 This should not be needed often as we are usually concerned with a specific module.
 
+To build the modules that use Gradle, use the command:
+`mvn clean install -Pgradle-modules`
+This compiles and runs the tests in all the Gradle submodules using the maven-exec plugin.
+
 
 Building a single module
 ====================
-To build a specific module run the command: `mvn clean install` in the module directory.
+To build a specific Maven module run the command: `mvn clean install` in the module directory.
+
+To build an  individual gradle sub-modules use the `gradlew` command:
+`./gradlew build` or `./gradlew test`. 
 
 
 Working with the IDE
 ====================
 This repo contains a large number of modules. 
-When you're working with an individual module, there's no need to import all of them (or build all of them) - you can simply import that particular module in either Eclipse or IntelliJ. 
+When you're working with an individual module, there's no need to import all of them (or build all of them) - you can simply import that particular module in your IDE.
 
 
 Running Tests

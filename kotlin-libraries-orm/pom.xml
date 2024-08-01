@@ -50,7 +50,7 @@
 
     <properties>
         <ktorm.version>3.6.0</ktorm.version>
-        <testcontainers.version>1.19.3</testcontainers.version>
+        <testcontainers.version>1.19.8</testcontainers.version>
         <mysql.version>8.0.33</mysql.version>
     </properties>
 

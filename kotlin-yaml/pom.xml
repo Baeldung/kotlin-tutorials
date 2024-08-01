@@ -5,20 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>kotlin-yaml</artifactId>
     <name>kotlin-yaml</name>
-    <packaging>jar</packaging>
     <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <parent>
         <groupId>com.baeldung</groupId>
         <artifactId>kotlin-modules</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-
-    <properties>
-        <kotlin.version>1.8.0</kotlin.version>
-        <serialization.version>1.5.0</serialization.version>
-        <serialization.jvm.version>1.5.0</serialization.jvm.version>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -30,12 +24,12 @@
         <dependency>
             <groupId>com.charleskorn.kaml</groupId>
             <artifactId>kaml-jvm</artifactId>
-            <version>0.58.0</version>
+            <version>${kaml-jvm.version}</version>
         </dependency>
         <dependency>
             <groupId>net.mamoe.yamlkt</groupId>
             <artifactId>yamlkt-jvm</artifactId>
-            <version>0.13.0</version>
+            <version>${yamlkt-jvm.version}</version>
         </dependency>
     </dependencies>
 
@@ -72,4 +66,13 @@
             </plugin>
         </plugins>
     </build>
+
+    <properties>
+        <kotlin.version>1.8.0</kotlin.version>
+        <serialization.version>1.5.0</serialization.version>
+        <serialization.jvm.version>1.5.0</serialization.jvm.version>
+        <kaml-jvm.version>0.58.0</kaml-jvm.version>
+        <yamlkt-jvm.version>0.13.0</yamlkt-jvm.version>
+    </properties>
+
 </project>

@@ -5,8 +5,8 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>machine-learning</artifactId>
-    <version>1.0-SNAPSHOT</version>
     <name>machine-learning</name>
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <parent>
@@ -140,7 +140,7 @@
         <dl4j.version>0.9.1</dl4j.version>
         <clean.plugin.version>3.1.0</clean.plugin.version>
         <resources.plugin.version>3.0.2</resources.plugin.version>
-        <jar.plugin.version>3.0.2</jar.plugin.version>
+        <jar.plugin.version>3.4.2</jar.plugin.version>
         <compiler.plugin.version>3.8.0</compiler.plugin.version>
         <surefire.plugin.version>2.22.1</surefire.plugin.version>
         <install.plugin.version>2.5.2</install.plugin.version>
