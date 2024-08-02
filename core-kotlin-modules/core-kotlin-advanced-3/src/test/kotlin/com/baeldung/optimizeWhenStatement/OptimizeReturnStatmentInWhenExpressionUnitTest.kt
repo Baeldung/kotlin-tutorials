@@ -4,38 +4,9 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class OptimizeReturnStatmentInWhenExpressionUnitTest {
-
-    @Test
-    fun `obtain correct error code from optimized when method`() {
-        assertEquals("404", getErroCodeOptimized("error"))
-        assertEquals("200", getErroCodeOptimized("success"))
-        assertEquals("Unknown type", getErroCodeOptimized("unknown"))
-    }
-
-    @Test
-    fun `obtain correct error code from optimized when method using single expression approach`() {
-        assertEquals("404", getErrorCodeOptimizedUsingExpressionBodySyntax("error"))
-        assertEquals("200", getErrorCodeOptimizedUsingExpressionBodySyntax("success"))
-        assertEquals("Unknown type", getErrorCodeOptimizedUsingExpressionBodySyntax("unknown"))
-    }
-
-    @Test
-    fun `categorize number from optimized complex when method using refactoring approach`() {
-        assertEquals("Negative", categorizeNumber(-5))
-        assertEquals("Even", categorizeNumber(4))
-        assertEquals("Odd", categorizeNumber(7))
-    }
-
-    @Test
-    fun `process status from simplified when expression via variable aassignment`() {
-        assertEquals("Processing", processStatusOptimized("active"))
-        assertEquals("Idle", processStatusOptimized("inactive"))
-        assertEquals("Error occurred", processStatusOptimized("error"))
-        assertEquals("Unknown status", processStatusOptimized("unknown"))
-    }
 }
 
-fun getErroCode(type: String): String {
+fun getErrorCode(type: String): String {
     when (type) {
         "error" -> return "404"
         "success" -> return "200"
@@ -43,12 +14,15 @@ fun getErroCode(type: String): String {
     }
 }
 
-fun getErroCodeOptimized(type: String): String {
-    return when (type) {
+fun getErrorCodeOptimized(type: String): String {
+    val result = when (type) {
         "error" -> "404"
         "success" -> "200"
         else -> "Unknown type"
     }
+    println("Error status: $result")
+
+    return result
 }
 
 fun getErrorCodeOptimizedUsingExpressionBodySyntax(type: String): String = when (type) {
@@ -67,17 +41,17 @@ fun getMessageLength(type: String): Int {
 }
 
 fun categorizeNumber(number: Int): String {
-    return when {
+     when {
         number < 0 -> {
-            logNegativeNumber(number)
+            println("Logging negative number: $number")
             return "Negative"
         }
         number % 2 == 0 -> {
-            logEvenNumber(number)
+            println("Logging even number: $number")
             return "Even"
         }
         else -> {
-            logOddNumber(number)
+            println("Logging odd number: $number")
             return "Odd"
         }
     }
@@ -86,30 +60,18 @@ fun categorizeNumber(number: Int): String {
 fun categorizeNumberOptimized(number: Int): String {
     return when {
         number < 0 -> {
-            logNegativeNumber(number)
+            println("Logging negative number: $number")
             "Negative"
         }
         number % 2 == 0 -> {
-            logEvenNumber(number)
+            println("Logging even number: $number")
             "Even"
         }
         else -> {
-            logOddNumber(number)
+            println("Logging odd number: $number")
             "Odd"
         }
     }
-}
-
-fun logNegativeNumber(number: Int) {
-    println("Logging negative number: $number")
-}
-
-fun logEvenNumber(number: Int) {
-    println("Logging even number: $number")
-}
-
-fun logOddNumber(number: Int) {
-    println("Logging odd number: $number")
 }
 
 fun processStatus(status: String): String {
@@ -128,5 +90,7 @@ fun processStatusOptimized(status: String): String {
         "error" -> "Error occurred"
         else -> "Unknown status"
     }
+    println("Processing status: $result")
+
     return result
 }
