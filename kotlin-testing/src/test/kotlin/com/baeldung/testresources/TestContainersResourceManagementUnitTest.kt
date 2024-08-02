@@ -6,7 +6,7 @@ import io.kotest.extensions.testcontainers.JdbcDatabaseContainerExtension
 import io.kotest.matchers.shouldBe
 import org.testcontainers.containers.PostgreSQLContainer
 
-class ResourceManagementTest : StringSpec({
+class TestContainersResourceManagementUnitTest : StringSpec({
     val dataSource = install(JdbcDatabaseContainerExtension(PostgreSQLContainer<Nothing>("postgres:latest")))
 
     "test querying the database" {
