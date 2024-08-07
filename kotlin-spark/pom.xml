@@ -38,7 +38,7 @@
     <properties>
         <spark-kotlin.version>1.0.0-alpha</spark-kotlin.version>
         <spark-core.version>2.9.4</spark-core.version>
-        <jackson.version>2.15.3</jackson.version>
+        <jackson.version>2.17.2</jackson.version>
     </properties>
 
 </project>
