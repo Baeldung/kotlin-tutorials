@@ -6,7 +6,11 @@ import io.kotest.extensions.testcontainers.JdbcDatabaseContainerExtension
 import io.kotest.matchers.shouldBe
 import org.testcontainers.containers.PostgreSQLContainer
 
-class TestContainersResourceManagementUnitTest : StringSpec({
+/**
+ * livetest. This class requires a docker environment to be setup on one's computer so that testcontainers can use
+ * it.
+ */
+class TestContainersResourceManagementLiveTest : StringSpec({
     val dataSource = install(JdbcDatabaseContainerExtension(PostgreSQLContainer<Nothing>("postgres:latest")))
 
     "test querying the database" {
