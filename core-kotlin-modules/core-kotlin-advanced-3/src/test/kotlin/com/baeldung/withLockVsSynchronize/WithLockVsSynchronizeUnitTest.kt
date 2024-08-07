@@ -11,24 +11,26 @@ class WithLockVsSynchronizeUnitTest {
     @Test
     fun `test synchronized keyword usage on a class`() {
         val counter = CounterClass()
-        val threads = List(500) {
+        val threads = List(500) { index ->
             thread {
-                counter.increment()
+                val value = counter.incrementAndGet()
+                assertEquals(index + 1, value)
             }
-        }
-        threads.forEach { it.join() }
+        }.forEach { it.join() }
+
         assertEquals(500, counter.getCount())
     }
 
     @Test
     fun `test withLock method usage`() {
         val counter = LockCounterClass()
-        val threads = List(500) {
+        val threads = List(500) { index ->
             thread {
-                counter.increment()
+                val value = counter.incrementAndGet()
+                assertEquals(index + 1, value)
             }
-        }
-        threads.forEach { it.join() }
+        }.forEach { it.join() }
+
         assertEquals(500, counter.getCount())
     }
 }
@@ -36,8 +38,8 @@ class CounterClass {
     private var count = 0
 
     @Synchronized
-    fun increment() {
-        count++
+    fun incrementAndGet(): Int {
+        return ++count
     }
 
     @Synchronized
@@ -50,9 +52,10 @@ class LockCounterClass {
     private var count = 0
     private val lock = ReentrantLock()
 
-    fun increment() {
+    fun incrementAndGet(): Int {
         lock.withLock {
             count++
+            return count
         }
     }
 
