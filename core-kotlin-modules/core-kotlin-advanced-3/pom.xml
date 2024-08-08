@@ -21,6 +21,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-serialization-json</artifactId>
+            <version>${serialization.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>io.github.classgraph</groupId>
             <artifactId>classgraph</artifactId>
             <version>4.8.112</version>
@@ -64,6 +70,7 @@
                     </execution>
                 </executions>
             </plugin>
+
         </plugins>
     </build>
 
