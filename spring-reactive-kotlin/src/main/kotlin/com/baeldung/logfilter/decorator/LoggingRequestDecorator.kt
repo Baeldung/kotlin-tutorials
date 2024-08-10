@@ -27,7 +27,7 @@ class LoggingRequestDecorator internal constructor(log: Logger, delegate: Server
             val method = Optional.ofNullable(delegate.method).orElse(HttpMethod.GET).name()
             val headers = delegate.headers.asString()
             log.debug(
-                "{} {} {}", method, path + (if (StringUtils.hasText(query)) "?$query" else ""), headers
+                "{} {}\n {}", method, path + (if (StringUtils.hasText(query)) "?$query" else ""), headers
             )
             body = super.getBody().doOnNext { buffer: DataBuffer ->
                 val bodyStream = ByteArrayOutputStream()
