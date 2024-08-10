@@ -1,7 +1,4 @@
-package com.baeldung.optimizeWhenStatement
-
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+package optimizeWhenStatement
 
 class OptimizeReturnStatmentInWhenExpressionUnitTest {
 }
@@ -15,14 +12,11 @@ fun getErrorCode(type: String): String {
 }
 
 fun getErrorCodeOptimized(type: String): String {
-    val result = when (type) {
+    return when (type) {
         "error" -> "404"
         "success" -> "200"
         else -> "Unknown type"
     }
-    println("Error status: $result")
-
-    return result
 }
 
 fun getErrorCodeOptimizedUsingExpressionBodySyntax(type: String): String = when (type) {
