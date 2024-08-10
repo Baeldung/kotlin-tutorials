@@ -12,5 +12,5 @@ fun HttpHeaders.asString(): String {
                 entry.value
             ) + "]"
         }
-        .collect(Collectors.joining(","))
+        .collect(Collectors.joining("\n"))
 }
