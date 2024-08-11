@@ -129,7 +129,7 @@
         <spek.version>1.1.5</spek.version>
         <atrium.version>1.2.0</atrium.version>
         <jqwik.version>1.8.5</jqwik.version>
-        <junit-jupiter-params.version>5.9.1</junit-jupiter-params.version>
+        <junit-jupiter-params.version>5.10.3</junit-jupiter-params.version>
         <kotest.version>5.9.1</kotest.version>
         <kotest-testcontainers.version>2.0.2</kotest-testcontainers.version>
         <testcontainers.version>1.20.1</testcontainers.version>
