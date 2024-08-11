@@ -1,8 +1,5 @@
 package optimizeWhenStatement
 
-class OptimizeReturnStatmentInWhenExpressionUnitTest {
-}
-
 fun getErrorCode(type: String): String {
     when (type) {
         "error" -> return "404"
