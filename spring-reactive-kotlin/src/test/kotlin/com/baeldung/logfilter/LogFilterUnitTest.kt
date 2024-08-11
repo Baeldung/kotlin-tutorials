@@ -25,8 +25,7 @@ open class LogFilterUnitTest {
         `when`(log.isDebugEnabled).thenReturn(true)
     }
 
-    //@Test
-    //Todo: temporarily disabled it due to failure
+    @Test
     fun whenGet_thenLogResponseBody() {
         client.get()
             .uri("/get")
@@ -35,8 +34,7 @@ open class LogFilterUnitTest {
         verify(log).debug("{}: {} - {} : {}", "response", "[1,2,3]", "header", " Content-Type: [application/json]")
     }
 
-    //@Test
-    //Todo: temporarily disabled it due to failure
+    @Test
     fun whenPost_thenLogRequestAndResponseBody() {
         client.post()
             .uri("/post")

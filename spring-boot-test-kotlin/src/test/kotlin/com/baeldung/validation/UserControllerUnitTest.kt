@@ -25,8 +25,7 @@ class UserControllerUnitTest(@Autowired val mockMvc: MockMvc) {
         ).andExpect(status().isOk)
     }
 
-    //@Test
-    //Todo: temporarily disabled it due to failure
+    @Test
     fun whenPostRequestWithInvalidUserJson_thenReturnsStatus400() {
         mockMvc.perform(
             post("/users")
@@ -60,8 +59,7 @@ class UserControllerUnitTest(@Autowired val mockMvc: MockMvc) {
         ).andExpect(status().isOk)
     }
 
-    //@Test
-    //Todo: temporarily disabled it due to failure
+    @Test
     fun whenPostRequestWithInvalidUserAddressJson_thenReturnsStatus400() {
         mockMvc.perform(
             post("/users/address")
