@@ -3,7 +3,6 @@ package com.baeldung.kotest.mockserver
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.extensions.mockserver.MockServerListener
 import io.kotest.matchers.collections.shouldContain
-import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
 import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.StringEntity
@@ -13,7 +12,8 @@ import org.mockserver.model.HttpRequest
 import org.mockserver.model.HttpResponse
 
 class MockServerUnitTest : FunSpec({
-    listener(MockServerListener(1080))
+    val mockServerListener = MockServerListener(1080)
+    listener(mockServerListener)
 
     beforeTest {
         MockServerClient("localhost", 1080).`when`(
@@ -36,10 +36,15 @@ class MockServerUnitTest : FunSpec({
         val statusCode = response.statusLine.statusCode
         statusCode shouldBe 202
     }
+
+    afterTest {
+        mockServerListener.close()
+    }
 })
 
 class UnspecifiedHttpRequestUnitTest : FunSpec({
-    listener(MockServerListener(1080))
+    val mockServerListener = MockServerListener(1080);
+    listener(mockServerListener)
 
     val client = MockServerClient("localhost", 1080)
 
@@ -62,11 +67,15 @@ class UnspecifiedHttpRequestUnitTest : FunSpec({
         val request = client.retrieveRecordedRequests(null).first()
 
         request.getHeader("Content-Type") shouldContain "application/json"
-        request.bodyAsJsonOrXmlString shouldBe """{
+        request.bodyAsJsonOrXmlString.replace("\r\n", "\n") shouldBe """{
             |  "username" : "foo",
             |  "password" : "bar"
             |}""".trimMargin()
         request.path.value shouldBe "/login"
         request.method.value shouldBe "POST"
+    }
+
+    afterTest {
+        mockServerListener.close()
     }
 })
