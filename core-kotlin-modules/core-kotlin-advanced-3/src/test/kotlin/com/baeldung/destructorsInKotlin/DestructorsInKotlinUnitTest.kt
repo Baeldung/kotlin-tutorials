@@ -12,7 +12,7 @@ class DestructorsInKotlinUnitTest {
     @Throws(IOException::class)
     fun `perform resource cleaning with try-finally block`() {
         val mockReader = mock(BufferedReader::class.java)
-        `when`(mockReader.readLine()).thenReturn("Hello, Kotlin!", null) // Mock readLine to return a string, then null to signify EOF.
+        `when`(mockReader.readLine()).thenReturn("Hello, Kotlin!", null)
 
         val content = readFile(mockReader)
         assertEquals("Hello, Kotlin!", content)
@@ -24,7 +24,7 @@ class DestructorsInKotlinUnitTest {
     @Throws(IOException::class)
     fun `perform resource cleaning with use`() {
         val mockReader = mock(BufferedReader::class.java)
-        `when`(mockReader.readLine()).thenReturn("Hello, Kotlin!", null) // Mock readLine to return a string, then null to signify EOF.
+        `when`(mockReader.readLine()).thenReturn("Hello, Kotlin!", null)
 
         val content = readFileUsingUse(mockReader)
         assertEquals("Hello, Kotlin!", content)
