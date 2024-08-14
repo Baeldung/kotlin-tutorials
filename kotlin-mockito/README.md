@@ -11,3 +11,4 @@ This module contains articles about testing in Kotlin
 - [MockK: A Mocking Library for Kotlin](https://www.baeldung.com/kotlin/mockk)
 - [How to Mock and Verify Lambda Expression in Kotlin](https://www.baeldung.com/kotlin/lambda-mock-verify)
 - [Using Spy in MockK](https://www.baeldung.com/kotlin/mockk-spy)
+- [Kotlin K2 Compiler Overview](https://www.baeldung.com/kotlin/k2-compiler-guide)
