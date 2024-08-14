@@ -1,6 +1,8 @@
 package com.baeldung.withLockVsSynchronize
 
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.util.concurrent.locks.ReentrantLock
@@ -45,6 +47,14 @@ class WithLockVsSynchronizeUnitTest {
     @Synchronized
     fun synchronizedMethod() {
         println("Synchronized function call")
+    }
+
+    fun performSynchronizedOperation() = runBlocking {
+        val mutex = Mutex()
+
+        mutex.withLock {
+            println("Synchronized function call")
+        }
     }
 }
 
