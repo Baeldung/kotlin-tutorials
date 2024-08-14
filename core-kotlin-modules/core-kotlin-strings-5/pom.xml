@@ -23,7 +23,7 @@
     </dependencies>
 
     <properties>
-        <junit-jupiter-params.version>5.10.2</junit-jupiter-params.version>
+        <junit-jupiter-params.version>5.11.0</junit-jupiter-params.version>
     </properties>
 
 </project>
