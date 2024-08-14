@@ -1,13 +1,17 @@
 package com.baeldung.withLockVsSynchronize
 
+import kotlinx.coroutines.sync.Mutex
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.thread
 import kotlin.concurrent.withLock
 
+
 class WithLockVsSynchronizeUnitTest {
 
+    object ObjectToLockOn
+    val mutexLock = Mutex()
     @Test
     fun `test synchronized keyword usage on a class`() {
         val counter = CounterClass()
@@ -33,7 +37,21 @@ class WithLockVsSynchronizeUnitTest {
 
         assertEquals(500, counter.getCount())
     }
+
+    fun toSynchronized() = synchronized(ObjectToLockOn) {
+        println("Synchronized function call")
+    }
+
+    @Synchronized
+    fun synchronizedMethod() {
+        println("Synchronized function call")
+    }
+
+    mutexLock.withLock {
+        println("Synchronized function call")
+    }
 }
+
 class CounterClass {
     private var count = 0
 
@@ -46,6 +64,7 @@ class CounterClass {
     fun getCount(): Int {
         return count
     }
+
 }
 
 class LockCounterClass {
@@ -65,3 +84,4 @@ class LockCounterClass {
         }
     }
 }
+
