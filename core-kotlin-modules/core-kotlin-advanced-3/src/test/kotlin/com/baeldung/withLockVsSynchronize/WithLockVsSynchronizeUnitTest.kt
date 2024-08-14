@@ -46,10 +46,6 @@ class WithLockVsSynchronizeUnitTest {
     fun synchronizedMethod() {
         println("Synchronized function call")
     }
-
-    mutexLock.withLock {
-        println("Synchronized function call")
-    }
 }
 
 class CounterClass {
