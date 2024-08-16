@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 import org.mockito.Mockito.*
 import java.io.BufferedReader
 import java.io.IOException
-
+import kotlin.test.assertFailsWith
 
 class DestructorsInKotlinUnitTest {
     @Test
@@ -22,12 +22,37 @@ class DestructorsInKotlinUnitTest {
 
     @Test
     @Throws(IOException::class)
+    fun `perform resource cleaning with try-finally block when IOException occurs`() {
+        val mockReader = mock(BufferedReader::class.java)
+        `when`(mockReader.readLine()).thenThrow(IOException("Test exception"))
+
+        assertFailsWith<IOException> {
+            readFile(mockReader)
+        }
+
+        verify(mockReader).close()
+    }
+
+    @Test
+    @Throws(IOException::class)
     fun `perform resource cleaning with use`() {
         val mockReader = mock(BufferedReader::class.java)
         `when`(mockReader.readLine()).thenReturn("Hello, Kotlin!", null)
-
         val content = readFileUsingUse(mockReader)
         assertEquals("Hello, Kotlin!", content)
+
+        verify(mockReader).close()
+    }
+
+    @Test
+    @Throws(IOException::class)
+    fun `perform resource cleaning with use() when IOException occurs`() {
+        val mockReader = mock(BufferedReader::class.java)
+        `when`(mockReader.readLine()).thenThrow(IOException("Test exception"))
+
+        assertFailsWith<IOException> {
+            readFileUsingUse(mockReader)
+        }
 
         verify(mockReader).close()
     }
@@ -58,4 +83,3 @@ fun readFileUsingUse(reader: BufferedReader): String {
         content.toString()
     }
 }
-
