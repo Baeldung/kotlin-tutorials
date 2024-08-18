@@ -49,10 +49,10 @@ class WithLockVsSynchronizeUnitTest {
         println("Synchronized function call")
     }
 
-    fun performSynchronizedOperation() = runBlocking {
-        val mutex = Mutex()
+    fun performSynchronizedOperation(){
+        val lockObject = ReentrantLock()
 
-        mutex.withLock {
+        lockObject.withLock {
             println("Synchronized function call")
         }
     }
