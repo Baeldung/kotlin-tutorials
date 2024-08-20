@@ -1,8 +1,8 @@
 group = "com.baeldung"
 version = "1.0-SNAPSHOT"
 
-val koinVersion = "3.5.6"
-val koinAnnotationsVersion = "1.3.1"
+val koinVersion = "4.0.0-RC1"
+val koinAnnotationsVersion = "1.4.0-RC3"
 
 repositories {
     mavenCentral()
@@ -14,13 +14,13 @@ plugins {
 }
 
 dependencies {
-    implementation("io.insert-koin:koin-core:$koinVersion")
+    implementation("io.insert-koin:koin-core-jvm:$koinVersion")
     implementation("io.insert-koin:koin-annotations:$koinAnnotationsVersion")
     ksp("io.insert-koin:koin-ksp-compiler:$koinAnnotationsVersion")
 }
 
-sourceSets.main {
-    java.srcDirs("build/generated/ksp/main/kotlin")
+ksp {
+    arg("KOIN_CONFIG_CHECK", "true")
 }
 
 tasks.test {
