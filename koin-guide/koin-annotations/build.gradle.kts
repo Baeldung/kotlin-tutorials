@@ -1,16 +1,16 @@
 group = "com.baeldung"
 version = "1.0-SNAPSHOT"
 
-val koinVersion = "4.0.0-RC1"
-val koinAnnotationsVersion = "1.4.0-RC3"
+val koinVersion = "3.5.6"
+val koinAnnotationsVersion = "1.3.1"
 
 repositories {
     mavenCentral()
 }
 
 plugins {
-    kotlin("jvm") version "2.0.10"
-    id("com.google.devtools.ksp") version "2.0.10-1.0.24"
+    kotlin("jvm") version "1.9.24"
+    id("com.google.devtools.ksp") version "1.9.24-1.0.20"
 }
 
 dependencies {
