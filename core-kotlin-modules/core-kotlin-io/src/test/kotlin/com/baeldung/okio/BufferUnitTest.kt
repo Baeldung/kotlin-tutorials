@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 
 class BufferUnitTest {
     @Test
-    fun readAndWriteStringWithLength() {
+    fun `when writing data to a buffer then we can read the data back out` () {
         val input = "Hello, World!"
 
         val buffer = Buffer()
