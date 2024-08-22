@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 
 class ByteStringUnitTest {
     @Test
-    fun convertToFromUtf8() {
+    fun `when converting a string to utf-8 bytes then we can convert back to a string` () {
         val byteString = "Hello".encodeUtf8()
 
         assertEquals(5, byteString.size)
@@ -18,7 +18,7 @@ class ByteStringUnitTest {
     }
 
     @Test
-    fun convertToFromBase64() {
+    fun `given a base64 input string when decoding as base64 then we get the correct string out` () {
         val byteString = "SGVsbG8=".decodeBase64()
 
         assertEquals("Hello", byteString?.utf8())
@@ -27,7 +27,7 @@ class ByteStringUnitTest {
     }
 
     @Test
-    fun convertToFromHex() {
+    fun `given a hex input string when decoding as hex then we get the correct string out` () {
         val byteString = "48656c6c6f".decodeHex()
 
         assertEquals("Hello", byteString.utf8())
@@ -36,7 +36,7 @@ class ByteStringUnitTest {
     }
 
     @Test
-    fun convertToHash() {
+    fun `given an input string when generating various hashes then we get the correct result` () {
         val byteString = "Hello".encodeUtf8()
 
         assertEquals("8b1a9953c4611296a827abf8c47804d7", byteString.md5().hex())

@@ -8,7 +8,7 @@ import java.io.ByteArrayInputStream
 
 class SourceUnitTest {
     @Test
-    fun testInputStreamSource() {
+    fun `given an input stream when treating as a source then we can read the data from it` () {
         val inputStream = ByteArrayInputStream("Hello, World!".encodeUtf8().toByteArray())
 
         val source = inputStream.source()
@@ -21,7 +21,7 @@ class SourceUnitTest {
     }
 
     @Test
-    fun testBufferedSource() {
+    fun `given a source when wrapping in a BufferedSource then we can read the data from it` () {
         val inputStream = ByteArrayInputStream("Hello, World!".encodeUtf8().toByteArray())
 
         val source = inputStream.source().buffer()
@@ -30,7 +30,7 @@ class SourceUnitTest {
     }
 
     @Test
-    fun testGzipSource() {
+    fun `given a source of compressed data when wrapping in a GzipSource then we can read the data from it` () {
         val inputBuffer = Buffer()
         inputBuffer.writeUtf8("Hello, World!")
 
