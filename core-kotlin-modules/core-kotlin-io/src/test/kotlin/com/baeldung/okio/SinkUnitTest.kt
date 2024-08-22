@@ -11,7 +11,7 @@ import kotlin.test.assertEquals
 
 class SinkUnitTest {
     @Test
-    fun testOutputStream() {
+    fun `given an output stream when treating as a sink then we can write data to it` () {
         val inputBuffer = Buffer()
         inputBuffer.writeUtf8("Hello, World!")
 
@@ -24,7 +24,7 @@ class SinkUnitTest {
     }
 
     @Test
-    fun testBufferedSink() {
+    fun `given a sink when wrapping in a BufferedSink then we can write data to it` () {
         val outputStream = ByteArrayOutputStream()
         val sink = outputStream.sink().buffer()
         sink.writeUtf8("Hello, World!")
@@ -35,7 +35,7 @@ class SinkUnitTest {
     }
 
     @Test
-    fun testGzip() {
+    fun `given a sink when wrapping in a GzipSink then we can compress data as we write it` () {
         val inputBuffer = Buffer()
         inputBuffer.writeUtf8("Hello, World!")
 

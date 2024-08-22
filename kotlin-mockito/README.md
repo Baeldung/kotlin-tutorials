@@ -12,3 +12,4 @@ This module contains articles about testing in Kotlin
 - [How to Mock and Verify Lambda Expression in Kotlin](https://www.baeldung.com/kotlin/lambda-mock-verify)
 - [Using Spy in MockK](https://www.baeldung.com/kotlin/mockk-spy)
 - [Kotlin K2 Compiler Overview](https://www.baeldung.com/kotlin/k2-compiler-guide)
+- [Difference Between clearAllMocks() and unmockkAll() in MockK](https://www.baeldung.com/kotlin/mockk-clearallmocks-vs-unmockkall)

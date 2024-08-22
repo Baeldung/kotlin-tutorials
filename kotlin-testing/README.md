@@ -7,3 +7,4 @@ This module contains articles about testing in Kotlin
 - [Writing Specifications with Kotlin and Spek](https://www.baeldung.com/kotlin/spek)
 - [Testing Extension Methods in Kotlin](https://www.baeldung.com/kotlin/test-extension-methods)
 - [A Guide to Atrium: Assertion Library for Kotlin](https://www.baeldung.com/kotlin/atrium-assertion-library)
+- [A Guide to Property-Based Testing in Kotlin](https://www.baeldung.com/kotlin/property-based-testing)
