@@ -5,4 +5,6 @@
 - [Getting a Kotlin KClass from a Package Class Name String](https://www.baeldung.com/kotlin/kclass-fqn-string)
 - [A Guide to Kotlin Context Receivers](https://www.baeldung.com/kotlin/context-receivers)
 - [Serialize/Deserialize Kotlin Sealed Class](https://www.baeldung.com/kotlin/sealed-class-serialization)
+- [A Guide to Kotlin’s Any, Unit, Nothing](https://www.baeldung.com/kotlin/any-unit-nothing-tutorial)
+
 - More articles: [[<-- prev]](../core-kotlin-advanced-2)
