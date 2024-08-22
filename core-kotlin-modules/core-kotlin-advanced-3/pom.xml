@@ -71,6 +71,18 @@
                 </executions>
             </plugin>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M7</version>
+                <configuration>
+                    <environmentVariables>
+                        <CUSTOM_PROPERTY>CustomValue</CUSTOM_PROPERTY>
+                        <API_URL>https://api.example.com</API_URL>
+                    </environmentVariables>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
