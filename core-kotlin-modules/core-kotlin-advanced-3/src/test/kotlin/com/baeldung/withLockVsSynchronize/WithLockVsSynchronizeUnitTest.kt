@@ -13,7 +13,7 @@ import kotlin.concurrent.withLock
 class WithLockVsSynchronizeUnitTest {
 
     object ObjectToLockOn
-    val mutexLock = Mutex()
+    val lockObject = ReentrantLock()
     @Test
     fun `test synchronized keyword usage on a class`() {
         val counter = CounterClass()
@@ -50,7 +50,6 @@ class WithLockVsSynchronizeUnitTest {
     }
 
     fun performSynchronizedOperation(){
-        val lockObject = ReentrantLock()
 
         lockObject.withLock {
             println("Synchronized function call")
