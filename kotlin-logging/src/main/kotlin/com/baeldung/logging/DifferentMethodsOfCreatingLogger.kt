@@ -8,14 +8,14 @@ import mu.KotlinLogging
 private val staticLogger = KotlinLogging.logger {}
 
 class ClassForImportantWork1 {
-    companion object: KLogging()
+    companion object : KLogging()
 
     fun importantWork() {
         logger.debug { "I'm logging via companion object" }
     }
 }
 
-class ClassForImportantWork2: KLoggable {
+class ClassForImportantWork2 : KLoggable {
     override val logger: KLogger = logger()
 
     fun importantWork() {

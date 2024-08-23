@@ -7,7 +7,7 @@
     <artifactId>kotlin-logging</artifactId>
     <name>kotlin-logging</name>
     <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <parent>
         <artifactId>kotlin-modules</artifactId>
@@ -24,6 +24,6 @@
     </dependencies>
 
     <properties>
-        <kotlin-logging-jvm.version>2.0.10</kotlin-logging-jvm.version>
+        <kotlin-logging-jvm.version>3.0.5</kotlin-logging-jvm.version>
     </properties>
 </project>
