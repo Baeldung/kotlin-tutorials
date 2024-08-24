@@ -15,15 +15,20 @@ class UnitAndVoidTypeMismatchUnitTest {
         /* the below code doesn't compile
          ---------------------------------
         customGreetingVoid("Tom Hanks"){
-            log.info("Hi $it, how do you do? Do you know Forrest Gump?")
+            log.info("Hi $it, how do you do?")
         }
+
+        customGreetingVoid("Kai"){
+            log.info("Hello $it")
+            null
+          }
         */
     }
 
     @Test
     fun `when calling customGreetingUnit method, then works as expected`() {
         customGreetingUnit("Tom Cruise") {
-            log.info("Hi $it, how are you doing? What kind of missions are impossible?")
+            log.info("Hi $it, how are you doing?")
         }
     }
 }
