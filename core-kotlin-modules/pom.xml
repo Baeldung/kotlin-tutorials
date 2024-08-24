@@ -73,7 +73,6 @@
         <module>core-kotlin-operators</module>
         <module>core-kotlin-concurrency-3</module>
         <module>core-kotlin-concurrency-4</module>
-        <module>core-kotlin-lang-5</module>
     </modules>
 
 </project>
