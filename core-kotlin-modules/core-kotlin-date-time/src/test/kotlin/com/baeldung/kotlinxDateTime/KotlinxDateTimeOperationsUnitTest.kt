@@ -1,7 +1,10 @@
 package com.baeldung.kotlinxDateTime
 
 import com.baeldung.dates.kotlinxDatetime.KotlinxDateTimeOperations
-import kotlinx.datetime.*
+import kotlinx.datetime.Instant
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.TimeZone
 import kotlinx.datetime.format.DateTimeComponents
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
@@ -9,7 +12,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import kotlin.time.Duration
 
-class KotlinxDateTimeOperationsTest {
+class KotlinxDateTimeOperationsUnitTest {
 
     @Test
     fun `given an Instant convert it to LocalDateTime`() {
