@@ -1,0 +1,12 @@
+import java.io.File
+
+ 
+fun main() { 
+    val fileName = "example.bin" 
+    
+    val byteContent = byteArrayOf(72, 101, 108, 108, 111)
+    
+    File(fileName).writeBytes(byteContent)
+    
+    println("File written successfully with byte content.") 
+}

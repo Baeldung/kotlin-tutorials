@@ -1,0 +1,10 @@
+import java.io.File
+
+fun main() {
+    val fileName = "example.txt"
+    val fileContent = "Hello, Kotlin!"
+    
+    File(fileName).writeText(fileContent)
+    
+    println("File written successfully with text content.")
+}
