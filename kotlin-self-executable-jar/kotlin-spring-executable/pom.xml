@@ -136,9 +136,7 @@
     </build>
 
     <properties>
-        <spring-boot.version>2.6.6</spring-boot.version>
-        <kotlin.version>1.8.0</kotlin.version>
-        <java.version>11</java.version>
+        <kotlin.version>1.8.22</kotlin.version> <!-- Updating to latest Kotlin version breaks test -->
     </properties>
 
 </project>
