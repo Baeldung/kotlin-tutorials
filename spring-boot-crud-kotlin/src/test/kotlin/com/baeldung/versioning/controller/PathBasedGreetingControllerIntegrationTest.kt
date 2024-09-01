@@ -18,14 +18,14 @@ class PathBasedGreetingControllerIntegrationTest {
     var port: Int = 0
 
     @Test
-    fun `given version 1 when greeting then return v1 message`() {
+    fun `given version 1 in path when greeting then return v1 message`() {
         val response = testRestTemplate.getForEntity("http://localhost:$port/v1/greeting", String::class.java)
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(response.body).isEqualTo("Hello, welcome to the API v1!")
     }
 
     @Test
-    fun `given version 2 when greeting then return v2 message`() {
+    fun `given version 2 in path when greeting then return v2 message`() {
         val response = testRestTemplate.getForEntity("http://localhost:$port/v2/greeting", String::class.java)
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(response.body).isEqualTo("Hello, welcome to the API v2!")

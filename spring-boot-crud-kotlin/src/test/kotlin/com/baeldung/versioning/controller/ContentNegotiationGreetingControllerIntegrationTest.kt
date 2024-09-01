@@ -22,7 +22,7 @@ class ContentNegotiationGreetingControllerIntegrationTest {
     var port: Int = 0
 
     @Test
-    fun `given version 1 when greeting then return v1 message`() {
+    fun `given version 1 in Accepts header when greeting then return v1 message`() {
         val headers = HttpHeaders()
         headers.set("Accept", "application/vnd.api.v1+json")
         val entity = HttpEntity<String>(headers)
@@ -33,7 +33,7 @@ class ContentNegotiationGreetingControllerIntegrationTest {
     }
 
     @Test
-    fun `given version 2 when greeting then return v2 message`() {
+    fun `given version 2 in Accepts header when greeting then return v2 message`() {
         val headers = HttpHeaders()
         headers.set("Accept", "application/vnd.api.v2+json")
         val entity = HttpEntity<String>(headers)

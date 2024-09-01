@@ -21,7 +21,7 @@ class HeaderBasedGreetingControllerIntegrationTest {
     var port: Int = 0
 
     @Test
-    fun `given version 1 when greeting then return v1 message`() {
+    fun `given version 1 in header when greeting then return v1 message`() {
         val headers = HttpHeaders()
         headers.set("X-API-Version", "1")
         val entity = HttpEntity<String>(headers)
@@ -31,7 +31,7 @@ class HeaderBasedGreetingControllerIntegrationTest {
     }
 
     @Test
-    fun `given version 2 when greeting then return v2 message`() {
+    fun `given version 2 in header when greeting then return v2 message`() {
         val headers = HttpHeaders()
         headers.set("X-API-Version", "2")
         val entity = HttpEntity<String>(headers)
