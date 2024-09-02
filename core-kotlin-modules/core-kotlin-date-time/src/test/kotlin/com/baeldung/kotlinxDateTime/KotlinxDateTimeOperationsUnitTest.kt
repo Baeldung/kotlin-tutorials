@@ -5,7 +5,6 @@ import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
-import kotlinx.datetime.TimeZone
 import kotlinx.datetime.DateTimePeriod
 import kotlinx.datetime.format.DateTimeComponents
 import org.junit.jupiter.api.Test
@@ -28,12 +27,12 @@ class KotlinxDateTimeOperationsUnitTest {
     }
 
     @Test
-    fun `create TimeZone from different functions`() {
+    fun `compare two LocalDateTime from different from the same TimeZone`() {
         val kotlinxDateTimeOperations = KotlinxDateTimeOperations()
-        val timeZoneFromUTC = kotlinxDateTimeOperations.getTimeZoneFromUTC()
-        assertTrue { timeZoneFromUTC is TimeZone }
-        val timeZone = kotlinxDateTimeOperations.getBrazillianTimeZone()
-        assertTrue { timeZone is TimeZone }
+        val instant = kotlinxDateTimeOperations.getInstant()
+        val localDateTimeBrazil = kotlinxDateTimeOperations.getLocalDateTimeBrazilTimeZoneFromInstant(instant = instant)
+        val localDateTimeUtcMinus3 = kotlinxDateTimeOperations.getLocalDateTimeUtcMinus3TimeZoneFromInstant(instant = instant)
+        assertEquals(0, localDateTimeBrazil.compareTo(localDateTimeUtcMinus3))
     }
 
     @Test

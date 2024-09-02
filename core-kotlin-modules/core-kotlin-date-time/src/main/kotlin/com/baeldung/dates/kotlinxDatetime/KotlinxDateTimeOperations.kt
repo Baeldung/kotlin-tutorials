@@ -29,16 +29,19 @@ class KotlinxDateTimeOperations {
         return localDateTime
     }
 
-    fun getBrazillianTimeZone(): TimeZone {
-        val timeZoneFromString = TimeZone.of("Brazil/West")
-        return timeZoneFromString
+    fun getLocalDateTimeBrazilTimeZoneFromInstant(instant: Instant): LocalDateTime {
+        val timeZoneFromString = TimeZone.of("Brazil/East")
+        val localDateTimeBrazil = instant.toLocalDateTime(timeZoneFromString)
+        logger.info(localDateTimeBrazil.toString())
+        return localDateTimeBrazil
     }
 
-    fun getTimeZoneFromUTC(): TimeZone {
+    fun getLocalDateTimeUtcMinus3TimeZoneFromInstant(instant: Instant): LocalDateTime {
         val timeZoneFromUTCString = TimeZone.of("UTC-3")
-        return timeZoneFromUTCString
+        val localDateUtcMinus3 = instant.toLocalDateTime(timeZoneFromUTCString)
+        logger.info(localDateUtcMinus3.toString())
+        return localDateUtcMinus3
     }
-
     fun createLocalDateTime(): LocalDateTime {
         val localDateTime = LocalDateTime(year = 2024, month = Month.JULY, dayOfMonth = 31, hour = 11, minute = 10, second = 0, nanosecond = 0)
         return localDateTime
