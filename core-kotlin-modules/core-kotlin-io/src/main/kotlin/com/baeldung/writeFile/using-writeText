@@ -1,0 +1,17 @@
+class FileWriteTest {
+
+    @Test
+    fun testWriteTextToFile() {
+
+        val fileName = "example.txt"
+        val fileContent = "Hello, Kotlin!"
+
+        File(fileName).writeText(fileContent)
+
+        val file = File(fileName)
+        assertTrue(file.exists(), "File should exist after writing content to it.")
+        assertTrue(file.readText() == fileContent, "File content should match the expected content.")
+
+        file.delete()
+    }
+}

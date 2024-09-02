@@ -1,0 +1,19 @@
+class FileWritingTest {
+
+    @Test
+    fun `test file writing using FileWriter`() {
+
+        val fileName = "myFile.txt"
+        val fileContent = "I am writing to target file(myFile.txt) using FileWriter."
+        val file = File(fileName)
+
+        val fileWriter = FileWriter(file)
+        fileWriter.write(fileContent)
+        fileWriter.close()
+
+        assertTrue(file.exists(), "File should exist after writing")
+        assertTrue(file.readText() == fileContent, "File content should match the written content")
+        
+        file.delete()
+    }
+}
