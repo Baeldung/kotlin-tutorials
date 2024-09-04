@@ -16,16 +16,17 @@ class GetGradlePropertyValueUnitTest {
         assertEquals("CustomValue", customProperty)
         assertEquals("https://api.example.com", apiUrl)
     }
+
     @Test
     fun `obtain custom property value by loading properties from generated file`() {
-        val propertiesFilePath = System.getProperty("custom.properties.path")
-        val propertiesFile = File(propertiesFilePath)
+        val propertiesFileUrl = this::class.java.classLoader.getResource("custom.properties")
+            ?: throw IllegalStateException("Properties file not found")
 
         val properties = Properties().apply {
-            load(FileInputStream(propertiesFile))
+            propertiesFileUrl.openStream().use { load(it) }
         }
 
-        assertEquals("CustomValue", properties.getProperty("customProperty"))
-        assertEquals("https://api.example.com", properties.getProperty("apiUrl"))
+        assertEquals("CustomValue", properties.getProperty("custom.property"))
+        assertEquals("https://api.example.com", properties.getProperty("api.url"))
     }
 }
