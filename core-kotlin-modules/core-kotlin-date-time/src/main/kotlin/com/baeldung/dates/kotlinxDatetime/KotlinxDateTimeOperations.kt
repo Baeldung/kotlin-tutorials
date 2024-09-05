@@ -116,15 +116,6 @@ class KotlinxDateTimeOperations {
         return monthDay
     }
 
-    fun getDuration(): Duration {
-        val instant = Instant.parse("2024-07-31T22:00:00.000Z")
-        val olderInstant = Instant.parse("2024-03-15T22:00:00.000Z")
-        val duration = instant - olderInstant
-        logger.info("Duration in whole days ${duration.inWholeDays}")
-        logger.info("Duration in whole nanoseconds ${duration.inWholeNanoseconds}")
-        return duration
-    }
-
     fun getDateTimePeriod(): DateTimePeriod {
         val instant = Instant.parse("2024-07-31T22:00:00.000Z")
         val olderInstant = Instant.parse("2022-03-15T12:05:01.050Z")

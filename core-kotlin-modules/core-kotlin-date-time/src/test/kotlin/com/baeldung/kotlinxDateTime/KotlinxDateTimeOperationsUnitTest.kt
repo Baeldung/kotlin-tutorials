@@ -1,17 +1,12 @@
 package com.baeldung.kotlinxDateTime
 
 import com.baeldung.dates.kotlinxDatetime.KotlinxDateTimeOperations
-import kotlinx.datetime.Instant
-import kotlinx.datetime.LocalDate
-import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.LocalTime
-import kotlinx.datetime.DateTimePeriod
+import kotlinx.datetime.*
 import kotlinx.datetime.format.DateTimeComponents
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
-import kotlin.time.Duration
 
 class KotlinxDateTimeOperationsUnitTest {
 
@@ -92,17 +87,26 @@ class KotlinxDateTimeOperationsUnitTest {
     }
 
     @Test
-    fun `get Duration from function`() {
-        val kotlinxDateTimeOperations = KotlinxDateTimeOperations()
-        val duration = kotlinxDateTimeOperations.getDuration()
-        assertTrue { duration is Duration }
+    fun `compare Duration from two Instants`() {
+        val instant = Instant.parse("2024-07-31T22:00:00.000Z")
+        val olderInstant = Instant.parse("2024-03-15T22:00:00.000Z")
+        val duration = instant - olderInstant
+        assertEquals(138, duration.inWholeDays)
+        assertEquals(11923200000000000, duration.inWholeNanoseconds)
     }
 
     @Test
-    fun `get DateTimePeriod from function`() {
-        val kotlinxDateTimeOperations = KotlinxDateTimeOperations()
-        val dateTimePeriod = kotlinxDateTimeOperations.getDateTimePeriod()
-        assertTrue { dateTimePeriod is DateTimePeriod }
+    fun `get DateTimePeriod from two Instants`() {
+        val instant = Instant.parse("2024-07-31T22:00:00.000Z")
+        val olderInstant = Instant.parse("2022-03-15T12:05:01.050Z")
+        val dateTimePeriod = olderInstant.periodUntil(instant, TimeZone.UTC)
+        assertEquals(2, dateTimePeriod.years)
+        assertEquals(4, dateTimePeriod.months)
+        assertEquals(16, dateTimePeriod.days)
+        assertEquals(9, dateTimePeriod.hours)
+        assertEquals(54, dateTimePeriod.minutes)
+        assertEquals(58, dateTimePeriod.seconds)
+        assertEquals(950000000, dateTimePeriod.nanoseconds)
     }
 
     @Test
