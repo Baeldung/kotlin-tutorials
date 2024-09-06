@@ -17,26 +17,26 @@ import org.springframework.web.reactive.function.server.router
 @SpringBootApplication
 open class ReactiveDslConfig {
 
-  @Autowired
-  private lateinit var usersRepository: UsersRepository
+    @Autowired
+    private lateinit var usersRepository: UsersRepository
 
-  @Bean
-  open fun endpoints() = router {
-    GET("/users/{id}") {
-      ServerResponse
-        .ok()
-        .body(usersRepository.findUserById(it.pathVariable("id").toLong()))
-    }
+    @Bean
+    open fun endpoints() = router {
+        GET("/users/{id}") {
+            ServerResponse
+                .ok()
+                .body(usersRepository.findUserById(it.pathVariable("id").toLong()))
+        }
 
-    POST("/create") {
-      usersRepository.createUsers(it.bodyToMono(User::class.java))
-      return@POST ServerResponse
-        .ok()
-        .build()
+        POST("/create") {
+            usersRepository.createUsers(it.bodyToMono(User::class.java))
+            return@POST ServerResponse
+                .ok()
+                .build()
+        }
     }
-  }
 }
 
 fun main(vararg args: String) {
-  runApplication<ReactiveDslConfig>(*args) {}
+    runApplication<ReactiveDslConfig>(*args) {}
 }

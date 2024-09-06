@@ -10,19 +10,19 @@ import org.springframework.context.support.beans
 open class Application
 
 fun main(vararg args: String) {
-  runApplication<Application>(*args) {
-    addInitializers(
-      beans {
-        bean(
-          name = "functionallyDeclaredBean",
-          scope = BeanDefinitionDsl.Scope.SINGLETON,
-          isLazyInit = false,
-          isPrimary = false,
-          function = {
-            BigDecimal(1.0)
-          }
+    runApplication<Application>(*args) {
+        addInitializers(
+            beans {
+                bean(
+                    name = "functionallyDeclaredBean",
+                    scope = BeanDefinitionDsl.Scope.SINGLETON,
+                    isLazyInit = false,
+                    isPrimary = false,
+                    function = {
+                        BigDecimal(1.0)
+                    }
+                )
+            }
         )
-      }
-    )
-  }
+    }
 }

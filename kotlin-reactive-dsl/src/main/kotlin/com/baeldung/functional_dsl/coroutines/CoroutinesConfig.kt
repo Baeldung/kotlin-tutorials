@@ -16,22 +16,22 @@ import org.springframework.web.reactive.function.server.coRouter
 @SpringBootApplication
 open class AppCoroutines {
 
-  @Autowired
-  private lateinit var usersRepository: UsersRepository
+    @Autowired
+    private lateinit var usersRepository: UsersRepository
 
-  @Bean
-  open fun registerForCo() =
-    coRouter {
-      GET("/users/{id}") {
-        println("here we are!")
-        val customers : Flow<User> = usersRepository.findUserByIdForCoroutines(
-          it.pathVariable("id").toLong()
-        )
-        ServerResponse.ok().bodyAndAwait(customers)
-      }
-    }
+    @Bean
+    open fun registerForCo() =
+        coRouter {
+            GET("/users/{id}") {
+                println("here we are!")
+                val customers: Flow<User> = usersRepository.findUserByIdForCoroutines(
+                    it.pathVariable("id").toLong()
+                )
+                ServerResponse.ok().bodyAndAwait(customers)
+            }
+        }
 }
 
 fun main(vararg args: String) {
-  runApplication<AppCoroutines>(*args) {}
+    runApplication<AppCoroutines>(*args) {}
 }

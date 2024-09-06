@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class RegularController {
 
-  @GetMapping(path = ["/endpoint/{country}"])
-  fun getPerson(
-    @RequestParam name: String,
-    @RequestHeader(name = "X-age") age: String,
-    @PathVariable country: String
-  ) : Map<*, *> {
-    return mapOf(
-      "name" to name,
-      "age" to age,
-      "country" to country
-    )
-  }
+    @GetMapping(path = ["/endpoint/{country}"])
+    fun getPerson(
+        @RequestParam name: String,
+        @RequestHeader(name = "X-age") age: String,
+        @PathVariable country: String
+    ): Map<*, *> {
+        return mapOf(
+            "name" to name,
+            "age" to age,
+            "country" to country
+        )
+    }
 }

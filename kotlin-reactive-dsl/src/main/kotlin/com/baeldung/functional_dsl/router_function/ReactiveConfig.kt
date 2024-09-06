@@ -17,27 +17,27 @@ import org.springframework.web.reactive.function.server.router
 @SpringBootApplication
 open class ReactiveConfig {
 
-  @Autowired
-  private lateinit var usersRepository: UsersRepository
+    @Autowired
+    private lateinit var usersRepository: UsersRepository
 
-  @Bean
-  open fun configure() : RouterFunction<ServerResponse> {
-    return RouterFunctions.route()
-      .GET("/users/{id}") {
-        ServerResponse
-          .ok()
-          .body(usersRepository.findUserById(it.pathVariable("id").toLong()))
-      }
-      .POST("/create") {
-        usersRepository.createUsers(it.bodyToMono(User::class.java))
-        return@POST ServerResponse
-          .ok()
-          .build()
-      }
-      .build()
-  }
+    @Bean
+    open fun configure(): RouterFunction<ServerResponse> {
+        return RouterFunctions.route()
+            .GET("/users/{id}") {
+                ServerResponse
+                    .ok()
+                    .body(usersRepository.findUserById(it.pathVariable("id").toLong()))
+            }
+            .POST("/create") {
+                usersRepository.createUsers(it.bodyToMono(User::class.java))
+                return@POST ServerResponse
+                    .ok()
+                    .build()
+            }
+            .build()
+    }
 }
 
 fun main(vararg args: String) {
-  runApplication<ReactiveConfig>(*args) {}
+    runApplication<ReactiveConfig>(*args) {}
 }

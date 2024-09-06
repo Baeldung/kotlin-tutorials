@@ -11,24 +11,24 @@ import org.springframework.web.servlet.function.router
 open class Application
 
 fun main(vararg args: String) {
-  runApplication<Application>(*args)
-  {
-    addInitializers(
-      beans {
-        bean {
-          router {
-            GET("/endpoint/{country}") { it : ServerRequest ->
-              ServerResponse.ok().body(
-                mapOf(
-                  "name" to it.param("name"),
-                  "age" to it.headers().header("X-age")[0],
-                  "country" to it.pathVariable("country")
-                )
-              )
+    runApplication<Application>(*args)
+    {
+        addInitializers(
+            beans {
+                bean {
+                    router {
+                        GET("/endpoint/{country}") { it: ServerRequest ->
+                            ServerResponse.ok().body(
+                                mapOf(
+                                    "name" to it.param("name"),
+                                    "age" to it.headers().header("X-age")[0],
+                                    "country" to it.pathVariable("country")
+                                )
+                            )
+                        }
+                    }
+                }
             }
-          }
-        }
-      }
-    )
-  }
+        )
+    }
 }
