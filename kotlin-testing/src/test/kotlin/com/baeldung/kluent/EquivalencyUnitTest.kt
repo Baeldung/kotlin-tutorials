@@ -14,7 +14,7 @@ class EquivalencyUnitTest {
 
     @OptIn(ExperimentalStdlibApi::class)
     @Test
-    @Disabled
+    @Disabled // We expect this to fail
     fun `when asserting equivalency then the individual fields should be checked`() {
         val actual = NotAllFieldsChecked("123", "Baeldung", 42)
 
@@ -31,7 +31,7 @@ class EquivalencyUnitTest {
         }
     }
 
-    data class NotAllFieldsChecked(val id: String, val name: String, val age: Int) {
+    class NotAllFieldsChecked(val id: String, val name: String, val age: Int) {
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
             if (javaClass != other?.javaClass) return false

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 
 class SimpleAssertionsUnitTest {
     @Test
-    @Disabled
+    @Disabled // We expect this to fail
     fun `when comparing two strings they they should not be equal`() {
         val value = "Hello"
 
@@ -25,7 +25,7 @@ class SimpleAssertionsUnitTest {
     }
 
     @Test
-    @Disabled
+    @Disabled // We expect this to fail
     fun `when performing multiple related assertions then they should all run and report together`() {
         val set = setOf("a", "b", "c")
 
