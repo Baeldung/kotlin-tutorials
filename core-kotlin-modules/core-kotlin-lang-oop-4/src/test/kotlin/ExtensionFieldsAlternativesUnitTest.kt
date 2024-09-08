@@ -1,38 +1,45 @@
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-interface VehicleInterface {
-    var speed: Int
-}
 
 class ExtensionFieldsAlternativesUnitTest {
 
-    class Vehicle(override var speed: Int) : VehicleInterface
 
-    class Car(val numberOfDoors: Int, vehicle: Vehicle) {
-        var speed: Int = vehicle.speed
+    private fun String.toTitleCase(): String = this.split(" ").joinToString(" ") { it.capitalize() }
+
+    private val String.firstChar: Char
+        get() = this.first()
+
+    class Person(var name: String, var age: Int)
+
+    interface PersonDecorator {
+        var address: String
+        var person: Person
+        fun getDetails(): String
     }
 
-    class Truck(val numberOfDoors: Int, val vehicle: Vehicle) : VehicleInterface {
-        override var speed: Int
-            get() = vehicle.speed
+    class PersonWithAddress(override var person: Person) : PersonDecorator {
+        private var _address: String = ""
+
+        override var address: String
+            get() = _address
             set(value) {
-                vehicle.speed = value
+                _address = value
             }
+
+        override fun getDetails(): String {
+            return "Name: ${person.name}, Age: ${person.age}, Address: $address"
+        }
     }
 
     @Test
-    fun `test using inheritance`() {
-        val vehicle = Vehicle(120)
-        assertEquals(120, vehicle.speed)
+    fun `test using extension`() {
+        val person = Person("Hangga Aji Sayekti", 35)
+        val personWithAddress = PersonWithAddress(person)
+        personWithAddress.address = "Jalan Kemasan Kotagede"
+        assertEquals("Name: Hangga Aji Sayekti, Age: 35, Address: Jalan Kemasan Kotagede", personWithAddress.getDetails())
 
-        val car = Car(4, vehicle)
-
-        assertEquals(4, car.numberOfDoors)
-        assertEquals(120, car.speed)
-
-        val truck = Truck(2, vehicle)
-        assertEquals(2,  truck.numberOfDoors)
-        assertEquals(120, truck.speed)
+        personWithAddress.address = "Jalan Kalasan Sleman"
+        assertEquals("Name: Hangga Aji Sayekti, Age: 35, Address: Jalan Kalasan Sleman", personWithAddress.getDetails())
     }
 }
