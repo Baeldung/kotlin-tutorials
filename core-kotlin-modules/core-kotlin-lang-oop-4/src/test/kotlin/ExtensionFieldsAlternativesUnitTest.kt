@@ -12,6 +12,15 @@ class ExtensionFieldsAlternativesUnitTest {
 
     class Person(var name: String, var age: Int)
 
+    val Person.details: String
+        get() = "Name: ${this.name}, Age: ${this.age}"
+    
+    var Person.address: String
+        get() = "Address is not set"
+        set(value) {
+            println("Cannot store the address directly: $value")
+        }
+
     interface PersonDecorator {
         var address: String
         var person: Person
@@ -33,13 +42,25 @@ class ExtensionFieldsAlternativesUnitTest {
     }
 
     @Test
-    fun `test using extension`() {
+    fun `test using properties`() {
         val person = Person("Hangga Aji Sayekti", 35)
-        val personWithAddress = PersonWithAddress(person)
-        personWithAddress.address = "Jalan Kemasan Kotagede"
-        assertEquals("Name: Hangga Aji Sayekti, Age: 35, Address: Jalan Kemasan Kotagede", personWithAddress.getDetails())
 
-        personWithAddress.address = "Jalan Kalasan Sleman"
-        assertEquals("Name: Hangga Aji Sayekti, Age: 35, Address: Jalan Kalasan Sleman", personWithAddress.getDetails())
+        assertEquals("Name: Hangga Aji Sayekti, Age: 35", person.details)
+
+        person.address = "Jln. Kemasan Kotagede"
+        assertEquals("Address is not set", person.address)
+    }
+
+    @Test
+    fun `test using decorator`() {
+        val person = Person("Hangga Aji Sayekti", 35)
+
+        val personWithAddress = PersonWithAddress(person)
+
+        personWithAddress.address = "Jln. Kemasan Kotagede"
+        assertEquals("Name: Hangga Aji Sayekti, Age: 35, Address: Jln. Kemasan Kotagede", personWithAddress.getDetails())
+
+        personWithAddress.address = "Jln. Kalasan Sleman"
+        assertEquals("Name: Hangga Aji Sayekti, Age: 35, Address: Jln. Kalasan Sleman", personWithAddress.getDetails())
     }
 }
