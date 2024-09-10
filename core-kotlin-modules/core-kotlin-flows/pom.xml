@@ -29,7 +29,7 @@
         <dependency>
             <groupId>io.projectreactor</groupId>
             <artifactId>reactor-core</artifactId>
-            <version>3.4.11</version>
+            <version>3.6.10</version>
         </dependency>
 
     </dependencies>
