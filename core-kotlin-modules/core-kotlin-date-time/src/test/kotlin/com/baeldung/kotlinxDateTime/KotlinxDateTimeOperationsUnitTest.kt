@@ -10,24 +10,25 @@ import kotlin.test.assertTrue
 
 class KotlinxDateTimeOperationsUnitTest {
 
+
     @Test
     fun `given an Instant convert it to LocalDateTime`() {
-        val kotlinxDateTimeOperations = KotlinxDateTimeOperations()
-        val instant = kotlinxDateTimeOperations.getInstant()
-        assertTrue { instant is Instant }
-        val localDateTime = kotlinxDateTimeOperations.getLocalDateTimeSystemTimeZoneFromInstant(instant)
-        assertTrue { localDateTime is LocalDateTime }
-        val localDateTimeUCT = kotlinxDateTimeOperations.getLocalDateTimeUTCFromInstant(instant)
-        assertTrue { localDateTimeUCT is LocalDateTime }
+        System.setProperty("user.timezone", "UTC");
+
+        val instant = Instant.fromEpochSeconds(1722427200)
+        assertEquals("2024-07-31T12:00:00Z", instant.toString())
+        val localDateTime = instant.toLocalDateTime(TimeZone.currentSystemDefault()) // System is in UTC
+        assertEquals("2024-07-31T12:00", localDateTime.toString())
     }
 
     @Test
     fun `compare two LocalDateTime from different from the same TimeZone`() {
         val kotlinxDateTimeOperations = KotlinxDateTimeOperations()
-        val instant = kotlinxDateTimeOperations.getInstant()
+        val instant = Instant.fromEpochSeconds(1722427200)
         val localDateTimeBrazil = kotlinxDateTimeOperations.getLocalDateTimeBrazilTimeZoneFromInstant(instant = instant)
+        assertEquals("2024-07-31T09:00", localDateTimeBrazil.toString())
         val localDateTimeUtcMinus3 = kotlinxDateTimeOperations.getLocalDateTimeUtcMinus3TimeZoneFromInstant(instant = instant)
-        assertEquals(0, localDateTimeBrazil.compareTo(localDateTimeUtcMinus3))
+        assertEquals("2024-07-31T09:00", localDateTimeUtcMinus3.toString())
     }
 
     @Test
@@ -111,9 +112,12 @@ class KotlinxDateTimeOperationsUnitTest {
 
     @Test
     fun `get months between function result`() {
-        val kotlinxDateTimeOperations = KotlinxDateTimeOperations()
-        val monthsBetween = kotlinxDateTimeOperations.getMonthsBetween()
-        assertEquals(4, monthsBetween)
+        val instant = Instant.parse("2024-07-31T22:00:00.000Z")
+        val olderInstant = Instant.parse("2024-03-15T22:00:00.000Z")
+        val monthsUntil = olderInstant.monthsUntil(instant, TimeZone.UTC)
+        val months = olderInstant.until(instant, DateTimeUnit.MONTH, TimeZone.UTC)
+        assertEquals(4, monthsUntil.toLong())
+        assertEquals(4, months)
     }
 
     @Test

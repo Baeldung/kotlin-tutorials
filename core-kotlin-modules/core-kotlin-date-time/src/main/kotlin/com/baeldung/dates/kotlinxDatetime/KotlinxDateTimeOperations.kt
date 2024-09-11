@@ -17,18 +17,6 @@ class KotlinxDateTimeOperations {
         return instant
     }
 
-    fun getLocalDateTimeUTCFromInstant(instant: Instant): LocalDateTime {
-        val localDateTime = instant.toLocalDateTime(TimeZone.UTC)
-        logger.info(localDateTime.toString())
-        return localDateTime
-    }
-
-    fun getLocalDateTimeSystemTimeZoneFromInstant(instant: Instant): LocalDateTime {
-        val localDateTime = instant.toLocalDateTime(TimeZone.currentSystemDefault())
-        logger.info(localDateTime.toString())
-        return localDateTime
-    }
-
     fun getLocalDateTimeBrazilTimeZoneFromInstant(instant: Instant): LocalDateTime {
         val timeZoneFromString = TimeZone.of("Brazil/East")
         val localDateTimeBrazil = instant.toLocalDateTime(timeZoneFromString)
@@ -42,6 +30,7 @@ class KotlinxDateTimeOperations {
         logger.info(localDateUtcMinus3.toString())
         return localDateUtcMinus3
     }
+
     fun createLocalDateTime(): LocalDateTime {
         val localDateTime = LocalDateTime(year = 2024, month = Month.JULY, dayOfMonth = 31, hour = 11, minute = 10, second = 0, nanosecond = 0)
         return localDateTime
@@ -104,30 +93,20 @@ class KotlinxDateTimeOperations {
             year()
         }
         val localDate = LocalDate.parse(input = "31/07/2024", format = dateFormat)
+        logger.info(localDate.format(dateFormat))
         return localDate
     }
 
     fun getDateTimeComponents(): DateTimeComponents {
-        val monthDay = DateTimeComponents.Format { dayOfMonth(); char('-'); monthName(MonthNames.ENGLISH_FULL) }
-            .parse("31-July")
+        val monthDay = DateTimeComponents.Format {
+            dayOfMonth()
+            char('-')
+            monthName(MonthNames.ENGLISH_FULL)
+        }.parse("31-July")
         logger.info(monthDay.monthNumber.toString())
         logger.info(monthDay.month.toString())
         logger.info(monthDay.dayOfMonth.toString())
         return monthDay
-    }
-
-    fun getDateTimePeriod(): DateTimePeriod {
-        val instant = Instant.parse("2024-07-31T22:00:00.000Z")
-        val olderInstant = Instant.parse("2022-03-15T12:05:01.050Z")
-        val dateTimePeriod = olderInstant.periodUntil(instant, TimeZone.UTC)
-        logger.info("${dateTimePeriod.years} years")
-        logger.info("${dateTimePeriod.months} months")
-        logger.info("${dateTimePeriod.days} days")
-        logger.info("${dateTimePeriod.hours} hours")
-        logger.info("${dateTimePeriod.minutes} minutes")
-        logger.info("${dateTimePeriod.seconds} seconds")
-        logger.info("${dateTimePeriod.nanoseconds} nanoseconds")
-        return dateTimePeriod
     }
 
     fun getMonthsBetween(): Int {
