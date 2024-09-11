@@ -1,11 +1,9 @@
 package com.baeldung.dates.kotlinxDatetime
 
 import kotlinx.datetime.*
-import kotlinx.datetime.format.DateTimeComponents
-import kotlinx.datetime.format.MonthNames
+import kotlinx.datetime.format.DateTimeFormat
 import kotlinx.datetime.format.char
 import org.slf4j.LoggerFactory
-import kotlin.time.Duration
 
 class KotlinxDateTimeOperations {
 
@@ -84,7 +82,7 @@ class KotlinxDateTimeOperations {
         return localTime
     }
 
-    fun parseLocalDateFromCustom(): LocalDate {
+    fun getDateTimeFormat(): DateTimeFormat<LocalDate> {
         val dateFormat = LocalDate.Format {
             dayOfMonth()
             char('/')
@@ -94,28 +92,7 @@ class KotlinxDateTimeOperations {
         }
         val localDate = LocalDate.parse(input = "31/07/2024", format = dateFormat)
         logger.info(localDate.format(dateFormat))
-        return localDate
-    }
-
-    fun getDateTimeComponents(): DateTimeComponents {
-        val monthDay = DateTimeComponents.Format {
-            dayOfMonth()
-            char('-')
-            monthName(MonthNames.ENGLISH_FULL)
-        }.parse("31-July")
-        logger.info(monthDay.monthNumber.toString())
-        logger.info(monthDay.month.toString())
-        logger.info(monthDay.dayOfMonth.toString())
-        return monthDay
-    }
-
-    fun getMonthsBetween(): Int {
-        val instant = Instant.parse("2024-07-31T22:00:00.000Z")
-        val olderInstant = Instant.parse("2024-03-15T22:00:00.000Z")
-        val monthsUntil = olderInstant.monthsUntil(instant, TimeZone.UTC)
-        val months = olderInstant.until(instant, DateTimeUnit.MONTH, TimeZone.UTC)
-        assert(monthsUntil.toLong() == months)
-        return monthsUntil
+        return dateFormat
     }
 
     fun addAndSubtract() {

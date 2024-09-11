@@ -3,6 +3,9 @@ package com.baeldung.kotlinxDateTime
 import com.baeldung.dates.kotlinxDatetime.KotlinxDateTimeOperations
 import kotlinx.datetime.*
 import kotlinx.datetime.format.DateTimeComponents
+import kotlinx.datetime.format.MonthNames
+import kotlinx.datetime.format.char
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import kotlin.test.assertEquals
@@ -10,10 +13,9 @@ import kotlin.test.assertTrue
 
 class KotlinxDateTimeOperationsUnitTest {
 
-
     @Test
     fun `given an Instant convert it to LocalDateTime`() {
-        System.setProperty("user.timezone", "UTC");
+        java.util.TimeZone.setDefault(java.util.TimeZone.getTimeZone("UTC"));
 
         val instant = Instant.fromEpochSeconds(1722427200)
         assertEquals("2024-07-31T12:00:00Z", instant.toString())
@@ -76,15 +78,20 @@ class KotlinxDateTimeOperationsUnitTest {
         assertTrue { localDate is LocalDate }
         val localTime = kotlinxDateTimeOperations.parseStringToLocalTime()
         assertTrue { localTime is LocalTime }
-        val localDateFromCustom = kotlinxDateTimeOperations.parseLocalDateFromCustom()
-        assertTrue { localDateFromCustom is LocalDate }
+        val dateTimeFormat = kotlinxDateTimeOperations.getDateTimeFormat()
+        assertEquals("31/07/2024", dateTimeFormat.format(localDate))
     }
 
     @Test
     fun `get DateTimeComponents from function`() {
-        val kotlinxDateTimeOperations = KotlinxDateTimeOperations()
-        val dateTimeComponents = kotlinxDateTimeOperations.getDateTimeComponents()
-        assertTrue { dateTimeComponents is DateTimeComponents }
+        val monthDay = DateTimeComponents.Format {
+            dayOfMonth()
+            char('-')
+            monthName(MonthNames.ENGLISH_FULL)
+        }.parse("31-July")
+        assertEquals("7", monthDay.monthNumber.toString())
+        assertEquals("JULY", monthDay.month.toString())
+        assertEquals("31", monthDay.dayOfMonth.toString())
     }
 
     @Test
