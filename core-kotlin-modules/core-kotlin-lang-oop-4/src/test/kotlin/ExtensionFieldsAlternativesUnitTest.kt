@@ -30,6 +30,10 @@ class ExtensionFieldsAlternativesUnitTest {
             println("Cannot store the address directly: $value")
         }
 
+    var Person.setAge: Int
+        get() = this.age
+        set(value) { this.age = value }
+
     @Test
     fun `test using properties`() {
         val person = Person("Hangga Aji Sayekti", 35)
@@ -38,6 +42,9 @@ class ExtensionFieldsAlternativesUnitTest {
 
         person.address = "Jln. Kemasan Kotagede"
         assertEquals("Address is not set", person.address)
+
+        person.setAge = 10;
+        assertEquals("Name: Hangga Aji Sayekti, Age: 10, isAdult: false", person.details)
     }
 
     interface PersonDecorator {
