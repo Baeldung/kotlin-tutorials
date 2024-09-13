@@ -31,6 +31,22 @@
             <artifactId>classgraph</artifactId>
             <version>4.8.112</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-test</artifactId>
+            <version>1.7.3</version>
+            <type>pom</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-core</artifactId>
+            <version>1.8.1</version>
+            <type>pom</type>
+            <scope>runtime</scope>
+        </dependency>
+
     </dependencies>
 
     <properties>
