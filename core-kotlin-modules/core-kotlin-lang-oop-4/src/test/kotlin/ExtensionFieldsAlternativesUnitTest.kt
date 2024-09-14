@@ -18,6 +18,8 @@ class ExtensionFieldsAlternativesUnitTest {
 
     class Car {
         var model: String = "Toyota Supra"
+            get() { return field }
+            set(value) { field = value }
     }
 
     open class Person(var name: String, var age: Int)
@@ -34,9 +36,34 @@ class ExtensionFieldsAlternativesUnitTest {
             println("Cannot store the address directly: $value")
         }
 
+    // This will cause an error, because there is no backing field.
+//    var Person.address: String
+//        get() = field
+//        set(value) {
+//            field = value
+//        }
+
     var Person.setAge: Int
         get() = this.age
         set(value) { this.age = value }
+
+    val externalMap = mutableMapOf<Person, String>()
+
+    var Person.jobtitle: String
+        get() = externalMap[this] ?: ""
+        set(value) {
+            externalMap[this] = value
+        }
+
+    @Test
+    fun `test using external Map`(){
+        val person = Person("Hangga Aji Sayekti", 35)
+        person.jobtitle = "Software Engineer"
+        assertEquals("Software Engineer", person.jobtitle)
+
+        person.jobtitle = "Mathematicians"
+        assertEquals("Mathematicians", person.jobtitle)
+    }
 
     @Test
     fun `test using properties`() {
