@@ -16,6 +16,10 @@ class ExtensionFieldsAlternativesUnitTest {
         assertEquals('b', word.firstChar)
     }
 
+    class Car {
+        var model: String = "Toyota Supra"
+    }
+
     open class Person(var name: String, var age: Int)
 
     val Person.isAdult: Boolean
@@ -36,6 +40,9 @@ class ExtensionFieldsAlternativesUnitTest {
 
     @Test
     fun `test using properties`() {
+        val car = Car()
+        assertEquals("Toyota Supra", car.model)
+
         val person = Person("Hangga Aji Sayekti", 35)
 
         assertEquals("Name: Hangga Aji Sayekti, Age: 35, isAdult: true", person.details)
