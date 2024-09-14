@@ -29,19 +29,6 @@ class ExtensionFieldsAlternativesUnitTest {
 
     val Person.details: String
         get() = "Name: ${this.name}, Age: ${this.age}, isAdult: ${this.isAdult}"
-    
-    var Person.address: String
-        get() = "Address is not set"
-        set(value) {
-            println("Cannot store the address directly: $value")
-        }
-
-    // This will cause an error, because there is no backing field.
-//    var Person.address: String
-//        get() = field
-//        set(value) {
-//            field = value
-//        }
 
     var Person.setAge: Int
         get() = this.age
@@ -73,9 +60,6 @@ class ExtensionFieldsAlternativesUnitTest {
         val person = Person("Hangga Aji Sayekti", 35)
 
         assertEquals("Name: Hangga Aji Sayekti, Age: 35, isAdult: true", person.details)
-
-        person.address = "Jln. Kemasan Kotagede"
-        assertEquals("Address is not set", person.address)
 
         person.setAge = 10;
         assertEquals("Name: Hangga Aji Sayekti, Age: 10, isAdult: false", person.details)
