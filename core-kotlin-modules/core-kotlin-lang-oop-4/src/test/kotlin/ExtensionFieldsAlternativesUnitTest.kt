@@ -36,7 +36,7 @@ class ExtensionFieldsAlternativesUnitTest {
 
     val externalMap = mutableMapOf<Person, String>()
 
-    var Person.jobtitle: String
+    var Person.address: String
         get() = externalMap[this] ?: ""
         set(value) {
             externalMap[this] = value
@@ -45,11 +45,11 @@ class ExtensionFieldsAlternativesUnitTest {
     @Test
     fun `test using external Map`(){
         val person = Person("Hangga Aji Sayekti", 35)
-        person.jobtitle = "Software Engineer"
-        assertEquals("Software Engineer", person.jobtitle)
+        person.address = "Jln. Kemasan Kotagede"
+        assertEquals("Jln. Kemasan Kotagede", person.address)
 
-        person.jobtitle = "Mathematicians"
-        assertEquals("Mathematicians", person.jobtitle)
+        person.address = "Jln. Kalasan Sleman"
+        assertEquals("Jln. Kalasan Sleman", person.address)
     }
 
     @Test
