@@ -23,12 +23,12 @@
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-serialization-json</artifactId>
-            <version>1.4.1</version>
+            <version>${kotlinx.serialization.version}</version>
         </dependency>
         <dependency>
             <groupId>com.esotericsoftware.kryo</groupId>
             <artifactId>kryo</artifactId>
-            <version>2.24.0</version>
+            <version>${kryo.version}</version>
         </dependency>
     </dependencies>
 
@@ -57,4 +57,9 @@
             </plugin>
         </plugins>
     </build>
+
+    <properties>
+        <kotlinx.serialization.version>1.4.1</kotlinx.serialization.version>
+        <kryo.version>2.24.0</kryo.version>
+    </properties>
 </project>

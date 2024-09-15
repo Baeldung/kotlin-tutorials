@@ -7,7 +7,7 @@ import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.nio.ByteBuffer
 
-data class User(val id: Int, val name: String, val age: Int)
+data class User(val id: Int = 0, val name: String = "", val age: Int = 0)
 
 fun User.manualToByteBuffer(): ByteBuffer {
     val nameBytes = this.name.toByteArray(Charsets.UTF_8)

@@ -3,7 +3,7 @@ package com.baeldung.dataclasstobytebuffer
 import java.io.*
 import java.nio.ByteBuffer
 
-class UserInputOutputStream(val id: Int, val name: String, val age: Int) : Serializable
+data class UserInputOutputStream(val id: Int, val name: String, val age: Int) : Serializable
 
 fun UserInputOutputStream.outputStreamByteBuffer(): ByteBuffer {
     val byteArrayOutputStream = ByteArrayOutputStream()
