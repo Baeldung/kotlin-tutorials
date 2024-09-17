@@ -61,7 +61,7 @@ class ExtensionFieldsAlternativesUnitTest {
 
         assertEquals("Name: Hangga Aji Sayekti, Age: 35, isAdult: true", person.details)
 
-        person.setAge = 10;
+        person.ageInDecades = 1;
         assertEquals("Name: Hangga Aji Sayekti, Age: 10, isAdult: false", person.details)
     }
 
