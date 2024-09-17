@@ -1,0 +1,155 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.baeldung</groupId>
+    <artifactId>kotlin-kover</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib</artifactId>
+            <version>2.0.20</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.9.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jetbrains.kotlinx</groupId>
+                <artifactId>kover-maven-plugin</artifactId>
+                <version>0.8.3</version>
+                <executions>
+                    <!-- instrument test tasks -->
+                    <execution>
+                        <id>instr</id>
+                        <goals>
+                            <goal>instrumentation</goal>
+                        </goals>
+                    </execution>
+
+                    <!-- generate XML report in verify phase -->
+                    <execution>
+                        <id>kover-xml</id>
+                        <goals>
+                            <goal>report-xml</goal>
+                        </goals>
+                    </execution>
+
+                    <!-- generate HTML report in verify phase -->
+                    <execution>
+                        <id>kover-html</id>
+                        <goals>
+                            <goal>report-html</goal>
+                        </goals>
+                    </execution>
+
+                    <!-- check coverage rules in verify phase -->
+                    <execution>
+                        <id>kover-verify</id>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+
+                    <!-- generate IC report -->
+                    <execution>
+                        <id>kover-ic</id>
+                        <goals>
+                            <goal>report-ic</goal>
+                        </goals>
+                    </execution>
+
+                    <!-- print coverage values to the log -->
+                    <execution>
+                        <id>kover-log</id>
+                        <goals>
+                            <goal>log</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+                <configuration>
+                    <filters>
+                        <excludes>
+                            <classes>com.baeldung.code.not.covered.NotCoveredClass,com.baeldung.code.not.covered.*</classes>
+                            <annotatedBy>com.baeldung.annotations.ExcludeFromCoverage</annotatedBy>
+                        </excludes>
+                        <includes>
+                            <classes>com.baeldung.code.covered.CoveredClass</classes>
+                        </includes>
+                    </filters>
+
+                    <htmlDirName>html</htmlDirName>
+
+                    <title>My title</title>
+
+                    <charset>UTF-8</charset>
+
+                    <logFormat>Full coverage is {value}%</logFormat>
+
+                    <rules>
+                        <rule>
+                            <name>Basic Line Coverage</name>
+                            <bounds>
+                                <bound>
+                                    <aggregationForGroup>COVERED_PERCENTAGE</aggregationForGroup>
+                                    <coverageUnits>LINE</coverageUnits>
+                                    <maxValue>100</maxValue>
+                                    <minValue>80</minValue>
+                                </bound>
+                            </bounds>
+                        </rule>
+                        <rule>
+                            <name>Branch Coverage</name>
+                            <bounds>
+                                <bound>
+                                    <aggregationForGroup>COVERED_PERCENTAGE</aggregationForGroup>
+                                    <coverageUnits>BRANCH</coverageUnits>
+                                    <minValue>20</minValue>
+                                </bound>
+                            </bounds>
+                        </rule>
+                        <rule>
+                            <bounds>
+                                <bound>
+                                    <minValue>80</minValue>
+                                </bound>
+                            </bounds>
+                        </rule>
+                    </rules>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>com.baeldung.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+    </repositories>
+
+</project>
