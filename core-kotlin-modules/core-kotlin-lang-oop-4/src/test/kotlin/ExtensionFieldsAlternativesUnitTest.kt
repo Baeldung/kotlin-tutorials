@@ -1,10 +1,12 @@
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-
 class ExtensionFieldsAlternativesUnitTest {
 
-    private fun String.toTitleCase(): String = this.split(" ").joinToString(" ") { it.capitalize() }
+    private fun String.toTitleCase(): String = this.split(" ")
+        .joinToString(" ") {
+            it.capitalize()
+        }
 
     private val String.firstChar: Char
         get() = this.first()
@@ -19,7 +21,9 @@ class ExtensionFieldsAlternativesUnitTest {
     class Car {
         var model: String = "Toyota Supra"
             get() { return field }
-            set(value) { field = value }
+            set(value) {
+                field = value
+            }
     }
 
     open class Person(var name: String, var age: Int)
@@ -32,7 +36,9 @@ class ExtensionFieldsAlternativesUnitTest {
 
     var Person.ageInDecades: Int
         get() = this.age / 10
-        set(value) { this.age = value * 10 }
+        set(value) {
+            this.age = value * 10
+        }
 
     val externalMap = mutableMapOf<Person, String>()
 
@@ -43,7 +49,7 @@ class ExtensionFieldsAlternativesUnitTest {
         }
 
     @Test
-    fun `test using external Map`(){
+    fun `test using external Map`() {
         val person = Person("Hangga Aji Sayekti", 35)
         person.address = "Jln. Kemasan Kotagede"
         assertEquals("Jln. Kemasan Kotagede", person.address)
@@ -58,7 +64,6 @@ class ExtensionFieldsAlternativesUnitTest {
         assertEquals("Toyota Supra", car.model)
 
         val person = Person("Hangga Aji Sayekti", 35)
-
         assertEquals("Name: Hangga Aji Sayekti, Age: 35, isAdult: true", person.details)
 
         person.ageInDecades = 1;
@@ -90,7 +95,6 @@ class ExtensionFieldsAlternativesUnitTest {
         val person = Person("Hangga Aji Sayekti", 35)
 
         val personWithAddress = PersonWithAddress(person)
-
         personWithAddress.address = "Jln. Kemasan Kotagede"
         assertEquals("Name: Hangga Aji Sayekti, Age: 35, Address: Jln. Kemasan Kotagede", personWithAddress.getDetails())
 
@@ -103,7 +107,7 @@ class ExtensionFieldsAlternativesUnitTest {
     }
 
     @Test
-    fun `test using inheritance`(){
+    fun `test using inheritance`() {
         val personExtended = PersonExtended("Hangga Aji Sayekti", 35)
         personExtended.jobtitle = "Software Engineer"
         assertEquals("Software Engineer", personExtended.jobtitle)
