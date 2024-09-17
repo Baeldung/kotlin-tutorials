@@ -30,9 +30,9 @@ class ExtensionFieldsAlternativesUnitTest {
     val Person.details: String
         get() = "Name: ${this.name}, Age: ${this.age}, isAdult: ${this.isAdult}"
 
-    var Person.setAge: Int
-        get() = this.age
-        set(value) { this.age = value }
+    var Person.ageInDecades: Int
+        get() = this.age / 10
+        set(value) { this.age = value * 10 }
 
     val externalMap = mutableMapOf<Person, String>()
 
