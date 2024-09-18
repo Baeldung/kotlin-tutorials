@@ -4,8 +4,23 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.assertEquals
 import kotlin.reflect.full.createType
 import kotlin.test.assertFailsWith
+import kotlin.test.assertTrue
 
 class StarProjectionAndAnyUnitTest {
+
+    val starlist: MutableList<*> = mutableListOf(1, "Baeldung", 3.5)
+    val anylist: MutableList<Any> = mutableListOf(1, "Baeldung", 3.5)
+
+    @Test
+    fun `test reading from List of Star-projections and Any`() {
+        assertEquals(1, starlist[0])
+        // starlist.add(42)  // not allowed
+
+        assertTrue(starlist[0] is Any?)
+
+        assertEquals("Baeldung", anylist[1])
+        anylist.add(42) // allowed
+    }
 
     @Test
     fun `test writing to MutableList star projection fails`() {
