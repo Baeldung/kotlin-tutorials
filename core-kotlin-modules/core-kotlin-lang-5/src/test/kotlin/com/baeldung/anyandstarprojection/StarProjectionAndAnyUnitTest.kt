@@ -23,6 +23,18 @@ class StarProjectionAndAnyUnitTest {
     }
 
     @Test
+    fun `test nullability for Any and Star-projections`() {
+        val a: Any = "Kotlin"
+        val b: Any? = null
+//        val c: Any = null    // not allowed
+        assertEquals("Kotlin", a)
+        assertEquals(null, b)
+
+        val list: List<*> = listOf(1, "Kotlin", null)
+        assertTrue(list[2] is Any?)
+    }
+
+    @Test
     fun `test writing to MutableList star projection fails`() {
 //        val mutableList: MutableList<*> = mutableListOf(1, 2, 3)
         val mutableList: MutableList<*> = mutableListOf(1, "Hello", 3.5)
