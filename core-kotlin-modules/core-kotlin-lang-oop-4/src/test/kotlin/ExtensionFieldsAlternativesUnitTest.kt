@@ -1,12 +1,10 @@
 import org.junit.jupiter.api.Test
+import java.util.*
 import kotlin.test.assertEquals
 
 class ExtensionFieldsAlternativesUnitTest {
 
-    private fun String.toTitleCase(): String = this.split(" ")
-        .joinToString(" ") {
-            it.capitalize()
-        }
+    fun String.toTitleCase(): String = this.split(" ").joinToString(" ") { it.capitalize() }
 
     private val String.firstChar: Char
         get() = this.first()
@@ -20,10 +18,6 @@ class ExtensionFieldsAlternativesUnitTest {
 
     class Car {
         var model: String = "Toyota Supra"
-            get() { return field }
-            set(value) {
-                field = value
-            }
     }
 
     open class Person(var name: String, var age: Int)
@@ -66,7 +60,7 @@ class ExtensionFieldsAlternativesUnitTest {
         val person = Person("Hangga Aji Sayekti", 35)
         assertEquals("Name: Hangga Aji Sayekti, Age: 35, isAdult: true", person.details)
 
-        person.ageInDecades = 1;
+        person.ageInDecades = 1
         assertEquals("Name: Hangga Aji Sayekti, Age: 10, isAdult: false", person.details)
     }
 
