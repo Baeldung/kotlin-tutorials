@@ -4,10 +4,7 @@ import kotlin.test.assertEquals
 
 class ExtensionFieldsAlternativesUnitTest {
 
-    private fun String.toTitleCase(): String = this.split(" ")
-        .joinToString(" ") {
-            it.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
-        }
+    fun String.toTitleCase(): String = this.split(" ").joinToString(" ") { it.capitalize() }
 
     private val String.firstChar: Char
         get() = this.first()
