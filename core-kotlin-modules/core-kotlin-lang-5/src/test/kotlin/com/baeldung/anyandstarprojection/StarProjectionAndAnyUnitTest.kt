@@ -1,7 +1,8 @@
 package com.baeldung.anyandstarprojection
 
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Test
 import kotlin.reflect.full.createType
 import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
@@ -12,7 +13,7 @@ class StarProjectionAndAnyUnitTest {
     val anylist: MutableList<Any> = mutableListOf(1, "Baeldung", 3.5)
 
     @Test
-    fun `test reading from List of Star-projections and Any`() {
+    fun `test reading from List`() {
         assertEquals(1, starlist[0])
         // starlist.add(42)  // not allowed
 
@@ -22,11 +23,20 @@ class StarProjectionAndAnyUnitTest {
         anylist.add(42) // allowed
     }
 
+    @Suppress("UNREACHABLE_CODE")
     @Test
-    fun `test nullability for Any and Star-projections`() {
+    fun `test for nullability`() {
         val a: Any = "Kotlin"
         val b: Any? = null
-//        val c: Any = null    // not allowed
+        // val c: Any = null    // not allowed
+
+        assertTrue(null is Any?)
+        assertFalse(null is Any)
+
+        assertFailsWith<NullPointerException> {
+            val c : Any = null!!
+        }
+
         assertEquals("Kotlin", a)
         assertEquals(null, b)
 
@@ -113,7 +123,7 @@ class StarProjectionAndAnyUnitTest {
 
         // Fungsi copy akan gagal dengan *, karena kita tidak tahu tipe pastinya
 //        assertFailsWith<ClassCastException> {
-            copyData(source as List<Any>, destination)
+        copyData(source as List<Any>, destination)
 //        }
     }
 
