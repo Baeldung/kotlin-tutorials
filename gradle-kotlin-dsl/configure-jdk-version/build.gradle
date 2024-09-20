@@ -21,12 +21,19 @@ tasks.withType(KotlinCompile).configureEach {
     kotlinOptions {
         jvmTarget = "11"
     }
-    println("KotlinCompile JVM target: ${kotlinOptions.jvmTarget}")
 }
 
-//tasks.withType(KotlinCompile).configureEach {
-//
-//}
+allprojects {
+    tasks.withType(KotlinCompile).configureEach {
+        kotlinOptions {
+            jvmTarget = "17"
+        }
+    }
+}
+
+tasks.withType(KotlinCompile).configureEach {
+    println("KotlinCompile JVM target: ${kotlinOptions.jvmTarget}")
+}
 
 
 test {
