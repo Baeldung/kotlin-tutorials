@@ -1,10 +1,10 @@
-package com.baeldung.functional_dsl.bean_declration
+package com.baeldung.functionaldsl.beandeclration
 
-import java.math.BigDecimal
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.support.BeanDefinitionDsl
 import org.springframework.context.support.beans
+import java.math.BigDecimal
 
 @SpringBootApplication
 open class Application
@@ -20,9 +20,9 @@ fun main(vararg args: String) {
                     isPrimary = false,
                     function = {
                         BigDecimal(1.0)
-                    }
+                    },
                 )
-            }
+            },
         )
     }
 }

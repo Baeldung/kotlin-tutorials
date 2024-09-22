@@ -1,4 +1,4 @@
-package com.baeldung.functional_dsl.router_function_dsl
+package com.baeldung.functionaldsl.routerfunctiondsl
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -11,8 +11,7 @@ import org.springframework.web.servlet.function.router
 open class Application
 
 fun main(vararg args: String) {
-    runApplication<Application>(*args)
-    {
+    runApplication<Application>(*args) {
         addInitializers(
             beans {
                 bean {
@@ -22,13 +21,13 @@ fun main(vararg args: String) {
                                 mapOf(
                                     "name" to it.param("name"),
                                     "age" to it.headers().header("X-age")[0],
-                                    "country" to it.pathVariable("country")
-                                )
+                                    "country" to it.pathVariable("country"),
+                                ),
                             )
                         }
                     }
                 }
-            }
+            },
         )
     }
 }
