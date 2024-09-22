@@ -5,3 +5,6 @@ rootProject.name = "gradle-kotlin-dsl"
 
 include("gradle-kotlin-dsl", "custom-source-set")
 include("configure-bytecode")
+include("configure-with-toolchain")
+include("configure-compile-test")
+include("configure-configureEach")

@@ -5,6 +5,9 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '2.0.0'
 }
 
+group = 'com.baeldung'
+version = 'unspecified'
+
 repositories {
     mavenCentral()
 }
@@ -17,11 +20,7 @@ test {
     useJUnitPlatform()
 }
 
-compileJava {
-    targetCompatibility = JavaVersion.VERSION_11
-}
-
-compileKotlin {
+tasks.withType(KotlinCompile).configureEach {
     compilerOptions {
         jvmTarget.set(JvmTarget.JVM_11)
     }
