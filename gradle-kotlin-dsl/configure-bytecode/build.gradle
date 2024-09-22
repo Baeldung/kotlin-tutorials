@@ -17,18 +17,18 @@ test {
     useJUnitPlatform()
 }
 
-def jvmVersion = JvmTarget.JVM_17
+def jvmVersion = JvmTarget.JVM_11
 
 compileJava {
-    targetCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 compileTestJava {
-    targetCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(11)
 }
 
 kotlin {
