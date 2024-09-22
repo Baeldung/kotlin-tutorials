@@ -11,14 +11,10 @@ repositories {
 
 dependencies {
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.0.0"
 }
 
 test {
     useJUnitPlatform()
-}
-kotlin {
-    jvmToolchain(17)
 }
 
 def jvmVersion = JvmTarget.JVM_17
@@ -29,6 +25,10 @@ compileJava {
 
 compileTestJava {
     targetCompatibility = JavaVersion.VERSION_17
+}
+
+kotlin {
+    jvmToolchain(17)
 }
 
 kotlin {
@@ -54,9 +54,3 @@ tasks.withType(KotlinCompile).configureEach {
         jvmTarget.set(jvmVersion)
     }
 }
-
-//kotlin {
-//    jvmToolchain {
-//        languageVersion.set(JavaLanguageVersion.of(17))
-//    }
-//}
