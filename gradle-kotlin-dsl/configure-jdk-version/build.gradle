@@ -1,9 +1,8 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-// using plugin
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.9.0'
+    id "org.jetbrains.kotlin.jvm" version "1.9.0"
 }
 
 group = 'com.baeldung'
@@ -19,45 +18,43 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0"
 }
 
-//compileKotlin {
-////  old declaration
-////    kotlinOptions {
-////        jvmTarget = "19"
-////    }
-//    compilerOptions {
-//        jvmTarget.set(jvmVersion)
-//    }
-//}
-//
-//compileTestKotlin {
-//    compilerOptions {
-//        jvmTarget.set(jvmVersion)
-//    }
-//}
-//
-//// using kotlinOptions and configureEach
-//tasks.withType(KotlinCompile).configureEach {
-//    compilerOptions {
-//        jvmTarget.set(jvmVersion)
-//    }
-//}
-
-// using allprojects
-allprojects {
-//    tasks.withType(KotlinCompile) {
-//        compilerOptions {
-//            jvmTarget.set(jvmVersion)
-//        }
-//    }
-    targetCompatibility = "1.8.0"//JavaVersion.VERSION_1_8
+compileJava {
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
-// using jvmToolchain
-//kotlin {
-//    jvmToolchain {
-//        languageVersion.set(JavaLanguageVersion.of(17))
-//    }
-//}
+compileTestJava {
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(jvmVersion)
+    }
+}
+
+compileKotlin {
+    compilerOptions {
+        jvmTarget.set(jvmVersion)
+    }
+}
+
+compileTestKotlin {
+    compilerOptions {
+        jvmTarget.set(jvmVersion)
+    }
+}
+
+tasks.withType(KotlinCompile).configureEach {
+    compilerOptions {
+        jvmTarget.set(jvmVersion)
+    }
+}
+
+kotlin {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
 
 test {
     useJUnitPlatform()
