@@ -1,19 +1,19 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     kotlin("jvm") version "2.0.0"
 }
 
-repositories {
-    mavenCentral()
-}
+//kotlin {
+//    jvmToolchain(11)
+//}
 
-dependencies {
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
-}
-
-tasks.test {
-    useJUnitPlatform()
+java {
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 kotlin {
-    jvmToolchain(11)
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_11)
+    }
 }
