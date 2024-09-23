@@ -4,17 +4,21 @@ plugins {
     kotlin("jvm") version "2.0.0"
 }
 
-//repositories {
-//    mavenCentral()
-//}
-//
-//dependencies {
-//    testImplementation("org.jetbrains.kotlin:kotlin-test")
-//}
-//
-//tasks.test {
-//    useJUnitPlatform()
-//}
+group = "com.baeldung"
+version = "1.0-SNAPSHOT"
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation("org.jetbrains.kotlin:kotlin-test")
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
 
 java {
     targetCompatibility = JavaVersion.VERSION_11
