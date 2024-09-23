@@ -16,11 +16,11 @@ tasks.test {
     useJUnitPlatform()
 }
 
-tasks.compileJava {
-    targetCompatibility = "11"
+java {
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
-tasks.compileKotlin {
+kotlin {
     compilerOptions {
         jvmTarget.set(JvmTarget.JVM_11)
     }
