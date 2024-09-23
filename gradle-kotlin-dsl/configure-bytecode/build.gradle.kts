@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '2.0.0'
+    id("org.jetbrains.kotlin.jvm") version "2.0.0"
 }
 
 repositories {
@@ -9,18 +9,18 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+    testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
 
-test {
+tasks.test {
     useJUnitPlatform()
 }
 
-compileJava {
-    targetCompatibility = JavaVersion.VERSION_11
+tasks.compileJava {
+    targetCompatibility = "11"
 }
 
-compileKotlin {
+tasks.compileKotlin {
     compilerOptions {
         jvmTarget.set(JvmTarget.JVM_11)
     }
