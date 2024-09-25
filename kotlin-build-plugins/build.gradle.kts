@@ -25,27 +25,22 @@ tasks.withType<Test> {
     environment("CUSTOM_PROPERTY", project.findProperty("custom.property") as String)
     environment("API_URL", project.findProperty("api.url") as String)
 }
-tasks.register("generateCustomProperties") {
-    val customPropertiesDir = file("src/generated/resources")
-    val customPropertiesFile = file("$customPropertiesDir/custom.properties")
 
-    outputs.dir(customPropertiesDir)
-    outputs.file(customPropertiesFile)
-
-    doLast {
-        customPropertiesDir.mkdirs()
-        val properties = Properties().apply {
-            load(file("gradle.properties").inputStream())
-        }
-        customPropertiesFile.writer().use { writer ->
-            properties.store(writer, "Generated Properties")
-        }
-    }
+tasks.register<Copy>("generateCustomProperties") {
+    from("${project.rootDir}/gradle.properties")
+    into("src/generated/resources")
+    rename { "custom.properties" }
 }
 
 tasks.named<Copy>("processResources") {
     dependsOn("generateCustomProperties")
     from("src/generated/resources") {
         include("custom.properties")
+    }
+}
+
+sourceSets {
+    main {
+        resources.srcDir("src/generated/resources")
     }
 }
