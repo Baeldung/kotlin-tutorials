@@ -155,7 +155,7 @@
 
     <properties>
         <kotlinx-serialization-json-jvm.version>1.6.0</kotlinx-serialization-json-jvm.version>
-        <kotlinx-datetime-jvm.version>0.4.0</kotlinx-datetime-jvm.version>
+        <kotlinx-datetime-jvm.version>0.6.1</kotlinx-datetime-jvm.version>
         <mapstruct.version>1.5.3.Final</mapstruct.version>
         <jackson-kotlin.version>2.15.4</jackson-kotlin.version>
         <retrofit.version>2.9.0</retrofit.version>
