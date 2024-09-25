@@ -31,6 +31,14 @@ class CombineTwoStateFlowsUnitTest {
             value1 to value2
         }
 
+        val emissions = mutableListOf<Pair<Int, String>>()
+
+        val job = launch {
+            combinedStateFlow.collect {
+                emissions.add(it)
+            }
+        }
+
         assertEquals(Pair(5, "Hi"), combinedStateFlow.first())
 
         stateFlow1.value = 11
@@ -38,6 +46,11 @@ class CombineTwoStateFlowsUnitTest {
 
         stateFlow2.value = "World"
         assertEquals(Pair(11, "World"), combinedStateFlow.first())
+
+
+        job.cancel()
+
+        assertEquals(listOf(Pair(5, "Hi"), Pair(11, "Hi"), Pair(11, "World")), emissions)
     }
 
     @Test
