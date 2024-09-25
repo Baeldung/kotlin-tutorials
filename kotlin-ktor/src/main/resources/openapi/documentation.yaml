@@ -1,0 +1,57 @@
+openapi: "3.0.3"
+info:
+  title: "Products API"
+  description: "API to create and retrieve Products"
+  version: "1.0.0"
+servers:
+  - url: "http://0.0.0.0:8080"
+paths:
+  /product:
+    post:
+      description: "Creates a new product"
+      requestBody:
+        description: "A JSON object that represents a product"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Product"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            text/plain:
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "Product saved successfully"
+  /product/{id}:
+    get:
+      description: "Returns a product by the ID"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Product"
+components:
+  schemas:
+    Product:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int32"
+        name:
+          type: "string"
+        price:
+          type: "number"
+          format: "double"
