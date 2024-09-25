@@ -38,9 +38,3 @@ tasks.named<Copy>("processResources") {
         include("custom.properties")
     }
 }
-
-sourceSets {
-    main {
-        resources.srcDir("src/generated/resources")
-    }
-}
