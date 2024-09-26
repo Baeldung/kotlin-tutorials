@@ -37,7 +37,7 @@ class ExposedUnitTest {
         val db = Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver")
 
         transaction(db) {
-            assertEquals(2.1.toBigDecimal(), db.version)
+            assertEquals(2.2.toBigDecimal(), db.version)
             assertEquals("h2", db.vendor)
         }
     }
