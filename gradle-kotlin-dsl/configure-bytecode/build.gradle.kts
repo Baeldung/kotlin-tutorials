@@ -21,20 +21,20 @@ tasks.test {
     useJUnitPlatform()
 }
 
-// compileJava, compileKotlin, compileKotlinTest, compileJavaTest
-java {
-    targetCompatibility = JavaVersion.VERSION_11
-}
-
+// compileKotlin, compileKotlinTest
 kotlin {
     compilerOptions {
         jvmTarget.set(JvmTarget.JVM_11)
     }
 }
 
-// for test
+tasks.compileJava {
+    options.release.set(11)
+}
+
+// Reaching Test Source Only
 tasks.compileTestJava {
-    targetCompatibility = "11"
+    options.release.set(11)
 }
 
 tasks.compileTestKotlin {
@@ -48,6 +48,10 @@ tasks.withType<KotlinCompile>().configureEach {
     compilerOptions {
         jvmTarget.set(JvmTarget.JVM_11)
     }
+}
+
+tasks.withType(JavaCompile::class).configureEach {
+    options.release.set(11)
 }
 
 // toolChain
