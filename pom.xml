@@ -494,6 +494,7 @@
                 <!-- <module>jee-kotlin</module> --> <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
                 <!-- <module>k2-compiler</module>--> <!-- Contains a lot of examples where code intentionally does not compile, by design: https://jira.baeldung.com/browse/KTLN-863 -->
                 <module>koin-guide</module>
+                <module>koin-dagger-migration</module>
                 <module>kotlin-kotest</module>
                 <module>kotlin-apache-kafka</module>
                 <module>kotlin-api</module>
