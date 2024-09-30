@@ -1,8 +1,8 @@
-package com.baeldung.functionaldsl.routerfunction;
+package com.baeldung.functionaldsl.routerfunctiondsl;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
-import com.baeldung.functionaldsl.routerfunction.Application;
+import com.baeldung.functionaldsl.routerfunctiondsl.Application;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Map;
@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @WebMvcTest(controllers = Application.class)
 @ContextConfiguration(classes = Application.class)
-public class RouterFunctionTest {
+public class RouterDslUnitTest {
 
     @Autowired
     private MockMvc mockMvc;
