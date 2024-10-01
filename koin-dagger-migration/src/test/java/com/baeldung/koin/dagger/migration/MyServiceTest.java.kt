@@ -10,7 +10,7 @@ import org.koin.dsl.module
 import org.koin.test.KoinTest
 import org.koin.test.inject
 
-class MyServiceTest : KoinTest {
+class MyServiceUnitTest : KoinTest {
 
     private val myService: MyService by inject()
     private val testModule = module {
