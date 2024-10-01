@@ -4,7 +4,7 @@ import com.baeldung.security.jwt.domain.Role
 import com.baeldung.security.jwt.domain.User
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Repository
-import java.util.*
+import java.util.UUID
 
 @Repository
 class UserRepository(

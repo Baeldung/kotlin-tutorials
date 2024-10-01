@@ -1,6 +1,6 @@
 package com.baeldung.security.jwt.domain
 
-import java.util.*
+import java.util.UUID
 
 data class User(
     val id: UUID,
