@@ -9,6 +9,7 @@ import org.springframework.web.server.ServerWebExchangeDecorator
 class LoggingWebExchange(log: Logger, delegate: ServerWebExchange) : ServerWebExchangeDecorator(delegate) {
     private val requestDecorator: LoggingRequestDecorator = LoggingRequestDecorator(log, delegate.request)
     private val responseDecorator: LoggingResponseDecorator = LoggingResponseDecorator(log, delegate.response)
+
     override fun getRequest(): ServerHttpRequest {
         return requestDecorator
     }

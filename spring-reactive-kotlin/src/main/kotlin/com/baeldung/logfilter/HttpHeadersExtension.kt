@@ -7,10 +7,11 @@ fun HttpHeaders.asString(): String {
     return entries
         .stream()
         .map { entry: Map.Entry<String, List<String?>?> ->
-            " ${entry.key}: [" + java.lang.String.join(
-                ";",
-                entry.value
-            ) + "]"
+            " ${entry.key}: [" +
+                java.lang.String.join(
+                    ";",
+                    entry.value,
+                ) + "]"
         }
         .collect(Collectors.joining("\n"))
 }

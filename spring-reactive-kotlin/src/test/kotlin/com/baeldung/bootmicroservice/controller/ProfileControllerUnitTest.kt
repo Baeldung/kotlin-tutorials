@@ -1,4 +1,4 @@
-package com.baeldung.bootmicroservice.controller;
+package com.baeldung.bootmicroservice.controller
 
 import com.baeldung.bootmicroservice.model.Profile
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -16,7 +16,7 @@ class ProfileControllerUnitTest {
     lateinit var controller: ProfileController
 
     @Autowired
-    lateinit var mapper:  ObjectMapper ;
+    lateinit var mapper: ObjectMapper
 
     lateinit var client: WebTestClient
     lateinit var profile: String
@@ -30,22 +30,22 @@ class ProfileControllerUnitTest {
     @Test
     fun whenRequestProfile_thenStatusShouldBeOk() {
         client.post()
-                .uri("/profile")
-                .contentType(MediaType.APPLICATION_JSON)
-                .bodyValue(profile)
-                .exchange()
-                .expectStatus().isOk
+            .uri("/profile")
+            .contentType(MediaType.APPLICATION_JSON)
+            .bodyValue(profile)
+            .exchange()
+            .expectStatus().isOk
     }
 
     @Test
     fun whenRequestProfile_thenIdShouldBeNotNull() {
         client.post()
-                .uri("/profile")
-                .contentType(MediaType.APPLICATION_JSON)
-                .bodyValue(profile)
-                .exchange()
-                .expectBody()
-                .jsonPath("$.id")
-                .isNotEmpty
+            .uri("/profile")
+            .contentType(MediaType.APPLICATION_JSON)
+            .bodyValue(profile)
+            .exchange()
+            .expectBody()
+            .jsonPath("$.id")
+            .isNotEmpty
     }
 }

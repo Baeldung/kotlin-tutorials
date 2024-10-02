@@ -24,7 +24,7 @@ public class RouterFunctionUnitTest {
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
-    void test() throws Exception {
+    void whenGetOnRouterEndpoint_thenCorrectResponseReturned() throws Exception {
         Map<String, Object> result = objectMapper.readValue(mockMvc
           .perform(get("/endpoint/anything").header("X-age", 22).param("name", "Mikhail"))
           .andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
