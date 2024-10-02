@@ -1,4 +1,4 @@
-package com.baeldung.bootmicroservice.config;
+package com.baeldung.bootmicroservice.config
 
 import org.springframework.context.annotation.Configuration
 import org.springframework.r2dbc.core.DatabaseClient
@@ -6,8 +6,9 @@ import org.springframework.r2dbc.core.DatabaseClient
 @Configuration
 class DBConfiguration(db: DatabaseClient) {
     init {
-        val initDb = db.sql {
-            """ CREATE TABLE IF NOT EXISTS profile (
+        val initDb =
+            db.sql {
+                """ CREATE TABLE IF NOT EXISTS profile (
                     id SERIAL PRIMARY KEY,
                     first_name VARCHAR(20) NOT NULL,
                     last_name VARCHAR(20) NOT NULL,
@@ -22,7 +23,7 @@ class DBConfiguration(db: DatabaseClient) {
                     date DATE NOT NULL
                 );
             """
-        }
+            }
         initDb.then().subscribe()
     }
 }

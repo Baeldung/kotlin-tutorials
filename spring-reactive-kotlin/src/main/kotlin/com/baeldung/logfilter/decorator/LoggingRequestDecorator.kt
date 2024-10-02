@@ -13,7 +13,6 @@ import java.nio.channels.Channels
 import java.util.*
 
 class LoggingRequestDecorator internal constructor(log: Logger, delegate: ServerHttpRequest) : ServerHttpRequestDecorator(delegate) {
-
     private val body: Flux<DataBuffer>?
 
     override fun getBody(): Flux<DataBuffer> {
@@ -27,15 +26,18 @@ class LoggingRequestDecorator internal constructor(log: Logger, delegate: Server
             val method = Optional.ofNullable(delegate.method).orElse(HttpMethod.GET).name()
             val headers = delegate.headers.asString()
             log.debug(
-                "{} {}\n {}", method, path + (if (StringUtils.hasText(query)) "?$query" else ""), headers
+                "{} {}\n {}",
+                method,
+                path + (if (StringUtils.hasText(query)) "?$query" else ""),
+                headers,
             )
-            body = super.getBody().doOnNext { buffer: DataBuffer ->
-                val bodyStream = ByteArrayOutputStream()
-                Channels.newChannel(bodyStream).write(buffer.asByteBuffer().asReadOnlyBuffer())
-                log.debug("{}: {}", "request", String(bodyStream.toByteArray()))
-            }
-        }
-        else {
+            body =
+                super.getBody().doOnNext { buffer: DataBuffer ->
+                    val bodyStream = ByteArrayOutputStream()
+                    Channels.newChannel(bodyStream).write(buffer.asByteBuffer().asReadOnlyBuffer())
+                    log.debug("{}: {}", "request", String(bodyStream.toByteArray()))
+                }
+        } else {
             body = super.getBody()
         }
     }
