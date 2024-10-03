@@ -8,11 +8,9 @@ import reactor.core.publisher.Flux
 
 @Controller
 class Controller {
-
     @GetMapping(path = ["/numbers"], produces = [MediaType.APPLICATION_JSON_VALUE])
     @ResponseBody
     fun getNumbers(): Flux<Int> {
         return Flux.range(1, 100)
     }
-
 }
