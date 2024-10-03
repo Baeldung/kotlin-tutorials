@@ -8,11 +8,17 @@ val appModule = module {
     single { MyRepository() }
     factory { MyService(get()) }
 }
+//
+//fun main() {
+//    startKoin {
+//        modules(appModule)
+//    }
+//    val myApplication = MyApplication()
+//    myApplication.run()
+//}
 
 fun main() {
-    startKoin {
-        modules(appModule)
-    }
-    val myApplication = MyApplication()
+    val myApplication = MyApplicationDagger()
+
     myApplication.run()
 }
