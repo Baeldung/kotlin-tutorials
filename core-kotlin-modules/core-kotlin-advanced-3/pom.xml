@@ -31,26 +31,10 @@
             <artifactId>classgraph</artifactId>
             <version>4.8.112</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.jetbrains.kotlinx</groupId>
-            <artifactId>kotlinx-coroutines-test</artifactId>
-            <version>${kotlinx-coroutines.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jetbrains.kotlinx</groupId>
-            <artifactId>kotlinx-coroutines-core</artifactId>
-            <version>${kotlinx-coroutines.version}</version>
-            <scope>test</scope>
-        </dependency>
-
     </dependencies>
 
     <properties>
         <kotlinx-html-jvm.version>0.7.5</kotlinx-html-jvm.version>
-        <kotlinx-coroutines.version>1.7.3</kotlinx-coroutines.version>
     </properties>
 
     <build>
