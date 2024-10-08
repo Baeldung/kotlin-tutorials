@@ -1,5 +1,3 @@
-import java.util.*
-
 plugins {
     kotlin("jvm") version "2.0.0"
     kotlin("kapt") version "2.0.0"
@@ -21,20 +19,20 @@ dependencies {
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.0")
     testImplementation(kotlin("test"))
 }
-tasks.withType<Test> {
-    environment("CUSTOM_PROPERTY", project.findProperty("custom.property") as String)
-    environment("API_URL", project.findProperty("api.url") as String)
-}
-
-tasks.register<Copy>("generateCustomProperties") {
-    from("${project.rootDir}/gradle.properties")
-    into("src/generated/resources")
-    rename { "custom.properties" }
-}
-
-tasks.named<Copy>("processResources") {
-    dependsOn("generateCustomProperties")
-    from("src/generated/resources") {
-        include("custom.properties")
-    }
-}
+//tasks.withType<Test> {
+//    environment("CUSTOM_PROPERTY", project.findProperty("custom.property") as String)
+//    environment("API_URL", project.findProperty("api.url") as String)
+//}
+//
+//tasks.register<Copy>("generateCustomProperties") {
+//    from("${project.rootDir}/gradle.properties")
+//    into("src/generated/resources")
+//    rename { "custom.properties" }
+//}
+//
+//tasks.named<Copy>("processResources") {
+//    dependsOn("generateCustomProperties")
+//    from("src/generated/resources") {
+//        include("custom.properties")
+//    }
+//}
