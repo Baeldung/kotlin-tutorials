@@ -1,6 +1,5 @@
-package com.baeldung
+package com.baeldung.quarkus.kotlin
 
-import jakarta.json.Json
 import jakarta.ws.rs.GET
 import jakarta.ws.rs.Path
 

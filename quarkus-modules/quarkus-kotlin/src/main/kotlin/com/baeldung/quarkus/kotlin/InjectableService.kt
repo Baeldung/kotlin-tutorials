@@ -1,4 +1,4 @@
-package com.baeldung
+package com.baeldung.quarkus.kotlin
 
 import jakarta.enterprise.context.ApplicationScoped
 
