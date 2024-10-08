@@ -8,5 +8,7 @@ import jakarta.ws.rs.Path
 class GreetingResource {
 
     @GET
-    fun hello() = Json.createValue("Hello, World!")
+    fun hello() = Greeting("Hello, World!")
 }
+
+data class Greeting(val greeting: String)
