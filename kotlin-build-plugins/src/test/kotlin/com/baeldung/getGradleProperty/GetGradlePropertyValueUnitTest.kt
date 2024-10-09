@@ -1,4 +1,4 @@
-package com.baeldung
+package com.baeldung.getGradleProperty
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -6,7 +6,7 @@ import java.util.Properties
 
 class GetGradlePropertyValueUnitTest {
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun `obtain environment variables using System getenv method`() {
         val customProperty = System.getenv("CUSTOM_PROPERTY")
         val apiUrl = System.getenv("API_URL")
