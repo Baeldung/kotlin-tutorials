@@ -68,6 +68,7 @@ class ThreadSafeUnitTest {
 				list.remove(item)
 			}
 		}
+
 		assertTrue(50 !in list)
 	}
 
@@ -103,11 +104,11 @@ class ThreadSafeUnitTest {
 		}
 
 		val job2 = async {
-			job1.await()  // Tunggu sampai job1 selesai
+			job1.await()  // waiting until job1 finish
 			val iterator = list.iterator()
 			while (iterator.hasNext()) {
 				if (iterator.next() == 50) {
-					iterator.remove() // Ini thread-safe dalam coroutine context
+					iterator.remove() // thread-safe in coroutine context
 				}
 			}
 		}
