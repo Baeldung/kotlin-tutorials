@@ -544,6 +544,7 @@
                 <module>spring-mvc-kotlin</module>
                 <module>spring-reactive-kotlin</module>
                 <module>spring-security-kotlin-dsl</module>
+                <module>spring-security-kotlin</module>
             </modules>
         </profile>
 
