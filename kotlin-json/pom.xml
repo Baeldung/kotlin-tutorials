@@ -160,7 +160,7 @@
     </build>
 
     <properties>
-        <moshi.version>1.15.0</moshi.version>
+        <moshi.version>1.15.1</moshi.version>
         <os-maven-plugin.version>1.7.0</os-maven-plugin.version>
         <exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
     </properties>
