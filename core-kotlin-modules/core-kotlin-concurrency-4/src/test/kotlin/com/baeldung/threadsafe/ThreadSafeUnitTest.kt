@@ -25,13 +25,13 @@ class ThreadSafeUnitTest {
 		val thread1 = Thread {
 			for (item in list) {
 				assertFailsWith<ConcurrentModificationException> {
-					logger.info("${item}")
+					logger.info("$item")
 				}
 			}
 		}
 
 		val thread2 = Thread {
-			list.removeAt(0) // Menghapus elemen saat thread1 sedang iterasi
+			list.removeAt(0)
 		}
 
 		thread1.start()
@@ -46,14 +46,14 @@ class ThreadSafeUnitTest {
 		val job1 = launch {
 			for (item in list) {
 				mutex.withLock {
-					logger.info("${item}")
+					logger.info("$item")
 				}
 			}
 		}
 
 		val job2 = launch {
 			mutex.withLock {
-				list.removeAt(2) // Menghapus elemen saat job1 sedang iterasi
+				list.removeAt(2)
 			}
 		}
 
@@ -118,7 +118,7 @@ class ThreadSafeUnitTest {
 			for (i in 1001..2000) {
 				synchronized(list) {
 					list.add(i)
-					atomInt.incrementAndGet() // Increment the atomic counter
+					atomInt.incrementAndGet()
 				}
 			}
 		}
@@ -163,8 +163,7 @@ class ThreadSafeUnitTest {
 		thread1.start()
 		thread2.start()
 
-		// Menambahkan timeout untuk mendeteksi deadlock
-		val timeoutMillis = 3000L // 3 detik
+		val timeoutMillis = 3000L // 3 seconds
 		thread1.join(timeoutMillis)
 		thread2.join(timeoutMillis)
 
@@ -178,18 +177,18 @@ class ThreadSafeUnitTest {
 		val thread1 = Thread {
 			for (i in 1..1000) {
 				logger.info("thread1: Adding $i to the queue")
-				queue.add(i) // Menambahkan elemen ke queue secara thread-safe
-				Thread.sleep(100) // Simulasi delay
+				queue.add(i)
+				Thread.sleep(100) // simulate delay
 			}
 		}
 
 		val thread2 = Thread {
 			while (true) {
-				val item = queue.poll() // Mengambil dan menghapus elemen pertama dari queue
+				val item = queue.poll() // Get and remove the first element from the queue
 				if (item != null) {
 					logger.info("thread2: Processing $item")
 				} else {
-					Thread.sleep(100) // Jika queue kosong, tunggu sebentar
+					Thread.sleep(100) // If the queue is empty, wait a moment
 				}
 			}
 		}
@@ -205,17 +204,17 @@ class ThreadSafeUnitTest {
 		val thread1 = Thread {
 			for (i in 1..5) {
 				logger.info("Thread 1: Adding $i to the map")
-				map[i] = "Value $i" // Menambahkan elemen ke Map secara thread-safe
-				Thread.sleep(100) // Simulasi pekerjaan
+				map[i] = "Value $i"
+				Thread.sleep(100) // simulate delay
 			}
 		}
 
 		val thread2 = Thread {
 			for (i in 1..5) {
 				logger.info("Thread 2: Accessing value for key $i")
-				val value = map[i] // Mengakses elemen dari Map secara thread-safe
+				val value = map[i]
 				logger.info("Thread 2: Retrieved value: $value")
-				Thread.sleep(100) // Simulasi pekerjaan
+				Thread.sleep(100)
 			}
 		}
 
