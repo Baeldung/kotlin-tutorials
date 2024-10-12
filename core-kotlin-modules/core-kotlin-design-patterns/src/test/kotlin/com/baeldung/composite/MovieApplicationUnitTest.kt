@@ -3,7 +3,7 @@ package com.baeldung.composite
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class MovieKodeinUnitTestUnitTest {
+class MovieApplicationUnitTest {
 
     @Test
     fun `should play movie`() {
