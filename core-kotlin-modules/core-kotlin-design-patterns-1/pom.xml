@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.baeldung</groupId>
+        <artifactId>core-kotlin-modules</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>core-kotlin-design-patterns-1</artifactId>
+
+    <properties>
+        <koin-core-jvm.version>3.5.6</koin-core-jvm.version>
+        <koin-core.version>3.4.0</koin-core.version>
+        <koin-test.version>3.4.0</koin-test.version>
+        <kodein-di-jvm.version>7.11.0</kodein-di-jvm.version>
+        <guice.version>5.0.1</guice.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.insert-koin</groupId>
+            <artifactId>koin-core-jvm</artifactId>
+            <version>${koin-core-jvm.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.insert-koin</groupId>
+            <artifactId>koin-core</artifactId>
+            <version>${koin-core.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.insert-koin</groupId>
+            <artifactId>koin-test</artifactId>
+            <version>${koin-test.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.kodein.di</groupId>
+            <artifactId>kodein-di-jvm</artifactId>
+            <version>${kodein-di-jvm.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
+    </dependencies>
+
+
+</project>
