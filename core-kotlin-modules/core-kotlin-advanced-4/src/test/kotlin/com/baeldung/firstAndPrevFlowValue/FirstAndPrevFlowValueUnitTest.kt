@@ -23,15 +23,16 @@ class FirstAndPrevFlowValueUnitTest {
     @Test
     fun `test runningFold for previous and current value`() = runTest {
         val flow = flowOf(1, 2, 3, 4, 5)
-        val initial: Pair<Int?, Int>? = null
-        val results = mutableListOf<Pair<Int?, Int>>()
+        val initial: Pair<Int?, Int?> = null to null
+        val results = mutableListOf<Pair<Int?, Int?>>()
 
         flow.runningFold(initial) { lastPair, next ->
-            lastPair?.run {
+            lastPair.run {
                 val (_, last) = this
                 last to next
-            } ?: (null to next)
-        }.filterNotNull()
+            }
+        }
+            .drop(1)
             .collect { results.add(it) }
 
         assertEquals(listOf(Pair(null, 1), Pair(1, 2), Pair(2, 3), Pair(3, 4), Pair(4, 5)), results)
