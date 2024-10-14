@@ -502,6 +502,8 @@
                 <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
                 <module>kotlin-json</module>
                 <module>kotlin-json-2</module>
+                <module>kotlin-dsl</module>
+                <module>kotlin-reactive-dsl</module>
                 <!-- <module>kotlin-ktor</module> --> <!-- not a Maven module -->
                 <module>kotlin-lambda</module>
                 <module>kotlin-libraries</module>
@@ -542,6 +544,7 @@
                 <module>spring-mvc-kotlin</module>
                 <module>spring-reactive-kotlin</module>
                 <module>spring-security-kotlin-dsl</module>
+                <module>spring-security-kotlin</module>
                 <module>quarkus-modules</module>
             </modules>
         </profile>
@@ -586,6 +589,8 @@
                 <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
                 <module>kotlin-json</module>
                 <module>kotlin-json-2</module>
+                <module>kotlin-dsl</module>
+                <module>kotlin-reactive-dsl</module>
                 <!-- <module>kotlin-ktor</module> --> <!-- not a Maven module -->
                 <module>kotlin-lambda</module>
                 <module>kotlin-libraries</module>

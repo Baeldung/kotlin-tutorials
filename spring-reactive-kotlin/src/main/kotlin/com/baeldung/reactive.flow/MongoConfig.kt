@@ -10,11 +10,9 @@ import org.springframework.data.mongodb.core.ReactiveMongoTemplate
 import org.springframework.data.mongodb.core.convert.MappingMongoConverter
 import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories
 
-
 @Configuration
 @EnableReactiveMongoRepositories(basePackageClasses = arrayOf(EventRepository::class))
 class MongoConfig : AbstractReactiveMongoConfiguration() {
-
     override fun reactiveMongoClient(): MongoClient = mongoClient()
 
     @Bean
@@ -23,7 +21,10 @@ class MongoConfig : AbstractReactiveMongoConfiguration() {
     override fun getDatabaseName(): String = "mongoDatabase"
 
     @Bean
-    override fun reactiveMongoTemplate(databaseFactory: ReactiveMongoDatabaseFactory, mongoConverter: MappingMongoConverter): ReactiveMongoTemplate {
+    override fun reactiveMongoTemplate(
+        databaseFactory: ReactiveMongoDatabaseFactory,
+        mongoConverter: MappingMongoConverter,
+    ): ReactiveMongoTemplate {
         return ReactiveMongoTemplate(mongoClient(), databaseName)
     }
 }

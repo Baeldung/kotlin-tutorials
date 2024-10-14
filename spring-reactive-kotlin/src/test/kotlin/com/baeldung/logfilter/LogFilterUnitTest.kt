@@ -10,10 +10,8 @@ import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.http.MediaType
 import org.springframework.test.web.reactive.server.WebTestClient
 
-
 @WebFluxTest(controllers = [Controller::class])
 open class LogFilterUnitTest {
-
     @MockBean
     lateinit var log: Logger
 

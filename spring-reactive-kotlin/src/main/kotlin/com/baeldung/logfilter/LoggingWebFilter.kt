@@ -13,5 +13,8 @@ class LoggingWebFilter : WebFilter {
     @Autowired
     lateinit var log: Logger
 
-    override fun filter(exchange: ServerWebExchange, chain: WebFilterChain) = chain.filter(LoggingWebExchange(log, exchange))
+    override fun filter(
+        exchange: ServerWebExchange,
+        chain: WebFilterChain,
+    ) = chain.filter(LoggingWebExchange(log, exchange))
 }

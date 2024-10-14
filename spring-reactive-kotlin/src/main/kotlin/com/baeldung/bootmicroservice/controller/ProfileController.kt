@@ -9,7 +9,8 @@ import reactor.core.publisher.Mono
 
 @RestController
 class ProfileController(val repository: ProfileRepository) {
-
     @PostMapping("/profile")
-    fun save(@RequestBody profile: Profile): Mono<Profile> = repository.save(profile)
+    fun save(
+        @RequestBody profile: Profile,
+    ): Mono<Profile> = repository.save(profile)
 }
