@@ -32,9 +32,8 @@ class FirstAndPrevFlowValueUnitTest {
                 last to next
             }
         }
-            .drop(1)
             .collect { results.add(it) }
 
-        assertEquals(listOf(Pair(null, 1), Pair(1, 2), Pair(2, 3), Pair(3, 4), Pair(4, 5)), results)
+        assertEquals(listOf(Pair(null, null), Pair(null, 1), Pair(1, 2), Pair(2, 3), Pair(3, 4), Pair(4, 5)), results)
     }
 }
