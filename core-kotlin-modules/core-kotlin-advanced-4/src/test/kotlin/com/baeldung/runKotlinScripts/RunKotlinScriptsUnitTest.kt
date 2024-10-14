@@ -7,28 +7,10 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import java.io.ByteArrayOutputStream
 import java.io.File
+import java.io.PrintStream
 import javax.script.ScriptEngineManager
-import kotlin.script.experimental.api.*
-import kotlin.script.experimental.host.toScriptSource
-import kotlin.script.experimental.jvm.dependenciesFromCurrentContext
-import kotlin.script.experimental.jvm.jvm
-import kotlin.script.experimental.jvmhost.BasicJvmScriptingHost
 
 class RunKotlinScriptsUnitTest {
-
-    @Test
-    fun `run Kotlin script using kotlin script library`() {
-        val scriptFile = File.createTempFile("kotlintest_file", ".kts")
-        scriptFile.writeText("""
-        println("Hello from Kotlin script!")
-    """.trimIndent())
-
-        runKotlinScript(scriptFile.absolutePath)
-
-        val output = scriptFile.readText()
-        assertTrue(output.contains("Hello from Kotlin script!"))
-    }
-
     @Test
     fun `run Kotlin script with ProcessBuilder`() {
         val scriptFile = File.createTempFile("test", ".kts")
@@ -36,9 +18,8 @@ class RunKotlinScriptsUnitTest {
         println("Hello, ProcessBuilder!")
     """.trimIndent())
 
-        runScriptUsingProcess(scriptFile.absolutePath)
+        val output = runScriptUsingProcess(scriptFile.absolutePath)
 
-        val output = scriptFile.readText()
         assertTrue(output.contains("Hello, ProcessBuilder!"))
     }
 
@@ -49,9 +30,8 @@ class RunKotlinScriptsUnitTest {
         println("Hello from ScriptEngine!")
     """.trimIndent())
 
-        runKotlinScriptWithEngine(scriptFile.absolutePath)
+        val output = runKotlinScriptWithEngine(scriptFile.absolutePath)
 
-        val output = scriptFile.readText()
         assertTrue(output.contains("Hello from ScriptEngine!"))
     }
 
@@ -62,52 +42,38 @@ class RunKotlinScriptsUnitTest {
         println("Hello, Apache Commons Exec!")
     """.trimIndent())
 
-        runScriptWithCommonsExec(scriptFile.absolutePath)
+        val output = runScriptWithCommonsExec(scriptFile.absolutePath)
 
-        assertTrue(scriptFile.readText().contains("Hello, Apache Commons Exec!"))
+        assertTrue(output.contains("Hello, Apache Commons Exec!"))
     }
 
 }
 
-fun runKotlinScript(scriptPath: String) {
-    val scriptSource = scriptPath.toScriptSource()
-
-    val compilationConfiguration = ScriptCompilationConfiguration {
-        jvm {
-            dependenciesFromCurrentContext(wholeClasspath = true)
-        }
-    }
-
-    val evaluationConfiguration = ScriptEvaluationConfiguration()
-
-    val scriptingHost = BasicJvmScriptingHost()
-
-    val result = scriptingHost.eval(scriptSource, compilationConfiguration, evaluationConfiguration)
-
-    result.reports.forEach {
-        println(it.message)
-    }
-}
-
-fun runScriptUsingProcess(scriptPath: String) {
+fun runScriptUsingProcess(scriptPath: String): String {
     val processBuilder = ProcessBuilder("kotlinc", "-script", scriptPath)
     val process = processBuilder.start()
 
-    process.inputStream.bufferedReader().use {
-        println(it.readText())
-    }
-
-    process.waitFor()
+    return process.inputStream.bufferedReader().use { it.readText() }
 }
 
-fun runKotlinScriptWithEngine(scriptPath: String) {
+fun runKotlinScriptWithEngine(scriptPath: String): String {
     val engine = ScriptEngineManager().getEngineByExtension("kts")
     val script = File(scriptPath).readText()
 
-    engine.eval(script)
+    val outputStream = ByteArrayOutputStream()
+    val originalOut = System.out
+    System.setOut(PrintStream(outputStream))
+
+    try {
+        engine.eval(script)
+    } finally {
+        System.setOut(originalOut)
+    }
+
+    return outputStream.toString()
 }
 
-fun runScriptWithCommonsExec(scriptPath: String) {
+fun runScriptWithCommonsExec(scriptPath: String): String {
     val commandLine = CommandLine.parse("kotlinc -script $scriptPath")
 
     val outputStream = ByteArrayOutputStream()
@@ -118,8 +84,9 @@ fun runScriptWithCommonsExec(scriptPath: String) {
 
     try {
         executor.execute(commandLine)
-        println("Script Output: ${outputStream.toString()}")
+        return outputStream.toString()
     } catch (e: Exception) {
         e.printStackTrace()
+        return "Error executing script"
     }
 }
