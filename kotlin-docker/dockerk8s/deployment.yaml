@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kotlin-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kotlin-app
+  template:
+    metadata:
+      labels:
+        app: kotlin-app
+    spec:
+      containers:
+        - name: kotlin-app-container
+          image: DOCKER_IMAGE
+          ports:
+            - containerPort: 8080
