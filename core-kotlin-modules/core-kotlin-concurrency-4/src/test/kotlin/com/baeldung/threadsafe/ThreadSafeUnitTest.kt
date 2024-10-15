@@ -1,11 +1,9 @@
 package com.baeldung.threadsafe
 
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
-import kotlinx.coroutines.test.runTest
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.slf4j.LoggerFactory
 import java.lang.management.ManagementFactory
@@ -44,7 +42,7 @@ class ThreadSafeUnitTest {
 				mutableList.add(i)
 			}
 		}
-		detectDeadlock()
+
 		logger.info("${mutableList.size}")
 	}
 
@@ -55,6 +53,7 @@ class ThreadSafeUnitTest {
 		thread {
 			for (item in list) {
 				assertFailsWith<ConcurrentModificationException> {
+					Thread.sleep(200)
 					logger.info("$item")
 				}
 			}
@@ -93,79 +92,173 @@ class ThreadSafeUnitTest {
 		threads.forEach {
 			it.join()
 		}
-		detectDeadlock()
+
 		assertEquals(300, mutableList.size)
 	}
 
 	@Test
-	fun `test using Mutex to prevent ConcurrentModificationException`() = runTest {
-		val list = mutableListOf(1, 2, 3, 4, 5)
-		val mutex = Mutex()
+	fun `test using synchronized prevent race condition and ConcurrentModificationException`() {
+		val list = mutableListOf<Int>()
+		val lock = Any()
 
-		launch {
-			for (item in list) {
-				mutex.withLock {
+		for (i in 1..10) {
+			for (j in 1..100) {
+				synchronized(lock) {
+					list.add(j)
+				}
+			}
+		}
+
+		thread {
+			synchronized(list) {
+				for (item in list) {
 					logger.info("$item")
 				}
 			}
 		}.join()
 
-		launch {
-			mutex.withLock {
-				list.removeAt(2)
-			}
-		}.join()
+		synchronized(lock) {
+			list.remove(100)
+		}
 
-		detectDeadlock()
-		assertTrue(3 !in list)
-		assertEquals(4, list.size)
+		assertEquals(999, list.size)
 	}
 
 	@Test
-	fun `test using synchronized to prevent ConcurrentModificationException`() {
-		val list = mutableListOf(1, 2, 3, 4, 5)
-
-		thread {
-			synchronized(list) {
-				for (item in list) {
-					logger.info("$item") // Iterasi aman dalam blok synchronized
-				}
-			}
-		}.join()
-
-		thread {
-			synchronized(list) {
-				list.removeAt(2) // Modifikasi aman dalam blok synchronized
-			}
-		}.join()
-
-		detectDeadlock()
-		assertTrue(3 !in list)
-		assertEquals(4, list.size)
-	}
-
-	@Test
-	fun `test using AtomicInteger to prevent race-condition`() {
+	fun `test using AtomicInteger to prevent race-condition still potentially deadlock`() {
 		val list = mutableListOf<Int>()
 		val atomInt = AtomicInteger(0)
 
 		thread {
-			for (i in 1..1000) {
+			for (i in 1..100) {
 				list.add(i)
 				atomInt.incrementAndGet() // Increment the atomic counter
 			}
 		}.join()
 
 		thread {
-			for (i in 1001..2000) {
+			for (i in 101..200) {
 				list.add(i)
 				atomInt.incrementAndGet()
 			}
 		}.join()
 
-		detectDeadlock()
-		assertEquals(2000, list.size)
+		assertEquals(200, list.size)
 	}
+
+	@Test
+	fun `test using ConcurrentLinkedQueue to prevent deadlock`() {
+		val queue = ConcurrentLinkedQueue<Int>()
+
+		thread {
+			for (i in 1..100) {
+				logger.info("thread1: Adding $i to the queue")
+				queue.add(i)
+				Thread.sleep(100) // simulate delay
+			}
+		}
+
+		thread {
+			while (true) {
+				val item = queue.poll() // Get and remove the first element from the queue
+				if (item != null) {
+					logger.info("thread2: Processing $item")
+				} else {
+					Thread.sleep(100) // If the queue is empty, wait a moment
+				}
+			}
+		}
+
+		Thread.sleep(2000) // Berikan waktu untuk deadlock terjadi
+	}
+
+	@Test
+	fun `test using Collections-synchronizedMap to prevent deadlock`() {
+		val map = Collections.synchronizedMap(HashMap<Int, String>())
+
+		thread {
+			for (i in 1..5) {
+				logger.info("Thread 1: Adding $i to the map")
+				map[i] = "Value $i"
+				Thread.sleep(100) // simulate delay
+			}
+		}.join()
+
+		thread {
+			for (i in 1..5) {
+				logger.info("Thread 2: Accessing value for key $i")
+				val value = map[i]
+				logger.info("Thread 2: Retrieved value: $value")
+				Thread.sleep(100)
+			}
+		}.join()
+	}
+
+	@Test
+	fun `test using ConcurrentHashMap to prevent race condition and ConcurrentModificationException`() {
+		val map = ConcurrentHashMap<Int, String>() // prevent race-condition
+
+		thread {
+			for (i in 1..100) {
+				map[i] = "Thread 1 - $i"
+			}
+		}.join() // wait until thread finishes to prevent ConcurrentModificationException
+
+		thread {
+			for (i in 101..200) {
+				map[i] = "Thread 2 - $i"
+			}
+		}.join()
+
+		//detectDeadlock()
+		assertEquals(200, map.size)
+	}
+
+	@Test
+	fun `test using CopyOnWriteArrayList to prevent deadlock`() {
+		val list = CopyOnWriteArrayList<Int>()
+
+		for (i in 1..10) {
+			for (j in 1..100) {
+				list.add(j)
+			}
+		}
+
+		for (item in list) {
+			if (item == 50) {
+				list.remove(item)
+			}
+		}
+		assertTrue(50 !in list)
+	}
+
+	@Test
+	fun `test using coroutines-Mutex with safe dispatcher`() = runBlocking {
+		val list = mutableListOf<Int>()
+		val mutex = Mutex()
+
+		val jobs = List(size = 10) { _ ->
+			launch(Dispatchers.Default) {
+				for (j in 1..100) {
+					mutex.withLock { // ensure only one coroutine accesses the list at a time.
+						list.add(j)
+					}
+				}
+			}
+		}
+
+		jobs.forEach { it.join() }
+
+		withContext(Dispatchers.Default) {
+			mutex.withLock {
+				list.removeAll(listOf(100))
+			}
+		}
+
+		assertTrue(100 !in list)
+		assertEquals(990, list.size)
+	}
+
 
 	@Test
 	fun `example of deadlock`() {
@@ -196,134 +289,16 @@ class ThreadSafeUnitTest {
 			}
 		}
 
-		Thread.sleep(2000) // Berikan waktu untuk deadlock terjadi
-		detectDeadlock()
+		Thread.sleep(2000)
 	}
 
-	@Test
-	fun `test using ConcurrentLinkedQueue to prevent deadlock`() {
-		val queue = ConcurrentLinkedQueue<Int>()
-
-		thread {
-			for (i in 1..100) {
-				logger.info("thread1: Adding $i to the queue")
-				queue.add(i)
-				Thread.sleep(100) // simulate delay
-			}
-		}
-
-		thread {
-			while (true) {
-				val item = queue.poll() // Get and remove the first element from the queue
-				if (item != null) {
-					logger.info("thread2: Processing $item")
-				} else {
-					Thread.sleep(100) // If the queue is empty, wait a moment
-				}
-			}
-		}
-
-		Thread.sleep(2000) // Berikan waktu untuk deadlock terjadi
-		detectDeadlock() // Coba deteksi deadlock
-	}
-
-	@Test
-	fun `test using Collections-synchronizedMap to prevent deadlock`() {
-		val map = Collections.synchronizedMap(HashMap<Int, String>())
-
-		thread {
-			for (i in 1..5) {
-				logger.info("Thread 1: Adding $i to the map")
-				map[i] = "Value $i"
-				Thread.sleep(100) // simulate delay
-			}
-		}.join()
-
-		thread {
-			for (i in 1..5) {
-				logger.info("Thread 2: Accessing value for key $i")
-				val value = map[i]
-				logger.info("Thread 2: Retrieved value: $value")
-				Thread.sleep(100)
-			}
-		}.join()
-
-		detectDeadlock()
-	}
-
-	@Test
-	fun `test using ConcurrentHashMap to prevent race condition and ConcurrentModificationException`() {
-		val map = ConcurrentHashMap<Int, String>() // prevent race-condition
-
-		thread {
-			for (i in 1..100) {
-				map[i] = "Thread 1 - $i"
-			}
-		}.join() // wait until thread finishes to prevent ConcurrentModificationException
-
-		thread {
-			for (i in 101..200) {
-				map[i] = "Thread 2 - $i"
-			}
-		}.join()
-
-		detectDeadlock()
-		assertEquals(200, map.size)
-	}
-
-	@Test
-	fun `tes using CopyOnWriteArrayList to prevent deadlock`() {
-		val list = CopyOnWriteArrayList<Int>()
-
-		for (i in 1..10) {
-			for (j in 1..100) {
-				list.add(j)
-			}
-		}
-
-		for (item in list) {
-			if (item == 50) {
-				list.remove(item)
-			}
-		}
-		detectDeadlock()
-		assertTrue(50 !in list)
-	}
-
-	@Test
-	fun `tes thread-safe with coroutines async`() = runBlocking {
-		val list = mutableListOf<Int>()
-
-		async {
-			for (i in 1..10) {
-				for (j in 1..100) {
-					list.add(j)
-				}
-			}
-		}.await()
-
-		async {
-			val iterator = list.iterator()
-			while (iterator.hasNext()) {
-				if (iterator.next() == 50) {
-					iterator.remove() // thread-safe in coroutine context
-				}
-			}
-		}.await()
-
-		detectDeadlock()
-		assertEquals(990, list.size)
-		assertTrue(50 !in list)
-	}
-
-	private fun detectDeadlock() {
+	@AfterEach
+	fun detectDeadlock() {
 		val threadMXBean = ManagementFactory.getThreadMXBean()
 		threadMXBean.findDeadlockedThreads()?.forEach { id ->
-			val threadInfo = threadMXBean.getThreadInfo(id)
-			val threadJson = mapOf(
-				"threadId" to id, "threadName" to threadInfo.threadName, "state" to threadInfo.threadState.toString(), "lockOwnerId" to threadInfo.lockOwnerId, "lockOwnerName" to threadInfo.lockOwnerName
-			)
-			logger.warn("Deadlock : $threadJson")
-		} ?: logger.info("No Deadlock Detected")
+			val threadInfo = threadMXBean.getThreadInfo(id, Int.MAX_VALUE)
+			logger.warn("Deadlock detected: [id:$id, name:${threadInfo.threadName}, owner:${threadInfo.lockOwnerName}]")
+			logger.warn(threadInfo.stackTrace.joinToString("\n"))
+		}
 	}
 }
