@@ -29,17 +29,11 @@
             <version>${kotlinx.coroutines.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlinx</groupId>
-            <artifactId>kotlinx-collections-immutable-jvm</artifactId>
-            <version>${kotlinx.collections.immutable.version}</version>
-        </dependency>
     </dependencies>
 
     <properties>
         <project.version>1.0.0-SNAPSHOT</project.version>
         <assertj.version>3.24.2</assertj.version>
         <kotlinx.coroutines.version>1.7.3</kotlinx.coroutines.version>
-        <kotlinx.collections.immutable.version>0.3.5</kotlinx.collections.immutable.version>
     </properties>
 </project>
