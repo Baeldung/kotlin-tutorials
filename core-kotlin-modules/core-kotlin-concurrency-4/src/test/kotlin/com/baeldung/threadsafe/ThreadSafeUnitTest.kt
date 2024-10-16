@@ -1,15 +1,17 @@
 package com.baeldung.threadsafe
 
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import kotlinx.coroutines.withContext
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.slf4j.LoggerFactory
 import java.lang.management.ManagementFactory
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
-import java.util.concurrent.ConcurrentLinkedQueue
 import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.concurrent.thread
@@ -17,9 +19,62 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
+class Account(private val name: String, private var balance: Int) {
+
+	private fun deposit(amount: Int) {
+		balance += amount
+	}
+
+	private fun withdraw(amount: Int) {
+		balance -= amount
+	}
+
+	fun transfer(to: Account, amount: Int) {
+		println("Try transfer to ${to.name}, $amount")
+		synchronized(this) {
+			Thread.sleep(50) // Simulate processing time
+			synchronized(to) {
+				if (balance >= amount) {
+					withdraw(amount)
+					to.deposit(amount)
+				}
+			}
+		}
+	}
+}
+
 class ThreadSafeUnitTest {
 
 	private val logger = LoggerFactory.getLogger("")
+
+	@Test
+	fun `example of deadlock in finance transaction simulation`() {
+		val accountA = Account("AccountA", 1000)
+		val accountB = Account("AccountB", 1000)
+
+		// Thread 1: Transfer from accountA to accountB
+		val t1 = thread {
+			accountA.transfer(accountB, 100)
+		}
+
+		// Thread 2: Transfer from accountB to accountA
+		val t2 = thread {
+			accountB.transfer(accountA, 200)
+		}
+
+		// Set a timeout for deadlock assumption
+		val timeout = 2000L // 2 seconds
+		val startTime = System.currentTimeMillis()
+
+		while (t1.isAlive || t2.isAlive) {
+			if (System.currentTimeMillis() - startTime > timeout) {
+				t1.interrupt() // Attempt to stop t1
+				t2.interrupt() // Attempt to stop t2
+				break
+			}
+			Thread.sleep(100) // Check every 100 milliseconds
+		}
+	}
 
 	@Test
 	fun `example of race condition`() {
@@ -44,24 +99,6 @@ class ThreadSafeUnitTest {
 		}
 
 		logger.info("${mutableList.size}")
-	}
-
-	@Test
-	fun `example of ConcurrentModificationException`() {
-		val list = mutableListOf(1, 2, 3, 4, 5)
-
-		thread {
-			for (item in list) {
-				assertFailsWith<ConcurrentModificationException> {
-					Thread.sleep(200)
-					logger.info("$item")
-				}
-			}
-		}
-
-		thread {
-			list.removeAt(2)
-		}
 	}
 
 	@Test
@@ -97,35 +134,31 @@ class ThreadSafeUnitTest {
 	}
 
 	@Test
-	fun `test using synchronized prevent race condition and ConcurrentModificationException`() {
-		val list = mutableListOf<Int>()
-		val lock = Any()
+	fun `example of ConcurrentModificationException`() {
+		val list = mutableListOf(1, 2, 3, 4, 5)
 
-		for (i in 1..10) {
-			for (j in 1..100) {
-				synchronized(lock) {
-					list.add(j)
+		assertFailsWith<ConcurrentModificationException> {
+			for (item in list) {
+				if (item == 3) {
+					list.remove(item)
 				}
 			}
 		}
-
-		thread {
-			synchronized(list) {
-				for (item in list) {
-					logger.info("$item")
-				}
-			}
-		}.join()
-
-		synchronized(lock) {
-			list.remove(100)
-		}
-
-		assertEquals(999, list.size)
 	}
 
 	@Test
-	fun `test using AtomicInteger to prevent race-condition still potentially deadlock`() {
+	fun `test using CopyOnWriteArrayList prevent ConcurrentModificationException`() {
+		val list = CopyOnWriteArrayList(mutableListOf(1, 2, 3, 4, 5))
+
+		for (item in list) {
+			if (item == 3) {
+				list.remove(item)
+			}
+		}
+	}
+
+	@Test
+	fun `test using AtomicInteger to prevent race-condition`() {
 		val list = mutableListOf<Int>()
 		val atomInt = AtomicInteger(0)
 
@@ -147,55 +180,68 @@ class ThreadSafeUnitTest {
 	}
 
 	@Test
-	fun `test using ConcurrentLinkedQueue to prevent deadlock`() {
-		val queue = ConcurrentLinkedQueue<Int>()
+	fun `test using AtomicInteger and synchronized to prevent race-condition reducing potentially deadlock`() {
+		val list = mutableListOf<Int>()
+		val atomInt = AtomicInteger(0)
 
-		thread {
+		val threads = listOf(thread {
 			for (i in 1..100) {
-				logger.info("thread1: Adding $i to the queue")
-				queue.add(i)
-				Thread.sleep(100) // simulate delay
-			}
-		}
-
-		thread {
-			while (true) {
-				val item = queue.poll() // Get and remove the first element from the queue
-				if (item != null) {
-					logger.info("thread2: Processing $item")
-				} else {
-					Thread.sleep(100) // If the queue is empty, wait a moment
+				synchronized(list) {
+					list.add(i)
+					atomInt.incrementAndGet()
 				}
 			}
-		}
+		}, thread {
+			for (i in 101..200) {
+				synchronized(list) {
+					list.add(i)
+					atomInt.incrementAndGet()
+				}
+			}
+		}, thread {
+			for (i in 201..300) {
+				synchronized(list) {
+					list.add(i)
+					atomInt.incrementAndGet()
+				}
+			}
+		})
 
-		Thread.sleep(2000) // Berikan waktu untuk deadlock terjadi
+		threads.forEach { it.join() }
+
+		val actualSize = list.size
+		val countedSize = atomInt.get()
+		logger.info("Actual list size: $actualSize, Counter value: $countedSize")
+
+		if (actualSize != 300 || countedSize != 300) {
+			logger.warn("Possible race condition detected! List size or counter is incorrect.")
+		}
 	}
 
 	@Test
-	fun `test using Collections-synchronizedMap to prevent deadlock`() {
+	fun `test using Collections-synchronizedMap to prevent thread-safety issue`() {
 		val map = Collections.synchronizedMap(HashMap<Int, String>())
 
 		thread {
-			for (i in 1..5) {
-				logger.info("Thread 1: Adding $i to the map")
-				map[i] = "Value $i"
+			for (i in 1..100) {
+				map[i] = "Thread 1 - $i"
 				Thread.sleep(100) // simulate delay
 			}
 		}.join()
 
 		thread {
-			for (i in 1..5) {
-				logger.info("Thread 2: Accessing value for key $i")
-				val value = map[i]
-				logger.info("Thread 2: Retrieved value: $value")
-				Thread.sleep(100)
+			for (i in 101..200) {
+				map[i] = "Thread 2 - $i"
 			}
 		}.join()
+
+		thread { map.remove(200) }.join()
+
+		assertEquals(199, map.size)
 	}
 
 	@Test
-	fun `test using ConcurrentHashMap to prevent race condition and ConcurrentModificationException`() {
+	fun `test using ConcurrentHashMap for alternative to Collections-synchronizedMap`() {
 		val map = ConcurrentHashMap<Int, String>() // prevent race-condition
 
 		thread {
@@ -210,26 +256,9 @@ class ThreadSafeUnitTest {
 			}
 		}.join()
 
-		//detectDeadlock()
-		assertEquals(200, map.size)
-	}
+		thread { map.remove(200) }.join()
 
-	@Test
-	fun `test using CopyOnWriteArrayList to prevent deadlock`() {
-		val list = CopyOnWriteArrayList<Int>()
-
-		for (i in 1..10) {
-			for (j in 1..100) {
-				list.add(j)
-			}
-		}
-
-		for (item in list) {
-			if (item == 50) {
-				list.remove(item)
-			}
-		}
-		assertTrue(50 !in list)
+		assertEquals(199, map.size)
 	}
 
 	@Test
@@ -237,11 +266,12 @@ class ThreadSafeUnitTest {
 		val list = mutableListOf<Int>()
 		val mutex = Mutex()
 
-		val jobs = List(size = 10) { _ ->
+		val jobs = List(size = 10) {
 			launch(Dispatchers.Default) {
 				for (j in 1..100) {
 					mutex.withLock { // ensure only one coroutine accesses the list at a time.
 						list.add(j)
+						logger.info("Thread-safe operation add : $j")
 					}
 				}
 			}
@@ -252,44 +282,12 @@ class ThreadSafeUnitTest {
 		withContext(Dispatchers.Default) {
 			mutex.withLock {
 				list.removeAll(listOf(100))
+				logger.info("Thread-safe operation removeAll : ${listOf(100)}")
 			}
 		}
 
 		assertTrue(100 !in list)
 		assertEquals(990, list.size)
-	}
-
-
-	@Test
-	fun `example of deadlock`() {
-		val lock1 = Any()
-		val lock2 = Any()
-
-		thread {
-			synchronized(lock1) {
-				logger.info("Holding lock1...")
-				Thread.sleep(100)
-
-				logger.info("Waiting for lock2...")
-				synchronized(lock2) {
-					logger.info("Holding lock1 and lock2")
-				}
-			}
-		}
-
-		thread {
-			synchronized(lock2) {
-				logger.info("Holding lock2...")
-				Thread.sleep(100)
-
-				logger.info("Waiting for lock1...")
-				synchronized(lock1) {
-					logger.info("Holding lock2 and lock1")
-				}
-			}
-		}
-
-		Thread.sleep(2000)
 	}
 
 	@AfterEach
