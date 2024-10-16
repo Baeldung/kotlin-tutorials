@@ -546,6 +546,7 @@
                 <module>spring-reactive-kotlin</module>
                 <module>spring-security-kotlin-dsl</module>
                 <module>spring-security-kotlin</module>
+                <module>quarkus-modules</module>
             </modules>
         </profile>
 
