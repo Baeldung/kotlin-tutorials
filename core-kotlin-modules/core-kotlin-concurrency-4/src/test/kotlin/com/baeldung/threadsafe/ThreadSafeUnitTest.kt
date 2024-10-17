@@ -19,7 +19,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
-class Account(private val name: String, private var balance: Int) {
+class Account(val name: String, var balance: Int) {
 
     private fun deposit(amount: Int) {
         balance += amount
@@ -30,7 +30,7 @@ class Account(private val name: String, private var balance: Int) {
     }
 
     fun transfer(to: Account, amount: Int) {
-        println("Try transfer to ${to.name}, $amount")
+        println("${this.name} tries to transfer $amount to ${to.name}.")
         synchronized(this) {
             Thread.sleep(50) // Simulate processing time
             synchronized(to) {
@@ -49,32 +49,58 @@ class ThreadSafeUnitTest {
 
     @Test
     fun `example of deadlock in finance transaction simulation`() {
-        val accountA = Account("AccountA", 1000)
-        val accountB = Account("AccountB", 1000)
+        val account1 = Account("Hangga", 1000)
+        val account2 = Account("John", 1000)
+        val account3 = Account("Alice", 2000)
 
-        // Thread 1: Transfer from accountA to accountB
-        val t1 = thread {
-            accountA.transfer(accountB, 100)
+        // Transfer from accountA to accountB
+        thread {
+            account1.transfer(account2, 100)
         }
 
-        // Thread 2: Transfer from accountB to accountA
-        val t2 = thread {
-            accountB.transfer(accountA, 200)
+        // Transfer from accountB to accountA
+        thread {
+            account2.transfer(account1, 200)
         }
 
-        // Set a timeout for deadlock assumption
-        val timeout = 2000L // 2 seconds
-        val startTime = System.currentTimeMillis()
-
-        while (t1.isAlive || t2.isAlive) {
-            if (System.currentTimeMillis() - startTime > timeout) {
-                t1.interrupt() // Attempt to stop t1
-                t2.interrupt() // Attempt to stop t2
-                break
-            }
-            Thread.sleep(100) // Check every 100 milliseconds
+        // Transfer from accountC to accountA
+        thread {
+            account3.transfer(account1, 1000)
         }
+
+        logger.info("${account1.name}: ${account1.balance}, expected: 2100")
+        logger.info("${account2.name}: ${account2.balance}, expected: 900")
+        logger.info("${account3.name}e: ${account3.balance}, expected: 1000")
     }
+
+    @Test
+    fun `test using mutex to prevent deadlock-free in finance transaction simulation`() = runBlocking {
+        val account1 = Account("Hangga", 1000)
+        val account2 = Account("John", 1000)
+        val account3 = Account("Alice", 2000)
+
+        val mutex = Mutex()
+
+        // Transfer from accountA to accountB
+        mutex.withLock {
+            account1.transfer(account2, 100)
+        }
+
+        // Transfer from accountB to accountA
+        mutex.withLock {
+            account2.transfer(account1, 200)
+        }
+
+        // Transfer from accountC to accountA
+        mutex.withLock {
+            account3.transfer(account1, 1000)
+        }
+
+        assertEquals(2100, account1.balance)
+        assertEquals(900, account2.balance)
+        assertEquals(1000, account3.balance)
+    }
+
 
     @Test
     fun `example of race condition`() {
