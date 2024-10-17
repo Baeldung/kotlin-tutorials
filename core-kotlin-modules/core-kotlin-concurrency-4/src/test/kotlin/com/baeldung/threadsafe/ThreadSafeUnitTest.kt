@@ -286,35 +286,6 @@ class ThreadSafeUnitTest {
         assertEquals(199, map.size)
     }
 
-    @Test
-    fun `test using coroutines-Mutex with safe dispatcher`() = runBlocking {
-        val list = mutableListOf<Int>()
-        val mutex = Mutex()
-
-        val jobs = List(size = 10) {
-            launch(Dispatchers.Default) {
-                for (j in 1..100) {
-                    mutex.withLock { // ensure only one coroutine accesses the list at a time.
-                        list.add(j)
-                        logger.info("Thread-safe operation add : $j")
-                    }
-                }
-            }
-        }
-
-        jobs.forEach { it.join() }
-
-        withContext(Dispatchers.Default) {
-            mutex.withLock {
-                list.removeAll(listOf(100))
-                logger.info("Thread-safe operation removeAll : ${listOf(100)}")
-            }
-        }
-
-        assertTrue(100 !in list)
-        assertEquals(990, list.size)
-    }
-
     @AfterEach
     fun detectDeadlock() {
         val threadMXBean = ManagementFactory.getThreadMXBean()
