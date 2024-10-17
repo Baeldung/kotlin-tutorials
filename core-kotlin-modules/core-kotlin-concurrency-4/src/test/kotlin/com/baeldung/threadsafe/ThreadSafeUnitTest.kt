@@ -33,9 +33,9 @@ class Account(val name: String, var balance: Int) {
         println("${this.name} tries to transfer $amount to ${to.name}.")
         synchronized(this) {
             Thread.sleep(10) // Simulate processing time
-            synchronized(to) {
-                if (balance >= amount) {
-                    withdraw(amount)
+            if (balance >= amount) {
+                withdraw(amount)
+                synchronized(to) {
                     to.deposit(amount)
                 }
             }
