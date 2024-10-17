@@ -32,7 +32,7 @@ class Account(val name: String, var balance: Int) {
     fun transfer(to: Account, amount: Int) {
         println("${this.name} tries to transfer $amount to ${to.name}.")
         synchronized(this) {
-            Thread.sleep(50) // Simulate processing time
+            Thread.sleep(10) // Simulate processing time
             synchronized(to) {
                 if (balance >= amount) {
                     withdraw(amount)
@@ -48,50 +48,50 @@ class ThreadSafeUnitTest {
     private val logger = LoggerFactory.getLogger("")
 
     @Test
-    fun `example of deadlock in finance transaction simulation`() {
+    fun `example of deadlock`() {
         val account1 = Account("Hangga", 1000)
         val account2 = Account("John", 1000)
         val account3 = Account("Alice", 2000)
 
-        // Transfer from accountA to accountB
+        // Transfer from account1 to account2
         thread {
             account1.transfer(account2, 100)
         }
 
-        // Transfer from accountB to accountA
+        // Transfer from account2 to account1
         thread {
             account2.transfer(account1, 200)
         }
 
-        // Transfer from accountC to accountA
+        // Transfer from account3 to account1
         thread {
             account3.transfer(account1, 1000)
         }
 
-        logger.info("${account1.name}: ${account1.balance}, expected: 2100")
-        logger.info("${account2.name}: ${account2.balance}, expected: 900")
-        logger.info("${account3.name}e: ${account3.balance}, expected: 1000")
+        logger.info("${account1.name}'s actual balance is: ${account1.balance}, expected: 2100")
+        logger.info("${account2.name}'s actual balance is: ${account2.balance}, expected: 900")
+        logger.info("${account3.name}'s actual balance is: ${account3.balance}, expected: 1000")
     }
 
     @Test
-    fun `test using mutex to prevent deadlock-free in finance transaction simulation`() = runBlocking {
+    fun `test using mutex to prevent deadlock free`() = runBlocking {
         val account1 = Account("Hangga", 1000)
         val account2 = Account("John", 1000)
         val account3 = Account("Alice", 2000)
 
         val mutex = Mutex()
 
-        // Transfer from accountA to accountB
+        // Transfer from account1 to account2
         mutex.withLock {
             account1.transfer(account2, 100)
         }
 
-        // Transfer from accountB to accountA
+        // Transfer from account2 to account1
         mutex.withLock {
             account2.transfer(account1, 200)
         }
 
-        // Transfer from accountC to accountA
+        // Transfer from account3 to account1
         mutex.withLock {
             account3.transfer(account1, 1000)
         }
