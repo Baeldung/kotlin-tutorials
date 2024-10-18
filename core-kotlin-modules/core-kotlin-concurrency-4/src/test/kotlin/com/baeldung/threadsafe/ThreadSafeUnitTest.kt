@@ -1,11 +1,8 @@
 package com.baeldung.threadsafe
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
-import kotlinx.coroutines.withContext
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.slf4j.LoggerFactory
@@ -17,7 +14,6 @@ import java.util.concurrent.atomic.AtomicInteger
 import kotlin.concurrent.thread
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
-import kotlin.test.assertTrue
 
 class Account(val name: String, var balance: Int) {
 
@@ -56,17 +52,17 @@ class ThreadSafeUnitTest {
         // Transfer from account1 to account2
         thread {
             account1.transfer(account2, 100)
-        }
+        }.join(10) // as a simulation of the time required
 
         // Transfer from account2 to account1
         thread {
             account2.transfer(account1, 200)
-        }
+        }.join(20)
 
         // Transfer from account3 to account1
         thread {
             account3.transfer(account1, 1000)
-        }
+        }.join(100)
 
         logger.info("${account1.name}'s actual balance is: ${account1.balance}, expected: 2100")
         logger.info("${account2.name}'s actual balance is: ${account2.balance}, expected: 900")
@@ -84,16 +80,19 @@ class ThreadSafeUnitTest {
         // Transfer from account1 to account2
         mutex.withLock {
             account1.transfer(account2, 100)
+            Thread.sleep(10) // as a simulation of the time required
         }
 
         // Transfer from account2 to account1
         mutex.withLock {
             account2.transfer(account1, 200)
+            Thread.sleep(20)
         }
 
         // Transfer from account3 to account1
         mutex.withLock {
             account3.transfer(account1, 1000)
+            Thread.sleep(100)
         }
 
         assertEquals(2100, account1.balance)
@@ -106,23 +105,30 @@ class ThreadSafeUnitTest {
     fun `example of race condition`() {
         val mutableList = mutableListOf<Int>()
 
-        thread {
+        val thread1 = thread {
             for (i in 1..100) {
                 mutableList.add(i)
+                Thread.sleep(1) // Add small delay
             }
         }
 
-        thread {
+        val thread2 = thread {
             for (i in 101..200) {
                 mutableList.add(i)
+                Thread.sleep(1) // Add small delay
             }
         }
 
-        thread {
+        val thread3 = thread {
             for (i in 201..300) {
                 mutableList.add(i)
+                Thread.sleep(1) // Add small delay
             }
         }
+
+        thread1.join()
+        thread2.join()
+        thread3.join()
 
         logger.info("${mutableList.size}")
     }
@@ -201,73 +207,68 @@ class ThreadSafeUnitTest {
             }
         }.join()
 
-        assertEquals(200, list.size)
+        thread { list.remove(200) }.join()
+
+        assertEquals(199, list.size)
     }
 
     @Test
-    fun `test using AtomicInteger and synchronized to prevent race-condition reducing potentially deadlock`() {
+    fun `test using synchronized to prevent race-condition reducing potentially deadlock`() {
         val list = mutableListOf<Int>()
-        val atomInt = AtomicInteger(0)
 
         val threads = listOf(thread {
             for (i in 1..100) {
                 synchronized(list) {
                     list.add(i)
-                    atomInt.incrementAndGet()
                 }
             }
         }, thread {
             for (i in 101..200) {
                 synchronized(list) {
                     list.add(i)
-                    atomInt.incrementAndGet()
                 }
             }
         }, thread {
             for (i in 201..300) {
                 synchronized(list) {
                     list.add(i)
-                    atomInt.incrementAndGet()
                 }
             }
         })
 
         threads.forEach { it.join() }
 
-        val actualSize = list.size
-        val countedSize = atomInt.get()
-        logger.info("Actual list size: $actualSize, Counter value: $countedSize")
-
-        if (actualSize != 300 || countedSize != 300) {
-            logger.warn("Possible race condition detected! List size or counter is incorrect.")
-        }
+        assertEquals(300, list.size)
     }
 
     @Test
     fun `test using Collections-synchronizedMap to prevent thread-safety issue`() {
         val map = Collections.synchronizedMap(HashMap<Int, String>())
 
-        thread {
+        val thread1 = thread {
             for (i in 1..100) {
                 map[i] = "Thread 1 - $i"
-                Thread.sleep(100) // simulate delay
+                Thread.sleep(10) // simulate delay
             }
-        }.join()
+        }
 
-        thread {
+        val thread2 = thread {
+//            Thread.sleep(50)
             for (i in 101..200) {
                 map[i] = "Thread 2 - $i"
             }
-        }.join()
+        }
 
-        thread { map.remove(200) }.join()
+        thread1.join()
+        thread2.join()
 
-        assertEquals(199, map.size)
+        assertEquals(200, map.size)
     }
 
     @Test
     fun `test using ConcurrentHashMap for alternative to Collections-synchronizedMap`() {
-        val map = ConcurrentHashMap<Int, String>() // prevent race-condition
+//        val map = ConcurrentHashMap<Int, String>() // prevent race-condition
+        val map = HashMap<Int, String>() // prevent race-condition
 
         thread {
             for (i in 1..100) {
@@ -275,6 +276,8 @@ class ThreadSafeUnitTest {
             }
         }.join() // wait until thread finishes to prevent ConcurrentModificationException
 
+        thread { map.remove(1) }.join()
+
         thread {
             for (i in 101..200) {
                 map[i] = "Thread 2 - $i"
@@ -283,7 +286,7 @@ class ThreadSafeUnitTest {
 
         thread { map.remove(200) }.join()
 
-        assertEquals(199, map.size)
+        assertEquals(198, map.size)
     }
 
     @AfterEach
