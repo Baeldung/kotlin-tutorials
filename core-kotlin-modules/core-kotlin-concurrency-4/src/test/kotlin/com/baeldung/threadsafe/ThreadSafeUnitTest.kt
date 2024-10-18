@@ -1,5 +1,6 @@
 package com.baeldung.threadsafe
 
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.RepeatedTest
 import org.junit.jupiter.api.Test
 import org.slf4j.LoggerFactory
+import java.lang.Thread.sleep
 import java.lang.management.ManagementFactory
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
@@ -30,7 +32,7 @@ class Account(val name: String, var balance: Int) {
     fun transfer(to: Account, amount: Int) {
         println("${this.name} tries to transfer $amount to ${to.name}.")
         synchronized(this) {
-            Thread.sleep(10) // Simulate processing time
+            sleep(10) // Simulate processing time
             if (balance >= amount) {
                 withdraw(amount)
                 synchronized(to) {
@@ -106,12 +108,12 @@ class ThreadSafeUnitTest {
         // Transfer from account2 to account1
         thread {
             account2.transfer(account1, 200)
-        }.join(20)
+        }.join(10)
 
         // Transfer from account3 to account1
         thread {
             account3.transfer(account1, 1000)
-        }.join(100)
+        }.join(500)
 
         logger.info("${account1.name}'s actual balance is: ${account1.balance}, expected: 2100")
         logger.info("${account2.name}'s actual balance is: ${account2.balance}, expected: 900")
@@ -129,19 +131,19 @@ class ThreadSafeUnitTest {
         // Transfer from account1 to account2
         mutex.withLock {
             account1.transfer(account2, 100)
-            Thread.sleep(10) // as a simulation of the time required
+            delay(10) // as a simulation of the time required
         }
 
         // Transfer from account2 to account1
         mutex.withLock {
             account2.transfer(account1, 200)
-            Thread.sleep(20)
+            delay(20)
         }
 
         // Transfer from account3 to account1
         mutex.withLock {
             account3.transfer(account1, 1000)
-            Thread.sleep(100)
+            delay(500)
         }
 
         assertEquals(2100, account1.balance)
@@ -149,28 +151,28 @@ class ThreadSafeUnitTest {
         assertEquals(1000, account3.balance)
     }
 
-    @Test
-    fun `example of race condition`() {
+    @RepeatedTest(10)
+    fun `example of race-condition`() {
         val mutableList = mutableListOf<Int>()
 
         val thread1 = thread {
             for (i in 1..100) {
                 mutableList.add(i)
-                Thread.sleep(1) // Add small delay
+                sleep(10) // Add small delay
             }
         }
 
         val thread2 = thread {
             for (i in 101..200) {
                 mutableList.add(i)
-                Thread.sleep(1) // Add small delay
+                sleep(10)
             }
         }
 
         val thread3 = thread {
             for (i in 201..300) {
                 mutableList.add(i)
-                Thread.sleep(1) // Add small delay
+                sleep(10)
             }
         }
 
@@ -178,38 +180,50 @@ class ThreadSafeUnitTest {
         thread2.join()
         thread3.join()
 
-        logger.info("${mutableList.size}")
+        logger.info("expected size: 300, actual size:${mutableList.size}")
+        assertTrue(mutableList.size < 300)
     }
 
     @Test
     fun `test thread-safe using synchronized`() {
-        val list = mutableListOf<Int>()
+        val mutableList = mutableListOf<Int>()
 
-        val threads = listOf(thread {
+        val thread1 = thread {
             for (i in 1..100) {
-                synchronized(list) {
-                    list.add(i)
+                synchronized(mutableList) {
+                    mutableList.add(i)
+                    sleep(10) // Add small delay
                 }
-            }
-        }, thread {
-            for (i in 101..200) {
-                synchronized(list) {
-                    list.add(i)
-                }
-            }
-        }, thread {
-            for (i in 201..300) {
-                synchronized(list) {
-                    list.add(i)
-                }
-            }
-        })
 
-        threads.forEach { it.join() }
-        assertEquals(300, list.size)
+            }
+        }
+
+        val thread2 = thread {
+            for (i in 101..200) {
+                synchronized(mutableList) {
+                    mutableList.add(i)
+                    sleep(10)
+                }
+            }
+        }
+
+        val thread3 = thread {
+            for (i in 201..300) {
+                synchronized(mutableList) {
+                    mutableList.add(i)
+                    sleep(10)
+                }
+            }
+        }
+
+        thread1.join()
+        thread2.join()
+        thread3.join()
+
+        assertEquals(300, mutableList.size)
     }
 
-    @RepeatedTest(50)
+    @RepeatedTest(100)
     fun `example thread-unsafe view page counter`() {
         val counter = PageViewCounter()
 
@@ -222,16 +236,12 @@ class ThreadSafeUnitTest {
         }
 
         threads.forEach { it.join() }
+
         val actualCount = counter.getTotalVisits()
-        logger.info("Page view count: $actualCount, expected: 1000 " + if (actualCount == 1000) "✅" else "❌")
-        if (actualCount < 1000) {
-            assertFailsWith<AssertionError> {
-                assertEquals(1000, actualCount)
-            }
-        }
+        logger.info("Page view count: $actualCount " + if (actualCount == 1000) "✅" else "❌")
     }
 
-    @RepeatedTest(50)
+    @RepeatedTest(100)
     fun `test thread-safe view counter using atomic integer`() {
         val counter = PageViewCounterAtomic()
 
@@ -261,12 +271,7 @@ class ThreadSafeUnitTest {
         threads.forEach { it.join() }
 
         val actualSize = map.size
-        if (actualSize != 1000) {
-            assertFailsWith<AssertionError> {
-                assertEquals(1000, actualSize)
-            }
-        }
-        logger.info("HashMap size: $actualSize, expected: 1000 " + if (actualSize == 1000) "✅" else "❌")
+        logger.info("HashMap size: $actualSize " + if (actualSize == 1000) "✅" else "❌")
     }
 
     @RepeatedTest(10)
