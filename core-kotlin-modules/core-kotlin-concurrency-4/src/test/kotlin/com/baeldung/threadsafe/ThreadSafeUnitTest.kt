@@ -4,6 +4,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.RepeatedTest
 import org.junit.jupiter.api.Test
 import org.slf4j.LoggerFactory
 import java.lang.management.ManagementFactory
@@ -14,6 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger
 import kotlin.concurrent.thread
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
+import kotlin.test.assertTrue
 
 class Account(val name: String, var balance: Int) {
 
@@ -39,9 +41,56 @@ class Account(val name: String, var balance: Int) {
     }
 }
 
+class PageViewCounterAtomic {
+    private val visitCount = AtomicInteger(0)
+
+    fun visitPage() {
+        visitCount.incrementAndGet() // Atomically increment the counter
+    }
+
+    fun getTotalVisits(): Int {
+        return visitCount.get() // Get the current value
+    }
+}
+
+class PageViewCounter {
+    private var visitCount = 0
+
+    fun visitPage() {
+        visitCount++
+    }
+
+    fun getTotalVisits(): Int {
+        return visitCount
+    }
+}
+
 class ThreadSafeUnitTest {
 
     private val logger = LoggerFactory.getLogger("")
+
+    @Test
+    fun `example of ConcurrentModificationException`() {
+        val list = mutableListOf(1, 2, 3, 4, 5)
+        assertFailsWith<ConcurrentModificationException> {
+            for (item in list) {
+                if (item == 3) {
+                    list.remove(item)
+                }
+            }
+        }
+    }
+
+    @Test
+    fun `test using CopyOnWriteArrayList prevent ConcurrentModificationException`() {
+        val list = CopyOnWriteArrayList(mutableListOf(1, 2, 3, 4, 5))
+
+        for (item in list) {
+            if (item == 3) {
+                list.remove(item)
+            }
+        }
+    }
 
     @Test
     fun `example of deadlock`() {
@@ -70,7 +119,7 @@ class ThreadSafeUnitTest {
     }
 
     @Test
-    fun `test using mutex to prevent deadlock free`() = runBlocking {
+    fun `test thread-safe using mutex to prevent deadlock`() = runBlocking {
         val account1 = Account("Hangga", 1000)
         val account2 = Account("John", 1000)
         val account3 = Account("Alice", 2000)
@@ -99,7 +148,6 @@ class ThreadSafeUnitTest {
         assertEquals(900, account2.balance)
         assertEquals(1000, account3.balance)
     }
-
 
     @Test
     fun `example of race condition`() {
@@ -134,86 +182,7 @@ class ThreadSafeUnitTest {
     }
 
     @Test
-    fun `test using synchronized to prevent race-condition`() {
-        val mutableList = mutableListOf<Int>()
-
-        val lock = Any()
-
-        val threads = listOf(thread {
-            for (i in 1..100) {
-                synchronized(lock) {
-                    mutableList.add(i)
-                }
-            }
-        }, thread {
-            for (i in 101..200) {
-                synchronized(lock) {
-                    mutableList.add(i)
-                }
-            }
-        }, thread {
-            for (i in 201..300) {
-                synchronized(lock) {
-                    mutableList.add(i)
-                }
-            }
-        })
-        threads.forEach {
-            it.join()
-        }
-
-        assertEquals(300, mutableList.size)
-    }
-
-    @Test
-    fun `example of ConcurrentModificationException`() {
-        val list = mutableListOf(1, 2, 3, 4, 5)
-        assertFailsWith<ConcurrentModificationException> {
-            for (item in list) {
-                if (item == 3) {
-                    list.remove(item)
-                }
-            }
-        }
-    }
-
-    @Test
-    fun `test using CopyOnWriteArrayList prevent ConcurrentModificationException`() {
-        val list = CopyOnWriteArrayList(mutableListOf(1, 2, 3, 4, 5))
-
-        for (item in list) {
-            if (item == 3) {
-                list.remove(item)
-            }
-        }
-    }
-
-    @Test
-    fun `test using AtomicInteger to prevent race-condition`() {
-        val list = mutableListOf<Int>()
-        val atomInt = AtomicInteger(0)
-
-        thread {
-            for (i in 1..100) {
-                list.add(i)
-                atomInt.incrementAndGet() // Increment the atomic counter
-            }
-        }.join()
-
-        thread {
-            for (i in 101..200) {
-                list.add(i)
-                atomInt.incrementAndGet()
-            }
-        }.join()
-
-        thread { list.remove(200) }.join()
-
-        assertEquals(199, list.size)
-    }
-
-    @Test
-    fun `test using synchronized to prevent race-condition reducing potentially deadlock`() {
+    fun `test thread-safe using synchronized`() {
         val list = mutableListOf<Int>()
 
         val threads = listOf(thread {
@@ -237,56 +206,103 @@ class ThreadSafeUnitTest {
         })
 
         threads.forEach { it.join() }
-
         assertEquals(300, list.size)
     }
 
-    @Test
-    fun `test using Collections-synchronizedMap to prevent thread-safety issue`() {
-        val map = Collections.synchronizedMap(HashMap<Int, String>())
+    @RepeatedTest(50)
+    fun `example thread-unsafe view page counter`() {
+        val counter = PageViewCounter()
 
-        val thread1 = thread {
-            for (i in 1..100) {
-                map[i] = "Thread 1 - $i"
-                Thread.sleep(10) // simulate delay
+        val threads = List(10) {
+            thread {
+                repeat(100) {
+                    counter.visitPage() // Each thread increments the counter 100 times
+                }
             }
         }
 
-        val thread2 = thread {
-//            Thread.sleep(50)
-            for (i in 101..200) {
-                map[i] = "Thread 2 - $i"
+        threads.forEach { it.join() }
+        val actualCount = counter.getTotalVisits()
+        logger.info("Page view count: $actualCount, expected: 1000 " + if (actualCount == 1000) "✅" else "❌")
+        if (actualCount < 1000) {
+            assertFailsWith<AssertionError> {
+                assertEquals(1000, actualCount)
             }
         }
-
-        thread1.join()
-        thread2.join()
-
-        assertEquals(200, map.size)
     }
 
-    @Test
-    fun `test using ConcurrentHashMap for alternative to Collections-synchronizedMap`() {
-//        val map = ConcurrentHashMap<Int, String>() // prevent race-condition
-        val map = HashMap<Int, String>() // prevent race-condition
+    @RepeatedTest(50)
+    fun `test thread-safe view counter using atomic integer`() {
+        val counter = PageViewCounterAtomic()
 
-        thread {
-            for (i in 1..100) {
-                map[i] = "Thread 1 - $i"
+        val threads = List(10) {
+            thread {
+                repeat(100) {
+                    counter.visitPage() // Each thread increments the counter 100 times
+                }
             }
-        }.join() // wait until thread finishes to prevent ConcurrentModificationException
+        }
 
-        thread { map.remove(1) }.join()
+        threads.forEach { it.join() }
+        assertTrue(counter.getTotalVisits() == 1000)
+    }
 
-        thread {
-            for (i in 101..200) {
-                map[i] = "Thread 2 - $i"
+    @RepeatedTest(10)
+    fun `example thread-unsafe using HashMap`() {
+        val map = HashMap<Int, Int>()
+        val threads = List(10) { index ->
+            thread {
+                for (i in 0 until 1000) {
+                    map[i] = index
+                }
             }
-        }.join()
+        }
 
-        thread { map.remove(200) }.join()
+        threads.forEach { it.join() }
 
-        assertEquals(198, map.size)
+        val actualSize = map.size
+        if (actualSize != 1000) {
+            assertFailsWith<AssertionError> {
+                assertEquals(1000, actualSize)
+            }
+        }
+        logger.info("HashMap size: $actualSize, expected: 1000 " + if (actualSize == 1000) "✅" else "❌")
+    }
+
+    @RepeatedTest(10)
+    fun `test thread-safe using ConcurrentHashMap`() {
+        val map = ConcurrentHashMap<Int, Int>()
+
+        val threads = List(10) { index ->
+            thread {
+                for (i in 0 until 1000) {
+                    map[i] = index
+                }
+            }
+        }
+
+        threads.forEach { it.join() }
+
+        val actualSize = map.size
+        assertEquals(1000, actualSize)
+    }
+
+    @RepeatedTest(10)
+    fun `test thread-safe using Collections-synchronizedMap`() {
+        val map = Collections.synchronizedMap(HashMap<Int, Int>())
+
+        val threads = List(10) { index ->
+            thread {
+                for (i in 0 until 1000) {
+                    map[i] = index
+                }
+            }
+        }
+
+        threads.forEach { it.join() }
+
+        val actualSize = map.size
+        assertEquals(1000, actualSize)
     }
 
     @AfterEach
