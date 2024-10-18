@@ -1,12 +1,10 @@
 package com.baeldung.threadsafe
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
-import kotlinx.coroutines.withContext
 import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.RepeatedTest
 import org.junit.jupiter.api.Test
 import org.slf4j.LoggerFactory
 import java.lang.management.ManagementFactory
@@ -43,121 +41,33 @@ class Account(val name: String, var balance: Int) {
     }
 }
 
+class PageViewCounterAtomic {
+    private val visitCount = AtomicInteger(0)
+
+    fun visitPage() {
+        visitCount.incrementAndGet() // Atomically increment the counter
+    }
+
+    fun getTotalVisits(): Int {
+        return visitCount.get() // Get the current value
+    }
+}
+
+class PageViewCounter {
+    private var visitCount = 0
+
+    fun visitPage() {
+        visitCount++
+    }
+
+    fun getTotalVisits(): Int {
+        return visitCount
+    }
+}
+
 class ThreadSafeUnitTest {
 
     private val logger = LoggerFactory.getLogger("")
-
-    @Test
-    fun `example of deadlock`() {
-        val account1 = Account("Hangga", 1000)
-        val account2 = Account("John", 1000)
-        val account3 = Account("Alice", 2000)
-
-        // Transfer from account1 to account2
-        thread {
-            account1.transfer(account2, 100)
-        }
-
-        // Transfer from account2 to account1
-        thread {
-            account2.transfer(account1, 200)
-        }
-
-        // Transfer from account3 to account1
-        thread {
-            account3.transfer(account1, 1000)
-        }
-
-        logger.info("${account1.name}'s actual balance is: ${account1.balance}, expected: 2100")
-        logger.info("${account2.name}'s actual balance is: ${account2.balance}, expected: 900")
-        logger.info("${account3.name}'s actual balance is: ${account3.balance}, expected: 1000")
-    }
-
-    @Test
-    fun `test using mutex to prevent deadlock free`() = runBlocking {
-        val account1 = Account("Hangga", 1000)
-        val account2 = Account("John", 1000)
-        val account3 = Account("Alice", 2000)
-
-        val mutex = Mutex()
-
-        // Transfer from account1 to account2
-        mutex.withLock {
-            account1.transfer(account2, 100)
-        }
-
-        // Transfer from account2 to account1
-        mutex.withLock {
-            account2.transfer(account1, 200)
-        }
-
-        // Transfer from account3 to account1
-        mutex.withLock {
-            account3.transfer(account1, 1000)
-        }
-
-        assertEquals(2100, account1.balance)
-        assertEquals(900, account2.balance)
-        assertEquals(1000, account3.balance)
-    }
-
-
-    @Test
-    fun `example of race condition`() {
-        val mutableList = mutableListOf<Int>()
-
-        thread {
-            for (i in 1..100) {
-                mutableList.add(i)
-            }
-        }
-
-        thread {
-            for (i in 101..200) {
-                mutableList.add(i)
-            }
-        }
-
-        thread {
-            for (i in 201..300) {
-                mutableList.add(i)
-            }
-        }
-
-        logger.info("${mutableList.size}")
-    }
-
-    @Test
-    fun `test using synchronized to prevent race-condition`() {
-        val mutableList = mutableListOf<Int>()
-
-        val lock = Any()
-
-        val threads = listOf(thread {
-            for (i in 1..100) {
-                synchronized(lock) {
-                    mutableList.add(i)
-                }
-            }
-        }, thread {
-            for (i in 101..200) {
-                synchronized(lock) {
-                    mutableList.add(i)
-                }
-            }
-        }, thread {
-            for (i in 201..300) {
-                synchronized(lock) {
-                    mutableList.add(i)
-                }
-            }
-        })
-        threads.forEach {
-            it.join()
-        }
-
-        assertEquals(300, mutableList.size)
-    }
 
     @Test
     fun `example of ConcurrentModificationException`() {
@@ -183,107 +93,216 @@ class ThreadSafeUnitTest {
     }
 
     @Test
-    fun `test using AtomicInteger to prevent race-condition`() {
-        val list = mutableListOf<Int>()
-        val atomInt = AtomicInteger(0)
+    fun `example of deadlock`() {
+        val account1 = Account("Hangga", 1000)
+        val account2 = Account("John", 1000)
+        val account3 = Account("Alice", 2000)
 
+        // Transfer from account1 to account2
         thread {
-            for (i in 1..100) {
-                list.add(i)
-                atomInt.incrementAndGet() // Increment the atomic counter
-            }
-        }.join()
+            account1.transfer(account2, 100)
+        }.join(10) // as a simulation of the time required
 
+        // Transfer from account2 to account1
         thread {
-            for (i in 101..200) {
-                list.add(i)
-                atomInt.incrementAndGet()
-            }
-        }.join()
+            account2.transfer(account1, 200)
+        }.join(20)
 
-        assertEquals(200, list.size)
+        // Transfer from account3 to account1
+        thread {
+            account3.transfer(account1, 1000)
+        }.join(100)
+
+        logger.info("${account1.name}'s actual balance is: ${account1.balance}, expected: 2100")
+        logger.info("${account2.name}'s actual balance is: ${account2.balance}, expected: 900")
+        logger.info("${account3.name}'s actual balance is: ${account3.balance}, expected: 1000")
     }
 
     @Test
-    fun `test using AtomicInteger and synchronized to prevent race-condition reducing potentially deadlock`() {
+    fun `test thread-safe using mutex to prevent deadlock`() = runBlocking {
+        val account1 = Account("Hangga", 1000)
+        val account2 = Account("John", 1000)
+        val account3 = Account("Alice", 2000)
+
+        val mutex = Mutex()
+
+        // Transfer from account1 to account2
+        mutex.withLock {
+            account1.transfer(account2, 100)
+            Thread.sleep(10) // as a simulation of the time required
+        }
+
+        // Transfer from account2 to account1
+        mutex.withLock {
+            account2.transfer(account1, 200)
+            Thread.sleep(20)
+        }
+
+        // Transfer from account3 to account1
+        mutex.withLock {
+            account3.transfer(account1, 1000)
+            Thread.sleep(100)
+        }
+
+        assertEquals(2100, account1.balance)
+        assertEquals(900, account2.balance)
+        assertEquals(1000, account3.balance)
+    }
+
+    @Test
+    fun `example of race condition`() {
+        val mutableList = mutableListOf<Int>()
+
+        val thread1 = thread {
+            for (i in 1..100) {
+                mutableList.add(i)
+                Thread.sleep(1) // Add small delay
+            }
+        }
+
+        val thread2 = thread {
+            for (i in 101..200) {
+                mutableList.add(i)
+                Thread.sleep(1) // Add small delay
+            }
+        }
+
+        val thread3 = thread {
+            for (i in 201..300) {
+                mutableList.add(i)
+                Thread.sleep(1) // Add small delay
+            }
+        }
+
+        thread1.join()
+        thread2.join()
+        thread3.join()
+
+        logger.info("${mutableList.size}")
+    }
+
+    @Test
+    fun `test thread-safe using synchronized`() {
         val list = mutableListOf<Int>()
-        val atomInt = AtomicInteger(0)
 
         val threads = listOf(thread {
             for (i in 1..100) {
                 synchronized(list) {
                     list.add(i)
-                    atomInt.incrementAndGet()
                 }
             }
         }, thread {
             for (i in 101..200) {
                 synchronized(list) {
                     list.add(i)
-                    atomInt.incrementAndGet()
                 }
             }
         }, thread {
             for (i in 201..300) {
                 synchronized(list) {
                     list.add(i)
-                    atomInt.incrementAndGet()
                 }
             }
         })
 
         threads.forEach { it.join() }
+        assertEquals(300, list.size)
+    }
 
-        val actualSize = list.size
-        val countedSize = atomInt.get()
-        logger.info("Actual list size: $actualSize, Counter value: $countedSize")
+    @RepeatedTest(50)
+    fun `example thread-unsafe view page counter`() {
+        val counter = PageViewCounter()
 
-        if (actualSize != 300 || countedSize != 300) {
-            logger.warn("Possible race condition detected! List size or counter is incorrect.")
+        val threads = List(10) {
+            thread {
+                repeat(100) {
+                    counter.visitPage() // Each thread increments the counter 100 times
+                }
+            }
+        }
+
+        threads.forEach { it.join() }
+        val actualCount = counter.getTotalVisits()
+        logger.info("Page view count: $actualCount, expected: 1000 " + if (actualCount == 1000) "✅" else "❌")
+        if (actualCount < 1000) {
+            assertFailsWith<AssertionError> {
+                assertEquals(1000, actualCount)
+            }
         }
     }
 
-    @Test
-    fun `test using Collections-synchronizedMap to prevent thread-safety issue`() {
-        val map = Collections.synchronizedMap(HashMap<Int, String>())
+    @RepeatedTest(50)
+    fun `test thread-safe view counter using atomic integer`() {
+        val counter = PageViewCounterAtomic()
 
-        thread {
-            for (i in 1..100) {
-                map[i] = "Thread 1 - $i"
-                Thread.sleep(100) // simulate delay
+        val threads = List(10) {
+            thread {
+                repeat(100) {
+                    counter.visitPage() // Each thread increments the counter 100 times
+                }
             }
-        }.join()
+        }
 
-        thread {
-            for (i in 101..200) {
-                map[i] = "Thread 2 - $i"
-            }
-        }.join()
-
-        thread { map.remove(200) }.join()
-
-        assertEquals(199, map.size)
+        threads.forEach { it.join() }
+        assertTrue(counter.getTotalVisits() == 1000)
     }
 
-    @Test
-    fun `test using ConcurrentHashMap for alternative to Collections-synchronizedMap`() {
-        val map = ConcurrentHashMap<Int, String>() // prevent race-condition
-
-        thread {
-            for (i in 1..100) {
-                map[i] = "Thread 1 - $i"
+    @RepeatedTest(10)
+    fun `example thread-unsafe using HashMap`() {
+        val map = HashMap<Int, Int>()
+        val threads = List(10) { index ->
+            thread {
+                for (i in 0 until 1000) {
+                    map[i] = index
+                }
             }
-        }.join() // wait until thread finishes to prevent ConcurrentModificationException
+        }
 
-        thread {
-            for (i in 101..200) {
-                map[i] = "Thread 2 - $i"
+        threads.forEach { it.join() }
+
+        val actualSize = map.size
+        if (actualSize != 1000) {
+            assertFailsWith<AssertionError> {
+                assertEquals(1000, actualSize)
             }
-        }.join()
+        }
+        logger.info("HashMap size: $actualSize, expected: 1000 " + if (actualSize == 1000) "✅" else "❌")
+    }
 
-        thread { map.remove(200) }.join()
+    @RepeatedTest(10)
+    fun `test thread-safe using ConcurrentHashMap`() {
+        val map = ConcurrentHashMap<Int, Int>()
 
-        assertEquals(199, map.size)
+        val threads = List(10) { index ->
+            thread {
+                for (i in 0 until 1000) {
+                    map[i] = index
+                }
+            }
+        }
+
+        threads.forEach { it.join() }
+
+        val actualSize = map.size
+        assertEquals(1000, actualSize)
+    }
+
+    @RepeatedTest(10)
+    fun `test thread-safe using Collections-synchronizedMap`() {
+        val map = Collections.synchronizedMap(HashMap<Int, Int>())
+
+        val threads = List(10) { index ->
+            thread {
+                for (i in 0 until 1000) {
+                    map[i] = index
+                }
+            }
+        }
+
+        threads.forEach { it.join() }
+
+        val actualSize = map.size
+        assertEquals(1000, actualSize)
     }
 
     @AfterEach
