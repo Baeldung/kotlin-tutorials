@@ -17,7 +17,6 @@ import java.util.concurrent.atomic.AtomicInteger
 import kotlin.concurrent.thread
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
-import kotlin.test.assertTrue
 
 class Account(val name: String, var balance: Int) {
 
@@ -43,42 +42,17 @@ class Account(val name: String, var balance: Int) {
     }
 }
 
-class PageViewCounterAtomic {
-    private val visitCount = AtomicInteger(0)
-
-    fun visitPage() {
-        visitCount.incrementAndGet() // Atomically increment the counter
-    }
-
-    fun getTotalVisits(): Int {
-        return visitCount.get() // Get the current value
-    }
-}
-
-class PageViewCounter {
-    private var visitCount = 0
-
-    fun visitPage() {
-        visitCount++
-    }
-
-    fun getTotalVisits(): Int {
-        return visitCount
-    }
-}
-
 class ThreadSafeUnitTest {
 
     private val logger = LoggerFactory.getLogger("")
 
     @Test
-    fun `example of ConcurrentModificationException`() {
+    fun `example of modifying mutableList causing ConcurrentModificationException`() {
         val list = mutableListOf(1, 2, 3, 4, 5)
+
         assertFailsWith<ConcurrentModificationException> {
-            for (item in list) {
-                if (item == 3) {
-                    list.remove(item)
-                }
+            list.forEach { item ->
+                list.add(item + 5)
             }
         }
     }
@@ -87,11 +61,11 @@ class ThreadSafeUnitTest {
     fun `test using CopyOnWriteArrayList prevent ConcurrentModificationException`() {
         val list = CopyOnWriteArrayList(mutableListOf(1, 2, 3, 4, 5))
 
-        for (item in list) {
-            if (item == 3) {
-                list.remove(item)
-            }
+        list.forEach { item ->
+            list.add(item + 5)
         }
+
+        assertEquals(10, list.size)
     }
 
     @Test
@@ -108,7 +82,7 @@ class ThreadSafeUnitTest {
         // Transfer from account2 to account1
         thread {
             account2.transfer(account1, 200)
-        }.join(10)
+        }.join(20)
 
         // Transfer from account3 to account1
         thread {
@@ -121,11 +95,10 @@ class ThreadSafeUnitTest {
     }
 
     @Test
-    fun `test thread-safe using mutex to prevent deadlock`() = runBlocking {
+    fun `test using mutex to prevent deadlock`() = runBlocking {
         val account1 = Account("Hangga", 1000)
         val account2 = Account("John", 1000)
         val account3 = Account("Alice", 2000)
-
         val mutex = Mutex()
 
         // Transfer from account1 to account2
@@ -151,113 +124,54 @@ class ThreadSafeUnitTest {
         assertEquals(1000, account3.balance)
     }
 
-    @RepeatedTest(10)
+    @RepeatedTest(100) // low intensity/rare occurrence so more testing is needed.
     fun `example of race-condition`() {
-        val mutableList = mutableListOf<Int>()
-
-        val thread1 = thread {
-            for (i in 1..100) {
-                mutableList.add(i)
-                sleep(10) // Add small delay
-            }
-        }
-
-        val thread2 = thread {
-            for (i in 101..200) {
-                mutableList.add(i)
-                sleep(10)
-            }
-        }
-
-        val thread3 = thread {
-            for (i in 201..300) {
-                mutableList.add(i)
-                sleep(10)
-            }
-        }
-
-        thread1.join()
-        thread2.join()
-        thread3.join()
-
-        logger.info("expected size: 300, actual size:${mutableList.size}")
-        assertTrue(mutableList.size < 300)
-    }
-
-    @Test
-    fun `test thread-safe using synchronized`() {
-        val mutableList = mutableListOf<Int>()
-
-        val thread1 = thread {
-            for (i in 1..100) {
-                synchronized(mutableList) {
-                    mutableList.add(i)
-                    sleep(10) // Add small delay
-                }
-
-            }
-        }
-
-        val thread2 = thread {
-            for (i in 101..200) {
-                synchronized(mutableList) {
-                    mutableList.add(i)
-                    sleep(10)
-                }
-            }
-        }
-
-        val thread3 = thread {
-            for (i in 201..300) {
-                synchronized(mutableList) {
-                    mutableList.add(i)
-                    sleep(10)
-                }
-            }
-        }
-
-        thread1.join()
-        thread2.join()
-        thread3.join()
-
-        assertEquals(300, mutableList.size)
-    }
-
-    @RepeatedTest(100)
-    fun `example thread-unsafe view page counter`() {
-        val counter = PageViewCounter()
-
-        val threads = List(10) {
+        var pageViewCounter = 0
+        val threads = List(30) {
             thread {
                 repeat(100) {
-                    counter.visitPage() // Each thread increments the counter 100 times
+                    pageViewCounter++
                 }
             }
         }
 
         threads.forEach { it.join() }
-
-        val actualCount = counter.getTotalVisits()
-        logger.info("Page view count: $actualCount " + if (actualCount == 1000) "✅" else "❌")
+        logger.info("Page view count: $pageViewCounter ${pageViewCounter.takeIf { it != 3000 }?.let { "<---" } ?: ""}")
     }
 
     @RepeatedTest(100)
-    fun `test thread-safe view counter using atomic integer`() {
-        val counter = PageViewCounterAtomic()
-
-        val threads = List(10) {
+    fun `test using synchronized to avoid race-condition`() {
+        var pageViewCounter = 0
+        val threads = List(30) {
             thread {
                 repeat(100) {
-                    counter.visitPage() // Each thread increments the counter 100 times
+                    synchronized(this) {
+                        pageViewCounter++
+                    }
                 }
             }
         }
 
         threads.forEach { it.join() }
-        assertTrue(counter.getTotalVisits() == 1000)
+        assertEquals(3000, pageViewCounter)
     }
 
-    @RepeatedTest(10)
+    @RepeatedTest(100)
+    fun `test using atomic integer to avoid race-condition`() {
+        val pageViewCounter = AtomicInteger(0)
+        val threads = List(10) {
+            thread {
+                repeat(300) {
+                    pageViewCounter.incrementAndGet()
+                }
+            }
+        }
+
+        threads.forEach { it.join() }
+        assertEquals(3000, pageViewCounter.get())
+    }
+
+    @RepeatedTest(10) // occurs frequently but cannot be predicted, so it requires multiple tests.
     fun `example thread-unsafe using HashMap`() {
         val map = HashMap<Int, Int>()
         val threads = List(10) { index ->
@@ -271,13 +185,12 @@ class ThreadSafeUnitTest {
         threads.forEach { it.join() }
 
         val actualSize = map.size
-        logger.info("HashMap size: $actualSize " + if (actualSize == 1000) "✅" else "❌")
+        logger.info("HashMap size: $actualSize ${actualSize.takeIf { it != 1000 }?.let { "<---" } ?: ""}")
     }
 
-    @RepeatedTest(10)
-    fun `test thread-safe using ConcurrentHashMap`() {
-        val map = ConcurrentHashMap<Int, Int>()
-
+    @Test
+    fun `test thread-safe using Collections-synchronizedMap`() {
+        val map = Collections.synchronizedMap(HashMap<Int, Int>())
         val threads = List(10) { index ->
             thread {
                 for (i in 0 until 1000) {
@@ -292,10 +205,9 @@ class ThreadSafeUnitTest {
         assertEquals(1000, actualSize)
     }
 
-    @RepeatedTest(10)
-    fun `test thread-safe using Collections-synchronizedMap`() {
-        val map = Collections.synchronizedMap(HashMap<Int, Int>())
-
+    @Test
+    fun `test thread-safe using ConcurrentHashMap`() {
+        val map = ConcurrentHashMap<Int, Int>()
         val threads = List(10) { index ->
             thread {
                 for (i in 0 until 1000) {
@@ -313,6 +225,7 @@ class ThreadSafeUnitTest {
     @AfterEach
     fun detectDeadlock() {
         val threadMXBean = ManagementFactory.getThreadMXBean()
+
         threadMXBean.findDeadlockedThreads()?.forEach { id ->
             val threadInfo = threadMXBean.getThreadInfo(id, Int.MAX_VALUE)
             logger.warn("Deadlock detected: [id:$id, name:${threadInfo.threadName}, owner:${threadInfo.lockOwnerName}]")
