@@ -27,7 +27,7 @@
     </dependencies>
 
     <properties>
-        <joda-time.version>2.12.1</joda-time.version>
+        <joda-time.version>2.13.0</joda-time.version>
         <kotlinx-datetime.version>0.6.1</kotlinx-datetime.version>
     </properties>
 
