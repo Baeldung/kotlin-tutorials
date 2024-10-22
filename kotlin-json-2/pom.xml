@@ -13,7 +13,7 @@
     </parent>
 
     <properties>
-        <moshi.version>1.14.0</moshi.version>
+        <moshi.version>1.15.1</moshi.version>
     </properties>
     <dependencies>
         <dependency>

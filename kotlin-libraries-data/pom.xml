@@ -160,7 +160,7 @@
         <jackson-kotlin.version>2.15.4</jackson-kotlin.version>
         <retrofit.version>2.9.0</retrofit.version>
         <wiremock-jre8.version>2.35.1</wiremock-jre8.version>
-        <moshi.version>1.15.0</moshi.version>
+        <moshi.version>1.15.1</moshi.version>
     </properties>
 
 </project>
