@@ -23,13 +23,13 @@ class TakeWhileVsTransformWhileTest {
         runBlocking {
             val numbersFlow = flowOf(1, 2, 3, 4, 5)
 
-            val taken = testFlow.transformWhile {
+            val transformed = testFlow.transformWhile {
                 emit(it)
                 emit(it)
                 it < 3
             }.toList()
 
-            Assertions.assertEquals(listOf(1, 1, 2, 2, 3, 3), taken)
+            Assertions.assertEquals(listOf(1, 1, 2, 2, 3, 3), transformed)
         }
     }
 }
