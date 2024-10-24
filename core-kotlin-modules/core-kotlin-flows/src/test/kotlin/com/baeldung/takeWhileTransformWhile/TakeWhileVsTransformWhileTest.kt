@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 class TakeWhileVsTransformWhileTest {
 
     @Test
-    fun `takeWhile less than 3 returns 1 and 2` {
+    fun `takeWhile less than 3 returns 1 and 2`() {
         runBlocking {
             val numbersFlow = flowOf(1, 2, 3, 4, 5)
 
@@ -19,7 +19,7 @@ class TakeWhileVsTransformWhileTest {
     }
 
     @Test
-    fun `transformWhile less than 3 can return 1, 2 and 3` {
+    fun `transformWhile less than 3 can return 1, 2 and 3`() {
         runBlocking {
             val numbersFlow = flowOf(1, 2, 3, 4, 5)
 
