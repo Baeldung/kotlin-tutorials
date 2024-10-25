@@ -12,7 +12,7 @@ class TakeWhileVsTransformWhileUnitTest {
         runBlocking {
             val numbersFlow = flowOf(1, 2, 3, 4, 5)
 
-            val taken = testFlow.takeWhile { it < 3 }.toList()
+            val taken = numbersFlow.takeWhile { it < 3 }.toList()
 
             Assertions.assertEquals(listOf(1, 2), taken)
         }
