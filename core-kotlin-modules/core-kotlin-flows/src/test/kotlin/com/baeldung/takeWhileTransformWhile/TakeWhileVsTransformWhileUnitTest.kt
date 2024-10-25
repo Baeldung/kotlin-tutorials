@@ -23,7 +23,7 @@ class TakeWhileVsTransformWhileUnitTest {
         runBlocking {
             val numbersFlow = flowOf(1, 2, 3, 4, 5)
 
-            val transformed = testFlow.transformWhile {
+            val transformed = numbersFlow.transformWhile {
                 emit(it)
                 emit(it)
                 it < 3
