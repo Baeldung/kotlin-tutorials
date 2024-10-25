@@ -3,6 +3,7 @@ package com.baeldung.runKotlinScripts
 import org.apache.commons.exec.CommandLine
 import org.apache.commons.exec.DefaultExecutor
 import org.apache.commons.exec.PumpStreamHandler
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import java.io.ByteArrayOutputStream
@@ -18,9 +19,8 @@ class RunKotlinScriptsUnitTest {
         println("Hello, ProcessBuilder!")
     """.trimIndent())
 
-        val output = runScriptUsingProcess(scriptFile.absolutePath)
-
-        assertTrue(output.contains("Hello, ProcessBuilder!"))
+        val output = runScriptUsingProcess(scriptFile.absolutePath).trim()
+        assertEquals("Hello, ProcessBuilder!", output)
     }
 
     @Test
@@ -30,22 +30,11 @@ class RunKotlinScriptsUnitTest {
         println("Hello from ScriptEngine!")
     """.trimIndent())
 
-        val output = runKotlinScriptWithEngine(scriptFile.absolutePath)
+        val output = runKotlinScriptWithEngine(scriptFile.absolutePath).trim()
 
-        assertTrue(output.contains("Hello from ScriptEngine!"))
+        assertEquals("Hello from ScriptEngine!", output)
     }
 
-    @Test
-    fun `run Kotlin script using Apache Commons Exec`() {
-        val scriptFile = File.createTempFile("commonsExecTest", ".kts")
-        scriptFile.writeText("""
-        println("Hello, Apache Commons Exec!")
-    """.trimIndent())
-
-        val output = runScriptWithCommonsExec(scriptFile.absolutePath)
-
-        assertTrue(output.contains("Hello, Apache Commons Exec!"))
-    }
 
 }
 
@@ -73,20 +62,3 @@ fun runKotlinScriptWithEngine(scriptPath: String): String {
     return outputStream.toString()
 }
 
-fun runScriptWithCommonsExec(scriptPath: String): String {
-    val commandLine = CommandLine.parse("kotlinc -script $scriptPath")
-
-    val outputStream = ByteArrayOutputStream()
-    val streamHandler = PumpStreamHandler(outputStream)
-
-    val executor = DefaultExecutor()
-    executor.streamHandler = streamHandler
-
-    try {
-        executor.execute(commandLine)
-        return outputStream.toString()
-    } catch (e: Exception) {
-        e.printStackTrace()
-        return "Error executing script"
-    }
-}
