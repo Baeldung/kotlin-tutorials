@@ -5,7 +5,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
-class TakeWhileVsTransformWhileTest {
+class TakeWhileVsTransformWhileUnitTest {
 
     @Test
     fun `takeWhile less than 3 returns 1 and 2`() {
