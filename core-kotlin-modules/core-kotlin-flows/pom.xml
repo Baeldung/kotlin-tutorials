@@ -32,6 +32,20 @@
             <version>3.4.11</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-core</artifactId>
+            <version>1.6.0</version> <!-- Use the latest stable version -->
+        </dependency>
+
+        <!-- Kotlin Coroutines Test -->
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-test</artifactId>
+            <version>1.6.0</version> <!-- Use the latest stable version -->
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <properties>
