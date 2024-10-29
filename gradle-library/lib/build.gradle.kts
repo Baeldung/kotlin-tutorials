@@ -61,6 +61,16 @@ publishing {
             name = "LocalRepo"
             url = uri("file://${layout.buildDirectory.asFile.get()}/repo")
         }
+
+        // This repository is not real
+        maven {
+            name = "PrivateRepo"
+            url = uri("https://private-repo.company.com/repository/maven-releases/")
+            credentials {
+                username = System.getenv("REPO_USER") ?: ""
+                password = System.getenv("REPO_PASSWORD") ?: ""
+            }
+        }
     }
 }
 
