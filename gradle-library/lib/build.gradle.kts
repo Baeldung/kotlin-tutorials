@@ -57,10 +57,7 @@ publishing {
         }
     }
     repositories {
-        maven {
-            name = "LocalRepo"
-            url = uri("file://${layout.buildDirectory.asFile.get()}/repo")
-        }
+        mavenLocal()
 
         // This repository is not real
         maven {
