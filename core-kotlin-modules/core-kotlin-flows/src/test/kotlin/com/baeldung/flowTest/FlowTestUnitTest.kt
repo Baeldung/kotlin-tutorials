@@ -4,40 +4,39 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import kotlin.test.DefaultAsserter.fail
+import org.junit.jupiter.api.assertThrows
 
 class FlowTestUnitTest {
 
         @Test
-        fun `simpleFlow should emit 1 2 3`() = runBlockingTest {
+        fun `simpleFlow should emit 1 2 3`() = runTest {
             val flow = simpleFlow().toList()
 
             assertEquals(listOf(1, 2, 3), flow)
         }
 
     @Test
-    fun `transformedFlow should multiply values by 2`() = runBlockingTest {
+    fun `transformedFlow should multiply values by 2`() = runTest {
         val result = transformedFlow().toList()
         assertEquals(listOf(2, 4, 6), result)
     }
 
     @Test
-    fun `errorFlow should throw Test Exception`() = runBlockingTest {
+    fun `errorFlow should throw Test Exception`() = runTest {
         val flow = errorFlow()
 
-        try {
-            flow.collect {}
-            fail("Expected an exception")
-        } catch (e: Exception) {
-            assertEquals("Test Exception", e.message)
+        val exception = assertThrows<Exception> {
+            flow.collect()
         }
+        assertEquals("Test Exception", exception.message)
+
     }
 
     @Test
-    fun `cancellableFlow should stop after cancellation`() = runBlockingTest {
+    fun `cancellableFlow should stop after cancellation`() = runTest {
         val emittedValues = mutableListOf<Int>()
 
         val job = launch {
@@ -52,20 +51,10 @@ class FlowTestUnitTest {
     }
 
     @Test
-    fun `delayedFlow should handle delayed emissions`() = runBlockingTest {
+    fun `delayedFlow should handle delayed emissions`() = runTest {
         val result = delayedFlow().toList()
         assertEquals(listOf(1, 2), result)
     }
-
-    @Test
-    fun `counterStateFlow should increment correctly`() = runBlockingTest {
-        incrementCounter()
-        assertEquals(1, counterStateFlow.value)
-
-        incrementCounter()
-        assertEquals(2, counterStateFlow.value)
-    }
-
 }
 
 fun simpleFlow(): Flow<Int> = flow {
@@ -97,12 +86,6 @@ fun delayedFlow(): Flow<Int> = flow {
     emit(1)
     delay(500)
     emit(2)
-}
-
-val counterStateFlow = MutableStateFlow(0)
-
-fun incrementCounter() {
-    counterStateFlow.value++
 }
 
 
