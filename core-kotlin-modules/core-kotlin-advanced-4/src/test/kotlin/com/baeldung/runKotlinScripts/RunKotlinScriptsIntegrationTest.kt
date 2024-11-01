@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.io.File
 
+// requires `kotlinc` to be installed on the machine.
 class RunKotlinScriptsIntegrationTest {
     @Test
     fun `run Kotlin script with ProcessBuilder`() {
