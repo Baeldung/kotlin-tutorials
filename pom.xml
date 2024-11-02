@@ -646,6 +646,20 @@
                         <version>${exec-maven-plugin.version}</version>
                         <executions>
                             <execution>
+                                <id>build-gradle-library</id>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <workingDirectory>${project.basedir}/gradle-library</workingDirectory>
+                                    <executable>./gradlew</executable>
+                                    <arguments>
+                                        <argument>build</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
                                 <id>build-gradle-kotlin-dsl</id>
                                 <phase>compile</phase>
                                 <goals>
