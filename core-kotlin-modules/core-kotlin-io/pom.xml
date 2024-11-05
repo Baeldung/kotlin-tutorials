@@ -19,7 +19,7 @@
         <wiremock.version>2.35.1</wiremock.version>
         <fuel.version>2.3.1</fuel.version>
         <retrofit.version>2.9.0</retrofit.version>
-        <ktor.version>1.5.4</ktor.version>
+        <ktor.version>3.0.0</ktor.version>
         <kotlinx.serialization.version>1.2.2</kotlinx.serialization.version>
         <junit.version>4.13.2</junit.version>
     </properties>
