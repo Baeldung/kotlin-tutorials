@@ -1,9 +1,11 @@
 package com.baeldung.flowTest
 
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.advanceTimeBy
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -28,26 +30,27 @@ class FlowTestUnitTest {
     fun `errorFlow should throw Test Exception`() = runTest {
         val flow = errorFlow()
 
+        val emittedValues = mutableListOf<Int>()
         val exception = assertThrows<Exception> {
-            flow.collect()
+            flow.collect { emittedValues.add(it) }
         }
+
+        assertEquals(listOf(1, 2), emittedValues)
         assertEquals("Test Exception", exception.message)
 
     }
 
     @Test
-    fun `cancellableFlow should stop after cancellation`() = runTest {
+    fun `cancellableFlow stops emitting after external cancellation`() = runTest {
         val emittedValues = mutableListOf<Int>()
-
         val job = launch {
-            cancellableFlow().collect {
-                emittedValues.add(it)
-                if (it == 2) cancel()
-            }
+            cancellableFlow().collect { emittedValues.add(it) }
         }
-        job.join()
 
-        assertEquals(listOf(0, 1, 2), emittedValues)
+        advanceTimeBy(2000)
+        job.cancelAndJoin()
+
+        assertEquals(listOf(0, 1), emittedValues)
     }
 
     @Test
@@ -71,6 +74,7 @@ fun transformedFlow(): Flow<Int> = flow {
 
 fun errorFlow(): Flow<Int> = flow {
     emit(1)
+    emit(2)
     throw Exception("Test Exception")
 }
 
