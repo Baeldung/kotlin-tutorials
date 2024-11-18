@@ -10,6 +10,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import java.util.concurrent.CancellationException
 
 class FlowTestUnitTest {
 
@@ -27,17 +28,10 @@ class FlowTestUnitTest {
     }
 
     @Test
-    fun `errorFlow should throw Test Exception`() = runTest {
-        val flow = errorFlow()
+    fun `errorFlow should emit values and recover from exception`() = runTest {
+        val emittedValues = errorFlow().toList()
 
-        val emittedValues = mutableListOf<Int>()
-        val exception = assertThrows<Exception> {
-            flow.collect { emittedValues.add(it) }
-        }
-
-        assertEquals(listOf(1, 2), emittedValues)
-        assertEquals("Test Exception", exception.message)
-
+        assertEquals(listOf(1, 2, -1), emittedValues)
     }
 
     @Test
@@ -76,12 +70,25 @@ fun errorFlow(): Flow<Int> = flow {
     emit(1)
     emit(2)
     throw Exception("Test Exception")
+}.catch { e ->
+    emit(-1)
 }
 
 fun cancellableFlow(): Flow<Int> = flow {
-    repeat(5) {
-        emit(it)
-        delay(1000)
+    try {
+        repeat(5) {
+            emit(it)
+            delay(1000)
+        }
+    } finally {
+        println("Cleanup: Emitting -1")
+        emit(-1)
+    }
+}.onEach { value ->
+    if (value == 2) throw CancellationException("Flow was canceled at value 2")
+}.onCompletion { cause ->
+    if (cause is CancellationException) {
+        println("Flow canceled: Releasing resources")
     }
 }
 

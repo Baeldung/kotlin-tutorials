@@ -18,38 +18,36 @@
             <version>${junit.version}</version>
         </dependency>
 
-       
-
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-reactor</artifactId>
-            <version>1.6.0</version>
+            <version>${kotlinx.coroutines.version}</version>
         </dependency>
 
         <dependency>
             <groupId>io.projectreactor</groupId>
             <artifactId>reactor-core</artifactId>
-            <version>3.4.11</version>
+            <version>${reactor.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-core</artifactId>
-            <version>1.6.0</version> <!-- Use the latest stable version -->
+            <version>${kotlinx.coroutines.version}</version>
         </dependency>
 
-        <!-- Kotlin Coroutines Test -->
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-test</artifactId>
-            <version>1.6.0</version> <!-- Use the latest stable version -->
+            <version>${kotlinx.coroutines.version}</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <properties>
         <junit.version>4.13.2</junit.version>
+        <kotlinx.coroutines.version>1.7.3</kotlinx.coroutines.version>
+        <reactor.version>3.4.11</reactor.version>
     </properties>
-    
+
 </project>
