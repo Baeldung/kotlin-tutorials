@@ -14,12 +14,12 @@ import java.util.concurrent.CancellationException
 
 class FlowTestUnitTest {
 
-        @Test
-        fun `simpleFlow should emit 1 2 3`() = runTest {
-            val flow = simpleFlow().toList()
+    @Test
+    fun `simpleFlow should emit 1 2 3`() = runTest {
+        val flow = simpleFlow().toList()
 
-            assertEquals(listOf(1, 2, 3), flow)
-        }
+        assertEquals(listOf(1, 2, 3), flow)
+    }
 
     @Test
     fun `transformedFlow should multiply values by 2`() = runTest {
