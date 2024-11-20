@@ -3,7 +3,6 @@ package com.baeldung.casting
 import kotlin.collections.MutableList
 import kotlin.collections.mutableListOf
 import kotlin.collections.firstOrNull
-import kotlin.collections.removeFirst
 
 class TreatDispenser<T>(private val treats: MutableList<T> = mutableListOf()) {
 
