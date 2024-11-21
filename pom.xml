@@ -490,7 +490,6 @@
                 <module>core-kotlin-companion</module>
                 <module>core-kotlin-modules</module>
                 <!-- <module>gradle-kotlin-dsl</module> --> <!-- not a Maven module -->
-                <!-- <module>k2-kotlin</module> -->  <!-- Contains a lot of examples where code intentionally does not compile, by design -->
                 <!-- <module>jee-kotlin</module> --> <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
                 <!-- <module>k2-compiler</module>--> <!-- Contains a lot of examples where code intentionally does not compile, by design: https://jira.baeldung.com/browse/KTLN-863 -->
                 <module>koin-guide</module>
@@ -499,7 +498,6 @@
                 <module>kotlin-api</module>
                 <!-- <module>kotlin-build-plugins</module> --> <!-- not a Maven module -->
                 <module>kotlin-immutable-collections</module>
-                <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
                 <module>kotlin-json</module>
                 <module>kotlin-json-2</module>
                 <module>kotlin-dsl</module>
@@ -578,7 +576,6 @@
                 <module>core-kotlin-companion</module>
                 <module>core-kotlin-modules</module>
                 <!-- <module>gradle-kotlin-dsl</module> --> <!-- not a Maven module -->
-                <!-- <module>k2-kotlin</module> -->  <!-- Contains a lot of examples where code intentionally does not compile, by design -->
                 <!-- <module>jee-kotlin</module> --> <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
                 <!-- <module>k2-compiler</module>--> <!-- Contains a lot of examples where code intentionally does not compile, by design: https://jira.baeldung.com/browse/KTLN-863 -->
                 <module>koin-guide</module>
@@ -587,7 +584,6 @@
                 <module>kotlin-api</module>
                 <!-- <module>kotlin-build-plugins</module> --> <!-- not a Maven module -->
                 <module>kotlin-immutable-collections</module>
-                <!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
                 <module>kotlin-json</module>
                 <module>kotlin-json-2</module>
                 <module>kotlin-dsl</module>
