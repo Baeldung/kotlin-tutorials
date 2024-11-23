@@ -334,6 +334,34 @@
                 <version>${exec-maven-plugin.version}</version>
                 <executions>
                     <execution>
+                        <id>build-kotlin-gradle-libraries</id>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.basedir}/kotlin-gradle-libraries</workingDirectory>
+                            <executable>./gradlew</executable>
+                            <arguments>
+                                <argument>build</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test-kotlin-gradle-libraries</id>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.basedir}/kotlin-gradle-libraries</workingDirectory>
+                            <executable>./gradlew</executable>
+                            <arguments>
+                                <argument>test</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>build-gradle-kotlin-dsl</id>
                         <phase>none</phase>
                         <goals>
