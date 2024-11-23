@@ -1,4 +1,4 @@
-package com.baeldung.kotlin.kandy
+package com.baeldung.kandy
 
 import org.jetbrains.kotlinx.dataframe.api.reverse
 import org.jetbrains.kotlinx.dataframe.api.toDataFrame

@@ -1,4 +1,4 @@
-package com.baeldung.kotlin.kandy
+package com.baeldung.kandy
 
 class DataUtils {
     companion object {

@@ -1,8 +1,5 @@
-package com.baeldung.kotlin.kandy.com.baeldung.kandy
+package com.baeldung.kandy
 
-import com.baeldung.kotlin.kandy.BarChartPlotter
-import com.baeldung.kotlin.kandy.CandlestickChartPlotter
-import com.baeldung.kotlin.kandy.MultiplotChart
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import java.io.File
