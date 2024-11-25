@@ -68,7 +68,7 @@
     </build>
 
     <properties>
-        <kotlin.version>1.8.0</kotlin.version>
+        <kotlin.version>2.0.21</kotlin.version>
         <serialization.version>1.5.0</serialization.version>
         <serialization.jvm.version>1.5.0</serialization.jvm.version>
         <kaml-jvm.version>0.58.0</kaml-jvm.version>

@@ -77,7 +77,7 @@
     </build>
 
     <properties>
-        <kotlin.version>1.6.0</kotlin.version>
+        <kotlin.version>2.0.21</kotlin.version>
         <ktor.version>1.6.5</ktor.version>
         <logback.version>1.2.13</logback.version>
     </properties>
