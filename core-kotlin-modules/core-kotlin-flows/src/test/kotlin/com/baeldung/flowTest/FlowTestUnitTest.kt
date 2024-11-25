@@ -1,10 +1,7 @@
 package com.baeldung.flowTest
 
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.cancelAndJoin
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.advanceTimeBy
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -35,6 +32,19 @@ class FlowTestUnitTest {
     }
 
     @Test
+    fun `implicitCancellationFlow stops on cancellation`() = runTest {
+        val emittedValues = mutableListOf<Int>()
+        val job = launch {
+            implicitCancellationFlow().collect { emittedValues.add(it) }
+        }
+
+        advanceTimeBy(600)
+        job.cancelAndJoin()
+
+        assertEquals(listOf(1,2), emittedValues)
+    }
+
+    @Test
     fun `cancellableFlow stops emitting after external cancellation`() = runTest {
         val emittedValues = mutableListOf<Int>()
         val job = launch {
@@ -45,6 +55,19 @@ class FlowTestUnitTest {
         job.cancelAndJoin()
 
         assertEquals(listOf(0, 1), emittedValues)
+    }
+
+    @Test
+    fun `uncancellableFlow ensures cleanup occurs`() = runTest {
+        val emittedValues = mutableListOf<Int>()
+        val job = launch {
+            uncancellableFlow().collect { emittedValues.add(it) }
+        }
+
+        advanceTimeBy(600)
+        job.cancelAndJoin()
+
+        assertEquals(listOf(1, -1), emittedValues)
     }
 
     @Test
@@ -99,4 +122,23 @@ fun delayedFlow(): Flow<Int> = flow {
     emit(2)
 }
 
+fun implicitCancellationFlow(): Flow<Int> = flow {
+    emit(1)
+    delay(500)
+    emit(2)
+    delay(500)
+    emit(3)
+}
 
+fun uncancellableFlow(): Flow<Int> = flow {
+    try {
+        emit(1)
+        delay(500)
+        emit(2)
+    } finally {
+        withContext(NonCancellable) {
+            println("Releasing resources")
+            emit(-1)
+        }
+    }
+}
