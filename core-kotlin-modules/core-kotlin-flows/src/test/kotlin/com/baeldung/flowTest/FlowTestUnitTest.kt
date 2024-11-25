@@ -1,6 +1,7 @@
 package com.baeldung.flowTest
 
 import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.onFailure
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.test.advanceTimeBy
 import kotlinx.coroutines.test.runTest
@@ -64,10 +65,10 @@ class FlowTestUnitTest {
             uncancellableFlow().collect { emittedValues.add(it) }
         }
 
-        advanceTimeBy(600)
+        advanceTimeBy(400)
         job.cancelAndJoin()
 
-        assertEquals(listOf(1, -1), emittedValues)
+        assertEquals(listOf(1), emittedValues)
     }
 
     @Test
@@ -138,7 +139,6 @@ fun uncancellableFlow(): Flow<Int> = flow {
     } finally {
         withContext(NonCancellable) {
             println("Releasing resources")
-            emit(-1)
         }
     }
 }
