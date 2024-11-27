@@ -32,4 +32,19 @@ class TakeWhileVsTransformWhileUnitTest {
             Assertions.assertEquals(listOf(1, 1, 2, 2, 3, 3), transformed)
         }
     }
+
+    @Test
+    fun `transformWhile can transform elements`() {
+        runBlocking {
+            val numbersFlow = flowOf(1, 2, 3, 4, 5)
+
+            val transformed = numbersFlow.transformWhile {
+                emit("" + it)
+                emit("" + it * 2)
+                it < 3
+            }.toList()
+
+            Assertions.assertEquals(listOf("1", "2", "2", "4", "3", "6"), transformed)
+        }
+    }
 }
