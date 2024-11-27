@@ -13,15 +13,12 @@ fun main() {
 
     pubSubClient.createConnection()
 
-    // Subscribe to the channel
     pubSubClient.subscribeToChannel(channel)
 
-    // Publish a message
     pubSubClient.publishMessage(channel, message)
 
     pubSubClient.closeConnection()
 
-    // Stop the embedded Redis server
     redisServer.stop()
 }
 
