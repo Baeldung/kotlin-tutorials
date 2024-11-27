@@ -75,7 +75,7 @@
         <module>core-kotlin-operators</module>
         <module>core-kotlin-concurrency-3</module>
         <module>core-kotlin-concurrency-4</module>
-        <module>core-kotlin-design-patterns-1</module>
+        <module>core-kotlin-design-patterns-2</module>
     </modules>
 
 </project>
