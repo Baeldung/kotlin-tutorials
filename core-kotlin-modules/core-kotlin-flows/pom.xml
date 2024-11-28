@@ -4,7 +4,6 @@
     <artifactId>core-kotlin-flows</artifactId>
     <name>core-kotlin-flows</name>
     <packaging>jar</packaging>
-
     <parent>
         <groupId>com.baeldung</groupId>
         <artifactId>core-kotlin-modules</artifactId>
