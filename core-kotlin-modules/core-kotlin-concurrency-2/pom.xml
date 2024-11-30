@@ -31,8 +31,4 @@
         </dependency>
     </dependencies>
 
-    <properties>
-        <kotlinx-coroutines.version>1.8.1</kotlinx-coroutines.version>
-    </properties>
-
 </project>

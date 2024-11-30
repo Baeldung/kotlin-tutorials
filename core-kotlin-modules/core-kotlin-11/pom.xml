@@ -59,7 +59,6 @@
     </build>
 
     <properties>
-        <kotlinx.serialization.version>1.4.1</kotlinx.serialization.version>
         <kryo.version>2.24.0</kryo.version>
     </properties>
 </project>
