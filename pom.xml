@@ -489,6 +489,7 @@
 
                 <module>core-kotlin-companion</module>
                 <module>core-kotlin-modules</module>
+                <module>core-kotlin-modules/core-kotlin-advanced-4</module>
                 <!-- <module>gradle-kotlin-dsl</module> --> <!-- not a Maven module -->
                 <!-- <module>k2-kotlin</module> -->  <!-- Contains a lot of examples where code intentionally does not compile, by design -->
                 <!-- <module>jee-kotlin</module> --> <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
@@ -608,7 +609,7 @@
                 <module>kotlin-yaml</module>
                 <!-- <module>kotlin-multiplatform</module> --> <!-- not a Maven module -->
                 <!-- <module>kotlin-multiplatform-mobile</module> --> <!-- not a Maven module -->
-                <module>kotlin-native</module>
+                <!--<module>kotlin-native</module>-->
                 <module>kotlin-openapi</module>
                 <module>kotlin-patterns</module>
                 <module>kotlin-performance-vs-java</module>
