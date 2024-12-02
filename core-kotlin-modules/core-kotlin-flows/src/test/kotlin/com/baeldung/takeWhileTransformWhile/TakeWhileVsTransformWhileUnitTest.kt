@@ -24,12 +24,11 @@ class TakeWhileVsTransformWhileUnitTest {
             val numbersFlow = flowOf(1, 2, 3, 4, 5)
 
             val transformed = numbersFlow.transformWhile {
-                emit(it)
-                emit(it)
+                it
                 it < 3
             }.toList()
 
-            Assertions.assertEquals(listOf(1, 1, 2, 2, 3, 3), transformed)
+            Assertions.assertEquals(listOf(1, 2, 3), transformed)
         }
     }
 
