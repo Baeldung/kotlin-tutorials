@@ -101,7 +101,7 @@
     </build>
 
     <properties>
-        <jwt.version>0.11.5</jwt.version>
+        <jwt.version>0.12.6</jwt.version>
     </properties>
 
 </project>
