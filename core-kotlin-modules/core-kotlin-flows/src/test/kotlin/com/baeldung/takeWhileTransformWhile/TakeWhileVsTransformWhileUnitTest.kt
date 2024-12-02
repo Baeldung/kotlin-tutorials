@@ -24,7 +24,7 @@ class TakeWhileVsTransformWhileUnitTest {
             val numbersFlow = flowOf(1, 2, 3, 4, 5)
 
             val transformed = numbersFlow.transformWhile {
-                it
+                emit(it)
                 it < 3
             }.toList()
 
