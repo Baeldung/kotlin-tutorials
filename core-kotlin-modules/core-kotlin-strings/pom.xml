@@ -22,7 +22,7 @@
     </dependencies>
 
     <properties>
-        <commons-codec.version>1.14</commons-codec.version>
+        <commons-codec.version>1.17.1</commons-codec.version>
     </properties>
 
 </project>
