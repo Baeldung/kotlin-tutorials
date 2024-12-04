@@ -1,7 +1,6 @@
 package com.baeldung.retrofit
 
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
 import retrofit2.Retrofit
@@ -35,19 +34,5 @@ suspend fun downloadPdfWithRetrofit(url: String, outputFile: File) {
         }
 
         println("File downloaded successfully to ${outputFile.absolutePath}")
-    }
-}
-
-// Main function
-fun main() {
-    val url = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" // Replace with your PDF URL
-    val outputFile = File("sample.pdf")
-
-    runBlocking {
-        try {
-            downloadPdfWithRetrofit(url, outputFile)
-        } catch (e: Exception) {
-            println("Failed to download PDF: ${e.message}")
-        }
     }
 }
