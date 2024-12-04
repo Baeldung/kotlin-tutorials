@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>kotlin-libraries-2</artifactId>
     <name>kotlin-libraries-2</name>
@@ -125,6 +126,7 @@
             <version>${kotlinx-cli-jvm.version}</version>
         </dependency>
     </dependencies>
+
     <build>
         <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
         <extensions>
@@ -186,24 +188,24 @@
                 <artifactId>kotlin-maven-plugin</artifactId>
                 <version>${kotlin.version}</version>
                 <executions>
-                <execution>
-                    <id>kapt</id>
-                    <goals>
-                        <goal>kapt</goal>
-                    </goals>
-                    <configuration>
-                        <sourceDirs>
-                            <sourceDir>src/main/kotlin</sourceDir>
-                        </sourceDirs>
-                        <annotationProcessorPaths>
-                            <annotationProcessorPath>
-                                <groupId>com.squareup.moshi</groupId>
-                                <artifactId>moshi-kotlin-codegen</artifactId>
-                                <version>${moshi.version}</version>
-                            </annotationProcessorPath>
-                        </annotationProcessorPaths>
-                    </configuration>
-                </execution>
+                    <execution>
+                        <id>kapt</id>
+                        <goals>
+                            <goal>kapt</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirs>
+                                <sourceDir>src/main/kotlin</sourceDir>
+                            </sourceDirs>
+                            <annotationProcessorPaths>
+                                <annotationProcessorPath>
+                                    <groupId>com.squareup.moshi</groupId>
+                                    <artifactId>moshi-kotlin-codegen</artifactId>
+                                    <version>${moshi.version}</version>
+                                </annotationProcessorPath>
+                            </annotationProcessorPaths>
+                        </configuration>
+                    </execution>
                     <execution>
                         <id>compile</id>
                         <phase>compile</phase>
