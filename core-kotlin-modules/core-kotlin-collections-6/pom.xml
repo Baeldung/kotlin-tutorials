@@ -21,8 +21,4 @@
         </dependency>
     </dependencies>
 
-    <properties>
-        <rxkotlin.version>3.0.1</rxkotlin.version>
-    </properties>
-
 </project>

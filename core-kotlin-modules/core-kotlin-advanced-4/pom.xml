@@ -54,8 +54,6 @@
     </profiles>
 
     <properties>
-        <kotlinx-html-jvm.version>0.7.5</kotlinx-html-jvm.version>
-        <kotlinx-coroutines.version>1.7.3</kotlinx-coroutines.version>
         <kotlin-scripting.version>1.8.0</kotlin-scripting.version>
     </properties>
 
