@@ -5,10 +5,10 @@ import org.junit.Test
 import java.io.File
 import kotlin.test.assertTrue
 
-class FileDownloadServiceTest {
+class FileDownloadServiceUnitTest {
 
     @Test
-    fun `test successful file download`(): Unit = runBlocking {
+    fun testSuccessfulFileDownload(): Unit = runBlocking {
 
         // File to store the downloaded content
         val outputFile = File("test_sample.pdf")
