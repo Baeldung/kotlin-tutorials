@@ -823,7 +823,7 @@
     <properties>
         <kotlin.version>2.0.21</kotlin.version>
         <kotlinx.version>1.7.1</kotlinx.version>
-        <ktlint-cli.version>1.0.1</ktlint-cli.version>
+        <ktlint-cli.version>1.5.0</ktlint-cli.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
