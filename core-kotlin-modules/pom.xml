@@ -29,7 +29,7 @@
         <module>core-kotlin-advanced</module>
         <module>core-kotlin-advanced-2</module>
         <module>core-kotlin-advanced-3</module>
-        <module>core-kotlin-advanced-4</module>
+        <!--<module>core-kotlin-advanced-4</module>--><!--Not installing kotlinc for now JAVA-42077-->
         <module>core-kotlin-annotations</module>
         <module>core-kotlin-arrays</module>
         <module>core-kotlin-arrays-2</module>
@@ -75,6 +75,7 @@
         <module>core-kotlin-operators</module>
         <module>core-kotlin-concurrency-3</module>
         <module>core-kotlin-concurrency-4</module>
+        <module>core-kotlin-design-patterns-1</module>
     </modules>
 
 </project>

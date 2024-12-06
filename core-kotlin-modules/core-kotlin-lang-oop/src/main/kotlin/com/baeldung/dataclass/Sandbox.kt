@@ -12,6 +12,10 @@ fun main() {
 
     println(task.toString())
 
+    val secondTask = Task(1002, 2)
+    println(secondTask.id) // 1002
+    println(secondTask.description) // Anonymous task with priority 2
+
     val copyTask = task.copy(priority = 4)
     println(copyTask.toString())
 
