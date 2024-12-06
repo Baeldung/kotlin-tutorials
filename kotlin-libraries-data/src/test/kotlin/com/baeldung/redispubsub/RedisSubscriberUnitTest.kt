@@ -26,6 +26,7 @@ class RedisSubscriberUnitTest {
 
     @AfterAll
     fun tearDown() {
+        RedisConnectionManager.close()
         redisServer.stop()
     }
 
