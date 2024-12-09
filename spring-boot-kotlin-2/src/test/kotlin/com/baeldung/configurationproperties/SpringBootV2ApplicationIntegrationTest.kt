@@ -31,6 +31,7 @@ class SpringBootV2ApplicationIntegrationTest {
         assertThat(apiConfiguration.url).isNotBlank
         assertThat(apiConfiguration.clientId).isNotBlank
         assertThat(apiConfiguration.key).isNotBlank
+        print("test")
     }
 
     @Test
