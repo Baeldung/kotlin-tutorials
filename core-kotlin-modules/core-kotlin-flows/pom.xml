@@ -28,10 +28,17 @@
             <artifactId>reactor-core</artifactId>
             <version>3.6.10</version>
         </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-test</artifactId>
+            <version>${coroutine.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <properties>
         <junit.version>4.13.2</junit.version>
+        <coroutine.version>1.9.0</coroutine.version>
     </properties>
 
 </project>
