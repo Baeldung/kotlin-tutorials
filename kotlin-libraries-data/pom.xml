@@ -95,6 +95,16 @@
             <version>${moshi.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github.codemonstur</groupId>
+            <artifactId>embedded-redis</artifactId>
+            <version>${embedded-redis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.lettuce</groupId>
+            <artifactId>lettuce-core</artifactId>
+            <version>${lettuce-core.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -161,6 +171,9 @@
         <retrofit.version>2.9.0</retrofit.version>
         <wiremock-jre8.version>2.35.1</wiremock-jre8.version>
         <moshi.version>1.15.1</moshi.version>
+        <kotlinx-coroutines.version>1.7.1</kotlinx-coroutines.version>
+        <embedded-redis.version>1.4.3</embedded-redis.version>
+        <lettuce-core.version>6.5.0.RELEASE</lettuce-core.version>
     </properties>
 
 </project>
