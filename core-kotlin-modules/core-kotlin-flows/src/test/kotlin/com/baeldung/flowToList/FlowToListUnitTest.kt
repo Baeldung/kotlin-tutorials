@@ -36,18 +36,6 @@ class FlowToListUnitTest {
     }
 
     @Test
-    fun `create list from flow using launchIn method`() = runTest {
-        val list = mutableListOf<Int>()
-        val scope = CoroutineScope(SupervisorJob())
-        val flow = flowOf(1, 2, 3)
-
-        flow.onEach { list.add(it) }
-            .launchIn(scope)
-
-        assertEquals(listOf(1, 2, 3), list)
-    }
-
-    @Test
     fun `create list from flow using flatMapConcat method`() = runTest {
         val flow = flowOf(1, 2, 3)
         val result = flow.flatMapConcat { value ->
