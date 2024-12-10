@@ -650,7 +650,7 @@
                 <module>kotlin-testing</module>
                 <module>kotlin-mockito</module>
                 <!-- <module>kotlin-tornadofx</module> --> <!-- not compatible with Java 9+ -->
-                <!-- <module>kotlin-kover</module> --> <!-- https://github.com/Kotlin/kotlinx-kover/issues/51 -->
+                <module>kotlin-kover</module>
                 <module>ktlint-custom</module>
                 <module>machine-learning</module>
                 <module>spring-boot-crud-kotlin</module>
@@ -751,34 +751,6 @@
                                 </goals>
                                 <configuration>
                                     <workingDirectory>${project.basedir}/kotlin-build-plugins</workingDirectory>
-                                    <executable>./gradlew</executable>
-                                    <arguments>
-                                        <argument>test</argument>
-                                    </arguments>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>build-kotlin-kover</id>
-                                <phase>compile</phase>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                                <configuration>
-                                    <workingDirectory>${project.basedir}/kotlin-kover</workingDirectory>
-                                    <executable>./gradlew</executable>
-                                    <arguments>
-                                        <argument>build</argument>
-                                    </arguments>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>test-kotlin-kover</id>
-                                <phase>test</phase>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                                <configuration>
-                                    <workingDirectory>${project.basedir}/kotlin-kover</workingDirectory>
                                     <executable>./gradlew</executable>
                                     <arguments>
                                         <argument>test</argument>
