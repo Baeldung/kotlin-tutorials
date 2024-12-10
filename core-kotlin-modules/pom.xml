@@ -78,4 +78,11 @@
         <module>core-kotlin-design-patterns-1</module>
     </modules>
 
+    <properties>
+        <rxkotlin.version>3.0.1</rxkotlin.version>
+        <kotlinx-coroutines.version>1.9.0</kotlinx-coroutines.version>
+        <junit.version>4.13.2</junit.version>
+        <kotlinx.serialization.version>1.4.1</kotlinx.serialization.version>
+    </properties>
+
 </project>

@@ -21,12 +21,12 @@
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-core</artifactId>
-            <version>${kotlinx.coroutines.version}</version>
+            <version>${kotlinx-coroutines.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-test</artifactId>
-            <version>${kotlinx.coroutines.version}</version>
+            <version>${kotlinx-coroutines.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -34,7 +34,6 @@
     <properties>
         <project.version>1.0.0-SNAPSHOT</project.version>
         <assertj.version>3.24.2</assertj.version>
-        <kotlinx.coroutines.version>1.7.3</kotlinx.coroutines.version>
     </properties>
 
 </project>
