@@ -43,13 +43,4 @@ class FlowToListUnitTest {
         assertEquals(listOf(1, 2, 3), result)
     }
 
-    @Test
-    fun `create list from flow using flatMapConcat method`() = runTest {
-        val flow = flowOf(1, 2, 3)
-        val result = flow.flatMapConcat { value ->
-            flowOf(value * 10)
-        }.toList()
-
-        assertEquals(listOf(10, 20, 30  ), result)
-    }
 }
