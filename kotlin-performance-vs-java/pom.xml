@@ -73,7 +73,7 @@
     </build>
 
     <properties>
-        <kotlin.version>1.6.10</kotlin.version>
+        <kotlin.version>2.1.0</kotlin.version>
         <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
         <maven-assembly-plugin.version>3.5.0</maven-assembly-plugin.version>
         <jmh.version>1.37</jmh.version>
