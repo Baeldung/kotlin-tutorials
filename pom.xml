@@ -521,7 +521,6 @@
 
                 <module>core-kotlin-companion</module>
                 <module>core-kotlin-modules</module>
-                <module>core-kotlin-modules</module>
                 <module>koin-guide</module>
                 <module>kotlin-kotest</module>
                 <module>kotlin-apache-kafka</module>
