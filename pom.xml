@@ -783,9 +783,9 @@
                 <module>jee-kotlin</module> <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
                 <module>k2-compiler</module> <!-- Contains a lot of examples where code intentionally does not compile, by design: https://jira.baeldung.com/browse/KTLN-863 -->
                 <module>kotlin-tornadofx</module> <!-- not compatible with Java 9+ -->
-                <!-- <module>kotlin-libraries-rdbms</module> --> <!-- not a Maven module -->
-                <!-- <module>kotlin-multiplatform</module> --> <!-- not a Maven module -->
-                <!-- <module>kotlin-multiplatform-mobile</module> --> <!-- not a Maven module -->
+                <module>kotlin-libraries-rdbms</module> <!-- not a Maven module -->
+                <module>kotlin-multiplatform</module> <!-- not a Maven module -->
+                <module>kotlin-multiplatform-mobile</module> <!-- not a Maven module -->
             </modules>
         </profile>
 
@@ -795,9 +795,9 @@
                 <module>jee-kotlin</module> <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
                 <module>k2-compiler</module> <!-- Contains a lot of examples where code intentionally does not compile, by design: https://jira.baeldung.com/browse/KTLN-863 -->
                 <module>kotlin-tornadofx</module> <!-- not compatible with Java 9+ -->
-                <!-- <module>kotlin-libraries-rdbms</module> --> <!-- not a Maven module -->
-                <!-- <module>kotlin-multiplatform</module> --> <!-- not a Maven module -->
-                <!-- <module>kotlin-multiplatform-mobile</module> --> <!-- not a Maven module -->
+                <module>kotlin-libraries-rdbms</module> <!-- not a Maven module -->
+                <module>kotlin-multiplatform</module> <!-- not a Maven module -->
+                <module>kotlin-multiplatform-mobile</module> <!-- not a Maven module -->
             </modules>
         </profile>
     </profiles>
