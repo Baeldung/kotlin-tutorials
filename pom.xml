@@ -516,25 +516,21 @@
             </build>
 
             <modules>
+                <module>parent-boot-2</module>
                 <module>parent-boot-3</module>
 
                 <module>core-kotlin-companion</module>
                 <module>core-kotlin-modules</module>
-                <module>core-kotlin-modules/core-kotlin-advanced-4</module>
-                <!-- <module>gradle-kotlin-dsl</module> --> <!-- not a Maven module -->
-                <!-- <module>jee-kotlin</module> --> <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
-                <!-- <module>k2-compiler</module>--> <!-- Contains a lot of examples where code intentionally does not compile, by design: https://jira.baeldung.com/browse/KTLN-863 -->
+                <module>core-kotlin-modules</module>
                 <module>koin-guide</module>
                 <module>kotlin-kotest</module>
                 <module>kotlin-apache-kafka</module>
                 <module>kotlin-api</module>
-                <!-- <module>kotlin-build-plugins</module> --> <!-- not a Maven module -->
                 <module>kotlin-immutable-collections</module>
                 <module>kotlin-json</module>
                 <module>kotlin-json-2</module>
                 <module>kotlin-dsl</module>
                 <module>kotlin-reactive-dsl</module>
-                <!-- <module>kotlin-ktor</module> --> <!-- not a Maven module -->
                 <module>kotlin-lambda</module>
                 <module>kotlin-libraries</module>
                 <module>kotlin-libraries-2</module>
@@ -542,14 +538,11 @@
                 <module>kotlin-libraries-data</module>
                 <module>kotlin-libraries-http</module>
                 <module>kotlin-libraries-orm</module>
-                <!-- <module>kotlin-libraries-rdbms</module> --> <!-- not a Maven module -->
                 <module>kotlin-libraries-utils</module>
                 <module>kotlin-logging</module>
                 <module>kotlin-math</module>
                 <module>kotlin-math-2</module>
                 <module>kotlin-yaml</module>
-                <!-- <module>kotlin-multiplatform</module> --> <!-- not a Maven module -->
-                <!-- <module>kotlin-multiplatform-mobile</module> --> <!-- not a Maven module -->
                 <module>kotlin-native</module>
                 <module>kotlin-openapi</module>
                 <module>kotlin-design-patterns</module>
@@ -564,7 +557,6 @@
                 <module>kotlin-testing</module>
                 <module>kotlin-mockito</module>
                 <module>kotlin-docker</module>
-                <!-- <module>kotlin-tornadofx</module> --> <!-- not compatible with Java 9+ -->
                 <module>kotlin-kover</module>
                 <module>ktlint-custom</module>
                 <module>machine-learning</module>
@@ -574,8 +566,8 @@
                 <module>spring-boot-test-kotlin</module>
                 <module>spring-mvc-kotlin</module>
                 <module>spring-reactive-kotlin</module>
-                <module>spring-security-kotlin-dsl</module>
                 <module>spring-security-kotlin</module>
+                <module>spring-security-kotlin-dsl</module>
                 <module>quarkus-modules</module>
             </modules>
         </profile>
@@ -603,24 +595,20 @@
             </build>
 
             <modules>
+                <module>parent-boot-2</module>
                 <module>parent-boot-3</module>
 
                 <module>core-kotlin-companion</module>
                 <module>core-kotlin-modules</module>
-                <!-- <module>gradle-kotlin-dsl</module> --> <!-- not a Maven module -->
-                <!-- <module>jee-kotlin</module> --> <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
-                <!-- <module>k2-compiler</module>--> <!-- Contains a lot of examples where code intentionally does not compile, by design: https://jira.baeldung.com/browse/KTLN-863 -->
                 <module>koin-guide</module>
                 <module>kotlin-kotest</module>
                 <module>kotlin-apache-kafka</module>
                 <module>kotlin-api</module>
-                <!-- <module>kotlin-build-plugins</module> --> <!-- not a Maven module -->
                 <module>kotlin-immutable-collections</module>
                 <module>kotlin-json</module>
                 <module>kotlin-json-2</module>
                 <module>kotlin-dsl</module>
                 <module>kotlin-reactive-dsl</module>
-                <!-- <module>kotlin-ktor</module> --> <!-- not a Maven module -->
                 <module>kotlin-lambda</module>
                 <module>kotlin-libraries</module>
                 <module>kotlin-libraries-2</module>
@@ -628,14 +616,11 @@
                 <module>kotlin-libraries-data</module>
                 <module>kotlin-libraries-http</module>
                 <module>kotlin-libraries-orm</module>
-                <!-- <module>kotlin-libraries-rdbms</module> --> <!-- not a Maven module -->
                 <module>kotlin-libraries-utils</module>
                 <module>kotlin-logging</module>
                 <module>kotlin-math</module>
                 <module>kotlin-math-2</module>
                 <module>kotlin-yaml</module>
-                <!-- <module>kotlin-multiplatform</module> --> <!-- not a Maven module -->
-                <!-- <module>kotlin-multiplatform-mobile</module> --> <!-- not a Maven module -->
                 <module>kotlin-native</module>
                 <module>kotlin-openapi</module>
                 <module>kotlin-design-patterns</module>
@@ -649,7 +634,7 @@
                 <module>kotlin-blockchain</module>
                 <module>kotlin-testing</module>
                 <module>kotlin-mockito</module>
-                <!-- <module>kotlin-tornadofx</module> --> <!-- not compatible with Java 9+ -->
+                <module>kotlin-docker</module>
                 <module>kotlin-kover</module>
                 <module>ktlint-custom</module>
                 <module>machine-learning</module>
@@ -659,6 +644,7 @@
                 <module>spring-boot-test-kotlin</module>
                 <module>spring-mvc-kotlin</module>
                 <module>spring-reactive-kotlin</module>
+                <module>spring-security-kotlin</module>
                 <module>spring-security-kotlin-dsl</module>
             </modules>
 
@@ -789,6 +775,31 @@
                     </plugin>
                 </plugins>
             </build>
+        </profile>
+
+        <profile>
+            <id>default-disabled</id>
+            <modules>
+                <module>jee-kotlin</module> <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
+                <module>k2-compiler</module> <!-- Contains a lot of examples where code intentionally does not compile, by design: https://jira.baeldung.com/browse/KTLN-863 -->
+                <module>kotlin-tornadofx</module> <!-- not compatible with Java 9+ -->
+                <!-- <module>kotlin-libraries-rdbms</module> --> <!-- not a Maven module -->
+                <!-- <module>kotlin-multiplatform</module> --> <!-- not a Maven module -->
+                <!-- <module>kotlin-multiplatform-mobile</module> --> <!-- not a Maven module -->
+            </modules>
+        </profile>
+
+        <profile>
+            <id>integration-disabled</id>
+            <modules>
+                <module>jee-kotlin</module> <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
+                <module>k2-compiler</module> <!-- Contains a lot of examples where code intentionally does not compile, by design: https://jira.baeldung.com/browse/KTLN-863 -->
+                <module>kotlin-tornadofx</module> <!-- not compatible with Java 9+ -->
+                <!-- <module>kotlin-libraries-rdbms</module> --> <!-- not a Maven module -->
+                <!-- <module>kotlin-multiplatform</module> --> <!-- not a Maven module -->
+                <!-- <module>kotlin-multiplatform-mobile</module> --> <!-- not a Maven module -->
+                <module>quarkus-modules</module>
+            </modules>
         </profile>
     </profiles>
 
