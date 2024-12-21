@@ -14,7 +14,7 @@ object RedisConnectionManager: AutoCloseable {
         redisClient.shutdown()
     }
 
-    fun redisCommands(): RedisCommands<String, String>? {
+    fun redisSyncCommands(): RedisCommands<String, String>? {
         return connection.sync()
     }
 

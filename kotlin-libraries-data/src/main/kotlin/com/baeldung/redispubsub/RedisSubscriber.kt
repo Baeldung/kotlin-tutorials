@@ -6,5 +6,4 @@ class RedisSubscriber(private val messageListener: MessageListener) {
         RedisConnectionManager.redisPubSubAsyncCommands(messageListener).subscribe(channel)
     }
 
-
 }
