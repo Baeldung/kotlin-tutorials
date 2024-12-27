@@ -173,7 +173,7 @@
         <moshi.version>1.15.1</moshi.version>
         <kotlinx-coroutines.version>1.7.1</kotlinx-coroutines.version>
         <embedded-redis.version>1.4.3</embedded-redis.version>
-        <lettuce-core.version>6.5.0.RELEASE</lettuce-core.version>
+        <lettuce-core.version>6.5.1.RELEASE</lettuce-core.version>
     </properties>
 
 </project>
