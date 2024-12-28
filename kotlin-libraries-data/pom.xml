@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>kotlin-libraries-data</artifactId>
     <name>kotlin-libraries-data</name>
@@ -95,6 +95,16 @@
             <version>${moshi.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github.codemonstur</groupId>
+            <artifactId>embedded-redis</artifactId>
+            <version>${embedded-redis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.lettuce</groupId>
+            <artifactId>lettuce-core</artifactId>
+            <version>${lettuce-core.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -155,12 +165,15 @@
 
     <properties>
         <kotlinx-serialization-json-jvm.version>1.6.0</kotlinx-serialization-json-jvm.version>
-        <kotlinx-datetime-jvm.version>0.4.0</kotlinx-datetime-jvm.version>
+        <kotlinx-datetime-jvm.version>0.6.1</kotlinx-datetime-jvm.version>
         <mapstruct.version>1.5.3.Final</mapstruct.version>
         <jackson-kotlin.version>2.15.4</jackson-kotlin.version>
         <retrofit.version>2.9.0</retrofit.version>
         <wiremock-jre8.version>2.35.1</wiremock-jre8.version>
-        <moshi.version>1.15.0</moshi.version>
+        <moshi.version>1.15.1</moshi.version>
+        <kotlinx-coroutines.version>1.7.1</kotlinx-coroutines.version>
+        <embedded-redis.version>1.4.3</embedded-redis.version>
+        <lettuce-core.version>6.5.0.RELEASE</lettuce-core.version>
     </properties>
 
 </project>

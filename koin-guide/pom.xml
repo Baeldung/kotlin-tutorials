@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>koin-guide</artifactId>
     <name>koin-guide</name>
-    <description>Demo project for Koin</description>
+    <packaging>pom</packaging>
 
     <parent>
         <groupId>com.baeldung</groupId>
@@ -12,51 +13,8 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <dependencies>
-        <dependency>
-            <groupId>io.insert-koin</groupId>
-            <artifactId>koin-core</artifactId>
-            <version>${koin.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.insert-koin</groupId>
-            <artifactId>koin-ktor</artifactId>
-            <version>${koin.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.ktor</groupId>
-            <artifactId>ktor-server-core</artifactId>
-            <version>${ktor.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.ktor</groupId>
-            <artifactId>ktor-server-netty</artifactId>
-            <version>${ktor.version}</version>
-        </dependency>
-
-        <!-- Test -->
-        <dependency>
-            <groupId>io.insert-koin</groupId>
-            <artifactId>koin-test</artifactId>
-            <version>${koin.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.insert-koin</groupId>
-            <artifactId>koin-test-junit5</artifactId>
-            <version>${koin.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.mockk</groupId>
-            <artifactId>mockk</artifactId>
-            <version>${mockk.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
-    <properties>
-        <koin.version>3.2.0-beta-1</koin.version>
-        <ktor.version>1.6.8</ktor.version>
-        <mockk.version>1.12.3</mockk.version>
-    </properties>
+    <modules>
+        <module>koin-plain</module>
+    </modules>
 
 </project>

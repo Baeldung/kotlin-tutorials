@@ -1,12 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.baeldung</groupId>
     <artifactId>kotlin-openapi</artifactId>
     <name>kotlin-openapi</name>
     <version>0.0.1-SNAPSHOT</version>
 
+    <parent>
+        <groupId>com.baeldung</groupId>
+        <artifactId>parent-boot-2</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../parent-boot-2</relativePath>
+    </parent>
 
     <dependencies>
         <dependency>
@@ -14,11 +19,11 @@
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.module</groupId>
-            <artifactId>jackson-module-kotlin</artifactId>
-            <version>${jackson-module-kotlin.version}</version>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>com.fasterxml.jackson.module</groupId>-->
+        <!--            <artifactId>jackson-module-kotlin</artifactId>-->
+        <!--            <version>${jackson-module-kotlin.version}</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-reflect</artifactId>
@@ -28,11 +33,6 @@
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib</artifactId>
             <version>${kotlin.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>${validation-api.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>
@@ -48,24 +48,6 @@
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-kotlin</artifactId>
             <version>${spring-doc.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.squareup.moshi</groupId>
-            <artifactId>moshi-kotlin</artifactId>
-            <version>${moshi.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.squareup.moshi</groupId>
-            <artifactId>moshi-adapters</artifactId>
-            <version>${moshi.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>${okhttp.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -151,13 +133,8 @@
 
     <properties>
         <kotlin.version>1.9.24</kotlin.version>
-        <spring-boot.version>2.7.18</spring-boot.version>
         <openapi-generator-maven-plugin.version>7.6.0</openapi-generator-maven-plugin.version>
         <spring-doc.version>1.8.0</spring-doc.version>
-        <jackson-module-kotlin.version>2.17.1</jackson-module-kotlin.version>
-        <okhttp.version>4.9.3</okhttp.version>
-        <moshi.version>1.13.0</moshi.version>
-        <validation-api.version>2.0.1.Final</validation-api.version>
     </properties>
 
 </project>

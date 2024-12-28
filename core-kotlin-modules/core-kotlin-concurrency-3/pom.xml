@@ -1,5 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>core-kotlin-concurrency-3</artifactId>
     <name>core-kotlin-concurrency-3</name>
@@ -17,26 +18,20 @@
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
         </dependency>
-
         <dependency>
             <groupId>io.reactivex.rxjava3</groupId>
             <artifactId>rxkotlin</artifactId>
             <version>${rxkotlin.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-rx3</artifactId>
-            <version>${rxcoroutines.version}</version>
+            <version>${kotlinx-coroutines.version}</version>
         </dependency>
-
     </dependencies>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <rxkotlin.version>3.0.1</rxkotlin.version>
-        <rxcoroutines.version>1.8.1</rxcoroutines.version>
-        <junit.version>4.13.2</junit.version>
     </properties>
-    
+
 </project>

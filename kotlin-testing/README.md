@@ -9,3 +9,4 @@ This module contains articles about testing in Kotlin
 - [A Guide to Atrium: Assertion Library for Kotlin](https://www.baeldung.com/kotlin/atrium-assertion-library)
 - [Managing Test Resources in Kotlin](https://www.baeldung.com/kotlin/test-resources)
 - [A Guide to Property-Based Testing in Kotlin](https://www.baeldung.com/kotlin/property-based-testing)
+- [Introduction to Kluent Assertion Library](https://www.baeldung.com/kotlin/kluent)

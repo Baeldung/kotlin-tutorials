@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class HealthTrackerApplication
 
 fun main(args: Array<String>) {
-	runApplication<HealthTrackerApplication>(*args)
+    runApplication<HealthTrackerApplication>(*args)
 }

@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>kotlin-spring-executable</artifactId>
     <name>kotlin-spring-executable</name>
@@ -30,7 +30,7 @@
         <dependency>
             <groupId>io.projectreactor.kotlin</groupId>
             <artifactId>reactor-kotlin-extensions</artifactId>
-            <version>1.1.5</version>
+            <version>1.2.3</version>
         </dependency>
         <!-- Kotlin Reflect -->
         <dependency>
@@ -48,7 +48,7 @@
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-reactor</artifactId>
-            <version>1.8.1</version>
+            <version>1.9.0</version>
         </dependency>
         <!-- Spring Boot Starter Test -->
         <dependency>
@@ -136,9 +136,7 @@
     </build>
 
     <properties>
-        <spring-boot.version>2.6.6</spring-boot.version>
-        <kotlin.version>1.8.0</kotlin.version>
-        <java.version>11</java.version>
+        <kotlin.version>1.8.22</kotlin.version> <!-- Updating to latest Kotlin version breaks test -->
     </properties>
 
 </project>

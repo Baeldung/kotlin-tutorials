@@ -1,0 +1,2 @@
+rootProject.name = "koin-annotations"
+

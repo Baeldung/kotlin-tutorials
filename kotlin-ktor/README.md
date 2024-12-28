@@ -8,3 +8,4 @@ This module contains articles about Kotlin Libraries.
 - [Kotlin with Ktor](https://www.baeldung.com/kotlin/ktor)
 - [A Look at the Ktor Client](https://www.baeldung.com/kotlin/ktor-client)
 - [Testing Ktor Controllers](https://www.baeldung.com/kotlin/ktor-test-controllers)
+- [Generating API Documentation from Swagger on Ktor](https://www.baeldung.com/kotlin/ktor-swagger-generate-api-docs)

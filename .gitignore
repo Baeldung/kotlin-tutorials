@@ -94,3 +94,4 @@ apache-fop/src/test/resources/output_jtidy.pdf
 
 !ktlint-custom-1.0.0-SNAPSHOT.jar
 !**/gradle-wrapper.jar
+/kotlin-testing/.jqwik-database
