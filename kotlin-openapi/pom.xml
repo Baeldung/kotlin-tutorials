@@ -132,7 +132,7 @@
     </build>
 
     <properties>
-        <kotlin.version>1.9.24</kotlin.version>
+        <kotlin.version>2.1.0</kotlin.version>
         <openapi-generator-maven-plugin.version>7.6.0</openapi-generator-maven-plugin.version>
         <spring-doc.version>1.8.0</spring-doc.version>
     </properties>
