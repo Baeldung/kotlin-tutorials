@@ -21,6 +21,9 @@ fun doubleTheValue(obj: Any): Any =
         else -> "Unsupported Type Found"
     }
 
+inline fun <reified T> Any.isType() = this is T
+inline fun <reified T> Any.isTypedList() = this is List<*> && all { it is T }
+
 class TypeCheckAndSmartCastsUnitTest {
     @Test
     fun `given type check functions when pass an object should get expected result`() {
@@ -32,6 +35,33 @@ class TypeCheckAndSmartCastsUnitTest {
 
         assertThat(isNotString(aString)).isFalse
         assertThat(isNotString(aLong)).isTrue
+    }
+
+    @Test
+    fun `given an object when check type without generic type parameter should get expected exception`() {
+        val aStringList: Any = listOf("string1", "string2", "string3")
+//         assertThat(aStringList is List<String>).isTrue() // doesn't compile!!
+        assertThat(aStringList is List<*>).isTrue
+    }
+
+    @Test
+    fun `given generic type check functions when check type with isType() should get expected incorrect result`() {
+        val aStringList: Any = listOf("string1", "string2", "string3")
+        assertThat(aStringList.isType<List<String>>()).isTrue
+
+        val anIntList: Any = listOf(1, 2, 3)
+        assertThat(anIntList.isType<List<String>>()).isTrue //expect: false
+    }
+
+    @Test
+    fun `given generic type check functions when check type with type parameters should get expected result`() {
+        val aStringList: Any = listOf("string1", "string2", "string3")
+        assertThat(aStringList.isTypedList<String>()).isTrue
+
+
+        val anIntList: Any = listOf(1, 2, 3)
+        assertThat(anIntList.isTypedList<String>()).isFalse
+        assertThat(anIntList.isTypedList<Int>()).isTrue
     }
 
     @Test
