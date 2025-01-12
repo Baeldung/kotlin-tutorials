@@ -39,6 +39,20 @@ class MonoUnitTest {
       .verifyComplete() 
   }
 
+  @Test fun `should detect empty Mono using hasElement`() { 
+    val emptyMono = Mono.empty<String>() 
+    StepVerifier.create(emptyMono.hasElement()) 
+      .expectNext(false) 
+      .verifyComplete() 
+  }
+
+  @Test fun `should detect non-empty Mono using hasElement`() { 
+    val nonEmptyMono = Mono.just("Hello, World!")
+    StepVerifier.create(nonEmptyMono.hasElement())
+      .expectNext(true)
+      .verifyComplete() 
+  }
+
   @Test 
   fun `should provide fallback value for empty Mono`() { 
     val emptyMono = Mono.empty<String>() 
