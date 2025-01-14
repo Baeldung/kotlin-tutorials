@@ -18,4 +18,3 @@ internal class DataTransformer(scope: CoroutineScope) {
         _dataFlow.emit(value)
     }
 }
-
