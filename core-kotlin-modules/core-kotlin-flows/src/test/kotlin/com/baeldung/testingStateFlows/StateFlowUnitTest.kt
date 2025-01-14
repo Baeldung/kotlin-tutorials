@@ -12,14 +12,14 @@ class StateFlowUnitTest {
     private lateinit var stateFlowExample: StateFlowExample
 
     @Test
-    fun `test initial state`() = runTest {
+    fun `initial state is correct`() = runTest {
         stateFlowExample = StateFlowExample()
         assertEquals("Initial State", stateFlowExample.getCurrentState())
     }
 
 
     @Test
-    fun `test state update`() = runTest {
+    fun `state updates properly`() = runTest {
         stateFlowExample = StateFlowExample()
 
         stateFlowExample.updateState("New State")
@@ -29,7 +29,7 @@ class StateFlowUnitTest {
 
 
     @Test
-    fun `test collecting state updates`() = runTest {
+    fun `collects all state updates`() = runTest {
         stateFlowExample = StateFlowExample()
         val collectedStates = mutableListOf<String>()
 
@@ -63,7 +63,7 @@ class StateFlowUnitTest {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun `test stateIn transformation`() = runTest {
+    fun `transforms to uppercase states`() = runTest {
         val testScope = TestScope(UnconfinedTestDispatcher())
         val transformer = DataTransformer(testScope)
         val collectedStates = mutableListOf<String>()
