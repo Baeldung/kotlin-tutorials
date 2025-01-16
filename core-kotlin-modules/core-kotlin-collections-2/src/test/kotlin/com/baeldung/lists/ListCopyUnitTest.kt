@@ -1,7 +1,6 @@
 package com.baeldung.lists
 
 import org.assertj.core.api.Assertions.assertThat
-import org.jetbrains.annotations.TestOnly
 import org.junit.jupiter.api.Test
 
 class ListCopyUnitTest {
