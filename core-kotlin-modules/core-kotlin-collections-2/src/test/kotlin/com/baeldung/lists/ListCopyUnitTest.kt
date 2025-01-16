@@ -26,6 +26,11 @@ class ListCopyUnitTest {
         val personsCopy = persons.map { it.copy() }
 
         assertThat(personsCopy).isNotSameAs(persons)
+        assertThat(persons[0].age).isEqualTo(personsCopy[0].age)
+
+        personsCopy[0].age = 22
+
+        assertThat(persons[0].age).isNotEqualTo(personsCopy[0].age)
     }
 
     @Test
@@ -42,13 +47,13 @@ class ListCopyUnitTest {
         val address2 = Address("Sesame Street", 2, "CartoonLand")
         val persons = listOf(Person("Bob", 20, address1), Person("Alice", 21, address2))
 
-        val personCopies = persons.map { it.clone() }
+        val personsCopy = persons.map { it.clone() }
 
-        assertThat(personCopies).isNotSameAs(persons)
-        assertThat(persons[0].address).isEqualTo(personCopies[0].address)
+        assertThat(personsCopy).isNotSameAs(persons)
+        assertThat(personsCopy[0].address).isEqualTo(persons[0].address)
 
-        personCopies[0].address.streetNumber = 10
+        personsCopy[0].address.streetNumber = 10
 
-        assertThat(persons[0].address).isNotEqualTo(personCopies[0].address)
+        assertThat(personsCopy[0].address).isNotEqualTo(persons[0].address)
     }
 }
