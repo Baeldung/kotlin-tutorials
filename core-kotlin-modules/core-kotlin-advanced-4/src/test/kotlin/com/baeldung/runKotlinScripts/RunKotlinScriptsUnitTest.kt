@@ -17,7 +17,7 @@ class RunKotlinScriptsUnitTest {
     """.trimIndent())
 
         val output = runKotlinScriptWithEngine(scriptFile.absolutePath).trim()
-
+        println("JUST TEST")
         assertEquals("Hello from ScriptEngine!", output)
     }
 
