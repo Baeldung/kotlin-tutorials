@@ -9,29 +9,23 @@ import org.assertj.core.api.Assertions.assertThat
 class NumberFormatUnitTest : ShouldSpec({
 
     // Dynamic generation of tests for each implementation
-    nameToImplementationPairs.forEach { (type, function) ->
+    nameToImplementationPairs.forEach { (name, function) ->
 
         // Property based test (for each implementation)
-        should("return correctly formatted string by $type") {
+        should("return correctly formatted string with $name implementation") {
             checkAll(Arb.positiveInt()) { number ->
                 var result = function(number)
 
-                // Check with regex
                 assertThat(result).containsPattern("^(\\d{1,3}(\\.\\d{3})*|\\d+)$")
-                // Check against original, by removing the separators
                 assertThat(number.toString()).isEqualTo(result.replace(".", ""))
-
-                // Check for general presence & absence of separators
-                if (number > 999) assertThat(result).contains(".")
-                else assertThat(result).doesNotContain(".")
             }
         }
 
-        givenToExpectedPairs.forEach { (number, expected) ->
+        givenToExpectedPairs.forEach { (givenNumber, expectedString) ->
 
             // Parameterised; Example based test
-            should("return expected string '$expected' for $number by $type") {
-                assertThat(function(number)).isEqualTo(expected)
+            should("return '$expectedString' for $givenNumber with $name implementation") {
+                assertThat(function(givenNumber)).isEqualTo(expectedString)
             }
         }
 

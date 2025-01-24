@@ -11,9 +11,6 @@ interface NumberFormat {
 
     /**
      * Returns provided number as string with thousands separator.
-     *
-     * 1000 -> '1.000'
-     * 750000 -> '750.000'
      */
     fun formatted(number: Int): String
 }
