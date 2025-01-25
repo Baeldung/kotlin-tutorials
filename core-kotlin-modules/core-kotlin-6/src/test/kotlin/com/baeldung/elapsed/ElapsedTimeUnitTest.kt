@@ -10,7 +10,6 @@ import kotlin.time.ExperimentalTime
 import kotlin.time.TimedValue
 import kotlin.time.measureTime
 import kotlin.time.measureTimedValue
-import kotlin.time.milliseconds
 import kotlin.time.toDuration
 
 class ElapsedTimeUnitTest {

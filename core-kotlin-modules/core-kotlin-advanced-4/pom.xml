@@ -26,6 +26,21 @@
             <version>${kotlinx-coroutines.version}</version>
             <scope>test</scope>
         </dependency>
+        
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-core</artifactId>
+            <version>${reactor-core.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-test</artifactId>
+            <scope>test</scope>
+            <version>${reactor-core.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-scripting-jsr223</artifactId>
@@ -55,6 +70,8 @@
 
     <properties>
         <kotlin-scripting.version>1.8.0</kotlin-scripting.version>
+        <kotlin.version>2.0.21</kotlin.version>
+        <reactor-core.version>3.6.10</reactor-core.version>
     </properties>
 
 </project>

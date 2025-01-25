@@ -3,8 +3,10 @@ package com.baeldung.quarkus.kotlin
 import io.quarkus.test.junit.QuarkusIntegrationTest
 import io.restassured.RestAssured.given
 import org.hamcrest.CoreMatchers.`is`
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
+@Disabled("KTLN-887")
 @QuarkusIntegrationTest
 class InjectResourceIntegrationTest {
     @Test

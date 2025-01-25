@@ -4,7 +4,6 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.baeldung</groupId>
     <artifactId>core-kotlin-modules</artifactId>
     <packaging>pom</packaging>
 
@@ -26,10 +25,11 @@
         <module>core-kotlin-9</module>
         <module>core-kotlin-10</module>
         <module>core-kotlin-11</module>
+        <module>core-kotlin-12</module>
         <module>core-kotlin-advanced</module>
         <module>core-kotlin-advanced-2</module>
         <module>core-kotlin-advanced-3</module>
-        <!--<module>core-kotlin-advanced-4</module>--><!--Not installing kotlinc for now JAVA-42077-->
+        <module>core-kotlin-advanced-4</module>
         <module>core-kotlin-annotations</module>
         <module>core-kotlin-arrays</module>
         <module>core-kotlin-arrays-2</module>

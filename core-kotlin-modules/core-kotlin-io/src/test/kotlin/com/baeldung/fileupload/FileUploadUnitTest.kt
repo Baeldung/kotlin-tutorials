@@ -8,6 +8,7 @@ import com.github.tomakehurst.wiremock.client.WireMock.matching
 import com.github.tomakehurst.wiremock.client.WireMock.post
 import com.github.tomakehurst.wiremock.client.WireMock.postRequestedFor
 import com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo
+import com.github.tomakehurst.wiremock.core.WireMockConfiguration
 import com.github.tomakehurst.wiremock.junit.WireMockRule
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
@@ -18,16 +19,12 @@ import io.ktor.client.statement.readText
 import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
 import kotlinx.coroutines.runBlocking
-import okhttp3.Call
-import okhttp3.Callback
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.Response
 import okhttp3.ResponseBody
-import okhttp3.internal.wait
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.Rule
@@ -38,7 +35,6 @@ import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
 import java.io.File
-import java.io.IOException
 
 fun uploadFileFuel(filePath: String, uploadUrl: String) {
     val file = File(filePath)
@@ -112,7 +108,7 @@ fun uploadFileRetrofit(filePath: String, uploadUrl: String) {
 class FileUploadUnitTest {
     @Rule
     @JvmField
-    val wireMockRule = WireMockRule(8080)
+    val wireMockRule = WireMockRule(WireMockConfiguration.wireMockConfig().dynamicPort())
 
     @BeforeEach
     fun startWireMock() {
