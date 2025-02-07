@@ -52,7 +52,7 @@ class FlowCatchOperatorUnitTest {
         }
         flow.retry(3) { it is RuntimeException }
             .catch {
-
+                emit(-1)
             }
             .collect { emittedValues.add(it) }
 
