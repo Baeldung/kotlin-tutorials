@@ -21,5 +21,3 @@ class Game {
         }
     }
 }
-
-//class Game { private val logger = logger() fun startGame() { logger.info { "Game is starting..." } } }
