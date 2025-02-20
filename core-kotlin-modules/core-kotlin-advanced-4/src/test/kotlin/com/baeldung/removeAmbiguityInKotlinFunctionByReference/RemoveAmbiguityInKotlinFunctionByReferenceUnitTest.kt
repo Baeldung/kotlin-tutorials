@@ -3,6 +3,10 @@ package com.baeldung.removeAmbiguityInKotlinFunctionByReference
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
+typealias StringComputer = (String) -> String
+
+typealias IntComputer = (Int) -> Int
+
 class RemoveAmbiguityInKotlinFunctionByReferenceUnitTest {
     class Calculator(val base: Int) {
         fun compute(value: Int): Int = base + value
@@ -53,5 +57,34 @@ class RemoveAmbiguityInKotlinFunctionByReferenceUnitTest {
     fun testComputeStringWithLambda() {
         val computeString: (String) -> String = { value -> calculator.compute(value) }
         assertEquals("105", computeString("5"))
+    }
+
+
+    @Test
+    fun testComputeIntWithTypeAlias() {
+        val computeInt: IntComputer = calculator::compute
+        assertEquals(15, computeInt(5))
+    }
+
+    @Test
+    fun testComputeStringWithTypeAlias() {
+        val computeString: StringComputer = calculator::compute
+        assertEquals("105", computeString("5"))
+    }
+
+    fun <T> compute(value: T, computer: (T) -> Any): Any {
+        return computer(value)
+    }
+
+    @Test
+    fun testComputeIntWithHigherOrderFunction() {
+        val result = compute(5, calculator::compute)
+        assertEquals(15, result)
+    }
+
+    @Test
+    fun testComputeStringWithHigherOrderFunction() {
+        val result = compute("5", calculator::compute)
+        assertEquals("105", result)
     }
 }
