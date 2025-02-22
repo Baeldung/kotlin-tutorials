@@ -4,7 +4,6 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.baeldung</groupId>
     <artifactId>core-kotlin-modules</artifactId>
     <packaging>pom</packaging>
 
@@ -26,6 +25,7 @@
         <module>core-kotlin-9</module>
         <module>core-kotlin-10</module>
         <module>core-kotlin-11</module>
+        <module>core-kotlin-12</module>
         <module>core-kotlin-advanced</module>
         <module>core-kotlin-advanced-2</module>
         <module>core-kotlin-advanced-3</module>
@@ -77,5 +77,12 @@
         <module>core-kotlin-concurrency-4</module>
         <module>core-kotlin-design-patterns-1</module>
     </modules>
+
+    <properties>
+        <rxkotlin.version>3.0.1</rxkotlin.version>
+        <kotlinx-coroutines.version>1.9.0</kotlinx-coroutines.version>
+        <junit.version>4.13.2</junit.version>
+        <kotlinx.serialization.version>1.4.1</kotlinx.serialization.version>
+    </properties>
 
 </project>

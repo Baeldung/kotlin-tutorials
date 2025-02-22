@@ -1,10 +1,11 @@
 package com.baeldung.runKotlinScripts
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.io.File
 
-// requires `kotlinc` to be installed on the machine.
+@Disabled("Requires `kotlinc` to be installed on the machine. JAVA-42077")
 class RunKotlinScriptsIntegrationTest {
     @Test
     fun `run Kotlin script with ProcessBuilder`() {

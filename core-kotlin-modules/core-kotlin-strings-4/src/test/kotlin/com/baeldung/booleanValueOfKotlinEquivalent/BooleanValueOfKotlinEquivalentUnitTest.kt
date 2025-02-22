@@ -75,7 +75,7 @@ fun convertStringToBooleanUsingRegex(input: String): Boolean {
 }
 
 fun String.toBooleanValue(): Boolean =
-    when (this.toLowerCase()) {
+    when (this.lowercase()) {
         "true" -> true
         else -> false
     }

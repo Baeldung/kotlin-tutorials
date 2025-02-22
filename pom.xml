@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.baeldung</groupId>
     <artifactId>kotlin-modules</artifactId>
@@ -134,8 +133,10 @@
                         <phase>compile</phase>
                         <configuration>
                             <target name="ktlint">
-                                <java taskname="ktlint" dir="${basedir}" fork="true" failonerror="true"
-                                      classpathref="maven.plugin.classpath" classname="com.pinterest.ktlint.Main">
+                                <java taskname="ktlint" dir="${basedir}" fork="true"
+                                    failonerror="true"
+                                    classpathref="maven.plugin.classpath"
+                                    classname="com.pinterest.ktlint.Main">
                                     <arg value="**/*.kt"/>
                                 </java>
                             </target>
@@ -148,8 +149,10 @@
                         <id>ktlint-format</id>
                         <configuration>
                             <target name="ktlint">
-                                <java taskname="ktlint" dir="${basedir}" fork="true" failonerror="false"
-                                      classpathref="maven.plugin.classpath" classname="com.pinterest.ktlint.Main">
+                                <java taskname="ktlint" dir="${basedir}" fork="true"
+                                    failonerror="false"
+                                    classpathref="maven.plugin.classpath"
+                                    classname="com.pinterest.ktlint.Main">
                                     <arg value="-F"/>
                                     <arg value="**/*.kt"/>
                                 </java>
@@ -334,6 +337,34 @@
                 <version>${exec-maven-plugin.version}</version>
                 <executions>
                     <execution>
+                        <id>build-kotlin-gradle-libraries</id>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.basedir}/kotlin-gradle-libraries</workingDirectory>
+                            <executable>./gradlew</executable>
+                            <arguments>
+                                <argument>build</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test-kotlin-gradle-libraries</id>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.basedir}/kotlin-gradle-libraries</workingDirectory>
+                            <executable>./gradlew</executable>
+                            <arguments>
+                                <argument>test</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>build-gradle-kotlin-dsl</id>
                         <phase>none</phase>
                         <goals>
@@ -485,24 +516,20 @@
             </build>
 
             <modules>
+                <module>parent-boot-2</module>
                 <module>parent-boot-3</module>
 
                 <module>core-kotlin-companion</module>
                 <module>core-kotlin-modules</module>
-                <!-- <module>gradle-kotlin-dsl</module> --> <!-- not a Maven module -->
-                <!-- <module>jee-kotlin</module> --> <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
-                <!-- <module>k2-compiler</module>--> <!-- Contains a lot of examples where code intentionally does not compile, by design: https://jira.baeldung.com/browse/KTLN-863 -->
                 <module>koin-guide</module>
                 <module>kotlin-kotest</module>
                 <module>kotlin-apache-kafka</module>
                 <module>kotlin-api</module>
-                <!-- <module>kotlin-build-plugins</module> --> <!-- not a Maven module -->
                 <module>kotlin-immutable-collections</module>
                 <module>kotlin-json</module>
                 <module>kotlin-json-2</module>
                 <module>kotlin-dsl</module>
                 <module>kotlin-reactive-dsl</module>
-                <!-- <module>kotlin-ktor</module> --> <!-- not a Maven module -->
                 <module>kotlin-lambda</module>
                 <module>kotlin-libraries</module>
                 <module>kotlin-libraries-2</module>
@@ -510,17 +537,14 @@
                 <module>kotlin-libraries-data</module>
                 <module>kotlin-libraries-http</module>
                 <module>kotlin-libraries-orm</module>
-                <!-- <module>kotlin-libraries-rdbms</module> --> <!-- not a Maven module -->
                 <module>kotlin-libraries-utils</module>
                 <module>kotlin-logging</module>
                 <module>kotlin-math</module>
                 <module>kotlin-math-2</module>
                 <module>kotlin-yaml</module>
-                <!-- <module>kotlin-multiplatform</module> --> <!-- not a Maven module -->
-                <!-- <module>kotlin-multiplatform-mobile</module> --> <!-- not a Maven module -->
                 <module>kotlin-native</module>
                 <module>kotlin-openapi</module>
-                <module>kotlin-patterns</module>
+                <module>kotlin-design-patterns</module>
                 <module>kotlin-performance-vs-java</module>
                 <module>kotlin-algorithms</module>
                 <module>kotlin-quasar</module>
@@ -532,7 +556,6 @@
                 <module>kotlin-testing</module>
                 <module>kotlin-mockito</module>
                 <module>kotlin-docker</module>
-                <!-- <module>kotlin-tornadofx</module> --> <!-- not compatible with Java 9+ -->
                 <module>kotlin-kover</module>
                 <module>ktlint-custom</module>
                 <module>machine-learning</module>
@@ -542,8 +565,8 @@
                 <module>spring-boot-test-kotlin</module>
                 <module>spring-mvc-kotlin</module>
                 <module>spring-reactive-kotlin</module>
-                <module>spring-security-kotlin-dsl</module>
                 <module>spring-security-kotlin</module>
+                <module>spring-security-kotlin-dsl</module>
                 <module>quarkus-modules</module>
             </modules>
         </profile>
@@ -571,24 +594,20 @@
             </build>
 
             <modules>
+                <module>parent-boot-2</module>
                 <module>parent-boot-3</module>
 
                 <module>core-kotlin-companion</module>
                 <module>core-kotlin-modules</module>
-                <!-- <module>gradle-kotlin-dsl</module> --> <!-- not a Maven module -->
-                <!-- <module>jee-kotlin</module> --> <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
-                <!-- <module>k2-compiler</module>--> <!-- Contains a lot of examples where code intentionally does not compile, by design: https://jira.baeldung.com/browse/KTLN-863 -->
                 <module>koin-guide</module>
                 <module>kotlin-kotest</module>
                 <module>kotlin-apache-kafka</module>
                 <module>kotlin-api</module>
-                <!-- <module>kotlin-build-plugins</module> --> <!-- not a Maven module -->
                 <module>kotlin-immutable-collections</module>
                 <module>kotlin-json</module>
                 <module>kotlin-json-2</module>
                 <module>kotlin-dsl</module>
                 <module>kotlin-reactive-dsl</module>
-                <!-- <module>kotlin-ktor</module> --> <!-- not a Maven module -->
                 <module>kotlin-lambda</module>
                 <module>kotlin-libraries</module>
                 <module>kotlin-libraries-2</module>
@@ -596,17 +615,14 @@
                 <module>kotlin-libraries-data</module>
                 <module>kotlin-libraries-http</module>
                 <module>kotlin-libraries-orm</module>
-                <!-- <module>kotlin-libraries-rdbms</module> --> <!-- not a Maven module -->
                 <module>kotlin-libraries-utils</module>
                 <module>kotlin-logging</module>
                 <module>kotlin-math</module>
                 <module>kotlin-math-2</module>
                 <module>kotlin-yaml</module>
-                <!-- <module>kotlin-multiplatform</module> --> <!-- not a Maven module -->
-                <!-- <module>kotlin-multiplatform-mobile</module> --> <!-- not a Maven module -->
                 <module>kotlin-native</module>
                 <module>kotlin-openapi</module>
-                <module>kotlin-patterns</module>
+                <module>kotlin-design-patterns</module>
                 <module>kotlin-performance-vs-java</module>
                 <module>kotlin-algorithms</module>
                 <module>kotlin-quasar</module>
@@ -617,8 +633,8 @@
                 <module>kotlin-blockchain</module>
                 <module>kotlin-testing</module>
                 <module>kotlin-mockito</module>
-                <!-- <module>kotlin-tornadofx</module> --> <!-- not compatible with Java 9+ -->
-                <!-- <module>kotlin-kover</module> --> <!-- https://github.com/Kotlin/kotlinx-kover/issues/51 -->
+                <module>kotlin-docker</module>
+                <module>kotlin-kover</module>
                 <module>ktlint-custom</module>
                 <module>machine-learning</module>
                 <module>spring-boot-crud-kotlin</module>
@@ -627,7 +643,9 @@
                 <module>spring-boot-test-kotlin</module>
                 <module>spring-mvc-kotlin</module>
                 <module>spring-reactive-kotlin</module>
+                <module>spring-security-kotlin</module>
                 <module>spring-security-kotlin-dsl</module>
+                <module>quarkus-modules</module>
             </modules>
 
         </profile>
@@ -726,34 +744,6 @@
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>build-kotlin-kover</id>
-                                <phase>compile</phase>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                                <configuration>
-                                    <workingDirectory>${project.basedir}/kotlin-kover</workingDirectory>
-                                    <executable>./gradlew</executable>
-                                    <arguments>
-                                        <argument>build</argument>
-                                    </arguments>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>test-kotlin-kover</id>
-                                <phase>test</phase>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                                <configuration>
-                                    <workingDirectory>${project.basedir}/kotlin-kover</workingDirectory>
-                                    <executable>./gradlew</executable>
-                                    <arguments>
-                                        <argument>test</argument>
-                                    </arguments>
-                                </configuration>
-                            </execution>
-                            <execution>
                                 <id>build-kotlin-ktor</id>
                                 <phase>compile</phase>
                                 <goals>
@@ -786,10 +776,34 @@
                 </plugins>
             </build>
         </profile>
+
+        <profile>
+            <id>default-disabled</id>
+            <modules>
+                <module>jee-kotlin</module> <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
+                <module>k2-compiler</module> <!-- Contains a lot of examples where code intentionally does not compile, by design: https://jira.baeldung.com/browse/KTLN-863 -->
+                <module>kotlin-tornadofx</module> <!-- not compatible with Java 9+ -->
+                <module>kotlin-libraries-rdbms</module> <!-- not a Maven module -->
+                <module>kotlin-multiplatform</module> <!-- not a Maven module -->
+                <module>kotlin-multiplatform-mobile</module> <!-- not a Maven module -->
+            </modules>
+        </profile>
+
+        <profile>
+            <id>integration-disabled</id>
+            <modules>
+                <module>jee-kotlin</module> <!-- Can't upgrade this project. Arquillian not maintained anymore.-->
+                <module>k2-compiler</module> <!-- Contains a lot of examples where code intentionally does not compile, by design: https://jira.baeldung.com/browse/KTLN-863 -->
+                <module>kotlin-tornadofx</module> <!-- not compatible with Java 9+ -->
+                <module>kotlin-libraries-rdbms</module> <!-- not a Maven module -->
+                <module>kotlin-multiplatform</module> <!-- not a Maven module -->
+                <module>kotlin-multiplatform-mobile</module> <!-- not a Maven module -->
+            </modules>
+        </profile>
     </profiles>
 
     <properties>
-        <kotlin.version>2.0.21</kotlin.version>
+        <kotlin.version>2.1.0</kotlin.version>
         <kotlinx.version>1.7.1</kotlinx.version>
         <ktlint-cli.version>1.0.1</ktlint-cli.version>
 
@@ -804,7 +818,7 @@
 
         <!-- logging -->
         <org.slf4j.version>1.7.30</org.slf4j.version>
-        <logback.version>1.2.13</logback.version>
+        <logback.version>1.5.15</logback.version>
         <log4j.version>1.2.17</log4j.version>
 
         <!-- utilities -->
@@ -829,7 +843,6 @@
         <gib.enabled>false</gib.enabled>
 
         <java.version>11</java.version>
-
         <serialization.version>1.4.1</serialization.version>
         <jackson.version>2.17.2</jackson.version>
         <gson.version>2.10.1</gson.version>
