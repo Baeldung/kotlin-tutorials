@@ -14,15 +14,11 @@ class RemoveAmbiguityInKotlinFunctionByReferenceUnitTest {
         fun compute(value: String): String = "$base$value"
     }
 
+    fun Calculator.computeInt(value: Int): Int = compute(value)
+
+    fun Calculator.computeString(value: String): String = compute(value)
+
     private val calculator = Calculator(10)
-
-    class Converter(val base: Int)
-
-    fun Converter.compute(value: Int): Int = base + value
-    fun Converter.compute(value: String): String = "$base$value"
-
-    private val converter = Converter(10)
-
 
     @Test
     fun `Should compute with int function`() {
@@ -50,13 +46,13 @@ class RemoveAmbiguityInKotlinFunctionByReferenceUnitTest {
 
     @Test
     fun `should compute int with extension function`() {
-        val computeInt = converter.compute(5)
+        val computeInt = calculator.computeInt(5)
         assertEquals(15, computeInt)
     }
 
     @Test
     fun `should compute string with extension function`() {
-        val computeString = converter.compute("5")
+        val computeString = calculator.computeString("5")
         assertEquals("105", computeString)
     }
 
