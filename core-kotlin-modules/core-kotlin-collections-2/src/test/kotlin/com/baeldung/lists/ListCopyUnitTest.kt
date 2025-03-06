@@ -52,8 +52,8 @@ class ListCopyUnitTest {
 
         assertThat(personsCopy).isNotSameAs(persons)
         assertThat(personsCopy[0]).isNotSameAs(persons[0])
-        assertThat(personsCopy[0].address).isEqualTo(persons[0].address)
         assertThat(personsCopy[0].address).isNotSameAs(persons[0].address)
+        assertThat(personsCopy[0].address).isEqualTo(persons[0].address)
 
         personsCopy[0].address.streetNumber = 10
 
