@@ -46,14 +46,14 @@ class RemoveAmbiguityInKotlinFunctionByReferenceUnitTest {
 
     @Test
     fun `should compute int with extension function`() {
-        val computeInt = calculator::computeInt
-        assertEquals(15, computeInt(5))
+        val computeInt = calculator.computeInt(5)
+        assertEquals(15, computeInt)
     }
 
     @Test
     fun `should compute string with extension function`() {
-        val computeString = calculator::computeString
-        assertEquals("105", computeString("5"))
+        val computeString = calculator.computeString("5")
+        assertEquals("105", computeString)
     }
 
 
