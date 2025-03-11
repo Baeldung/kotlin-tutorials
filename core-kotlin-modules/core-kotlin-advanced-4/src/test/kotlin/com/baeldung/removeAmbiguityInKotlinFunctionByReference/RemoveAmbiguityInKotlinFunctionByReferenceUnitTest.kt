@@ -8,15 +8,16 @@ typealias StringComputer = (String) -> String
 
 typealias IntComputer = (Int) -> Int
 
+class Calculator(val base: Int) {
+    fun compute(value: Int): Int = base + value
+    fun compute(value: String): String = "$base$value"
+}
+
+fun Calculator.computeInt(value: Int): Int = compute(value)
+
+fun Calculator.computeString(value: String): String = compute(value)
+
 class RemoveAmbiguityInKotlinFunctionByReferenceUnitTest {
-    class Calculator(val base: Int) {
-        fun compute(value: Int): Int = base + value
-        fun compute(value: String): String = "$base$value"
-    }
-
-    fun Calculator.computeInt(value: Int): Int = compute(value)
-
-    fun Calculator.computeString(value: String): String = compute(value)
 
     private val calculator = Calculator(10)
 
@@ -46,14 +47,14 @@ class RemoveAmbiguityInKotlinFunctionByReferenceUnitTest {
 
     @Test
     fun `should compute int with extension function`() {
-        val computeInt = calculator.computeInt(5)
-        assertEquals(15, computeInt)
+        val computeIntFn = calculator::computeInt
+        assertEquals(15, computeIntFn(5))
     }
 
     @Test
     fun `should compute string with extension function`() {
-        val computeString = calculator.computeString("5")
-        assertEquals("105", computeString)
+        val computeStringFn = calculator::computeString
+        assertEquals("105", computeStringFn("5"))
     }
 
 
