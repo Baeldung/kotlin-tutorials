@@ -116,7 +116,7 @@
 
     <properties>
         <kotlin.version>1.9.24</kotlin.version>
-        <httpclient5.version>5.4</httpclient5.version>
+        <httpclient5.version>5.4.3</httpclient5.version>
     </properties>
 
 </project>
