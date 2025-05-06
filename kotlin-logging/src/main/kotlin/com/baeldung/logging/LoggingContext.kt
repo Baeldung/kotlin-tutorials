@@ -1,7 +1,7 @@
 package com.baeldung.logging
 
-import mu.KotlinLogging
-import mu.withLoggingContext
+import io.github.oshai.kotlinlogging.KotlinLogging
+import io.github.oshai.kotlinlogging.withLoggingContext
 
 private val logger = KotlinLogging.logger {}
 
