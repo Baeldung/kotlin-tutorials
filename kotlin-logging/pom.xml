@@ -17,7 +17,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.io.github.oshai</groupId>
+            <groupId>io.github.oshai</groupId>
             <artifactId>kotlin-logging-jvm</artifactId>
             <version>${kotlin-logging-jvm.version}</version>
         </dependency>
