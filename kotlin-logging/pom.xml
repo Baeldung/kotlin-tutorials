@@ -17,9 +17,14 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.github.microutils</groupId>
+            <groupId>io.io.github.oshai</groupId>
             <artifactId>kotlin-logging-jvm</artifactId>
             <version>${kotlin-logging-jvm.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.17</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -35,6 +40,6 @@
     </dependencies>
 
     <properties>
-        <kotlin-logging-jvm.version>3.0.5</kotlin-logging-jvm.version>
+        <kotlin-logging-jvm.version>7.0.3</kotlin-logging-jvm.version>
     </properties>
 </project>
