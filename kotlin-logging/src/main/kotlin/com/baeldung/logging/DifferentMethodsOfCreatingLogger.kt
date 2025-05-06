@@ -1,8 +1,8 @@
 package com.baeldung.logging
 
-import mu.KLoggable
-import mu.KLogger
-import mu.KLogging
+import io.github.oshai.kotlinlogging.KLoggable
+import io.github.oshai.kotlinlogging.KLogger
+import io.github.oshai.kotlinlogging.KLogging
 import io.github.oshai.kotlinlogging.KotlinLogging
 
 private val staticLogger = KotlinLogging.logger {}
