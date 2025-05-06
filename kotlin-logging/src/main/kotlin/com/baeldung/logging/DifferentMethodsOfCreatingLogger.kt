@@ -3,7 +3,7 @@ package com.baeldung.logging
 import mu.KLoggable
 import mu.KLogger
 import mu.KLogging
-import mu.KotlinLogging
+import io.github.oshai.kotlinlogging.KotlinLogging
 
 private val staticLogger = KotlinLogging.logger {}
 
