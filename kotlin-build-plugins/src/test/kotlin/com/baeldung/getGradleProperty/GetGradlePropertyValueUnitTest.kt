@@ -18,7 +18,7 @@ class GetGradlePropertyValueUnitTest {
     @Test
     fun `obtain custom property value by loading properties from generated file`() {
         val propertiesFileUrl = this::class.java.classLoader.getResource("custom.properties")
-          ?: throw IllegalStateException("Properties file not found")
+            ?: throw IllegalStateException("Properties file not found")
 
         val properties = Properties().apply {
             propertiesFileUrl.openStream().use { load(it) }
