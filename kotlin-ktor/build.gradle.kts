@@ -7,6 +7,7 @@ val ktorVersion = "2.3.11"
 val logbackVersion = "1.4.14"
 val kotlinTestUnit = "1.9.10"
 val seleniumVersion = "4.16.1"
+val swaggerVersion = "1.0.49"
 
 repositories {
     mavenCentral()
@@ -31,6 +32,8 @@ dependencies {
     implementation("io.ktor", "ktor-server-openapi", ktorVersion)
     implementation("io.ktor", "ktor-server-swagger", ktorVersion)
     implementation("io.ktor", "ktor-serialization-kotlinx-json", ktorVersion)
+    
+    implementation("io.swagger.codegen.v3", "swagger-codegen-generators", swaggerVersion)
 
     implementation("ch.qos.logback", "logback-classic", logbackVersion)
 
