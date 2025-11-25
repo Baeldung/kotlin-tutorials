@@ -27,6 +27,10 @@ dependencies {
     implementation("io.ktor", "ktor-client-websockets", ktorVersion)
     implementation("io.ktor", "ktor-serialization-jackson", ktorVersion)
     implementation("io.ktor", "ktor-client-content-negotiation", ktorVersion)
+    implementation("io.ktor", "ktor-server-cors", ktorVersion)
+    implementation("io.ktor", "ktor-server-openapi", ktorVersion)
+    implementation("io.ktor", "ktor-server-swagger", ktorVersion)
+    implementation("io.ktor", "ktor-serialization-kotlinx-json", ktorVersion)
 
     implementation("ch.qos.logback", "logback-classic", logbackVersion)
 
@@ -38,7 +42,6 @@ dependencies {
     testImplementation("io.ktor", "ktor-client-mock", ktorVersion)
     testImplementation("io.ktor", "ktor-server-tests", ktorVersion)
 
-    testImplementation("io.ktor", "ktor-serialization-kotlinx-json", ktorVersion)
     testImplementation("org.jetbrains.kotlin", "kotlin-test-junit", kotlinTestUnit)
     testImplementation("org.seleniumhq.selenium", "selenium-java", seleniumVersion)
 }
