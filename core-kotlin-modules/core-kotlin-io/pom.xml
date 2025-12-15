@@ -14,7 +14,7 @@
     </parent>
 
     <properties>
-        <okhttp.version>4.9.1</okhttp.version>
+        <okhttp.version>4.9.2</okhttp.version>
         <okio.version>3.9.0</okio.version>
         <wiremock.version>2.35.1</wiremock.version>
         <fuel.version>2.3.1</fuel.version>
