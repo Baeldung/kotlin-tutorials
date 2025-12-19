@@ -42,7 +42,7 @@
     <properties>
         <kotlin-logging-jvm.version>7.0.3</kotlin-logging-jvm.version>
         <log4j-api-kotlin.version>1.5.0</log4j-api-kotlin.version>
-        <log4j-core.version>2.24.3</log4j-core.version>
+        <log4j-core.version>2.25.3</log4j-core.version>
         <slf4j-simple.version>2.0.17</slf4j-simple.version>
     </properties>
 </project>
