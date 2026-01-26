@@ -33,7 +33,7 @@
 
     <properties>
         <project.version>1.0.0-SNAPSHOT</project.version>
-        <assertj.version>3.24.2</assertj.version>
+        <assertj.version>3.27.7</assertj.version>
     </properties>
 
 </project>
