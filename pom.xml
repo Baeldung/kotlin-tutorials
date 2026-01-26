@@ -813,7 +813,7 @@
         <!-- testing -->
         <junit-jupiter.version>5.9.1</junit-jupiter.version>
         <mockito.version>5.1.0</mockito.version>
-        <assertj-core.version>3.11.1</assertj-core.version>
+        <assertj-core.version>3.27.7</assertj-core.version>
         <junit.platform.version>1.9.1</junit.platform.version>
 
         <!-- logging -->
